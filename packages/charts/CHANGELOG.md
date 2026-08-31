@@ -1,5 +1,12 @@
 # @react-magma/charts
 
+## 15.0.0-rc.4
+
+### Patch Changes
+
+- 2435545: fix(charts): fix the `chartToolbar` "Download as PNG/JPG" image export
+- ac0fbc7: fix(charts): Add focusing for dot content - tooltip appears at the focused dot when tabbing through chart data points.
+
 ## 15.0.0-rc.3
 
 ### Minor Changes
