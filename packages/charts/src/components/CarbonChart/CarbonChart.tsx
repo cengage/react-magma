@@ -909,7 +909,12 @@ function exportCarbonChartImage(
 
   magmaWrapper?.classList.remove('has-magma-toolbar');
 
-  const restore = () => magmaWrapper?.classList.add('has-magma-toolbar');
+  let restored = false;
+  const restore = () => {
+    if (restored) return;
+    restored = true;
+    magmaWrapper?.classList.add('has-magma-toolbar');
+  };
 
   try {
     if (format === 'jpg') {
@@ -920,6 +925,9 @@ function exportCarbonChartImage(
   } catch (error) {
     console.warn('Carbon chart image export failed', error);
   } finally {
+    // Re-add before the next paint so the title swap is never visible on
+    // screen; the timeout is only a fallback for when requestAnimationFrame is
+    // paused (e.g. the tab is in the background).
     if (typeof requestAnimationFrame === 'function') {
       requestAnimationFrame(restore);
     }
