@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 14.0.0-next.4
+
+### Patch Changes
+
+- 816f49819: fix(charts): fix the `chartToolbar` "Download as PNG/JPG" image export
+
 ## 14.0.0-next.3
 
 ### Minor Changes
