@@ -253,6 +253,14 @@ const CarbonChartWrapper = styled.div<{
     }
   }
 
+  .cds--chart-holder.filled,
+  .cds--chart-holder.filled .cds--cc--chart-wrapper {
+    background-color: ${props =>
+      props.isInverse
+        ? props.theme.colors.primary600
+        : props.theme.colors.neutral100};
+  }
+
   .cds--data-table thead tr th {
     background: ${props =>
       props.isInverse ? props.theme.colors.primary700 : ''} !important;
@@ -804,8 +812,7 @@ const TitleSlot = styled.div`
 `;
 
 const ChartSlot = styled.div<{ theme: ThemeInterface }>`
-  margin: ${props => props.theme.spaceScale.spacing05} 0
-    ${props => props.theme.spaceScale.spacing06};
+  margin: ${props => props.theme.spaceScale.spacing05} 0 0;
 `;
 
 const ToolbarActions = styled.div<{ theme: ThemeInterface }>`
@@ -873,189 +880,54 @@ function downloadCsv(dataSet: Array<Record<string, unknown>>, title: string) {
   URL.revokeObjectURL(url);
 }
 
-function inlineStyles(source: Element, target: Element) {
-  const computed = window.getComputedStyle(source);
-  if (target instanceof HTMLElement || target instanceof SVGElement) {
-    target.setAttribute(
-      'style',
-      Array.from(computed)
-        .map(prop => `${prop}:${computed.getPropertyValue(prop)}`)
-        .join(';')
-    );
-  }
-  for (let i = 0; i < source.children.length; i++) {
-    if (target.children[i]) {
-      inlineStyles(source.children[i], target.children[i]);
-    }
-  }
+interface CarbonChartCore {
+  services?: {
+    domUtils?: { exportToPNG: () => void; exportToJPG: () => void };
+  };
 }
 
-interface LegendItem {
-  label: string;
-  color: string;
+interface CarbonChartComponent {
+  chart?: CarbonChartCore;
 }
 
-function readLegendItems(wrapper: HTMLElement): LegendItem[] {
-  const items: LegendItem[] = [];
-  wrapper.querySelectorAll('.legend-item').forEach(item => {
-    const checkbox = item.querySelector<HTMLElement>('.checkbox');
-    const label = item.querySelector('p');
-    if (checkbox && label) {
-      items.push({
-        color: checkbox.style.background || checkbox.style.backgroundColor,
-        label: label.textContent || '',
-      });
-    }
-  });
-  return items;
-}
-
-function drawLegend(
-  ctx: CanvasRenderingContext2D,
-  items: LegendItem[],
-  startY: number,
-  canvasWidth: number,
-  scale: number
-) {
-  const fontSize = 13 * scale;
-  const swatchSize = 12 * scale;
-  const gap = 8 * scale;
-  const itemGap = 16 * scale;
-  const paddingX = 16 * scale;
-
-  ctx.font = `${fontSize}px sans-serif`;
-  ctx.textBaseline = 'middle';
-
-  let x = paddingX;
-  let y = startY;
-
-  for (const item of items) {
-    const textWidth = ctx.measureText(item.label).width;
-    const itemWidth = swatchSize + gap + textWidth + itemGap;
-
-    if (x + itemWidth > canvasWidth - paddingX && x > paddingX) {
-      x = paddingX;
-      y += fontSize + gap;
-    }
-
-    ctx.fillStyle = item.color;
-    ctx.fillRect(x, y - swatchSize / 2, swatchSize, swatchSize);
-
-    ctx.fillStyle = '#161616';
-    ctx.fillText(item.label, x + swatchSize + gap, y);
-
-    x += itemWidth;
-  }
-
-  return y + fontSize + gap;
-}
-
-function downloadImage(
-  wrapperRef: React.RefObject<HTMLDivElement | null>,
-  title: string,
+function exportCarbonChartImage(
+  chart: CarbonChartCore | null | undefined,
+  toolbarWrapper: Element | null | undefined,
   format: 'png' | 'jpg'
 ) {
-  const wrapper = wrapperRef.current;
-  if (!wrapper) return;
-  const svg = wrapper.querySelector('svg.layout-svg-wrapper');
-  if (!svg) return;
+  const domUtils = chart?.services?.domUtils;
 
-  const svgRect = svg.getBoundingClientRect();
-  const legendItems = readLegendItems(wrapper);
+  if (!domUtils) return;
 
-  const doWork = () => {
-    const scale = 2;
+  const magmaWrapper = toolbarWrapper?.classList.contains('has-magma-toolbar')
+    ? toolbarWrapper
+    : null;
 
-    // Measure legend height
-    const tempCanvas = document.createElement('canvas');
-    const tempCtx = tempCanvas.getContext('2d');
-    const fontSize = 13 * scale;
-    const swatchSize = 12 * scale;
-    const gap = 8 * scale;
-    const itemGap = 16 * scale;
-    const paddingX = 16 * scale;
-    const canvasWidth = svgRect.width * scale;
+  magmaWrapper?.classList.remove('has-magma-toolbar');
 
-    let legendHeight = 0;
-    if (legendItems.length > 0 && tempCtx) {
-      tempCtx.font = `${fontSize}px sans-serif`;
-      let x = paddingX;
-      let rows = 1;
-      for (const item of legendItems) {
-        const textWidth = tempCtx.measureText(item.label).width;
-        const itemWidth = swatchSize + gap + textWidth + itemGap;
-        if (x + itemWidth > canvasWidth - paddingX && x > paddingX) {
-          x = paddingX;
-          rows++;
-        }
-        x += itemWidth;
-      }
-      legendHeight = rows * (fontSize + gap) + gap * 2;
-    }
-
-    const width = svgRect.width * scale;
-    const height = svgRect.height * scale + legendHeight;
-
-    const clone = svg.cloneNode(true) as SVGSVGElement;
-    clone.setAttribute('width', String(svgRect.width));
-    clone.setAttribute('height', String(svgRect.height));
-    clone.setAttribute('viewBox', `0 0 ${svgRect.width} ${svgRect.height}`);
-    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-
-    inlineStyles(svg, clone);
-
-    const serializer = new XMLSerializer();
-    const svgString = serializer.serializeToString(clone);
-    const svgBlob = new Blob([svgString], {
-      type: 'image/svg+xml;charset=utf-8',
-    });
-    const url = URL.createObjectURL(svgBlob);
-
-    const mimeType = format === 'jpg' ? 'image/jpeg' : 'image/png';
-    const ext = format === 'jpg' ? 'jpg' : 'png';
-
-    const img = new Image();
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      canvas.width = width;
-      canvas.height = height;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0, svgRect.width * scale, svgRect.height * scale);
-      URL.revokeObjectURL(url);
-
-      if (legendItems.length > 0) {
-        drawLegend(
-          ctx,
-          legendItems,
-          svgRect.height * scale + gap,
-          width,
-          scale
-        );
-      }
-
-      canvas.toBlob(blob => {
-        if (!blob) return;
-        const imgUrl = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = imgUrl;
-        a.download = `${title || 'chart'}.${ext}`;
-        a.click();
-        URL.revokeObjectURL(imgUrl);
-      }, mimeType);
-    };
-    img.onerror = () => URL.revokeObjectURL(url);
-    img.src = url;
+  let restored = false;
+  const restore = () => {
+    if (restored) return;
+    restored = true;
+    magmaWrapper?.classList.add('has-magma-toolbar');
   };
 
-  // Defer to idle time with a 2-second deadline so it always runs.
-  if (typeof requestIdleCallback === 'function') {
-    requestIdleCallback(doWork, { timeout: 2000 });
-  } else {
-    setTimeout(doWork, 0);
+  try {
+    if (format === 'jpg') {
+      domUtils.exportToJPG();
+    } else {
+      domUtils.exportToPNG();
+    }
+  } catch (error) {
+    console.warn('Carbon chart image export failed', error);
+  } finally {
+    // Re-add before the next paint so the title swap is never visible on
+    // screen; the timeout is only a fallback for when requestAnimationFrame is
+    // paused (e.g. the tab is in the background).
+    if (typeof requestAnimationFrame === 'function') {
+      requestAnimationFrame(restore);
+    }
+    setTimeout(restore, 1000);
   }
 }
 
@@ -1081,6 +953,7 @@ const ALL_CHARTS: Record<CarbonChartType, React.ComponentType<any>> = {
 };
 
 interface InternalToolbarProps {
+  chartRef: React.MutableRefObject<CarbonChartComponent | null>;
   config: ChartToolbarConfig;
   dataSet: Array<Record<string, unknown>>;
   isFlowLayout: boolean;
@@ -1095,6 +968,7 @@ interface InternalToolbarProps {
 }
 
 function CarbonChartToolbar({
+  chartRef,
   config,
   dataSet,
   isFlowLayout,
@@ -1112,17 +986,28 @@ function CarbonChartToolbar({
   const showFullscreen = config.fullscreen !== false;
   const resolvedTitle = title || t.defaultTitle;
 
+  const exportImage = React.useCallback(
+    (format: 'png' | 'jpg') => {
+      exportCarbonChartImage(
+        chartRef.current?.chart,
+        wrapperRef.current?.querySelector('.carbon-chart-wrapper'),
+        format
+      );
+    },
+    [chartRef, wrapperRef]
+  );
+
   const handleDownloadCsv = React.useCallback(() => {
     downloadCsv(dataSet, title);
   }, [dataSet, title]);
 
   const handleDownloadPng = React.useCallback(() => {
-    downloadImage(wrapperRef, title, 'png');
-  }, [wrapperRef, title]);
+    exportImage('png');
+  }, [exportImage]);
 
   const handleDownloadJpg = React.useCallback(() => {
-    downloadImage(wrapperRef, title, 'jpg');
-  }, [wrapperRef, title]);
+    exportImage('jpg');
+  }, [exportImage]);
 
   const moreOptionsContent = (
     <>
@@ -1214,6 +1099,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     const isInverse = useIsInverse(isInverseProp);
     const toolbarI18n = useChartToolbarI18n();
     const internalRef = React.useRef<HTMLDivElement | null>(null);
+    const chartComponentRef = React.useRef<CarbonChartComponent | null>(null);
 
     const [isTableOpen, setIsTableOpen] = React.useState(false);
     const [isFullscreen, setIsFullscreen] = React.useState(false);
@@ -1487,13 +1373,8 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       isInverse,
     ]);
 
-    const { title: _title, ...optionsWithoutTitle } = options as Record<
-      string,
-      unknown
-    >;
-
     const newOptions = {
-      ...(isFlowLayout ? optionsWithoutTitle : options),
+      ...options,
       theme: isInverse ? ChartTheme.G100 : ChartTheme.WHITE,
       color: {
         scale: colorScale,
@@ -1504,7 +1385,15 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
           type: 'none',
         },
       },
-      ...(chartToolbar ? { toolbar: { enabled: false } } : {}),
+      ...(chartToolbar
+        ? {
+            toolbar: { enabled: false },
+            title: chartTitle,
+            ...(options.fileDownload
+              ? {}
+              : { fileDownload: { fileName: chartTitle } }),
+          }
+        : {}),
     };
 
     const ChartType = ALL_CHARTS[type];
@@ -1707,7 +1596,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
           isInverse={isInverse}
           theme={theme}
           className={`carbon-chart-wrapper${
-            chartToolbar && !isFlowLayout ? ' has-magma-toolbar' : ''
+            chartToolbar ? ' has-magma-toolbar' : ''
           }`}
           groupsLength={groupsLength < 6 ? groupsLength : 14}
           role="region"
@@ -1725,6 +1614,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
                */
               <InverseContext.Provider value={{ isInverse }}>
                 <CarbonChartToolbar
+                  chartRef={chartComponentRef}
                   config={chartToolbar}
                   dataSet={dataSet as Array<Record<string, unknown>>}
                   isFlowLayout={isFlowLayout}
@@ -1742,7 +1632,11 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
                 )}
               </InverseContext.Provider>
             )}
-            <ChartType data={dataSet} options={newOptions} />
+            <ChartType
+              ref={chartComponentRef}
+              data={dataSet}
+              options={newOptions}
+            />
           </ChartContentWrapper>
         </CarbonChartWrapper>
         {chartToolbar && showTable && (
