@@ -310,8 +310,9 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     isWindows && !selectedItem ? placeholder : undefined;
 
   const selectedItemObject =
+    hasSelectedItemContent &&
     selectedItem &&
-    typeof selectedItem !== 'string' &&
+    typeof selectedItem === 'object' &&
     instanceOfDefaultItemObject(selectedItem)
       ? selectedItem
       : undefined;

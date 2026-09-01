@@ -1399,21 +1399,25 @@ const locationItems: LocationOption[] = [
   },
 ];
 
+function locationItemBorderColor(props) {
+  if (!props.isFocused) {
+    return 'transparent';
+  }
+
+  return props.isInverse
+    ? props.theme.colors.focusInverse
+    : props.theme.colors.focus;
+}
+
 const LocationListItem = styled.li<{
   isFocused?: boolean;
   isInverse?: boolean;
   theme?: ThemeInterface;
 }>`
   align-items: center;
-  background: ${props => {
-    if (props.isFocused) {
-      return props.isInverse
-        ? props.theme.colors.primary600
-        : props.theme.colors.neutral200;
-    }
-
-    return 'transparent';
-  }};
+  background: transparent;
+  border: 2px solid;
+  border-color: ${props => locationItemBorderColor(props)};
   cursor: pointer;
   display: flex;
   gap: ${props => props.theme.spaceScale.spacing03};
@@ -1425,6 +1429,7 @@ const LocationListItem = styled.li<{
       props.isInverse
         ? props.theme.colors.primary600
         : props.theme.colors.neutral200};
+    border-color: ${props => locationItemBorderColor(props)};
   }
 `;
 
@@ -1526,6 +1531,7 @@ export const SelectedItemContent = {
     hasSelectedItemContent: true,
     isClearable: true,
     disableCreateItem: true,
+    isTypeahead: true,
   },
 };
 
@@ -1546,5 +1552,66 @@ export const SelectedItemContentInverse = {
   args: {
     ...SelectedItemContent.args,
     isInverse: true,
+  },
+};
+
+function makeLocationItems(count) {
+  return Array.from({ length: count }, (_, index) => ({
+    label: `Location ${index + 1}`,
+    value: `location-${index + 1}`,
+    secondaryText: `Intervention Library > Location ${index + 1}`,
+    leadingIcon: <FolderIcon aria-hidden />,
+  }));
+}
+
+const largeLocationItems = makeLocationItems(2000);
+
+export const SelectedItemContentLargeList = {
+  render: args => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [openMs, setOpenMs] = React.useState<number | null>(null);
+    const openStartRef = React.useRef<number | null>(null);
+
+    function handleIsOpenChange(changes) {
+      if (changes.isOpen) {
+        openStartRef.current = performance.now();
+      }
+      setIsOpen(Boolean(changes.isOpen));
+    }
+
+    React.useEffect(() => {
+      if (isOpen && openStartRef.current !== null) {
+        setOpenMs(performance.now() - openStartRef.current);
+        openStartRef.current = null;
+      }
+    }, [isOpen]);
+
+    return (
+      <>
+        <p>
+          Items: <strong>{largeLocationItems.length.toLocaleString()}</strong>
+          {' · '}Menu open render:{' '}
+          <strong>
+            {openMs === null
+              ? '—'
+              : `${(openMs / 1000).toFixed(2)} s (${Math.round(openMs)} ms)`}
+          </strong>
+        </p>
+        <Combobox
+          {...args}
+          components={{ Item: LocationItem }}
+          defaultItems={largeLocationItems}
+          onIsOpenChange={handleIsOpenChange}
+        />
+      </>
+    );
+  },
+
+  args: {
+    labelText: 'Location',
+    placeholder: 'Select a location...',
+    hasSelectedItemContent: true,
+    isClearable: true,
+    disableCreateItem: true,
   },
 };

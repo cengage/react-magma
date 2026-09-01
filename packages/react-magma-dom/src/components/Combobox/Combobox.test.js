@@ -1466,5 +1466,23 @@ describe('Combobox', () => {
         ).toBeInTheDocument();
       });
     });
+
+    it('does not crash for non-string primitive items (e.g. numbers) when the feature is omitted', () => {
+      const numericItems = [1, 2, 3];
+
+      const { getByLabelText } = render(
+        <Combobox
+          labelText={labelText}
+          items={numericItems}
+          itemToString={item => (item ? `Item ${item}` : '')}
+          initialSelectedItem={2}
+        />
+      );
+
+      const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+      expect(renderedCombobox).toBeInTheDocument();
+      expect(renderedCombobox.value).toEqual('Item 2');
+    });
   });
 });
