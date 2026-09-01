@@ -1334,6 +1334,103 @@ export function Example() {
 }
 ```
 
+## Selected Item Content
+
+By default, when an item is selected only its label (the `itemToString` value) is shown in the input. Set the `hasSelectedItemContent` prop to
+also display the selected item's `leadingIcon` and `secondaryText` inside the input, showing an icon and a secondary line of text in addition to
+the label. This mirrors the richer content you can render for each option in the dropdown with a [custom `Item` component](/api/combobox#custom_item_component).
+
+The `leadingIcon` and `secondaryText` are read from the selected item object, so include them on your `items` alongside `label` and `value`. The
+preview is only shown while the input is not focused; focusing the input to edit or select its text shows the standard single-line input.
+
+```tsx
+import React from 'react';
+
+import styled from '@emotion/styled';
+import { Combobox } from 'react-magma-dom';
+import { FolderIcon } from 'react-magma-icons';
+
+export function Example() {
+  const items = [
+    {
+      label: 'Top level',
+      value: 'top-level',
+      secondaryText: 'Not inside any folder',
+      leadingIcon: <FolderIcon aria-hidden />,
+    },
+    {
+      label: 'Teacher Toolkit: Course Essentials',
+      value: 'toolkit',
+      secondaryText: 'Teacher Toolkit: Course Essentials',
+      leadingIcon: <FolderIcon aria-hidden />,
+    },
+    {
+      label: 'Surface Area and Volume',
+      value: 'surface-area',
+      secondaryText: 'Intervention Library > Surface Area and Volume',
+      leadingIcon: <FolderIcon aria-hidden />,
+    },
+  ];
+
+  const StyledItem = styled.li(props => ({
+    alignItems: 'center',
+    background: props.isFocused ? props.theme.colors.neutral200 : 'transparent',
+    cursor: 'pointer',
+    display: 'flex',
+    gap: '8px',
+    padding: '8px 16px',
+  }));
+
+  const IconWrapper = styled.span(props => ({
+    alignItems: 'center',
+    color: props.theme.colors.neutral500,
+    display: 'flex',
+    flexShrink: 0,
+  }));
+
+  const TextWrapper = styled.span(() => ({
+    display: 'flex',
+    flexDirection: 'column',
+    minWidth: 0,
+  }));
+
+  const SecondaryText = styled.span(props => ({
+    color: props.theme.colors.neutral500,
+    fontSize: '12px',
+    lineHeight: '16px',
+  }));
+
+  const Item = props => {
+    const { itemRef, itemString, item, ...other } = props;
+
+    return (
+      <StyledItem {...other} ref={itemRef}>
+        <IconWrapper theme={props.theme}>{item.leadingIcon}</IconWrapper>
+        <TextWrapper>
+          {itemString}
+          <SecondaryText theme={props.theme}>
+            {item.secondaryText}
+          </SecondaryText>
+        </TextWrapper>
+      </StyledItem>
+    );
+  };
+
+  return (
+    <Combobox
+      labelText="Location"
+      placeholder="Select a location..."
+      defaultItems={items}
+      components={{ Item }}
+      hasSelectedItemContent
+      isClearable
+      disableCreateItem
+      initialSelectedItem={items[2]}
+    />
+  );
+}
+```
+
 ## Internationalization
 
 Some of the internationalization overrides use placeholders to insert selected values in to the message.

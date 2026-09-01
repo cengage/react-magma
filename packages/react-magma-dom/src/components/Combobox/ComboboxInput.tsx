@@ -14,6 +14,7 @@ import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { inputBaseStyles } from '../InputBase';
+import { instanceOfDefaultItemObject } from '../Select';
 import { defaultComponents, SelectComponents } from '../Select/components';
 import { SelectedItemsWrapper } from '../Select/shared';
 
@@ -86,7 +87,7 @@ const InputContainer = styled.div<{
     `}
 `;
 
-const StyledInput = styled.input`
+const StyledInput = styled.input<{ hideText?: boolean }>`
   ${inputBaseStyles}
   display: flex;
   flex-grow: 1;
@@ -98,6 +99,106 @@ const StyledInput = styled.input`
   &:focus {
     outline: 0;
   }
+
+  ${props =>
+    props.hideText &&
+    css`
+      color: transparent;
+      caret-color: transparent;
+    `}
+`;
+
+const SelectedItemContent = styled.div<{
+  theme?: ThemeInterface;
+}>`
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  gap: ${props => props.theme.spaceScale.spacing03};
+  left: 0;
+  overflow: hidden;
+  padding-left: ${props => props.theme.spaceScale.spacing03};
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+`;
+
+const SelectedItemIcon = styled.span<{
+  disabled?: boolean;
+  isInverse?: boolean;
+  theme?: ThemeInterface;
+}>`
+  align-items: center;
+  color: ${props => {
+    if (props.disabled) {
+      return props.isInverse
+        ? transparentize(0.6, props.theme.colors.neutral100)
+        : transparentize(0.4, props.theme.colors.neutral500);
+    }
+
+    return props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral500;
+  }};
+  display: flex;
+  flex-shrink: 0;
+`;
+
+const SelectedItemText = styled.span`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  overflow: hidden;
+`;
+
+const SelectedItemPrimaryText = styled.span<{
+  disabled?: boolean;
+  isInverse?: boolean;
+  theme?: ThemeInterface;
+}>`
+  color: ${props => {
+    if (props.disabled) {
+      return props.isInverse
+        ? transparentize(0.6, props.theme.colors.neutral100)
+        : transparentize(0.4, props.theme.colors.neutral500);
+    }
+
+    return props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700;
+  }};
+  font-family: ${props => props.theme.bodyFont};
+  font-size: ${props => props.theme.typeScale.size03.fontSize};
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+const SelectedItemSecondaryText = styled.span<{
+  disabled?: boolean;
+  isInverse?: boolean;
+  theme?: ThemeInterface;
+}>`
+  color: ${props => {
+    if (props.disabled) {
+      return props.isInverse
+        ? transparentize(0.7, props.theme.colors.neutral100)
+        : transparentize(0.4, props.theme.colors.neutral500);
+    }
+
+    return props.isInverse
+      ? transparentize(0.3, props.theme.colors.neutral100)
+      : props.theme.colors.neutral500;
+  }};
+  font-family: ${props => props.theme.bodyFont};
+  font-size: ${props => props.theme.typeScale.size01.fontSize};
+  line-height: ${props => props.theme.typeScale.size01.lineHeight};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 interface ComboboxInputProps<T> {
@@ -110,12 +211,15 @@ interface ComboboxInputProps<T> {
     options?: UseComboboxGetToggleButtonPropsOptions
   ) => any;
   hasError?: boolean;
+  hasSelectedItemContent?: boolean;
   innerRef?: React.Ref<HTMLInputElement>;
   inputStyle?: React.CSSProperties;
   disabled?: boolean;
   isInverse?: boolean;
   isLoading?: boolean;
+  isOpen?: boolean;
   isTypeahead?: boolean;
+  itemToString?: (item: T | null) => string;
   onInputBlur?: (event: React.FocusEvent) => void;
   onInputFocus?: (event: React.FocusEvent) => void;
   onInputKeyDown?: (event: any) => void;
@@ -123,7 +227,7 @@ interface ComboboxInputProps<T> {
   onInputKeyUp?: (event: any) => void;
   placeholder?: string;
   selectedItems?: React.ReactNode;
-  selectedItem?: React.ReactNode;
+  selectedItem?: T;
   setReference?: (node: ReferenceType) => void;
   toggleButtonRef?: React.Ref<HTMLButtonElement>;
 }
@@ -137,12 +241,15 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     getInputProps,
     getToggleButtonProps,
     hasError,
+    hasSelectedItemContent,
     innerRef,
     inputStyle,
     disabled,
     isInverse,
     isLoading,
+    isOpen,
     isTypeahead,
+    itemToString,
     onInputBlur,
     onInputFocus,
     onInputKeyDown,
@@ -202,6 +309,27 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
   const selectedItemAriaLabel =
     isWindows && !selectedItem ? placeholder : undefined;
 
+  const selectedItemObject =
+    hasSelectedItemContent &&
+    selectedItem &&
+    typeof selectedItem === 'object' &&
+    instanceOfDefaultItemObject(selectedItem)
+      ? selectedItem
+      : undefined;
+  const selectedItemLeadingIcon = selectedItemObject?.leadingIcon;
+  const selectedItemSecondaryText = selectedItemObject?.secondaryText;
+
+  const showSelectedItemContent = Boolean(
+    hasSelectedItemContent &&
+      !isOpen &&
+      !isFocused &&
+      selectedItemObject &&
+      (selectedItemLeadingIcon || selectedItemSecondaryText)
+  );
+
+  const selectedItemPrimaryText =
+    selectedItemObject && itemToString ? itemToString(selectedItem) : '';
+
   return (
     <div ref={setReference}>
       <ComboBoxContainer
@@ -225,17 +353,52 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
           theme={theme}
           ref={innerRef}
         >
-          <SelectedItemsWrapper aria-label={selectedItemAriaLabel}>
+          <SelectedItemsWrapper
+            aria-label={selectedItemAriaLabel}
+            isRelative={showSelectedItemContent}
+          >
             {selectedItems}
             <StyledInput
               {...inputProps}
               aria-describedby={ariaDescribedBy}
               aria-invalid={hasError}
               disabled={disabled}
+              hideText={showSelectedItemContent}
               isInverse={isInverse}
               placeholder={placeholder}
               theme={theme}
             />
+            {showSelectedItemContent && (
+              <SelectedItemContent aria-hidden="true" theme={theme}>
+                {selectedItemLeadingIcon && (
+                  <SelectedItemIcon
+                    disabled={disabled}
+                    isInverse={isInverse}
+                    theme={theme}
+                  >
+                    {selectedItemLeadingIcon}
+                  </SelectedItemIcon>
+                )}
+                <SelectedItemText>
+                  <SelectedItemPrimaryText
+                    disabled={disabled}
+                    isInverse={isInverse}
+                    theme={theme}
+                  >
+                    {selectedItemPrimaryText}
+                  </SelectedItemPrimaryText>
+                  {selectedItemSecondaryText && (
+                    <SelectedItemSecondaryText
+                      disabled={disabled}
+                      isInverse={isInverse}
+                      theme={theme}
+                    >
+                      {selectedItemSecondaryText}
+                    </SelectedItemSecondaryText>
+                  )}
+                </SelectedItemText>
+              </SelectedItemContent>
+            )}
           </SelectedItemsWrapper>
           {children}
           {isLoading && !isTypeahead && (

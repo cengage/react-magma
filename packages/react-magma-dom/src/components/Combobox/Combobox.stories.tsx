@@ -1,8 +1,11 @@
 import React from 'react';
 
+import styled from '@emotion/styled';
 import { Meta } from '@storybook/react-webpack5';
+import { FolderIcon } from 'react-magma-icons';
 import { action } from 'storybook/actions';
 
+import { ThemeInterface } from '../../theme/magma';
 import { Button, ButtonType } from '../Button';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
@@ -1346,5 +1349,269 @@ export const ControlledItems = {
         onItemCreated={onItemCreated}
       />
     );
+  },
+};
+
+type LocationOption = {
+  label: string;
+  value: string;
+  leadingIcon?: React.ReactNode;
+  secondaryText?: React.ReactNode;
+};
+
+const locationItems: LocationOption[] = [
+  {
+    label: 'Top level',
+    value: 'top-level',
+    secondaryText: 'Not inside any folder',
+    leadingIcon: <FolderIcon aria-hidden />,
+  },
+  {
+    label: 'Teaching & Student Editions',
+    value: 'teaching',
+    secondaryText: 'Teaching & Student Editions',
+    leadingIcon: <FolderIcon aria-hidden />,
+  },
+  {
+    label: 'Teacher Toolkit: Course Essentials',
+    value: 'toolkit',
+    secondaryText: 'Teacher Toolkit: Course Essentials',
+    leadingIcon: <FolderIcon aria-hidden />,
+  },
+  {
+    label: 'Implementation',
+    value: 'implementation',
+    secondaryText: 'Teacher Toolkit: Course Essentials > Implementation',
+    leadingIcon: <FolderIcon aria-hidden />,
+  },
+  {
+    label: 'Standards and Correlations',
+    value: 'standards',
+    secondaryText:
+      'Teacher Toolkit: Course Essentials > Standards and Correlations',
+    leadingIcon: <FolderIcon aria-hidden />,
+  },
+  {
+    label: 'Surface Area and Volume',
+    value: 'surface-area',
+    secondaryText: 'Intervention Library > Surface Area and Volume',
+    leadingIcon: <FolderIcon aria-hidden />,
+  },
+];
+
+function locationItemBorderColor(props) {
+  if (!props.isFocused) {
+    return 'transparent';
+  }
+
+  return props.isInverse
+    ? props.theme.colors.focusInverse
+    : props.theme.colors.focus;
+}
+
+const LocationListItem = styled.li<{
+  isFocused?: boolean;
+  isInverse?: boolean;
+  theme?: ThemeInterface;
+}>`
+  align-items: center;
+  background: transparent;
+  border: 2px solid;
+  border-color: ${props => locationItemBorderColor(props)};
+  cursor: pointer;
+  display: flex;
+  gap: ${props => props.theme.spaceScale.spacing03};
+  padding: ${props => props.theme.spaceScale.spacing03}
+    ${props => props.theme.spaceScale.spacing05};
+
+  &:hover {
+    background: ${props =>
+      props.isInverse
+        ? props.theme.colors.primary600
+        : props.theme.colors.neutral200};
+    border-color: ${props => locationItemBorderColor(props)};
+  }
+`;
+
+const LocationIcon = styled.span<{
+  isInverse?: boolean;
+  theme?: ThemeInterface;
+}>`
+  align-items: center;
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral500};
+  display: flex;
+  flex-shrink: 0;
+`;
+
+const LocationItemText = styled.span`
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+`;
+
+const LocationItemPrimary = styled.span<{
+  isInverse?: boolean;
+  theme?: ThemeInterface;
+}>`
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
+`;
+
+const LocationItemSecondary = styled.span<{
+  isInverse?: boolean;
+  theme?: ThemeInterface;
+}>`
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral500};
+  font-size: ${props => props.theme.typeScale.size01.fontSize};
+  line-height: ${props => props.theme.typeScale.size01.lineHeight};
+`;
+
+const LocationItem = props => {
+  const {
+    itemRef,
+    item,
+    itemString,
+    isFocused,
+    isInverse,
+    isSelected,
+    isDisabled,
+    theme,
+    ...rest
+  } = props;
+
+  return (
+    <LocationListItem
+      {...rest}
+      ref={itemRef}
+      aria-disabled={isDisabled}
+      aria-selected={isSelected}
+      data-highlighted={isFocused}
+      isFocused={isFocused}
+      isInverse={isInverse}
+      theme={theme}
+    >
+      <LocationIcon isInverse={isInverse} theme={theme}>
+        {item.leadingIcon}
+      </LocationIcon>
+      <LocationItemText>
+        <LocationItemPrimary isInverse={isInverse} theme={theme}>
+          {itemString}
+        </LocationItemPrimary>
+        {item.secondaryText && (
+          <LocationItemSecondary isInverse={isInverse} theme={theme}>
+            {item.secondaryText}
+          </LocationItemSecondary>
+        )}
+      </LocationItemText>
+    </LocationListItem>
+  );
+};
+
+export const SelectedItemContent = {
+  render: args => (
+    <Combobox
+      {...args}
+      components={{ Item: LocationItem }}
+      defaultItems={locationItems}
+      initialSelectedItem={locationItems[5]}
+    />
+  ),
+
+  args: {
+    labelText: 'Location',
+    placeholder: 'Select a location...',
+    hasSelectedItemContent: true,
+    isClearable: true,
+    disableCreateItem: true,
+    isTypeahead: true,
+  },
+};
+
+export const SelectedItemContentInverse = {
+  render: args => (
+    <Card isInverse>
+      <CardBody>
+        <Combobox
+          {...args}
+          components={{ Item: LocationItem }}
+          defaultItems={locationItems}
+          initialSelectedItem={locationItems[5]}
+        />
+      </CardBody>
+    </Card>
+  ),
+
+  args: {
+    ...SelectedItemContent.args,
+    isInverse: true,
+  },
+};
+
+function makeLocationItems(count) {
+  return Array.from({ length: count }, (_, index) => ({
+    label: `Location ${index + 1}`,
+    value: `location-${index + 1}`,
+    secondaryText: `Intervention Library > Location ${index + 1}`,
+    leadingIcon: <FolderIcon aria-hidden />,
+  }));
+}
+
+const largeLocationItems = makeLocationItems(2000);
+
+export const SelectedItemContentLargeList = {
+  render: args => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [openMs, setOpenMs] = React.useState<number | null>(null);
+    const openStartRef = React.useRef<number | null>(null);
+
+    function handleIsOpenChange(changes) {
+      if (changes.isOpen) {
+        openStartRef.current = performance.now();
+      }
+      setIsOpen(Boolean(changes.isOpen));
+    }
+
+    React.useEffect(() => {
+      if (isOpen && openStartRef.current !== null) {
+        setOpenMs(performance.now() - openStartRef.current);
+        openStartRef.current = null;
+      }
+    }, [isOpen]);
+
+    return (
+      <>
+        <p>
+          Items: <strong>{largeLocationItems.length.toLocaleString()}</strong>
+          {' · '}Menu open render:{' '}
+          <strong>
+            {openMs === null
+              ? '—'
+              : `${(openMs / 1000).toFixed(2)} s (${Math.round(openMs)} ms)`}
+          </strong>
+        </p>
+        <Combobox
+          {...args}
+          components={{ Item: LocationItem }}
+          defaultItems={largeLocationItems}
+          onIsOpenChange={handleIsOpenChange}
+        />
+      </>
+    );
+  },
+
+  args: {
+    labelText: 'Location',
+    placeholder: 'Select a location...',
+    hasSelectedItemContent: true,
+    isClearable: true,
+    disableCreateItem: true,
   },
 };
