@@ -25,7 +25,7 @@ export function getIllustrationIconColor(props: {
   theme: ThemeInterface;
 }): string {
   if (props.isInverse) {
-    return props.theme.colors.neutral100;
+    return props.theme.colors.neutral0;
   }
 
   return props.isDanger

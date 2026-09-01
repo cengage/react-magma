@@ -10,7 +10,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { hasActiveElementsInside, useForkedRef } from '../../utils';
 import { Announce } from '../Announce';
-import { Card } from '../Card';
+import { Card, CardBorderRadius, CardCornerTreatment } from '../Card';
 
 export interface PopoverContentProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -36,7 +36,7 @@ const StyledCard = styled(Card)<{
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary600
-      : props.theme.colors.neutral100};
+      : props.theme.colors.neutral0};
   display: ${props => (props.isOpen ? 'block' : 'none')};
   max-height: ${props => (props.maxHeight ? props.maxHeight : '100%')};
   opacity: ${props => (props.isOpen ? '1' : '0')};
@@ -122,9 +122,7 @@ export const PopoverContent = React.forwardRef<
           width={10}
           height={6}
           fill={
-            context.isInverse
-              ? theme.colors.primary600
-              : theme.colors.neutral100
+            context.isInverse ? theme.colors.primary600 : theme.colors.neutral0
           }
           stroke={
             context.isInverse
@@ -138,6 +136,8 @@ export const PopoverContent = React.forwardRef<
 
       <StyledCard
         {...other}
+        borderRadius={CardBorderRadius.small}
+        cornerTreatment={CardCornerTreatment.all}
         hasDropShadow
         isInverse={context.isInverse}
         isOpen={context.isOpen}

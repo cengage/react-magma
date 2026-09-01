@@ -58,21 +58,24 @@ export interface HyperlinkProps
 
 const linkStyles = props => css`
   color: ${props.isInverse
-    ? props.theme.colors.tertiary
-    : props.theme.colors.primary};
+    ? props.theme.colors.cyan500
+    : props.theme.colors.cyan700};
   text-decoration: ${props.hasUnderline ? 'underline' : 'none'};
   font-family: ${props.theme.bodyFont};
   display: inline-flex;
   align-items: center;
   &:not([disabled]) {
-    &:hover,
-    &:focus {
+    &:hover {
       color: ${props.isInverse
-        ? props.theme.colors.neutral100
-        : props.theme.colors.primary700};
+        ? props.theme.colors.cyan400
+        : props.theme.colors.cyan800};
       text-decoration: underline;
     }
     &:focus {
+      color: ${props.isInverse
+        ? props.theme.colors.cyan500
+        : props.theme.colors.cyan700};
+      text-decoration: underline;
       outline: 2px solid
         ${props.isInverse
           ? props.theme.colors.focusInverse

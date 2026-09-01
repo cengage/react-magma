@@ -59,7 +59,7 @@ const StyledTreeItem = styled.li<{
 }>`
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
+      ? props.theme.colors.neutral0
       : props.theme.colors.neutral700};
   list-style-type: none;
   cursor: ${props =>
@@ -226,7 +226,7 @@ const GuideLine = styled.div<{
   border-inline-start: 1px solid
     ${props =>
       props.isInverse
-        ? transparentize(0.7, props.theme.colors.neutral100)
+        ? transparentize(0.7, props.theme.colors.neutral0)
         : props.theme.colors.neutral300};
   pointer-events: none;
   z-index: 1;
@@ -243,7 +243,7 @@ const VirtualizedGuideLine = styled.div<{
   border-inline-start: 1px solid
     ${props =>
       props.isInverse
-        ? transparentize(0.7, props.theme.colors.neutral100)
+        ? transparentize(0.7, props.theme.colors.neutral0)
         : props.theme.colors.neutral300};
   pointer-events: none;
   z-index: 1;

@@ -221,7 +221,7 @@ describe('Tooltip', () => {
 
     const tooltip = container.querySelector('div[role="tooltip"]');
 
-    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral100);
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral0);
     expect(tooltip).toHaveStyleRule('color', magma.colors.neutral700);
   });
 
@@ -239,7 +239,7 @@ describe('Tooltip', () => {
 
     const tooltip = container.querySelector('div[role="tooltip"]');
 
-    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral100);
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral0);
     expect(tooltip).toHaveStyleRule('color', magma.colors.neutral700);
   });
 
@@ -257,7 +257,7 @@ describe('Tooltip', () => {
 
     const tooltip = container.querySelector('div[role="tooltip"]');
 
-    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral100);
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral0);
     expect(tooltip).toHaveStyleRule('color', magma.colors.neutral700);
   });
 
@@ -275,7 +275,7 @@ describe('Tooltip', () => {
 
     const tooltip = container.querySelector('div[role="tooltip"]');
 
-    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral100);
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral0);
     expect(tooltip).toHaveStyleRule('color', magma.colors.neutral700);
   });
 

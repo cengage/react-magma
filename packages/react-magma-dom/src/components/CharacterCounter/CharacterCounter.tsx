@@ -39,6 +39,10 @@ export interface CharacterCounterProps
   /**
    * @internal
    */
+  messageColor?: string;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -75,6 +79,7 @@ export const CharacterCounter = React.forwardRef<
     inputLength,
     maxCount,
     maxLength,
+    messageColor,
     testId,
     isInverse,
     ...rest
@@ -176,6 +181,7 @@ export const CharacterCounter = React.forwardRef<
           inputLength={inputLength}
           maxCount={maxCharacters}
           maxLength={maxCharacters}
+          messageColor={messageColor}
         >
           {characterTitle}
         </StyledInputMessage>

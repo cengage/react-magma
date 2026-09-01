@@ -34,10 +34,7 @@ describe('TabsScrollSpyContainer', () => {
 
     await userEvent.click(getByTestId('tab0'));
 
-    expect(getByTestId('tab0')).toHaveStyleRule(
-      'color',
-      magma.colors.primary500
-    );
+    expect(getByTestId('tab0')).toHaveStyleRule('color', magma.colors.primary);
     expect(getByTestId('tab1')).toHaveStyleRule(
       'color',
       magma.colors.neutral500
@@ -53,10 +50,7 @@ describe('TabsScrollSpyContainer', () => {
       'color',
       magma.colors.neutral500
     );
-    expect(getByTestId('tab1')).toHaveStyleRule(
-      'color',
-      magma.colors.primary500
-    );
+    expect(getByTestId('tab1')).toHaveStyleRule('color', magma.colors.primary);
     expect(getByTestId('tab2')).toHaveStyleRule(
       'color',
       magma.colors.neutral500
@@ -72,10 +66,7 @@ describe('TabsScrollSpyContainer', () => {
       'color',
       magma.colors.neutral500
     );
-    expect(getByTestId('tab2')).toHaveStyleRule(
-      'color',
-      magma.colors.primary500
-    );
+    expect(getByTestId('tab2')).toHaveStyleRule('color', magma.colors.primary);
   });
 
   it('Should set the tabLabel', () => {

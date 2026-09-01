@@ -29,7 +29,7 @@ export interface TableCellProps
 export const baseTableCellStyle = props => css`
   border-right: ${props.hasVerticalBorders ? '1px solid' : 0};
   border-color: ${props.isInverse
-    ? transparentize(0.6, props.theme.colors.neutral100)
+    ? transparentize(0.6, props.theme.colors.neutral0)
     : props.theme.colors.neutral300};
   display: table-cell;
   font-size: inherit;

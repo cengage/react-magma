@@ -71,7 +71,7 @@ const StyledTabsContainer = styled(TabsContainer)`
 `;
 
 const StyledTabPanelsContainer = styled(TabPanelsContainer)`
-  background: ${magma.colors.neutral100};
+  background: ${magma.colors.neutral0};
   @media (max-width: 1024px) {
     max-width: 100%;
   }
@@ -262,7 +262,7 @@ export const PageContent = ({ children, componentName, type }) => {
           </StyledTabsContainer>
         </>
       ) : (
-        <div style={{ display: 'flex', background: magma.colors.neutral100 }}>
+        <div style={{ display: 'flex', background: magma.colors.neutral0 }}>
           {PAGES_NO_NAV.includes(componentName) ? (
             <ContentOutsideDocs>{children}</ContentOutsideDocs>
           ) : (

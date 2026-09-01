@@ -88,19 +88,16 @@ function buildBoxShadow(props) {
   if (props.color === 'lowContrast') {
     if (props.isInverse) {
       if (props.disabled) {
-        return `0 0 0 1px ${transparentize(
-          0.8,
-          props.theme.colors.neutral100
-        )}`;
+        return `0 0 0 1px ${transparentize(0.8, props.theme.colors.neutral0)}`;
       }
 
-      return `0 0 0 1px ${transparentize(0.5, props.theme.colors.neutral100)}`;
+      return `0 0 0 1px ${props.theme.colors.neutral800}`;
     }
     if (props.disabled) {
       return `0 0 0 1px ${props.theme.colors.neutral300}`;
     }
 
-    return `inset 0 0 0  1px ${props.theme.colors.neutral400}`;
+    return `inset 0 0 0 1px ${props.theme.colors.neutral300}`;
   }
 }
 
@@ -111,23 +108,23 @@ function buildButtonBackground(props) {
       switch (props.color) {
         case 'primary':
         case 'highContrast':
-          return transparentize(0.7, props.theme.colors.neutral100);
+          return transparentize(0.7, props.theme.colors.neutral0);
         case 'lowContrast':
           return `none`;
         default:
-          return transparentize(0.7, props.theme.colors.neutral100);
+          return transparentize(0.7, props.theme.colors.neutral0);
       }
     }
     // Inverse background colors
     switch (props.color) {
       case 'primary':
-        return props.theme.colors.tertiary500;
+        return props.theme.colors.brand.amber;
       case 'lowContrast':
         return `none;`;
       case 'highContrast':
-        return props.theme.colors.neutral100;
+        return props.theme.colors.brand.cyan;
       default:
-        return props.theme.colors.neutral500;
+        return props.theme.colors.neutral800;
     }
   } else if (props.disabled && !props.isInverse) {
     // Disabled state background colors
@@ -136,7 +133,7 @@ function buildButtonBackground(props) {
       case 'highContrast':
         return transparentize(0.4, props.theme.colors.neutral300);
       case 'lowContrast':
-        return props.theme.colors.neutral100;
+        return props.theme.colors.neutral0;
       default:
         return transparentize(0.4, props.theme.colors.neutral300);
     }
@@ -144,13 +141,13 @@ function buildButtonBackground(props) {
   // Default state background colors
   switch (props.color) {
     case 'primary':
-      return props.theme.colors.primary;
+      return props.theme.colors.brand.amber;
     case 'lowContrast':
-      return props.theme.colors.neutral100;
+      return props.theme.colors.neutral0;
     case 'highContrast':
-      return props.theme.colors.neutral700;
+      return props.theme.colors.brand.navy;
     default:
-      return props.theme.colors.neutral300;
+      return props.theme.colors.neutral200;
   }
 }
 
@@ -161,25 +158,25 @@ function buildButtonTextColor(props) {
       switch (props.color) {
         case 'primary':
         case 'highContrast':
-          return transparentize(0.6, props.theme.colors.neutral100);
+          return transparentize(0.6, props.theme.colors.neutral0);
 
         case 'lowContrast':
-          return transparentize(0.7, props.theme.colors.neutral100);
+          return transparentize(0.7, props.theme.colors.neutral0);
 
         default:
-          return transparentize(0.6, props.theme.colors.neutral100);
+          return transparentize(0.6, props.theme.colors.neutral0);
       }
     }
     // Inverse text colors
     switch (props.color) {
       case 'primary':
-        return props.theme.colors.primary600;
+        return props.theme.colors.brand.navy;
       case 'lowContrast':
-        return props.theme.colors.tertiary500;
+        return props.theme.colors.neutral0;
       case 'highContrast':
-        return props.theme.colors.neutral700;
+        return props.theme.colors.brand.navy;
       default:
-        return props.theme.colors.neutral100;
+        return props.theme.colors.neutral0;
     }
   } else if (props.disabled && !props.isInverse) {
     // Disabled state text colors
@@ -188,13 +185,13 @@ function buildButtonTextColor(props) {
   // Default state text colors
   switch (props.color) {
     case 'primary':
-      return props.theme.colors.neutral100;
+      return props.theme.colors.brand.navy;
     case 'highContrast':
-      return props.theme.colors.neutral100;
+      return props.theme.colors.neutral0;
     case 'lowContrast':
-      return props.theme.colors.neutral700;
+      return props.theme.colors.brand.navy;
     default:
-      return props.theme.colors.neutral700;
+      return props.theme.colors.brand.navy;
   }
 }
 

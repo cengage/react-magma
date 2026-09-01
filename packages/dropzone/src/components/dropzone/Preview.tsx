@@ -233,7 +233,7 @@ export const Preview = forwardRef<
       return (
         <StatusIcons>
           <Spinner
-            color={isInverse ? theme.colors.neutral100 : theme.colors.primary}
+            color={isInverse ? theme.colors.neutral0 : theme.colors.primary}
           />
         </StatusIcons>
       );

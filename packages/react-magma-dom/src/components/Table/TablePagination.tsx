@@ -109,7 +109,7 @@ function getBorder(hasOutsideBorder: boolean, isInverse: boolean) {
   return hasOutsideBorder
     ? `1px solid ${
         isInverse
-          ? transparentize(0.6, magma.colors.neutral100)
+          ? transparentize(0.6, magma.colors.neutral0)
           : magma.colors.neutral300
       }`
     : 'none';
@@ -124,7 +124,7 @@ const StyledContainer = styled.div<{
   align-items: center;
   background: ${props =>
     props.isInverse
-      ? transparentize(0.9, props.theme.colors.neutral100)
+      ? transparentize(0.9, props.theme.colors.neutral0)
       : props.theme.colors.neutral200};
   display: flex;
   justify-content: flex-end;
@@ -155,7 +155,7 @@ const RowsPerPageLabel = styled.span<{
   line-height: 20px;
   margin: 0 16px 0 0;
   text-align: left;
-  color: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')};
+  color: ${props => (props.isInverse ? props.theme.colors.neutral0 : '')};
 `;
 
 interface RowsPerPageControllerProps {

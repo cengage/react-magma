@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { transparentize } from 'polished';
 import {
   RadioButtonCheckedIcon,
   RadioButtonUncheckedIcon,
@@ -83,25 +82,34 @@ const HiddenInput = styled.input<{ indeterminate?: boolean }>`
 function buildRadioIconColor(props) {
   if (props.disabled) {
     if (props.isInverse) {
-      return transparentize(0.6, props.theme.colors.neutral100);
+      return props.theme.colors.neutral600;
     }
 
     return props.theme.colors.neutral300;
   }
   if (props.isInverse) {
-    return props.theme.colors.neutral100;
+    if (props.hasError) {
+      return props.theme.colors.neutral0;
+    }
+
+    return props.isChecked
+      ? props.theme.colors.brand.cyan
+      : props.theme.colors.neutral0;
   }
   if (props.isChecked) {
     return props.color;
   }
+  if (props.hasError) {
+    return props.theme.colors.neutral700;
+  }
 
-  return props.theme.colors.neutral700;
+  return props.theme.colors.brand.navy;
 }
 
 export function buildErrorBorder(props) {
   if (props.hasError) {
     if (props.isInverse) {
-      return `0 0 0 2px ${props.theme.colors.danger300}`;
+      return `0 0 0 2px ${props.theme.colors.red500}`;
     }
 
     return `0 0 0 2px ${props.theme.colors.danger}`;
@@ -131,7 +139,7 @@ const StyledFakeInput = styled.span<{
   ${HiddenInput}:checked:not (:disabled) + label & {
     background: ${props => {
       if (props.isInverse) {
-        return props.theme.colors.neutral100;
+        return props.theme.colors.neutral0;
       }
     }};
   }
@@ -155,7 +163,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     const context = React.useContext(RadioContext);
     const theme = React.useContext(ThemeContext);
     const {
-      color = theme.colors.primary,
+      color = theme.colors.brand.navy,
       containerStyle,
       disabled,
       inputStyle,
@@ -169,6 +177,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       value,
       ...other
     } = props;
+    const resolvedIsInverse = context.isInverse || isInverse;
 
     return (
       <StyledContainer style={containerStyle}>
@@ -190,8 +199,9 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
         />
         <StyledLabel
           htmlFor={id}
-          isInverse={context.isInverse || isInverse}
+          isInverse={resolvedIsInverse}
           style={labelStyle}
+          textColor={!resolvedIsInverse ? theme.colors.brand.navy : undefined}
         >
           {!isTextVisuallyHidden &&
             textPosition === RadioTextPosition.left &&
@@ -201,7 +211,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             isChecked={context.selectedValue === value}
             color={color}
             disabled={disabled}
-            isInverse={context.isInverse || isInverse}
+            isInverse={resolvedIsInverse}
             hasError={context.hasError}
             style={inputStyle}
             textPosition={textPosition}

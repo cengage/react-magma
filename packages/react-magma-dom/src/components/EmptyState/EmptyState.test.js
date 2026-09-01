@@ -147,7 +147,7 @@ describe('EmptyState', () => {
       );
 
       const description = getByText('Try another search');
-      expect(description).toHaveStyleRule('color', magma.colors.neutral100);
+      expect(description).toHaveStyleRule('color', magma.colors.neutral0);
       expect(description).not.toHaveStyleRule('opacity', '0.7');
     });
 

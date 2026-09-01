@@ -110,7 +110,7 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
                       isInverse={isInverse}
                       style={{
                         color: isInverse
-                          ? theme.colors.neutral100
+                          ? theme.colors.neutral0
                           : theme.colors.neutral700,
                       }}
                     >

@@ -66,107 +66,72 @@ export function buildAlertBackground(props) {
   if (props.isInverse) {
     switch (props.variant) {
       case 'success':
-        return props.theme.colors.success700;
+        return props.theme.colors.green500;
       case 'warning':
-        return props.theme.colors.warning700;
+        return props.theme.colors.yellow400;
       case 'danger':
-        return props.theme.colors.danger700;
+        return props.theme.colors.red500;
       default:
-        return props.theme.colors.info700;
+        return props.theme.colors.blue500;
     }
   }
   switch (props.variant) {
     case 'success':
-      return props.theme.colors.success100;
+      return props.theme.colors.green600;
     case 'warning':
-      return props.theme.colors.warning100;
+      return props.theme.colors.yellow400;
     case 'danger':
-      return props.theme.colors.danger100;
+      return props.theme.colors.red600;
     default:
-      return props.theme.colors.info100;
+      return props.theme.colors.blue600;
   }
 }
 
 export function buildAlertBorder(props) {
-  if (props.isInverse) {
-    switch (props.variant) {
-      case 'success':
-        return props.theme.colors.success300;
-      case 'warning':
-        return props.theme.colors.warning300;
-      case 'danger':
-        return props.theme.colors.danger200;
-      default:
-        return props.theme.colors.info300;
-    }
-  }
+  return 'none';
+}
+
+function buildInverseAlertContentColor(props) {
   switch (props.variant) {
     case 'success':
-      return props.theme.colors.success500;
+      return props.theme.colors.green1000;
     case 'warning':
-      return props.theme.colors.warning500;
+      return props.theme.colors.brand.navy;
     case 'danger':
-      return props.theme.colors.danger500;
+      return props.theme.colors.red1000;
     default:
-      return props.theme.colors.info500;
+      return props.theme.colors.blue1000;
   }
 }
 
 export function buildAlertColor(props) {
   if (props.isInverse) {
-    return props.theme.colors.neutral100;
+    return buildInverseAlertContentColor(props);
   }
-  switch (props.variant) {
-    case 'success':
-      return props.theme.colors.success500;
-    case 'warning':
-      return props.theme.colors.warning500;
-    case 'danger':
-      return props.theme.colors.danger500;
-    default:
-      return props.theme.colors.info500;
-  }
+
+  return props.variant === 'warning'
+    ? props.theme.colors.brand.navy
+    : props.theme.colors.neutral0;
 }
 
 export function buildLinkColor(props) {
   if (props.isInverse) {
-    switch (props.variant) {
-      case 'success':
-        return props.theme.colors.success200;
-      case 'warning':
-        return props.theme.colors.warning200;
-      case 'danger':
-        return props.theme.colors.danger200;
-      default:
-        return props.theme.colors.info200;
-    }
+    return buildInverseAlertContentColor(props);
   }
-  switch (props.variant) {
-    case 'success':
-      return props.theme.colors.success700;
-    case 'warning':
-      return props.theme.colors.warning700;
-    case 'danger':
-      return props.theme.colors.danger700;
-    default:
-      return props.theme.colors.info700;
-  }
+
+  return props.variant === 'warning'
+    ? props.theme.colors.brand.navy
+    : props.theme.colors.neutral0;
 }
 
 export function buildLinkHoverColor(props) {
   if (props.isInverse) {
-    return props.theme.colors.neutral100;
+    return buildInverseAlertContentColor(props);
   }
-  switch (props.variant) {
-    case 'success':
-      return props.theme.colors.success;
-    case 'warning':
-      return props.theme.colors.warning;
-    case 'danger':
-      return props.theme.colors.danger;
-    default:
-      return props.theme.colors.info;
-  }
+
+  return props.variant === 'warning'
+    ? props.theme.colors.brand.navy
+    : props.theme.colors.neutral0;
 }
 
 const StyledAlert = styled.div<AlertBaseProps>`
@@ -265,7 +230,11 @@ const StyledAlert = styled.div<AlertBaseProps>`
 
 const StyledAlertInner = styled.div<AlertBaseProps>`
   background: ${buildAlertBackground};
-  border: 1px solid ${buildAlertBorder};
+  border: ${props => {
+    const borderColor = buildAlertBorder(props);
+
+    return borderColor === 'none' ? 'none' : `1px solid ${borderColor}`;
+  }};
   border-radius: ${props => props.theme.borderRadius};
   color: ${buildAlertColor};
   display: flex;
@@ -367,12 +336,19 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   }
   &:focus:not(:disabled) {
     background: none;
+    ${props =>
+      props.isToast &&
+      css`
+        border-radius: ${props.theme.borderRadius};
+      `}
     color: inherit;
     outline: 2px solid
       ${props =>
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+        props.isToast
+          ? 'currentColor'
+          : props.isInverse
+            ? props.theme.colors.focusInverse
+            : props.theme.colors.focus};
     outline-offset: 0 !important;
   }
   &:not(:disabled):active {
@@ -469,18 +445,15 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
 
     function progressRingColor() {
       if (isInverse) {
-        return theme.colors.neutral100;
+        return buildInverseAlertContentColor({
+          theme,
+          variant: props.variant,
+        });
       }
-      switch (props.variant) {
-        case 'success':
-          return theme.colors.success500;
-        case 'warning':
-          return theme.colors.warning500;
-        case 'danger':
-          return theme.colors.danger500;
-        default:
-          return theme.colors.info500;
-      }
+
+      return props.variant === 'warning'
+        ? theme.colors.brand.navy
+        : theme.colors.neutral0;
     }
 
     return (

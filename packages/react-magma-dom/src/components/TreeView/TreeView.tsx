@@ -43,9 +43,7 @@ const StyledTreeView = styled.ul<TreeViewProps & { isVirtualized?: boolean }>`
   padding: 0;
   margin: 0;
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral};
+    props.isInverse ? props.theme.colors.neutral0 : props.theme.colors.neutral};
   position: ${props => (props.isVirtualized ? 'relative' : 'static')};
   ul {
     padding: 0;

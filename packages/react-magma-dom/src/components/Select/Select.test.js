@@ -32,6 +32,28 @@ describe('Select', () => {
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
+  it('should render the dropdown indicator in brand navy', () => {
+    const { getByTestId } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    expect(getByTestId('caretDown')).toHaveAttribute(
+      'fill',
+      magma.colors.brand.navy
+    );
+  });
+
+  it('should render the inverse dropdown indicator in neutral0', () => {
+    const { getByTestId } = render(
+      <Select isInverse labelText={labelText} items={items} />
+    );
+
+    expect(getByTestId('caretDown')).toHaveAttribute(
+      'fill',
+      magma.colors.neutral0
+    );
+  });
+
   it('should render a select with a passed in placeholder', async () => {
     const placeholder = 'Test';
 

@@ -135,10 +135,7 @@ describe('Tab', () => {
       </Tabs>
     );
 
-    expect(getByTestId(testId)).toHaveStyleRule(
-      'color',
-      magma.colors.neutral100
-    );
+    expect(getByTestId(testId)).toHaveStyleRule('color', magma.colors.neutral0);
   });
 
   it('should render a vertical tab with the correct styles', () => {

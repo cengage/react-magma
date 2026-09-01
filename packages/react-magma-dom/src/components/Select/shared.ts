@@ -29,13 +29,13 @@ function buildListFocusColor(props) {
 function buildListItemColor(props) {
   if (props.isDisabled) {
     if (props.isInverse) {
-      return transparentize(0.6, props.theme.colors.neutral100);
+      return transparentize(0.6, props.theme.colors.neutral0);
     }
 
     return transparentize(0.4, props.theme.colors.neutral500);
   }
   if (props.isInverse) {
-    return props.theme.colors.neutral100;
+    return props.theme.colors.neutral0;
   }
 
   return props.theme.colors.neutral700;
@@ -67,15 +67,17 @@ export const SelectText = styled.span<{
   color: ${props => {
     if (props.isShowPlaceholder) {
       return props.isInverse
-        ? transparentize(0.3, props.theme.colors.neutral100)
-        : props.theme.colors.neutral500;
+        ? props.theme.colors.neutral500
+        : props.theme.colors.neutral700;
     }
   }};
   ${props =>
     props.isDisabled &&
     props.isShowPlaceholder &&
     css`
-      opacity: ${props.isInverse ? 0.4 : 0.6};
+      color: ${props.isInverse
+        ? props.theme.colors.neutral700
+        : props.theme.colors.neutral500};
     `}
 `;
 
@@ -87,7 +89,7 @@ export const StyledCard = styled(Card)<{
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary500
-      : props.theme.colors.neutral100};
+      : props.theme.colors.neutral0};
   border: 1x solid;
   border-color: ${props =>
     props.isInverse
@@ -141,7 +143,7 @@ function buildSelectedItemButtonBackground(props) {
 
   if (disabled) {
     if (isInverse) {
-      return transparentize(0.7, props.theme.colors.neutral100);
+      return transparentize(0.7, props.theme.colors.neutral0);
     }
 
     return props.theme.colors.neutral300;
@@ -158,7 +160,7 @@ function buildSelectedItemButtonColor(props) {
 
   if (disabled) {
     if (isInverse) {
-      return transparentize(0.6, props.theme.colors.neutral100);
+      return transparentize(0.6, props.theme.colors.neutral0);
     }
 
     return transparentize(0.4, props.theme.colors.neutral500);
@@ -167,7 +169,7 @@ function buildSelectedItemButtonColor(props) {
     return props.theme.colors.primary600;
   }
 
-  return props.theme.colors.neutral100;
+  return props.theme.colors.neutral0;
 }
 
 export const SelectedItemButton = styled.button<{

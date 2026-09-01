@@ -107,9 +107,9 @@ function buildStepLabelColors(props) {
 
   if (isInverse) {
     if (label) {
-      return theme.colors.neutral100;
+      return theme.colors.neutral0;
     } else if (secondaryLabel) {
-      return transparentize(0.3, theme.colors.neutral100);
+      return transparentize(0.3, theme.colors.neutral0);
     }
   } else {
     if (label) {
@@ -125,12 +125,12 @@ function buildStepSvgColors(props) {
 
   if (isInverse) {
     if (hasError) {
-      return theme.colors.neutral100;
+      return theme.colors.neutral0;
     }
 
     return theme.colors.primary600;
   } else {
-    return theme.colors.neutral100;
+    return theme.colors.neutral0;
   }
 }
 

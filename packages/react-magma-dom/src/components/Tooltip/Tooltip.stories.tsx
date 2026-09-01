@@ -38,9 +38,7 @@ const Template: StoryFn<TooltipProps> = args => (
       padding: '80px',
       display: 'flex',
       justifyContent: 'center',
-      background: args.isInverse
-        ? magma.colors.neutral
-        : magma.colors.neutral100,
+      background: args.isInverse ? magma.colors.neutral : magma.colors.neutral0,
     }}
   >
     <Tooltip {...args}>
@@ -280,7 +278,7 @@ const CustomStylesTemplate: StoryFn<TooltipProps> = args => {
         justifyContent: 'center',
         background: args.isInverse
           ? magma.colors.neutral
-          : magma.colors.neutral100,
+          : magma.colors.neutral0,
       }}
     >
       <Tooltip

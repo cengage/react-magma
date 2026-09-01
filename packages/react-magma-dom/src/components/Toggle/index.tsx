@@ -87,7 +87,7 @@ export function buildIconContainerColor(props) {
   if (props.isInverse) {
     if (props.disabled) {
       if (props.isChecked) {
-        return transparentize(0.6, props.theme.colors.neutral100);
+        return transparentize(0.6, props.theme.colors.neutral0);
       }
 
       return 'transparent';
@@ -99,7 +99,7 @@ export function buildIconContainerColor(props) {
     return transparentize(0.6, props.theme.colors.neutral);
   }
 
-  return props.theme.colors.neutral100;
+  return props.theme.colors.neutral0;
 }
 
 function buildToggleBorderColor(props) {
@@ -108,7 +108,7 @@ function buildToggleBorderColor(props) {
       return props.theme.colors.danger200;
     }
 
-    return transparentize(0.5, props.theme.colors.neutral100);
+    return transparentize(0.5, props.theme.colors.neutral0);
   }
 
   if (props.hasError) {
@@ -144,7 +144,7 @@ const Track = styled.span<{
   border-radius: 12px;
   box-shadow: ${props =>
     props.isInverse && props.hasError
-      ? `0 0 0 1px ${props.theme.colors.neutral100}`
+      ? `0 0 0 1px ${props.theme.colors.neutral0}`
       : '0 0 0'};
   cursor: pointer;
   height: 24px;
@@ -167,7 +167,7 @@ const Track = styled.span<{
         ? transparentize(0.9, props.theme.colors.neutral900)
         : props.theme.colors.neutral300};
       border-color: ${props.isInverse
-        ? transparentize(0.85, props.theme.colors.neutral100)
+        ? transparentize(0.85, props.theme.colors.neutral0)
         : props.theme.colors.neutral300};
       cursor: not-allowed;
     `}
@@ -190,8 +190,8 @@ const Thumb = styled.span<{
 }>`
   background: ${props =>
     props.isInverse && props.disabled
-      ? transparentize(0.6, props.theme.colors.neutral100)
-      : props.theme.colors.neutral100};
+      ? transparentize(0.6, props.theme.colors.neutral0)
+      : props.theme.colors.neutral0};
   border-radius: 100%;
   height: 20px;
   left: 0;

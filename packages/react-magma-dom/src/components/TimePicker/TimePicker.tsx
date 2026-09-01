@@ -13,7 +13,10 @@ import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { handleNumericBeforeInput, labelSuffix } from '../../utils';
-import { FormFieldContainer } from '../FormFieldContainer';
+import {
+  FormFieldContainer,
+  getInputFormFieldColors,
+} from '../FormFieldContainer';
 import { inputWrapperStyles } from '../InputBase';
 import { VisuallyHidden } from '../VisuallyHidden';
 
@@ -48,12 +51,10 @@ const getDividerColor = (
   theme: ThemeInterface
 ): string => {
   if (isInverse) {
-    return isFocused
-      ? theme.colors.neutral100
-      : transparentize(0.3, theme.colors.neutral100);
+    return isFocused ? theme.colors.neutral0 : theme.colors.neutral500;
   }
 
-  return isFocused ? theme.colors.neutral700 : theme.colors.neutral500;
+  return isFocused ? theme.colors.brand.navy : theme.colors.neutral700;
 };
 
 export const getInputColor = (
@@ -62,12 +63,10 @@ export const getInputColor = (
   theme: ThemeInterface
 ): string => {
   if (isInverse) {
-    return isFocused
-      ? theme.colors.neutral100
-      : transparentize(0.3, theme.colors.neutral100);
+    return isFocused ? theme.colors.neutral0 : theme.colors.neutral500;
   }
 
-  return isFocused ? theme.colors.neutral700 : theme.colors.neutral500;
+  return isFocused ? theme.colors.brand.navy : theme.colors.neutral700;
 };
 
 export const Divider = styled.span<{
@@ -91,8 +90,8 @@ export const StyledNumInput = styled.input<StyledNumInputProps>`
   width: ${props => props.theme.spaceScale.spacing06};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   background: transparent;
   border-bottom: 2px solid transparent; // Reserve space for border when focused
   caret-color: transparent;
@@ -121,8 +120,8 @@ export const StyledNumInput = styled.input<StyledNumInputProps>`
         : transparentize(0.2, props.theme.colors.info200)};
     color: ${props =>
       props.isInverse
-        ? props.theme.colors.neutral100
-        : props.theme.colors.neutral700};
+        ? props.theme.colors.neutral0
+        : props.theme.colors.brand.navy};
 
     &::selection {
       background: ${props =>
@@ -192,6 +191,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
 
     return (
       <FormFieldContainer
+        {...getInputFormFieldColors(theme, isInverse)}
         {...other}
         containerStyle={containerStyle}
         errorMessage={errorMessage}
@@ -212,9 +212,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             aria-labelledby={`${id}${labelSuffix}`}
           >
             <ScheduleIcon
-              color={
-                isInverse ? theme.colors.neutral100 : theme.colors.neutral700
-              }
+              color={theme.colors.neutral600}
               style={{ marginRight: theme.spaceScale.spacing02 }}
             />
             <StyledNumInput

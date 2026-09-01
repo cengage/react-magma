@@ -18,7 +18,7 @@ export const getTableSortIcon = ({
   theme,
 }: TableSortIconParams) => {
   const sortIconColor = isInverse
-    ? theme.colors.neutral100
+    ? theme.colors.neutral0
     : theme.colors.neutral700;
 
   const iconSize = theme.iconSizes.small;
@@ -47,7 +47,7 @@ export const getTableSortIcon = ({
         <SortDoubleArrowIcon
           color={
             isInverse
-              ? transparentize(0.3, theme.colors.neutral100)
+              ? transparentize(0.3, theme.colors.neutral0)
               : theme.colors.neutral500
           }
           size={iconSize}

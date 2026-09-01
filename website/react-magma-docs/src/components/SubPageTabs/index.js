@@ -21,7 +21,7 @@ export const StyledTabHeading = styled.p`
   margin: 0;
   margin-top: 44px;
   color: ${props =>
-    props.isInverse ? magma.colors.neutral100 : magma.colors.neutral700};
+    props.isInverse ? magma.colors.neutral0 : magma.colors.neutral700};
   padding: 12px 16px;
 `;
 

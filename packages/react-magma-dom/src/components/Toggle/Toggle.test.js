@@ -159,7 +159,7 @@ describe('Toggle', () => {
     );
     expect(track).toHaveStyleRule(
       'box-shadow',
-      `0 0 0 1px ${magma.colors.neutral100}`
+      `0 0 0 1px ${magma.colors.neutral0}`
     );
   });
 

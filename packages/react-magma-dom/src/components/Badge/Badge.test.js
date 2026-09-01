@@ -24,6 +24,10 @@ describe('Badge', () => {
 
     expect(container).toBeInTheDocument();
     expect(getByText(TEXT)).not.toHaveStyleRule('vertical-align', 'middle');
+    expect(getByText(TEXT)).toHaveStyleRule(
+      'border-radius',
+      magma.borderRadiusExtraSmall
+    );
   });
 
   it('should render a left icon on the left side of the badge', () => {
@@ -162,8 +166,9 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.neutral700
+        magma.colors.brand.amber
       );
+      expect(getByText(TEXT)).toHaveStyleRule('color', magma.colors.brand.navy);
     });
 
     it('should render the success badge', () => {
@@ -188,7 +193,7 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.info500
+        magma.colors.blue600
       );
     });
 
@@ -201,8 +206,9 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.warning500
+        magma.colors.yellow400
       );
+      expect(getByText(TEXT)).toHaveStyleRule('color', magma.colors.brand.navy);
     });
 
     it('should render the danger badge', () => {
@@ -227,7 +233,12 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.neutral100
+        magma.colors.neutral0
+      );
+      expect(getByText(TEXT)).toHaveStyleRule('color', magma.colors.brand.navy);
+      expect(getByText(TEXT)).toHaveStyleRule(
+        'border-color',
+        magma.colors.neutral500
       );
     });
 
@@ -254,7 +265,11 @@ describe('Badge', () => {
 
         expect(getByText(TEXT)).toHaveStyleRule(
           'background',
-          magma.colors.tertiary
+          magma.colors.brand.cyan
+        );
+        expect(getByText(TEXT)).toHaveStyleRule(
+          'color',
+          magma.colors.brand.navy
         );
       });
 
@@ -267,7 +282,11 @@ describe('Badge', () => {
 
         expect(getByText(TEXT)).toHaveStyleRule(
           'background',
-          magma.colors.neutral100
+          magma.colors.brand.amber
+        );
+        expect(getByText(TEXT)).toHaveStyleRule(
+          'color',
+          magma.colors.brand.navy
         );
       });
 
@@ -280,7 +299,11 @@ describe('Badge', () => {
 
         expect(getByText(TEXT)).toHaveStyleRule(
           'background',
-          magma.colors.success200
+          magma.colors.green500
+        );
+        expect(getByText(TEXT)).toHaveStyleRule(
+          'color',
+          magma.colors.green1000
         );
       });
 
@@ -293,9 +316,9 @@ describe('Badge', () => {
 
         expect(getByText(TEXT)).toHaveStyleRule(
           'background',
-          magma.colors.info200
+          magma.colors.blue500
         );
-        expect(getByText(TEXT)).toHaveStyleRule('color', magma.colors.info700);
+        expect(getByText(TEXT)).toHaveStyleRule('color', magma.colors.blue1000);
       });
 
       it('should render the inverse warning badge', () => {
@@ -307,11 +330,11 @@ describe('Badge', () => {
 
         expect(getByText(TEXT)).toHaveStyleRule(
           'background',
-          magma.colors.warning200
+          magma.colors.yellow400
         );
         expect(getByText(TEXT)).toHaveStyleRule(
           'color',
-          magma.colors.warning600
+          magma.colors.brand.navy
         );
       });
 
@@ -324,8 +347,9 @@ describe('Badge', () => {
 
         expect(getByText(TEXT)).toHaveStyleRule(
           'background',
-          magma.colors.danger200
+          magma.colors.red500
         );
+        expect(getByText(TEXT)).toHaveStyleRule('color', magma.colors.red1000);
       });
 
       it('should render the inverse light badge', () => {
@@ -336,6 +360,10 @@ describe('Badge', () => {
         );
 
         expect(getByText(TEXT)).toHaveStyleRule('background', 'transparent');
+        expect(getByText(TEXT)).toHaveStyleRule(
+          'border-color',
+          magma.colors.neutral500
+        );
       });
 
       it('should render the inverse default badge', () => {
@@ -347,7 +375,7 @@ describe('Badge', () => {
 
         expect(getByText(TEXT)).toHaveStyleRule(
           'background',
-          magma.colors.tertiary
+          magma.colors.brand.cyan
         );
       });
     });
@@ -355,60 +383,60 @@ describe('Badge', () => {
     describe('light weight', () => {
       [
         {
-          background: magma.colors.primary100,
-          borderColor: transparentize(0.85, magma.colors.primary500),
+          background: magma.colors.neutral200,
+          borderColor: 'transparent',
           color: undefined,
           name: 'default',
-          textColor: magma.colors.primary500,
-        },
-        {
-          background: magma.colors.primary100,
-          borderColor: transparentize(0.85, magma.colors.primary500),
-          color: 'primary',
-          name: 'primary',
-          textColor: magma.colors.primary500,
+          textColor: magma.colors.brand.navy,
         },
         {
           background: magma.colors.neutral200,
           borderColor: 'transparent',
+          color: 'primary',
+          name: 'primary',
+          textColor: magma.colors.brand.navy,
+        },
+        {
+          background: magma.colors.tangerine100,
+          borderColor: transparentize(0.85, magma.colors.tangerine600),
           color: 'secondary',
           name: 'secondary',
-          textColor: magma.colors.neutral700,
+          textColor: magma.colors.tangerine700,
         },
         {
-          background: magma.colors.danger100,
-          borderColor: transparentize(0.85, magma.colors.danger500),
+          background: magma.colors.red100,
+          borderColor: transparentize(0.85, magma.colors.red600),
           color: 'danger',
           name: 'danger',
-          textColor: magma.colors.danger500,
+          textColor: magma.colors.red600,
         },
         {
-          background: magma.colors.neutral100,
-          borderColor: magma.colors.neutral300,
+          background: magma.colors.neutral0,
+          borderColor: magma.colors.neutral200,
           color: 'light',
           name: 'light',
-          textColor: magma.colors.neutral700,
+          textColor: magma.colors.brand.navy,
         },
         {
-          background: magma.colors.info100,
-          borderColor: transparentize(0.85, magma.colors.info500),
+          background: magma.colors.blue100,
+          borderColor: transparentize(0.85, magma.colors.blue600),
           color: 'info',
           name: 'info',
-          textColor: magma.colors.info500,
+          textColor: magma.colors.blue600,
         },
         {
-          background: magma.colors.success100,
-          borderColor: transparentize(0.85, magma.colors.success500),
+          background: magma.colors.green100,
+          borderColor: transparentize(0.85, magma.colors.green600),
           color: 'success',
           name: 'success',
-          textColor: magma.colors.success500,
+          textColor: magma.colors.green700,
         },
         {
-          background: magma.colors.warning100,
-          borderColor: transparentize(0.85, magma.colors.warning500),
+          background: magma.colors.yellow100,
+          borderColor: transparentize(0.85, magma.colors.yellow700),
           color: 'warning',
           name: 'warning',
-          textColor: magma.colors.warning500,
+          textColor: magma.colors.yellow700,
         },
       ].forEach(testCase => {
         it(`should render the ${testCase.name} light weight badge`, () => {
@@ -432,60 +460,60 @@ describe('Badge', () => {
 
       [
         {
-          background: transparentize(0.5, magma.colors.primary700),
-          borderColor: magma.colors.primary400,
+          background: magma.colors.neutral900,
+          borderColor: 'transparent',
           color: undefined,
           name: 'default inverse',
-          textColor: magma.colors.primary200,
+          textColor: magma.colors.neutral0,
         },
         {
-          background: transparentize(0.5, magma.colors.primary700),
-          borderColor: magma.colors.primary400,
+          background: magma.colors.neutral900,
+          borderColor: 'transparent',
           color: 'primary',
           name: 'primary inverse',
-          textColor: magma.colors.primary200,
+          textColor: magma.colors.neutral0,
         },
         {
-          background: transparentize(0.6, magma.colors.neutral900),
-          borderColor: 'transparent',
+          background: magma.colors.tangerine1000,
+          borderColor: magma.colors.tangerine900,
           color: 'secondary',
           name: 'secondary inverse',
-          textColor: magma.colors.neutral100,
+          textColor: magma.colors.tangerine200,
         },
         {
-          background: transparentize(0.5, magma.colors.danger700),
-          borderColor: magma.colors.danger600,
+          background: magma.colors.red1000,
+          borderColor: magma.colors.red800,
           color: 'danger',
           name: 'danger inverse',
-          textColor: magma.colors.danger200,
+          textColor: magma.colors.red200,
         },
         {
           background: 'transparent',
-          borderColor: transparentize(0.7, magma.colors.neutral100),
+          borderColor: transparentize(0.8, magma.colors.neutral0),
           color: 'light',
           name: 'light inverse',
-          textColor: magma.colors.neutral100,
+          textColor: magma.colors.neutral0,
         },
         {
-          background: transparentize(0.5, magma.colors.info700),
-          borderColor: magma.colors.info600,
+          background: magma.colors.blue900,
+          borderColor: magma.colors.blue700,
           color: 'info',
           name: 'info inverse',
-          textColor: magma.colors.info200,
+          textColor: magma.colors.blue200,
         },
         {
-          background: transparentize(0.5, magma.colors.success700),
-          borderColor: magma.colors.success600,
+          background: magma.colors.green1000,
+          borderColor: magma.colors.green800,
           color: 'success',
           name: 'success inverse',
-          textColor: magma.colors.success200,
+          textColor: magma.colors.green200,
         },
         {
-          background: transparentize(0.5, magma.colors.warning700),
-          borderColor: magma.colors.warning600,
+          background: magma.colors.yellow1000,
+          borderColor: magma.colors.yellow800,
           color: 'warning',
           name: 'warning inverse',
-          textColor: magma.colors.warning200,
+          textColor: magma.colors.yellow200,
         },
       ].forEach(testCase => {
         it(`should render the ${testCase.name} light weight badge`, () => {

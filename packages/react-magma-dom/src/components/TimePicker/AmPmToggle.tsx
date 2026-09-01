@@ -40,14 +40,14 @@ const StyledAmPmToggle = styled.button<{
         : transparentize(0.2, props.theme.colors.info200)};
     color: ${props =>
       props.isInverse
-        ? props.theme.colors.neutral100
-        : props.theme.colors.neutral700};
+        ? props.theme.colors.neutral0
+        : props.theme.colors.brand.navy};
 
     &::placeholder {
       color: ${props =>
         props.isInverse
-          ? props.theme.colors.neutral100
-          : props.theme.colors.neutral700};
+          ? props.theme.colors.neutral0
+          : props.theme.colors.brand.navy};
     }
 
     &::selection {

@@ -182,7 +182,7 @@ const StyledSummary = styled.div<{
     props.theme.typographyVisualStyles.bodySmall.desktop.lineHeight};
   color: ${props =>
     props.isInverse
-      ? transparentize(0.3, props.theme.colors.neutral100)
+      ? transparentize(0.3, props.theme.colors.neutral0)
       : props.theme.colors.neutral500};
   span {
     display: flex;

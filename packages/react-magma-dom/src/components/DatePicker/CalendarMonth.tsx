@@ -31,7 +31,7 @@ const CalendarContainer = styled.div<{ isInverse?: boolean }>`
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary500
-      : props.theme.colors.neutral100};
+      : props.theme.colors.neutral0};
   overflow: visible;
 
   &:focus {
@@ -44,7 +44,7 @@ const MonthContainer = styled.div<{ isInverse?: boolean }>`
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary500
-      : props.theme.colors.neutral100};
+      : props.theme.colors.neutral0};
   font-family: ${props => props.theme.bodyFont};
   text-align: center;
   user-select: none;
@@ -64,7 +64,7 @@ const Th = styled.th<{ isInverse?: boolean }>`
   border: 0;
   color: ${props =>
     props.isInverse
-      ? transparentize(0.3, props.theme.colors.neutral100)
+      ? transparentize(0.3, props.theme.colors.neutral0)
       : props.theme.colors.neutral500};
   font-size: ${props => props.theme.typeScale.size01.fontSize};
   line-height: ${props => props.theme.typeScale.size01.lineHeight};
@@ -145,7 +145,7 @@ const TodayWrapper = styled.div<{
   &:hover {
     color: ${props =>
       props.isInverse
-        ? props.theme.colors.neutral100
+        ? props.theme.colors.neutral0
         : props.theme.colors.primary600};
   }
 `;
@@ -278,7 +278,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
                     variant={ButtonVariant.link}
                     style={{
                       color: context.isInverse
-                        ? theme.colors.neutral100
+                        ? theme.colors.neutral0
                         : theme.colors.neutral900,
                     }}
                   />
@@ -316,7 +316,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
                   variant={ButtonVariant.link}
                   style={{
                     color: context.isInverse
-                      ? theme.colors.neutral100
+                      ? theme.colors.neutral0
                       : theme.colors.neutral900,
                   }}
                 />

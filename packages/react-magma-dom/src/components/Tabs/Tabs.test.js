@@ -291,11 +291,11 @@ describe('Tabs', () => {
     );
     expect(getByTestId('buttonPrev')).toHaveStyleRule(
       'color',
-      magma.colors.neutral100
+      magma.colors.neutral0
     );
     expect(getByTestId('buttonNext')).toHaveStyleRule(
       'color',
-      magma.colors.neutral100
+      magma.colors.neutral0
     );
   });
 

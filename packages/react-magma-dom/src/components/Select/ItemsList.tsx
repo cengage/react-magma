@@ -44,7 +44,7 @@ const NoItemsMessage = styled.span<{
 }>`
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
+      ? props.theme.colors.neutral0
       : props.theme.colors.neutral400};
   font-family: ${props => props.theme.bodyFont};
   display: block;

@@ -8,6 +8,7 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
@@ -100,6 +101,57 @@ describe('Modal', () => {
     );
 
     expect(getByText(modalContent)).toBeInTheDocument();
+  });
+
+  it('should render the regular modal with the rebrand colors', () => {
+    const { getByTestId, getByText } = render(
+      <Modal header="Hello" isOpen>
+        Modal content
+      </Modal>
+    );
+
+    expect(getByTestId('modal-backdrop')).toHaveStyleRule(
+      'background',
+      transparentize(0.6, magma.colors.neutral1200)
+    );
+    expect(getByTestId('modal-content')).toHaveStyleRule(
+      'box-shadow',
+      `0 2px 6px ${transparentize(0.4, magma.colors.neutral1200)}`
+    );
+    expect(getByTestId('modal-content')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
+    expect(getByTestId('modal-content')).toHaveStyleRule(
+      'border-radius',
+      magma.borderRadiusMedium
+    );
+    expect(getByText('Hello')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
+  });
+
+  it('should render the inverse modal with the rebrand colors', () => {
+    const { getByTestId } = render(
+      <Modal header="Hello" isInverse isOpen>
+        Modal content
+      </Modal>
+    );
+
+    expect(getByTestId('modal-content')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral1100
+    );
+    expect(getByTestId('modal-content')).toHaveStyleRule(
+      'box-shadow',
+      `0 2px 6px ${transparentize(0.2, magma.colors.neutral1200)}`
+    );
+    expect(getByTestId('modal-closebtn')).toHaveStyleRule('background', 'none');
+    expect(getByTestId('modal-closebtn')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.cyan
+    );
   });
 
   it('should render the modal with the default medium size', () => {
@@ -201,6 +253,11 @@ describe('Modal', () => {
     );
 
     expect(getByTestId('modal-closebtn')).toBeInTheDocument();
+    expect(getByTestId('modal-closebtn')).toHaveStyleRule('background', 'none');
+    expect(getByTestId('modal-closebtn')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
     expect(getByTestId('modal-closebtn')).toHaveAttribute(
       'aria-label',
       'Close dialog'

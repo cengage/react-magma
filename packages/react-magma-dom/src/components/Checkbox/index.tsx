@@ -231,31 +231,49 @@ export const HiddenInput = withEmotionCache<
 interface FakeInputStyleProps {
   isChecked?: boolean;
   color: string;
+  disabledColor?: string;
   disabled?: boolean;
   isIndeterminate?: boolean;
   isInverse?: boolean;
   hasError?: boolean;
   hideFocus?: boolean;
+  inverseCheckedColor?: string;
+  inverseDisabledColor?: string;
+  inverseErrorColor?: string;
+  inverseUncheckedColor?: string;
   textPosition?: CheckboxTextPosition;
   theme: ThemeInterface;
+  uncheckedColor?: string;
 }
 
 function buildCheckIconColor(props: FakeInputStyleProps) {
   if (props.disabled) {
     if (props.isInverse) {
-      return transparentize(0.6, props.theme.colors.neutral100);
+      return (
+        props.inverseDisabledColor ||
+        transparentize(0.6, props.theme.colors.neutral0)
+      );
     }
 
-    return props.theme.colors.neutral300;
+    return props.disabledColor || props.theme.colors.neutral300;
   }
   if (props.isInverse) {
-    return props.theme.colors.neutral100;
+    if (props.hasError) {
+      return props.theme.colors.neutral0;
+    }
+
+    return props.isChecked || props.isIndeterminate
+      ? props.inverseCheckedColor || props.theme.colors.neutral0
+      : props.inverseUncheckedColor || props.theme.colors.neutral0;
   }
   if (props.isChecked || props.isIndeterminate) {
     return props.color;
   }
+  if (props.hasError) {
+    return props.theme.colors.neutral700;
+  }
 
-  return props.theme.colors.neutral700;
+  return props.uncheckedColor || props.theme.colors.neutral700;
 }
 
 export interface StyledFakeInputProps extends FakeInputStyleProps {
@@ -299,12 +317,18 @@ const resolveFakeInputStyles = createVariantStyles<FakeInputStyleProps>(
     [
       props.isChecked,
       props.isIndeterminate,
+      props.disabledColor,
       props.disabled,
       props.isInverse,
       props.hasError,
       props.hideFocus,
+      props.inverseCheckedColor,
+      props.inverseDisabledColor,
+      props.inverseErrorColor,
+      props.inverseUncheckedColor,
       props.textPosition,
       props.color,
+      props.uncheckedColor,
     ].join('|'),
   props => props.theme
 );
@@ -367,7 +391,7 @@ export const Checkbox = React.memo(
     const context = React.useContext(FormGroupContext);
 
     const {
-      color = theme.colors.primary,
+      color = theme.colors.brand.navy,
       containerStyle,
       disabled,
       errorMessage,
@@ -425,7 +449,12 @@ export const Checkbox = React.memo(
             type="checkbox"
             onChange={handleChange}
           />
-          <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
+          <StyledLabel
+            htmlFor={id}
+            isInverse={isInverse}
+            style={labelStyle}
+            textColor={!isInverse ? theme.colors.brand.navy : undefined}
+          >
             {!isTextVisuallyHidden &&
               textPosition === CheckboxTextPosition.left &&
               labelText}
@@ -436,10 +465,15 @@ export const Checkbox = React.memo(
               disabled={disabled}
               hasError={hasError}
               hideFocus={props.hideFocus}
+              inverseCheckedColor={theme.colors.brand.cyan}
+              inverseDisabledColor={theme.colors.neutral600}
+              inverseErrorColor={theme.colors.red500}
+              inverseUncheckedColor={theme.colors.neutral0}
               isInverse={isInverse}
               style={inputStyle}
               textPosition={textPosition}
               theme={theme}
+              uncheckedColor={theme.colors.brand.navy}
               aria-hidden="true"
             >
               {checkboxIcon}
@@ -455,7 +489,13 @@ export const Checkbox = React.memo(
           </StyledLabel>
         </StyledContainer>
         {!!errorMessage && (
-          <InputMessage id={descriptionId} hasError isInverse={isInverse}>
+          <InputMessage
+            id={descriptionId}
+            errorColor={isInverse ? theme.colors.red500 : undefined}
+            errorIconColor={isInverse ? theme.colors.red500 : undefined}
+            hasError
+            isInverse={isInverse}
+          >
             {errorMessage}
           </InputMessage>
         )}

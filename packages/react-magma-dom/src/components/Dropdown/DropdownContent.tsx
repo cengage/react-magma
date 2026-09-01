@@ -2,8 +2,9 @@ import * as React from 'react';
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { transparentize } from 'polished';
 
-import { Card } from '../Card';
+import { Card, CardBorderRadius, CardCornerTreatment } from '../Card';
 import {
   DropdownAlignment,
   DropdownContext,
@@ -35,8 +36,10 @@ const StyledCard = styled(Card)<{
 }>`
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.primary500
-      : props.theme.colors.neutral100};
+      ? props.theme.colors.neutral1100
+      : props.theme.colors.neutral0};
+  box-shadow: ${props =>
+    `0 2px 6px 0 ${transparentize(0.8, props.theme.colors.neutral1200)}`};
   display: ${props => (props.isOpen ? 'block' : 'none')};
   max-height: ${props =>
     props.maxHeight ? props.maxHeight : props.theme.dropdown.content.maxHeight};
@@ -106,6 +109,8 @@ export const DropdownContent = React.forwardRef<
       <StyledCard
         {...other}
         alignment={context.alignment}
+        borderRadius={CardBorderRadius.small}
+        cornerTreatment={CardCornerTreatment.all}
         dropDirection={context.dropDirection}
         hasDropShadow
         isInverse={context.isInverse}

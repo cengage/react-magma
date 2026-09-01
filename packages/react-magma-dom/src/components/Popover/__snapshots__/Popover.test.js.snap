@@ -3,11 +3,12 @@
 exports[`Popover should render the popover with isFullWidth=true 1`] = `
 .emotion-1 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -29,7 +30,7 @@ exports[`Popover should render the popover with isFullWidth=true 1`] = `
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #C5CEDB;
   width: 0px;
   max-width: 0px;
 }
@@ -61,11 +62,12 @@ exports[`Popover should render the popover with isFullWidth=true 1`] = `
 
 .emotion-1 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -87,7 +89,7 @@ exports[`Popover should render the popover with isFullWidth=true 1`] = `
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #C5CEDB;
   width: 0px;
   max-width: 0px;
 }
@@ -149,12 +151,13 @@ exports[`Popover should render the popover with isFullWidth=true 1`] = `
 
 exports[`Popover should render the popover with isInverse prop 1`] = `
 .emotion-1 {
-  background: #292F7C;
-  border: 1px solid rgba(255,255,255,0.5);
+  background: #101820;
+  border: 1px solid #3D4A60;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
   color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -207,12 +210,13 @@ exports[`Popover should render the popover with isInverse prop 1`] = `
 }
 
 .emotion-1 {
-  background: #292F7C;
-  border: 1px solid rgba(255,255,255,0.5);
+  background: #101820;
+  border: 1px solid #3D4A60;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
   color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -297,11 +301,12 @@ exports[`Popover should render the popover with isInverse prop 1`] = `
 exports[`Popover should render the popover with pointer by default 1`] = `
 .emotion-1 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -323,7 +328,7 @@ exports[`Popover should render the popover with pointer by default 1`] = `
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #C5CEDB;
   width: 100%;
   max-width: 300px;
 }
@@ -355,11 +360,12 @@ exports[`Popover should render the popover with pointer by default 1`] = `
 
 .emotion-1 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -381,7 +387,7 @@ exports[`Popover should render the popover with pointer by default 1`] = `
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #C5CEDB;
   width: 100%;
   max-width: 300px;
 }
@@ -444,11 +450,12 @@ exports[`Popover should render the popover with pointer by default 1`] = `
 exports[`Popover should render the popover with target width 1`] = `
 .emotion-1 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -470,7 +477,7 @@ exports[`Popover should render the popover with target width 1`] = `
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #C5CEDB;
   width: 0px;
   max-width: 0px;
 }
@@ -502,11 +509,12 @@ exports[`Popover should render the popover with target width 1`] = `
 
 .emotion-1 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -528,7 +536,7 @@ exports[`Popover should render the popover with target width 1`] = `
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #C5CEDB;
   width: 0px;
   max-width: 0px;
 }
@@ -591,11 +599,12 @@ exports[`Popover should render the popover with target width 1`] = `
 exports[`Popover should render the popover without pointer 1`] = `
 .emotion-1 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -617,7 +626,7 @@ exports[`Popover should render the popover without pointer 1`] = `
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #C5CEDB;
   width: 100%;
   max-width: 300px;
 }
@@ -649,11 +658,12 @@ exports[`Popover should render the popover without pointer 1`] = `
 
 .emotion-1 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -675,7 +685,7 @@ exports[`Popover should render the popover without pointer 1`] = `
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #C5CEDB;
   width: 100%;
   max-width: 300px;
 }

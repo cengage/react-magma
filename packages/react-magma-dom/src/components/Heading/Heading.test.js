@@ -331,7 +331,7 @@ describe('Heading', () => {
     );
     const heading = getByText(headingText);
 
-    expect(heading).toHaveStyleRule('color', magma.colors.neutral100);
+    expect(heading).toHaveStyleRule('color', magma.colors.neutral0);
 
     expect(heading).toHaveStyleRule(
       'border-bottom',
@@ -428,6 +428,53 @@ describe('Heading', () => {
   });
 
   describe('expressive styles', () => {
+    it.each([
+      [TypographyVisualStyle.heading2XLarge, 1, '56px', '64px'],
+      [TypographyVisualStyle.headingXLarge, 1, '48px', '56px'],
+      [TypographyVisualStyle.headingLarge, 2, '40px', '48px'],
+      [TypographyVisualStyle.headingMedium, 3, '32px', '40px'],
+      [TypographyVisualStyle.headingSmall, 4, '24px', '28px'],
+      [TypographyVisualStyle.headingXSmall, 5, '20px', '24px'],
+      [TypographyVisualStyle.heading2XSmall, 6, '14px', '17px'],
+    ])(
+      'should render %s desktop sizing for regular and inverse headings',
+      (visualStyle, level, fontSize, lineHeight) => {
+        const { getByTestId } = render(
+          <>
+            <Heading
+              contextVariant={TypographyContextVariant.expressive}
+              level={level}
+              testId="regular-heading"
+              visualStyle={visualStyle}
+            >
+              Regular heading
+            </Heading>
+            <Heading
+              contextVariant={TypographyContextVariant.expressive}
+              isInverse
+              level={level}
+              testId="inverse-heading"
+              visualStyle={visualStyle}
+            >
+              Inverse heading
+            </Heading>
+          </>
+        );
+
+        ['regular-heading', 'inverse-heading'].forEach(testId => {
+          const heading = getByTestId(testId);
+
+          expect(heading).toHaveStyleRule('font-size', fontSize, {
+            media: `min-width: ${magma.breakpoints.small}px`,
+          });
+          expect(heading).toHaveStyleRule('line-height', lineHeight, {
+            media: `min-width: ${magma.breakpoints.small}px`,
+          });
+          expect(heading).toHaveStyleRule('font-weight', '600');
+        });
+      }
+    );
+
     it('should render expressive h1 styles', () => {
       const headingText = 'test';
       const { getByText } = render(
@@ -437,7 +484,7 @@ describe('Heading', () => {
       );
       const heading = getByText(headingText);
 
-      expect(heading).toHaveStyleRule('color', magma.colors.primary600);
+      expect(heading).toHaveStyleRule('color', magma.colors.brand.navy);
       expect(heading).toHaveStyleRule(
         'font-family',
         magma.headingExpressiveFont
@@ -534,7 +581,7 @@ describe('Heading', () => {
       );
       const heading = getByText(headingText);
 
-      expect(heading).toHaveStyleRule('color', magma.colors.neutral700);
+      expect(heading).toHaveStyleRule('color', magma.colors.primary);
       expect(heading).toHaveStyleRule(
         'font-family',
         magma.headingNarrativeFont
