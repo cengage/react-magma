@@ -1437,11 +1437,11 @@ describe('TreeView', () => {
 
       expect(getByTestId('item0-label')).toHaveStyleRule(
         'color',
-        magma.colors.neutral100
+        magma.colors.neutral0
       );
       expect(getByTestId('item1-expand')).toHaveStyleRule(
         'color',
-        magma.colors.neutral100
+        magma.colors.neutral0
       );
 
       expect(getByTestId('item1-itemwrapper')).not.toHaveStyleRule(

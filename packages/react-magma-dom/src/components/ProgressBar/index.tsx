@@ -94,11 +94,11 @@ const Track = styled.div<ProgressBarProps>`
   background: ${props =>
     props.isInverse
       ? transparentize(0.75, props.theme.colors.neutral900)
-      : props.theme.colors.neutral100};
+      : props.theme.colors.neutral0};
   box-shadow: inset 0 0 0 1px
     ${props =>
       props.isInverse
-        ? transparentize(0.5, props.theme.colors.neutral100)
+        ? transparentize(0.5, props.theme.colors.neutral0)
         : props.theme.colors.neutral};
   border-radius: 50em;
   overflow: hidden;

@@ -55,7 +55,7 @@ export const buttonStyles = props => css`
   position: relative;
   text-align: center;
   text-decoration: none;
-  text-transform: ${props.textTransform || 'uppercase'};
+  text-transform: ${props.textTransform || 'none'};
   touch-action: manipulation;
   transition:
     background 0.35s,
@@ -147,7 +147,7 @@ export const StyledButton = React.forwardRef<
 
   const spinnerColor =
     isInverse && variant === ButtonVariant.link
-      ? theme.colors.neutral100
+      ? theme.colors.neutral0
       : theme.colors.neutral500;
 
   const spinnerSize =

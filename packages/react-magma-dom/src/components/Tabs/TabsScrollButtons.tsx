@@ -29,9 +29,7 @@ const StyledScrollButton = styled.button<ScrollButtonProps>`
   backdrop-filter: blur(1px);
   border: 0;
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral};
+    props.isInverse ? props.theme.colors.neutral0 : props.theme.colors.neutral};
   cursor: pointer;
   display: ${props => (props.buttonVisible ? 'flex' : 'none')};
   justify-content: center;

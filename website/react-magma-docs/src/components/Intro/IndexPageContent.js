@@ -307,7 +307,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="1">
           <CardGrid background={magma.colors.neutral200}>
             <CardIcon>
-              <AccessibilityIcon color={magma.colors.neutral100} />
+              <AccessibilityIcon color={magma.colors.neutral0} />
             </CardIcon>
             <CardBody>
               <CardHeading>Accessible</CardHeading>
@@ -318,7 +318,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="2">
           <CardGrid background={magma.colors.neutral200}>
             <CardIcon>
-              <PaletteIcon color={magma.colors.neutral100} />
+              <PaletteIcon color={magma.colors.neutral0} />
             </CardIcon>
             <CardBody>
               <CardHeading>Themeable</CardHeading>
@@ -329,7 +329,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="1">
           <CardGrid background={magma.colors.neutral200}>
             <CardIcon>
-              <DevicesIcon color={magma.colors.neutral100} />
+              <DevicesIcon color={magma.colors.neutral0} />
             </CardIcon>
             <CardBody>
               <CardHeading>Platform Agnostic</CardHeading>
@@ -340,7 +340,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="2">
           <CardGrid background={magma.colors.neutral200}>
             <CardIcon>
-              <ExtensionIcon color={magma.colors.neutral100} />
+              <ExtensionIcon color={magma.colors.neutral0} />
             </CardIcon>
             <CardBody>
               <CardHeading>Scalable</CardHeading>
@@ -352,7 +352,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="1">
           <CardGrid background={magma.colors.neutral200}>
             <CardIcon>
-              <TimelineIcon color={magma.colors.neutral100} />
+              <TimelineIcon color={magma.colors.neutral0} />
             </CardIcon>
             <CardBody>
               <CardHeading>Efficient</CardHeading>
@@ -364,7 +364,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="2">
           <CardGrid background={magma.colors.neutral200}>
             <CardIcon>
-              <GroupsIcon color={magma.colors.neutral100} />
+              <GroupsIcon color={magma.colors.neutral0} />
             </CardIcon>
             <CardBody>
               <CardHeading>Living</CardHeading>

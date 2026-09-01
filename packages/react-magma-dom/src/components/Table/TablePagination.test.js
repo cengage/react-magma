@@ -59,15 +59,15 @@ describe('Table Pagination', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule(
       'border-left',
-      `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+      `1px solid ${transparentize(0.6, magma.colors.neutral0)}`
     );
     expect(getByTestId(testId)).toHaveStyleRule(
       'border-right',
-      `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+      `1px solid ${transparentize(0.6, magma.colors.neutral0)}`
     );
     expect(getByTestId(testId)).toHaveStyleRule(
       'border-bottom',
-      `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+      `1px solid ${transparentize(0.6, magma.colors.neutral0)}`
     );
     expect(getByTestId(testId)).toHaveStyle('border-radius: 0');
   });

@@ -1,6 +1,14 @@
 import { ThemeTransitions, transitions } from './components/transition';
 
 export interface Colors {
+  brand: {
+    navy: string;
+    cyan: string;
+    cyanDeep: string;
+    cyanElectric: string;
+    amber: string;
+  };
+
   primary: string;
   primary100: string;
   primary200: string;
@@ -21,6 +29,7 @@ export interface Colors {
   tertiary700: string;
 
   neutral: string;
+  neutral0: string;
   neutral100: string;
   neutral200: string;
   neutral300: string;
@@ -30,6 +39,53 @@ export interface Colors {
   neutral700: string;
   neutral800: string;
   neutral900: string;
+  neutral1000: string;
+  neutral1100: string;
+  neutral1150: string;
+  neutral1200: string;
+
+  blue100: string;
+  blue200: string;
+  blue500: string;
+  blue600: string;
+  blue700: string;
+  blue800: string;
+  blue900: string;
+  blue1000: string;
+  cyan400: string;
+  cyan500: string;
+  cyan600: string;
+  cyan700: string;
+  cyan800: string;
+  green100: string;
+  green200: string;
+  green400: string;
+  green500: string;
+  green600: string;
+  green700: string;
+  green800: string;
+  green1000: string;
+  red100: string;
+  red200: string;
+  red400: string;
+  red500: string;
+  red600: string;
+  red700: string;
+  red800: string;
+  red1000: string;
+  tangerine100: string;
+  tangerine200: string;
+  tangerine400: string;
+  tangerine600: string;
+  tangerine700: string;
+  tangerine900: string;
+  tangerine1000: string;
+  yellow100: string;
+  yellow200: string;
+  yellow400: string;
+  yellow700: string;
+  yellow800: string;
+  yellow1000: string;
 
   info: string;
   info100: string;
@@ -298,7 +354,12 @@ export interface ThemeInterface {
   bodyExpressiveFont: string;
   bodyNarrativeFont: string;
   borderRadius: string;
+  borderRadiusNone: string;
+  borderRadiusExtraSmall: string;
   borderRadiusSmall: string;
+  borderRadiusMedium: string;
+  borderRadiusLarge: string;
+  borderRadiusExtraLarge: string;
   colors: Colors;
   combobox: Combobox;
   direction: string;
@@ -417,15 +478,73 @@ const tertiaryColors = {
 };
 
 const neutralColors = {
-  neutral100: '#FFFFFF', // white
-  neutral200: '#F5F5F5',
-  neutral300: '#D4D4D4',
-  neutral400: '#8D8D8D',
-  neutral500: '#707070',
-  neutral600: '#5A5A5A',
-  neutral700: '#454545',
-  neutral800: '#2D2D2D',
-  neutral900: '#000000', // black
+  neutral0: '#FFFFFF',
+  neutral100: '#F7F9FC',
+  neutral200: '#DEE5EE',
+  neutral300: '#C5CEDB',
+  neutral400: '#A9B5C4',
+  neutral500: '#8B99AA',
+  neutral600: '#6F7E91',
+  neutral700: '#56667A',
+  neutral800: '#3D4A60',
+  neutral900: '#2A374A',
+  neutral1000: '#1B2636',
+  neutral1100: '#101820',
+  neutral1150: '#080C10',
+  neutral1200: '#000000',
+};
+
+const brandColors = {
+  navy: '#0B1F3A',
+  cyan: '#00B8D9',
+  cyanDeep: '#008EBA',
+  cyanElectric: '#00E7FF',
+  amber: '#FD9A04',
+};
+
+const rebrandColors = {
+  blue100: '#EAF4FF',
+  blue200: '#C3DFFD',
+  blue500: '#3082CA',
+  blue600: '#0A56A4',
+  blue700: '#084684',
+  blue800: '#063565',
+  blue900: '#042448',
+  blue1000: '#02152D',
+  cyan400: '#32D3E8',
+  cyan500: '#00B8D9',
+  cyan600: '#009AB6',
+  cyan700: '#007D95',
+  cyan800: '#005F72',
+  green100: '#E7FAEF',
+  green200: '#BFECCD',
+  green400: '#4CC77E',
+  green500: '#17A962',
+  green600: '#00844B',
+  green700: '#006C3B',
+  green800: '#00512D',
+  green1000: '#002311',
+  red100: '#FFE9EC',
+  red200: '#FFC8D0',
+  red400: '#F66D84',
+  red500: '#EB3A59',
+  red600: '#C60034',
+  red700: '#9E0029',
+  red800: '#76001E',
+  red1000: '#330008',
+  tangerine100: '#FFF1DE',
+  tangerine200: '#FFDDB8',
+  tangerine400: '#FFA94B',
+  tangerine600: '#C97100',
+  tangerine700: '#A25900',
+  tangerine900: '#552B00',
+  tangerine1000: '#331800',
+  yellow100: '#FFF7D6',
+  yellow200: '#FFEBA3',
+  yellow400: '#FFC200',
+  yellow700: '#8C6300',
+  yellow800: '#674800',
+  yellow1000: '#2B1C00',
 };
 
 const infoColors = {
@@ -469,28 +588,30 @@ const successColors = {
 };
 
 const colors = {
-  primary: primaryColors.primary500,
-  secondary: secondaryColors.secondary500,
-  tertiary: tertiaryColors.tertiary500,
-  neutral: neutralColors.neutral500,
-  info: infoColors.info500,
-  danger: dangerColors.danger500,
-  warning: warningColors.warning500,
-  success: successColors.success500,
+  brand: brandColors,
+  primary: brandColors.navy,
+  secondary: brandColors.amber,
+  tertiary: '#007D95',
+  neutral: neutralColors.neutral600,
+  info: '#0A56A4',
+  danger: '#C60034',
+  warning: '#8C6300',
+  success: '#00844B',
   ...primaryColors,
   ...secondaryColors,
   ...tertiaryColors,
   ...neutralColors,
+  ...rebrandColors,
   ...infoColors,
   ...dangerColors,
   ...warningColors,
   ...successColors,
 
-  focus: infoColors.info500,
-  focusInverse: infoColors.info200,
+  focus: rebrandColors.blue500,
+  focusInverse: '#5EA4E1',
 
-  border: neutralColors.neutral300,
-  borderInverse: 'rgba(255,255,255,0.25)',
+  border: neutralColors.neutral200,
+  borderInverse: neutralColors.neutral800,
 
   aiColors: {
     variantA: {
@@ -526,14 +647,19 @@ const spaceScale = {
 };
 
 export const magma = {
-  bodyFont: '"Work Sans",Helvetica,sans-serif',
-  bodyExpressiveFont: '"Work Sans",Helvetica,sans-serif',
+  bodyFont: 'Inter,Arial,Helvetica,sans-serif',
+  bodyExpressiveFont: 'Inter,Arial,Helvetica,sans-serif',
   bodyNarrativeFont: "'Noto Serif',Times New Roman,serif",
   borderRadius: '8px',
-  borderRadiusSmall: '4px',
+  borderRadiusNone: '0px',
+  borderRadiusExtraSmall: '4px',
+  borderRadiusSmall: '8px',
+  borderRadiusMedium: '16px',
+  borderRadiusLarge: '24px',
+  borderRadiusExtraLarge: '40px',
   colors: colors,
-  headingFont: '"Work Sans",Helvetica,sans-serif',
-  headingExpressiveFont: '"Work Sans",Helvetica,sans-serif',
+  headingFont: 'Inter,Arial,Helvetica,sans-serif',
+  headingExpressiveFont: 'Inter,Arial,Helvetica,sans-serif',
   headingNarrativeFont: "'Noto Serif',Times New Roman,serif",
   direction: 'ltr',
   spacingMultiplier: 8,
@@ -611,38 +737,59 @@ export const magma = {
   typographyExpressiveVisualStyles: {
     heading2XLarge: {
       mobile: typeScale.size11,
-      desktop: typeScale.size15,
-      fontWeight: 500,
+      desktop: {
+        fontSize: '56px',
+        lineHeight: '64px',
+      },
+      fontWeight: 600,
     },
     headingXLarge: {
       mobile: typeScale.size09,
-      desktop: typeScale.size11,
+      desktop: {
+        fontSize: '48px',
+        lineHeight: '56px',
+      },
       fontWeight: 600,
     },
     headingLarge: {
       mobile: typeScale.size07,
-      desktop: typeScale.size09,
+      desktop: {
+        fontSize: '40px',
+        lineHeight: '48px',
+      },
       fontWeight: 600,
     },
     headingMedium: {
       mobile: typeScale.size06,
-      desktop: typeScale.size07,
+      desktop: {
+        fontSize: '32px',
+        lineHeight: '40px',
+      },
       fontWeight: 600,
     },
     headingSmall: {
       mobile: typeScale.size05,
-      desktop: typeScale.size06,
-      fontWeight: 500,
+      desktop: {
+        fontSize: '24px',
+        lineHeight: '28px',
+      },
+      fontWeight: 600,
     },
     headingXSmall: {
       mobile: typeScale.size04,
-      desktop: typeScale.size05,
-      fontWeight: 500,
+      desktop: {
+        fontSize: '20px',
+        lineHeight: '24px',
+      },
+      fontWeight: 600,
     },
     heading2XSmall: {
       mobile: typeScale.size03,
-      desktop: typeScale.size04,
-      fontWeight: 500,
+      desktop: {
+        fontSize: '14px',
+        lineHeight: '17px',
+      },
+      fontWeight: 600,
     },
     bodyLarge: {
       mobile: typeScale.size05,
@@ -711,7 +858,7 @@ export const magma = {
   },
 
   appBar: {
-    backgroundColor: colors.neutral100,
+    backgroundColor: colors.neutral0,
     height: '88px',
     padding: `${spaceScale.spacing06} ${spaceScale.spacing05}`,
     textColor: colors.neutral,
@@ -721,7 +868,7 @@ export const magma = {
     },
     inverse: {
       backgroundColor: colors.primary600,
-      textColor: colors.neutral100,
+      textColor: colors.neutral0,
     },
   },
 
@@ -850,11 +997,11 @@ export const magma = {
     backgroundColor: colors.neutral700,
     fontWeight: 500,
     maxWidth: '300px',
-    textColor: colors.neutral100,
+    textColor: colors.neutral0,
     typeScale: typeScale.size01,
     zIndex: 999,
     inverse: {
-      backgroundColor: colors.neutral100,
+      backgroundColor: colors.neutral0,
       textColor: colors.neutral700,
     },
   },

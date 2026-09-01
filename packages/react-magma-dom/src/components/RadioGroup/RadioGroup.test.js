@@ -112,6 +112,29 @@ describe('Radio Group', () => {
     );
   });
 
+  it('Should render inverse error colors', () => {
+    const errorMessage = 'test error';
+    const { getByText, getByLabelText } = render(
+      <RadioGroup
+        value="default"
+        errorMessage={errorMessage}
+        id="testId"
+        isInverse
+      >
+        <Radio labelText="Default Color" value="default" />
+      </RadioGroup>
+    );
+
+    expect(getByText(errorMessage).parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.red500
+    );
+    expect(getByLabelText('Error').firstChild).toHaveAttribute(
+      'fill',
+      magma.colors.red500
+    );
+  });
+
   it('Should render a helper message', () => {
     const helperMessage = 'test helper message';
     const { getByText } = render(

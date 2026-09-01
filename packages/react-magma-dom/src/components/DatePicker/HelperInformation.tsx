@@ -94,7 +94,7 @@ const StyledContent = styled.div<{
   position: relative;
   color: ${props =>
     props.isInverse
-      ? props?.theme?.colors?.neutral100
+      ? props?.theme?.colors?.neutral0
       : props?.theme?.colors?.neutral700};
 
   h2 {
@@ -133,7 +133,7 @@ const BackToCalendarWrapper = styled.span<{
   &:hover {
     color: ${props =>
       props.isInverse
-        ? props.theme.colors.neutral100
+        ? props.theme.colors.neutral0
         : props.theme.colors.primary600};
   }
   svg {
@@ -188,7 +188,7 @@ export const HelperInformation: React.FunctionComponent<
             variant={ButtonVariant.link}
             style={{
               color: isInverse
-                ? theme.colors.neutral100
+                ? theme.colors.neutral0
                 : theme.colors.neutral900,
             }}
           />

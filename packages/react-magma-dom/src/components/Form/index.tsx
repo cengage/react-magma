@@ -58,11 +58,9 @@ const StyledForm = styled.form<{ isInverse?: boolean; theme: ThemeInterface }>`
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary600
-      : props.theme.colors.neutral100};
+      : props.theme.colors.neutral0};
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral};
+    props.isInverse ? props.theme.colors.neutral0 : props.theme.colors.neutral};
   font-family: ${props => props.theme.bodyFont};
 `;
 

@@ -33,7 +33,7 @@ function getCalendarDayBackground(
     return isChosen ? theme.colors.tertiary : theme.colors.primary;
   }
 
-  return isChosen ? theme.colors.primary : theme.colors.neutral100;
+  return isChosen ? theme.colors.primary : theme.colors.neutral0;
 }
 
 const getTodayColor = (isChosen: boolean, isInverse: boolean, theme: Theme) => {
@@ -41,11 +41,11 @@ const getTodayColor = (isChosen: boolean, isInverse: boolean, theme: Theme) => {
     return isChosen ? theme.colors.primary600 : theme.colors.secondary500;
   }
 
-  return isChosen ? theme.colors.neutral100 : theme.colors.primary500;
+  return isChosen ? theme.colors.neutral0 : theme.colors.primary500;
 };
 
 const getChosenDayColor = (isInverse: boolean, theme: Theme) => {
-  return isInverse ? theme.colors.primary600 : theme.colors.neutral100;
+  return isInverse ? theme.colors.primary600 : theme.colors.neutral0;
 };
 
 const getDisabledColor = (
@@ -54,22 +54,22 @@ const getDisabledColor = (
   theme: Theme
 ) => {
   if (isChosen) {
-    return isInverse ? theme.colors.primary600 : theme.colors.neutral100;
+    return isInverse ? theme.colors.primary600 : theme.colors.neutral0;
   }
 
   return isInverse
-    ? transparentize(0.6, theme.colors.neutral100)
+    ? transparentize(0.6, theme.colors.neutral0)
     : transparentize(0.4, theme.colors.neutral500);
 };
 
 const getNotCurrentMonthColor = (isInverse: boolean, theme: Theme) => {
   return isInverse
-    ? transparentize(0.3, theme.colors.neutral100)
+    ? transparentize(0.3, theme.colors.neutral0)
     : theme.colors.neutral500;
 };
 
 const getCurrentMonthColor = (isInverse: boolean, theme: Theme) => {
-  return isInverse ? theme.colors.neutral100 : theme.colors.neutral700;
+  return isInverse ? theme.colors.neutral0 : theme.colors.neutral700;
 };
 
 const getCalendarDayColor = (
@@ -93,7 +93,7 @@ function getChosenDayBorder(
 ) {
   if (isChosen) {
     return `1px solid ${
-      isInverse ? theme.colors.primary600 : theme.colors.neutral100
+      isInverse ? theme.colors.primary600 : theme.colors.neutral0
     }`;
   }
 }

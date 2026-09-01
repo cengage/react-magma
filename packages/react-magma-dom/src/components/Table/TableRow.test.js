@@ -64,7 +64,7 @@ describe('Table Row', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule(
       'border-bottom',
-      `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+      `1px solid ${transparentize(0.6, magma.colors.neutral0)}`
     );
   });
 
@@ -117,7 +117,7 @@ describe('Table Row', () => {
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral100
+        magma.colors.neutral0
       );
     });
 
@@ -139,7 +139,7 @@ describe('Table Row', () => {
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral100
+        magma.colors.neutral0
       );
     });
 
@@ -161,7 +161,7 @@ describe('Table Row', () => {
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral100
+        magma.colors.neutral0
       );
     });
 
@@ -183,7 +183,7 @@ describe('Table Row', () => {
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral100
+        magma.colors.neutral0
       );
     });
   });

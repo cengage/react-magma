@@ -58,8 +58,10 @@ const StyledListItem = styled.li<any>`
   padding: 0;
   margin-left: ${props => (props.icon ? 'inherit' : '1.1em')};
   color: ${props =>
-    props.description && !props.isInverse
-      ? props.theme.colors.neutral
+    props.description
+      ? props.isInverse
+        ? props.theme.colors.neutral500
+        : props.theme.colors.neutral700
       : 'inherit'};
   list-style-type: ${props =>
     props.icon || props.description ? 'none' : 'inherit'};
@@ -101,9 +103,13 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
           {icon && (
             <StyledIcon
               iconBackground={
-                theme.colors[iconBackground] || theme.colors.primary
+                theme.colors[iconBackground] ||
+                (isInverse ? theme.colors.brand.cyan : theme.colors.primary)
               }
-              iconColor={theme.colors[iconColor] || theme.colors.neutral100}
+              iconColor={
+                theme.colors[iconColor] ||
+                (isInverse ? theme.colors.brand.navy : theme.colors.neutral0)
+              }
               theme={theme}
               aria-hidden="true"
             >

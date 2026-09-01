@@ -3,12 +3,25 @@ import * as React from 'react';
 import { Global, css } from '@emotion/react';
 
 import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../magma';
 import { ThemeContext } from '../ThemeContext';
 
 function getGlobalImports() {
   return css`
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
   `;
+}
+
+export function getGlobalLinkColor(
+  theme: ThemeInterface,
+  isInverse: boolean,
+  state: 'default' | 'hover' | 'focus'
+) {
+  if (state === 'hover') {
+    return isInverse ? theme.colors.cyan400 : theme.colors.cyan800;
+  }
+
+  return isInverse ? theme.colors.cyan500 : theme.colors.cyan700;
 }
 
 function getStyles(theme, isInverse: boolean) {
@@ -37,8 +50,8 @@ function getStyles(theme, isInverse: boolean) {
     body {
       background: ${isInverse
         ? theme.colors.primary600
-        : theme.colors.neutral100};
-      color: ${isInverse ? theme.colors.neutral100 : theme.colors.neutral};
+        : theme.colors.neutral0};
+      color: ${isInverse ? theme.colors.neutral0 : theme.colors.neutral};
       margin: 0;
       padding: 0;
     }
@@ -52,15 +65,15 @@ function getStyles(theme, isInverse: boolean) {
     }
 
     a {
-      color: ${isInverse ? theme.colors.tertiary : theme.colors.primary};
+      color: ${getGlobalLinkColor(theme, isInverse, 'default')};
       cursor: pointer;
       text-decoration: underline;
 
-      &:hover,
-      &:focus {
-        color: ${isInverse ? theme.colors.neutral100 : theme.colors.primary700};
+      &:hover {
+        color: ${getGlobalLinkColor(theme, isInverse, 'hover')};
       }
       &:focus {
+        color: ${getGlobalLinkColor(theme, isInverse, 'focus')};
         outline: 2px solid
           ${isInverse ? theme.colors.focusInverse : theme.colors.focus};
         outline-offset: 2px;

@@ -91,7 +91,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.neutral100
+      magma.colors.neutral0
     );
   });
 
@@ -109,7 +109,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.neutral100
+      magma.colors.neutral0
     );
   });
 
@@ -168,7 +168,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      transparentize(0.6, magma.colors.neutral100)
+      transparentize(0.6, magma.colors.neutral0)
     );
   });
 
@@ -181,7 +181,7 @@ describe('Indeterminate Checkbox', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      transparentize(0.6, magma.colors.neutral100)
+      transparentize(0.6, magma.colors.neutral0)
     );
   });
 

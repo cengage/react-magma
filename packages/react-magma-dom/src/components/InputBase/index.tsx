@@ -3,7 +3,6 @@ import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
-import { transparentize } from 'polished';
 import { ClearIcon, IconProps } from 'react-magma-icons';
 
 import { I18nContext } from '../../i18n';
@@ -43,6 +42,38 @@ export interface InputBaseProps
   /**
    * @internal
    */
+  backgroundColor?: string;
+  /**
+   * @internal
+   */
+  borderColor?: string;
+  /**
+   * @internal
+   */
+  errorBorderColor?: string;
+  /**
+   * @internal
+   */
+  disabledBackgroundColor?: string;
+  /**
+   * @internal
+   */
+  disabledBorderColor?: string;
+  /**
+   * @internal
+   */
+  disabledIconColor?: string;
+  /**
+   * @internal
+   */
+  disabledPlaceholderColor?: string;
+  /**
+   * @internal
+   */
+  disabledTextColor?: string;
+  /**
+   * @internal
+   */
   children?: any;
   /**
    * Style properties for the component container element.
@@ -64,6 +95,10 @@ export interface InputBaseProps
    * Icon to display within the component
    */
   icon?: React.ReactElement<IconProps>;
+  /**
+   * @internal
+   */
+  iconColor?: string;
   /**
    * Text for the aria-label attribute for an icon, if provided
    */
@@ -165,6 +200,14 @@ export interface InputBaseProps
    */
   labelPosition?: LabelPosition;
   /**
+   * @internal
+   */
+  placeholderColor?: string;
+  /**
+   * @internal
+   */
+  textColor?: string;
+  /**
    * If true, label text will be hidden visually, but will still be read by assistive technology
    * @default false
    */
@@ -181,6 +224,11 @@ export interface InputWrapperStylesProps {
   hasError?: boolean;
   disabled?: boolean;
   inputSize?: InputSize;
+  backgroundColor?: string;
+  borderColor?: string;
+  errorBorderColor?: string;
+  disabledBackgroundColor?: string;
+  disabledBorderColor?: string;
 }
 
 export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
@@ -189,14 +237,16 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   display: flex;
   position: relative;
   width: ${props.width || 'auto'};
-  background-color: ${props.isInverse
-    ? transparentize(0.8, props.theme.colors.neutral900)
-    : props.theme.colors.neutral100};
+  background-color: ${props.backgroundColor ||
+  (props.isInverse
+    ? props.theme.colors.neutral1150
+    : props.theme.colors.neutral0)};
   border-radius: ${props.theme.borderRadius};
   border: 1px solid
-    ${props.isInverse
-      ? transparentize(0.5, props.theme.colors.neutral100)
-      : props.theme.colors.neutral500};
+    ${props.borderColor ||
+    (props.isInverse
+      ? props.theme.colors.neutral700
+      : props.theme.colors.neutral500)};
   height: ${props.theme.spaceScale.spacing09};
 
   &:focus-within {
@@ -209,19 +259,20 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
 
   ${props.hasError &&
   css`
-    border-color: ${props.isInverse
-      ? props.theme.colors.danger300
-      : props.theme.colors.danger};
+    border-color: ${props.errorBorderColor ||
+    (props.isInverse ? props.theme.colors.red500 : props.theme.colors.danger)};
   `}
 
   ${props.disabled &&
   css`
-    border-color: ${props.isInverse
-      ? transparentize(0.85, props.theme.colors.neutral100)
-      : props.theme.colors.neutral300};
-    background-color: ${props.isInverse
-      ? transparentize(0.9, props.theme.colors.neutral900)
-      : props.theme.colors.neutral200};
+    border-color: ${props.disabledBorderColor ||
+    (props.isInverse
+      ? props.theme.colors.neutral900
+      : props.theme.colors.neutral300)};
+    background-color: ${props.disabledBackgroundColor ||
+    (props.isInverse
+      ? props.theme.colors.neutral1100
+      : props.theme.colors.neutral200)};
   `}
 
   ${props.inputSize === 'large' &&
@@ -290,15 +341,20 @@ export interface InputBaseStylesProps {
   disabled?: boolean;
   hasError?: boolean;
   isClearable?: boolean;
+  placeholderColor?: string;
+  textColor?: string;
+  disabledPlaceholderColor?: string;
+  disabledTextColor?: string;
 }
 
 export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   border: 0;
   border-radius: ${props.theme.borderRadius};
   background: transparent;
-  color: ${props.isInverse
-    ? props.theme.colors.neutral100
-    : props.theme.colors.neutral700};
+  color: ${props.textColor ||
+  (props.isInverse
+    ? props.theme.colors.neutral0
+    : props.theme.colors.brand.navy)};
   display: block;
   font-size: ${props.theme.typeScale.size03.fontSize};
   line-height: ${props.theme.typeScale.size03.lineHeight};
@@ -319,9 +375,10 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   padding-right: ${getInputPadding(props).right};
 
   &::placeholder {
-    color: ${props.isInverse
-      ? transparentize(0.3, props.theme.colors.neutral100)
-      : props.theme.colors.neutral500};
+    color: ${props.placeholderColor ||
+    (props.isInverse
+      ? props.theme.colors.neutral500
+      : props.theme.colors.neutral700)};
   }
 
   &:focus {
@@ -339,16 +396,18 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
 
   ${props.disabled &&
   css`
-    color: ${props.isInverse
-      ? transparentize(0.6, props.theme.colors.neutral100)
-      : transparentize(0.4, props.theme.colors.neutral500)};
+    color: ${props.disabledTextColor ||
+    (props.isInverse
+      ? props.theme.colors.neutral700
+      : props.theme.colors.neutral500)};
     cursor: not-allowed;
 
     &::placeholder {
-      color: ${props.isInverse
-        ? transparentize(0.8, props.theme.colors.neutral100)
-        : props.theme.colors.neutral500};
-      opacity: ${props.isInverse ? 0.4 : 0.6};
+      color: ${props.disabledPlaceholderColor ||
+      (props.isInverse
+        ? props.theme.colors.neutral700
+        : props.theme.colors.neutral500)};
+      opacity: 1;
     }
   `}
 
@@ -358,12 +417,16 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   &:-webkit-autofill:active {
     box-shadow: none !important;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: ${props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700} !important;
-    caret-color: ${props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700} !important;
+    -webkit-text-fill-color: ${(props.disabled && props.disabledTextColor) ||
+    props.textColor ||
+    (props.isInverse
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy)} !important;
+    caret-color: ${(props.disabled && props.disabledTextColor) ||
+    props.textColor ||
+    (props.isInverse
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy)} !important;
   }
 `;
 
@@ -386,12 +449,18 @@ const IconWrapper = styled.span<{
   isPredictive?: boolean;
   disabled?: boolean;
   isInverse?: boolean;
+  iconColor?: string;
+  disabledIconColor?: string;
 }>`
   bottom: ${props => (props.iconPosition === 'top' ? '45px' : 'inherit')};
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+    (props.disabled && props.disabledIconColor) ||
+    props.iconColor ||
+    (props.disabled
+      ? props.isInverse
+        ? props.theme.colors.neutral700
+        : props.theme.colors.neutral500
+      : props.theme.colors.neutral600)};
   left: ${props =>
     props.iconPosition === 'left' ? props.theme.spaceScale.spacing03 : 'auto'};
   right: ${props =>
@@ -644,12 +713,21 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
   (props, forwardedRef) => {
     const {
       children,
+      backgroundColor,
+      borderColor,
+      disabledBackgroundColor,
+      disabledBorderColor,
+      disabledIconColor,
+      disabledPlaceholderColor,
+      disabledTextColor,
+      errorBorderColor,
       containerStyle,
       defaultValue,
       disabled,
       hasCharacterCounter,
       hasError,
       icon,
+      iconColor,
       iconAriaLabel,
       iconRef,
       isClearable,
@@ -670,6 +748,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       setReference,
       isLabelVisuallyHidden,
       labelPosition,
+      placeholderColor,
+      textColor,
       ...other
     } = props;
 
@@ -748,6 +828,11 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           data-testid={`${testId}-wrapper`}
         >
           <InputWrapper
+            backgroundColor={backgroundColor}
+            borderColor={borderColor}
+            disabledBackgroundColor={disabledBackgroundColor}
+            disabledBorderColor={disabledBorderColor}
+            errorBorderColor={errorBorderColor}
             disabled={disabled}
             iconPosition={iconPosition}
             isInverse={props.isInverse}
@@ -775,6 +860,10 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               }
               isInverse={useIsInverse(props.isInverse)}
               isPredictive={isPredictive}
+              placeholderColor={placeholderColor}
+              textColor={textColor}
+              disabledPlaceholderColor={disabledPlaceholderColor}
+              disabledTextColor={disabledTextColor}
               hasError={hasError}
               ref={ref}
               maxLength={maxLengthNum}
@@ -792,6 +881,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
                 iconPosition={iconPosition}
                 inputSize={inputSize ?? InputSize.medium}
                 isInverse={props.isInverse}
+                iconColor={iconColor}
+                disabledIconColor={disabledIconColor}
                 isPredictive={isPredictive}
                 theme={theme}
                 disabled={disabled}

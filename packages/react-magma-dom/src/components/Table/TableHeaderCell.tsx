@@ -90,7 +90,7 @@ const StyledTableHeaderCell = styled.th<{
       ? {}
       : {
           background: props.isInverse
-            ? transparentize(0.93, props.theme.colors.neutral100)
+            ? transparentize(0.93, props.theme.colors.neutral0)
             : props.theme.colors.neutral200,
           borderBottom: '2px solid',
           fontWeight: 'bold',
@@ -132,7 +132,7 @@ const SortButton = styled.button<{
   border: 0;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
+      ? props.theme.colors.neutral0
       : props.theme.colors.neutral700};
   display: flex;
   justify-content: ${props =>
@@ -147,13 +147,13 @@ const SortButton = styled.button<{
     cursor: pointer;
     background: ${props =>
       props.isInverse
-        ? transparentize(0.85, props.theme.colors.neutral100)
+        ? transparentize(0.85, props.theme.colors.neutral0)
         : transparentize(0.93, props.theme.colors.neutral900)};
 
     svg {
       fill: ${props =>
         props.isInverse
-          ? props.theme.colors.neutral100
+          ? props.theme.colors.neutral0
           : props.theme.colors.neutral700};
     }
   }

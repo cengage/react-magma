@@ -116,13 +116,13 @@ function getFlexDirection(position: TabsIconPosition) {
 function buildTabStylesColor(props) {
   if (props.isInverse) {
     if (props.disabled) {
-      return transparentize(0.6, props.theme.colors.neutral100);
+      return transparentize(0.6, props.theme.colors.neutral0);
     }
     if (props.isActive) {
-      return props.theme.colors.neutral100;
+      return props.theme.colors.neutral0;
     }
 
-    return transparentize(0.3, props.theme.colors.neutral100);
+    return transparentize(0.3, props.theme.colors.neutral0);
   }
 
   if (props.disabled) {
@@ -182,10 +182,10 @@ export const TabStyles = props => css`
         : transparentize(0.95, props.theme.colors.neutral900)};
     color: ${props.isActive
       ? props.isInverse
-        ? props.theme.colors.neutral100
+        ? props.theme.colors.neutral0
         : props.theme.colors.primary
       : props.isInverse
-        ? props.theme.colors.neutral100
+        ? props.theme.colors.neutral0
         : props.theme.colors.neutral700};
   }
 

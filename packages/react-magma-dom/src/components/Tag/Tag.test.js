@@ -47,14 +47,16 @@ describe('Tag', () => {
       const { getByText } = render(<Tag>{TEXT}</Tag>);
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral300);
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral200);
+      expect(tag).toHaveStyleRule('color', magma.colors.brand.navy);
     });
 
     it('Should render a Tag with a primary background', () => {
       const { getByText } = render(<Tag color={TagColor.primary}>{TEXT}</Tag>);
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.primary);
+      expect(tag).toHaveStyleRule('background', magma.colors.brand.amber);
+      expect(tag).toHaveStyleRule('color', magma.colors.brand.navy);
     });
 
     it('Should render a Tag with a high contrast background', () => {
@@ -63,7 +65,7 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral700);
+      expect(tag).toHaveStyleRule('background', magma.colors.brand.navy);
     });
 
     it('Should render a Tag with a low contrast background', () => {
@@ -72,7 +74,12 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral100);
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral0);
+      expect(tag).toHaveStyleRule('color', magma.colors.brand.navy);
+      expect(tag).toHaveStyleRule(
+        'box-shadow',
+        `inset 0 0 0 1px ${magma.colors.neutral300}`
+      );
     });
   });
 
@@ -127,7 +134,7 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral100);
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral0);
       expect(tag).toHaveStyleRule(
         'box-shadow',
         `0 0 0 1px ${magma.colors.neutral300}`
@@ -146,7 +153,7 @@ describe('Tag', () => {
 
       expect(tag).toHaveStyleRule(
         'background',
-        transparentize(0.7, magma.colors.neutral100)
+        transparentize(0.7, magma.colors.neutral0)
       );
     });
 
@@ -160,7 +167,7 @@ describe('Tag', () => {
 
       expect(tag).toHaveStyleRule(
         'background',
-        transparentize(0.7, magma.colors.neutral100)
+        transparentize(0.7, magma.colors.neutral0)
       );
     });
 
@@ -174,7 +181,7 @@ describe('Tag', () => {
 
       expect(tag).toHaveStyleRule(
         'background',
-        transparentize(0.7, magma.colors.neutral100)
+        transparentize(0.7, magma.colors.neutral0)
       );
     });
 
@@ -189,7 +196,7 @@ describe('Tag', () => {
       expect(tag).toHaveStyleRule('background', 'none');
       expect(tag).toHaveStyleRule(
         'box-shadow',
-        `0 0 0 1px ${transparentize(0.8, magma.colors.neutral100)}`
+        `0 0 0 1px ${transparentize(0.8, magma.colors.neutral0)}`
       );
     });
   });
@@ -199,7 +206,7 @@ describe('Tag', () => {
       const { getByText } = render(<Tag isInverse>{TEXT}</Tag>);
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral);
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral800);
     });
 
     it('Should render a inverse Tag with a primary background', () => {
@@ -210,7 +217,8 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.tertiary500);
+      expect(tag).toHaveStyleRule('background', magma.colors.brand.amber);
+      expect(tag).toHaveStyleRule('color', magma.colors.brand.navy);
     });
 
     it('Should render a inverse Tag with a high contrast background', () => {
@@ -221,7 +229,8 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral100);
+      expect(tag).toHaveStyleRule('background', magma.colors.brand.cyan);
+      expect(tag).toHaveStyleRule('color', magma.colors.brand.navy);
     });
 
     it('Should render a inverse Tag with a low contrast background', () => {
@@ -233,6 +242,11 @@ describe('Tag', () => {
       const tag = getByText('Text Label').parentElement;
 
       expect(tag).toHaveStyleRule('background', 'none');
+      expect(tag).toHaveStyleRule('color', magma.colors.neutral0);
+      expect(tag).toHaveStyleRule(
+        'box-shadow',
+        `0 0 0 1px ${magma.colors.neutral800}`
+      );
     });
   });
 

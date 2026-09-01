@@ -220,7 +220,7 @@ describe('Skeleton', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule(
       'background-color',
-      transparentize(0.8, magma.colors.neutral100)
+      transparentize(0.8, magma.colors.neutral0)
     );
   });
 

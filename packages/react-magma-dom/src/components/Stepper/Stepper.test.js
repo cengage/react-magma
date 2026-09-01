@@ -405,7 +405,7 @@ describe('Stepper', () => {
 
         const label = getByText(TEXT);
 
-        expect(label).toHaveStyleRule('color', magma.colors.neutral100);
+        expect(label).toHaveStyleRule('color', magma.colors.neutral0);
       });
 
       it('should have an inverse secondary label', () => {
@@ -420,7 +420,7 @@ describe('Stepper', () => {
 
         expect(secondaryLabel).toHaveStyleRule(
           'color',
-          transparentize(0.3, magma.colors.neutral100)
+          transparentize(0.3, magma.colors.neutral0)
         );
       });
 

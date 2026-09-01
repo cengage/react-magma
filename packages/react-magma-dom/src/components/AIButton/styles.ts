@@ -80,7 +80,7 @@ export function buildAIButtonBackground(initialProps) {
 
   if (props.disabled) {
     if (props.isInverse) {
-      return transparentize(0.7, props.theme.colors.neutral100);
+      return transparentize(0.7, props.theme.colors.neutral0);
     }
 
     return props.theme.colors.neutral300;
@@ -116,13 +116,13 @@ export function buildAIColor(initialProps) {
 
   if (props.disabled) {
     if (props.isInverse) {
-      return transparentize(0.6, props.theme.colors.neutral100);
+      return transparentize(0.6, props.theme.colors.neutral0);
     }
 
     return transparentize(0.4, props.theme.colors.neutral500);
   }
 
-  return props.theme.colors.neutral100;
+  return props.theme.colors.neutral0;
 }
 
 export function buildAIFocusBackground(initialProps) {
@@ -139,7 +139,7 @@ export function buildAIFocusBackground(initialProps) {
 export function buildAIFocusColor(initialProps) {
   const props = buildPropsWithDefaultAIButtonStyles(initialProps);
 
-  return props.theme.colors.neutral100;
+  return props.theme.colors.neutral0;
 }
 
 export function buildAIActiveBackground(initialProps) {
@@ -155,7 +155,7 @@ export function buildAIActiveBackground(initialProps) {
 export function buildAIActiveColor(initialProps) {
   const props = buildPropsWithDefaultAIButtonStyles(initialProps);
 
-  return props.theme.colors.neutral100;
+  return props.theme.colors.neutral0;
 }
 
 export function buildBoxShadow(props) {

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
-import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -21,6 +20,25 @@ describe('Checkbox', () => {
     const label = 'test label';
     const { getByText } = render(<Checkbox labelText={label} />);
     expect(getByText(label)).toBeInTheDocument();
+    expect(getByText(label)).toHaveStyleRule('color', magma.colors.brand.navy);
+  });
+
+  it('should render an unchecked checkbox with the correct icon color', () => {
+    const { container } = render(<Checkbox labelText="test label" />);
+    const span = container.querySelector('span');
+
+    expect(span).toHaveStyleRule('color', magma.colors.brand.navy);
+  });
+
+  it('should render a checked checkbox with brand colors', () => {
+    const label = 'test label';
+    const { container, getByText } = render(
+      <Checkbox checked labelText={label} />
+    );
+    const span = container.querySelector('span');
+
+    expect(span).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(getByText(label)).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it('should render a checkbox with desired attributes', () => {
@@ -155,14 +173,16 @@ describe('Checkbox', () => {
 
   it('should disable the checkbox', () => {
     const testId = 'abc123';
-    const { container, getByTestId } = render(
-      <Checkbox testId={testId} disabled />
+    const label = 'test label';
+    const { container, getByTestId, getByText } = render(
+      <Checkbox testId={testId} disabled labelText={label} />
     );
 
     const span = container.querySelector('span');
 
     expect(getByTestId(testId)).toBeDisabled();
     expect(span).toHaveStyleRule('color', magma.colors.neutral300);
+    expect(getByText(label)).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it('should render a passed in color', () => {
@@ -177,7 +197,7 @@ describe('Checkbox', () => {
     const { container } = render(<Checkbox isInverse />);
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('color', magma.colors.neutral100);
+    expect(span).toHaveStyleRule('color', magma.colors.neutral0);
   });
 
   it('should render inverse with a passed in color', () => {
@@ -187,24 +207,21 @@ describe('Checkbox', () => {
     const svg = container.querySelector('svg');
 
     expect(svg).toHaveAttribute('fill', 'currentColor');
-    expect(span).toHaveStyleRule('color', magma.colors.neutral100);
+    expect(span).toHaveStyleRule('color', magma.colors.neutral0);
   });
 
   it('should render an inverse, disabled checkbox with the correct styles', () => {
     const { container } = render(<Checkbox disabled isInverse />);
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule(
-      'color',
-      transparentize(0.6, magma.colors.neutral100)
-    );
+    expect(span).toHaveStyleRule('color', magma.colors.neutral600);
   });
 
   it('should render an inverse, checked checkbox with the correct styles', () => {
     const { container } = render(<Checkbox checked isInverse />);
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('color', magma.colors.neutral100);
+    expect(span).toHaveStyleRule('color', magma.colors.brand.cyan);
   });
 
   it('should render a checkbox with hidden label text with the correct styles', () => {
@@ -228,6 +245,10 @@ describe('Checkbox', () => {
 
     const span = container.querySelector('span');
     expect(span).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(getByText(labelText)).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
     expect(getByLabelText(labelText)).toHaveAttribute(
       'aria-describedby',
       'testId__desc'
@@ -243,13 +264,24 @@ describe('Checkbox', () => {
   it('should render an inverse checkbox with error styling', () => {
     const errorMessage = 'test error';
     const labelText = 'test label';
-    const { container } = render(
+    const { container, getByTestId, getByText } = render(
       <Checkbox errorMessage={errorMessage} isInverse labelText={labelText} />
     );
 
     const span = container.querySelector('span');
-    expect(span).toHaveStyleRule('border-color', magma.colors.danger300);
-    expect(span).toHaveStyleRule('color', magma.colors.neutral100);
+    const errorIcon = container.querySelector('[role="img"] svg');
+
+    expect(span).toHaveStyleRule('border-color', magma.colors.red500);
+    expect(span).toHaveStyleRule('color', magma.colors.neutral0);
+    expect(getByTestId('inputMessage')).toHaveStyleRule(
+      'color',
+      magma.colors.red500
+    );
+    expect(errorIcon).toHaveAttribute('fill', magma.colors.red500);
+    expect(getByText(labelText)).toHaveStyleRule(
+      'color',
+      magma.colors.neutral0
+    );
   });
 
   describe('events', () => {

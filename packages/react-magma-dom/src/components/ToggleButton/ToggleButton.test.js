@@ -52,7 +52,7 @@ describe('ToggleButton', () => {
       const button = getByTestId(testId);
 
       expect(button).toHaveStyleRule('border-color', magma.colors.neutral300);
-      expect(button).toHaveStyleRule('border', '1px solid');
+      expect(button).toHaveStyleRule('border', '0');
       expect(button).toHaveStyleRule(
         'border-radius',
         magma.spaceScale.spacing03
@@ -98,7 +98,7 @@ describe('ToggleButton', () => {
       );
       const button = getByTestId(testId);
 
-      expect(button).toHaveStyleRule('border', '1px solid');
+      expect(button).toHaveStyleRule('border', '0');
       expect(button).toHaveStyleRule('border-color', magma.colors.neutral300);
 
       rerender(
@@ -107,7 +107,7 @@ describe('ToggleButton', () => {
         </ToggleButton>
       );
 
-      expect(button).toHaveStyleRule('border', '1px solid');
+      expect(button).toHaveStyleRule('border', '0');
       expect(button).toHaveStyleRule('border-color', magma.colors.neutral300);
     });
 
@@ -203,7 +203,10 @@ describe('ToggleButton', () => {
         <ToggleButton value={value} testId={testId} icon={icon} />
       );
       const button = getByTestId(testId);
-      expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+      expect(button).toHaveStyleRule(
+        'background',
+        transparentize(0.5, magma.colors.neutral200)
+      );
       fireEvent.click(getByTestId(testId));
 
       expect(button).toHaveStyleRule(
@@ -219,7 +222,10 @@ describe('ToggleButton', () => {
       );
       const button = getByTestId(testId);
 
-      expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+      expect(button).toHaveStyleRule(
+        'background',
+        transparentize(0.5, magma.colors.neutral200)
+      );
       expect(button).toHaveAttribute('aria-checked', 'false');
     });
 
@@ -228,7 +234,10 @@ describe('ToggleButton', () => {
         <ToggleButton value={value} isInverse testId={testId} icon={icon} />
       );
       const button = getByTestId(testId);
-      expect(button).toHaveStyleRule('background', 'none');
+      expect(button).toHaveStyleRule(
+        'background',
+        transparentize(0.5, magma.colors.neutral900)
+      );
       fireEvent.click(getByTestId(testId));
 
       expect(button).toHaveStyleRule(
@@ -251,7 +260,10 @@ describe('ToggleButton', () => {
       );
       fireEvent.click(button);
 
-      expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+      expect(button).toHaveStyleRule(
+        'background',
+        transparentize(0.5, magma.colors.neutral200)
+      );
 
       expect(button).toHaveAttribute('aria-checked', 'false');
     });

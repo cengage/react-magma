@@ -115,12 +115,9 @@ describe('Calendar Day', () => {
     const todayIndicator = getByTestId('todayIndicator');
 
     expect(todayIndicator).toBeInTheDocument();
-    expect(todayIndicator).toHaveStyleRule(
-      'background',
-      magma.colors.neutral100
-    );
+    expect(todayIndicator).toHaveStyleRule('background', magma.colors.neutral0);
     expect(calendarDay).toBeInTheDocument();
-    expect(calendarDay).toHaveStyleRule('color', magma.colors.neutral100);
+    expect(calendarDay).toHaveStyleRule('color', magma.colors.neutral0);
     expect(calendarDay).toHaveStyleRule('font-weight', '700');
     expect(calendarDay).toHaveAttribute('aria-current', 'date');
   });
@@ -187,7 +184,7 @@ describe('Calendar Day', () => {
 
     expect(todayIndicator).not.toBeInTheDocument();
     expect(calendarDay).toBeInTheDocument();
-    expect(calendarDay).toHaveStyleRule('color', magma.colors.neutral100);
+    expect(calendarDay).toHaveStyleRule('color', magma.colors.neutral0);
     expect(calendarDay).toHaveStyleRule('font-weight', '500');
     expect(calendarDay).not.toHaveAttribute('aria-current', 'date');
   });

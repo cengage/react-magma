@@ -113,8 +113,8 @@ const ListStyles = props => css`
   padding: 0;
   list-style-type: ${props.listType};
   color: ${props.isInverse
-    ? props.theme.colors.neutral100
-    : props.theme.colors.neutral700};
+    ? props.theme.colors.neutral0
+    : props.theme.colors.brand.navy};
   li {
     align-items: ${getListAlignment(props)};
     margin-bottom: ${props.spacingStyle};

@@ -93,7 +93,7 @@ function buildTableRowColor(props) {
     return props.theme.colors.neutral700;
   }
   if (props.color && !props.isInverse) {
-    return props.theme.colors.neutral100;
+    return props.theme.colors.neutral0;
   }
 
   return 'inherit';
@@ -102,7 +102,7 @@ function buildTableRowColor(props) {
 function getBorderBottom(isInverse: boolean) {
   return `1px solid ${
     isInverse
-      ? transparentize(0.6, magma.colors.neutral100)
+      ? transparentize(0.6, magma.colors.neutral0)
       : magma.colors.neutral300
   }`;
 }
@@ -156,7 +156,7 @@ const StyledTableRow = styled.tr<{
       &:nth-of-type(even) {
         background: ${props.hasZebraStripes
           ? props.isInverse
-            ? transparentize(0.93, props.theme.colors.neutral100)
+            ? transparentize(0.93, props.theme.colors.neutral0)
             : props.theme.colors.neutral200
           : 'none'};
       }
@@ -169,7 +169,7 @@ const StyledTableRow = styled.tr<{
     &:hover {
       background: ${
         props.isInverse
-          ? transparentize(0.85, props.theme.colors.neutral100)
+          ? transparentize(0.85, props.theme.colors.neutral0)
           : transparentize(0.93, props.theme.colors.neutral900)
       };
     `}
@@ -190,13 +190,13 @@ const HeaderStyledCell = styled(TableCell)<{
   &&& {
     background: ${props =>
       props.isInverse
-        ? transparentize(0.93, props.theme.colors.neutral100)
+        ? transparentize(0.93, props.theme.colors.neutral0)
         : props.theme.colors.neutral200};
     border-bottom-width: 2px;
     border-bottom-style: solid;
     border-bottom-color: ${props =>
       props.isInverse
-        ? transparentize(0.6, props.theme.colors.neutral100)
+        ? transparentize(0.6, props.theme.colors.neutral0)
         : props.theme.colors.neutral300};
     font-weight: bold;
     vertical-align: bottom;
@@ -218,7 +218,7 @@ const SortButton = styled.button<{
   border: 0;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
+      ? props.theme.colors.neutral0
       : props.theme.colors.neutral700};
   margin: 0;
   text-align: left;
@@ -240,7 +240,7 @@ const SortButton = styled.button<{
     svg {
       fill: ${props =>
         props.isInverse
-          ? props.theme.colors.neutral100
+          ? props.theme.colors.neutral0
           : props.theme.colors.neutral700};
     }
   }

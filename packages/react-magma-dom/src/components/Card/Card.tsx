@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { transparentize } from 'polished';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
@@ -27,6 +25,16 @@ export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
    * @default none
    */
   calloutType?: CardCalloutType;
+  /**
+   * Sets the radius size used by the card corners.
+   * @default CardBorderRadius.medium
+   */
+  borderRadius?: CardBorderRadius;
+  /**
+   * Sets whether all corners are rounded or the top-left corner is square.
+   * @default CardCornerTreatment.squareTopLeft
+   */
+  cornerTreatment?: CardCornerTreatment;
   /**
    * If true, card will render with a box-shadow
    * @default false
@@ -57,21 +65,64 @@ export enum CardCalloutType {
   info = 'info',
 }
 
+export enum CardBorderRadius {
+  none = 'none',
+  extraSmall = 'extraSmall',
+  small = 'small',
+  medium = 'medium',
+  large = 'large',
+  extraLarge = 'extraLarge',
+}
+
+export enum CardCornerTreatment {
+  all = 'all',
+  squareTopLeft = 'squareTopLeft',
+}
+
+function getCardBorderRadius(props: CardProps & { theme: ThemeInterface }) {
+  switch (props.borderRadius) {
+    case CardBorderRadius.none:
+      return props.theme.borderRadiusNone;
+    case CardBorderRadius.extraSmall:
+      return props.theme.borderRadiusExtraSmall;
+    case CardBorderRadius.medium:
+      return props.theme.borderRadiusMedium;
+    case CardBorderRadius.large:
+      return props.theme.borderRadiusLarge;
+    case CardBorderRadius.extraLarge:
+      return props.theme.borderRadiusExtraLarge;
+    default:
+      return props.theme.borderRadiusSmall;
+  }
+}
+
+function buildCardBorderRadius(props: CardProps & { theme: ThemeInterface }) {
+  const radius = getCardBorderRadius(props);
+
+  if (props.calloutType) {
+    return `0 ${radius} ${radius} 0`;
+  }
+
+  return props.cornerTreatment === CardCornerTreatment.squareTopLeft
+    ? `0 ${radius} ${radius} ${radius}`
+    : radius;
+}
+
 export function buildCalloutBackground(
   props: CardProps & { theme: ThemeInterface }
 ) {
   if (props.isInverse) {
     switch (props.calloutType) {
       case 'danger':
-        return props.theme.colors.danger200;
+        return props.theme.colors.red500;
       case 'info':
-        return props.theme.colors.tertiary500;
+        return props.theme.colors.blue500;
       case 'success':
-        return props.theme.colors.success200;
+        return props.theme.colors.green500;
       case 'warning':
-        return props.theme.colors.warning200;
+        return props.theme.colors.yellow400;
       default:
-        return props.theme.colors.primary500;
+        return props.theme.colors.brand.cyan;
     }
   }
 
@@ -83,10 +134,24 @@ export function buildCalloutBackground(
     case 'success':
       return props.theme.colors.success;
     case 'warning':
-      return props.theme.colors.warning;
+      return props.theme.colors.yellow400;
     default:
-      return props.theme.colors.primary600;
+      return props.theme.colors.brand.cyan;
   }
+}
+
+function buildCardBoxShadow(props: CardProps & { theme: ThemeInterface }) {
+  const shadows = [];
+
+  if (props.calloutType) {
+    shadows.push(`inset 4px 0 0 0 ${buildCalloutBackground(props)}`);
+  }
+
+  if (props.hasDropShadow) {
+    shadows.push('0 2px 6px 0 rgba(0,0,0,0.18)');
+  }
+
+  return shadows.length ? shadows.join(', ') : '0 0 0';
 }
 
 const StyledCard = styled.div<CardProps>`
@@ -94,47 +159,31 @@ const StyledCard = styled.div<CardProps>`
     props.background
       ? props.background
       : props.isInverse
-        ? props.theme.colors.primary600
-        : props.theme.colors.neutral100};
+        ? props.theme.colors.neutral1100
+        : props.theme.colors.neutral0};
   border: 1px solid
     ${props =>
       props.background
         ? props.background
         : props.isInverse
-          ? transparentize(0.5, props.theme.colors.neutral100)
-          : props.theme.colors.neutral300};
-  border-radius: ${props => props.theme.borderRadius};
-  box-shadow: ${props =>
-    props.hasDropShadow ? '0 2px 6px 0 rgba(0,0,0,0.18)' : '0 0 0'};
+          ? props.theme.colors.neutral800
+          : props.theme.colors.neutral200};
+  border-left-width: ${props => (props.calloutType ? '0' : '1px')};
+  border-radius: ${buildCardBorderRadius};
+  box-shadow: ${buildCardBoxShadow};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
+      ? props.theme.colors.neutral0
       : props.theme.colors.neutral700};
   font-family: ${props => props.theme.bodyFont};
   display: flex;
   flex-direction: column;
   overflow: visible;
   padding-left: ${props =>
-    props.calloutType ? props.theme.spaceScale.spacing02 : '0'};
+    props.calloutType ? props.theme.spaceScale.spacing03 : '0'};
   position: relative;
   text-align: ${props => props.align};
   width: ${props => props.width};
-
-  ${props =>
-    props.calloutType &&
-    css`
-      &:before {
-        background: ${buildCalloutBackground(props)};
-        border-radius: ${props.theme.borderRadius} 0 0
-          ${props.theme.borderRadius};
-        content: '';
-        display: block;
-        height: 100%;
-        position: absolute;
-        left: 0;
-        width: ${props.theme.spaceScale.spacing02};
-      }
-    `}
 `;
 
 interface NavTabsContextInterface {
@@ -147,7 +196,15 @@ export const CardContext = React.createContext<NavTabsContextInterface>({
 
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
   (props, ref) => {
-    const { align, children, testId, width, ...other } = props;
+    const {
+      align,
+      borderRadius = CardBorderRadius.medium,
+      children,
+      cornerTreatment = CardCornerTreatment.squareTopLeft,
+      testId,
+      width,
+      ...other
+    } = props;
 
     const isInverse = useIsInverse(props.isInverse);
 
@@ -163,6 +220,8 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       <StyledCard
         {...other}
         align={align ? align : CardAlignment.left}
+        borderRadius={borderRadius}
+        cornerTreatment={cornerTreatment}
         data-testid={testId}
         isInverse={isInverse}
         ref={ref}

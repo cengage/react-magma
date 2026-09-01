@@ -84,13 +84,13 @@ export function getTreeItemLabelColor(
 ) {
   if (disabled) {
     if (isInverse) {
-      return transparentize(0.6, theme.colors.neutral100);
+      return transparentize(0.6, theme.colors.neutral0);
     }
 
     return transparentize(0.6, theme.colors.neutral500);
   }
   if (isInverse) {
-    return theme.colors.neutral100;
+    return theme.colors.neutral0;
   }
 
   return theme.colors.neutral700;

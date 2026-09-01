@@ -203,9 +203,9 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -216,7 +216,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -234,7 +234,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -244,19 +244,19 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -490,9 +490,9 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -503,7 +503,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -521,7 +521,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -531,19 +531,19 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -717,9 +717,9 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -730,7 +730,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -748,7 +748,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -758,19 +758,19 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -892,9 +892,9 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -905,7 +905,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -923,7 +923,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -933,19 +933,19 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -1116,9 +1116,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -1129,7 +1129,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -1147,7 +1147,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -1157,19 +1157,19 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -1211,9 +1211,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -1224,7 +1224,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -1242,7 +1242,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -1253,19 +1253,19 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-9:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-9:not(:disabled):hover,
 .emotion-9:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-9:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -1292,11 +1292,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 
 .emotion-16 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1310,6 +1311,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   text-align: left;
   width: auto;
   background: #FFFFFF;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
   display: none;
   max-height: 250px;
   opacity: 0;
@@ -1322,7 +1324,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-16:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 0;
 }
 
@@ -1331,32 +1333,32 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: #454545;
+  color: #0B1F3A;
   cursor: pointer;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
   white-space: nowrap;
 }
 
-.emotion-18:hover,
-.emotion-18:focus {
-  background: #F5F5F5;
+.emotion-18:hover {
+  background: #F7F9FC;
 }
 
 .emotion-18:focus {
-  outline-color: #0074B7;
+  background: none;
+  outline-color: #3082CA;
   outline-offset: -2px;
 }
 
 .emotion-18:active {
-  outline-color: #0074B7;
+  outline-color: #3082CA;
 }
 
 .emotion-0 {
@@ -1446,9 +1448,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -1459,7 +1461,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -1477,7 +1479,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -1487,19 +1489,19 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -1541,9 +1543,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -1554,7 +1556,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -1572,7 +1574,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -1583,19 +1585,19 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-9:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-9:not(:disabled):hover,
 .emotion-9:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-9:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -1622,11 +1624,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 
 .emotion-16 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1640,6 +1643,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   text-align: left;
   width: auto;
   background: #FFFFFF;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
   display: none;
   max-height: 250px;
   opacity: 0;
@@ -1652,7 +1656,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-16:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 0;
 }
 
@@ -1661,32 +1665,32 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: #454545;
+  color: #0B1F3A;
   cursor: pointer;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
   white-space: nowrap;
 }
 
-.emotion-18:hover,
-.emotion-18:focus {
-  background: #F5F5F5;
+.emotion-18:hover {
+  background: #F7F9FC;
 }
 
 .emotion-18:focus {
-  outline-color: #0074B7;
+  background: none;
+  outline-color: #3082CA;
   outline-offset: -2px;
 }
 
 .emotion-18:active {
-  outline-color: #0074B7;
+  outline-color: #3082CA;
 }
 
 <div>
@@ -1988,9 +1992,9 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px 0 0 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -2001,7 +2005,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -2019,7 +2023,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -2029,19 +2033,19 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 }
 
 .emotion-4:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-4:not(:disabled):hover,
 .emotion-4:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-4:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -2078,9 +2082,9 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 0 8px 8px 0;
   color: #FFFFFF;
   cursor: pointer;
@@ -2091,7 +2095,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -2109,7 +2113,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -2130,19 +2134,19 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 }
 
 .emotion-8:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-8:not(:disabled):hover,
 .emotion-8:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-8:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -2164,11 +2168,12 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 
 .emotion-13 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2182,6 +2187,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   text-align: left;
   width: auto;
   background: #FFFFFF;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
   display: none;
   max-height: 250px;
   opacity: 0;
@@ -2194,7 +2200,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 }
 
 .emotion-13:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 0;
 }
 
@@ -2203,32 +2209,32 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: #454545;
+  color: #0B1F3A;
   cursor: pointer;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
   white-space: nowrap;
 }
 
-.emotion-15:hover,
-.emotion-15:focus {
-  background: #F5F5F5;
+.emotion-15:hover {
+  background: #F7F9FC;
 }
 
 .emotion-15:focus {
-  outline-color: #0074B7;
+  background: none;
+  outline-color: #3082CA;
   outline-offset: -2px;
 }
 
 .emotion-15:active {
-  outline-color: #0074B7;
+  outline-color: #3082CA;
 }
 
 .emotion-0 {
@@ -2372,9 +2378,9 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px 0 0 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -2385,7 +2391,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -2403,7 +2409,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -2413,19 +2419,19 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 }
 
 .emotion-4:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-4:not(:disabled):hover,
 .emotion-4:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-4:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -2462,9 +2468,9 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 0 8px 8px 0;
   color: #FFFFFF;
   cursor: pointer;
@@ -2475,7 +2481,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -2493,7 +2499,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -2514,19 +2520,19 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 }
 
 .emotion-8:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-8:not(:disabled):hover,
 .emotion-8:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-8:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -2548,11 +2554,12 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 
 .emotion-13 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2566,6 +2573,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   text-align: left;
   width: auto;
   background: #FFFFFF;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
   display: none;
   max-height: 250px;
   opacity: 0;
@@ -2578,7 +2586,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 }
 
 .emotion-13:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 0;
 }
 
@@ -2587,32 +2595,32 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: #454545;
+  color: #0B1F3A;
   cursor: pointer;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
   white-space: nowrap;
 }
 
-.emotion-15:hover,
-.emotion-15:focus {
-  background: #F5F5F5;
+.emotion-15:hover {
+  background: #F7F9FC;
 }
 
 .emotion-15:focus {
-  outline-color: #0074B7;
+  background: none;
+  outline-color: #3082CA;
   outline-offset: -2px;
 }
 
 .emotion-15:active {
-  outline-color: #0074B7;
+  outline-color: #3082CA;
 }
 
 <div>
@@ -2649,7 +2657,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
           class="emotion-8 emotion-5"
           color="primary"
           shape="rightCap"
-          style="margin-left: 2px;"
+          style="border-left: 1px solid #084684; margin-left: 0px;"
           type="button"
         >
           <span
@@ -2727,7 +2735,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
           class="emotion-8 emotion-5"
           color="primary"
           shape="rightCap"
-          style="margin-left: 2px;"
+          style="border-left: 1px solid #084684; margin-left: 0px;"
           type="button"
         >
           <span
@@ -2919,9 +2927,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -2932,7 +2940,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -2950,7 +2958,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -2960,19 +2968,19 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -3014,9 +3022,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -3027,7 +3035,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -3045,7 +3053,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -3056,19 +3064,19 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-9:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-9:not(:disabled):hover,
 .emotion-9:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-9:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -3095,11 +3103,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 
 .emotion-16 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3113,6 +3122,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   text-align: left;
   width: auto;
   background: #FFFFFF;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
   display: none;
   max-height: 250px;
   opacity: 0;
@@ -3125,7 +3135,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-16:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 0;
 }
 
@@ -3134,32 +3144,32 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: #454545;
+  color: #0B1F3A;
   cursor: pointer;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
   white-space: nowrap;
 }
 
-.emotion-18:hover,
-.emotion-18:focus {
-  background: #F5F5F5;
+.emotion-18:hover {
+  background: #F7F9FC;
 }
 
 .emotion-18:focus {
-  outline-color: #0074B7;
+  background: none;
+  outline-color: #3082CA;
   outline-offset: -2px;
 }
 
 .emotion-18:active {
-  outline-color: #0074B7;
+  outline-color: #3082CA;
 }
 
 .emotion-0 {
@@ -3298,9 +3308,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -3311,7 +3321,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -3329,7 +3339,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -3339,19 +3349,19 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -3393,9 +3403,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -3406,7 +3416,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -3424,7 +3434,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -3435,19 +3445,19 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-9:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-9:not(:disabled):hover,
 .emotion-9:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-9:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -3474,11 +3484,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 
 .emotion-16 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3492,6 +3503,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   text-align: left;
   width: auto;
   background: #FFFFFF;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
   display: none;
   max-height: 250px;
   opacity: 0;
@@ -3504,7 +3516,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-16:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 0;
 }
 
@@ -3513,32 +3525,32 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: #454545;
+  color: #0B1F3A;
   cursor: pointer;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
   white-space: nowrap;
 }
 
-.emotion-18:hover,
-.emotion-18:focus {
-  background: #F5F5F5;
+.emotion-18:hover {
+  background: #F7F9FC;
 }
 
 .emotion-18:focus {
-  outline-color: #0074B7;
+  background: none;
+  outline-color: #3082CA;
   outline-offset: -2px;
 }
 
 .emotion-18:active {
-  outline-color: #0074B7;
+  outline-color: #3082CA;
 }
 
 <div>
@@ -3901,9 +3913,9 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -3914,7 +3926,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -3932,7 +3944,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -3942,19 +3954,19 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -3996,9 +4008,9 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -4009,7 +4021,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -4027,7 +4039,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -4038,19 +4050,19 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-9:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-9:not(:disabled):hover,
 .emotion-9:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-9:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -4077,11 +4089,12 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 
 .emotion-16 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4095,6 +4108,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   text-align: left;
   width: auto;
   background: #FFFFFF;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
   display: none;
   max-height: 250px;
   opacity: 0;
@@ -4107,7 +4121,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-16:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 0;
 }
 
@@ -4116,32 +4130,32 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: #454545;
+  color: #0B1F3A;
   cursor: pointer;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
   white-space: nowrap;
 }
 
-.emotion-18:hover,
-.emotion-18:focus {
-  background: #F5F5F5;
+.emotion-18:hover {
+  background: #F7F9FC;
 }
 
 .emotion-18:focus {
-  outline-color: #0074B7;
+  background: none;
+  outline-color: #3082CA;
   outline-offset: -2px;
 }
 
 .emotion-18:active {
-  outline-color: #0074B7;
+  outline-color: #3082CA;
 }
 
 .emotion-0 {
@@ -4346,9 +4360,9 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -4359,7 +4373,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -4377,7 +4391,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -4387,19 +4401,19 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -4441,9 +4455,9 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -4454,7 +4468,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -4472,7 +4486,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -4483,19 +4497,19 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-9:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-9:not(:disabled):hover,
 .emotion-9:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-9:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -4522,11 +4536,12 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 
 .emotion-16 {
   background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #DEE5EE;
+  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #56667A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -4540,6 +4555,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   text-align: left;
   width: auto;
   background: #FFFFFF;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
   display: none;
   max-height: 250px;
   opacity: 0;
@@ -4552,7 +4568,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-16:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 0;
 }
 
@@ -4561,32 +4577,32 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: #454545;
+  color: #0B1F3A;
   cursor: pointer;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
   white-space: nowrap;
 }
 
-.emotion-18:hover,
-.emotion-18:focus {
-  background: #F5F5F5;
+.emotion-18:hover {
+  background: #F7F9FC;
 }
 
 .emotion-18:focus {
-  outline-color: #0074B7;
+  background: none;
+  outline-color: #3082CA;
   outline-offset: -2px;
 }
 
 .emotion-18:active {
-  outline-color: #0074B7;
+  outline-color: #3082CA;
 }
 
 <div>
@@ -4979,9 +4995,9 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -4992,7 +5008,7 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -5010,7 +5026,7 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -5020,19 +5036,19 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
 }
 
 .emotion-4:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-4:not(:disabled):hover,
 .emotion-4:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-4:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -5296,9 +5312,9 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -5309,7 +5325,7 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -5327,7 +5343,7 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
   -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
@@ -5337,19 +5353,19 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
 }
 
 .emotion-4:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-4:not(:disabled):hover,
 .emotion-4:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-4:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 

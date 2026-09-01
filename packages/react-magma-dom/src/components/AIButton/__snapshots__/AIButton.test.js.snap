@@ -20,7 +20,7 @@ exports[`AIButton Base AIButton Snapshot should render with large size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 18px;
   font-weight: 500;
   height: 56px;
@@ -74,7 +74,7 @@ exports[`AIButton Base AIButton Snapshot should render with large size 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
@@ -151,7 +151,7 @@ exports[`AIButton Base AIButton Snapshot should render with large size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 18px;
   font-weight: 500;
   height: 56px;
@@ -205,7 +205,7 @@ exports[`AIButton Base AIButton Snapshot should render with large size 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
@@ -317,7 +317,7 @@ exports[`AIButton Base AIButton Snapshot should render with small size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 12px;
   font-weight: 500;
   height: 28px;
@@ -371,7 +371,7 @@ exports[`AIButton Base AIButton Snapshot should render with small size 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
@@ -448,7 +448,7 @@ exports[`AIButton Base AIButton Snapshot should render with small size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 12px;
   font-weight: 500;
   height: 28px;
@@ -502,7 +502,7 @@ exports[`AIButton Base AIButton Snapshot should render with small size 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
@@ -614,7 +614,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated shape 1`] = 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -668,7 +668,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated shape 1`] = 
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
@@ -745,7 +745,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated shape 1`] = 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -799,7 +799,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated shape 1`] = 
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
@@ -911,7 +911,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated textTransfor
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -965,7 +965,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated textTransfor
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
@@ -1042,7 +1042,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated textTransfor
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -1096,7 +1096,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated textTransfor
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
@@ -1208,7 +1208,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated variant 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -1262,7 +1262,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated variant 1`] 
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
@@ -1339,7 +1339,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated variant 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -1393,7 +1393,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated variant 1`] 
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }

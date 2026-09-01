@@ -178,13 +178,13 @@ const DatePickerCalendar = styled.div<{
   border: 1px solid
     ${props =>
       props.isInverse
-        ? transparentize(0.5, props.theme.colors.neutral100)
+        ? transparentize(0.5, props.theme.colors.neutral0)
         : props.theme.colors.neutral300};
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
+      ? props.theme.colors.neutral0
       : props.theme.colors.neutral700};
   display: ${props => (props.opened ? 'block' : 'none')};
   margin: ${props => props.theme.spaceScale.spacing01} 0px;

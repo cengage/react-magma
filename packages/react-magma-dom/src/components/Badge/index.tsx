@@ -69,21 +69,21 @@ export enum BadgeWeight {
 export function buildInverseLightWeightBadgeBackground(props) {
   switch (props.color) {
     case BadgeColor.danger:
-      return transparentize(0.5, props.theme.colors.danger700);
+      return props.theme.colors.red1000;
     case BadgeColor.info:
-      return transparentize(0.5, props.theme.colors.info700);
+      return props.theme.colors.blue900;
     case BadgeColor.light:
       return 'transparent';
     case BadgeColor.secondary:
-      return transparentize(0.6, props.theme.colors.neutral900);
+      return props.theme.colors.tangerine1000;
     case BadgeColor.success:
-      return transparentize(0.5, props.theme.colors.success700);
+      return props.theme.colors.green1000;
     case BadgeColor.warning:
-      return transparentize(0.5, props.theme.colors.warning700);
+      return props.theme.colors.yellow1000;
 
     case BadgeColor.primary:
     default:
-      return transparentize(0.5, props.theme.colors.primary700);
+      return props.theme.colors.neutral900;
   }
 }
 
@@ -94,21 +94,21 @@ export function buildLightWeightBadgeBackground(props) {
 
   switch (props.color) {
     case BadgeColor.danger:
-      return props.theme.colors.danger100;
+      return props.theme.colors.red100;
     case BadgeColor.info:
-      return props.theme.colors.info100;
+      return props.theme.colors.blue100;
     case BadgeColor.light:
-      return props.theme.colors.neutral100;
+      return props.theme.colors.neutral0;
     case BadgeColor.secondary:
-      return props.theme.colors.neutral200;
+      return props.theme.colors.tangerine100;
     case BadgeColor.success:
-      return props.theme.colors.success100;
+      return props.theme.colors.green100;
     case BadgeColor.warning:
-      return props.theme.colors.warning100;
+      return props.theme.colors.yellow100;
 
     case BadgeColor.primary:
     default:
-      return props.theme.colors.primary100;
+      return props.theme.colors.neutral200;
   }
 }
 
@@ -120,22 +120,22 @@ export function buildBadgeBackground(props) {
   if (props.isInverse) {
     switch (props.color) {
       case BadgeColor.danger:
-        return props.theme.colors.danger200;
+        return props.theme.colors.red500;
       case BadgeColor.info:
-        return props.theme.colors.info200;
+        return props.theme.colors.blue500;
       case BadgeColor.light:
         return 'transparent';
       case BadgeColor.primary:
-        return props.theme.colors.tertiary;
+        return props.theme.colors.brand.cyan;
       case BadgeColor.secondary:
-        return props.theme.colors.neutral100;
+        return props.theme.colors.brand.amber;
       case BadgeColor.success:
-        return props.theme.colors.success200;
+        return props.theme.colors.green500;
       case BadgeColor.warning:
-        return props.theme.colors.warning200;
+        return props.theme.colors.yellow400;
 
       default:
-        return props.theme.colors.tertiary;
+        return props.theme.colors.brand.cyan;
     }
   }
 
@@ -143,17 +143,17 @@ export function buildBadgeBackground(props) {
     case BadgeColor.danger:
       return props.theme.colors.danger;
     case BadgeColor.info:
-      return props.theme.colors.info500;
+      return props.theme.colors.blue600;
     case BadgeColor.light:
-      return props.theme.colors.neutral100;
+      return props.theme.colors.neutral0;
     case BadgeColor.primary:
       return props.theme.colors.primary;
     case BadgeColor.secondary:
-      return props.theme.colors.neutral700;
+      return props.theme.colors.brand.amber;
     case BadgeColor.success:
       return props.theme.colors.success;
     case BadgeColor.warning:
-      return props.theme.colors.warning500;
+      return props.theme.colors.yellow400;
 
     default:
       return props.theme.colors.primary;
@@ -163,20 +163,21 @@ export function buildBadgeBackground(props) {
 export function buildInverseLightWeightBadgeTextColor(props) {
   switch (props.color) {
     case BadgeColor.danger:
-      return props.theme.colors.danger200;
+      return props.theme.colors.red200;
     case BadgeColor.info:
-      return props.theme.colors.info200;
+      return props.theme.colors.blue200;
     case BadgeColor.light:
+      return props.theme.colors.neutral0;
     case BadgeColor.secondary:
-      return props.theme.colors.neutral100;
+      return props.theme.colors.tangerine200;
     case BadgeColor.success:
-      return props.theme.colors.success200;
+      return props.theme.colors.green200;
     case BadgeColor.warning:
-      return props.theme.colors.warning200;
+      return props.theme.colors.yellow200;
 
     case BadgeColor.primary:
     default:
-      return props.theme.colors.primary200;
+      return props.theme.colors.neutral0;
   }
 }
 
@@ -187,20 +188,21 @@ export function buildLightWeightBadgeTextColor(props) {
 
   switch (props.color) {
     case BadgeColor.danger:
-      return props.theme.colors.danger500;
+      return props.theme.colors.red600;
     case BadgeColor.info:
-      return props.theme.colors.info500;
+      return props.theme.colors.blue600;
     case BadgeColor.light:
+      return props.theme.colors.brand.navy;
     case BadgeColor.secondary:
-      return props.theme.colors.neutral700;
+      return props.theme.colors.tangerine700;
     case BadgeColor.success:
-      return props.theme.colors.success500;
+      return props.theme.colors.green700;
     case BadgeColor.warning:
-      return props.theme.colors.warning500;
+      return props.theme.colors.yellow700;
 
     case BadgeColor.primary:
     default:
-      return props.theme.colors.primary500;
+      return props.theme.colors.brand.navy;
   }
 }
 
@@ -212,49 +214,53 @@ export function buildBadgeTextColor(props) {
   if (props.isInverse) {
     switch (props.color) {
       case BadgeColor.danger:
-        return props.theme.colors.danger700;
+        return props.theme.colors.red1000;
       case BadgeColor.info:
-        return props.theme.colors.info700;
+        return props.theme.colors.blue1000;
       case BadgeColor.light:
-        return props.theme.colors.neutral100;
+        return props.theme.colors.neutral0;
       case BadgeColor.primary:
-        return props.theme.colors.primary600;
+        return props.theme.colors.brand.navy;
       case BadgeColor.secondary:
-        return props.theme.colors.neutral700;
+        return props.theme.colors.brand.navy;
       case BadgeColor.success:
-        return props.theme.colors.success700;
+        return props.theme.colors.green1000;
       case BadgeColor.warning:
-        return props.theme.colors.warning600;
+        return props.theme.colors.brand.navy;
 
       default:
-        return props.theme.colors.primary600;
+        return props.theme.colors.brand.navy;
     }
   }
-  if (props.color === BadgeColor.light) {
-    return props.theme.colors.neutral700;
+  if (
+    props.color === BadgeColor.light ||
+    props.color === BadgeColor.secondary ||
+    props.color === BadgeColor.warning
+  ) {
+    return props.theme.colors.brand.navy;
   }
 
-  return props.theme.colors.neutral100;
+  return props.theme.colors.neutral0;
 }
 
 export function buildInverseLightWeightBadgeBorderColor(props) {
   switch (props.color) {
     case BadgeColor.danger:
-      return props.theme.colors.danger600;
+      return props.theme.colors.red800;
     case BadgeColor.info:
-      return props.theme.colors.info600;
+      return props.theme.colors.blue700;
     case BadgeColor.light:
-      return transparentize(0.7, props.theme.colors.neutral100);
+      return transparentize(0.8, props.theme.colors.neutral0);
     case BadgeColor.success:
-      return props.theme.colors.success600;
+      return props.theme.colors.green800;
     case BadgeColor.warning:
-      return props.theme.colors.warning600;
+      return props.theme.colors.yellow800;
     case BadgeColor.secondary:
-      return 'transparent';
+      return props.theme.colors.tangerine900;
 
     case BadgeColor.primary:
     default:
-      return props.theme.colors.primary400;
+      return 'transparent';
   }
 }
 
@@ -265,21 +271,21 @@ export function buildLightWeightBadgeBorderColor(props) {
 
   switch (props.color) {
     case BadgeColor.danger:
-      return transparentize(0.85, props.theme.colors.danger500);
+      return transparentize(0.85, props.theme.colors.red600);
     case BadgeColor.info:
-      return transparentize(0.85, props.theme.colors.info500);
+      return transparentize(0.85, props.theme.colors.blue600);
     case BadgeColor.light:
-      return props.theme.colors.neutral300;
+      return props.theme.colors.neutral200;
     case BadgeColor.success:
-      return transparentize(0.85, props.theme.colors.success500);
+      return transparentize(0.85, props.theme.colors.green600);
     case BadgeColor.warning:
-      return transparentize(0.85, props.theme.colors.warning500);
+      return transparentize(0.85, props.theme.colors.yellow700);
     case BadgeColor.secondary:
-      return 'transparent';
+      return transparentize(0.85, props.theme.colors.tangerine600);
 
     case BadgeColor.primary:
     default:
-      return transparentize(0.85, props.theme.colors.primary500);
+      return 'transparent';
   }
 }
 
@@ -290,10 +296,10 @@ export function buildBadgeBorderColor(props) {
 
   if (props.color === BadgeColor.light) {
     if (props.isInverse) {
-      return transparentize(0.3, props.theme.colors.neutral100);
+      return props.theme.colors.neutral500;
     }
 
-    return props.color;
+    return props.theme.colors.neutral500;
   }
 
   return 'transparent';
@@ -306,7 +312,7 @@ export const baseBadgeStyles = props => css`
   border-color: ${buildBadgeBorderColor(props)};
   border-radius: ${props.variant === BadgeVariant.counter
     ? props.theme.spaceScale.spacing06
-    : props.theme.borderRadiusSmall};
+    : props.theme.borderRadiusExtraSmall};
   color: ${buildBadgeTextColor(props)};
   display: ${props.hasIcon ? 'inline-flex' : 'inline-block'};
   font-weight: 500;

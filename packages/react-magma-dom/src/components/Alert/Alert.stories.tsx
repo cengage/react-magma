@@ -3,7 +3,7 @@ import React from 'react';
 import { Meta } from '@storybook/react-webpack5';
 
 import { AlertVariant } from '../AlertBase';
-import { Badge } from '../Badge';
+import { Badge, BadgeColor } from '../Badge';
 import { Button, ButtonSize } from '../Button';
 import { Card, CardBody } from '../Card';
 import { Hyperlink } from '../Hyperlink';
@@ -17,8 +17,12 @@ export default {
 
 const AdditionalBadge = (
   <>
-    <Badge>Badgery</Badge>
-    <Badge>More Badgery</Badge>
+    <Badge color={BadgeColor.success} isInverse>
+      Badgery
+    </Badge>
+    <Badge color={BadgeColor.success} isInverse>
+      More Badgery
+    </Badge>
   </>
 );
 const AdditionalButton = <Button size={ButtonSize.small}>Button it up</Button>;

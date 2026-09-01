@@ -13,7 +13,14 @@ import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
-import { AlertVariant } from '../AlertBase';
+import {
+  AlertVariant,
+  buildAlertBackground,
+  buildAlertBorder,
+  buildAlertColor,
+  buildLinkColor,
+  buildLinkHoverColor,
+} from '../AlertBase';
 import { Badge } from '../Badge';
 
 import { Alert } from '.';
@@ -48,7 +55,7 @@ describe('Alert', () => {
 
     expect(container.firstChild).toHaveStyleRule(
       'outline',
-      `2px solid ${magma.colors.info500}`,
+      `2px solid ${magma.colors.focus}`,
       {
         target: ':focus',
       }
@@ -65,7 +72,7 @@ describe('Alert', () => {
     expect(container.querySelector('circle')).toBeInTheDocument();
     expect(container.querySelector('circle')).toHaveAttribute(
       'stroke',
-      magma.colors.info500
+      magma.colors.neutral0
     );
   });
 
@@ -79,9 +86,85 @@ describe('Alert', () => {
     expect(container.querySelector('circle')).toBeInTheDocument();
     expect(container.querySelector('circle')).toHaveAttribute(
       'stroke',
-      magma.colors.warning500
+      magma.colors.brand.navy
     );
   });
+
+  it.each([
+    [AlertVariant.success, magma.colors.neutral0],
+    [AlertVariant.danger, magma.colors.neutral0],
+  ])(
+    'should render a close button progress ring with the %s rebrand color',
+    (variant, color) => {
+      const { container } = render(
+        <Alert hasTimerRing isDismissible isToast variant={variant}>
+          Test Alert Text
+        </Alert>
+      );
+
+      expect(container.querySelector('circle')).toHaveAttribute(
+        'stroke',
+        color
+      );
+    }
+  );
+
+  it.each([
+    [AlertVariant.info, magma.colors.blue1000],
+    [AlertVariant.success, magma.colors.green1000],
+    [AlertVariant.warning, magma.colors.brand.navy],
+    [AlertVariant.danger, magma.colors.red1000],
+  ])(
+    'should render an inverse %s progress ring with the rebrand color',
+    (variant, color) => {
+      const { container } = render(
+        <Alert hasTimerRing isDismissible isInverse isToast variant={variant}>
+          Test Alert Text
+        </Alert>
+      );
+
+      expect(container.querySelector('circle')).toHaveAttribute(
+        'stroke',
+        color
+      );
+    }
+  );
+
+  it.each([
+    [AlertVariant.info, magma.colors.blue600, magma.colors.neutral0],
+    [AlertVariant.success, magma.colors.green600, magma.colors.neutral0],
+    [AlertVariant.warning, magma.colors.yellow400, magma.colors.brand.navy],
+    [AlertVariant.danger, magma.colors.red600, magma.colors.neutral0],
+  ])(
+    'should use the regular %s rebrand colors',
+    (variant, background, content) => {
+      const props = { isInverse: false, theme: magma, variant };
+
+      expect(buildAlertBackground(props)).toBe(background);
+      expect(buildAlertBorder(props)).toBe('none');
+      expect(buildAlertColor(props)).toBe(content);
+      expect(buildLinkColor(props)).toBe(content);
+      expect(buildLinkHoverColor(props)).toBe(content);
+    }
+  );
+
+  it.each([
+    [AlertVariant.info, magma.colors.blue500, magma.colors.blue1000],
+    [AlertVariant.success, magma.colors.green500, magma.colors.green1000],
+    [AlertVariant.warning, magma.colors.yellow400, magma.colors.brand.navy],
+    [AlertVariant.danger, magma.colors.red500, magma.colors.red1000],
+  ])(
+    'should use the inverse %s rebrand colors',
+    (variant, background, content) => {
+      const props = { isInverse: true, theme: magma, variant };
+
+      expect(buildAlertBackground(props)).toBe(background);
+      expect(buildAlertBorder(props)).toBe('none');
+      expect(buildAlertColor(props)).toBe(content);
+      expect(buildLinkColor(props)).toBe(content);
+      expect(buildLinkHoverColor(props)).toBe(content);
+    }
+  );
 
   describe('Variants', () => {
     it('should render an alert with info variant', () => {

@@ -53,11 +53,74 @@ describe('Dropdown', () => {
       expect(getByTestId(testId)).toBeInTheDocument();
       expect(getByTestId('dropdownContent')).toBeInTheDocument();
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'border-radius',
+        magma.borderRadiusSmall
+      );
       expect(getByTestId('dropdownContentWrapper')).toBeInTheDocument();
       expect(getByTestId('dropdownContentWrapper')).toHaveStyle({
         zIndex: '996',
       });
     });
+  });
+
+  it('should render the inverse dropdown with the rebrand colors', () => {
+    const { getByTestId } = render(
+      <Dropdown isInverse>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent testId="inverse-content">
+          <DropdownHeader testId="inverse-header">Header</DropdownHeader>
+          <DropdownDivider testId="inverse-divider" />
+          <DropdownMenuItem data-testid="inverse-item" icon={<AsteriskIcon />}>
+            Menu item
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            data-testid="inverse-disabled-item"
+            disabled
+            icon={<SettingsIcon />}
+          >
+            Disabled item
+          </DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    const content = getByTestId('inverse-content');
+    const item = getByTestId('inverse-item');
+    const disabledItem = getByTestId('inverse-disabled-item');
+
+    expect(content).toHaveStyleRule('background', magma.colors.neutral1100);
+    expect(content).toHaveStyleRule(
+      'border',
+      `1px solid ${magma.colors.neutral800}`
+    );
+    expect(content).toHaveStyleRule(
+      'box-shadow',
+      `0 2px 6px 0 ${transparentize(0.8, magma.colors.neutral1200)}`
+    );
+    expect(getByTestId('inverse-header')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral500
+    );
+    expect(getByTestId('inverse-divider')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral800
+    );
+    expect(item.querySelector('svg').parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.neutral600
+    );
+    expect(item).toHaveStyleRule('background', magma.colors.neutral1000, {
+      target: ':hover',
+    });
+    expect(item).toHaveStyleRule('background', 'none', {
+      target: ':focus',
+    });
+    expect(disabledItem).toHaveStyleRule('color', magma.colors.neutral600);
+    expect(disabledItem.querySelector('svg').parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.neutral600
+    );
   });
 
   it('should render a custom wrapped dropdown item', async () => {
@@ -297,7 +360,7 @@ describe('Dropdown', () => {
     expect(caretSvg).toBeInTheDocument();
   });
 
-  it('should render a split dropdown with margin left on solid variants', async () => {
+  it('should render a split dropdown with a one-pixel divider', async () => {
     const { getByLabelText } = render(
       <Dropdown>
         <DropdownSplitButton>Toggle me</DropdownSplitButton>
@@ -306,26 +369,61 @@ describe('Dropdown', () => {
     );
 
     await waitFor(() => {
-      expect(getByLabelText('Toggle menu')).toHaveAttribute(
-        'style',
-        'margin-left: 2px;'
-      );
+      expect(getByLabelText('Toggle menu')).toHaveStyle({
+        borderLeftColor: magma.colors.blue700,
+        borderLeftWidth: '1px',
+        marginLeft: '0px',
+      });
     });
   });
 
-  it('should render a split dropdown with no margin on solid variants', async () => {
+  it('should use the danger divider color for a danger split dropdown', async () => {
     const { getByLabelText } = render(
       <Dropdown>
-        <DropdownSplitButton variant="solid">Toggle me</DropdownSplitButton>
+        <DropdownSplitButton color="danger">Toggle me</DropdownSplitButton>
         <DropdownContent />
       </Dropdown>
     );
 
     await waitFor(() => {
-      expect(getByLabelText('Toggle menu')).toHaveAttribute(
-        'style',
-        'margin-left: 2px;'
-      );
+      expect(getByLabelText('Toggle menu')).toHaveStyle({
+        borderLeftColor: magma.colors.red700,
+        borderLeftWidth: '1px',
+      });
+    });
+  });
+
+  it('should use the inverse primary divider color', async () => {
+    const { getByLabelText } = render(
+      <Dropdown isInverse>
+        <DropdownSplitButton>Toggle me</DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    await waitFor(() => {
+      expect(getByLabelText('Toggle menu')).toHaveStyle({
+        borderLeftColor: magma.colors.cyan600,
+        borderLeftWidth: '1px',
+      });
+    });
+  });
+
+  it('should render a secondary split dropdown with a one-pixel divider', async () => {
+    const { getByLabelText } = render(
+      <Dropdown>
+        <DropdownSplitButton color="secondary" variant="solid">
+          Toggle me
+        </DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    await waitFor(() => {
+      expect(getByLabelText('Toggle menu')).toHaveStyle({
+        borderLeftWidth: '1px',
+        marginLeft: '0px',
+      });
     });
   });
 
@@ -657,13 +755,27 @@ describe('Dropdown', () => {
   });
 
   it('should render a dropdown menu item with an icon', () => {
-    const { container } = render(
+    const { container, getByText } = render(
       <Dropdown>
         <DropdownMenuItem icon={<AsteriskIcon />}>Menu item</DropdownMenuItem>
       </Dropdown>
     );
 
-    expect(container.querySelector('svg')).toBeInTheDocument();
+    const icon = container.querySelector('svg');
+    const item = getByText('Menu item');
+
+    expect(icon).toBeInTheDocument();
+    expect(icon.parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.neutral600
+    );
+    expect(item).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(item).toHaveStyleRule('background', magma.colors.neutral100, {
+      target: ':hover',
+    });
+    expect(item).toHaveStyleRule('background', 'none', {
+      target: ':focus',
+    });
   });
 
   it('should render a dropdown menu item with correct styles when fixed width', async () => {
@@ -703,11 +815,11 @@ describe('Dropdown', () => {
     const onClick = jest.fn();
     const text = 'menu item';
 
-    const { getByText } = render(
+    const { container, getByText } = render(
       <Dropdown alignment="right">
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent>
-          <DropdownMenuItem disabled onClick={onClick}>
+          <DropdownMenuItem disabled icon={<AsteriskIcon />} onClick={onClick}>
             {text}
           </DropdownMenuItem>
         </DropdownContent>
@@ -718,9 +830,11 @@ describe('Dropdown', () => {
 
     expect(onClick).not.toHaveBeenCalled();
     expect(getByText(text)).toHaveStyleRule('cursor', 'not-allowed');
-    expect(getByText(text)).toHaveStyleRule(
+    expect(getByText(text)).toHaveStyleRule('color', magma.colors.neutral500);
+    const icons = container.querySelectorAll('svg');
+    expect(icons[icons.length - 1].parentElement).toHaveStyleRule(
       'color',
-      transparentize(0.4, magma.colors.neutral500)
+      magma.colors.neutral500
     );
   });
 
@@ -740,6 +854,7 @@ describe('Dropdown', () => {
 
     await waitFor(() => {
       expect(getByText(text)).toBeInTheDocument();
+      expect(getByText(text)).toHaveStyleRule('color', magma.colors.neutral700);
     });
   });
 
@@ -781,6 +896,10 @@ describe('Dropdown', () => {
     const { container } = render(<DropdownDivider />);
 
     expect(container.querySelector('hr')).toBeInTheDocument();
+    expect(container.querySelector('hr')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral200
+    );
   });
 
   it('should fire the onclick event for an item when enter is pressed', async () => {
@@ -1094,7 +1213,16 @@ describe('Dropdown', () => {
       );
 
       await waitFor(() => {
-        expect(getByText('Pasta').querySelector('svg')).toBeInTheDocument();
+        const icon = getByText('Pasta').querySelector('svg');
+
+        expect(icon).toBeInTheDocument();
+        expect(icon.parentElement).toHaveStyleRule(
+          'color',
+          magma.colors.neutral600
+        );
+        expect(icon.parentElement).toHaveStyleRule('color', 'inherit', {
+          target: 'svg',
+        });
       });
     });
 
@@ -1397,7 +1525,7 @@ describe('Dropdown', () => {
         expect(getByText('Fresh')).toHaveStyleRule('cursor', 'not-allowed');
         expect(getByText('Fresh')).toHaveStyleRule(
           'color',
-          transparentize(0.4, magma.colors.neutral500)
+          magma.colors.neutral500
         );
       });
 
@@ -1516,7 +1644,7 @@ describe('Dropdown', () => {
           );
           expect(getByTestId(expandableGroupId)).toHaveStyleRule(
             'color',
-            magma.colors.neutral100
+            magma.colors.neutral0
           );
         });
       });

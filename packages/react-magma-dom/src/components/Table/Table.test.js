@@ -254,12 +254,12 @@ describe('Table', () => {
 
     expect(getByText('heading 1')).toHaveStyleRule(
       'background',
-      transparentize(0.93, magma.colors.neutral100)
+      transparentize(0.93, magma.colors.neutral0)
     );
 
     expect(getByTestId('row1')).toHaveStyleRule(
       'background',
-      transparentize(0.85, magma.colors.neutral100),
+      transparentize(0.85, magma.colors.neutral0),
       {
         target: ':hover',
       }
@@ -267,7 +267,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      transparentize(0.93, magma.colors.neutral100),
+      transparentize(0.93, magma.colors.neutral0),
       {
         target: ':nth-of-type(even)',
       }
@@ -446,7 +446,7 @@ describe('Table', () => {
 
     expect(button).toHaveStyleRule(
       'background',
-      transparentize(0.85, magma.colors.neutral100),
+      transparentize(0.85, magma.colors.neutral0),
       {
         target: ':hover',
       }
@@ -509,7 +509,7 @@ describe('Table', () => {
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'border',
-        `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+        `1px solid ${transparentize(0.6, magma.colors.neutral0)}`
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'border-radius',

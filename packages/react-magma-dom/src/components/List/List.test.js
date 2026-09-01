@@ -23,6 +23,21 @@ describe('List', () => {
     const { getByTestId } = render(<List testId={testId}>{TEXT}</List>);
 
     expect(getByTestId(testId)).toBeInTheDocument();
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
+  });
+
+  it('should render inverse list text', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <List isInverse testId={testId}>
+        {TEXT}
+      </List>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule('color', magma.colors.neutral0);
   });
 
   it('Does not violate accessibility standards', () => {
@@ -102,7 +117,20 @@ describe('List', () => {
     expect(container.querySelector('p')).toBeInTheDocument();
     expect(container.querySelector('p')).toHaveStyleRule(
       'color',
-      magma.colors.neutral
+      magma.colors.neutral700
+    );
+  });
+
+  it('should render an inverse list item description', () => {
+    const { container } = render(
+      <List isInverse>
+        <ListItem description>{TEXT}</ListItem>
+      </List>
+    );
+
+    expect(container.querySelector('p')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral500
     );
   });
 
@@ -145,6 +173,23 @@ describe('List', () => {
     expect(container.querySelector('span')).toHaveStyleRule(
       'background',
       'black'
+    );
+  });
+
+  it('should render inverse icons with the inverse default colors', () => {
+    const { container } = render(
+      <List isInverse>
+        <ListItem icon={<EmailIcon />}>{TEXT}</ListItem>
+      </List>
+    );
+
+    expect(container.querySelector('span')).toHaveStyleRule(
+      'background',
+      magma.colors.brand.cyan
+    );
+    expect(container.querySelector('span')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
     );
   });
 });

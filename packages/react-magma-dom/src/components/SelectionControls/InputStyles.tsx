@@ -35,7 +35,7 @@ export const DisplayInputStyles = props => css`
 
 export function buildDisplayInputActiveBackground(props) {
   return props.isInverse
-    ? props.theme.colors.neutral100
+    ? props.theme.colors.neutral0
     : props.color
       ? props.color
       : props.theme.colors.primary;
@@ -44,7 +44,7 @@ export function buildDisplayInputActiveBackground(props) {
 export function buildDisplayInputBorderColor(props) {
   if (props.hasError) {
     if (props.isInverse) {
-      return props.theme.colors.danger300;
+      return props.inverseErrorColor || props.theme.colors.danger300;
     }
 
     return props.theme.colors.danger;

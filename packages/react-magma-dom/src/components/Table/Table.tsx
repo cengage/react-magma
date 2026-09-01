@@ -191,7 +191,7 @@ export const StyledTable = styled.table<{
     props.hasOutsideBorder
       ? `1px solid ${
           props.isInverse
-            ? transparentize(0.6, props.theme.colors.neutral100)
+            ? transparentize(0.6, props.theme.colors.neutral0)
             : props.theme.colors.neutral300
         }`
       : 'none'};
@@ -208,7 +208,7 @@ export const StyledTable = styled.table<{
   }};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
+      ? props.theme.colors.neutral0
       : props.theme.colors.neutral700};
   display: table;
   font-size: ${props => props.theme.typeScale.size03.fontSize};

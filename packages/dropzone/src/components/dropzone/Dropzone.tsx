@@ -174,7 +174,7 @@ const Container = styled(Flex)<
 
 const HelperMessage = styled.span<{ isInverse?: boolean }>`
   color: ${({ theme, isInverse }) =>
-    isInverse ? theme.colors.neutral100 : theme.colors.neutral700};
+    isInverse ? theme.colors.neutral0 : theme.colors.neutral700};
   display: block;
   font-size: 14px;
   margin: -8px 0 16px 0;
@@ -182,7 +182,7 @@ const HelperMessage = styled.span<{ isInverse?: boolean }>`
 
 const Wrapper = styled.div<{ isInverse?: boolean }>`
   color: ${({ theme, isInverse }) =>
-    isInverse ? theme.colors.neutral100 : theme.colors.neutral700};
+    isInverse ? theme.colors.neutral0 : theme.colors.neutral700};
   margin: 0 0 24px 0;
   font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
   line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
@@ -548,9 +548,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                 <CloudUploadIcon
                   aria-hidden="true"
                   color={
-                    isInverse
-                      ? theme.colors.neutral100
-                      : theme.colors.neutral500
+                    isInverse ? theme.colors.neutral0 : theme.colors.neutral500
                   }
                   size={48}
                 />
