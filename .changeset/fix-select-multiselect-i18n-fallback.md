@@ -1,3 +1,4 @@
+---
 'react-magma-docs': patch
 ---
 
