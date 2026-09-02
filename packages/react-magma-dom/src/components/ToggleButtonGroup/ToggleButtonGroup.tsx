@@ -19,10 +19,6 @@ export interface ToggleButtonGroupProps extends Omit<ButtonGroupProps, 'role'> {
    */
   children: React.ReactNode;
   /**
-   * @children required
-   */
-  children: React.ReactNode;
-  /**
    * Description for aria-describedby
    */
   descriptionId?: string;
