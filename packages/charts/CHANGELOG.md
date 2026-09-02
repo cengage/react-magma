@@ -1,38 +1,5 @@
 # @react-magma/charts
 
-## 15.0.0-rc.4
-
-### Patch Changes
-
-- 2435545: fix(charts): fix the `chartToolbar` "Download as PNG/JPG" image export
-- ac0fbc7: fix(charts): Add focusing for dot content - tooltip appears at the focused dot when tabbing through chart data points.
-
-## 15.0.0-rc.3
-
-### Minor Changes
-
-- 5ce497a: feat(charts): add `additionalContent` prop for additional content between toolbar and chart
-
-## 15.0.0-rc.2
-
-### Patch Changes
-
-- Updated dependencies [b3669bf]
-  - react-magma-dom@5.2.0-rc.9
-
-## 14.2.0-rc.1
-
-### Minor Changes
-
-- 0f3346b: feat(charts): add `titlePrefix` and `titleSuffix` props to the chart toolbar
-
-## 14.1.1-rc.0
-
-### Patch Changes
-
-- Updated dependencies [48fdaf3]
-  - react-magma-dom@5.1.1-rc.0
-
 ## 14.1.0
 
 ### Minor Changes
