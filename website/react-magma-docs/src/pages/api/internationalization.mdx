@@ -56,6 +56,7 @@ export function Example() {
       value={{
         ...defaultI18n,
         months: {
+          ...defaultI18n.months,
           long: {
             january: 'Enero',
             february: 'Febrero',
@@ -84,6 +85,7 @@ export function Example() {
           },
         },
         datePicker: {
+          ...defaultI18n.datePicker,
           startOfWeek: 'monday',
           calendarIconAriaLabel: 'Calendario',
           calendarOpenAnnounce:
@@ -101,6 +103,7 @@ export function Example() {
           selectMonth: 'Seleccione un mes',
           selectYear: 'Seleccione un año',
           helpModal: {
+            ...defaultI18n.datePicker.helpModal,
             header: 'Atajos de teclado',
             helpButtonAriaLabel: 'Ayuda de calendario',
             enter: {

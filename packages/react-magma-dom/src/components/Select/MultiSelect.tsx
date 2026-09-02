@@ -293,22 +293,22 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
 
   const clearIndicatori18n =
     selectedItems.length > 1
-      ? i18n.select.multi.clearIndicatorAriaLabel
-      : i18n.select.clearIndicatorAriaLabel;
+      ? i18n.select.multi?.clearIndicatorAriaLabel
+      : i18n.select?.clearIndicatorAriaLabel;
 
   const clearIndicatorAriaLabel = clearIndicatori18n
-    .replace(/\{labelText\}/g, labelText)
-    .replace(/\{selectedItem\}/g, itemsArrayToString(selectedItems));
+    ?.replace(/\{labelText\}/g, labelText)
+    ?.replace(/\{selectedItem\}/g, itemsArrayToString(selectedItems));
 
   const multiSelectAriaLabel =
     selectedItems.length > 0
-      ? i18n.select.multi.ariaLabelWithSelectedItems
-          .replace(/\{labelText\}/g, labelText)
-          .replace(
+      ? i18n.select.multi?.ariaLabelWithSelectedItems
+          ?.replace(/\{labelText\}/g, labelText)
+          ?.replace(
             /\{selectedItems\}/g,
             selectedItems.map(item => itemToString(item)).join(', ')
           )
-      : i18n.select.multi.ariaLabelWithoutSelectedItems.replace(
+      : i18n.select.multi?.ariaLabelWithoutSelectedItems?.replace(
           /\{labelText\}/g,
           labelText
         );
@@ -387,7 +387,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
               return (
                 <SelectedItemButton
                   aria-hidden={!isItemFocused}
-                  aria-label={i18n.multiSelect.selectedItemButtonAriaLabel.replace(
+                  aria-label={i18n.multiSelect.selectedItemButtonAriaLabel?.replace(
                     /\{selectedItem\}/g,
                     multiSelectedItemString
                   )}

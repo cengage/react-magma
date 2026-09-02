@@ -1356,16 +1356,19 @@ export function Example() {
       value={{
         ...defaultI18n,
         combobox: {
+          ...defaultI18n.combobox,
           clearIndicatorAriaLabel:
             'click to reset selection for {labelText}. {selectedItem} is currently selected',
           createLabel: 'Custom Create "{inputValue}"',
           multi: {
+            ...defaultI18n.combobox.multi,
             clearAnnounce:
               '{labelText} has been cleared. Items {selectedItems} were removed',
             removeItemAnnounce: '{selectedItem} was removed',
           },
         },
         multiCombobox: {
+          ...defaultI18n.multiCombobox,
           selectedItemButtonAriaLabel:
             'click to reset the selected item {selectedItem}',
         },

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { act, render, waitFor } from '@testing-library/react';
 
+import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
@@ -802,6 +803,34 @@ describe('MultiSelect', () => {
     const label = getByText(labelText);
 
     expect(label).toHaveAttribute('aria-label', 'Label Multi-select');
+  });
+
+  it('should not throw when the i18n override omits select.multi keys', async () => {
+    const partialI18n = {
+      ...defaultI18n,
+      select: {
+        ...defaultI18n.select,
+        multi: {
+          clearAnnounce:
+            '{labelText} has been cleared. {selectedItems} were removed',
+          removeItemAnnounce: '{selectedItem} has been removed',
+        },
+      },
+    };
+
+    expect(() =>
+      render(
+        <I18nContext.Provider value={partialI18n}>
+          <MultiSelect
+            isMulti
+            labelText={labelText}
+            items={items}
+            initialSelectedItems={['Red']}
+            isClearable
+          />
+        </I18nContext.Provider>
+      )
+    ).not.toThrow();
   });
 
   describe('events', () => {
