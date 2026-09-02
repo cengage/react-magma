@@ -7,7 +7,17 @@ import { ButtonColor, ButtonSize } from '../Button';
 import { ButtonGroup, ButtonGroupProps } from '../ButtonGroup';
 import { ToggleButton, ToggleButtonProps } from '../ToggleButton/ToggleButton';
 
-export interface ToggleButtonGroupProps extends ButtonGroupProps {
+export enum ToggleButtonGroupRole {
+  group = 'group',
+  radiogroup = 'radiogroup',
+  tablist = 'tablist',
+}
+
+export interface ToggleButtonGroupProps extends Omit<ButtonGroupProps, 'role'> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @children required
    */
@@ -35,6 +45,15 @@ export interface ToggleButtonGroupProps extends ButtonGroupProps {
     value?: string
   ) => void;
   /**
+   * ARIA role for the group container. `tablist` renders children as tabs
+   * (`aria-selected`); `radiogroup` renders them as radios (`aria-checked`);
+   * `group` renders radios or switches based on `exclusive`. `tablist` and
+   * `radiogroup` are single-select patterns, so pair them with `exclusive`
+   * (and `enforced` for tabs, to keep one selected at all times).
+   * @default ToggleButtonGroupRole.group
+   */
+  role?: ToggleButtonGroupRole;
+  /**
    * @internal
    */
   testId?: string;
@@ -55,6 +74,7 @@ export interface ToggleButtonGroupContextInterface {
   isInverse?: boolean;
   enforced?: boolean;
   exclusive?: boolean;
+  role?: ToggleButtonGroupRole;
   selected?: boolean;
   onChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -78,6 +98,7 @@ export const ToggleButtonGroup = React.forwardRef<
     isInverse,
     noSpace,
     onChange,
+    role = ToggleButtonGroupRole.group,
     size,
     value,
     testId,
@@ -170,7 +191,7 @@ export const ToggleButtonGroup = React.forwardRef<
       isInverse={isInverse}
       noSpace={noSpace}
       ref={ref}
-      role="group"
+      role={role}
       size={size}
       testId={testId}
       theme={theme}
@@ -184,6 +205,7 @@ export const ToggleButtonGroup = React.forwardRef<
           enforced,
           exclusive,
           onChange: handleChange,
+          role,
           size,
         }}
       >

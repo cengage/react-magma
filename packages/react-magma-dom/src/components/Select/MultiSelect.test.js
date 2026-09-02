@@ -277,6 +277,50 @@ describe('MultiSelect', () => {
     ).not.toBeInTheDocument();
   });
 
+  it('should render disabled items preselected via initialSelectedItems', async () => {
+    const disabledItems = [
+      { label: 'Red', value: 'red', disabled: true },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+    ];
+
+    const { getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={disabledItems}
+        initialSelectedItems={[disabledItems[0]]}
+      />
+    );
+
+    expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+  });
+
+  it('should allow removing a disabled preselected item', async () => {
+    const disabledItems = [
+      { label: 'Red', value: 'red', disabled: true },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+    ];
+
+    const { getByText, queryByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={disabledItems}
+        initialSelectedItems={[disabledItems[0]]}
+      />
+    );
+
+    await userEvent.click(getByText('Red', { selector: 'button' }));
+
+    await waitFor(() => {
+      expect(
+        queryByText('Red', { selector: 'button' })
+      ).not.toBeInTheDocument();
+    });
+  });
+
   it('should announce the removal of a selected item', async () => {
     const { getByText } = render(
       <MultiSelect

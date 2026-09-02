@@ -4,6 +4,7 @@ import {
   act,
   fireEvent,
   render,
+  waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -475,11 +476,13 @@ describe('Modal', () => {
       foreignModal.style.display = 'none';
       document.body.appendChild(foreignModal);
 
-      render(
+      const { getByText } = render(
         <Modal header="Hello" isOpen onClose={onCloseSpy}>
           Modal Content
         </Modal>
       );
+
+      await waitFor(() => expect(getByText('Hello')).toHaveFocus());
 
       await userEvent.keyboard('{Escape}');
 
@@ -520,6 +523,8 @@ describe('Modal', () => {
           </Modal>
         </>
       );
+
+      await waitFor(() => expect(getByText('Hello')).toHaveFocus());
 
       await userEvent.keyboard('{Escape}');
 
@@ -922,6 +927,8 @@ describe('Modal', () => {
         </>
       );
 
+      await waitFor(() => expect(getByText('Hello again')).toHaveFocus());
+
       await userEvent.keyboard('{Escape}');
 
       expect(onEscKeyDown).toHaveBeenCalled();
@@ -936,7 +943,7 @@ describe('Modal', () => {
   });
 
   describe('focus trap', () => {
-    it('should focus the header element upon opening the modal', () => {
+    it('should focus the header element upon opening the modal', async () => {
       const { rerender, getByText } = render(
         <>
           <button>Open</button>
@@ -957,10 +964,10 @@ describe('Modal', () => {
         </>
       );
 
-      expect(getByText('Hello')).toHaveFocus();
+      await waitFor(() => expect(getByText('Hello')).toHaveFocus());
     });
 
-    it('should focus the close button upon opening the modal when the modal if there is no header', () => {
+    it('should focus the close button upon opening the modal when the modal if there is no header', async () => {
       const { rerender, getByTestId, getByText } = render(
         <>
           <button>Open</button>
@@ -981,10 +988,10 @@ describe('Modal', () => {
         </>
       );
 
-      expect(getByTestId('modal-closebtn')).toHaveFocus();
+      await waitFor(() => expect(getByTestId('modal-closebtn')).toHaveFocus());
     });
 
-    it('should focus the first actionable element element upon opening the modal if there is no header and close button', () => {
+    it('should focus the first actionable element element upon opening the modal if there is no header and close button', async () => {
       const { rerender, getByText, getByTestId } = render(
         <>
           <button>Open</button>
@@ -1005,10 +1012,10 @@ describe('Modal', () => {
         </>
       );
 
-      expect(getByTestId('closeButton')).toHaveFocus();
+      await waitFor(() => expect(getByTestId('closeButton')).toHaveFocus());
     });
 
-    it('should not focus the first element if there is no heading and nothing else to focus', () => {
+    it('should not focus the first element if there is no heading and nothing else to focus', async () => {
       const { rerender, getByText } = render(
         <>
           <button>Open</button>
@@ -1029,7 +1036,7 @@ describe('Modal', () => {
         </>
       );
 
-      expect(getByText('Modal Content')).toHaveFocus();
+      await waitFor(() => expect(getByText('Modal Content')).toHaveFocus());
     });
 
     it('should handle tab and loop it through the modal', async () => {
@@ -1065,6 +1072,8 @@ describe('Modal', () => {
           </Modal>
         </>
       );
+
+      await waitFor(() => expect(getByText('Hello')).toHaveFocus());
 
       await userEvent.tab();
 
@@ -1122,6 +1131,8 @@ describe('Modal', () => {
         </>
       );
 
+      await waitFor(() => expect(getByText('Modal Content')).toHaveFocus());
+
       await userEvent.tab();
 
       expect(getByText('Modal Content')).toHaveFocus();
@@ -1160,6 +1171,8 @@ describe('Modal', () => {
           </Modal>
         </>
       );
+
+      await waitFor(() => expect(getByText('Hello')).toHaveFocus());
 
       await userEvent.tab({ shift: true });
 
@@ -1211,6 +1224,8 @@ describe('Modal', () => {
           </Modal>
         </>
       );
+
+      await waitFor(() => expect(getByText('Hello')).toHaveFocus());
 
       await userEvent.tab({ shift: true });
 

@@ -104,6 +104,7 @@ export const TabsScrollSpyContainer = React.forwardRef<
             testId={`tab${i}`}
             onClick={() => onClick(option)}
             data-scrollspy-id={option.hash}
+            aria-controls={option.hash}
           >
             {option.title}
           </Tab>

@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "5.1.0",
+  "version": "5.2.0-rc.14",
   "description": "",
   "keywords": [],
   "homepage": "https://react-magma.cengage.com",
@@ -35,8 +35,10 @@
     "compiler-checks": "tsc --noEmit --project ./tsconfig.json"
   },
   "dependencies": {
+    "@emotion/is-prop-valid": "1.4.0",
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.0",
+    "@emotion/utils": "1.4.2",
     "@floating-ui/react": "0.26.28",
     "@floating-ui/react-dom": "2.1.2",
     "@tanstack/react-virtual": "3.13.18",

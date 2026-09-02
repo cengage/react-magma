@@ -1,5 +1,71 @@
 # Change Log
 
+## 6.0.4-rc.8
+
+### Patch Changes
+
+- 5ce497a: feat(charts): add `additionalContent` prop for additional content between toolbar and chart
+- Updated dependencies [5ce497a]
+  - @react-magma/charts@15.0.0-rc.3
+
+## 6.0.4-rc.7
+
+### Patch Changes
+
+- Updated dependencies [b3669bf]
+  - react-magma-dom@5.2.0-rc.9
+  - @react-magma/charts@15.0.0-rc.2
+  - @react-magma/dropzone@15.0.0-rc.1
+
+## 6.0.4-rc.6
+
+### Patch Changes
+
+- 23ca4ee: fix(docs): prevent doubled padding on MainNav accordion trigger headings
+
+## 6.0.4-rc.5
+
+### Patch Changes
+
+- 0f3346b: feat(charts): add `titlePrefix` and `titleSuffix` props to the chart toolbar
+- Updated dependencies [0f3346b]
+  - @react-magma/charts@14.2.0-rc.1
+
+## 6.0.4-rc.4
+
+### Patch Changes
+
+- cd627cf: fix(IconButton): remove redundant `aria-label` from examples
+
+## 6.0.4-rc.3
+
+### Patch Changes
+
+- 25fe202: fix(RadioGroup): use `containerStyle` in docs example
+
+## 6.0.4-rc.2
+
+### Patch Changes
+
+- 3116584: Release tooling: add a Codex workflow for cross-track fix audits and for preparing, validating, announcing, and synchronizing v5 and v4 releases.
+- Updated dependencies [661cf8d]
+  - react-magma-dom@5.1.1-rc.2
+
+## 6.0.4-rc.1
+
+### Patch Changes
+
+- Updated dependencies [48fdaf3]
+  - react-magma-dom@5.1.1-rc.0
+  - @react-magma/charts@14.1.1-rc.0
+  - @react-magma/dropzone@14.0.1-rc.0
+
+## 6.0.4-rc.0
+
+### Patch Changes
+
+- 5637e8b: chore(release): sync the published 5.1.0 state from main into dev
+
 ## 6.0.3
 
 ### Patch Changes
