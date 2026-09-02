@@ -63,6 +63,21 @@ const errorMessage = 'Error message';
 const helperMessage = 'Helper message';
 
 describe('Date Picker', () => {
+  let requestAnimationFrameSpy;
+
+  beforeEach(() => {
+    requestAnimationFrameSpy = jest
+      .spyOn(window, 'requestAnimationFrame')
+      .mockImplementation(callback => {
+        callback(0);
+        return 0;
+      });
+  });
+
+  afterEach(() => {
+    requestAnimationFrameSpy.mockRestore();
+  });
+
   it('should find element by testId', () => {
     const testId = 'test-id';
     const { getByTestId } = render(
@@ -976,6 +991,58 @@ describe('Date Picker', () => {
       });
 
       expect(container.querySelector('table')).not.toBeVisible();
+    });
+
+    describe('Focus returns to the calendar toggle button, not the clear button', () => {
+      it('Escape returns focus to the toggle button after a date has been selected, with isClearable', async () => {
+        const { getByLabelText, getAllByText } = render(
+          <DatePicker isClearable labelText={labelText} />
+        );
+
+        const toggleButton = getByLabelText('Toggle Calendar Widget');
+
+        await userEvent.click(toggleButton);
+        await userEvent.click(getAllByText('15')[0]);
+
+        await userEvent.click(toggleButton);
+        await userEvent.keyboard('{Escape}');
+
+        expect(toggleButton).toHaveFocus();
+      });
+
+      it('Close button returns focus to the toggle button after a date has been selected, with isClearable', async () => {
+        const { getByLabelText, getAllByText } = render(
+          <DatePicker isClearable labelText={labelText} />
+        );
+
+        const toggleButton = getByLabelText('Toggle Calendar Widget');
+
+        await userEvent.click(toggleButton);
+        await userEvent.click(getAllByText('15')[0]);
+
+        await userEvent.click(toggleButton);
+        await userEvent.click(getByLabelText('Close Calendar Widget'));
+
+        expect(toggleButton).toHaveFocus();
+      });
+
+      it('does not throw and refocuses the toggle button after selecting a date, clearing it, then pressing Escape', async () => {
+        const { getByLabelText, getAllByText, getByTestId } = render(
+          <DatePicker isClearable labelText={labelText} />
+        );
+
+        const toggleButton = getByLabelText('Toggle Calendar Widget');
+
+        await userEvent.click(toggleButton);
+        await userEvent.click(getAllByText('15')[0]);
+
+        await userEvent.click(getByTestId('clear-button'));
+
+        await userEvent.click(toggleButton);
+        await userEvent.keyboard('{Escape}');
+
+        expect(toggleButton).toHaveFocus();
+      });
     });
 
     it('Enter', () => {

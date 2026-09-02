@@ -8,6 +8,21 @@ import { CalendarDay } from './CalendarDay';
 import { magma } from '../../theme/magma';
 
 describe('Calendar Day', () => {
+  let requestAnimationFrameSpy;
+
+  beforeEach(() => {
+    requestAnimationFrameSpy = jest
+      .spyOn(window, 'requestAnimationFrame')
+      .mockImplementation(callback => {
+        callback(0);
+        return 0;
+      });
+  });
+
+  afterEach(() => {
+    requestAnimationFrameSpy.mockRestore();
+  });
+
   it('renders a day', () => {
     const defaultDate = new Date(2019, 0, 17);
     const { getByText } = render(

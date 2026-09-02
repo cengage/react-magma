@@ -118,6 +118,8 @@ export const CustomColor = {
             <ProgressBar {...args} color={customColor} />
             <br />
             <Input
+              labelText="Custom color"
+              isLabelVisuallyHidden
               value={customColor}
               onChange={e => setCustomColor(e.target.value)}
             />
