@@ -1,5 +1,36 @@
 # Change Log
 
+## 5.2.0
+
+### Minor Changes
+
+- 957ec07: feat(Skeleton): Add `Skeleton` component for skeleton loading placeholders
+
+### Patch Changes
+
+- 957ec07: fix(DatePicker): add role="dialog" and aria-modal="true" to calendar container
+- 957ec07: fix(Accordion): stop overriding Heading styles inside AccordionPanel
+- 957ec07: feat(Dropdown): add `apiRef` prop to open and close the dropdown programmatically
+- 957ec07: fix(Tag): prevent spreading ARIA attributes onto the inner label `span` to resolve `aria-allowed-attr` violation.
+- 957ec07: fix(ToggleButtonGroup): add `role` prop
+- 957ec07: fix(TreeView): Add missing useCallback dependencies for folder collapse.
+- 957ec07: fix(Checkbox): improve render performance
+- 957ec07: fix(DatePicker): return focus to the calendar toggle button, not the clear button
+- 957ec07: feat(Dropdown): add `mainButtonRef` prop to pass a ref to the split button's left action button
+- 957ec07: fix(Pagination): fix styles to prevent an unwanted vertical scroll
+- 957ec07: fix(a11y): Fix accessibility violations:
+
+  - Input: hide decorative icons from screen readers
+  - Table: remove invalid `aria-sort` from checkbox header cell
+  - Tabs: fix `aria-controls` pointing to correct ScrollSpy panel id
+  - ToggleButton: remove incorrect `id` assignment from button element
+  - TreeView: Fix `aria-required-children` and `color-contrast` accessibility violations
+
+- 957ec07: fix(useFocusLock): fix focus trap for modal and date picker, including nested DatePicker focus order.
+- 957ec07: fix(PasswordInput): resize toggle button to fit custom text and cap its width at half the input
+- 957ec07: fix(Select, MultiSelect): render disabled preselected items as selected values
+- 957ec07: fix(Tabs): prevent scroll button focus outline from being clipped
+
 ## 5.1.0
 
 ### Minor Changes

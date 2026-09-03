@@ -1,5 +1,40 @@
 # Change Log
 
+## 6.0.4
+
+### Patch Changes
+
+- 957ec07: Release tooling: add a Codex workflow for cross-track fix audits and for preparing, validating, announcing, and synchronizing v5 and v4 releases.
+- 957ec07: feat(charts): add `additionalContent` prop for additional content between toolbar and chart
+- 957ec07: feat(charts): add `titlePrefix` and `titleSuffix` props to the chart toolbar
+- 957ec07: fix(docs): preserve default multi-select i18n aria label templates in the Select internationalization example
+- 957ec07: fix(IconButton): remove redundant `aria-label` from examples
+- 957ec07: fix(docs): prevent doubled padding on MainNav accordion trigger headings
+- 957ec07: fix(RadioGroup): use `containerStyle` in docs example
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+  - react-magma-dom@5.2.0
+  - @react-magma/charts@14.2.0
+  - @react-magma/dropzone@14.0.1
+
 ## 6.0.3
 
 ### Patch Changes
