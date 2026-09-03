@@ -1,5 +1,16 @@
 # @react-magma/charts
 
+## 13.3.0
+
+### Minor Changes
+
+- 96be337e7: feat(charts): add `additionalContent` prop for additional content between toolbar and chart
+- 96be337e7: feat(charts): add `titlePrefix` and `titleSuffix` props to the chart toolbar
+
+### Patch Changes
+
+- 96be337e7: fix(charts): fix the `chartToolbar` "Download as PNG/JPG" image export
+
 ## 13.2.0
 
 ### Minor Changes

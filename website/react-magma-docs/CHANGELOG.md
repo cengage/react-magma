@@ -1,5 +1,39 @@
 # Change Log
 
+## 5.3.8
+
+### Patch Changes
+
+- 96be337e7: feat(charts): add `additionalContent` prop for additional content between toolbar and chart
+- 96be337e7: feat(charts): add `titlePrefix` and `titleSuffix` props to the chart toolbar
+- 96be337e7: chore: Update landing page with v5.
+- 96be337e7: fix(docs): preserve default multi-select i18n aria label templates in the Select internationalization example
+- 96be337e7: fix(IconButton): remove redundant `aria-label` from examples
+- 96be337e7: fix(docs): prevent doubled padding on MainNav accordion trigger headings
+- 96be337e7: fix(RadioGroup): use `containerStyle` in docs example
+- 96be337e7: Documentation deployment: resume v4/React 17 prerelease docs and Storybook builds after synchronizing v4.15.0 into v4/dev.
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+  - react-magma-dom@4.16.0
+  - @react-magma/charts@13.3.0
+  - @react-magma/dropzone@13.0.1
+
 ## 5.3.7
 
 ### Patch Changes

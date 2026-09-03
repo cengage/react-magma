@@ -1,5 +1,35 @@
 # react-magma-dom
 
+## 4.16.0
+
+### Minor Changes
+
+- 96be337e7: feat(Skeleton): Add `Skeleton` component for skeleton loading placeholders
+
+### Patch Changes
+
+- 96be337e7: fix(DatePicker): add role="dialog" and aria-modal="true" to calendar container
+- 96be337e7: fix(Accordion): stop overriding Heading styles inside AccordionPanel
+- 96be337e7: feat(Dropdown): add `apiRef` prop to open and close the dropdown programmatically
+- 96be337e7: fix(Tag): prevent spreading ARIA attributes onto the inner label `span` to resolve `aria-allowed-attr` violation.
+- 96be337e7: fix(ToggleButtonGroup): add `role` prop
+- 96be337e7: fix(Checkbox): improve render performance
+- 96be337e7: fix(DatePicker): return focus to the calendar toggle button, not the clear button
+- 96be337e7: feat(Dropdown): add `mainButtonRef` prop to pass a ref to the split button's left action button
+- 96be337e7: fix(Pagination): fix styles to prevent an unwanted vertical scroll
+- 96be337e7: fix(a11y): Fix accessibility violations:
+
+  - Input: hide decorative icons from screen readers
+  - Table: remove invalid `aria-sort` from checkbox header cell
+  - Tabs: fix `aria-controls` pointing to correct ScrollSpy panel id
+  - ToggleButton: remove incorrect `id` assignment from button element
+  - TreeView: Fix `aria-required-children` and `color-contrast` accessibility violations
+
+- 96be337e7: fix(useFocusLock): fix focus trap for modal and date picker, including nested DatePicker focus order
+- 96be337e7: fix(PasswordInput): resize toggle button to fit custom text and cap its width at half the input
+- 96be337e7: fix(Select, MultiSelect): render disabled preselected items as selected values
+- 96be337e7: fix(Tabs): prevent scroll button focus outline from being clipped
+
 ## 4.15.0
 
 ### Minor Changes
