@@ -771,8 +771,9 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             />
             {icon && !onIconClick && (
               <IconWrapper
-                role="img"
+                role={iconAriaLabel ? 'img' : undefined}
                 aria-label={iconAriaLabel}
+                aria-hidden={iconAriaLabel ? undefined : true}
                 iconPosition={iconPosition}
                 inputSize={inputSize ?? InputSize.medium}
                 isInverse={props.isInverse}
@@ -806,7 +807,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
                 isInverse={props.isInverse}
                 onClick={handleClearInput}
                 onKeyDown={onIconKeyDown}
-                ref={iconRef}
                 shape={ButtonShape.fill}
                 size={
                   inputSize === InputSize.large

@@ -1,13 +1,16 @@
 import React from 'react';
 
+import { SimpleBarChart } from '@carbon/charts-react';
 import { act, render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { axe } from 'jest-axe';
 import {
   ThemeContext,
   magma,
   DropdownMenuItem,
   I18nContext,
   defaultI18n,
+  useIsInverse,
 } from 'react-magma-dom';
 
 import { CarbonChart, CarbonChartType } from '.';
@@ -185,6 +188,27 @@ describe('CarbonChart', () => {
         {
           target: '.cds--data-table thead tr th',
         }
+      );
+    });
+
+    it("pins Carbon's export `.filled` background to the inverse surface color", () => {
+      const testId = 'filled-bg-inverse';
+      const { getByTestId } = render(
+        <ThemeContext.Provider value={magma}>
+          <CarbonChart
+            testId={testId}
+            dataSet={dataSet}
+            options={chartOptions}
+            type={CarbonChartType.bar}
+            isInverse
+          />
+        </ThemeContext.Provider>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'background-color',
+        magma.colors.primary600,
+        { target: '.cds--chart-holder.filled' }
       );
     });
 
@@ -955,6 +979,108 @@ describe('CarbonChart', () => {
     });
   });
 
+  describe('image export', () => {
+    const toolbarProps = {
+      dataSet,
+      options: chartOptions,
+      type: CarbonChartType.bar,
+      chartToolbar: {},
+    };
+
+    let exportToPNG;
+    let exportToJPG;
+    let createChartSpy;
+
+    beforeEach(() => {
+      exportToPNG = jest.fn();
+      exportToJPG = jest.fn();
+      createChartSpy = jest
+        .spyOn(SimpleBarChart.prototype, 'createChart')
+        .mockImplementation(() => ({
+          services: { domUtils: { exportToPNG, exportToJPG } },
+        }));
+    });
+
+    afterEach(() => {
+      createChartSpy.mockRestore();
+    });
+
+    it("runs Carbon's own PNG export from the More options menu", () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      fireEvent.click(screen.getByRole('button', { name: 'More options' }));
+      fireEvent.click(screen.getByText('Download as PNG'));
+
+      expect(exportToPNG).toHaveBeenCalledTimes(1);
+      expect(exportToJPG).not.toHaveBeenCalled();
+    });
+
+    it("runs Carbon's own JPG export from the More options menu", () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      fireEvent.click(screen.getByRole('button', { name: 'More options' }));
+      fireEvent.click(screen.getByText('Download as JPG'));
+
+      expect(exportToJPG).toHaveBeenCalledTimes(1);
+      expect(exportToPNG).not.toHaveBeenCalled();
+    });
+
+    it("keeps Carbon's own title alive and uses it as the export file name", () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      const options = createChartSpy.mock.calls[0][2];
+      expect(options.title).toBe(chartOptions.title);
+      expect(options.fileDownload.fileName).toBe(chartOptions.title);
+    });
+
+    it("reveals Carbon's hidden title for the capture and restores it afterwards", () => {
+      jest.useFakeTimers();
+      try {
+        const { container } = render(<CarbonChart {...toolbarProps} />);
+        const wrapper = container.querySelector('.carbon-chart-wrapper');
+
+        expect(wrapper).toHaveClass('has-magma-toolbar');
+
+        fireEvent.click(screen.getByRole('button', { name: 'More options' }));
+        fireEvent.click(screen.getByText('Download as PNG'));
+
+        expect(wrapper).not.toHaveClass('has-magma-toolbar');
+
+        jest.runOnlyPendingTimers();
+        expect(wrapper).toHaveClass('has-magma-toolbar');
+      } finally {
+        jest.useRealTimers();
+      }
+    });
+
+    it('reveals the title for the flow layout (additionalContent) export too', () => {
+      jest.useFakeTimers();
+      try {
+        const { container } = render(
+          <CarbonChart
+            {...toolbarProps}
+            additionalContent={<div>Filter</div>}
+          />
+        );
+        const wrapper = container.querySelector('.carbon-chart-wrapper');
+
+        expect(createChartSpy.mock.calls[0][2].title).toBe(chartOptions.title);
+        expect(wrapper).toHaveClass('has-magma-toolbar');
+
+        fireEvent.click(screen.getByRole('button', { name: 'More options' }));
+        fireEvent.click(screen.getByText('Download as JPG'));
+
+        expect(exportToJPG).toHaveBeenCalledTimes(1);
+        expect(wrapper).not.toHaveClass('has-magma-toolbar');
+
+        jest.runOnlyPendingTimers();
+        expect(wrapper).toHaveClass('has-magma-toolbar');
+      } finally {
+        jest.useRealTimers();
+      }
+    });
+  });
+
   describe('dot keyboard accessibility', () => {
     let rafCallbacks;
 
@@ -1089,6 +1215,148 @@ describe('CarbonChart', () => {
 
         expect(mouseoutSpy).toHaveBeenCalledTimes(1);
       });
+    });
+  });
+
+  describe('custom content slots', () => {
+    const toolbarProps = {
+      dataSet,
+      options: chartOptions,
+      type: CarbonChartType.bar,
+      chartToolbar: {},
+    };
+
+    it('should render titlePrefix and titleSuffix around the title', () => {
+      render(
+        <CarbonChart
+          {...toolbarProps}
+          chartToolbar={{
+            titlePrefix: <span data-testid="before">Badge</span>,
+            titleSuffix: <button type="button">About this chart</button>,
+          }}
+        />
+      );
+
+      const before = screen.getByTestId('before');
+      const heading = screen.getByRole('heading', {
+        level: 2,
+        name: chartOptions.title,
+      });
+      const after = screen.getByRole('button', { name: 'About this chart' });
+
+      expect(
+        before.compareDocumentPosition(heading) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      ).toBeTruthy();
+      expect(
+        heading.compareDocumentPosition(after) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      ).toBeTruthy();
+    });
+
+    it('should place title slots before the toolbar actions in focus order', () => {
+      render(
+        <CarbonChart
+          {...toolbarProps}
+          chartToolbar={{
+            titleSuffix: <button type="button">About this chart</button>,
+          }}
+        />
+      );
+
+      const after = screen.getByRole('button', { name: 'About this chart' });
+      const tableButton = screen.getByRole('button', {
+        name: chartOptions.title,
+      });
+
+      expect(
+        after.compareDocumentPosition(tableButton) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      ).toBeTruthy();
+    });
+
+    it('should keep the title as the accessible name when titleSuffix is used', () => {
+      render(
+        <CarbonChart
+          {...toolbarProps}
+          chartToolbar={{
+            titleSuffix: <button type="button">About this chart</button>,
+          }}
+        />
+      );
+
+      // The heading, the chart region and the table modal must all stay
+      // anchored to options.title, which is also the exported file name.
+      expect(
+        screen.getByRole('heading', { level: 2, name: chartOptions.title })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('region', { name: chartOptions.title })
+      ).toBeInTheDocument();
+
+      fireEvent.click(screen.getByRole('button', { name: chartOptions.title }));
+
+      expect(
+        screen.getByRole('heading', {
+          level: 2,
+          name: `Tabular representation ${chartOptions.title}`,
+        })
+      ).toBeInTheDocument();
+    });
+
+    it('should render no slot markup by default', () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      expect(screen.queryByTestId('before')).not.toBeInTheDocument();
+      expect(
+        screen.getByRole('heading', { level: 2, name: chartOptions.title })
+      ).toBeInTheDocument();
+    });
+
+    it('should expose the resolved inverse value to slot content', () => {
+      // Slot content is the adopter's, so it reads isInverse from context
+      // rather than from our prop.
+      function InverseProbe() {
+        return <span>{useIsInverse() ? 'inverse' : 'default'}</span>;
+      }
+
+      render(
+        <CarbonChart
+          {...toolbarProps}
+          isInverse
+          chartToolbar={{
+            titlePrefix: <InverseProbe />,
+            titleSuffix: <InverseProbe />,
+          }}
+        />
+      );
+
+      expect(screen.getAllByText('inverse')).toHaveLength(2);
+    });
+
+    it('should not introduce accessibility violations with both slots', async () => {
+      const { container } = render(
+        <CarbonChart
+          {...toolbarProps}
+          chartToolbar={{
+            titlePrefix: <span>Badge</span>,
+            titleSuffix: <button type="button">About this chart</button>,
+          }}
+        />
+      );
+
+      // aria-tooltip-name, aria-allowed-attr, and aria-roles come from
+      // Carbon's own SVG output and are present on a chart with no slots at all,
+      // so they are excluded here rather than being attributed to the slots.
+      const results = await axe(container, {
+        rules: {
+          'aria-tooltip-name': { enabled: false },
+          'aria-allowed-attr': { enabled: false },
+          'aria-roles': { enabled: false },
+        },
+      });
+
+      expect(results).toHaveNoViolations();
     });
   });
 

@@ -75,6 +75,7 @@ export {
   DropdownAlignment,
   DropdownDropDirection,
   DropdownProps,
+  DropdownApi,
 } from './components/Dropdown';
 export {
   DropdownContent,
@@ -193,6 +194,12 @@ export {
 } from './components/Select';
 export { Combobox, ComboboxStateChangeTypes } from './components/Combobox';
 
+export {
+  Skeleton,
+  SkeletonAnimation,
+  SkeletonVariant,
+  SkeletonProps,
+} from './components/Skeleton';
 export { SkipLink, SkipLinkProps } from './components/SkipLink';
 export {
   SkipLinkContent,
