@@ -258,3 +258,28 @@ PerformanceLargeList.argTypes = {
 PerformanceLargeList.args = {
   count: 1400,
 };
+
+export const Lots = (args: { numberRows: number }) => {
+  function getCheckboxes() {
+    const boxes = [];
+
+    for (let i = 0; i < args.numberRows; i++) {
+      boxes.push(<Checkbox key={i} labelText="Checkbox" />);
+    }
+
+    return boxes;
+  }
+
+  return (
+    <>
+      <p>
+        Rendering all <strong>{args.numberRows}</strong> checkboxes at once,
+        without virtualization — every checkbox is mounted.
+      </p>
+      {getCheckboxes()}
+    </>
+  );
+};
+Lots.args = {
+  numberRows: 2000,
+};

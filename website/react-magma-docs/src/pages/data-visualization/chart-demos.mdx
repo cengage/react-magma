@@ -2437,6 +2437,133 @@ export function Example() {
 }
 ```
 
+### Custom content around the title
+
+`titlePrefix` and `titleSuffix` let you render custom content inline with the built-in chart title. They are the chart equivalent of the `additionalContent` prop on [Input](../../api/input#help_link), and the same guidance applies: they work best with compact inline elements such as a `Badge` or a `Tooltip` wrapping an `IconButton`, with the button's `aria-label` matching the tooltip text.
+
+Keep slot content inline-sized, as it shares the title row with the chart title. Interactive controls such as filters or comboboxes should be placed outside the chart. Content taller than the title row will overflow the chart, and controls with their own intrinsic width will squeeze the title instead of shrinking themselves.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import {
+  Badge,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+  Card,
+  IconButton,
+  Tooltip,
+} from 'react-magma-dom';
+import { InfoIcon } from 'react-magma-icons';
+
+export function Example() {
+  const infoLabel = 'Scores are averaged across all attempts in the term.';
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart
+        type={CarbonChartType.bar}
+        dataSet={[
+          { group: 'Chapter 1', value: 85 },
+          { group: 'Chapter 2', value: 72 },
+        ]}
+        options={{
+          title: 'Chapter Performance',
+          axes: {
+            left: { mapsTo: 'value' },
+            bottom: { mapsTo: 'group', scaleType: 'labels' },
+          },
+          height: '400px',
+        }}
+        chartToolbar={{
+          titlePrefix: <Badge>Main</Badge>,
+          titleSuffix: (
+            <Tooltip content={infoLabel}>
+              <IconButton
+                aria-label={infoLabel}
+                icon={<InfoIcon />}
+                size={ButtonSize.small}
+                type={ButtonType.button}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          ),
+        }}
+      />
+    </Card>
+  );
+}
+```
+
+### Custom content between the title and the chart
+
+The `additionalContent` prop renders custom controls below the toolbar and above the chart. It requires `chartToolbar` and is ignored without it. In the example below the `Select` is wired to component state, so choosing a range re-renders the chart with the matching bars.
+
+**Always set `options.height`** when using this prop. The toolbar switches from overlay to normal flow, so toolbar + content + chart stack together. Without a fixed chart height, when your content expands (dropdown opens, validation error shows), the container shrinks and Carbon redraws the chart, causing layout thrashing. A fixed height lets your content expand freely without affecting the chart.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card, Select } from 'react-magma-dom';
+
+const barDataSet = [
+  { group: 'Chapter 1', value: 85 },
+  { group: 'Chapter 2', value: 72 },
+  { group: 'Chapter 3', value: 91 },
+  { group: 'Chapter 4', value: 64 },
+];
+
+const chapterFilters = [
+  { label: 'All Chapters', value: 'all' },
+  { label: 'Chapters 1-2', value: 'ch-1-2' },
+  { label: 'Chapters 3-4', value: 'ch-3-4' },
+];
+
+const chaptersByFilter = {
+  'ch-1-2': ['Chapter 1', 'Chapter 2'],
+  'ch-3-4': ['Chapter 3', 'Chapter 4'],
+};
+
+export function Example() {
+  const [filter, setFilter] = React.useState(chapterFilters[0]);
+  const chapters = chaptersByFilter[filter.value];
+  const dataSet = chapters
+    ? barDataSet.filter(row => chapters.includes(row.group))
+    : barDataSet;
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart
+        type={CarbonChartType.bar}
+        dataSet={dataSet}
+        options={{
+          title: 'Chapter Performance',
+          axes: {
+            left: { mapsTo: 'value' },
+            bottom: { mapsTo: 'group', scaleType: 'labels' },
+          },
+          height: '400px',
+        }}
+        chartToolbar={{}}
+        additionalContent={
+          <Select
+            items={chapterFilters}
+            labelText="Filter by"
+            selectedItem={filter}
+            onSelectedItemChange={changes =>
+              setFilter(changes.selectedItem ?? chapterFilters[0])
+            }
+          />
+        }
+      />
+    </Card>
+  );
+}
+```
+
 ### Selective button visibility
 
 Disable individual toolbar buttons by setting `showAsTable` or `fullscreen` to `false`.

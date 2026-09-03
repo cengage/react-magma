@@ -72,7 +72,7 @@ export {
   DropdownAlignment,
   DropdownDropDirection,
 } from './components/Dropdown';
-export type { DropdownProps } from './components/Dropdown';
+export type { DropdownApi, DropdownProps } from './components/Dropdown';
 export { DropdownContent } from './components/Dropdown/DropdownContent';
 export type { DropdownContentProps } from './components/Dropdown/DropdownContent';
 export { DropdownDivider } from './components/Dropdown/DropdownDivider';
@@ -172,6 +172,12 @@ export {
 } from './components/Select';
 export { Combobox, ComboboxStateChangeTypes } from './components/Combobox';
 
+export {
+  Skeleton,
+  SkeletonAnimation,
+  SkeletonVariant,
+} from './components/Skeleton';
+export type { SkeletonProps } from './components/Skeleton';
 export { SkipLink } from './components/SkipLink';
 export type { SkipLinkProps } from './components/SkipLink';
 export { SkipLinkContent } from './components/SkipLinkContent';

@@ -819,17 +819,29 @@ export function TimeInput() {
       />
       <Spacer size={32} />
       <Paragraph>Native inputs:</Paragraph>
-      <Paragraph style={{ marginBottom: '8px' }}>Hours</Paragraph>
       <div style={{ display: 'flex', flexDirection: 'column', width: '264px' }}>
+        <label
+          htmlFor="native-hours"
+          style={{ marginBottom: '8px', display: 'block' }}
+        >
+          Hours
+        </label>
         <input
+          id="native-hours"
           type={InputType.number}
           min={1}
           max={60}
           value={hours}
           onChange={event => onChangeTimedDuration(event, 'hours', minutes)}
         />
-        <Paragraph style={{ marginBottom: '8px' }}>Minutes</Paragraph>
+        <label
+          htmlFor="native-minutes"
+          style={{ marginBottom: '8px', display: 'block' }}
+        >
+          Minutes
+        </label>
         <input
+          id="native-minutes"
           type={InputType.number}
           min={1}
           max={60}
