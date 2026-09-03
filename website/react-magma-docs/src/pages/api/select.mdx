@@ -163,9 +163,11 @@ export function Example() {
 
 ## Disabled Items
 
-To disable specific items in the `Select` component, add a `disabled: true` property to each item object. Disabled items specified as `defaultSelectedItem` or `initialSelectedItem` will not be selected by default or initially. If `initialHighlightedIndex` points to a `disabled` item, the component will not highlight it.
+To disable specific items in the `Select` component, add a `disabled: true` property to the item object.
 
-Example:
+Disabled items cannot be selected from the menu and are skipped by keyboard highlight and navigation. If `initialHighlightedIndex` points to a `disabled` item, it will not be highlighted.
+
+A disabled item is still shown as selected when it is a preselected value — via `selectedItem`, `initialSelectedItem`, or `defaultSelectedItem` — so an existing or no-longer-available value stays visible. In `MultiSelect`, a selected disabled item can still be removed.
 
 ```tsx
 import React from 'react';
@@ -814,6 +816,7 @@ export function Example() {
           clearIndicatorAriaLabel:
             'Click to reset selection for {labelText}. {selectedItem} is currently selected',
           multi: {
+            ...defaultI18n.select.multi,
             clearAnnounce:
               '{labelText} has been cleared. {selectedItems} were removed',
             removeItemAnnounce: '{selectedItem} has been removed',

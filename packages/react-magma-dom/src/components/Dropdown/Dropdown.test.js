@@ -215,6 +215,36 @@ describe('Dropdown', () => {
     expect(getByLabelText('Custom label')).toBeInTheDocument();
   });
 
+  it('should attach forwarded ref to the dropdown toggle button', () => {
+    const splitButtonRef = React.createRef();
+    const { getByLabelText } = render(
+      <Dropdown>
+        <DropdownSplitButton aria-label="Split" ref={splitButtonRef}>
+          Toggle me
+        </DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(splitButtonRef.current).toBe(getByLabelText('Split'));
+  });
+
+  it('should attach mainButtonRef to the left action button', () => {
+    const mainButtonRef = React.createRef();
+    const { getByText } = render(
+      <Dropdown>
+        <DropdownSplitButton aria-label="Split" mainButtonRef={mainButtonRef}>
+          Toggle me
+        </DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(mainButtonRef.current).toBe(
+      getByText('Toggle me').closest('button')
+    );
+  });
+
   it('should render a split dropdown with leading icon', () => {
     const { getByTestId, container } = render(
       <Dropdown>
@@ -1664,5 +1694,97 @@ describe('Dropdown', () => {
     expect(parentKeyDownHandler).not.toHaveBeenCalledWith(
       expect.objectContaining({ key: 'Escape' })
     );
+  });
+
+  describe('apiRef', () => {
+    const ApiRefDropdown = ({ onClose, onOpen }) => {
+      const apiRef = React.useRef();
+
+      function handleContentKeyDown(event) {
+        if (event.key === 'x') {
+          event.stopPropagation();
+          apiRef.current.closeDropdownManually(event);
+        }
+      }
+
+      return (
+        <>
+          <button
+            data-testid="outsideButton"
+            onClick={() => apiRef.current.openDropdownManually()}
+          >
+            Open from outside
+          </button>
+          <Dropdown apiRef={apiRef} onClose={onClose} onOpen={onOpen}>
+            <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
+            <DropdownContent onKeyDown={handleContentKeyDown}>
+              <DropdownMenuItem>Menu item</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </>
+      );
+    };
+
+    it('should close the dropdown from a custom keydown handler', async () => {
+      const onClose = jest.fn();
+
+      const { getByTestId } = render(<ApiRefDropdown onClose={onClose} />);
+
+      await userEvent.click(getByTestId('dropdownButton'));
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'display',
+        'block'
+      );
+
+      await userEvent.keyboard('{ArrowDown}');
+      await userEvent.keyboard('x');
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(onClose).toHaveBeenCalled();
+    });
+
+    it('should return focus to the toggle button when closed from inside the dropdown', async () => {
+      const { getByTestId } = render(<ApiRefDropdown />);
+
+      await userEvent.click(getByTestId('dropdownButton'));
+      await userEvent.keyboard('{ArrowDown}');
+      await userEvent.keyboard('x');
+
+      expect(getByTestId('dropdownButton')).toHaveFocus();
+    });
+
+    it('should open the dropdown', async () => {
+      const onOpen = jest.fn();
+
+      const { getByTestId } = render(<ApiRefDropdown onOpen={onOpen} />);
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+
+      await userEvent.click(getByTestId('outsideButton'));
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'display',
+        'block'
+      );
+      expect(onOpen).toHaveBeenCalled();
+    });
+
+    it('should call the current onClose handler and not a stale one', async () => {
+      const firstOnClose = jest.fn();
+      const secondOnClose = jest.fn();
+
+      const { getByTestId, rerender } = render(
+        <ApiRefDropdown onClose={firstOnClose} />
+      );
+
+      rerender(<ApiRefDropdown onClose={secondOnClose} />);
+
+      await userEvent.click(getByTestId('dropdownButton'));
+      await userEvent.keyboard('{ArrowDown}');
+      await userEvent.keyboard('x');
+
+      expect(secondOnClose).toHaveBeenCalled();
+      expect(firstOnClose).not.toHaveBeenCalled();
+    });
   });
 });

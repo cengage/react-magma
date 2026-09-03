@@ -700,6 +700,9 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
                 opened={calendarOpened}
                 isInverse={isInverse}
                 theme={theme}
+                role="dialog"
+                aria-modal="true"
+                aria-label={i18n.datePicker.calendarOpenAnnounce}
               >
                 <CalendarMonth
                   focusOnOpen={calendarOpened && Boolean(focusedDate)}

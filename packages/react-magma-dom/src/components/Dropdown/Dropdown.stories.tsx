@@ -37,6 +37,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
 import {
   Dropdown,
   DropdownAlignment,
+  DropdownApi,
   DropdownDropDirection,
   DropdownProps,
 } from './index';
@@ -788,6 +789,7 @@ export const FlippedItems = {
 const CustomRefTemplate: StoryFn<DropdownProps> = args => {
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const splitButtonRef = React.useRef<HTMLButtonElement>(null);
+  const mainButtonRef = React.useRef<HTMLButtonElement>(null);
 
   function handleClose(event: React.SyntheticEvent) {
     buttonRef.current?.focus();
@@ -795,6 +797,10 @@ const CustomRefTemplate: StoryFn<DropdownProps> = args => {
 
   function handleSplitClose(event: React.SyntheticEvent) {
     splitButtonRef.current?.focus();
+  }
+
+  function handleSplitMainClose() {
+    mainButtonRef.current?.focus();
   }
 
   return (
@@ -817,6 +823,15 @@ const CustomRefTemplate: StoryFn<DropdownProps> = args => {
       <Dropdown {...args} onClose={handleSplitClose}>
         <DropdownSplitButton aria-label="Split" ref={splitButtonRef}>
           Split Dropdown
+        </DropdownSplitButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown {...args} onClose={handleSplitMainClose}>
+        <DropdownSplitButton aria-label="Split" mainButtonRef={mainButtonRef}>
+          Split Main Ref
         </DropdownSplitButton>
         <DropdownContent>
           <DropdownMenuItem>Menu item 1</DropdownMenuItem>
@@ -1088,6 +1103,43 @@ export const DropdownExpandableMenuWithSorting = {
         ))}
       </div>
     );
+  },
+};
+
+const ApiRefTemplate: StoryFn<DropdownProps> = args => {
+  const dropdownApiRef = React.useRef<DropdownApi>();
+
+  function handleContentKeyDown(event: React.KeyboardEvent) {
+    const isCloseCombo = event.altKey && event.key === 'ArrowUp';
+
+    if (!isCloseCombo) {
+      return;
+    }
+
+    event.stopPropagation();
+    dropdownApiRef.current?.closeDropdownManually(event);
+  }
+
+  return (
+    <div style={{ margin: '150px auto', textAlign: 'center' }}>
+      <Paragraph>Open the dropdown, then press Alt + ArrowUp.</Paragraph>
+      <Spacer size={16} />
+      <Dropdown {...args} apiRef={dropdownApiRef}>
+        <DropdownButton>Dropdown with apiRef</DropdownButton>
+        <DropdownContent onKeyDown={handleContentKeyDown}>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    </div>
+  );
+};
+
+export const ApiRef = {
+  render: ApiRefTemplate,
+
+  args: {
+    ...Default.args,
   },
 };
 

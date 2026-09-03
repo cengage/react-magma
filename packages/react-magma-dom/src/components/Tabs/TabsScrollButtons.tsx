@@ -44,6 +44,10 @@ const StyledScrollButton = styled.button<ScrollButtonProps>`
   top: 0;
   width: 44px;
 
+  &:focus {
+    outline-offset: -2px;
+  }
+
   ${props =>
     props.orientation === 'vertical' &&
     css`

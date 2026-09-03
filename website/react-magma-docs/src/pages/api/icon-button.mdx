@@ -144,25 +144,18 @@ export function Example() {
           disabled
           icon={<NotificationsIcon />}
         />
-        <IconButton icon={<NotificationsIcon />} aria-label="Notifications">
-          Notifications
-        </IconButton>
+        <IconButton icon={<NotificationsIcon />}>Notifications</IconButton>
       </ButtonGroup>
       <br />
       <ButtonGroup>
         <IconButton
-          aria-label="Settings"
           icon={<SettingsIcon />}
           color={ButtonColor.secondary}
           variant={ButtonVariant.solid}
         >
           Settings
         </IconButton>
-        <IconButton
-          icon={<CheckIcon />}
-          variant={ButtonVariant.link}
-          aria-label="Submit"
-        >
+        <IconButton icon={<CheckIcon />} variant={ButtonVariant.link}>
           Submit
         </IconButton>
       </ButtonGroup>
@@ -201,11 +194,7 @@ import { NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   const icon = <NotificationsIcon size={10} />;
 
-  return (
-    <IconButton aria-label="Notifications" icon={icon}>
-      With Custom Icon Size
-    </IconButton>
-  );
+  return <IconButton icon={icon}>With Custom Icon Size</IconButton>;
 }
 ```
 
@@ -228,14 +217,11 @@ import { NotificationsIcon, InfoIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <ButtonGroup>
-      <IconButton icon={<NotificationsIcon />} aria-label="Notifications">
-        Icon Left
-      </IconButton>
+      <IconButton icon={<NotificationsIcon />}>Icon Left</IconButton>
       <IconButton
         color={ButtonColor.secondary}
         icon={<InfoIcon />}
         iconPosition={ButtonIconPosition.right}
-        aria-label="Information"
       >
         Icon Right
       </IconButton>
@@ -261,7 +247,6 @@ import { NotificationsIcon, SettingsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <IconButton
-      aria-label="Button"
       iconPosition={ButtonIconPosition.right}
       icon={<SettingsIcon />}
       leadingIcon={<NotificationsIcon />}
@@ -306,7 +291,6 @@ export function Example() {
       <br />
       <ButtonGroup>
         <IconButton
-          aria-label="Notifications"
           icon={<NotificationsIcon />}
           size={ButtonSize.small}
           iconPosition={ButtonIconPosition.left}
@@ -314,14 +298,12 @@ export function Example() {
           Small Notifications
         </IconButton>
         <IconButton
-          aria-label="Notifications"
           icon={<NotificationsIcon />}
           iconPosition={ButtonIconPosition.left}
         >
           Medium Notifications
         </IconButton>
         <IconButton
-          aria-label="Notifications"
           icon={<NotificationsIcon />}
           size={ButtonSize.large}
           iconPosition={ButtonIconPosition.left}
@@ -381,11 +363,7 @@ import { NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <>
-      <IconButton
-        icon={<NotificationsIcon />}
-        isFullWidth
-        aria-label="Notifications"
-      >
+      <IconButton icon={<NotificationsIcon />} isFullWidth>
         Full-Width Notifications Btn
       </IconButton>
       <br />
@@ -393,7 +371,6 @@ export function Example() {
         icon={<NotificationsIcon />}
         isFullWidth
         iconPosition={ButtonIconPosition.right}
-        aria-label="Notifications"
       >
         Full-Width Notifications Btn
       </IconButton>
@@ -470,7 +447,6 @@ export function Example() {
       <ButtonGroup>
         <IconButton
           icon={<NotificationsIcon />}
-          aria-label="Notifications"
           onClick={() => {
             setIconButtonCounter(count => count + 1);
           }}
@@ -479,7 +455,6 @@ export function Example() {
         </IconButton>
         <IconButton
           icon={<NotificationsIcon />}
-          aria-label="Notifications"
           onClick={() => {
             setTextIconButtonCounter(count => count + 1);
           }}
@@ -489,7 +464,6 @@ export function Example() {
         <IconButton
           disabled
           icon={<NotificationsIcon />}
-          aria-label="Notifications"
           onClick={() => {
             setIconButtonCounter(count => count + 1);
           }}
