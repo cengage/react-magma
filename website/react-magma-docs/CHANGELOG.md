@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.5-rc.0
+
+### Patch Changes
+
+- fc5dc3d: chore(release): sync the published 5.2.0 state from main into dev
+
 ## 6.0.4
 
 ### Patch Changes
