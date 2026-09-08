@@ -1,79 +1,44 @@
 # Change Log
 
-## 5.3.7-next.9
+## 5.3.8
 
 ### Patch Changes
 
-- Updated dependencies [816f49819]
-  - @react-magma/charts@14.0.0-next.4
+- 96be337e7: feat(charts): add `additionalContent` prop for additional content between toolbar and chart
+- 96be337e7: feat(charts): add `titlePrefix` and `titleSuffix` props to the chart toolbar
+- 96be337e7: chore: Update landing page with v5.
+- 96be337e7: fix(docs): preserve default multi-select i18n aria label templates in the Select internationalization example
+- 96be337e7: fix(IconButton): remove redundant `aria-label` from examples
+- 96be337e7: fix(docs): prevent doubled padding on MainNav accordion trigger headings
+- 96be337e7: fix(RadioGroup): use `containerStyle` in docs example
+- 96be337e7: Documentation deployment: resume v4/React 17 prerelease docs and Storybook builds after synchronizing v4.15.0 into v4/dev.
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+- Updated dependencies [96be337e7]
+  - react-magma-dom@4.16.0
+  - @react-magma/charts@13.3.0
+  - @react-magma/dropzone@13.0.1
 
-## 5.3.7-next.8
-
-### Patch Changes
-
-- b39c32447: feat(charts): add `additionalContent` prop for additional content between toolbar and chart
-- Updated dependencies [b39c32447]
-  - @react-magma/charts@14.0.0-next.3
-
-## 5.3.7-next.7
-
-### Patch Changes
-
-- Updated dependencies [3055423b0]
-  - react-magma-dom@4.16.0-next.8
-  - @react-magma/charts@14.0.0-next.2
-  - @react-magma/dropzone@14.0.0-next.1
-
-## 5.3.7-next.6
-
-### Patch Changes
-
-- 2aaaa5f3b: fix(IconButton): remove redundant `aria-label` from examples
-
-## 5.3.7-next.5
-
-### Patch Changes
-
-- e32c5655c: fix(docs): prevent doubled padding on MainNav accordion trigger headings
-- Updated dependencies [e32c5655c]
-  - react-magma-dom@4.15.1-next.6
-
-## 5.3.7-next.4
+## 5.3.7
 
 ### Patch Changes
 
-- 619ea44f8: feat(charts): add `titlePrefix` and `titleSuffix` props to the chart toolbar
-- Updated dependencies [619ea44f8]
-  - @react-magma/charts@13.3.0-next.1
-
-## 5.3.7-next.3
-
-### Patch Changes
-
-- 4a8d51154: fix(RadioGroup): use `containerStyle` in docs example
-- Updated dependencies [304f4fed7]
-  - react-magma-dom@4.15.1-next.4
-
-## 5.3.7-next.2
-
-### Patch Changes
-
-- Updated dependencies [264c59e21]
-  - react-magma-dom@4.15.1-next.0
-  - @react-magma/charts@13.2.1-next.0
-  - @react-magma/dropzone@13.0.1-next.0
-
-## 5.3.7-next.1
-
-### Patch Changes
-
-- 416340bc5: chore: Update landing page with v5.
-
-## 5.3.7-next.0
-
-### Patch Changes
-
-- 0f86a050a: Documentation deployment: resume v4/React 17 prerelease docs and Storybook builds after synchronizing v4.15.0 into v4/dev.
+- 4eef42a02: chore: Update landing page with v5
 
 ## 5.3.6
 
