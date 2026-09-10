@@ -2288,7 +2288,7 @@ describe('Dropdown', () => {
         expect(getByText('Fresh')).toHaveStyleRule('cursor', 'not-allowed');
         expect(getByText('Fresh')).toHaveStyleRule(
           'color',
-          transparentize(0.4, magma.colors.neutral500)
+          magma.colors.neutral500
         );
       });
 
@@ -2407,7 +2407,7 @@ describe('Dropdown', () => {
           );
           expect(getByTestId(expandableGroupId)).toHaveStyleRule(
             'color',
-            magma.colors.neutral100
+            magma.colors.neutral0
           );
         });
       });
