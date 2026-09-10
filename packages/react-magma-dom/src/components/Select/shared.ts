@@ -129,11 +129,17 @@ export const StyledItem = styled('li')<{
   }
 `;
 
-export const SelectedItemsWrapper = styled.span`
+export const SelectedItemsWrapper = styled.span<{ isRelative?: boolean }>`
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
   padding: 0 0 0 4px;
+
+  ${props =>
+    props.isRelative &&
+    css`
+      position: relative;
+    `}
 `;
 
 function buildSelectedItemButtonBackground(props) {
