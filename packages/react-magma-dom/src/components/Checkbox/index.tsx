@@ -1,6 +1,14 @@
 import * as React from 'react';
 
+import isPropValid from '@emotion/is-prop-valid';
+import {
+  css,
+  EmotionCache,
+  SerializedStyles,
+  withEmotionCache,
+} from '@emotion/react';
 import styled from '@emotion/styled';
+import { insertStyles } from '@emotion/utils';
 import { transparentize } from 'polished';
 import { CheckBoxIcon, CheckBoxOutlineBlankIcon } from 'react-magma-icons';
 
@@ -104,15 +112,135 @@ export interface CheckboxProps
   ariaLabel?: string;
 }
 
+// Style-caching helpers for rendering checkboxes cheaply in large lists.
+const isBrowser = typeof document !== 'undefined';
+
+interface CachedStyle {
+  className: string;
+  styles: React.ReactElement | null;
+}
+
+// Inserts cached styles into the active Emotion cache; returns the class name
+// (and, during SSR, the inline <style> to render).
+function insertCachedStyles(
+  cache: EmotionCache,
+  serialized: SerializedStyles
+): CachedStyle {
+  const rules = insertStyles(cache, serialized, true);
+  const className = `${cache.key}-${serialized.name}`;
+
+  let styles: React.ReactElement | null = null;
+
+  if (!isBrowser && rules !== undefined) {
+    let serializedNames = serialized.name;
+    let next = serialized.next;
+
+    while (next !== undefined) {
+      serializedNames += ` ${next.name}`;
+      next = next.next;
+    }
+
+    styles = React.createElement('style', {
+      'data-emotion': `${cache.key} ${serializedNames}`,
+      dangerouslySetInnerHTML: { __html: rules },
+      nonce: cache.sheet.nonce,
+    });
+  }
+
+  return { className, styles };
+}
+
+// Serializes styles once per unique (theme, variant) pair and caches the result.
+function createVariantStyles<Props>(
+  build: (props: Props) => SerializedStyles,
+  getVariantKey: (props: Props) => string,
+  getTheme: (props: Props) => object
+): (props: Props) => SerializedStyles {
+  const cacheByTheme = new WeakMap<object, Map<string, SerializedStyles>>();
+
+  return function resolveStyles(props: Props): SerializedStyles {
+    const theme = getTheme(props);
+
+    let variants = cacheByTheme.get(theme);
+
+    if (!variants) {
+      variants = new Map();
+      cacheByTheme.set(theme, variants);
+    }
+
+    const key = getVariantKey(props);
+    let serialized = variants.get(key);
+
+    if (!serialized) {
+      serialized = build(props);
+      variants.set(key, serialized);
+    }
+
+    return serialized;
+  };
+}
+
+function cx(...classNames: Array<string | false | null | undefined>) {
+  return classNames.filter(Boolean).join(' ');
+}
+
 export const HiddenLabelText = styled.span`
   ${HiddenStyles};
 `;
 
-export const HiddenInput = styled.input`
-  ${HiddenStyles};
-`;
+// Stable class on the hidden input, used by the fake input's sibling focus selector.
+export const checkboxInputClassName = 'magma-checkbox-input';
 
-function buildCheckIconColor(props) {
+export const HiddenInput = withEmotionCache<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+>((props, cache, ref) => {
+  const { className, ...rest } = props;
+  const { className: hiddenClassName, styles } = insertCachedStyles(
+    cache,
+    HiddenStyles
+  );
+
+  // Forward only valid DOM attributes (as styled does for string tags).
+  const domProps: Record<string, unknown> = {};
+
+  Object.keys(rest).forEach(key => {
+    if (isPropValid(key)) {
+      domProps[key] = (rest as Record<string, unknown>)[key];
+    }
+  });
+
+  const input = (
+    <input
+      {...domProps}
+      ref={ref}
+      className={cx(hiddenClassName, checkboxInputClassName, className)}
+    />
+  );
+
+  return styles ? (
+    <>
+      {styles}
+      {input}
+    </>
+  ) : (
+    input
+  );
+});
+
+interface FakeInputStyleProps {
+  isChecked?: boolean;
+  color: string;
+  disabled?: boolean;
+  isIndeterminate?: boolean;
+  isInverse?: boolean;
+  hasError?: boolean;
+  hideFocus?: boolean;
+  textPosition?: CheckboxTextPosition;
+  theme: ThemeInterface;
+}
+
+function buildCheckIconColor(props: FakeInputStyleProps) {
   if (props.disabled) {
     if (props.isInverse) {
       return transparentize(0.6, props.theme.colors.neutral100);
@@ -130,46 +258,83 @@ function buildCheckIconColor(props) {
   return props.theme.colors.neutral700;
 }
 
-export const StyledFakeInput = styled.span<{
-  isChecked?: boolean;
-  color: string;
-  disabled?: boolean;
-  isIndeterminate?: boolean;
-  isInverse?: boolean;
-  hasError?: boolean;
-  hideFocus?: boolean;
-  textPosition?: CheckboxTextPosition;
-  theme?: ThemeInterface;
-}>`
-  ${DisplayInputStyles};
-  border: 2px solid;
-  border-color: ${props => buildDisplayInputBorderColor(props)};
-  color: ${props => buildCheckIconColor(props)};
-  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
-  margin: ${props =>
-    props.textPosition === 'left'
+export interface StyledFakeInputProps extends FakeInputStyleProps {
+  children?: React.ReactNode;
+  style?: React.CSSProperties;
+  'aria-hidden'?: React.AriaAttributes['aria-hidden'];
+}
+
+// Fake input (the checkbox box) styles, cached per (theme, variant).
+const resolveFakeInputStyles = createVariantStyles<FakeInputStyleProps>(
+  props => css`
+    ${DisplayInputStyles(props)};
+    border: 2px solid;
+    border-color: ${buildDisplayInputBorderColor(props)};
+    color: ${buildCheckIconColor(props)};
+    cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
+    margin: ${props.textPosition === 'left'
       ? `${props.theme.spaceScale.spacing01} 0 0 ${props.theme.spaceScale.spacing03}`
       : `0 ${props.theme.spaceScale.spacing03} 0 0`};
 
-  svg {
-    flex-shrink: 0;
-    pointer-events: none;
-    transition: all 0.2s ease-out;
-  }
-
-  ${HiddenInput}:focus + label & {
-    &:before {
-      ${props => !props.hideFocus && buildDisplayInputFocusStyles(props)};
+    svg {
+      flex-shrink: 0;
+      pointer-events: none;
+      transition: all 0.2s ease-out;
     }
-  }
 
-  &:after {
-    // active state
-    background: ${props => buildDisplayInputActiveBackground(props)};
-    top: -10px;
-    left: -10px;
+    .${checkboxInputClassName}:focus + label & {
+      &:before {
+        ${!props.hideFocus && buildDisplayInputFocusStyles(props)};
+      }
+    }
+
+    &:after {
+      // active state
+      background: ${buildDisplayInputActiveBackground(props)};
+      top: -10px;
+      left: -10px;
+    }
+  `,
+  props =>
+    [
+      props.isChecked,
+      props.isIndeterminate,
+      props.disabled,
+      props.isInverse,
+      props.hasError,
+      props.hideFocus,
+      props.textPosition,
+      props.color,
+    ].join('|'),
+  props => props.theme
+);
+
+export const StyledFakeInput = withEmotionCache<StyledFakeInputProps>(
+  (
+    { children, style, 'aria-hidden': ariaHidden = true, ...styleProps },
+    cache
+  ) => {
+    const { className, styles } = insertCachedStyles(
+      cache,
+      resolveFakeInputStyles(styleProps)
+    );
+
+    const fakeInput = (
+      <span className={className} style={style} aria-hidden={ariaHidden}>
+        {children}
+      </span>
+    );
+
+    return styles ? (
+      <>
+        {styles}
+        {fakeInput}
+      </>
+    ) : (
+      fakeInput
+    );
   }
-`;
+);
 
 export const Checkbox = React.memo(
   React.forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
@@ -233,6 +398,18 @@ export const Checkbox = React.memo(
 
     const isInverse = useIsInverse(props.isInverse);
 
+    const iconSize = theme.iconSizes.medium;
+    // Memoized so re-renders reuse the same icon element.
+    const checkboxIcon = React.useMemo(
+      () =>
+        isChecked ? (
+          <CheckBoxIcon size={iconSize} />
+        ) : (
+          <CheckBoxOutlineBlankIcon size={iconSize} />
+        ),
+      [isChecked, iconSize]
+    );
+
     return (
       <>
         <StyledContainer style={containerStyle}>
@@ -265,11 +442,7 @@ export const Checkbox = React.memo(
               theme={theme}
               aria-hidden="true"
             >
-              {isChecked ? (
-                <CheckBoxIcon size={theme.iconSizes.medium} />
-              ) : (
-                <CheckBoxOutlineBlankIcon size={theme.iconSizes.medium} />
-              )}
+              {checkboxIcon}
             </StyledFakeInput>
 
             {isTextVisuallyHidden ? (

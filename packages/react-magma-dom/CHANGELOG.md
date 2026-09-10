@@ -1,34 +1,51 @@
-## 5.0.0
+# Change Log
 
-## 5.1.0-rc.4
+## 5.2.0
 
 ### Minor Changes
 
-- 5666475: feat(TreeView): support clicking anywhere on a folder to expand/collapse it for `selectable.off`
-
-## 5.0.1-rc.3
+- 957ec07: feat(Skeleton): Add `Skeleton` component for skeleton loading placeholders
 
 ### Patch Changes
 
-- 3c978b2: fix(Treeview): fix keyboard focus trap after collapse
+- 957ec07: fix(DatePicker): add role="dialog" and aria-modal="true" to calendar container
+- 957ec07: fix(Accordion): stop overriding Heading styles inside AccordionPanel
+- 957ec07: feat(Dropdown): add `apiRef` prop to open and close the dropdown programmatically
+- 957ec07: fix(Tag): prevent spreading ARIA attributes onto the inner label `span` to resolve `aria-allowed-attr` violation.
+- 957ec07: fix(ToggleButtonGroup): add `role` prop
+- 957ec07: fix(TreeView): Add missing useCallback dependencies for folder collapse.
+- 957ec07: fix(Checkbox): improve render performance
+- 957ec07: fix(DatePicker): return focus to the calendar toggle button, not the clear button
+- 957ec07: feat(Dropdown): add `mainButtonRef` prop to pass a ref to the split button's left action button
+- 957ec07: fix(Pagination): fix styles to prevent an unwanted vertical scroll
+- 957ec07: fix(a11y): Fix accessibility violations:
 
-## 5.0.1-rc.2
+  - Input: hide decorative icons from screen readers
+  - Table: remove invalid `aria-sort` from checkbox header cell
+  - Tabs: fix `aria-controls` pointing to correct ScrollSpy panel id
+  - ToggleButton: remove incorrect `id` assignment from button element
+  - TreeView: Fix `aria-required-children` and `color-contrast` accessibility violations
+
+- 957ec07: fix(useFocusLock): fix focus trap for modal and date picker, including nested DatePicker focus order.
+- 957ec07: fix(PasswordInput): resize toggle button to fit custom text and cap its width at half the input
+- 957ec07: fix(Select, MultiSelect): render disabled preselected items as selected values
+- 957ec07: fix(Tabs): prevent scroll button focus outline from being clipped
+
+## 5.1.0
+
+### Minor Changes
+
+- 4aebca4: feat(TreeView): allow clicking anywhere on a folder row to expand or collapse it with `TreeViewSelectable.off`
+- 4aebca4: feat(Badge): add `leftIcon`, `rightIcon`, and `weight` customization options
 
 ### Patch Changes
 
-- c3424ae: Chart: add accessible chart role and aria-label
+- 4aebca4: fix(Accordion): give panels region semantics and generate accordion-specific panel and button IDs
+- 4aebca4: fix(Dropdown): prevent Escape key events from propagating beyond nested dropdowns
+- 4aebca4: fix(TreeView): prevent keyboard focus from becoming trapped after collapsing a node
+- 4aebca4: fix(DateTimePicker): prevent crashes when the input contains an invalid date
 
-## 5.0.1-rc.1
-
-### Patch Changes
-
-- 108fc81: fix(Dropdown): Fix Escape key propagation in nested dropdown
-
-## 5.0.1-rc.0
-
-### Patch Changes
-
-- 88d933f: fix(Accordion): fix invalid ARIA attribute
+## 5.0.0
 
 ### Major Changes
 

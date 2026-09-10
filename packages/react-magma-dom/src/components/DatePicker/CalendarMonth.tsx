@@ -157,7 +157,12 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   const helperButtonRef = React.useRef<any>();
   const context = React.useContext(CalendarContext);
   const prevCalendarOpened = usePrevious(props.calendarOpened);
-  const focusTrapElement = useFocusLock(props.calendarOpened);
+  const focusTrapElement = useFocusLock(
+    props.calendarOpened,
+    undefined,
+    undefined,
+    !props.focusOnOpen
+  );
   const monthContainerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {

@@ -71,6 +71,27 @@ export const Disabled = {
   },
 };
 
+const DisabledItemsTemplate: StoryFn<NativeSelectProps> = args => (
+  <NativeSelect {...args} defaultValue="red">
+    <option value="red" disabled>
+      Red-Disabled
+    </option>
+    <option value="green">Green</option>
+    <option value="blue">Blue</option>
+    <option value="purple">Purple mountain majesty</option>
+  </NativeSelect>
+);
+
+export const WithDisabledItems = {
+  render: DisabledItemsTemplate,
+
+  args: {
+    isInverse: false,
+    labelText: 'Select with disabled preselected item',
+    testId: 'native-select-disabled-items',
+  },
+};
+
 const WithContentTemplate: StoryFn<NativeSelectProps> = args => {
   const helpLinkLabel = 'Learn more';
   const onHelpLinkClick = () => {

@@ -347,6 +347,53 @@ describe('custom button text width measurement', () => {
       },
     });
   });
+
+  it('limits the custom text button to half of the input container width and truncates overflowing text', async () => {
+    const CONTAINER_WIDTH = 200;
+
+    Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+      configurable: true,
+      get() {
+        return CONTAINER_WIDTH;
+      },
+    });
+
+    const { getByText } = render(
+      <PasswordInput
+        labelText="test label"
+        showPasswordButtonText="Reveal my long password"
+        hidePasswordButtonText="Conceal"
+      />
+    );
+
+    const button = getByText('Reveal my long password').parentElement;
+
+    await waitFor(() => {
+      expect(button).toHaveStyle(
+        `max-width: ${Math.floor(CONTAINER_WIDTH / 2)}px`
+      );
+    });
+
+    expect(button).toHaveStyle('overflow: hidden');
+    expect(button).toHaveStyle('text-overflow: ellipsis');
+    expect(button).toHaveStyle('white-space: nowrap');
+
+    Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+      configurable: true,
+      get() {
+        return 0;
+      },
+    });
+  });
+
+  it('keeps the fixed width for the default button text', () => {
+    const { getByText } = render(<PasswordInput labelText="test label" />);
+
+    const button = getByText('Show').parentElement;
+
+    expect(button).toHaveStyle('width: 54px');
+    expect(button).toHaveStyle('max-width: 54px');
+  });
 });
 
 it('Does not violate accessibility standards', () => {

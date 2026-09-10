@@ -13,6 +13,7 @@ import {
   DropdownMenuItem,
 } from '../Dropdown';
 import { Flex, FlexBehavior } from '../Flex';
+import { Heading } from '../Heading';
 import { Input } from '../Input';
 import { Modal } from '../Modal';
 import { Select } from '../Select';
@@ -365,5 +366,25 @@ export const WithDropdown = {
   args: {
     isInverse: false,
     isMulti: false,
+  },
+};
+
+export const WithHeadings = {
+  render: (args: any) => (
+    <Accordion {...args}>
+      <AccordionItem>
+        <Heading level={2}>
+          <AccordionButton>Section with heading trigger</AccordionButton>
+        </Heading>
+        <AccordionPanel>
+          <Heading level={3}>Panel heading</Heading>
+          <p>Content for section lorem ipsum.</p>
+        </AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  ),
+
+  args: {
+    defaultIndex: [0],
   },
 };

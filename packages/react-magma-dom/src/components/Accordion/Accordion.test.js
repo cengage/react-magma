@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 
 import { axe } from '../../../axe-helper';
 import { Button } from '../Button';
+import { Heading } from '../Heading';
 
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel } from '.';
 
@@ -68,6 +69,26 @@ describe('Accordion', () => {
     expect(btn).toHaveStyleRule('background', 'transparent');
     expect(panel).toHaveStyleRule('background', 'transparent');
     expect(accordion).toHaveStyleRule('background', 'transparent');
+  });
+
+  it('should not override the styles of a Heading nested inside an AccordionPanel', () => {
+    const { getByTestId } = render(
+      <Accordion defaultIndex={[0]}>
+        <AccordionItem testId="item">
+          <Heading level={2}>
+            <AccordionButton>Section 1</AccordionButton>
+          </Heading>
+          <AccordionPanel>
+            <Heading level={3}>Panel heading</Heading>
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    );
+
+    const item = getByTestId('item');
+
+    expect(item).toHaveStyleRule('font', 'inherit', { target: '>h2' });
+    expect(item).not.toHaveStyleRule('font', 'inherit', { target: ' h3' });
   });
 
   it('should render the component a left-aligned icon', () => {

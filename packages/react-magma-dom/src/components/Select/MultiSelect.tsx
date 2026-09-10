@@ -74,11 +74,8 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
       i => itemToString(i) === itemToString(itemToCheck)
     );
 
-    return (
-      !isItemDisabled(itemToCheck) &&
-      itemIndex !== -1 &&
-      !isItemDisabled(items[itemIndex])
-    );
+    // Only reject items not in the list; disabled items may be preselected values
+    return itemIndex !== -1;
   }
 
   function getFilteredItemIndex(item: T, filteredItems: T[]) {

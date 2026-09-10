@@ -425,7 +425,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
         const pattern = /^\d{2}\/\d{2}\/\d{4}$/;
 
-        if (pattern.test(splitValue)) {
+        if (pattern.test(splitValue) && isValid(validDay)) {
           setChosenDate(validDay);
         }
 
@@ -707,6 +707,9 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
                 opened={calendarOpened}
                 isInverse={isInverse}
                 theme={theme}
+                role="dialog"
+                aria-modal="true"
+                aria-label={i18n.datePicker.calendarOpenAnnounce}
               >
                 <CalendarMonth
                   focusOnOpen={calendarOpened && Boolean(focusedDate)}

@@ -225,7 +225,7 @@ describe('Date Picker', () => {
     });
 
     expect(selectedDateButton).toBeInTheDocument();
-    expect(selectedDateButton).toHaveFocus();
+    await waitFor(() => expect(selectedDateButton).toHaveFocus());
 
     await act(async () => {
       await userEvent.keyboard('[ArrowLeft]');
@@ -272,7 +272,7 @@ describe('Date Picker', () => {
     await userEvent.click(button);
 
     expect(selectedDateButton).toBeInTheDocument();
-    expect(selectedDateButton).toHaveFocus();
+    await waitFor(() => expect(selectedDateButton).toHaveFocus());
 
     for (let i = 0; i < 8; i++) {
       await userEvent.tab();
@@ -577,7 +577,7 @@ describe('Date Picker', () => {
 
     await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByText('17')).toBe(document.activeElement);
+    await waitFor(() => expect(getByText('17')).toBe(document.activeElement));
   });
 
   it('should focus on today when none valid date in input', async () => {
@@ -604,7 +604,7 @@ describe('Date Picker', () => {
     expect(getByText(year)).not.toBeNull();
 
     const todayElement = container.querySelector('[aria-current="date"]');
-    expect(todayElement).toHaveFocus();
+    await waitFor(() => expect(todayElement).toHaveFocus());
   });
 
   it('should focus on min date when it min date after today', async () => {
@@ -620,7 +620,7 @@ describe('Date Picker', () => {
 
     await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByText(focusedDay)).toHaveFocus();
+    await waitFor(() => expect(getByText(focusedDay)).toHaveFocus());
   });
 
   it('should go to the previous month when the previous month button is clicked', async () => {
@@ -715,6 +715,12 @@ describe('Date Picker', () => {
     expect(getByTestId('calendarContainer')).toHaveStyleRule(
       'display',
       'block'
+    );
+
+    await waitFor(() =>
+      expect(getByTestId('calendarContainer')).toContainElement(
+        document.activeElement
+      )
     );
 
     await userEvent.keyboard('{Escape}');
@@ -972,6 +978,58 @@ describe('Date Picker', () => {
       await userEvent.keyboard('{Escape}');
 
       expect(container.querySelector('table')).not.toBeVisible();
+    });
+
+    describe('Focus returns to the calendar toggle button, not the clear button', () => {
+      it('Escape returns focus to the toggle button after a date has been selected, with isClearable', async () => {
+        const { getByLabelText, getAllByText } = render(
+          <DatePicker isClearable labelText={labelText} />
+        );
+
+        const toggleButton = getByLabelText('Toggle Calendar Widget');
+
+        await userEvent.click(toggleButton);
+        await userEvent.click(getAllByText('15')[0]);
+
+        await userEvent.click(toggleButton);
+        await userEvent.keyboard('{Escape}');
+
+        expect(toggleButton).toHaveFocus();
+      });
+
+      it('Close button returns focus to the toggle button after a date has been selected, with isClearable', async () => {
+        const { getByLabelText, getAllByText } = render(
+          <DatePicker isClearable labelText={labelText} />
+        );
+
+        const toggleButton = getByLabelText('Toggle Calendar Widget');
+
+        await userEvent.click(toggleButton);
+        await userEvent.click(getAllByText('15')[0]);
+
+        await userEvent.click(toggleButton);
+        await userEvent.click(getByLabelText('Close Calendar Widget'));
+
+        expect(toggleButton).toHaveFocus();
+      });
+
+      it('does not throw and refocuses the toggle button after selecting a date, clearing it, then pressing Escape', async () => {
+        const { getByLabelText, getAllByText, getByTestId } = render(
+          <DatePicker isClearable labelText={labelText} />
+        );
+
+        const toggleButton = getByLabelText('Toggle Calendar Widget');
+
+        await userEvent.click(toggleButton);
+        await userEvent.click(getAllByText('15')[0]);
+
+        await userEvent.click(getByTestId('clear-button'));
+
+        await userEvent.click(toggleButton);
+        await userEvent.keyboard('{Escape}');
+
+        expect(toggleButton).toHaveFocus();
+      });
     });
 
     it('Enter', async () => {

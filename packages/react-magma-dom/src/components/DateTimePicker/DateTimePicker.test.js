@@ -595,6 +595,34 @@ describe('DateTimePicker', () => {
   });
 
   describe('Edge Cases', () => {
+    it('should not crash when typing an invalid date with correct format (e.g. 05/35/2026)', async () => {
+      const { getByPlaceholderText } = render(
+        <DateTimePicker labelText="Date Time Picker Label" />
+      );
+
+      const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
+
+      await expect(userEvent.type(input, '05/35/2026')).resolves.not.toThrow();
+
+      expect(input).toBeInTheDocument();
+    });
+
+    it('should not call onDateChange when an invalid date is typed', async () => {
+      const onDateChange = jest.fn();
+      const { getByPlaceholderText } = render(
+        <DateTimePicker
+          labelText="Date Time Picker Label"
+          onDateChange={onDateChange}
+        />
+      );
+
+      const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
+
+      await userEvent.type(input, '05/35/2026');
+
+      expect(onDateChange).not.toHaveBeenCalled();
+    });
+
     it('should handle null/undefined values gracefully', () => {
       const { getByPlaceholderText } = render(
         <DateTimePicker labelText="Date Time Picker Label" value={null} />

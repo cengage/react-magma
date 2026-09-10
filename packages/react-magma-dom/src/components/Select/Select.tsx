@@ -73,11 +73,8 @@ export function Select<T>(props: SelectProps<T>) {
       i => itemToString(i) === itemToString(itemToCheck)
     );
 
-    if (
-      itemIndex === -1 ||
-      isItemDisabled(itemToCheck) ||
-      isItemDisabled(items[itemIndex])
-    ) {
+    // Only reject items not in the list; a disabled item is still a valid selected value
+    if (itemIndex === -1) {
       return { [key]: null };
     }
 

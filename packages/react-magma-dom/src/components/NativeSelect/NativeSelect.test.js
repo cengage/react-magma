@@ -43,6 +43,37 @@ describe('NativeSelect', () => {
     );
   });
 
+  it('should display a disabled option that is preselected via defaultValue', () => {
+    const { getByTestId } = render(
+      <NativeSelect labelText="Colors" testId={testId} defaultValue="red">
+        <option value="red" disabled>
+          Red
+        </option>
+        <option value="blue">Blue</option>
+      </NativeSelect>
+    );
+
+    expect(getByTestId(testId).value).toEqual('red');
+  });
+
+  it('should display a disabled option that is preselected via value (controlled)', () => {
+    const { getByTestId } = render(
+      <NativeSelect
+        labelText="Colors"
+        testId={testId}
+        value="red"
+        onChange={() => {}}
+      >
+        <option value="red" disabled>
+          Red
+        </option>
+        <option value="blue">Blue</option>
+      </NativeSelect>
+    );
+
+    expect(getByTestId(testId).value).toEqual('red');
+  });
+
   it('should render a disabled inverse select', () => {
     const { getByTestId } = render(
       <NativeSelect disabled isInverse testId={testId} />

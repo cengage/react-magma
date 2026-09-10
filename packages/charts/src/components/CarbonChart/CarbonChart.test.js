@@ -1,7 +1,16 @@
 import React from 'react';
 
+import { SimpleBarChart } from '@carbon/charts-react';
 import { act, render, screen, fireEvent } from '@testing-library/react';
-import { ThemeContext, magma, DropdownMenuItem } from 'react-magma-dom';
+import { axe } from 'jest-axe';
+import {
+  ThemeContext,
+  magma,
+  DropdownMenuItem,
+  I18nContext,
+  defaultI18n,
+  useIsInverse,
+} from 'react-magma-dom';
 
 import { CarbonChart, CarbonChartType } from '.';
 
@@ -11,10 +20,14 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
   disconnect: jest.fn(),
 }));
 
-// Capture MutationObserver callbacks so we can trigger them manually
-let mutationObserverCallback;
+// Capture MutationObserver callbacks so we can trigger them manually.
+// Multiple observers may be created per component; we collect all of them and
+// call each one so that no observer is silently skipped.
+let mutationObserverCallbacks = [];
+const mutationObserverCallback = mutations =>
+  mutationObserverCallbacks.forEach(cb => cb(mutations));
 global.MutationObserver = jest.fn().mockImplementation(callback => {
-  mutationObserverCallback = callback;
+  mutationObserverCallbacks.push(callback);
   return {
     observe: jest.fn(),
     disconnect: jest.fn(),
@@ -174,6 +187,27 @@ describe('CarbonChart', () => {
         {
           target: '.cds--data-table thead tr th',
         }
+      );
+    });
+
+    it("pins Carbon's export `.filled` background to the inverse surface color", () => {
+      const testId = 'filled-bg-inverse';
+      const { getByTestId } = render(
+        <ThemeContext.Provider value={magma}>
+          <CarbonChart
+            testId={testId}
+            dataSet={dataSet}
+            options={chartOptions}
+            type={CarbonChartType.bar}
+            isInverse
+          />
+        </ThemeContext.Provider>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'background-color',
+        magma.colors.primary600,
+        { target: '.cds--chart-holder.filled' }
       );
     });
 
@@ -597,6 +631,7 @@ describe('CarbonChart', () => {
     let otherButton;
 
     beforeEach(() => {
+      mutationObserverCallbacks = [];
       jest.useFakeTimers();
       jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => {
         cb(0);
@@ -842,6 +877,27 @@ describe('CarbonChart', () => {
       ).not.toBeInTheDocument();
     });
 
+    it('should render the chart title as h2 by default', () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      expect(
+        screen.getByRole('heading', { level: 2, name: chartOptions.title })
+      ).toBeInTheDocument();
+    });
+
+    it('should render the chart title at the level set by titleLevel', () => {
+      render(
+        <CarbonChart {...toolbarProps} chartToolbar={{ titleLevel: 3 }} />
+      );
+
+      expect(
+        screen.getByRole('heading', { level: 3, name: chartOptions.title })
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByRole('heading', { level: 2, name: chartOptions.title })
+      ).not.toBeInTheDocument();
+    });
+
     it('should always render the more options dropdown with built-in download items', () => {
       render(<CarbonChart {...toolbarProps} />);
 
@@ -893,6 +949,600 @@ describe('CarbonChart', () => {
       expect(
         screen.getByRole('columnheader', { name: 'Count' })
       ).toBeInTheDocument();
+    });
+  });
+
+  describe('image export', () => {
+    const toolbarProps = {
+      dataSet,
+      options: chartOptions,
+      type: CarbonChartType.bar,
+      chartToolbar: {},
+    };
+
+    let exportToPNG;
+    let exportToJPG;
+    let createChartSpy;
+
+    beforeEach(() => {
+      exportToPNG = jest.fn();
+      exportToJPG = jest.fn();
+      createChartSpy = jest
+        .spyOn(SimpleBarChart.prototype, 'createChart')
+        .mockImplementation(() => ({
+          services: { domUtils: { exportToPNG, exportToJPG } },
+        }));
+    });
+
+    afterEach(() => {
+      createChartSpy.mockRestore();
+    });
+
+    it("runs Carbon's own PNG export from the More options menu", () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      fireEvent.click(screen.getByRole('button', { name: 'More options' }));
+      fireEvent.click(screen.getByText('Download as PNG'));
+
+      expect(exportToPNG).toHaveBeenCalledTimes(1);
+      expect(exportToJPG).not.toHaveBeenCalled();
+    });
+
+    it("runs Carbon's own JPG export from the More options menu", () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      fireEvent.click(screen.getByRole('button', { name: 'More options' }));
+      fireEvent.click(screen.getByText('Download as JPG'));
+
+      expect(exportToJPG).toHaveBeenCalledTimes(1);
+      expect(exportToPNG).not.toHaveBeenCalled();
+    });
+
+    it("keeps Carbon's own title alive and uses it as the export file name", () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      const options = createChartSpy.mock.calls[0][2];
+      expect(options.title).toBe(chartOptions.title);
+      expect(options.fileDownload.fileName).toBe(chartOptions.title);
+    });
+
+    it("reveals Carbon's hidden title for the capture and restores it afterwards", () => {
+      jest.useFakeTimers();
+      try {
+        const { container } = render(<CarbonChart {...toolbarProps} />);
+        const wrapper = container.querySelector('.carbon-chart-wrapper');
+
+        expect(wrapper).toHaveClass('has-magma-toolbar');
+
+        fireEvent.click(screen.getByRole('button', { name: 'More options' }));
+        fireEvent.click(screen.getByText('Download as PNG'));
+
+        expect(wrapper).not.toHaveClass('has-magma-toolbar');
+
+        jest.runOnlyPendingTimers();
+        expect(wrapper).toHaveClass('has-magma-toolbar');
+      } finally {
+        jest.useRealTimers();
+      }
+    });
+
+    it('reveals the title for the flow layout (additionalContent) export too', () => {
+      jest.useFakeTimers();
+      try {
+        const { container } = render(
+          <CarbonChart
+            {...toolbarProps}
+            additionalContent={<div>Filter</div>}
+          />
+        );
+        const wrapper = container.querySelector('.carbon-chart-wrapper');
+
+        expect(createChartSpy.mock.calls[0][2].title).toBe(chartOptions.title);
+        expect(wrapper).toHaveClass('has-magma-toolbar');
+
+        fireEvent.click(screen.getByRole('button', { name: 'More options' }));
+        fireEvent.click(screen.getByText('Download as JPG'));
+
+        expect(exportToJPG).toHaveBeenCalledTimes(1);
+        expect(wrapper).not.toHaveClass('has-magma-toolbar');
+
+        jest.runOnlyPendingTimers();
+        expect(wrapper).toHaveClass('has-magma-toolbar');
+      } finally {
+        jest.useRealTimers();
+      }
+    });
+  });
+
+  describe('custom content slots', () => {
+    const toolbarProps = {
+      dataSet,
+      options: chartOptions,
+      type: CarbonChartType.bar,
+      chartToolbar: {},
+    };
+
+    it('should render titlePrefix and titleSuffix around the title', () => {
+      render(
+        <CarbonChart
+          {...toolbarProps}
+          chartToolbar={{
+            titlePrefix: <span data-testid="before">Badge</span>,
+            titleSuffix: <button type="button">About this chart</button>,
+          }}
+        />
+      );
+
+      const before = screen.getByTestId('before');
+      const heading = screen.getByRole('heading', {
+        level: 2,
+        name: chartOptions.title,
+      });
+      const after = screen.getByRole('button', { name: 'About this chart' });
+
+      expect(
+        before.compareDocumentPosition(heading) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      ).toBeTruthy();
+      expect(
+        heading.compareDocumentPosition(after) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      ).toBeTruthy();
+    });
+
+    it('should place title slots before the toolbar actions in focus order', () => {
+      render(
+        <CarbonChart
+          {...toolbarProps}
+          chartToolbar={{
+            titleSuffix: <button type="button">About this chart</button>,
+          }}
+        />
+      );
+
+      const after = screen.getByRole('button', { name: 'About this chart' });
+      const tableButton = screen.getByRole('button', {
+        name: chartOptions.title,
+      });
+
+      expect(
+        after.compareDocumentPosition(tableButton) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      ).toBeTruthy();
+    });
+
+    it('should keep the title as the accessible name when titleSuffix is used', () => {
+      render(
+        <CarbonChart
+          {...toolbarProps}
+          chartToolbar={{
+            titleSuffix: <button type="button">About this chart</button>,
+          }}
+        />
+      );
+
+      // The heading, the chart region and the table modal must all stay
+      // anchored to options.title, which is also the exported file name.
+      expect(
+        screen.getByRole('heading', { level: 2, name: chartOptions.title })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('region', { name: chartOptions.title })
+      ).toBeInTheDocument();
+
+      fireEvent.click(screen.getByRole('button', { name: chartOptions.title }));
+
+      expect(
+        screen.getByRole('heading', {
+          level: 2,
+          name: `Tabular representation ${chartOptions.title}`,
+        })
+      ).toBeInTheDocument();
+    });
+
+    it('should render no slot markup by default', () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      expect(screen.queryByTestId('before')).not.toBeInTheDocument();
+      expect(
+        screen.getByRole('heading', { level: 2, name: chartOptions.title })
+      ).toBeInTheDocument();
+    });
+
+    it('should expose the resolved inverse value to slot content', () => {
+      // Slot content is the adopter's, so it reads isInverse from context
+      // rather than from our prop.
+      function InverseProbe() {
+        return <span>{useIsInverse() ? 'inverse' : 'default'}</span>;
+      }
+
+      render(
+        <CarbonChart
+          {...toolbarProps}
+          isInverse
+          chartToolbar={{
+            titlePrefix: <InverseProbe />,
+            titleSuffix: <InverseProbe />,
+          }}
+        />
+      );
+
+      expect(screen.getAllByText('inverse')).toHaveLength(2);
+    });
+
+    it('should not introduce accessibility violations with both slots', async () => {
+      const { container } = render(
+        <CarbonChart
+          {...toolbarProps}
+          chartToolbar={{
+            titlePrefix: <span>Badge</span>,
+            titleSuffix: <button type="button">About this chart</button>,
+          }}
+        />
+      );
+
+      // aria-prohibited-attr and aria-tooltip-name come from Carbon's own SVG
+      // output and are present on a chart with no slots at all, so they are
+      // excluded here rather than being attributed to the slots.
+      const results = await axe(container, {
+        rules: {
+          'aria-prohibited-attr': { enabled: false },
+          'aria-tooltip-name': { enabled: false },
+        },
+      });
+
+      expect(results).toHaveNoViolations();
+    });
+
+    it('keeps a single semantic heading and no a11y violations in the flow layout', async () => {
+      const { container } = render(
+        <CarbonChart {...toolbarProps} additionalContent={<div>Filter</div>} />
+      );
+
+      expect(
+        screen.getAllByRole('heading', { name: chartOptions.title })
+      ).toHaveLength(1);
+
+      const results = await axe(container, {
+        rules: {
+          'aria-prohibited-attr': { enabled: false },
+          'aria-tooltip-name': { enabled: false },
+        },
+      });
+
+      expect(results).toHaveNoViolations();
+    });
+  });
+
+  describe('Legend accessibility wrap', () => {
+    const testId = 'legend-a11y';
+
+    it('wraps the Carbon legend in a fieldset with a legend caption derived from the chart title', () => {
+      const { getByTestId } = render(
+        <CarbonChart
+          testId={testId}
+          dataSet={dataSet}
+          options={chartOptions}
+          type={CarbonChartType.bar}
+        />
+      );
+      const wrapper = getByTestId(testId);
+
+      const fieldset = wrapper.querySelector('.cds--cc--legend-fieldset');
+      expect(fieldset).not.toBeNull();
+      expect(fieldset.tagName).toBe('FIELDSET');
+      expect(fieldset.querySelector('.cds--cc--legend')).not.toBeNull();
+
+      const caption = fieldset.querySelector('legend');
+      expect(caption).not.toBeNull();
+      expect(caption.textContent).toBe(
+        `${chartOptions.title}. Checking these checkboxes will update the chart.`
+      );
+    });
+
+    it('uses ariaLabel for the legend caption when provided', () => {
+      const ariaLabel = 'Quarterly sales chart';
+      const { getByTestId } = render(
+        <CarbonChart
+          testId={testId}
+          ariaLabel={ariaLabel}
+          dataSet={dataSet}
+          options={chartOptions}
+          type={CarbonChartType.bar}
+        />
+      );
+      const wrapper = getByTestId(testId);
+
+      const caption = wrapper.querySelector(
+        '.cds--cc--legend-fieldset > legend'
+      );
+      expect(caption).not.toBeNull();
+      expect(caption.textContent).toBe(
+        `${ariaLabel}. Checking these checkboxes will update the chart.`
+      );
+    });
+
+    it('does not duplicate the fieldset when the mutation observer fires again with no DOM changes', () => {
+      const { getByTestId } = render(
+        <CarbonChart
+          testId={testId}
+          dataSet={dataSet}
+          options={chartOptions}
+          type={CarbonChartType.bar}
+        />
+      );
+      const wrapper = getByTestId(testId);
+
+      const before = wrapper.querySelectorAll('.cds--cc--legend-fieldset');
+      expect(before).toHaveLength(1);
+
+      act(() => {
+        mutationObserverCallback?.();
+        mutationObserverCallback?.();
+      });
+
+      const after = wrapper.querySelectorAll('.cds--cc--legend-fieldset');
+      expect(after).toHaveLength(1);
+      expect(after[0]).toBe(before[0]);
+    });
+
+    it('unwraps the stale fieldset when Carbon re-renders the legend deeper inside it', () => {
+      const { getByTestId } = render(
+        <CarbonChart
+          testId={testId}
+          dataSet={dataSet}
+          options={chartOptions}
+          type={CarbonChartType.bar}
+        />
+      );
+      const wrapper = getByTestId(testId);
+
+      const staleFieldset = wrapper.querySelector('.cds--cc--legend-fieldset');
+      const legend = staleFieldset.querySelector('.cds--cc--legend');
+
+      act(() => {
+        const layoutChild = document.createElement('div');
+        layoutChild.className = 'layout-child legend';
+        staleFieldset.append(layoutChild);
+        layoutChild.append(legend);
+        mutationObserverCallback?.();
+      });
+
+      const fieldsets = wrapper.querySelectorAll('.cds--cc--legend-fieldset');
+      expect(fieldsets).toHaveLength(1);
+      expect(
+        fieldsets[0].querySelector('.cds--cc--legend-fieldset')
+      ).toBeNull();
+      expect(fieldsets[0].contains(legend)).toBe(true);
+      expect(fieldsets[0].querySelectorAll(':scope > legend')).toHaveLength(1);
+    });
+
+    it('replaces Carbon\'s generic "Data groups" aria-label with semantic list roles on the legend and its items', () => {
+      const { getByTestId } = render(
+        <CarbonChart
+          testId={testId}
+          dataSet={dataSet}
+          options={chartOptions}
+          type={CarbonChartType.bar}
+        />
+      );
+      const wrapper = getByTestId(testId);
+
+      const legend = wrapper.querySelector('.cds--cc--legend');
+      expect(legend).not.toBeNull();
+
+      const itemsHost = legend.matches('[data-name="legend-items"]')
+        ? legend
+        : legend.querySelector('[data-name="legend-items"]') || legend;
+      expect(itemsHost.getAttribute('aria-label')).toBeNull();
+      expect(itemsHost.getAttribute('role')).toBe('list');
+
+      if (itemsHost !== legend) {
+        expect(legend.getAttribute('role')).toBeNull();
+        expect(legend.getAttribute('aria-label')).toBeNull();
+      }
+
+      const items = itemsHost.querySelectorAll('.legend-item');
+      expect(items.length).toBeGreaterThan(0);
+      items.forEach(item => {
+        expect(item.getAttribute('role')).toBe('listitem');
+      });
+    });
+
+    it('restores list semantics when Carbon re-applies role="group" and aria-label on the items container', () => {
+      const { getByTestId } = render(
+        <CarbonChart
+          testId={testId}
+          dataSet={dataSet}
+          options={chartOptions}
+          type={CarbonChartType.bar}
+        />
+      );
+      const wrapper = getByTestId(testId);
+
+      const itemsHost = wrapper.querySelector('[data-name="legend-items"]');
+      expect(itemsHost).not.toBeNull();
+      expect(itemsHost.getAttribute('role')).toBe('list');
+
+      act(() => {
+        itemsHost.setAttribute('role', 'group');
+        itemsHost.setAttribute('aria-label', 'Data groups');
+        mutationObserverCallback();
+      });
+      act(() => {
+        mutationObserverCallback();
+      });
+
+      expect(itemsHost.getAttribute('role')).toBe('list');
+      expect(itemsHost.getAttribute('aria-label')).toBeNull();
+    });
+
+    it('uses translated legend instructions from I18nContext', () => {
+      const translatedInstructions =
+        'Marquer ces cases mettra à jour le graphique.';
+      const i18nValue = {
+        ...defaultI18n,
+        charts: {
+          ...defaultI18n.charts,
+          toolbar: { legendInstructions: translatedInstructions },
+        },
+      };
+
+      const { getByTestId } = render(
+        <I18nContext.Provider value={i18nValue}>
+          <CarbonChart
+            testId={testId}
+            dataSet={dataSet}
+            options={chartOptions}
+            type={CarbonChartType.bar}
+          />
+        </I18nContext.Provider>
+      );
+      const wrapper = getByTestId(testId);
+
+      const caption = wrapper.querySelector(
+        '.cds--cc--legend-fieldset > legend'
+      );
+      expect(caption.textContent).toBe(
+        `${chartOptions.title}. ${translatedInstructions}`
+      );
+    });
+  });
+
+  describe('dot keyboard accessibility', () => {
+    let rafCallbacks;
+
+    beforeEach(() => {
+      rafCallbacks = [];
+      jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => {
+        rafCallbacks.push(cb);
+        return rafCallbacks.length - 1;
+      });
+    });
+
+    afterEach(() => {
+      window.requestAnimationFrame.mockRestore();
+      rafCallbacks = [];
+    });
+
+    function renderChart() {
+      const { getByTestId } = render(
+        <CarbonChart
+          testId="dot-tab-test"
+          dataSet={dataSet}
+          options={chartOptions}
+          type={CarbonChartType.scatter}
+        />
+      );
+      return getByTestId('dot-tab-test');
+    }
+
+    function addDot(wrapper) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      const dot = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'circle'
+      );
+      dot.classList.add('dot');
+      svg.appendChild(dot);
+      wrapper.appendChild(svg);
+      return dot;
+    }
+
+    describe('tabbing', () => {
+      it('should stamp tabindex="0" on circle.dot elements so they are reachable by Tab', () => {
+        const wrapper = renderChart();
+        const dot = addDot(wrapper);
+
+        // The last captured RAF is the dots-stamping callback (no ariaLabel provided)
+        act(() => rafCallbacks[rafCallbacks.length - 1](0));
+
+        expect(dot).toHaveAttribute('tabindex', '0');
+      });
+
+      it('should not overwrite an existing tabindex on circle.dot', () => {
+        const wrapper = renderChart();
+        const dot = addDot(wrapper);
+        dot.setAttribute('tabindex', '-1');
+
+        act(() => rafCallbacks[rafCallbacks.length - 1](0));
+
+        expect(dot).toHaveAttribute('tabindex', '-1');
+      });
+    });
+
+    describe('focus on dot content', () => {
+      it('should set opacity to 1 when a dot receives focus', () => {
+        const wrapper = renderChart();
+        const dot = addDot(wrapper);
+
+        fireEvent.focusIn(dot);
+
+        expect(dot.style.opacity).toBe('1');
+      });
+
+      it('should dispatch mouseover on dot focusin to reveal tooltip data', () => {
+        const wrapper = renderChart();
+        const dot = addDot(wrapper);
+
+        const mouseoverSpy = jest.fn();
+        dot.addEventListener('mouseover', mouseoverSpy);
+
+        fireEvent.focusIn(dot);
+
+        expect(mouseoverSpy).toHaveBeenCalledTimes(1);
+      });
+
+      it('should dispatch mousemove on dot focusin', () => {
+        const wrapper = renderChart();
+        const dot = addDot(wrapper);
+
+        const mousemoveSpy = jest.fn();
+        dot.addEventListener('mousemove', mousemoveSpy);
+
+        fireEvent.focusIn(dot);
+
+        expect(mousemoveSpy).toHaveBeenCalledTimes(1);
+      });
+
+      it('should not change opacity for non-dot circle elements on focusin', () => {
+        const wrapper = renderChart();
+        const nonDot = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'circle'
+        );
+        wrapper.appendChild(nonDot);
+
+        fireEvent.focusIn(nonDot);
+
+        expect(nonDot.style.opacity).toBe('');
+      });
+    });
+
+    describe('data visibility', () => {
+      it('should reset dot opacity when dot loses focus', () => {
+        const wrapper = renderChart();
+        const dot = addDot(wrapper);
+
+        fireEvent.focusIn(dot);
+        expect(dot.style.opacity).toBe('1');
+
+        fireEvent.focusOut(dot);
+        expect(dot.style.opacity).toBe('');
+      });
+
+      it('should dispatch mouseout on dot focusout to hide tooltip', () => {
+        const wrapper = renderChart();
+        const dot = addDot(wrapper);
+
+        const mouseoutSpy = jest.fn();
+        dot.addEventListener('mouseout', mouseoutSpy);
+
+        fireEvent.focusIn(dot);
+        fireEvent.focusOut(dot);
+
+        expect(mouseoutSpy).toHaveBeenCalledTimes(1);
+      });
     });
   });
 });

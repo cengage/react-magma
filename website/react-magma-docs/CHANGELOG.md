@@ -1,46 +1,79 @@
 # Change Log
 
-## 6.0.2-rc.5
+## 6.0.5-rc.0
 
 ### Patch Changes
 
-- 86b130d: docs: Remove the standalone `Accessible Chart Toolbar` page and integrate its content into Getting Started, Chart Types, and Chart Demos.
+- fc5dc3d: chore(release): sync the published 5.2.0 state from main into dev
 
-## 6.0.2-rc.4
-
-### Patch Changes
-
-- Updated dependencies [5666475]
-  - react-magma-dom@5.1.0-rc.4
-  - @react-magma/charts@15.0.0-rc.1
-  - @react-magma/dropzone@15.0.0-rc.1
-
-## 6.0.2-rc.3
+## 6.0.4
 
 ### Patch Changes
 
-- 62337dd: fix(FormGroup): fix small docs issues
+- 957ec07: Release tooling: add a Codex workflow for cross-track fix audits and for preparing, validating, announcing, and synchronizing v5 and v4 releases.
+- 957ec07: feat(charts): add `additionalContent` prop for additional content between toolbar and chart
+- 957ec07: feat(charts): add `titlePrefix` and `titleSuffix` props to the chart toolbar
+- 957ec07: fix(docs): preserve default multi-select i18n aria label templates in the Select internationalization example
+- 957ec07: fix(IconButton): remove redundant `aria-label` from examples
+- 957ec07: fix(docs): prevent doubled padding on MainNav accordion trigger headings
+- 957ec07: fix(RadioGroup): use `containerStyle` in docs example
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+- Updated dependencies [957ec07]
+  - react-magma-dom@5.2.0
+  - @react-magma/charts@14.2.0
+  - @react-magma/dropzone@14.0.1
 
-## 6.0.2-rc.2
+## 6.0.3
 
 ### Patch Changes
 
-- 80535d3: Fix the "Edit in CodeSandbox" button on older documentation version sites. A single deploy workflow now rebuilds and redeploys the docs for old releases (v2/v3 latest and all v4 except the latest) with the durable client-side CodeSandbox fix applied, replacing the previous per-version deploy workflows.
+- 4aebca4: docs(TreeView): clarify that `additionalContent` must render content instead of `null`
+- 4aebca4: chore(ci): temporarily allow Chromatic visual regression checks to fail without blocking CI
+- 4aebca4: docs(CarbonChart): document the `chartToolbar.titleLevel` option
+- 4aebca4: docs(CarbonChart): consolidate accessible chart toolbar guidance into the getting started, chart types, and chart demos pages
+- 4aebca4: docs(FormGroup): clarify when to use FormGroup versus Fieldset and correct the custom styling example
+- 4aebca4: docs(OpenWiki): correct repository guidance for contributors and coding agents
+- 4aebca4: fix(release): synchronize `package-lock.json` with workspace manifests so `npm ci` succeeds
+- 4aebca4: fix(docs): restore Edit in CodeSandbox for older documentation versions and consolidate their deployment workflow
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+  - @react-magma/charts@14.1.0
+  - react-magma-dom@5.1.0
 
-## 6.0.2-rc.1
+## 6.0.2
 
 ### Patch Changes
 
-- b6abe8b: chore(TreeView): add warning for additionalContent prop in TreeView to ensure it renders content (not null)
-
-## 6.0.2-rc.0
-
-### Patch Changes
-
-- Updated dependencies [88d933f]
-  - react-magma-dom@5.0.1-rc.0
-  - @react-magma/charts@14.0.1-rc.0
-  - @react-magma/dropzone@14.0.1-rc.0
+- f065941: Redeploy landing + docs so the v2 link bump to 2.6.2 (/version/2.6.2 routing) takes effect.
+- 1839dfc: Point the v2 documentation link to 2.6.2 in the landing version list (and generated \_redirects) and the previous-versions table, so /version/2.6.2 resolves.
 
 ## 6.0.1
 

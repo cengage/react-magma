@@ -159,7 +159,6 @@ const LeadingIconTemplate: StoryFn<IconButtonProps> = args => (
     iconPosition={ButtonIconPosition.right}
     icon={<SettingsIcon />}
     leadingIcon={<NotificationsIcon />}
-    aria-label="Button"
     {...args}
   >
     Leading Icon

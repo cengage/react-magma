@@ -1,7 +1,19 @@
 import React from 'react';
 
+import { ScaleTypes } from '@carbon/charts-react';
 import { StoryFn, Meta } from '@storybook/react/types-6-0';
-import { Card } from 'react-magma-dom';
+import {
+  Badge,
+  BadgeColor,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+  Card,
+  IconButton,
+  Select,
+  Tooltip,
+} from 'react-magma-dom';
+import { InfoIcon } from 'react-magma-icons';
 
 import { CarbonChart, CarbonChartProps, CarbonChartType } from '../CarbonChart';
 
@@ -148,5 +160,132 @@ export const TableOnly = {
     chartToolbar: {
       fullscreen: false,
     },
+  },
+};
+
+// ---------------------------------------------------------------------------
+// Custom content slots
+// ---------------------------------------------------------------------------
+
+const chartInfoLabel =
+  'Scores are averaged across all attempts in the selected term.';
+
+const ChartInfoTooltip = () => (
+  <Tooltip content={chartInfoLabel}>
+    <IconButton
+      aria-label={chartInfoLabel}
+      icon={<InfoIcon />}
+      size={ButtonSize.small}
+      type={ButtonType.button}
+      variant={ButtonVariant.link}
+    />
+  </Tooltip>
+);
+
+const slotContent = {
+  tooltip: <ChartInfoTooltip />,
+  badge: <Badge color={BadgeColor.success}>Live</Badge>,
+  none: undefined,
+};
+
+interface TitleSlotsArgs extends Omit<CarbonChartProps, 'options'> {
+  content: keyof typeof slotContent;
+  slotPosition: 'titleSuffix' | 'titlePrefix';
+  title: string;
+}
+
+export const TitleSlots = {
+  render: ({ content, slotPosition, title, ...args }: TitleSlotsArgs) => (
+    <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
+      <CarbonChart
+        {...args}
+        options={{
+          title,
+          axes: {
+            left: { mapsTo: 'value' },
+            bottom: { mapsTo: 'group', scaleType: ScaleTypes.LABELS },
+          },
+          height: '400px',
+        }}
+        chartToolbar={{
+          titlePrefix:
+            slotPosition === 'titlePrefix' ? slotContent[content] : undefined,
+          titleSuffix:
+            slotPosition === 'titleSuffix' ? slotContent[content] : undefined,
+        }}
+      />
+    </Card>
+  ),
+  argTypes: {
+    content: {
+      control: { type: 'radio' },
+      options: ['tooltip', 'badge', 'none'],
+    },
+    slotPosition: {
+      control: { type: 'radio' },
+      options: ['titleSuffix', 'titlePrefix'],
+    },
+    title: { control: { type: 'text' } },
+  },
+  args: {
+    content: 'tooltip',
+    isInverse: false,
+    slotPosition: 'titleSuffix',
+    title: 'Chapter Performance',
+    type: CarbonChartType.bar,
+    dataSet: barDataSet,
+  },
+};
+
+const chapterFilters = [
+  { label: 'All Chapters', value: 'all' },
+  { label: 'Chapters 1-2', value: 'ch-1-2' },
+  { label: 'Chapters 3-4', value: 'ch-3-4' },
+];
+
+const chaptersByFilter: Record<string, string[]> = {
+  'ch-1-2': ['Chapter 1', 'Chapter 2'],
+  'ch-3-4': ['Chapter 3', 'Chapter 4'],
+};
+
+export const AdditionalContent = {
+  render: ({ isInverse }: Pick<CarbonChartProps, 'isInverse'>) => {
+    const [filter, setFilter] = React.useState(chapterFilters[0]);
+    const chapters = chaptersByFilter[filter.value];
+    const dataSet = chapters
+      ? barDataSet.filter(row => chapters.includes(row.group))
+      : barDataSet;
+
+    return (
+      <Card isInverse={isInverse} style={{ padding: '12px' }}>
+        <CarbonChart
+          isInverse={isInverse}
+          type={CarbonChartType.bar}
+          dataSet={dataSet}
+          options={{
+            title: 'Chapter Performance',
+            axes: {
+              left: { mapsTo: 'value' },
+              bottom: { mapsTo: 'group', scaleType: ScaleTypes.LABELS },
+            },
+            height: '400px',
+          }}
+          chartToolbar={{ titleSuffix: <ChartInfoTooltip /> }}
+          additionalContent={
+            <Select
+              items={chapterFilters}
+              labelText="Filter by"
+              selectedItem={filter}
+              onSelectedItemChange={changes =>
+                setFilter(changes.selectedItem ?? chapterFilters[0])
+              }
+            />
+          }
+        />
+      </Card>
+    );
+  },
+  args: {
+    isInverse: false,
   },
 };
