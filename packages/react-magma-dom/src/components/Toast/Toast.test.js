@@ -36,6 +36,13 @@ describe('Toast', () => {
 
     expect(getByTestId(testId)).toBeInTheDocument();
     expect(getByTestId(testId)).toHaveStyleRule('bottom', '20px');
+    expect(getByTestId(testId).firstChild).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size02.fontSize
+    );
+    expect(
+      getByTestId(testId).querySelector('[role="img"] svg')
+    ).toHaveAttribute('width', `${magma.iconSizes.small}`);
   });
 
   it('should render toast content', () => {

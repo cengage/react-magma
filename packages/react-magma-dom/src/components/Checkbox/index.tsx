@@ -47,7 +47,7 @@ export interface CheckboxProps
   checked?: boolean;
   /**
    * Hex code for the background color
-   * @default #3942B0 (theme.colors.primary)
+   * @default #007D95 (theme.colors.cyan700)
    */
   color?: string;
   /**
@@ -391,7 +391,7 @@ export const Checkbox = React.memo(
     const context = React.useContext(FormGroupContext);
 
     const {
-      color = theme.colors.brand.navy,
+      color = theme.colors.cyan700,
       containerStyle,
       disabled,
       errorMessage,

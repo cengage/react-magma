@@ -6,11 +6,106 @@ import userEvent from '@testing-library/user-event';
 import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
 import { getCalendarMonthWeeks } from './utils';
+import { magma } from '../../theme/magma';
 
 const keyBoardInstructionsText =
   'Keyboard instructions for calendar widget Keyboard instructions';
 
 describe('Calendar Month', () => {
+  it('should use the updated regular toolbar and weekday colors', () => {
+    const focusedDate = new Date(2019, 0, 18);
+    const { getByLabelText, getByTestId } = render(
+      <CalendarContext.Provider
+        value={{
+          buildCalendarMonth: getCalendarMonthWeeks,
+          focusedDate,
+          helperInformationShown: false,
+          setDateFocused: jest.fn(),
+          onPrevMonthClick: jest.fn(),
+          onNextMonthClick: jest.fn(),
+          setFocusedTodayDate: jest.fn(),
+        }}
+      >
+        <CalendarMonth calendarOpened />
+      </CalendarContext.Provider>
+    );
+
+    expect(getByTestId('calendar-toolbar')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral100
+    );
+    expect(getByTestId('calendar-toolbar')).toHaveStyleRule(
+      'border-bottom',
+      `1px solid ${magma.colors.neutral200}`
+    );
+    expect(getByTestId('todayWrapper')).toHaveStyleRule(
+      'color',
+      magma.colors.cyan700
+    );
+    expect(getByTestId('todayWrapper')).toHaveStyleRule(
+      'color',
+      magma.colors.cyan800,
+      { target: ':hover' }
+    );
+    expect(getByLabelText('Sunday')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral700
+    );
+    expect(getByLabelText(/close calendar/i)).toHaveStyle(
+      `color: ${magma.colors.brand.navy}`
+    );
+  });
+
+  it('should use the updated inverse calendar and weekday colors', () => {
+    const focusedDate = new Date(2019, 0, 18);
+    const { getByLabelText, getByTestId } = render(
+      <CalendarContext.Provider
+        value={{
+          buildCalendarMonth: getCalendarMonthWeeks,
+          focusedDate,
+          helperInformationShown: false,
+          isInverse: true,
+          setDateFocused: jest.fn(),
+          onPrevMonthClick: jest.fn(),
+          onNextMonthClick: jest.fn(),
+          setFocusedTodayDate: jest.fn(),
+        }}
+      >
+        <CalendarMonth calendarOpened />
+      </CalendarContext.Provider>
+    );
+
+    expect(getByTestId('calendarMonthContainer')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral1100
+    );
+    expect(getByTestId('monthContainer')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral1100
+    );
+    expect(getByLabelText('Sunday')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral500
+    );
+    expect(getByTestId('calendar-toolbar')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral1100
+    );
+    expect(getByTestId('calendar-toolbar')).toHaveStyleRule(
+      'border-bottom',
+      `1px solid ${magma.colors.neutral800}`
+    );
+    expect(getByTestId('todayWrapper')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.cyan
+    );
+    expect(getByTestId('todayWrapper')).toHaveStyleRule(
+      'color',
+      magma.colors.cyan400,
+      { target: ':hover' }
+    );
+  });
+
   describe('focus trap', () => {
     it('should handle tab and loop it through the calendar month', async () => {
       const focusedDate = new Date(2019, 0, 18);

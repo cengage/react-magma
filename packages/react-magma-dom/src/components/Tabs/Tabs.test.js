@@ -94,6 +94,10 @@ describe('Tabs', () => {
     const tabsContainer = getByTestId(testId);
     expect(tabsContainer).toHaveAttribute('orientation', 'horizontal');
     expect(tabsContainer).toHaveStyleRule('width', '100%');
+    expect(tabsContainer).toHaveStyleRule(
+      'border-bottom',
+      `1px solid ${magma.colors.neutral200}`
+    );
     expect(container.querySelector("[role='tablist']")).toHaveAttribute(
       'aria-label',
       'Tabs, use the right and left arrow keys to activate other tabs'
@@ -117,11 +121,53 @@ describe('Tabs', () => {
 
     expect(tabsContainer).toHaveAttribute('orientation', 'vertical');
     expect(tabsContainer).toHaveStyleRule('width', 'auto');
+    expect(tabsContainer).toHaveStyleRule(
+      'border-left',
+      `1px solid ${magma.colors.neutral200}`
+    );
     expect(container.querySelector("[role='tablist']")).toHaveAttribute(
       'aria-label',
       'Tabs, use the down and up arrow keys to activate other tabs'
     );
     expect(getAllByTestId('tabContainer')[0]).toHaveStyleRule('height', 'auto');
+  });
+
+  it('should move or hide the divider border', () => {
+    const testId = 'test-id';
+    const { getByTestId, rerender } = render(
+      <Tabs testId={testId} borderPosition="top">
+        <Tab>Tab 1</Tab>
+      </Tabs>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border-top',
+      `1px solid ${magma.colors.neutral200}`
+    );
+
+    rerender(
+      <Tabs
+        testId={testId}
+        borderPosition="right"
+        orientation="vertical"
+        isInverse
+      >
+        <Tab>Tab 1</Tab>
+      </Tabs>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border-right',
+      `1px solid ${magma.colors.neutral800}`
+    );
+
+    rerender(
+      <Tabs testId={testId} hasBorder={false}>
+        <Tab>Tab 1</Tab>
+      </Tabs>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule('border-bottom', '0');
   });
 
   it('should render scroll buttons if orientation horizontal', () => {
@@ -134,6 +180,55 @@ describe('Tabs', () => {
     );
     expect(getByTestId('buttonNext')).toBeDefined();
     expect(getByTestId('buttonPrev')).toBeDefined();
+    expect(getByTestId('buttonPrev')).toHaveStyleRule('width', '40px');
+    expect(getByTestId('buttonNext')).toHaveStyleRule('width', '40px');
+    expect(getByTestId('buttonPrev')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
+    expect(getByTestId('buttonNext')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
+    expect(getByTestId('buttonPrev')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral0
+    );
+    expect(getByTestId('buttonNext')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral0
+    );
+    expect(getByTestId('buttonPrev')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral200,
+      { target: ':hover' }
+    );
+    expect(getByTestId('buttonNext')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral200,
+      { target: ':hover' }
+    );
+    expect(getByTestId('buttonPrev')).toHaveStyleRule(
+      'border-right',
+      `1px solid ${magma.colors.neutral200}`
+    );
+    expect(getByTestId('buttonNext')).toHaveStyleRule(
+      'border-left',
+      `1px solid ${magma.colors.neutral200}`
+    );
+  });
+
+  it('should size vertical scroll buttons to 40 pixels high', () => {
+    const { getByTestId } = render(
+      <Tabs orientation="vertical">
+        <Tab>Tab 1</Tab>
+      </Tabs>
+    );
+
+    expect(getByTestId('buttonPrev')).toHaveStyleRule('height', '40px');
+    expect(getByTestId('buttonNext')).toHaveStyleRule('height', '40px');
+    expect(getByTestId('buttonPrev')).toHaveStyleRule('width', '100%');
+    expect(getByTestId('buttonNext')).toHaveStyleRule('width', '100%');
   });
 
   it('should render tabs with textTransform prop', () => {
@@ -148,16 +243,16 @@ describe('Tabs', () => {
 
     expect(getByText('Tab 1')).toBeInTheDocument();
     expect(getByText('Tab 2')).toBeInTheDocument();
-    expect(getByText('Tab 1')).toHaveStyleRule('text-transform', 'uppercase');
+    expect(getByText('Tab 1')).toHaveStyleRule('text-transform', 'none');
 
     rerender(
-      <Tabs textTransform="none">
+      <Tabs textTransform="uppercase">
         <Tab>Tab 1</Tab>
         <Tab>Tab 2</Tab>
       </Tabs>
     );
 
-    expect(getByText('Tab 1')).toHaveStyleRule('text-transform', 'none');
+    expect(getByText('Tab 1')).toHaveStyleRule('text-transform', 'uppercase');
   });
 
   it('should render centered tabs', () => {
@@ -216,11 +311,11 @@ describe('Tabs', () => {
   });
 
   it('should render default active tab styles', () => {
-    const { getByText } = render(
+    const { getByText, getByTestId } = render(
       <TabsContainer activeIndex={0}>
         <Tabs>
-          <Tab>Tab 1</Tab>
-          <Tab>Tab 2</Tab>
+          <Tab testId="active-tab">Tab 1</Tab>
+          <Tab testId="inactive-tab">Tab 2</Tab>
         </Tabs>
       </TabsContainer>
     );
@@ -228,6 +323,36 @@ describe('Tabs', () => {
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('bottom', '0', {
       target: ':after',
     });
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule(
+      'background',
+      magma.colors.brand.amber,
+      { target: ':after' }
+    );
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule(
+      'border-radius',
+      '0',
+      { target: ':after' }
+    );
+    expect(getByTestId('active-tab')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
+    expect(getByTestId('active-tab')).toHaveStyleRule('font-weight', '600');
+    expect(getByTestId('inactive-tab')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral700
+    );
+    expect(getByTestId('inactive-tab')).toHaveStyleRule('font-weight', '400');
+    expect(getByTestId('inactive-tab')).toHaveStyleRule(
+      'background-color',
+      magma.colors.neutral200,
+      { target: ':hover' }
+    );
+    expect(getByTestId('inactive-tab')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy,
+      { target: ':hover' }
+    );
   });
 
   it('should render active tab styles for top border position', () => {
@@ -284,7 +409,7 @@ describe('Tabs', () => {
 
     expect(getByText('Tab 1').parentElement).toHaveStyleRule(
       'background',
-      magma.colors.tertiary,
+      magma.colors.brand.amber,
       {
         target: ':after',
       }
@@ -296,6 +421,32 @@ describe('Tabs', () => {
     expect(getByTestId('buttonNext')).toHaveStyleRule(
       'color',
       magma.colors.neutral0
+    );
+    expect(getByTestId('buttonPrev')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral1100
+    );
+    expect(getByTestId('buttonNext')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral1100
+    );
+    expect(getByTestId('buttonPrev')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral900,
+      { target: ':hover' }
+    );
+    expect(getByTestId('buttonNext')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral900,
+      { target: ':hover' }
+    );
+    expect(getByTestId('buttonPrev')).toHaveStyleRule(
+      'border-right',
+      `1px solid ${magma.colors.neutral800}`
+    );
+    expect(getByTestId('buttonNext')).toHaveStyleRule(
+      'border-left',
+      `1px solid ${magma.colors.neutral800}`
     );
   });
 

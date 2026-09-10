@@ -148,7 +148,7 @@ function buildCardBoxShadow(props: CardProps & { theme: ThemeInterface }) {
   }
 
   if (props.hasDropShadow) {
-    shadows.push('0 2px 6px 0 rgba(0,0,0,0.18)');
+    shadows.push('0 2px 6px 0 rgba(0,0,0,0.10)');
   }
 
   return shadows.length ? shadows.join(', ') : '0 0 0';

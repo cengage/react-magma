@@ -64,11 +64,11 @@ function buildProgressBarBackground(props) {
     ) {
       return props.color;
     } else if (props.color === ProgressBarColor.primary) {
-      return props.theme.colors.tertiary;
+      return props.theme.colors.brand.cyan;
     } else if (props.color === ProgressBarColor.danger) {
-      return props.theme.colors.danger300;
+      return props.theme.colors.red500;
     } else if (props.color === ProgressBarColor.success) {
-      return props.theme.colors.success300;
+      return props.theme.colors.green500;
     }
   }
   if (
@@ -95,11 +95,7 @@ const Track = styled.div<ProgressBarProps>`
     props.isInverse
       ? transparentize(0.75, props.theme.colors.neutral900)
       : props.theme.colors.neutral0};
-  box-shadow: inset 0 0 0 1px
-    ${props =>
-      props.isInverse
-        ? transparentize(0.5, props.theme.colors.neutral0)
-        : props.theme.colors.neutral};
+  box-shadow: inset 0 0 0 1px ${props => props.theme.colors.neutral600};
   border-radius: 50em;
   overflow: hidden;
   display: flex;
@@ -149,14 +145,18 @@ const Bar = styled.div<ProgressBarProps>`
   }
 `;
 
-const Percentage = styled.span`
+const Percentage = styled.span<ProgressBarProps>`
+  color: ${props =>
+    props.isInverse ? undefined : props.theme.colors.brand.navy};
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-left: ${props => props.theme.spaceScale.spacing03};
 `;
 
-const TopPercentage = styled.div`
+const TopPercentage = styled.div<ProgressBarProps>`
+  color: ${props =>
+    props.isInverse ? undefined : props.theme.colors.brand.navy};
   font-size: ${props => props.theme.typeScale.size05.fontSize};
   line-height: ${props => props.theme.typeScale.size05.lineHeight};
   margin-bottom: ${props => props.theme.spaceScale.spacing03};
@@ -198,7 +198,9 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
         isLoadingIndicator={isLoadingIndicator}
       >
         {isLoadingIndicator && (
-          <TopPercentage theme={theme}>{percentageValue}%</TopPercentage>
+          <TopPercentage isInverse={isInverse} theme={theme}>
+            {percentageValue}%
+          </TopPercentage>
         )}
         <Track
           data-testid={testId}
@@ -220,7 +222,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
           />
         </Track>
         {isLabelVisible ? (
-          <Percentage id={labelId} theme={theme}>
+          <Percentage id={labelId} isInverse={isInverse} theme={theme}>
             {percentageValue}%
           </Percentage>
         ) : (

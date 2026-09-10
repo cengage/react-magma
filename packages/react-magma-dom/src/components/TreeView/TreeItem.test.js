@@ -7,7 +7,7 @@ import { transparentize } from 'polished';
 import { magma } from '../../theme/magma';
 import { Button } from '../Button';
 
-import { TreeItem, TreeView } from '.';
+import { TreeItem, TreeView, TreeViewSelectable } from '.';
 
 const labelText = 'Tree Item Node 0';
 const itemId = 'node0';
@@ -121,7 +121,7 @@ describe('TreeItem', () => {
 
       expect(getByTestId(`${testId}-label`)).toHaveStyleRule(
         'color',
-        transparentize(0.6, magma.colors.neutral500)
+        magma.colors.neutral500
       );
     });
 
@@ -145,9 +145,53 @@ describe('TreeItem', () => {
 
       expect(getByTestId(`${testId}-expand`)).toHaveStyleRule(
         'color',
-        transparentize(0.6, magma.colors.neutral500)
+        magma.colors.neutral500
       );
     });
+  });
+
+  describe('icons', () => {
+    it('uses the regular icon color', () => {
+      const { getByTestId } = render(
+        <TreeView>
+          <TreeItem label={labelText} itemId="parent" testId={testId}>
+            <TreeItem label="Child" itemId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId(`${testId}-expand`)).toHaveStyleRule(
+        'color',
+        magma.colors.brand.navy
+      );
+    });
+  });
+
+  it('uses the selected checkbox color for branch and leaf items', () => {
+    const { container } = render(
+      <TreeView
+        selectable={TreeViewSelectable.multi}
+        initialExpandedItems={['parent']}
+        preselectedItems={[
+          { itemId: 'parent', checkedStatus: 'checked' },
+          { itemId: 'child', checkedStatus: 'checked' },
+        ]}
+      >
+        <TreeItem label="Parent" itemId="parent">
+          <TreeItem label="Child" itemId="child" />
+        </TreeItem>
+      </TreeView>
+    );
+
+    const parentCheckbox = container.querySelector(
+      '[data-testid="parent-checkbox"] + label span'
+    );
+    const childCheckbox = container.querySelector(
+      '[data-testid="child-checkbox"] + label span'
+    );
+
+    expect(parentCheckbox).toHaveStyleRule('color', magma.colors.cyan700);
+    expect(childCheckbox).toHaveStyleRule('color', magma.colors.cyan700);
   });
 
   describe('onClick', () => {
@@ -217,7 +261,23 @@ describe('TreeItem', () => {
       expect(getByTestId(testId)).toBeInTheDocument();
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        transparentize(0.95, magma.colors.neutral900),
+        transparentize(0.1, magma.colors.neutral150),
+        {
+          target: ':hover',
+        }
+      );
+    });
+
+    it('should use the inverse hover color', () => {
+      const { getByTestId } = render(
+        <TreeView isInverse>
+          <TreeItem label={labelText} testId={testId} itemId={itemId} />
+        </TreeView>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'background',
+        transparentize(0.5, magma.colors.neutral900),
         {
           target: ':hover',
         }

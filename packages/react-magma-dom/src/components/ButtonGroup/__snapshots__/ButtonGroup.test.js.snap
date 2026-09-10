@@ -1295,7 +1295,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   border: 1px solid #DEE5EE;
   border-left-width: 1px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
   font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
@@ -1627,7 +1627,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   border: 1px solid #DEE5EE;
   border-left-width: 1px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
   font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
@@ -2171,7 +2171,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   border: 1px solid #DEE5EE;
   border-left-width: 1px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
   font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
@@ -2557,7 +2557,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   border: 1px solid #DEE5EE;
   border-left-width: 1px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
   font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
@@ -3106,7 +3106,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   border: 1px solid #DEE5EE;
   border-left-width: 1px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
   font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
@@ -3487,7 +3487,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   border: 1px solid #DEE5EE;
   border-left-width: 1px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
   font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
@@ -4092,7 +4092,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   border: 1px solid #DEE5EE;
   border-left-width: 1px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
   font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;
@@ -4539,7 +4539,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   border: 1px solid #DEE5EE;
   border-left-width: 1px;
   border-radius: 8px;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
   font-family: Inter,Arial,Helvetica,sans-serif;
   display: -webkit-box;

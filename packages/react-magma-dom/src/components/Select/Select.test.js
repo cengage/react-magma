@@ -32,6 +32,44 @@ describe('Select', () => {
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
+  it('should match the regular dropdown menu styling', async () => {
+    const { container, getByLabelText, getByRole } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    await userEvent.click(getByLabelText(labelText, { selector: 'div' }));
+
+    const menu = container.querySelector('ul').parentElement;
+    const option = getByRole('option', { name: items[0] });
+
+    expect(menu).toHaveStyleRule('background', magma.colors.neutral0);
+    expect(menu).toHaveStyleRule('border-color', magma.colors.neutral200);
+    expect(menu).toHaveStyleRule('border-radius', magma.borderRadiusSmall);
+    expect(option).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(option).toHaveStyleRule('background', magma.colors.neutral100, {
+      target: ':hover',
+    });
+  });
+
+  it('should match the inverse dropdown menu styling', async () => {
+    const { container, getByLabelText, getByRole } = render(
+      <Select isInverse labelText={labelText} items={items} />
+    );
+
+    await userEvent.click(getByLabelText(labelText, { selector: 'div' }));
+
+    const menu = container.querySelector('ul').parentElement;
+    const option = getByRole('option', { name: items[0] });
+
+    expect(menu).toHaveStyleRule('background', magma.colors.neutral1100);
+    expect(menu).toHaveStyleRule('border-color', magma.colors.neutral800);
+    expect(menu).toHaveStyleRule('border-radius', magma.borderRadiusSmall);
+    expect(option).toHaveStyleRule('color', magma.colors.neutral0);
+    expect(option).toHaveStyleRule('background', magma.colors.neutral1000, {
+      target: ':hover',
+    });
+  });
+
   it('should render the dropdown indicator in brand navy', () => {
     const { getByTestId } = render(
       <Select labelText={labelText} items={items} />
@@ -938,7 +976,7 @@ describe('Select', () => {
     });
 
     it('selected item should have aria-selected attribute set to true', async () => {
-      const { getByLabelText, getByRole } = render(
+      const { getByLabelText, getByRole, getByTestId } = render(
         <Select labelText={labelText} items={items} />
       );
 
@@ -954,6 +992,11 @@ describe('Select', () => {
         'aria-selected',
         'true'
       );
+      expect(
+        getByRole('option', { name: /Red/i }).contains(
+          getByTestId('selectedItemCheck')
+        )
+      ).toBe(true);
 
       await userEvent.keyboard('{ArrowDown}');
       await userEvent.keyboard('{Enter}');
@@ -967,6 +1010,11 @@ describe('Select', () => {
         'aria-selected',
         'true'
       );
+      expect(
+        getByRole('option', { name: /Blue/i }).contains(
+          getByTestId('selectedItemCheck')
+        )
+      ).toBe(true);
     });
   });
 });

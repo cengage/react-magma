@@ -35,7 +35,7 @@ export interface RadioProps
   css?: any; // Adding css prop to fix emotion error
   /**
    * Hex code for the background color
-   * @default theme.colors.primary
+   * @default theme.colors.cyan700
    */
   color?: string;
   /**
@@ -88,13 +88,15 @@ function buildRadioIconColor(props) {
     return props.theme.colors.neutral300;
   }
   if (props.isInverse) {
+    if (props.isChecked) {
+      return props.theme.colors.brand.cyan;
+    }
+
     if (props.hasError) {
       return props.theme.colors.neutral0;
     }
 
-    return props.isChecked
-      ? props.theme.colors.brand.cyan
-      : props.theme.colors.neutral0;
+    return props.theme.colors.neutral0;
   }
   if (props.isChecked) {
     return props.color;
@@ -163,7 +165,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
     const context = React.useContext(RadioContext);
     const theme = React.useContext(ThemeContext);
     const {
-      color = theme.colors.brand.navy,
+      color = theme.colors.cyan700,
       containerStyle,
       disabled,
       inputStyle,

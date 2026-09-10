@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { transparentize } from 'polished';
 import { CloseIcon, KeyboardIcon } from 'react-magma-icons';
 
 import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
@@ -30,7 +29,7 @@ interface CalendarMonthProps {
 const CalendarContainer = styled.div<{ isInverse?: boolean }>`
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.primary500
+      ? props.theme.colors.neutral1100
       : props.theme.colors.neutral0};
   overflow: visible;
 
@@ -43,7 +42,7 @@ const MonthContainer = styled.div<{ isInverse?: boolean }>`
   position: relative;
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.primary500
+      ? props.theme.colors.neutral1100
       : props.theme.colors.neutral0};
   font-family: ${props => props.theme.bodyFont};
   text-align: center;
@@ -64,8 +63,8 @@ const Th = styled.th<{ isInverse?: boolean }>`
   border: 0;
   color: ${props =>
     props.isInverse
-      ? transparentize(0.3, props.theme.colors.neutral0)
-      : props.theme.colors.neutral500};
+      ? props.theme.colors.neutral500
+      : props.theme.colors.neutral700};
   font-size: ${props => props.theme.typeScale.size01.fontSize};
   line-height: ${props => props.theme.typeScale.size01.lineHeight};
   padding: 0;
@@ -100,14 +99,14 @@ const HeaderWrapper = styled.div<{
   display: flex;
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.primary600
-      : props.theme.colors.neutral200};
+      ? props.theme.colors.neutral1100
+      : props.theme.colors.neutral100};
   padding: 11px ${props => props.theme.spaceScale.spacing03};
   border-bottom: 1px solid
     ${props =>
       props.isInverse
-        ? props.theme.colors.primary400
-        : props.theme.colors.neutral300};
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
   width: 100%;
   height: 44px;
 `;
@@ -139,14 +138,14 @@ const TodayWrapper = styled.div<{
   font-weight: 600;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.tertiary500
-      : props.theme.colors.primary500};
+      ? props.theme.colors.brand.cyan
+      : props.theme.colors.cyan700};
 
   &:hover {
     color: ${props =>
       props.isInverse
-        ? props.theme.colors.neutral0
-        : props.theme.colors.primary600};
+        ? props.theme.colors.cyan400
+        : props.theme.colors.cyan800};
   }
 `;
 
@@ -261,7 +260,11 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
               </tbody>
             </Table>
             {props.dateTimePickerContent && props.dateTimePickerContent}
-            <HeaderWrapper theme={theme} isInverse={context.isInverse}>
+            <HeaderWrapper
+              data-testid="calendar-toolbar"
+              theme={theme}
+              isInverse={context.isInverse}
+            >
               <Tooltip
                 content={i18n.datePicker.helpModal.tooltipContent}
                 tooltipStyle={{ position: 'fixed' }}
@@ -279,7 +282,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
                     style={{
                       color: context.isInverse
                         ? theme.colors.neutral0
-                        : theme.colors.neutral900,
+                        : theme.colors.brand.navy,
                     }}
                   />
                 </HelperButton>
@@ -317,7 +320,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
                   style={{
                     color: context.isInverse
                       ? theme.colors.neutral0
-                      : theme.colors.neutral900,
+                      : theme.colors.brand.navy,
                   }}
                 />
               </CloseButton>

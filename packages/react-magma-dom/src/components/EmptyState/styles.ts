@@ -10,13 +10,13 @@ export function getIconBackground(props: {
 }): string {
   if (props.isInverse) {
     return props.isDanger
-      ? props.theme.colors.danger700
-      : props.theme.colors.primary500;
+      ? props.theme.colors.red900
+      : props.theme.colors.neutral900;
   }
 
   return props.isDanger
-    ? props.theme.colors.danger100
-    : props.theme.colors.primary100;
+    ? props.theme.colors.red100
+    : props.theme.colors.neutral200;
 }
 
 export function getIllustrationIconColor(props: {
@@ -25,12 +25,14 @@ export function getIllustrationIconColor(props: {
   theme: ThemeInterface;
 }): string {
   if (props.isInverse) {
-    return props.theme.colors.neutral0;
+    return props.isDanger
+      ? props.theme.colors.red400
+      : props.theme.colors.neutral0;
   }
 
   return props.isDanger
-    ? props.theme.colors.danger500
-    : props.theme.colors.primary500;
+    ? props.theme.colors.red600
+    : props.theme.colors.brand.navy;
 }
 
 export const StyledEmptyState = styled('div', {

@@ -122,7 +122,7 @@ describe('Radio', () => {
 
     expect(label).toBeInTheDocument();
     expect(label).toHaveStyleRule('color', magma.colors.brand.navy);
-    expect(span).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(span).toHaveStyleRule('color', magma.colors.cyan700);
   });
 
   it('should render radio button', () => {
@@ -316,6 +316,27 @@ describe('Radio', () => {
     expect(span).toHaveStyleRule(
       'box-shadow',
       `0 0 0 2px ${magma.colors.red500}`
+    );
+  });
+
+  it('should keep the cyan icon on a checked inverse radio with an error', () => {
+    const { container } = render(
+      <RadioContext.Provider
+        value={{
+          name: 'colors',
+          hasError: true,
+          isInverse: true,
+          selectedValue: 'blue',
+          onChange: jest.fn(),
+        }}
+      >
+        <Radio labelText="blue" name="colors" value="blue" />
+      </RadioContext.Provider>
+    );
+
+    expect(container.querySelector('span')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.cyan
     );
   });
 

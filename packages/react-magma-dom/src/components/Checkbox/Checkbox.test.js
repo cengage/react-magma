@@ -30,14 +30,14 @@ describe('Checkbox', () => {
     expect(span).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
-  it('should render a checked checkbox with brand colors', () => {
+  it('should render a checked checkbox with the selected color', () => {
     const label = 'test label';
     const { container, getByText } = render(
       <Checkbox checked labelText={label} />
     );
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(span).toHaveStyleRule('color', magma.colors.cyan700);
     expect(getByText(label)).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 

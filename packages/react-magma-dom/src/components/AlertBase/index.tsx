@@ -170,6 +170,9 @@ const StyledAlert = styled.div<AlertBaseProps>`
       animation: ${props.isExiting
         ? `slideout ${transitionDuration}ms`
         : `slidein ${transitionDuration}ms`};
+      font-size: ${props.theme.typeScale.size02.fontSize};
+      letter-spacing: ${props.theme.typeScale.size02.letterSpacing};
+      line-height: ${props.theme.typeScale.size02.lineHeight};
       min-width: 375px;
       margin: 0 auto;
 
@@ -389,7 +392,7 @@ function renderIcon(
       isToast={isToast}
       theme={theme}
     >
-      <Icon size={theme.iconSizes.medium} />
+      <Icon size={isToast ? theme.iconSizes.small : theme.iconSizes.medium} />
     </IconWrapper>
   );
 }

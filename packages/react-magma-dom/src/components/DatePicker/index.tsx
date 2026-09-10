@@ -13,7 +13,6 @@ import {
   setHours,
   startOfDay,
 } from 'date-fns';
-import { transparentize } from 'polished';
 import { EventIcon } from 'react-magma-icons';
 
 import { CalendarContext } from './CalendarContext';
@@ -178,14 +177,14 @@ const DatePickerCalendar = styled.div<{
   border: 1px solid
     ${props =>
       props.isInverse
-        ? transparentize(0.5, props.theme.colors.neutral0)
-        : props.theme.colors.neutral300};
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
   border-radius: ${props => props.theme.borderRadius};
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral0
-      : props.theme.colors.neutral700};
+      : props.theme.colors.brand.navy};
   display: ${props => (props.opened ? 'block' : 'none')};
   margin: ${props => props.theme.spaceScale.spacing01} 0px;
   opacity: ${props => (props.opened ? '1' : '0')};

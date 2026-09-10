@@ -96,8 +96,8 @@ const pulse = keyframes`
 
 function buildBaseColor(props: SkeletonProps) {
   return props.isInverse
-    ? transparentize(0.8, props.theme.colors.neutral0)
-    : props.theme.colors.neutral300;
+    ? props.theme.colors.neutral1000
+    : props.theme.colors.neutral200;
 }
 
 function buildShimmerColor(props: SkeletonProps) {

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { render, act } from '@testing-library/react';
-import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
@@ -233,7 +232,7 @@ describe('Stepper', () => {
 
       expect(step).toHaveStyleRule(
         'box-shadow',
-        `inset 0 0 0 2px ${magma.colors.primary500}`
+        `inset 0 0 0 2px ${magma.colors.brand.navy}`
       );
     });
 
@@ -263,7 +262,7 @@ describe('Stepper', () => {
 
       const step = getByTestId(testId).querySelector('span');
 
-      expect(step).toHaveStyleRule('background', magma.colors.primary500);
+      expect(step).toHaveStyleRule('background', magma.colors.brand.navy);
     });
 
     it('should have a error styled circle', () => {
@@ -276,7 +275,7 @@ describe('Stepper', () => {
 
       const step = getByTestId(testId).querySelector('span');
 
-      expect(step).toHaveStyleRule('background', magma.colors.danger500);
+      expect(step).toHaveStyleRule('background', magma.colors.red600);
     });
 
     it('should have a primary label', () => {
@@ -290,7 +289,7 @@ describe('Stepper', () => {
       const label = getByText(TEXT);
 
       expect(label).toHaveStyleRule('font-size', '14px');
-      expect(label).toHaveStyleRule('color', magma.colors.neutral700);
+      expect(label).toHaveStyleRule('color', magma.colors.brand.navy);
       expect(label).toHaveStyleRule('font-weight', '600');
     });
 
@@ -305,7 +304,7 @@ describe('Stepper', () => {
       const secondaryLabel = getByText(TEXT);
 
       expect(secondaryLabel).toHaveStyleRule('font-size', '12px');
-      expect(secondaryLabel).toHaveStyleRule('color', magma.colors.neutral500);
+      expect(secondaryLabel).toHaveStyleRule('color', magma.colors.neutral700);
     });
 
     it('should have an incomplete styled separator', () => {
@@ -333,7 +332,7 @@ describe('Stepper', () => {
       const separator = getByTestId(testId).nextElementSibling;
 
       expect(separator).toHaveStyleRule('height', '2px');
-      expect(separator).toHaveStyleRule('background', magma.colors.primary500);
+      expect(separator).toHaveStyleRule('background', magma.colors.brand.navy);
     });
 
     describe('Inverse', () => {
@@ -349,7 +348,7 @@ describe('Stepper', () => {
 
         expect(step).toHaveStyleRule(
           'box-shadow',
-          `inset 0 0 0 2px ${magma.colors.tertiary500}`
+          `inset 0 0 0 2px ${magma.colors.brand.cyan}`
         );
       });
 
@@ -365,7 +364,7 @@ describe('Stepper', () => {
 
         expect(step).toHaveStyleRule(
           'box-shadow',
-          `inset 0 0 0 2px ${magma.colors.primary400}`
+          `inset 0 0 0 2px ${magma.colors.neutral900}`
         );
       });
 
@@ -379,7 +378,10 @@ describe('Stepper', () => {
 
         const step = getByTestId(testId).querySelector('span');
 
-        expect(step).toHaveStyleRule('background', magma.colors.tertiary500);
+        expect(step).toHaveStyleRule('background', magma.colors.brand.cyan);
+        expect(step).toHaveStyleRule('color', magma.colors.brand.navy, {
+          target: 'svg',
+        });
       });
 
       it('should have an inverse error styled circle', () => {
@@ -392,7 +394,7 @@ describe('Stepper', () => {
 
         const step = getByTestId(testId).querySelector('span');
 
-        expect(step).toHaveStyleRule('background', magma.colors.danger500);
+        expect(step).toHaveStyleRule('background', magma.colors.red500);
       });
 
       it('should have an inverse primary label', () => {
@@ -420,7 +422,7 @@ describe('Stepper', () => {
 
         expect(secondaryLabel).toHaveStyleRule(
           'color',
-          transparentize(0.3, magma.colors.neutral0)
+          magma.colors.neutral500
         );
       });
 
@@ -436,7 +438,7 @@ describe('Stepper', () => {
 
         expect(separator).toHaveStyleRule(
           'background',
-          magma.colors.primary400
+          magma.colors.neutral900
         );
       });
 
@@ -452,7 +454,7 @@ describe('Stepper', () => {
 
         expect(separator).toHaveStyleRule(
           'background',
-          magma.colors.tertiary500
+          magma.colors.brand.cyan
         );
       });
     });
@@ -502,6 +504,10 @@ describe('Stepper', () => {
         );
 
         expect(getByTestId(`${testId}-stepper-summary`)).toBeVisible();
+        expect(getByTestId(`${testId}-stepper-summary`)).toHaveStyleRule(
+          'color',
+          magma.colors.neutral700
+        );
         expect(getByTestId(testId)).toHaveTextContent('Step 1 of 2');
       });
 
@@ -518,7 +524,7 @@ describe('Stepper', () => {
         );
         const label1 = getByText(`${TEXT}-1`);
 
-        expect(label1).toHaveStyleRule('color', magma.colors.neutral700);
+        expect(label1).toHaveStyleRule('color', magma.colors.brand.navy);
         expect(label1).toHaveStyleRule(
           'font-size',
           magma.typographyVisualStyles.bodySmall.desktop.fontSize
@@ -575,7 +581,7 @@ describe('Stepper', () => {
         });
         const label1 = getByText(`${TEXT}-1`);
 
-        expect(label1).toHaveStyleRule('color', magma.colors.neutral700);
+        expect(label1).toHaveStyleRule('color', magma.colors.brand.navy);
         expect(label1).toHaveStyleRule(
           'font-size',
           magma.typographyVisualStyles.bodySmall.desktop.fontSize

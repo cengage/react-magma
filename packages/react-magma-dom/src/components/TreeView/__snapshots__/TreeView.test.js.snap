@@ -288,7 +288,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-28 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -453,7 +453,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-39:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -467,12 +467,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   width: 100%;
 }
 
 .emotion-42 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -507,7 +507,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-44 {
@@ -585,7 +585,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-53:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -599,12 +599,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: #56667A;
+  color: #0B1F3A;
   width: 100%;
 }
 
 .emotion-84 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -639,99 +639,17 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-84>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-88 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: #56667A;
+  color: #0B1F3A;
   border-radius: 0;
   width: 24px;
   height: 24px;
-}
-
-.emotion-95 {
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  color: #56667A;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: Inter,Arial,Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 0;
-}
-
-.emotion-97 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  height: 24px;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  position: relative;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-  width: 24px;
-  border: 2px solid;
-  border-color: transparent;
-  color: #56667A;
-  cursor: pointer;
-  margin: 0 8px 0 0;
-}
-
-.emotion-97:before,
-.emotion-97:after {
-  content: '';
-  position: absolute;
-}
-
-.emotion-97:after {
-  border-radius: 50%;
-  height: 40px;
-  left: -8px;
-  opacity: 0;
-  padding: 50%;
-  top: -8px;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 40px;
-}
-
-.emotion-97 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  pointer-events: none;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-}
-
-.emotion-97:after {
-  background: #0B1F3A;
-  top: -10px;
-  left: -10px;
 }
 
 .emotion-102 {
@@ -1101,7 +1019,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-28 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -1266,7 +1184,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-39:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -1280,12 +1198,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   width: 100%;
 }
 
 .emotion-42 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -1320,7 +1238,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-44 {
@@ -1398,7 +1316,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-53:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -1412,12 +1330,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: #56667A;
+  color: #0B1F3A;
   width: 100%;
 }
 
 .emotion-84 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -1452,99 +1370,17 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-84>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-88 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: #56667A;
+  color: #0B1F3A;
   border-radius: 0;
   width: 24px;
   height: 24px;
-}
-
-.emotion-95 {
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  color: #56667A;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: Inter,Arial,Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 0;
-}
-
-.emotion-97 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  height: 24px;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  position: relative;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-  width: 24px;
-  border: 2px solid;
-  border-color: transparent;
-  color: #56667A;
-  cursor: pointer;
-  margin: 0 8px 0 0;
-}
-
-.emotion-97:before,
-.emotion-97:after {
-  content: '';
-  position: absolute;
-}
-
-.emotion-97:after {
-  border-radius: 50%;
-  height: 40px;
-  left: -8px;
-  opacity: 0;
-  padding: 50%;
-  top: -8px;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 40px;
-}
-
-.emotion-97 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  pointer-events: none;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-}
-
-.emotion-97:after {
-  background: #0B1F3A;
-  top: -10px;
-  left: -10px;
 }
 
 .emotion-102 {
@@ -2051,13 +1887,13 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                           type="checkbox"
                         />
                         <label
-                          class="emotion-95 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-5-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
                           <span
                             aria-hidden="true"
-                            class="emotion-97"
+                            class="emotion-53"
                             style="margin-right: 8px;"
                           >
                             <svg
@@ -2426,7 +2262,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-28 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -2591,7 +2427,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-39:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -2605,12 +2441,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   width: 100%;
 }
 
 .emotion-42 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -2645,7 +2481,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-44 {
@@ -2686,7 +2522,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   width: 24px;
   border: 2px solid;
   border-color: transparent;
-  color: #0B1F3A;
+  color: #007D95;
   cursor: pointer;
   margin: 0 8px 0 0;
 }
@@ -2723,7 +2559,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-53:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -2737,12 +2573,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: #56667A;
+  color: #0B1F3A;
   width: 100%;
 }
 
 .emotion-56 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -2780,31 +2616,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   border-radius: 0;
   width: 24px;
   height: 24px;
 }
 
-.emotion-67 {
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  color: #56667A;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: Inter,Arial,Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 0;
-}
-
 .emotion-72 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -2839,14 +2658,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-76 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: #56667A;
+  color: #0B1F3A;
   border-radius: 0;
   width: 24px;
   height: 24px;
@@ -2875,7 +2694,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   width: 24px;
   border: 2px solid;
   border-color: transparent;
-  color: #56667A;
+  color: #0B1F3A;
   cursor: pointer;
   margin: 0 8px 0 0;
 }
@@ -2912,7 +2731,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-85:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -3284,7 +3103,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-28 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -3449,7 +3268,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-39:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -3463,12 +3282,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   width: 100%;
 }
 
 .emotion-42 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -3503,7 +3322,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-44 {
@@ -3544,7 +3363,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   width: 24px;
   border: 2px solid;
   border-color: transparent;
-  color: #0B1F3A;
+  color: #007D95;
   cursor: pointer;
   margin: 0 8px 0 0;
 }
@@ -3581,7 +3400,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-53:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -3595,12 +3414,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: #56667A;
+  color: #0B1F3A;
   width: 100%;
 }
 
 .emotion-56 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -3638,31 +3457,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   border-radius: 0;
   width: 24px;
   height: 24px;
 }
 
-.emotion-67 {
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  color: #56667A;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: Inter,Arial,Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 0;
-}
-
 .emotion-72 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -3697,14 +3499,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-76 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: #56667A;
+  color: #0B1F3A;
   border-radius: 0;
   width: 24px;
   height: 24px;
@@ -3733,7 +3535,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   width: 24px;
   border: 2px solid;
   border-color: transparent;
-  color: #56667A;
+  color: #0B1F3A;
   cursor: pointer;
   margin: 0 8px 0 0;
 }
@@ -3770,7 +3572,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-85:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -4142,7 +3944,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-3-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
@@ -4234,7 +4036,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-4-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
@@ -4326,7 +4128,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-5-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
@@ -4701,7 +4503,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-28 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -4866,7 +4668,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-39:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -4880,12 +4682,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   width: 100%;
 }
 
 .emotion-42 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -4920,7 +4722,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-44 {
@@ -4998,7 +4800,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-53:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -5012,12 +4814,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: #56667A;
+  color: #0B1F3A;
   width: 100%;
 }
 
 .emotion-56 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -5055,31 +4857,14 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   border-radius: 0;
   width: 24px;
   height: 24px;
 }
 
-.emotion-67 {
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  color: #56667A;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: Inter,Arial,Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 0;
-}
-
 .emotion-72 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -5114,82 +4899,17 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-76 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: #56667A;
+  color: #0B1F3A;
   border-radius: 0;
   width: 24px;
   height: 24px;
-}
-
-.emotion-85 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  height: 24px;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  position: relative;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-  width: 24px;
-  border: 2px solid;
-  border-color: transparent;
-  color: #56667A;
-  cursor: pointer;
-  margin: 0 8px 0 0;
-}
-
-.emotion-85:before,
-.emotion-85:after {
-  content: '';
-  position: absolute;
-}
-
-.emotion-85:after {
-  border-radius: 50%;
-  height: 40px;
-  left: -8px;
-  opacity: 0;
-  padding: 50%;
-  top: -8px;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 40px;
-}
-
-.emotion-85 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  pointer-events: none;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-}
-
-.emotion-85:after {
-  background: #0B1F3A;
-  top: -10px;
-  left: -10px;
 }
 
 .emotion-106 {
@@ -5559,7 +5279,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-28 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -5724,7 +5444,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-39:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -5738,12 +5458,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   width: 100%;
 }
 
 .emotion-42 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -5778,7 +5498,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-44 {
@@ -5856,7 +5576,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-53:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -5870,12 +5590,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: #56667A;
+  color: #0B1F3A;
   width: 100%;
 }
 
 .emotion-56 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -5913,31 +5633,14 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   border-radius: 0;
   width: 24px;
   height: 24px;
 }
 
-.emotion-67 {
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  color: #56667A;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: Inter,Arial,Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 0;
-}
-
 .emotion-72 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -5972,82 +5675,17 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-76 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: #56667A;
+  color: #0B1F3A;
   border-radius: 0;
   width: 24px;
   height: 24px;
-}
-
-.emotion-85 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  height: 24px;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  position: relative;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-  width: 24px;
-  border: 2px solid;
-  border-color: transparent;
-  color: #56667A;
-  cursor: pointer;
-  margin: 0 8px 0 0;
-}
-
-.emotion-85:before,
-.emotion-85:after {
-  content: '';
-  position: absolute;
-}
-
-.emotion-85:after {
-  border-radius: 50%;
-  height: 40px;
-  left: -8px;
-  opacity: 0;
-  padding: 50%;
-  top: -8px;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 40px;
-}
-
-.emotion-85 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  pointer-events: none;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-}
-
-.emotion-85:after {
-  background: #0B1F3A;
-  top: -10px;
-  left: -10px;
 }
 
 .emotion-106 {
@@ -6416,7 +6054,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-3-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
@@ -6508,13 +6146,13 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-4-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
                           <span
                             aria-hidden="true"
-                            class="emotion-85"
+                            class="emotion-53"
                             style="margin-right: 8px;"
                           >
                             <svg
@@ -6600,13 +6238,13 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-5-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
                           <span
                             aria-hidden="true"
-                            class="emotion-85"
+                            class="emotion-53"
                             style="margin-right: 8px;"
                           >
                             <svg
@@ -6975,7 +6613,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-28 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -7140,7 +6778,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-39:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -7154,12 +6792,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   width: 100%;
 }
 
 .emotion-42 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -7194,7 +6832,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-44 {
@@ -7272,7 +6910,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-53:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -7286,12 +6924,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: #56667A;
+  color: #0B1F3A;
   width: 100%;
 }
 
 .emotion-56 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -7329,31 +6967,14 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   border-radius: 0;
   width: 24px;
   height: 24px;
 }
 
-.emotion-67 {
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  color: #56667A;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: Inter,Arial,Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 0;
-}
-
 .emotion-72 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -7388,82 +7009,17 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-76 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: #56667A;
+  color: #0B1F3A;
   border-radius: 0;
   width: 24px;
   height: 24px;
-}
-
-.emotion-85 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  height: 24px;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  position: relative;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-  width: 24px;
-  border: 2px solid;
-  border-color: transparent;
-  color: #56667A;
-  cursor: pointer;
-  margin: 0 8px 0 0;
-}
-
-.emotion-85:before,
-.emotion-85:after {
-  content: '';
-  position: absolute;
-}
-
-.emotion-85:after {
-  border-radius: 50%;
-  height: 40px;
-  left: -8px;
-  opacity: 0;
-  padding: 50%;
-  top: -8px;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 40px;
-}
-
-.emotion-85 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  pointer-events: none;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-}
-
-.emotion-85:after {
-  background: #0B1F3A;
-  top: -10px;
-  left: -10px;
 }
 
 .emotion-106 {
@@ -7833,7 +7389,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-28 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -7998,7 +7554,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-39:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -8012,12 +7568,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   width: 100%;
 }
 
 .emotion-42 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -8052,7 +7608,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-44 {
@@ -8130,7 +7686,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-53:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -8144,12 +7700,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: #56667A;
+  color: #0B1F3A;
   width: 100%;
 }
 
 .emotion-56 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -8187,31 +7743,14 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   border-radius: 0;
   width: 24px;
   height: 24px;
 }
 
-.emotion-67 {
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  color: #56667A;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: Inter,Arial,Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 0;
-}
-
 .emotion-72 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -8246,82 +7785,17 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-76 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: #56667A;
+  color: #0B1F3A;
   border-radius: 0;
   width: 24px;
   height: 24px;
-}
-
-.emotion-85 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  height: 24px;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  position: relative;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-  width: 24px;
-  border: 2px solid;
-  border-color: transparent;
-  color: #56667A;
-  cursor: pointer;
-  margin: 0 8px 0 0;
-}
-
-.emotion-85:before,
-.emotion-85:after {
-  content: '';
-  position: absolute;
-}
-
-.emotion-85:after {
-  border-radius: 50%;
-  height: 40px;
-  left: -8px;
-  opacity: 0;
-  padding: 50%;
-  top: -8px;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 40px;
-}
-
-.emotion-85 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  pointer-events: none;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-}
-
-.emotion-85:after {
-  background: #0B1F3A;
-  top: -10px;
-  left: -10px;
 }
 
 .emotion-106 {
@@ -8690,7 +8164,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-3-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
@@ -8782,13 +8256,13 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-4-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
                           <span
                             aria-hidden="true"
-                            class="emotion-85"
+                            class="emotion-53"
                             style="margin-right: 8px;"
                           >
                             <svg
@@ -8874,13 +8348,13 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-5-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
                           <span
                             aria-hidden="true"
-                            class="emotion-85"
+                            class="emotion-53"
                             style="margin-right: 8px;"
                           >
                             <svg
@@ -9249,7 +8723,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-28 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -9414,7 +8888,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-39:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -9428,12 +8902,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   width: 100%;
 }
 
 .emotion-42 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -9468,7 +8942,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-44 {
@@ -9509,7 +8983,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: 24px;
   border: 2px solid;
   border-color: transparent;
-  color: #0B1F3A;
+  color: #007D95;
   cursor: pointer;
   margin: 0 8px 0 0;
 }
@@ -9546,7 +9020,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-53:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -9560,12 +9034,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: #56667A;
+  color: #0B1F3A;
   width: 100%;
 }
 
 .emotion-56 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -9603,31 +9077,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   border-radius: 0;
   width: 24px;
   height: 24px;
 }
 
-.emotion-67 {
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  color: #56667A;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: Inter,Arial,Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 0;
-}
-
 .emotion-72 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -9662,14 +9119,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-76 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: #56667A;
+  color: #0B1F3A;
   border-radius: 0;
   width: 24px;
   height: 24px;
@@ -9698,7 +9155,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: 24px;
   border: 2px solid;
   border-color: transparent;
-  color: #56667A;
+  color: #0B1F3A;
   cursor: pointer;
   margin: 0 8px 0 0;
 }
@@ -9735,7 +9192,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-85:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -10107,7 +9564,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-28 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -10272,7 +9729,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-39:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -10286,12 +9743,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   width: 100%;
 }
 
 .emotion-42 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -10326,7 +9783,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-44 {
@@ -10367,7 +9824,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: 24px;
   border: 2px solid;
   border-color: transparent;
-  color: #0B1F3A;
+  color: #007D95;
   cursor: pointer;
   margin: 0 8px 0 0;
 }
@@ -10404,7 +9861,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-53:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -10418,12 +9875,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: #56667A;
+  color: #0B1F3A;
   width: 100%;
 }
 
 .emotion-56 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -10461,31 +9918,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   border-radius: 0;
   width: 24px;
   height: 24px;
 }
 
-.emotion-67 {
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  color: #56667A;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: Inter,Arial,Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 0;
-}
-
 .emotion-72 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -10520,14 +9960,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-76 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: #56667A;
+  color: #0B1F3A;
   border-radius: 0;
   width: 24px;
   height: 24px;
@@ -10556,7 +9996,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: 24px;
   border: 2px solid;
   border-color: transparent;
-  color: #56667A;
+  color: #0B1F3A;
   cursor: pointer;
   margin: 0 8px 0 0;
 }
@@ -10593,7 +10033,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-85:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -10965,7 +10405,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-3-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
@@ -11057,7 +10497,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-4-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
@@ -11149,7 +10589,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-5-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
@@ -11524,7 +10964,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-28 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -11689,7 +11129,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-39:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -11703,12 +11143,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   width: 100%;
 }
 
 .emotion-42 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -11743,7 +11183,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-44 {
@@ -11784,7 +11224,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: 24px;
   border: 2px solid;
   border-color: transparent;
-  color: #0B1F3A;
+  color: #007D95;
   cursor: pointer;
   margin: 0 8px 0 0;
 }
@@ -11821,7 +11261,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-53:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -11835,12 +11275,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: #56667A;
+  color: #0B1F3A;
   width: 100%;
 }
 
 .emotion-56 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -11878,31 +11318,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   border-radius: 0;
   width: 24px;
   height: 24px;
 }
 
-.emotion-67 {
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  color: #56667A;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: Inter,Arial,Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 0;
-}
-
 .emotion-72 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -11937,14 +11360,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-76 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: #56667A;
+  color: #0B1F3A;
   border-radius: 0;
   width: 24px;
   height: 24px;
@@ -11973,7 +11396,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: 24px;
   border: 2px solid;
   border-color: transparent;
-  color: #56667A;
+  color: #0B1F3A;
   cursor: pointer;
   margin: 0 8px 0 0;
 }
@@ -12010,7 +11433,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-85:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -12382,7 +11805,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-28 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -12547,7 +11970,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-39:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -12561,12 +11984,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   width: 100%;
 }
 
 .emotion-42 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -12601,7 +12024,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-44 {
@@ -12642,7 +12065,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: 24px;
   border: 2px solid;
   border-color: transparent;
-  color: #0B1F3A;
+  color: #007D95;
   cursor: pointer;
   margin: 0 8px 0 0;
 }
@@ -12679,7 +12102,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-53:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -12693,12 +12116,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: #56667A;
+  color: #0B1F3A;
   width: 100%;
 }
 
 .emotion-56 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -12736,31 +12159,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   border-radius: 0;
   width: 24px;
   height: 24px;
 }
 
-.emotion-67 {
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  color: #56667A;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: Inter,Arial,Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 0;
-}
-
 .emotion-72 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -12795,14 +12201,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-76 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: #56667A;
+  color: #0B1F3A;
   border-radius: 0;
   width: 24px;
   height: 24px;
@@ -12831,7 +12237,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: 24px;
   border: 2px solid;
   border-color: transparent;
-  color: #56667A;
+  color: #0B1F3A;
   cursor: pointer;
   margin: 0 8px 0 0;
 }
@@ -12868,7 +12274,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-85:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -13240,7 +12646,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-3-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
@@ -13332,7 +12738,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-4-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
@@ -13424,7 +12830,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-5-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
@@ -13799,7 +13205,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-28 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -13964,7 +13370,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-39:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -13978,12 +13384,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   width: 100%;
 }
 
 .emotion-42 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -14018,7 +13424,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-44 {
@@ -14096,7 +13502,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-53:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -14110,12 +13516,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: #56667A;
+  color: #0B1F3A;
   width: 100%;
 }
 
 .emotion-56 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -14153,31 +13559,14 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   border-radius: 0;
   width: 24px;
   height: 24px;
 }
 
-.emotion-67 {
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  color: #56667A;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: Inter,Arial,Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 0;
-}
-
 .emotion-72 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -14212,82 +13601,17 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-76 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: #56667A;
+  color: #0B1F3A;
   border-radius: 0;
   width: 24px;
   height: 24px;
-}
-
-.emotion-85 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  height: 24px;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  position: relative;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-  width: 24px;
-  border: 2px solid;
-  border-color: transparent;
-  color: #56667A;
-  cursor: pointer;
-  margin: 0 8px 0 0;
-}
-
-.emotion-85:before,
-.emotion-85:after {
-  content: '';
-  position: absolute;
-}
-
-.emotion-85:after {
-  border-radius: 50%;
-  height: 40px;
-  left: -8px;
-  opacity: 0;
-  padding: 50%;
-  top: -8px;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 40px;
-}
-
-.emotion-85 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  pointer-events: none;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-}
-
-.emotion-85:after {
-  background: #0B1F3A;
-  top: -10px;
-  left: -10px;
 }
 
 .emotion-106 {
@@ -14657,7 +13981,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-28 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -14822,7 +14146,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-39:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -14836,12 +14160,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   width: 100%;
 }
 
 .emotion-42 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -14876,7 +14200,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-44 {
@@ -14954,7 +14278,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-53:after {
-  background: #0B1F3A;
+  background: #007D95;
   top: -10px;
   left: -10px;
 }
@@ -14968,12 +14292,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
-  color: #56667A;
+  color: #0B1F3A;
   width: 100%;
 }
 
 .emotion-56 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: not-allowed;
   position: relative;
@@ -15011,31 +14335,14 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: rgba(139,153,170,0.4);
+  color: #8B99AA;
   border-radius: 0;
   width: 24px;
   height: 24px;
 }
 
-.emotion-67 {
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
-  color: #56667A;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: Inter,Arial,Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 0;
-}
-
 .emotion-72 {
-  color: #56667A;
+  color: #0B1F3A;
   list-style-type: none;
   cursor: default;
   position: relative;
@@ -15070,82 +14377,17 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(42,55,74,0.05);
+  background: rgba(241,243,247,0.9);
 }
 
 .emotion-76 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
-  color: #56667A;
+  color: #0B1F3A;
   border-radius: 0;
   width: 24px;
   height: 24px;
-}
-
-.emotion-85 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  height: 24px;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  position: relative;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-  width: 24px;
-  border: 2px solid;
-  border-color: transparent;
-  color: #56667A;
-  cursor: pointer;
-  margin: 0 8px 0 0;
-}
-
-.emotion-85:before,
-.emotion-85:after {
-  content: '';
-  position: absolute;
-}
-
-.emotion-85:after {
-  border-radius: 50%;
-  height: 40px;
-  left: -8px;
-  opacity: 0;
-  padding: 50%;
-  top: -8px;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 40px;
-}
-
-.emotion-85 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  pointer-events: none;
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-}
-
-.emotion-85:after {
-  background: #0B1F3A;
-  top: -10px;
-  left: -10px;
 }
 
 .emotion-106 {
@@ -15514,7 +14756,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-3-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
@@ -15606,13 +14848,13 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-4-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
                           <span
                             aria-hidden="true"
-                            class="emotion-85"
+                            class="emotion-53"
                             style="margin-right: 8px;"
                           >
                             <svg
@@ -15698,13 +14940,13 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                           type="checkbox"
                         />
                         <label
-                          class="emotion-67 emotion-38"
+                          class="emotion-37 emotion-38"
                           for="item-id-5-checkbox"
                           style="padding: 0px; width: 100%;"
                         >
                           <span
                             aria-hidden="true"
-                            class="emotion-85"
+                            class="emotion-53"
                             style="margin-right: 8px;"
                           >
                             <svg

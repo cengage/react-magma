@@ -80,13 +80,13 @@ function buildSeparatorBackgroundColors(props) {
 
   if (isInverse) {
     if (stepStatus === StepStatus.completed) {
-      return theme.colors.tertiary500;
+      return theme.colors.brand.cyan;
     }
 
-    return theme.colors.primary400;
+    return theme.colors.neutral900;
   } else {
     if (stepStatus === StepStatus.completed) {
-      return theme.colors.primary500;
+      return theme.colors.brand.navy;
     }
 
     return theme.colors.neutral300;
@@ -183,7 +183,7 @@ const StyledSummary = styled.div<{
   color: ${props =>
     props.isInverse
       ? transparentize(0.3, props.theme.colors.neutral0)
-      : props.theme.colors.neutral500};
+      : props.theme.colors.neutral700};
   span {
     display: flex;
     text-align: left;

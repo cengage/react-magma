@@ -146,19 +146,26 @@ const Container = styled(Flex)<
   justify-content: ${({ noDrag }) => (noDrag ? 'left' : 'center')};
   text-align: ${({ noDrag }) => (noDrag ? 'left' : 'center')};
   padding: ${({ noDrag }) => (noDrag ? '0px' : '24px')};
-  border-radius: ${({ noDrag }) => (noDrag ? '0px' : '4px')};
+  border-radius: ${({ noDrag, theme }) =>
+    noDrag ? theme.borderRadiusNone : theme.borderRadiusSmall};
   border: ${({ dragState = 'default', noDrag, theme, isInverse }) =>
     noDrag
       ? `0px`
       : dragState === 'dragReject' || dragState === 'error'
         ? isInverse
-          ? `1px dashed ${theme.colors.danger300}`
-          : `1px dashed ${theme.colors.danger}`
+          ? `${dragState === 'error' ? '1px' : '2px'} dashed ${
+              dragState === 'error' ? theme.colors.red500 : theme.colors.red400
+            }`
+          : `${dragState === 'error' ? '1px' : '2px'} dashed ${
+              theme.colors.danger
+            }`
         : dragState === 'dragActive'
-          ? `1px dashed ${theme.colors.primary}`
+          ? `2px dashed ${theme.colors.blue500}`
           : dragState === 'dragAccept'
-            ? `1px dashed ${theme.colors.success}`
-            : `1px dashed ${theme.colors.neutral400}`};
+            ? `2px dashed ${theme.colors.green500}`
+            : `2px dashed ${
+                isInverse ? theme.colors.neutral800 : theme.colors.neutral300
+              }`};
 
   border-style: ${({ dragState = 'default' }) =>
     dragState === 'error' ? 'solid' : 'dashed'};
@@ -166,15 +173,15 @@ const Container = styled(Flex)<
     noDrag
       ? 'transparent'
       : isInverse
-        ? transparentize(0.75, theme.colors.neutral900)
-        : theme.colors.neutral200};
+        ? transparentize(0.6, theme.colors.neutral1200)
+        : theme.colors.neutral100};
   outline: none;
   transition: ${({ noDrag }) => `border ${noDrag ? 0 : '.24s'} ease-in-out`};
 `;
 
 const HelperMessage = styled.span<{ isInverse?: boolean }>`
   color: ${({ theme, isInverse }) =>
-    isInverse ? theme.colors.neutral0 : theme.colors.neutral700};
+    isInverse ? theme.colors.neutral500 : theme.colors.neutral700};
   display: block;
   font-size: 14px;
   margin: -8px 0 16px 0;
@@ -182,7 +189,7 @@ const HelperMessage = styled.span<{ isInverse?: boolean }>`
 
 const Wrapper = styled.div<{ isInverse?: boolean }>`
   color: ${({ theme, isInverse }) =>
-    isInverse ? theme.colors.neutral0 : theme.colors.neutral700};
+    isInverse ? theme.colors.neutral0 : theme.colors.brand.navy};
   margin: 0 0 24px 0;
   font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
   line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
@@ -493,7 +500,10 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
           inputSize={inputSize}
           isInverse={isInverse}
           isLabelVisuallyHidden={isLabelVisuallyHidden}
-          labelStyle={labelStyle}
+          labelStyle={{
+            color: isInverse ? theme.colors.neutral0 : theme.colors.brand.navy,
+            ...labelStyle,
+          }}
           labelText={labelText}
           messageStyle={{ minHeight: 0 }}
           data-testid={testId}
@@ -548,7 +558,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                 <CloudUploadIcon
                   aria-hidden="true"
                   color={
-                    isInverse ? theme.colors.neutral0 : theme.colors.neutral500
+                    isInverse ? theme.colors.neutral0 : theme.colors.neutral700
                   }
                   size={48}
                 />

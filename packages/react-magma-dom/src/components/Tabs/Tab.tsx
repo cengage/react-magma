@@ -27,7 +27,7 @@ export interface TabProps
   unstyled?: boolean;
   /**
    * Determines whether the tab appears in all-caps
-   * @default TabsTextTransform.uppercase
+   * @default TabsTextTransform.none
    */
   textTransform?: TabsTextTransform;
   /**
@@ -70,10 +70,8 @@ export const StyledTabsChild = styled('li', {
         ? '100%'
         : 'auto'};
       &:after {
-        background: ${props.isInverse
-          ? props.theme.colors.tertiary
-          : props.theme.colors.primary};
-        border-radius: 2px;
+        background: ${props.theme.colors.brand.amber};
+        border-radius: 0;
         content: '';
         display: block;
         height: 4px;
@@ -116,23 +114,23 @@ function getFlexDirection(position: TabsIconPosition) {
 function buildTabStylesColor(props) {
   if (props.isInverse) {
     if (props.disabled) {
-      return transparentize(0.6, props.theme.colors.neutral0);
+      return props.theme.colors.neutral600;
     }
     if (props.isActive) {
       return props.theme.colors.neutral0;
     }
 
-    return transparentize(0.3, props.theme.colors.neutral0);
+    return props.theme.colors.neutral500;
   }
 
   if (props.disabled) {
-    return transparentize(0.6, props.theme.colors.neutral500);
+    return props.theme.colors.neutral500;
   }
   if (props.isActive) {
-    return props.theme.colors.primary;
+    return props.theme.colors.brand.navy;
   }
 
-  return props.theme.colors.neutral500;
+  return props.theme.colors.neutral700;
 }
 
 export const TabStyles = props => css`
@@ -145,7 +143,7 @@ export const TabStyles = props => css`
   flex-direction: ${getFlexDirection(props.iconPosition)};
   flex-grow: 0;
   flex-shrink: ${props.isFullWidth ? '1' : '0'};
-  font-weight: 500;
+  font-weight: ${props.isActive ? 600 : 400};
   font-size: ${props.theme.typeScale.size02.fontSize};
   font-family: ${props.theme.bodyFont};
   letter-spacing: ${props.theme.typeScale.size02.letterSpacing};
@@ -173,7 +171,21 @@ export const TabStyles = props => css`
     align-items: center;
   `}
 
-  &:hover,
+  &:hover {
+    background-color: ${props.isActive
+      ? ''
+      : props.isInverse
+        ? props.theme.colors.neutral900
+        : props.theme.colors.neutral200};
+    color: ${props.isActive
+      ? props.isInverse
+        ? props.theme.colors.neutral0
+        : props.theme.colors.brand.navy
+      : props.isInverse
+        ? props.theme.colors.neutral0
+        : props.theme.colors.brand.navy};
+  }
+
   &:focus {
     background-color: ${props.isActive
       ? ''
@@ -183,13 +195,10 @@ export const TabStyles = props => css`
     color: ${props.isActive
       ? props.isInverse
         ? props.theme.colors.neutral0
-        : props.theme.colors.primary
+        : props.theme.colors.brand.navy
       : props.isInverse
         ? props.theme.colors.neutral0
         : props.theme.colors.neutral700};
-  }
-
-  &:focus {
     outline-offset: -2px;
     outline: 2px solid
       ${props.isInverse

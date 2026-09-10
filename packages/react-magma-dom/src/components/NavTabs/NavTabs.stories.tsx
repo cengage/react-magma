@@ -28,6 +28,9 @@ export default {
       control: { type: 'select' },
       options: Object.values(TabsBorderPosition),
     },
+    hasBorder: {
+      control: { type: 'boolean' },
+    },
     iconPosition: {
       control: { type: 'select' },
       options: Object.values(TabsIconPosition),

@@ -86,7 +86,7 @@ describe('Card', () => {
 
     expect(getByText(TEXT)).toHaveStyleRule(
       'box-shadow',
-      '0 2px 6px 0 rgba(0,0,0,0.18)'
+      '0 2px 6px 0 rgba(0,0,0,0.10)'
     );
   });
 
@@ -99,7 +99,7 @@ describe('Card', () => {
 
     expect(getByText(TEXT)).toHaveStyleRule(
       'box-shadow',
-      `inset 4px 0 0 0 ${magma.colors.brand.cyan},0 2px 6px 0 rgba(0,0,0,0.18)`
+      `inset 4px 0 0 0 ${magma.colors.brand.cyan},0 2px 6px 0 rgba(0,0,0,0.10)`
     );
   });
 

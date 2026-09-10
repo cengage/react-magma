@@ -38,10 +38,24 @@ describe('ToggleButtonGroup', () => {
     );
     const wrapper = getByTestId(testId);
 
-    expect(wrapper).toHaveStyleRule('row-gap', magma.spaceScale.spacing03);
+    expect(wrapper).toHaveStyleRule('gap', magma.spaceScale.spacing05);
     expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
       'padding',
       `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing05}`
+    );
+  });
+
+  it('Has two pixels of space between buttons when noSpace is true', () => {
+    const { getByTestId } = render(
+      <ToggleButtonGroup noSpace testId={testId}>
+        <ToggleButton value="1">{TEXT}</ToggleButton>
+        <ToggleButton value="2">{TEXT}</ToggleButton>
+      </ToggleButtonGroup>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'gap',
+      magma.spaceScale.spacing01
     );
   });
 
@@ -165,7 +179,7 @@ describe('ToggleButtonGroup', () => {
         const buttonOne = getByTestId(testId);
         expect(buttonOne).toHaveStyleRule(
           'background',
-          transparentize(0.5, magma.colors.neutral300)
+          magma.colors.neutral700
         );
         expect(buttonOne).toHaveAttribute('aria-checked', 'true');
       });

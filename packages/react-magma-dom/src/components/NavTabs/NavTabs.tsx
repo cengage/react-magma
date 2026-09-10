@@ -22,8 +22,14 @@ import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
 import { useTabsMeta, useScrollTabFocus } from '../Tabs/utils';
 import { VisuallyHidden } from '../VisuallyHidden';
 
-export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {
+export interface NavTabsProps
+  extends Omit<TabsProps, 'hasBorder' | 'onChange'> {
   'aria-label'?: string;
+  /**
+   * If true, a divider border is displayed
+   * @default false
+   */
+  hasBorder?: boolean;
 }
 
 interface NavTabsContextInterface {
@@ -53,6 +59,7 @@ export const NavTabs = React.forwardRef<
     backgroundColor,
     borderPosition,
     children,
+    hasBorder = false,
     iconPosition,
     isFullWidth,
     orientation,
@@ -216,7 +223,9 @@ export const NavTabs = React.forwardRef<
       aria-label={rest['aria-label']}
       as="nav"
       backgroundColor={backgroundColor}
+      borderPosition={borderPosition}
       data-testid={testId}
+      hasBorder={hasBorder}
       isInverse={isInverse}
       orientation={orientation || TabsOrientation.horizontal}
       ref={ref}

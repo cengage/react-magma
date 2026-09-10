@@ -7,7 +7,7 @@ export const StyledSelect = styled.div<{ isInverse: boolean; theme: Theme }>`
     border: none;
     background: ${props =>
       props.isInverse
-        ? props.theme.colors.primary500
+        ? props.theme.colors.neutral1100
         : props.theme.colors.neutral0};
     &:focus-within {
       outline: 2px solid
@@ -24,8 +24,8 @@ export const StyledSelect = styled.div<{ isInverse: boolean; theme: Theme }>`
       &:focus {
         background: ${props =>
           props.isInverse
-            ? transparentize(0.3, props.theme.colors.primary700)
-            : transparentize(0.95, props.theme.colors.neutral900)};
+            ? transparentize(0.5, props.theme.colors.neutral900)
+            : props.theme.colors.neutral200};
         cursor: pointer !important;
       }
     }

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { render, fireEvent, waitFor } from '@testing-library/react';
-import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -10,6 +9,130 @@ import { TablePagination } from '.';
 import userEvent from '@testing-library/user-event';
 
 describe('Table Pagination', () => {
+  it('should render the rows-per-page label at 14px and weight 500', () => {
+    const { getByText } = render(
+      <TablePagination
+        itemCount={20}
+        onRowsPerPageChange={() => {}}
+        rowsPerPageValues={[10, 20]}
+      />
+    );
+
+    expect(getByText(/rows per page/i)).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size02.fontSize
+    );
+    expect(getByText(/rows per page/i)).toHaveStyleRule('font-weight', '500');
+    expect(getByText(/rows per page/i)).toHaveStyleRule(
+      'white-space',
+      'nowrap'
+    );
+  });
+
+  it('should size the rows-per-page select to its selected value', () => {
+    const { getByTestId, rerender } = render(
+      <TablePagination
+        itemCount={200}
+        onRowsPerPageChange={() => {}}
+        rowsPerPage={10}
+        rowsPerPageValues={[10, 100]}
+      />
+    );
+
+    expect(getByTestId('rowPerPageSelect')).toHaveStyle(
+      'width: calc(2ch + 56px)'
+    );
+
+    rerender(
+      <TablePagination
+        itemCount={200}
+        onRowsPerPageChange={() => {}}
+        rowsPerPage={100}
+        rowsPerPageValues={[10, 100]}
+      />
+    );
+
+    expect(getByTestId('rowPerPageSelect')).toHaveStyle(
+      'width: calc(3ch + 56px)'
+    );
+  });
+
+  it('should render the page-count text at weight 400', () => {
+    const { getByTestId } = render(<TablePagination itemCount={20} />);
+
+    expect(getByTestId('page-count')).toHaveStyleRule('font-weight', '400');
+    expect(getByTestId('page-count')).toHaveTextContent('Page 1: 1-10 of 20');
+    expect(getByTestId('page-number')).toHaveTextContent('Page 1:');
+    expect(getByTestId('page-number')).toHaveStyleRule('font-weight', '500');
+    expect(getByTestId('page-range')).toHaveStyleRule('white-space', 'nowrap');
+  });
+
+  it('should separate the left-aligned pagination details and right-aligned navigation', () => {
+    const { getByTestId } = render(
+      <TablePagination
+        itemCount={20}
+        onRowsPerPageChange={() => {}}
+        testId="table-pagination"
+      />
+    );
+
+    expect(getByTestId('table-pagination')).toHaveStyleRule(
+      'padding',
+      `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05}`
+    );
+    expect(
+      getByTestId('table-pagination-responsive-container')
+    ).toHaveStyleRule('container-type', 'inline-size');
+    expect(getByTestId('pagination-navigation')).toHaveStyleRule(
+      'margin-left',
+      'auto'
+    );
+    expect(getByTestId('rows-page-divider')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral200
+    );
+    expect(getByTestId('navigation-divider')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral200
+    );
+    expect(getByTestId('rows-page-divider')).toHaveStyleRule(
+      'align-self',
+      'stretch'
+    );
+    expect(getByTestId('navigation-divider')).toHaveStyleRule(
+      'align-self',
+      'stretch'
+    );
+  });
+
+  it('should use inverse pagination divider colors', () => {
+    const { getByTestId } = render(
+      <TablePagination
+        isInverse
+        itemCount={20}
+        onRowsPerPageChange={() => {}}
+      />
+    );
+
+    expect(getByTestId('rows-page-divider')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral800
+    );
+    expect(getByTestId('navigation-divider')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral800
+    );
+    expect(getByTestId('rowPerPageSelect').parentElement).toHaveStyleRule(
+      'border',
+      `1px solid ${magma.colors.neutral700}`
+    );
+    expect(getByTestId('rowPerPageSelect').parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.neutral0,
+      { target: 'svg' }
+    );
+  });
+
   it('should find element by testId', () => {
     const testId = 'test-id';
     const { getByTestId } = render(
@@ -32,15 +155,31 @@ describe('Table Pagination', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule(
       'border-left',
-      `1px solid ${magma.colors.neutral300}`
+      `1px solid ${magma.colors.neutral200}`
     );
     expect(getByTestId(testId)).toHaveStyleRule(
       'border-right',
-      `1px solid ${magma.colors.neutral300}`
+      `1px solid ${magma.colors.neutral200}`
     );
     expect(getByTestId(testId)).toHaveStyleRule(
       'border-bottom',
-      `1px solid ${magma.colors.neutral300}`
+      `1px solid ${magma.colors.neutral200}`
+    );
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'background',
+      magma.colors.neutral150
+    );
+    expect(getByTestId('page-count')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
+    expect(getByTestId('previousBtn')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral500
+    );
+    expect(getByTestId('nextBtn')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
     );
     expect(getByTestId(testId)).toHaveStyle('border-radius: 0');
   });
@@ -59,15 +198,27 @@ describe('Table Pagination', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule(
       'border-left',
-      `1px solid ${transparentize(0.6, magma.colors.neutral0)}`
+      `1px solid ${magma.colors.neutral800}`
     );
     expect(getByTestId(testId)).toHaveStyleRule(
       'border-right',
-      `1px solid ${transparentize(0.6, magma.colors.neutral0)}`
+      `1px solid ${magma.colors.neutral800}`
     );
     expect(getByTestId(testId)).toHaveStyleRule(
       'border-bottom',
-      `1px solid ${transparentize(0.6, magma.colors.neutral0)}`
+      `1px solid ${magma.colors.neutral800}`
+    );
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'background',
+      magma.colors.neutral1000
+    );
+    expect(getByTestId('previousBtn')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral600
+    );
+    expect(getByTestId('nextBtn')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral0
     );
     expect(getByTestId(testId)).toHaveStyle('border-radius: 0');
   });
@@ -91,7 +242,7 @@ describe('Table Pagination', () => {
     );
   });
 
-  it('should move focus to the previous button when clicking next and the next page is disabled', () => {
+  it('should move focus to the previous button when clicking next and the next page is disabled', async () => {
     const { getByTestId } = render(
       <TablePagination itemCount={20} isInverse rowsPerPage={10} />
     );
@@ -100,12 +251,12 @@ describe('Table Pagination', () => {
 
     userEvent.click(nextBtn);
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(previousBtn).toHaveFocus();
     });
   });
 
-  it('should move focus to the next button when clicking previous and the previous page is disabled', () => {
+  it('should move focus to the next button when clicking previous and the previous page is disabled', async () => {
     const { getByTestId } = render(
       <TablePagination
         itemCount={20}
@@ -119,7 +270,7 @@ describe('Table Pagination', () => {
 
     userEvent.click(previousBtn);
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(nextBtn).toHaveFocus();
     });
   });

@@ -53,8 +53,8 @@ const KeyboardShortcutButtonWrapper = styled.span<{
 }>`
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.primary400
-      : props.theme.colors.neutral200};
+      ? props.theme.colors.neutral900
+      : props.theme.colors.neutral150};
   font-family: monospace;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
@@ -79,12 +79,12 @@ const StyledNavContainer = styled.div<{
   border-bottom: 1px solid
     ${props =>
       props.isInverse
-        ? props.theme.colors.primary400
-        : props.theme.colors.neutral300};
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.primary600
-      : props.theme.colors.neutral200};
+      ? props.theme.colors.neutral1100
+      : props.theme.colors.neutral100};
   height: 44px;
 `;
 const StyledContent = styled.div<{
@@ -95,7 +95,7 @@ const StyledContent = styled.div<{
   color: ${props =>
     props.isInverse
       ? props?.theme?.colors?.neutral0
-      : props?.theme?.colors?.neutral700};
+      : props?.theme?.colors?.brand?.navy};
 
   h2 {
     margin: ${props => props.theme?.spaceScale.spacing05} 0
@@ -127,14 +127,14 @@ const BackToCalendarWrapper = styled.span<{
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.tertiary500
-      : props.theme.colors.primary500};
+      ? props.theme.colors.brand.cyan
+      : props.theme.colors.cyan700};
 
   &:hover {
     color: ${props =>
       props.isInverse
-        ? props.theme.colors.neutral0
-        : props.theme.colors.primary600};
+        ? props.theme.colors.cyan400
+        : props.theme.colors.cyan800};
   }
   svg {
     height: 20px;

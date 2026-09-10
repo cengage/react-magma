@@ -2,12 +2,11 @@ import React from 'react';
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { transparentize } from 'polished';
 import {
-  ArrowBackIosIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
   ExpandLessIcon,
   ExpandMoreIcon,
-  ArrowForwardIosIcon,
 } from 'react-magma-icons';
 
 import { TabsOrientation } from './shared';
@@ -26,10 +25,12 @@ export interface ScrollButtonProps
 
 const StyledScrollButton = styled.button<ScrollButtonProps>`
   align-items: center;
-  backdrop-filter: blur(1px);
   border: 0;
+  box-sizing: border-box;
   color: ${props =>
-    props.isInverse ? props.theme.colors.neutral0 : props.theme.colors.neutral};
+    props.isInverse
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   cursor: pointer;
   display: ${props => (props.buttonVisible ? 'flex' : 'none')};
   justify-content: center;
@@ -40,60 +41,63 @@ const StyledScrollButton = styled.button<ScrollButtonProps>`
 
   bottom: 0;
   top: 0;
-  width: 44px;
+  width: 40px;
 
   &:focus {
     outline-offset: -2px;
+  }
+
+  &:hover {
+    background: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral900
+        : props.theme.colors.neutral200};
   }
 
   ${props =>
     props.orientation === 'vertical' &&
     css`
       left: 0;
-      height: 44px;
+      height: 40px;
       right: 0;
       width: 100%;
     `}
 `;
 
 const StyledButtonPrev = styled(StyledScrollButton)<ScrollButtonProps>`
-  background: ${props => `linear-gradient(
-      90deg,
-      ${props.backgroundColor} 0%,
-      ${transparentize(0.5, props.backgroundColor)} 100%
-    )`};
+  background: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral1100
+      : props.theme.colors.neutral0};
+  border-right: 1px solid
+    ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
   left: 0;
 
   ${props =>
     props.orientation === 'vertical' &&
     css`
-      background: ${`linear-gradient(
-          ${props.backgroundColor} 0%,
-          ${transparentize(0.5, props.backgroundColor)} 100%
-        )`};
-
       bottom: auto;
     `}
 `;
 
-const StyledButtonNext = styled(StyledScrollButton)<{
-  backgroundColor?: string;
-  orientation?: TabsOrientation;
-}>`
-  background: ${props => `linear-gradient(
-        90deg,
-        ${transparentize(0.5, props.backgroundColor)} 0%,
-        ${props.backgroundColor} 100%
-      )`};
+const StyledButtonNext = styled(StyledScrollButton)<ScrollButtonProps>`
+  background: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral1100
+      : props.theme.colors.neutral0};
+  border-left: 1px solid
+    ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
   right: 0;
 
   ${props =>
     props.orientation === 'vertical' &&
     css`
-      background: linear-gradient(
-        ${transparentize(0.5, props.backgroundColor)} 0%,
-        ${props.backgroundColor} 100%
-      );
       top: auto;
     `}
 `;
@@ -120,7 +124,7 @@ export const ButtonPrev = React.forwardRef<
       {props.orientation === TabsOrientation.vertical ? (
         <ExpandLessIcon size={theme.iconSizes.small} />
       ) : (
-        <ArrowBackIosIcon size={theme.iconSizes.small} />
+        <ChevronLeftIcon size={theme.iconSizes.small} />
       )}
     </StyledButtonPrev>
   );
@@ -148,7 +152,7 @@ export const ButtonNext = React.forwardRef<
       {props.orientation === TabsOrientation.vertical ? (
         <ExpandMoreIcon size={theme.iconSizes.small} />
       ) : (
-        <ArrowForwardIosIcon size={theme.iconSizes.small} />
+        <ChevronRightIcon size={theme.iconSizes.small} />
       )}
     </StyledButtonNext>
   );

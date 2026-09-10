@@ -8,10 +8,10 @@ import { inputBaseStyles } from '../InputBase';
 
 function buildListHoverColor(props) {
   if (props.isInverse) {
-    return props.theme.colors.primary600;
+    return props.theme.colors.neutral1000;
   }
 
-  return props.theme.colors.neutral200;
+  return props.theme.colors.neutral100;
 }
 
 function buildListFocusColor(props) {
@@ -29,16 +29,16 @@ function buildListFocusColor(props) {
 function buildListItemColor(props) {
   if (props.isDisabled) {
     if (props.isInverse) {
-      return transparentize(0.6, props.theme.colors.neutral0);
+      return props.theme.colors.neutral600;
     }
 
-    return transparentize(0.4, props.theme.colors.neutral500);
+    return props.theme.colors.neutral500;
   }
   if (props.isInverse) {
     return props.theme.colors.neutral0;
   }
 
-  return props.theme.colors.neutral700;
+  return props.theme.colors.brand.navy;
 }
 
 export const SelectContainer = styled.div`
@@ -88,13 +88,12 @@ export const StyledCard = styled(Card)<{
   display: ${props => (props.isOpen ? 'block' : 'none')};
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.primary500
+      ? props.theme.colors.neutral1100
       : props.theme.colors.neutral0};
-  border: 1x solid;
   border-color: ${props =>
     props.isInverse
-      ? transparentize(0.5, props.theme.colors.tertiary)
-      : props.theme.colors.neutral300};
+      ? props.theme.colors.neutral800
+      : props.theme.colors.neutral200};
   margin: 2px 0;
   padding: 4px 0 0;
 `;
@@ -114,6 +113,7 @@ export const StyledItem = styled('li')<{
   isFocused?: boolean;
   isDisabled?: boolean;
 }>`
+  align-items: center;
   align-self: center;
   background: transparent;
   border: 2px solid;
@@ -121,6 +121,7 @@ export const StyledItem = styled('li')<{
   cursor: default;
   color: ${props => buildListItemColor(props)};
   line-height: 24px;
+  display: flex;
   margin: 0;
   padding: 8px 16px;
   &:hover {
@@ -129,6 +130,13 @@ export const StyledItem = styled('li')<{
       props.isFocused ? buildListFocusColor(props) : 'transparent'};
     cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
   }
+`;
+
+export const SelectedItemIndicator = styled.span`
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-left: auto;
+  padding-left: ${props => props.theme.spaceScale.spacing03};
 `;
 
 export const SelectedItemsWrapper = styled.span`

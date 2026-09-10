@@ -35,7 +35,7 @@ const StyledCard = styled(Card)<{
   position: relative;
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.primary600
+      ? props.theme.colors.neutral1100
       : props.theme.colors.neutral0};
   display: ${props => (props.isOpen ? 'block' : 'none')};
   max-height: ${props => (props.maxHeight ? props.maxHeight : '100%')};
@@ -46,8 +46,12 @@ const StyledCard = styled(Card)<{
   border: 1px solid
     ${props =>
       props.isInverse
-        ? props.theme.colors.primary400
-        : props.theme.colors.neutral300};
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   width: ${props => (props.width ? props.width : '100%')};
   max-width: ${props => (props.width ? props.width : '300px')};
 `;
@@ -122,12 +126,12 @@ export const PopoverContent = React.forwardRef<
           width={10}
           height={6}
           fill={
-            context.isInverse ? theme.colors.primary600 : theme.colors.neutral0
+            context.isInverse ? theme.colors.neutral1100 : theme.colors.neutral0
           }
           stroke={
             context.isInverse
-              ? theme.colors.primary400
-              : theme.colors.neutral300
+              ? theme.colors.neutral800
+              : theme.colors.neutral200
           }
           strokeWidth={1}
           style={{ zIndex: 996, transform: 'translateY(-15%)' }}

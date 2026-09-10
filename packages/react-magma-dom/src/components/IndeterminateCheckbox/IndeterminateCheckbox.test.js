@@ -1,8 +1,6 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
-import { transparentize } from 'polished';
-
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 
@@ -37,6 +35,19 @@ describe('Indeterminate Checkbox', () => {
     );
 
     expect(getByLabelText('Hello')).toBeInTheDocument();
+  });
+
+  it('should render a regular label with the brand navy color', () => {
+    const { getByText } = render(
+      <IndeterminateCheckbox
+        status="indeterminate"
+        labelText="Indeterminate checkbox"
+      />
+    );
+
+    expect(
+      getByText('Indeterminate checkbox').closest('label')
+    ).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it('should render the indeterminate checkbox with aria-hidden', () => {
@@ -77,7 +88,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.primary
+      magma.colors.cyan700
     );
   });
 
@@ -109,7 +120,26 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.neutral0
+      magma.colors.brand.cyan
+    );
+  });
+
+  it('should render inverse error content with the red500 color', () => {
+    const { getByLabelText, getByTestId } = render(
+      <IndeterminateCheckbox
+        errorMessage="Error"
+        isInverse
+        labelText="Indeterminate checkbox"
+        status="checked"
+      />
+    );
+
+    const errorMessage = getByTestId('inputMessage');
+
+    expect(errorMessage).toHaveStyleRule('color', magma.colors.red500);
+    expect(getByLabelText('Error').querySelector('svg')).toHaveAttribute(
+      'fill',
+      magma.colors.red500
     );
   });
 
@@ -168,7 +198,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      transparentize(0.6, magma.colors.neutral0)
+      magma.colors.neutral600
     );
   });
 
@@ -181,7 +211,7 @@ describe('Indeterminate Checkbox', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      transparentize(0.6, magma.colors.neutral0)
+      magma.colors.neutral600
     );
   });
 

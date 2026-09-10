@@ -55,9 +55,9 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #FDEFEE;
+  background: #FFE9EC;
   border-radius: 50%;
-  color: #D32821;
+  color: #C60034;
 }
 
 .emotion-4 svg {
@@ -270,9 +270,9 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #FDEFEE;
+  background: #FFE9EC;
   border-radius: 50%;
-  color: #D32821;
+  color: #C60034;
 }
 
 .emotion-4 svg {
@@ -459,7 +459,7 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
       </div>
       <h3
         class="emotion-6 emotion-7"
-        style="color: rgb(86, 102, 122);"
+        style="color: rgb(11, 31, 58);"
       >
         Error occurred
       </h3>
@@ -630,7 +630,7 @@ exports[`EmptyState Graphic should render graphic without circular container 1`]
       </div>
       <h3
         class="emotion-4 emotion-5"
-        style="color: rgb(86, 102, 122);"
+        style="color: rgb(11, 31, 58);"
       >
         Test
       </h3>
@@ -694,9 +694,9 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #7F1714;
+  background: #520013;
   border-radius: 50%;
-  color: #FFFFFF;
+  color: #F66D84;
 }
 
 .emotion-4 svg {
@@ -799,9 +799,9 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #7F1714;
+  background: #520013;
   border-radius: 50%;
-  color: #FFFFFF;
+  color: #F66D84;
 }
 
 .emotion-4 svg {
@@ -885,6 +885,7 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
       <p
         class="emotion-8 emotion-7"
         color="default"
+        style="color: rgb(139, 153, 170);"
       >
         Something went wrong
       </p>
@@ -948,7 +949,7 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #3942B0;
+  background: #2A374A;
   border-radius: 50%;
   color: #FFFFFF;
 }
@@ -1053,7 +1054,7 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #3942B0;
+  background: #2A374A;
   border-radius: 50%;
   color: #FFFFFF;
 }
@@ -1139,6 +1140,7 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
       <p
         class="emotion-8 emotion-7"
         color="default"
+        style="color: rgb(139, 153, 170);"
       >
         Try another search
       </p>
@@ -1171,7 +1173,7 @@ exports[`EmptyState Loading state should render loading spinner when isLoading i
 .emotion-2 {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
-  border: 2px solid #3942B0;
+  border: 2px solid #0B1F3A;
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -1202,7 +1204,7 @@ exports[`EmptyState Loading state should render loading spinner when isLoading i
 .emotion-2 {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
-  border: 2px solid #3942B0;
+  border: 2px solid #0B1F3A;
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -1217,7 +1219,7 @@ exports[`EmptyState Loading state should render loading spinner when isLoading i
     <span
       aria-label="Loading"
       class="emotion-2 emotion-3"
-      color="#3942B0"
+      color="#0B1F3A"
       role="img"
     />
   </div>
@@ -1248,7 +1250,7 @@ exports[`EmptyState Loading state should render loading spinner with danger colo
 .emotion-2 {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
-  border: 2px solid #D32821;
+  border: 2px solid #C60034;
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -1279,7 +1281,7 @@ exports[`EmptyState Loading state should render loading spinner with danger colo
 .emotion-2 {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
-  border: 2px solid #D32821;
+  border: 2px solid #C60034;
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -1294,7 +1296,7 @@ exports[`EmptyState Loading state should render loading spinner with danger colo
     <span
       aria-label="Loading"
       class="emotion-2 emotion-3"
-      color="#D32821"
+      color="#C60034"
       role="img"
     />
   </div>
@@ -1762,7 +1764,7 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
     >
       <h3
         class="emotion-4 emotion-5"
-        style="color: rgb(86, 102, 122);"
+        style="color: rgb(11, 31, 58);"
       >
         No results
       </h3>
@@ -1853,9 +1855,9 @@ exports[`EmptyState should render icon in circular container 1`] = `
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #E8E9F8;
+  background: #DEE5EE;
   border-radius: 50%;
-  color: #3942B0;
+  color: #0B1F3A;
 }
 
 .emotion-4 svg {
@@ -1942,9 +1944,9 @@ exports[`EmptyState should render icon in circular container 1`] = `
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #E8E9F8;
+  background: #DEE5EE;
   border-radius: 50%;
-  color: #3942B0;
+  color: #0B1F3A;
 }
 
 .emotion-4 svg {
@@ -2005,7 +2007,7 @@ exports[`EmptyState should render icon in circular container 1`] = `
       </div>
       <h3
         class="emotion-6 emotion-7"
-        style="color: rgb(86, 102, 122);"
+        style="color: rgb(11, 31, 58);"
       >
         Test
       </h3>

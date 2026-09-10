@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { transparentize } from 'polished';
 import { CheckIcon, CloseIcon } from 'react-magma-icons';
 
 import { StepperLayout, StepperOrientation } from './Stepper';
@@ -69,14 +68,14 @@ function buildStepCircleOutlineColors(props) {
 
   if (isInverse && !hasError) {
     if (stepStatus === StepStatus.active) {
-      return theme.colors.tertiary500;
+      return theme.colors.brand.cyan;
     } else if (stepStatus === StepStatus.incomplete) {
-      return theme.colors.primary400;
+      return theme.colors.neutral900;
     }
   } else {
     if (!isInverse && !hasError) {
       if (stepStatus === StepStatus.active) {
-        return theme.colors.primary500;
+        return theme.colors.brand.navy;
       } else if (stepStatus === StepStatus.incomplete) {
         return theme.colors.neutral300;
       }
@@ -89,15 +88,15 @@ function buildStepCircleBackgroundColors(props) {
 
   if (isInverse) {
     if (stepStatus === StepStatus.completed && !hasError) {
-      return theme.colors.tertiary500;
+      return theme.colors.brand.cyan;
     } else if (hasError) {
-      return theme.colors.danger500;
+      return theme.colors.red500;
     }
   } else {
     if (stepStatus === StepStatus.completed && !hasError) {
-      return theme.colors.primary500;
+      return theme.colors.brand.navy;
     } else if (hasError) {
-      return theme.colors.danger500;
+      return theme.colors.red600;
     }
   }
 }
@@ -109,13 +108,13 @@ function buildStepLabelColors(props) {
     if (label) {
       return theme.colors.neutral0;
     } else if (secondaryLabel) {
-      return transparentize(0.3, theme.colors.neutral0);
+      return theme.colors.neutral500;
     }
   } else {
     if (label) {
-      return theme.colors.neutral700;
+      return theme.colors.brand.navy;
     } else if (secondaryLabel) {
-      return theme.colors.neutral500;
+      return theme.colors.neutral700;
     }
   }
 }
@@ -128,7 +127,7 @@ function buildStepSvgColors(props) {
       return theme.colors.neutral0;
     }
 
-    return theme.colors.primary600;
+    return theme.colors.brand.navy;
   } else {
     return theme.colors.neutral0;
   }

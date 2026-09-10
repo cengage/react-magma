@@ -1,5 +1,8 @@
 import * as React from 'react';
 
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { descriptionSuffix, useGenerateId } from '../../utils';
@@ -81,6 +84,32 @@ export interface ToggleButtonGroupContextInterface {
 
 export const ToggleButtonGroupContext =
   React.createContext<ToggleButtonGroupContextInterface>({});
+
+const StyledButtonGroup = styled(ButtonGroup)<any>`
+  gap: ${props =>
+    props.noSpace
+      ? props.theme.spaceScale.spacing01
+      : props.theme.spaceScale.spacing05};
+
+  &&&& > button {
+    margin: 0;
+  }
+
+  ${props =>
+    props.noSpace &&
+    css`
+      &&&& > button {
+        border-left: none;
+        border-right: none;
+        border-radius: ${props.theme.borderRadius};
+      }
+    `}
+
+  &&&& > button[aria-checked='true'],
+  &&&& > button[aria-selected='true'] {
+    border-radius: 9999px;
+  }
+`;
 
 export const ToggleButtonGroup = React.forwardRef<
   HTMLDivElement,
@@ -181,9 +210,9 @@ export const ToggleButtonGroup = React.forwardRef<
     : `${id}${descriptionSuffix}`;
 
   return (
-    <ButtonGroup
+    <StyledButtonGroup
       aria-describedby={descriptionId}
-      color={ButtonColor.subtle}
+      color={ButtonColor.secondary}
       isInverse={isInverse}
       noSpace={noSpace}
       ref={ref}
@@ -207,6 +236,6 @@ export const ToggleButtonGroup = React.forwardRef<
       >
         {ToggleButtons}
       </ToggleButtonGroupContext.Provider>
-    </ButtonGroup>
+    </StyledButtonGroup>
   );
 });

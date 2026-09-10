@@ -67,6 +67,11 @@ export interface TabsProps
    */
   iconPosition?: TabsIconPosition;
   /**
+   * If false, the divider border is hidden
+   * @default true
+   */
+  hasBorder?: boolean;
+  /**
    * If true, the components takes the full width of the screen
    */
   isFullWidth?: boolean;
@@ -81,7 +86,7 @@ export interface TabsProps
   orientation?: TabsOrientation;
   /**
    * Determines whether the tab appears in all-caps
-   * @default TabsTextTransform.uppercase
+   * @default TabsTextTransform.none
    */
   textTransform?: TabsTextTransform;
   /**
@@ -115,22 +120,47 @@ export const TabsContext = React.createContext<TabsContextInterface>({
   isInverse: false,
   isFullWidth: false,
   orientation: TabsOrientation.horizontal,
-  textTransform: TabsTextTransform.uppercase,
+  textTransform: TabsTextTransform.none,
   registerTabButton: (elements, element) => {},
 });
 
-export const StyledContainer = styled('div', {
-  shouldForwardProp: isPropValid,
-})<{
+interface StyledContainerProps {
   as?: string;
+  borderPosition?: TabsBorderPosition;
+  hasBorder?: boolean;
   orientation: TabsOrientation;
   isInverse: boolean;
   backgroundColor: string;
   theme: ThemeInterface;
-}>`
+}
+
+function getTabsBorder(props: StyledContainerProps, side: TabsBorderPosition) {
+  const resolvedBorderPosition =
+    props.borderPosition ||
+    (props.orientation === TabsOrientation.vertical
+      ? TabsBorderPosition.left
+      : TabsBorderPosition.bottom);
+
+  return props.hasBorder && resolvedBorderPosition === side
+    ? `1px solid ${
+        props.isInverse
+          ? props.theme.colors.neutral800
+          : props.theme.colors.neutral200
+      }`
+    : 0;
+}
+
+export const StyledContainer = styled('div', {
+  shouldForwardProp: isPropValid,
+})<StyledContainerProps>`
   background-color: ${props =>
     props.backgroundColor ? props.backgroundColor : 'transparent'};
   background: backgroundColor;
+  border-bottom: ${props => getTabsBorder(props, TabsBorderPosition.bottom)};
+  border-left: ${props => getTabsBorder(props, TabsBorderPosition.left)};
+  border-right: ${props => getTabsBorder(props, TabsBorderPosition.right)};
+  border-top: ${props => getTabsBorder(props, TabsBorderPosition.top)};
+  box-sizing: border-box;
   display: flex;
   height: ${props => (props.orientation === 'vertical' ? '100%' : 'auto')};
 
@@ -181,6 +211,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       backgroundColor,
       borderPosition,
       children,
+      hasBorder = true,
       isFullWidth,
       orientation,
       onChange,
@@ -500,6 +531,8 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       <StyledContainer
         data-testid={testId}
         backgroundColor={background}
+        borderPosition={borderPosition}
+        hasBorder={hasBorder}
         isInverse={isInverse}
         orientation={orientation || TabsOrientation.horizontal}
         ref={ref}
@@ -539,7 +572,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
                 isInverse,
                 isFullWidth,
                 orientation,
-                textTransform: textTransform || TabsTextTransform.uppercase,
+                textTransform: textTransform || TabsTextTransform.none,
                 registerTabButton,
               }}
             >
