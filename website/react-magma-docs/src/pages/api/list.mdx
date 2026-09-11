@@ -291,11 +291,11 @@ inherit the `isInverse` prop unless specified otherwise.
 ```tsx
 import React from 'react';
 
-import { Card, CardBody, List, ListItem } from 'react-magma-dom';
+import { Card, CardBody, List, ListItem, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <List isInverse>
           <ListItem>List content</ListItem>

@@ -20,7 +20,10 @@ properly manages focus; moving to the modal content, and keeping it there until 
 The modal will _only_ render if the `isOpen` prop is set to true. For that reason, it is redundant to show the modal using the following anti-pattern: `{flag && <Modal isOpen={flag} />`. Instead,
 simply use `<Modal isOpen={flag} />`
 
-<Alert variant="warning">The modal trigger button must have the <code>aria-haspopup="dialog"</code> attribute for accessibility purposes.</Alert>
+<Alert variant="warning">
+  The modal trigger button must have the <code>aria-haspopup="dialog"</code>{' '}
+  attribute for accessibility purposes.
+</Alert>
 
 ```tsx
 import React from 'react';
@@ -582,6 +585,7 @@ import {
   Paragraph,
   Card,
   CardBody,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -620,7 +624,7 @@ export function Example() {
           in the modal
         </Paragraph>
       </Modal>
-      <Card isInverse>
+      <Card background={magma.colors.neutral1100} isInverse>
         <CardBody>
           <Button
             aria-haspopup="dialog"

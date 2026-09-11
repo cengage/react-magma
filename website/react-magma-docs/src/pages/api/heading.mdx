@@ -181,11 +181,17 @@ The `isInverse` property is an optional boolean that changes the colors so the c
 ```tsx
 import React from 'react';
 
-import { Card, CardBody, Heading, TypographyColor } from 'react-magma-dom';
+import {
+  Card,
+  CardBody,
+  Heading,
+  TypographyColor,
+  magma,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <Heading isInverse level={2}>
           Heading 2

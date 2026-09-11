@@ -5,9 +5,11 @@ import { Link } from 'gatsby';
 import {
   magma,
   AppBarPosition,
+  ButtonColor,
   ButtonVariant,
   IconButton,
   AppBar,
+  useIsInverse,
 } from 'react-magma-dom';
 import { GithubIcon } from 'react-magma-icons';
 
@@ -15,12 +17,12 @@ import { Logo } from '../Logo';
 
 const LogoLink = styled(Link)`
   align-items: center;
-  color: ${magma.colors.neutral700};
+  color: ${props =>
+    props.isInverse ? magma.colors.neutral0 : magma.colors.brand.navy};
   display: inline-flex;
   font-size: ${magma.typeScale.size05.fontSize};
-  font-weight: 500;
+  font-weight: 700;
   text-decoration: none;
-  text-transform: uppercase;
 
   @media (max-width: 1024px) {
     margin-left: 40px;
@@ -29,7 +31,8 @@ const LogoLink = styled(Link)`
   &:hover,
   &:focus,
   &:active {
-    color: ${magma.colors.neutral700};
+    color: ${props =>
+      props.isInverse ? magma.colors.neutral0 : magma.colors.brand.navy};
   }
 
   &:focus {
@@ -38,6 +41,11 @@ const LogoLink = styled(Link)`
 `;
 
 const StyledHeader = styled(AppBar)`
+  background: ${props =>
+    props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral0};
+  border-bottom: 1px solid
+    ${props =>
+      props.isInverse ? magma.colors.neutral800 : magma.colors.neutral200};
   box-shadow: none;
   padding: 24px;
 `;
@@ -81,9 +89,9 @@ const RepoLink = styled.span`
   padding-right: 12px;
 `;
 
-const HeaderLogo = (
+const getHeaderLogo = isInverse => (
   <HeaderWrap>
-    <LogoLink to="/">
+    <LogoLink isInverse={isInverse} to="/">
       <SmallLogoWrap>
         <Logo />
       </SmallLogoWrap>
@@ -95,6 +103,7 @@ const HeaderLogo = (
     </LogoLink>
     <RepoLink>
       <IconButton
+        color={ButtonColor.subtle}
         icon={<GithubIcon />}
         variant={ButtonVariant.link}
         onClick={() => {
@@ -108,14 +117,17 @@ const HeaderLogo = (
 );
 
 export const Masthead = props => {
+  const isInverse = useIsInverse();
+
   return (
     <StyledHeader
       breakpoint={magma.breakpoints.medium}
       isCompact
+      isInverse={isInverse}
       position={AppBarPosition.sticky}
       style={{ gridArea: 'masthead' }}
     >
-      {HeaderLogo}
+      {getHeaderLogo(isInverse)}
       {props.children}
     </StyledHeader>
   );

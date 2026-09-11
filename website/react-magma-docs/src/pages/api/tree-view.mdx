@@ -1818,11 +1818,15 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { TreeView, TreeItem, Card } from 'react-magma-dom';
+import { TreeView, TreeItem, Card, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse style={{ padding: '12px' }}>
+    <Card
+      background={magma.colors.neutral1100}
+      isInverse
+      style={{ padding: '12px' }}
+    >
       <TreeView ariaLabel="animals" isInverse>
         <TreeItem label="Mammals" itemId="inverse-Mammals">
           <TreeItem label="Dogs" itemId="inverse-Dogs">

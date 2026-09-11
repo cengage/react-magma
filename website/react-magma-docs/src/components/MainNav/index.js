@@ -11,10 +11,21 @@ import {
   AccordionPanel,
   Hyperlink,
   magma,
+  useIsInverse,
 } from 'react-magma-dom';
 import { LaunchIcon } from 'react-magma-icons';
 
 const StyledWrapper = styled.div`
+  --docs-nav-active: ${props =>
+    props.isInverse ? magma.colors.neutral800 : magma.colors.neutral200};
+  --docs-nav-accent: ${props =>
+    props.isInverse ? magma.colors.cyan400 : magma.colors.cyan600};
+  --docs-nav-divider: ${props =>
+    props.isInverse ? magma.colors.neutral800 : magma.colors.neutral200};
+  --docs-nav-hover: ${props =>
+    props.isInverse ? magma.colors.neutral900 : magma.colors.neutral150};
+  --docs-nav-text: ${props =>
+    props.isInverse ? magma.colors.neutral100 : magma.colors.brand.navy};
   margin-top: 8px;
   *:focus {
     outline-offset: 0;
@@ -29,7 +40,7 @@ const StyledAccordion = styled(Accordion)`
 
 const StyledAccordionItem = styled(AccordionItem)`
   h3 {
-    color: ${magma.colors.neutral700};
+    color: var(--docs-nav-text);
     font-size: ${magma.typeScale.size01.fontSize};
     font-weight: 700;
     text-transform: uppercase;
@@ -40,10 +51,10 @@ const StyledAccordionItem = styled(AccordionItem)`
   }
   button {
     &[aria-expanded='true'] {
-      box-shadow: inset 0 1px 0 0 ${magma.colors.neutral300};
+      box-shadow: inset 0 1px 0 0 var(--docs-nav-divider);
     }
     svg {
-      color: ${magma.colors.neutral700};
+      color: var(--docs-nav-text);
     }
   }
   > div {
@@ -54,7 +65,7 @@ const StyledAccordionItem = styled(AccordionItem)`
 const StyledAccordionPanel = styled(AccordionPanel)`
   padding: 0;
   &[aria-hidden='false'] {
-    box-shadow: inset 0 -1px 0 0 ${magma.colors.neutral300};
+    box-shadow: inset 0 -1px 0 0 var(--docs-nav-divider);
     padding-bottom: 10px;
   }
 `;
@@ -62,26 +73,22 @@ const StyledAccordionPanel = styled(AccordionPanel)`
 const LinkStyles = () => `
   align-items: center;
   display:block;
-  color: ${magma.colors.neutral700};
+  color: var(--docs-nav-text);
   font-size: ${magma.typeScale.size03.fontSize};
   line-height: ${magma.typeScale.size03.lineHeight};
   padding: 0;
   text-decoration: none;
   &:focus{
-    color: ${magma.colors.neutral700};
+    color: var(--docs-nav-text);
     outline: 2px solid ${magma.colors.focus};
     outline-offset: 0;
   }
 `;
 
 const LinkHoverStyles = () => `
-  color: ${magma.colors.neutral700};
-  background: ${magma.colors.neutral300};
+  color: var(--docs-nav-text);
+  background: var(--docs-nav-hover);
 `;
-
-const activeStyleDefault = {
-  background: magma.colors.neutral300,
-};
 
 const headingStyles = `
   display: flex;
@@ -123,7 +130,7 @@ const StyledAccordionButton = styled(AccordionButton)`
 `;
 
 const Heading3 = styled.h3`
-  color: ${magma.colors.neutral700};
+  color: var(--docs-nav-text);
   font-size: ${magma.typeScale.size01.fontSize};
   font-weight: 700;
   text-transform: uppercase;
@@ -173,12 +180,12 @@ const StyledActiveLink2 = {
   height: '100%',
   width: '4px',
   borderRadius: '2px',
-  background: ` ${magma.colors.primary}`,
+  background: 'var(--docs-nav-accent)',
 };
 
 const StyledLink2 = styled(Link)`
   align-items: center;
-  color: ${magma.colors.neutral700};
+  color: var(--docs-nav-text);
   display: flex;
   font-size: ${magma.typeScale.size02.fontSize};
   justify-content: space-between;
@@ -189,7 +196,7 @@ const StyledLink2 = styled(Link)`
     ${LinkHoverStyles};
   }
   &:focus {
-    color: ${magma.colors.neutral700};
+    color: var(--docs-nav-text);
   }
   &:focus:before {
     ${StyledActiveLink2};
@@ -217,7 +224,10 @@ function isAccordionItemOpen(location, id) {
 }
 
 export const MainNav = ({ ...props }) => {
-  const activeStyle = activeStyleDefault;
+  const isInverse = useIsInverse();
+  const activeStyle = {
+    background: isInverse ? magma.colors.neutral800 : magma.colors.neutral200,
+  };
 
   const ref = useRef();
 
@@ -246,7 +256,7 @@ export const MainNav = ({ ...props }) => {
     query NavQuery {
       designComponentDocs: allMdx(
         filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
+          internal: { contentFilePath: { regex: "//src/pages/design//" } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -256,7 +266,7 @@ export const MainNav = ({ ...props }) => {
       }
       designPatternDocs: allMdx(
         filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
+          internal: { contentFilePath: { regex: "//src/pages/design//" } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -266,7 +276,7 @@ export const MainNav = ({ ...props }) => {
       }
       apiDocs: allMdx(
         filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/api/**" } }
+          internal: { contentFilePath: { regex: "//src/pages/api//" } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -277,7 +287,7 @@ export const MainNav = ({ ...props }) => {
       dataVisualization: allMdx(
         filter: {
           internal: {
-            contentFilePath: { glob: "**/src/pages/data-visualization/**" }
+            contentFilePath: { regex: "//src/pages/data-visualization//" }
           }
         }
         sort: { frontmatter: { order: ASC } }
@@ -288,9 +298,7 @@ export const MainNav = ({ ...props }) => {
       }
       designIntro: allMdx(
         filter: {
-          internal: {
-            contentFilePath: { glob: "**/src/pages/design-intro/**" }
-          }
+          internal: { contentFilePath: { regex: "//src/pages/design-intro//" } }
         }
         sort: { frontmatter: { order: ASC } }
       ) {
@@ -300,7 +308,7 @@ export const MainNav = ({ ...props }) => {
       }
       apiIntro: allMdx(
         filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/api-intro/**" } }
+          internal: { contentFilePath: { regex: "//src/pages/api-intro//" } }
         }
         sort: { frontmatter: { order: ASC } }
       ) {
@@ -312,7 +320,7 @@ export const MainNav = ({ ...props }) => {
   `);
 
   return (
-    <StyledWrapper>
+    <StyledWrapper isInverse={isInverse}>
       <Location>
         {({ location }) => (
           <>

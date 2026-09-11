@@ -275,7 +275,14 @@ For short forms with an error, clicking submit should bring the focus back to th
 ```tsx
 import React from 'react';
 
-import { Announce, Button, ButtonGroup, Input, Spacer, VisuallyHidden } from 'react-magma-dom';
+import {
+  Announce,
+  Button,
+  ButtonGroup,
+  Input,
+  Spacer,
+  VisuallyHidden,
+} from 'react-magma-dom';
 
 export function Example() {
   const [hasError, setHasError] = React.useState(false);
@@ -431,11 +438,11 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Card, CardBody, Input } from 'react-magma-dom';
+import { Card, CardBody, Input, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <Input
           id="inputInverse"

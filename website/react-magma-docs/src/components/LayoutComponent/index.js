@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import Helmet from 'react-helmet';
-import { magma, Container, Heading } from 'react-magma-dom';
+import { magma, Container, Heading, useIsInverse } from 'react-magma-dom';
 
 import { CONTENT_MAX_WIDTH } from '../PageContent';
 import { PANEL_WIDTH } from '../SlidingDrawer';
@@ -12,7 +12,8 @@ const ContentSection = styled.section`
 `;
 
 const StyledHeadingContainer = styled(Container)`
-  background: ${magma.colors.neutral200};
+  background: ${props =>
+    props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral100};
   padding: 0;
   h1 {
     margin: 0;
@@ -20,7 +21,8 @@ const StyledHeadingContainer = styled(Container)`
 `;
 
 const HeadingWrapper = styled.div`
-  background: ${magma.colors.neutral200};
+  background: ${props =>
+    props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral100};
   padding: 34px 0;
   margin: 0 auto;
   max-width: ${CONTENT_MAX_WIDTH}px;
@@ -35,6 +37,7 @@ const HeadingWrapper = styled.div`
 
 export const LayoutComponent = props => {
   const { children, heading, title } = props;
+  const isInverse = useIsInverse();
 
   return (
     <>
@@ -51,9 +54,9 @@ export const LayoutComponent = props => {
         {/* components have headings, main page doesn't */}
         {heading ? (
           <>
-            <StyledHeadingContainer>
-              <div style={{ background: magma.colors.neutral200 }}>
-                <HeadingWrapper>
+            <StyledHeadingContainer isInverse={isInverse}>
+              <div>
+                <HeadingWrapper isInverse={isInverse}>
                   <Heading level={1}>{heading}</Heading>
                 </HeadingWrapper>
               </div>

@@ -1,5 +1,8 @@
 import React, { useContext, useState } from 'react';
 
+import styled from '@emotion/styled';
+import { magma, useIsInverse } from 'react-magma-dom';
+
 import {
   Actions,
   ActionsLeft,
@@ -24,15 +27,32 @@ interface ExampleProps {
   code: string;
   noBorder?: boolean;
 }
+
+const ExampleContainer = styled.div<{
+  isInverse?: boolean;
+  noBorder?: boolean;
+}>`
+  border: ${props =>
+    props.noBorder
+      ? 0
+      : `1px solid ${
+          props.isInverse ? magma.colors.borderInverse : magma.colors.border
+        }`};
+  border-radius: 16px;
+  margin-bottom: ${magma.spaceScale.spacing04};
+  overflow: hidden;
+`;
+
 export const Example = ({ ...props }: ExampleProps) => {
   const context = useContext(CodeBlockContext);
+  const isInverse = useIsInverse();
   const [expanded, setExpanded] = useState<boolean>(
     calculateStartExpanded(props.code, context.startExpanded)
   );
   const toggleExpanded = () => setExpanded(!expanded);
 
   return (
-    <div>
+    <ExampleContainer isInverse={isInverse} noBorder={context.noBorder}>
       <Preview code={props.code} noBorder={context.noBorder} />
       <Actions>
         <ActionsLeft>
@@ -46,6 +66,6 @@ export const Example = ({ ...props }: ExampleProps) => {
       <Editor expanded={expanded} onClick={toggleExpanded}>
         {props.code}
       </Editor>
-    </div>
+    </ExampleContainer>
   );
 };
