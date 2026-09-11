@@ -136,7 +136,7 @@ function setColor(props) {
   }
 
   if (props.isInverse) {
-    return props.isSelected ? props.theme.colors.brand.navy : undefined;
+    return props.isSelected ? props.theme.colors.neutral0 : undefined;
   }
 
   return props.isSelected
@@ -164,7 +164,7 @@ function setDisabledBackgroundColor(props) {
 }
 
 function setBorder(props) {
-  return 'none';
+  return '1px solid transparent';
 }
 
 function setInverseBackgroundColor(props, interaction = 'default') {
@@ -176,8 +176,8 @@ function setInverseBackgroundColor(props, interaction = 'default') {
 
   if (props.isSelected) {
     return interaction === 'hover' || interaction === 'active'
-      ? props.theme.colors.neutral400
-      : props.theme.colors.neutral300;
+      ? props.theme.colors.neutral800
+      : props.theme.colors.neutral700;
   }
 
   return interaction === 'hover' || interaction === 'active'
@@ -186,47 +186,41 @@ function setInverseBackgroundColor(props, interaction = 'default') {
 }
 
 export const ToggleButtonStyles = props => css`
-  background: ${setBackgroundColor(props)};
-  border: ${setBorder(props)};
-  border-radius: ${props.isSelected ? '9999px' : undefined};
-  color: ${setColor(props)};
+  border-radius: ${props.theme.borderRadius};
 
-  &:disabled {
-    background: ${setDisabledBackgroundColor(props)};
-    border: none;
-    color: ${setDisabledColor(props)};
-  }
-
-  &:not(:disabled):focus {
-    background: ${!props.isInverse
-      ? props.isSelected
-        ? props.theme.colors.neutral700
-        : transparentize(0.5, props.theme.colors.neutral200)
-      : setInverseBackgroundColor(props, 'focus')};
-    border: none;
+  ${props.isSelected &&
+  css`
+    background: ${setBackgroundColor(props)};
+    border: ${setBorder(props)};
     color: ${setColor(props)};
-    outline-offset: 2px;
-  }
 
-  &:not(:disabled):hover {
-    background: ${!props.isInverse
-      ? props.isSelected
-        ? props.theme.colors.neutral800
-        : props.theme.colors.neutral200
-      : setInverseBackgroundColor(props, 'hover')};
-    border: none;
-    color: ${setColor(props)};
-  }
+    &:disabled {
+      background: ${setDisabledBackgroundColor(props)};
+      color: ${setDisabledColor(props)};
+    }
 
-  &:not(:disabled):active {
-    background: ${!props.isInverse
-      ? props.isSelected
-        ? props.theme.colors.neutral800
-        : props.theme.colors.neutral200
-      : setInverseBackgroundColor(props, 'active')};
-    border: none;
-    color: ${setColor(props)};
-  }
+    &:not(:disabled):focus {
+      background: ${props.isInverse
+        ? setInverseBackgroundColor(props, 'focus')
+        : props.theme.colors.neutral700};
+      color: ${setColor(props)};
+      outline-offset: 2px;
+    }
+
+    &:not(:disabled):hover {
+      background: ${props.isInverse
+        ? setInverseBackgroundColor(props, 'hover')
+        : props.theme.colors.neutral800};
+      color: ${setColor(props)};
+    }
+
+    &:not(:disabled):active {
+      background: ${props.isInverse
+        ? setInverseBackgroundColor(props, 'active')
+        : props.theme.colors.neutral800};
+      color: ${setColor(props)};
+    }
+  `}
 `;
 
 const StyledToggleButtonIcon = styled(IconButton)<any>`

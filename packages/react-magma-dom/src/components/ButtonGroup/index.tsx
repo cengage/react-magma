@@ -147,7 +147,7 @@ function buildButtonAlignment(props: StyledButtonGroupProps): string {
 function buildNoSpaceBorderColor(props: StyledButtonGroupProps): string {
   if (props.isInverse) {
     if (props.color === ButtonColor.secondary) {
-      return props.theme.colors.tertiary;
+      return props.theme.colors.neutral800;
     }
     if (props.color === ButtonColor.subtle) {
       return transparentize(0.8, props.theme.colors.neutral300);
@@ -156,7 +156,7 @@ function buildNoSpaceBorderColor(props: StyledButtonGroupProps): string {
     return props.theme.colors.neutral0;
   }
   if (props.color === ButtonColor.secondary) {
-    return props.theme.colors.primary300;
+    return props.theme.colors.neutral300;
   }
   if (props.color === ButtonColor.subtle) {
     return props.theme.colors.neutral300;
