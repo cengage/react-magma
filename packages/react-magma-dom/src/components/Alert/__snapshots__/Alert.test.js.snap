@@ -60,7 +60,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   border-radius: 0 8px 8px 0;
   color: inherit;
   height: auto;
-  margin: 0 -1px 0 0;
+  margin: 4px;
   padding: 0 8px;
   width: auto;
 }
@@ -105,8 +105,9 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 
 .emotion-1:focus:not(:disabled) {
   background: none;
+  border-radius: 8px;
   color: inherit;
-  outline: 2px solid #3082CA;
+  outline: 2px solid #0B1F3A;
   outline-offset: 0!important;
 }
 
@@ -186,7 +187,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   border-radius: 0 8px 8px 0;
   color: inherit;
   height: auto;
-  margin: 0 -1px 0 0;
+  margin: 4px;
   padding: 0 8px;
   width: auto;
 }
@@ -231,8 +232,9 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 
 .emotion-1:focus:not(:disabled) {
   background: none;
+  border-radius: 8px;
   color: inherit;
-  outline: 2px solid #3082CA;
+  outline: 2px solid #0B1F3A;
   outline-offset: 0!important;
 }
 
@@ -320,6 +322,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 
 .emotion-0:focus {
   outline: 2px solid #3082CA;
+  outline-offset: 2px;
 }
 
 .emotion-0 a {
@@ -332,6 +335,15 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
   color: #FFFFFF;
+}
+
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 button:not(:disabled):focus,
+.emotion-0 input:not(:disabled):focus,
+.emotion-0 select:not(:disabled):focus,
+.emotion-0 textarea:not(:disabled):focus,
+.emotion-0 [tabindex]:not([tabindex='-1']):focus {
+  outline: 2px solid #FFFFFF;
 }
 
 .emotion-2 {
@@ -428,6 +440,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 
 .emotion-0:focus {
   outline: 2px solid #3082CA;
+  outline-offset: 2px;
 }
 
 .emotion-0 a {
@@ -440,6 +453,15 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
   color: #FFFFFF;
+}
+
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 button:not(:disabled):focus,
+.emotion-0 input:not(:disabled):focus,
+.emotion-0 select:not(:disabled):focus,
+.emotion-0 textarea:not(:disabled):focus,
+.emotion-0 [tabindex]:not([tabindex='-1']):focus {
+  outline: 2px solid #FFFFFF;
 }
 
 .emotion-2 {
@@ -581,6 +603,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 .emotion-0:focus {
   outline: 2px solid #3082CA;
+  outline-offset: 2px;
 }
 
 .emotion-0 a {
@@ -593,6 +616,15 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
   color: #FFFFFF;
+}
+
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 button:not(:disabled):focus,
+.emotion-0 input:not(:disabled):focus,
+.emotion-0 select:not(:disabled):focus,
+.emotion-0 textarea:not(:disabled):focus,
+.emotion-0 [tabindex]:not([tabindex='-1']):focus {
+  outline: 2px solid #FFFFFF;
 }
 
 .emotion-2 {
@@ -689,6 +721,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 .emotion-0:focus {
   outline: 2px solid #3082CA;
+  outline-offset: 2px;
 }
 
 .emotion-0 a {
@@ -701,6 +734,15 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
   color: #FFFFFF;
+}
+
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 button:not(:disabled):focus,
+.emotion-0 input:not(:disabled):focus,
+.emotion-0 select:not(:disabled):focus,
+.emotion-0 textarea:not(:disabled):focus,
+.emotion-0 [tabindex]:not([tabindex='-1']):focus {
+  outline: 2px solid #FFFFFF;
 }
 
 .emotion-2 {
@@ -842,6 +884,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 
 .emotion-0:focus {
   outline: 2px solid #3082CA;
+  outline-offset: 2px;
 }
 
 .emotion-0 a {
@@ -854,6 +897,15 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
   color: #0B1F3A;
+}
+
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 button:not(:disabled):focus,
+.emotion-0 input:not(:disabled):focus,
+.emotion-0 select:not(:disabled):focus,
+.emotion-0 textarea:not(:disabled):focus,
+.emotion-0 [tabindex]:not([tabindex='-1']):focus {
+  outline: 2px solid #0B1F3A;
 }
 
 .emotion-2 {
@@ -950,6 +1002,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 
 .emotion-0:focus {
   outline: 2px solid #3082CA;
+  outline-offset: 2px;
 }
 
 .emotion-0 a {
@@ -962,6 +1015,15 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
   color: #0B1F3A;
+}
+
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 button:not(:disabled):focus,
+.emotion-0 input:not(:disabled):focus,
+.emotion-0 select:not(:disabled):focus,
+.emotion-0 textarea:not(:disabled):focus,
+.emotion-0 [tabindex]:not([tabindex='-1']):focus {
+  outline: 2px solid #0B1F3A;
 }
 
 .emotion-2 {
@@ -1103,6 +1165,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 .emotion-0:focus {
   outline: 2px solid #3082CA;
+  outline-offset: 2px;
 }
 
 .emotion-0 a {
@@ -1115,6 +1178,15 @@ exports[`Alert should render an alert with default variant 1`] = `
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
   color: #FFFFFF;
+}
+
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 button:not(:disabled):focus,
+.emotion-0 input:not(:disabled):focus,
+.emotion-0 select:not(:disabled):focus,
+.emotion-0 textarea:not(:disabled):focus,
+.emotion-0 [tabindex]:not([tabindex='-1']):focus {
+  outline: 2px solid #FFFFFF;
 }
 
 .emotion-2 {
@@ -1211,6 +1283,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 .emotion-0:focus {
   outline: 2px solid #3082CA;
+  outline-offset: 2px;
 }
 
 .emotion-0 a {
@@ -1223,6 +1296,15 @@ exports[`Alert should render an alert with default variant 1`] = `
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
   color: #FFFFFF;
+}
+
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 button:not(:disabled):focus,
+.emotion-0 input:not(:disabled):focus,
+.emotion-0 select:not(:disabled):focus,
+.emotion-0 textarea:not(:disabled):focus,
+.emotion-0 [tabindex]:not([tabindex='-1']):focus {
+  outline: 2px solid #FFFFFF;
 }
 
 .emotion-2 {

@@ -50,17 +50,72 @@ describe('Alert', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('should render an alert with inverse focus style', () => {
-    const { container } = render(<Alert inverse>Test Alert Text</Alert>);
+  it('should offset the alert focus outline', () => {
+    const { container } = render(<Alert isInverse>Test Alert Text</Alert>);
 
-    expect(container.firstChild).toHaveStyleRule(
-      'outline',
-      `2px solid ${magma.colors.focus}`,
-      {
-        target: ':focus',
-      }
-    );
+    expect(container.firstChild).toHaveStyleRule('outline-offset', '2px', {
+      target: ':focus',
+    });
   });
+
+  it.each([
+    [AlertVariant.info, false],
+    [AlertVariant.success, false],
+    [AlertVariant.danger, false],
+    [AlertVariant.info, true],
+    [AlertVariant.success, true],
+    [AlertVariant.danger, true],
+  ])(
+    'should use white focus outlines within a %s alert when inverse is %s',
+    (variant, isInverse) => {
+      const { container } = render(
+        <Alert
+          isInverse={isInverse}
+          variant={variant}
+          additionalContent={<button type="button">Action</button>}
+        >
+          <a href="#test">Link</a>
+        </Alert>
+      );
+
+      expect(container.firstChild).toHaveStyleRule(
+        'outline',
+        `2px solid ${magma.colors.neutral0}`,
+        { target: 'a:not([disabled]):focus' }
+      );
+      expect(container.firstChild).toHaveStyleRule(
+        'outline',
+        `2px solid ${magma.colors.neutral0}`,
+        { target: 'button:not(:disabled):focus' }
+      );
+    }
+  );
+
+  it.each([false, true])(
+    'should use a brand navy focus outline within a warning alert when inverse is %s',
+    isInverse => {
+      const { container } = render(
+        <Alert
+          isInverse={isInverse}
+          variant={AlertVariant.warning}
+          additionalContent={<button type="button">Action</button>}
+        >
+          <a href="#test">Link</a>
+        </Alert>
+      );
+
+      expect(container.firstChild).toHaveStyleRule(
+        'outline',
+        `2px solid ${magma.colors.brand.navy}`,
+        { target: 'a:not([disabled]):focus' }
+      );
+      expect(container.firstChild).toHaveStyleRule(
+        'outline',
+        `2px solid ${magma.colors.brand.navy}`,
+        { target: 'button:not(:disabled):focus' }
+      );
+    }
+  );
 
   it('should render a close button with a progress ring', () => {
     const { container } = render(
@@ -205,6 +260,37 @@ describe('Alert', () => {
       expect(dismissableIconButton).toBeInTheDocument();
     });
 
+    it.each([
+      [AlertVariant.info, false],
+      [AlertVariant.success, false],
+      [AlertVariant.danger, false],
+      [AlertVariant.info, true],
+      [AlertVariant.success, true],
+      [AlertVariant.danger, true],
+    ])(
+      'should use an inset white focus ring for a %s close button when inverse is %s',
+      (variant, isInverse) => {
+        const { getByLabelText } = render(
+          <Alert isDismissible isInverse={isInverse} variant={variant}>
+            Test Alert Text
+          </Alert>
+        );
+        const dismissibleIconButton = getByLabelText('Close this message');
+
+        expect(dismissibleIconButton).toHaveStyleRule('margin', '4px');
+        expect(dismissibleIconButton).toHaveStyleRule(
+          'outline',
+          `2px solid ${magma.colors.neutral0}`,
+          { target: ':focus:not(:disabled)' }
+        );
+        expect(dismissibleIconButton).toHaveStyleRule(
+          'border-radius',
+          magma.borderRadius,
+          { target: ':focus:not(:disabled)' }
+        );
+      }
+    );
+
     it('should render a dismissible icon button with custom close label text', () => {
       const { getByLabelText } = render(
         <Alert isDismissible closeAriaLabel="Test">
@@ -229,6 +315,15 @@ describe('Alert', () => {
       button.firstChild.setAttribute('aria-labelledby', 'ignoreButton');
       button.firstChild.firstChild.setAttribute('id', 'ignoreTitle');
 
+      expect(button).toHaveStyleRule(
+        'outline',
+        `2px solid ${magma.colors.brand.navy}`,
+        { target: ':focus:not(:disabled)' }
+      );
+      expect(button).toHaveStyleRule('margin', '4px');
+      expect(button).toHaveStyleRule('border-radius', magma.borderRadius, {
+        target: ':focus:not(:disabled)',
+      });
       expect(button).toMatchSnapshot();
     });
 

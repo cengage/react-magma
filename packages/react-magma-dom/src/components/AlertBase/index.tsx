@@ -134,6 +134,12 @@ export function buildLinkHoverColor(props) {
     : props.theme.colors.neutral0;
 }
 
+function buildAlertFocusColor(props) {
+  return props.variant === AlertVariant.warning
+    ? props.theme.colors.brand.navy
+    : props.theme.colors.neutral0;
+}
+
 const StyledAlert = styled.div<AlertBaseProps>`
   align-items: stretch;
   animation: ${props =>
@@ -162,6 +168,7 @@ const StyledAlert = styled.div<AlertBaseProps>`
         props.isInverse
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};
+    outline-offset: 2px;
   }
 
   ${props =>
@@ -229,6 +236,19 @@ const StyledAlert = styled.div<AlertBaseProps>`
       }
     }
   }
+
+  ${props =>
+    !props.isToast &&
+    css`
+      a:not([disabled]):focus,
+      button:not(:disabled):focus,
+      input:not(:disabled):focus,
+      select:not(:disabled):focus,
+      textarea:not(:disabled):focus,
+      [tabindex]:not([tabindex='-1']):focus {
+        outline: 2px solid ${buildAlertFocusColor(props)};
+      }
+    `}
 `;
 
 const StyledAlertInner = styled.div<AlertBaseProps>`
@@ -327,7 +347,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
     ${props => props.theme.borderRadius} 0;
   color: inherit;
   height: auto;
-  margin: ${props => (props.isToast ? '4px' : '0 -1px 0 0')};
+  margin: 4px;
   padding: ${props =>
     props.isToast
       ? `0 ${props.theme.spaceScale.spacing04}`
@@ -339,19 +359,16 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   }
   &:focus:not(:disabled) {
     background: none;
-    ${props =>
-      props.isToast &&
-      css`
-        border-radius: ${props.theme.borderRadius};
-      `}
+    border-radius: ${props => props.theme.borderRadius};
     color: inherit;
     outline: 2px solid
       ${props =>
         props.isToast
           ? 'currentColor'
-          : props.isInverse
-            ? props.theme.colors.focusInverse
-            : props.theme.colors.focus};
+          : buildAlertFocusColor({
+              ...props,
+              variant: props.alertVariant,
+            })};
     outline-offset: 0 !important;
   }
   &:not(:disabled):active {
