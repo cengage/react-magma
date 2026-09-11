@@ -67,6 +67,36 @@ export interface Colors {
   success600: string;
   success700: string;
 
+  dataVizBlue200: string;
+  dataVizBlue400: string;
+  dataVizBlue500: string;
+  dataVizBlue700: string;
+
+  dataVizPink200: string;
+  dataVizPink400: string;
+  dataVizPink500: string;
+  dataVizPink700: string;
+
+  dataVizGreen200: string;
+  dataVizGreen400: string;
+  dataVizGreen500: string;
+  dataVizGreen700: string;
+
+  dataVizOrange200: string;
+  dataVizOrange400: string;
+  dataVizOrange500: string;
+  dataVizOrange700: string;
+
+  dataVizPurple200: string;
+  dataVizPurple400: string;
+  dataVizPurple500: string;
+  dataVizPurple700: string;
+
+  dataVizTeal200: string;
+  dataVizTeal400: string;
+  dataVizTeal500: string;
+  dataVizTeal700: string;
+
   focus: string;
   focusInverse: string;
 
@@ -468,6 +498,38 @@ const successColors = {
   success700: '#0F5323',
 };
 
+const dataVizColors = {
+  dataVizBlue200: '#85D4FF',
+  dataVizBlue400: '#1FB0FF',
+  dataVizBlue500: '#009AF3',
+  dataVizBlue700: '#005F96',
+
+  dataVizPink200: '#FF99BD',
+  dataVizPink400: '#FF337A',
+  dataVizPink500: '#E0004D',
+  dataVizPink700: '#8F0033',
+
+  dataVizGreen200: '#C7FF99',
+  dataVizGreen400: '#65E000',
+  dataVizGreen500: '#1EA746',
+  dataVizGreen700: '#136A2D',
+
+  dataVizOrange200: '#FFB685',
+  dataVizOrange400: '#FF9147',
+  dataVizOrange500: '#FA6600',
+  dataVizOrange700: '#B84900',
+
+  dataVizPurple200: '#E9AFE7',
+  dataVizPurple400: '#D45ED0',
+  dataVizPurple500: '#B12FAD',
+  dataVizPurple700: '#711E6E',
+
+  dataVizTeal200: '#99FFF5',
+  dataVizTeal400: '#00E0CA',
+  dataVizTeal500: '#00A393',
+  dataVizTeal700: '#005249',
+};
+
 const colors = {
   primary: primaryColors.primary500,
   secondary: secondaryColors.secondary500,
@@ -485,6 +547,7 @@ const colors = {
   ...dangerColors,
   ...warningColors,
   ...successColors,
+  ...dataVizColors,
 
   focus: infoColors.info500,
   focusInverse: infoColors.info200,
