@@ -103,13 +103,13 @@ ${props.color === TypographyColor.subdued &&
   ${props.color === TypographyColor.danger &&
   props.isInverse &&
   css`
-    color: ${props.theme.colors.danger200};
+    color: ${props.theme.colors.red200};
   `}
 
   ${props.color === TypographyColor.success &&
   props.isInverse &&
   css`
-    color: ${props.theme.colors.success200};
+    color: ${props.theme.colors.green200};
   `}
 
 ${props.color === TypographyColor.subdued &&

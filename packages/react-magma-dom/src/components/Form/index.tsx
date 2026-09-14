@@ -57,7 +57,7 @@ export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
 const StyledForm = styled.form<{ isInverse?: boolean; theme: ThemeInterface }>`
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.primary600
+      ? props.theme.colors.indigo600
       : props.theme.colors.neutral0};
   color: ${props =>
     props.isInverse ? props.theme.colors.neutral0 : props.theme.colors.neutral};

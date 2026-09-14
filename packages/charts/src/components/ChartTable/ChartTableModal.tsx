@@ -60,7 +60,7 @@ const HeaderLabel = styled.span<{ isInverse?: boolean; theme: any }>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
-      : props.theme.colors.neutral500};
+      : props.theme.colors.brand.navy};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
 `;
 

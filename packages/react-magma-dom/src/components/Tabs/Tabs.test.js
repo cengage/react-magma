@@ -370,7 +370,7 @@ describe('Tabs', () => {
     });
     expect(getByText('Tab 1').parentElement).toHaveStyleRule(
       'background',
-      magma.colors.brand.amber,
+      magma.colors.brand.sunriseOrange,
       { target: ':after' }
     );
     expect(getByText('Tab 1').parentElement).toHaveStyleRule(
@@ -483,7 +483,7 @@ describe('Tabs', () => {
 
     expect(getByText('Tab 1').parentElement).toHaveStyleRule(
       'background',
-      magma.colors.brand.amber,
+      magma.colors.brand.sunriseOrange,
       {
         target: ':after',
       }

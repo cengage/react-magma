@@ -118,7 +118,7 @@ function buildButtonBackground(props) {
     // Inverse background colors
     switch (props.color) {
       case 'primary':
-        return props.theme.colors.brand.amber;
+        return props.theme.colors.brand.sunriseOrange;
       case 'lowContrast':
         return `none;`;
       case 'highContrast':
@@ -141,7 +141,7 @@ function buildButtonBackground(props) {
   // Default state background colors
   switch (props.color) {
     case 'primary':
-      return props.theme.colors.brand.amber;
+      return props.theme.colors.brand.sunriseOrange;
     case 'lowContrast':
       return props.theme.colors.neutral0;
     case 'highContrast':

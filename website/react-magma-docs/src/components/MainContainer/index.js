@@ -34,13 +34,11 @@ const StyledSkipLink = styled(SkipLink)`
   }
 `;
 
-const StyledSlidingDrawer = styled(SlidingDrawer)`
-  background: ${props =>
-    props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral100};
-`;
-
 export const MainContainer = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const drawerRef = React.useRef();
+  const menuButtonRef = React.useRef();
   const value = { isDarkMode, setIsDarkMode };
 
   React.useEffect(() => {
@@ -59,8 +57,17 @@ export const MainContainer = ({ children }) => {
         <GlobalStyles />
         <StyledSkipLink positionLeft={220} positionTop={3} variant="solid" />
         <StyledContainer isInverse={isDarkMode}>
-          <Masthead />
-          <StyledSlidingDrawer isInverse={isDarkMode} />
+          <Masthead
+            isMenuOpen={isMenuOpen}
+            menuButtonRef={menuButtonRef}
+            onOpenMenu={() => drawerRef.current.openMenu()}
+          />
+          <SlidingDrawer
+            isInverse={isDarkMode}
+            onOpenChange={setIsMenuOpen}
+            ref={drawerRef}
+            toggleButtonRef={menuButtonRef}
+          />
           {children}
         </StyledContainer>
       </RootContainer>

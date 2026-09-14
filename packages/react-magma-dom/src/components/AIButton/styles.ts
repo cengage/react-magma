@@ -162,6 +162,6 @@ export function buildBoxShadow(props) {
   if (!props.disabled) {
     return props.isInverse
       ? `0 2px 6px 0 ${transparentize(0.82, props.theme.colors.neutral900)}`
-      : `0 1px 6px ${transparentize(0.5, props.theme.colors.primary400)}`;
+      : `0 1px 6px ${transparentize(0.5, props.theme.colors.indigo400)}`;
   }
 }

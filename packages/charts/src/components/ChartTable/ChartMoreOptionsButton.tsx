@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import {
+  ButtonColor,
   ButtonVariant,
   Dropdown,
   DropdownButton,
@@ -39,6 +40,7 @@ export function ChartMoreOptionsButton({
     <Dropdown isInverse={isInverse}>
       <DropdownButton
         aria-label={resolvedAriaLabel}
+        color={ButtonColor.subtle}
         icon={icon}
         variant={ButtonVariant.link}
         testId="chart-more-options-button"

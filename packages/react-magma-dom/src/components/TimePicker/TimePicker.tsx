@@ -112,12 +112,12 @@ export const StyledNumInput = styled.input<StyledNumInputProps>`
     border-bottom: 2px solid
       ${props =>
         props.isInverse
-          ? props.theme.colors.info200
-          : props.theme.colors.info500};
+          ? props.theme.colors.blue200
+          : props.theme.colors.blue500};
     background: ${props =>
       props.isInverse
-        ? props.theme.colors.info700
-        : transparentize(0.2, props.theme.colors.info200)};
+        ? props.theme.colors.blue700
+        : transparentize(0.2, props.theme.colors.blue200)};
     color: ${props =>
       props.isInverse
         ? props.theme.colors.neutral0
@@ -126,8 +126,8 @@ export const StyledNumInput = styled.input<StyledNumInputProps>`
     &::selection {
       background: ${props =>
         props.isInverse
-          ? props.theme.colors.info700
-          : transparentize(1, props.theme.colors.info200)};
+          ? props.theme.colors.blue700
+          : transparentize(1, props.theme.colors.blue200)};
     }
   }
 `;

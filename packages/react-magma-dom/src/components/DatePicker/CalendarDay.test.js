@@ -212,11 +212,14 @@ describe('Calendar Day', () => {
     expect(defaultDay).toHaveStyleRule('background', magma.colors.neutral900, {
       target: ':hover',
     });
-    expect(selectedDay).toHaveStyleRule('background', magma.colors.brand.amber);
+    expect(selectedDay).toHaveStyleRule(
+      'background',
+      magma.colors.brand.sunriseOrange
+    );
     expect(selectedDay).toHaveStyleRule('color', magma.colors.brand.navy);
     expect(selectedDay).toHaveStyleRule(
       'background',
-      magma.colors.brand.amber,
+      magma.colors.brand.sunriseOrange,
       { target: ':hover' }
     );
     expect(selectedDay).toHaveStyleRule(
@@ -226,10 +229,10 @@ describe('Calendar Day', () => {
     );
     expect(disabledDay).toHaveStyleRule('color', magma.colors.neutral700);
     expect(outsideMonthDay).toHaveStyleRule('color', magma.colors.neutral500);
-    expect(todayDay).toHaveStyleRule('color', magma.colors.brand.amber);
+    expect(todayDay).toHaveStyleRule('color', magma.colors.brand.sunriseOrange);
     expect(getByTestId('todayIndicator')).toHaveStyleRule(
       'background',
-      magma.colors.brand.amber
+      magma.colors.brand.sunriseOrange
     );
   });
 

@@ -32,12 +32,12 @@ const StyledAmPmToggle = styled.button<{
     border-bottom: 2px solid
       ${props =>
         props.isInverse
-          ? props.theme.colors.info200
-          : props.theme.colors.info500};
+          ? props.theme.colors.blue200
+          : props.theme.colors.blue500};
     background: ${props =>
       props.isInverse
-        ? props.theme.colors.info700
-        : transparentize(0.2, props.theme.colors.info200)};
+        ? props.theme.colors.blue700
+        : transparentize(0.2, props.theme.colors.blue200)};
     color: ${props =>
       props.isInverse
         ? props.theme.colors.neutral0
@@ -53,8 +53,8 @@ const StyledAmPmToggle = styled.button<{
     &::selection {
       background: ${props =>
         props.isInverse
-          ? props.theme.colors.info700
-          : transparentize(1, props.theme.colors.info200)};
+          ? props.theme.colors.blue700
+          : transparentize(1, props.theme.colors.blue200)};
     }
   }
 `;

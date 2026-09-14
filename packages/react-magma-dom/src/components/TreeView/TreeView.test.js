@@ -1455,7 +1455,7 @@ describe('TreeView', () => {
       );
       expect(getByTestId('item1')).toHaveStyleRule(
         'background-color',
-        magma.colors.brand.amber,
+        magma.colors.brand.sunriseOrange,
         { target: '>div:first-of-type:before' }
       );
     });

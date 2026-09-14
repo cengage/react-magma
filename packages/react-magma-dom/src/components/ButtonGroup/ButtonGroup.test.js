@@ -323,7 +323,7 @@ describe('ButtonGroup', () => {
         );
         expect(getByTestId(`${testId}-3`)).toHaveStyleRule(
           'background',
-          magma.colors.brand.amber
+          magma.colors.brand.sunriseOrange
         );
       });
     });

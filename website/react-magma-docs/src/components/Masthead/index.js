@@ -11,7 +11,7 @@ import {
   AppBar,
   useIsInverse,
 } from 'react-magma-dom';
-import { GithubIcon } from 'react-magma-icons';
+import { GithubIcon, MenuIcon } from 'react-magma-icons';
 
 import { Logo } from '../Logo';
 
@@ -23,10 +23,6 @@ const LogoLink = styled(Link)`
   font-size: ${magma.typeScale.size05.fontSize};
   font-weight: 700;
   text-decoration: none;
-
-  @media (max-width: 1024px) {
-    margin-left: 40px;
-  }
 
   &:hover,
   &:focus,
@@ -47,13 +43,22 @@ const StyledHeader = styled(AppBar)`
     ${props =>
       props.isInverse ? magma.colors.neutral800 : magma.colors.neutral200};
   box-shadow: none;
-  padding: 24px;
+  padding: 24px 16px;
 `;
 
 const HeaderWrap = styled.div`
   display: flex;
   justify-content: space-between;
   flex: 1;
+`;
+
+const MenuButton = styled.span`
+  align-items: center;
+  display: inline-flex;
+
+  @media (min-width: 1025px) {
+    display: none;
+  }
 `;
 
 const SmallLogoWrap = styled.span`
@@ -86,7 +91,6 @@ const RepoLink = styled.span`
   display: flex;
   align-items: center;
   position: relative;
-  padding-right: 12px;
 `;
 
 const getHeaderLogo = isInverse => (
@@ -98,7 +102,7 @@ const getHeaderLogo = isInverse => (
       <LogoWrap>
         <Logo />
       </LogoWrap>
-      React Magma
+      Magma
       {/* <Tag color={TagColor.primary} size={TagSize.small}>v3.0.0</Tag> */}
     </LogoLink>
     <RepoLink>
@@ -127,8 +131,18 @@ export const Masthead = props => {
       position={AppBarPosition.sticky}
       style={{ gridArea: 'masthead' }}
     >
+      <MenuButton>
+        <IconButton
+          aria-label="Open navigation menu"
+          aria-expanded={props.isMenuOpen}
+          color={ButtonColor.subtle}
+          icon={<MenuIcon />}
+          onClick={props.onOpenMenu}
+          ref={props.menuButtonRef}
+          variant={ButtonVariant.link}
+        />
+      </MenuButton>
       {getHeaderLogo(isInverse)}
-      {props.children}
     </StyledHeader>
   );
 };

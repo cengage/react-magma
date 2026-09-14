@@ -49,7 +49,7 @@ export const StyledNavTab = styled(NavTab)`
 export const StyledNavTabWrapper = styled.div`
   border-left: 1px solid
     ${props =>
-      props.isInverse ? magma.colors.primary400 : magma.colors.neutral300};
+      props.isInverse ? magma.colors.indigo400 : magma.colors.neutral300};
 `;
 
 const Wrapper = styled.div`

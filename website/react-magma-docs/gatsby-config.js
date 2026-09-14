@@ -4,7 +4,7 @@ const { resolve } = require('path-browserify');
 module.exports = {
   pathPrefix: process.env.PATH_PREFIX || '/',
   siteMetadata: {
-    title: 'React Magma Docs',
+    title: 'Magma Docs',
   },
   flags: {
     DEV_SSR: false,

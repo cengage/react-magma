@@ -134,7 +134,7 @@ const StyledTreeItem = styled.li<{
       css`
         &:before {
           position: absolute;
-          background-color: ${props.theme.colors.brand.amber};
+          background-color: ${props.theme.colors.brand.sunriseOrange};
           block-size: 100%;
           content: '';
           inline-size: ${props.theme.spaceScale.spacing02};

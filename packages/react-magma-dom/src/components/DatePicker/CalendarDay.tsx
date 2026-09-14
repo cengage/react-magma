@@ -29,7 +29,9 @@ function getCalendarDayBackground(
   theme: Theme
 ) {
   if (isInverse) {
-    return isChosen ? theme.colors.brand.amber : theme.colors.neutral1100;
+    return isChosen
+      ? theme.colors.brand.sunriseOrange
+      : theme.colors.neutral1100;
   }
 
   return isChosen ? theme.colors.blue600 : theme.colors.neutral0;
@@ -37,7 +39,9 @@ function getCalendarDayBackground(
 
 const getTodayColor = (isChosen: boolean, isInverse: boolean, theme: Theme) => {
   if (isInverse) {
-    return isChosen ? theme.colors.brand.navy : theme.colors.brand.amber;
+    return isChosen
+      ? theme.colors.brand.navy
+      : theme.colors.brand.sunriseOrange;
   }
 
   return isChosen ? theme.colors.neutral0 : theme.colors.blue600;
@@ -99,7 +103,7 @@ function getChosenDayHover(
   theme: Theme
 ) {
   if (isChosen) {
-    return isInverse ? theme.colors.brand.amber : theme.colors.blue600;
+    return isInverse ? theme.colors.brand.sunriseOrange : theme.colors.blue600;
   }
 
   return isInverse ? theme.colors.neutral900 : theme.colors.neutral150;

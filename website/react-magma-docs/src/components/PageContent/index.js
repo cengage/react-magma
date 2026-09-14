@@ -36,9 +36,6 @@ const TabsWrapper = styled.div`
   z-index: 8;
   background: ${props =>
     props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral100};
-  border-bottom: 1px solid
-    ${props =>
-      props.isInverse ? magma.colors.neutral800 : magma.colors.neutral300};
 `;
 
 // Implementation & Design tabs
@@ -243,6 +240,7 @@ export const PageContent = ({ children, componentName, type }) => {
               <TabsWrapper isInverse={isInverse}>
                 <StyledTabs
                   aria-label=""
+                  hasBorder
                   isInverse={isInverse}
                   textTransform="none"
                 >

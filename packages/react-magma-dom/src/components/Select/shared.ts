@@ -174,7 +174,7 @@ function buildSelectedItemButtonColor(props) {
     return transparentize(0.4, props.theme.colors.neutral500);
   }
   if (isInverse) {
-    return props.theme.colors.primary600;
+    return props.theme.colors.indigo600;
   }
 
   return props.theme.colors.neutral0;

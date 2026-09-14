@@ -290,14 +290,14 @@ describe('TreeItem', () => {
           label={labelText}
           testId={testId}
           itemId={itemId}
-          hoverColor={magma.colors.primary500}
+          hoverColor={magma.colors.indigo500}
         />
       );
 
       expect(getByTestId(testId)).toBeInTheDocument();
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.primary500,
+        magma.colors.indigo500,
         {
           target: ':hover',
         }

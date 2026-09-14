@@ -71,7 +71,7 @@ export const StyledTabsChild = styled('li', {
         : 'auto'};
       &:after {
         background: ${props.isActive
-          ? props.theme.colors.brand.amber
+          ? props.theme.colors.brand.sunriseOrange
           : props.isInverse
             ? props.theme.colors.neutral600
             : props.theme.colors.neutral500};

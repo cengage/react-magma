@@ -27,7 +27,7 @@ export const Logo = () => {
       />
       <path
         d="m26 23 5.2-2.6q.8-.4 1.6 0L38 23l-5.2 3.5q-.8.5-1.6 0Z"
-        fill={magma.colors.brand.amber}
+        fill={magma.colors.brand.sunriseOrange}
       />
     </svg>
   );

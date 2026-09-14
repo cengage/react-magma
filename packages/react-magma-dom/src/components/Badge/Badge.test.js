@@ -166,7 +166,7 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.brand.amber
+        magma.colors.brand.sunriseOrange
       );
       expect(getByText(TEXT)).toHaveStyleRule('color', magma.colors.brand.navy);
     });
@@ -282,7 +282,7 @@ describe('Badge', () => {
 
         expect(getByText(TEXT)).toHaveStyleRule(
           'background',
-          magma.colors.brand.amber
+          magma.colors.brand.sunriseOrange
         );
         expect(getByText(TEXT)).toHaveStyleRule(
           'color',

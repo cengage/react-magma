@@ -34,7 +34,7 @@ function BuildMessageColor(props) {
   }
 
   if (hasError) {
-    return isInverse ? theme.colors.danger200 : theme.colors.danger;
+    return isInverse ? theme.colors.red200 : theme.colors.danger;
   }
 
   if (messageColor) {
@@ -110,7 +110,7 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
               size={theme.iconSizes.small}
               color={
                 errorIconColor ||
-                (isInverse ? theme.colors.danger300 : undefined)
+                (isInverse ? theme.colors.red300 : undefined)
               }
             />
           </IconWrapper>

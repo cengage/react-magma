@@ -16,8 +16,6 @@ import {
   Hyperlink,
 } from 'react-magma-dom';
 import {
-  ArchitectureIcon,
-  CodeIcon,
   AccessibilityIcon,
   PaletteIcon,
   DevicesIcon,
@@ -40,25 +38,6 @@ const StyledGrid = styled(Grid)`
   }
 `;
 
-const StyledGridTop = styled(Grid)`
-  grid-auto-columns: minmax(0, 1fr);
-  grid-auto-flow: column;
-  grid-template-rows: auto;
-  padding: 0 ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06};
-
-  @media (max-width: ${magma.breakpoints.medium}px) {
-    display: block;
-    padding: 0;
-    margin: ${magma.spaceScale.spacing06};
-  }
-
-  @media (max-width: ${magma.breakpoints.small}px) {
-    display: block;
-    padding: 0 1em 1em;
-    margin: 0;
-  }
-`;
-
 const StyledGridItem = styled(GridItem)`
   display: grid;
   width: 100%;
@@ -67,22 +46,6 @@ const StyledGridItem = styled(GridItem)`
   @media (max-width: ${magma.breakpoints.small}px) {
     display: block;
     padding: 0;
-    margin-bottom: ${magma.spaceScale.spacing05};
-  }
-`;
-
-const StyledGridHeroItem = styled(GridItem)`
-  display: grid;
-  width: 100%;
-  justify-self: center;
-
-  @media (max-width: ${magma.breakpoints.medium}px) {
-    margin: 0;
-    margin-bottom: ${magma.spaceScale.spacing05};
-  }
-
-  @media (max-width: ${magma.breakpoints.small}px) {
-    display: block;
     margin-bottom: ${magma.spaceScale.spacing05};
   }
 `;
@@ -121,12 +84,22 @@ const HeaderBlock = styled.div`
       height: 140px;
       width: 140px;
       padding: 0;
+      margin: 0 auto ${magma.spaceScale.spacing05};
+      order: -1;
     }
   }
 `;
 
 const HeaderText = styled.div`
   width: 66%;
+
+  > h1 {
+    margin-bottom: 16px;
+  }
+
+  > h2 {
+    margin-top: 0;
+  }
 
   @media (max-width: ${magma.breakpoints.small}px) {
     width: 100%;
@@ -135,46 +108,55 @@ const HeaderText = styled.div`
 
 const CenterBlock = styled.div`
   grid-column: 1 / 3;
-  text-align: center;
   margin: auto;
-  max-width: 60%;
+  text-align: center;
+`;
 
-  @media (max-width: ${magma.breakpoints.medium}px) {
-    margin: auto;
-    max-width: 90%;
+const IntroCenterBlock = styled(CenterBlock)`
+  padding-bottom: 24px;
+
+  > h2 {
+    margin-bottom: 16px;
+    margin-top: 24px;
   }
 `;
 
 const CardGrid = styled(Card)`
   display: grid;
   grid-template-columns: min-content auto;
-`;
 
-const HeroCardGrid = styled(Card)`
-  display: grid;
-  grid-template-columns: min-content auto;
-
-  @media (max-width: ${magma.breakpoints.small}px) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    svg {
-      width: 300px;
-    }
+  h4 {
+    margin-bottom: 0;
   }
 `;
 
-const CardButton = styled.div`
-  margin-top: 1em;
+const HeroActions = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${magma.spaceScale.spacing04};
+  margin-top: ${magma.spaceScale.spacing05};
+
+  @media (max-width: ${magma.breakpoints.small}px) {
+    justify-content: center;
+  }
+`;
+
+const HeroDivider = styled.hr`
+  border: 0;
+  border-top: 1px solid ${magma.colors.neutral200};
+  margin: 40px ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06};
+`;
+
+const ContributeButton = styled(IconButton)`
+  margin-bottom: 24px;
 `;
 
 const CardIcon = styled(Flex)`
   height: 56px;
   width: 56px;
-  border-radius: 50%;
+  border-radius: 8px;
   margin: ${magma.spaceScale.spacing06} 0 0 ${magma.spaceScale.spacing06};
-  background-color: ${magma.colors.primary500};
+  background-color: ${magma.colors.neutral150};
 
   > * {
     align-self: center;
@@ -197,128 +179,70 @@ const CardIcon = styled(Flex)`
   }
 `;
 
-const HeroCardIcon = styled(Flex)`
-  height: 72px;
-  width: 72px;
-  border-radius: 50%;
-  margin: ${magma.spaceScale.spacing06} 0 0 ${magma.spaceScale.spacing06};
-  background-color: ${magma.colors.tertiary};
-
-  > * {
-    align-self: center;
-    justify-self: center;
-    margin: auto;
-    height: ${magma.spaceScale.spacing10};
-    width: ${magma.spaceScale.spacing10};
-  }
-
-  @media (max-width: ${magma.breakpoints.small}px) {
-    height: ${magma.spaceScale.spacing11};
-    width: ${magma.spaceScale.spacing11};
-    margin: ${magma.spaceScale.spacing06} 0 ${magma.spaceScale.spacing03};
-
-    > * {
-      height: ${magma.spaceScale.spacing08};
-      width: ${magma.spaceScale.spacing08};
-    }
-  }
-`;
-
 export function IndexPageContent() {
   return (
     <div style={{ maxWidth: '1200px', margin: 'auto' }}>
       <HeaderBlock>
         <HeaderText>
-          <Heading level={1}>React Magma Design&nbsp;System</Heading>
+          <Heading level={1}>Magma Design&nbsp;System</Heading>
           <Heading level={2} visualStyle={TypographyVisualStyle.bodyLarge}>
-            React Magma is Cengage's open source design system for creating
-            digital experiences with React.
+            Magma is Cengage's open source design system for creating digital
+            experiences with React.
           </Heading>
+          <HeroActions>
+            <Hyperlink
+              styledAs="Button"
+              to="/design-intro/get-started/"
+              color="marketing"
+            >
+              {linkProps => (
+                <Link {...linkProps}>
+                  <span>Start Designing</span>
+                </Link>
+              )}
+            </Hyperlink>
+            <Hyperlink
+              styledAs="Button"
+              to="/api-intro/introduction"
+              color="marketing"
+            >
+              {linkProps => (
+                <Link {...linkProps}>
+                  <span>Start Developing</span>
+                </Link>
+              )}
+            </Hyperlink>
+          </HeroActions>
         </HeaderText>
         <Logo />
       </HeaderBlock>
 
-      <StyledGridTop gridGap={magma.spaceScale.spacing06}>
-        <StyledGridHeroItem>
-          <HeroCardGrid isInverse background={magma.colors.primary}>
-            <HeroCardIcon>
-              <ArchitectureIcon color={magma.colors.primary} />
-            </HeroCardIcon>
-            <CardBody>
-              <CardHeading>Designing</CardHeading>
-              Start working in Sketch with ready-made UI components such as
-              inputs, buttons, and more! To see how a component works and
-              behaves, please refer to the usage guidelines on this site.
-              <CardButton>
-                <Hyperlink
-                  styledAs="Button"
-                  to="/design-intro/get-started/"
-                  isInverse
-                  color="marketing"
-                >
-                  {linkProps => (
-                    <Link {...linkProps}>
-                      <span>Start Designing</span>
-                    </Link>
-                  )}
-                </Hyperlink>
-              </CardButton>
-            </CardBody>
-          </HeroCardGrid>
-        </StyledGridHeroItem>
-
-        <StyledGridHeroItem>
-          <HeroCardGrid isInverse background={magma.colors.primary}>
-            <HeroCardIcon>
-              <CodeIcon color={magma.colors.primary} />
-            </HeroCardIcon>
-            <CardBody>
-              <CardHeading>Developing</CardHeading>
-              Use the documentation on this site to guide your development, and
-              grab the code on github when you're ready to get started.
-              <CardButton>
-                <Hyperlink
-                  styledAs="Button"
-                  to="/api-intro/introduction"
-                  isInverse
-                  color="marketing"
-                >
-                  {linkProps => (
-                    <Link {...linkProps}>
-                      <span>Start Developing</span>
-                    </Link>
-                  )}
-                </Hyperlink>
-              </CardButton>
-            </CardBody>
-          </HeroCardGrid>
-        </StyledGridHeroItem>
-      </StyledGridTop>
+      <HeroDivider />
 
       <StyledGrid gridGap={magma.spaceScale.spacing06}>
-        <CenterBlock>
+        <IntroCenterBlock>
           <Heading level={2}>Working smarter, not&nbsp;harder</Heading>
           <div>
             Standardized components support collaboration, reinforce branding,
             and provide a consistent look and user experience.
           </div>
-        </CenterBlock>
+        </IntroCenterBlock>
 
         <StyledGridItem gridColumn="1">
-          <CardGrid background={magma.colors.neutral200}>
+          <CardGrid>
             <CardIcon>
-              <AccessibilityIcon color={magma.colors.neutral0} />
+              <AccessibilityIcon color={magma.colors.brand.navy} />
             </CardIcon>
             <CardBody>
               <CardHeading>Accessible</CardHeading>
-              Designed and developed for WCAG 2.1 compliance.
+              Designed and developed for WCAG 2.2 compliance.
             </CardBody>
           </CardGrid>
         </StyledGridItem>
         <StyledGridItem gridColumn="2">
-          <CardGrid background={magma.colors.neutral200}>
+          <CardGrid>
             <CardIcon>
-              <PaletteIcon color={magma.colors.neutral0} />
+              <PaletteIcon color={magma.colors.brand.navy} />
             </CardIcon>
             <CardBody>
               <CardHeading>Themeable</CardHeading>
@@ -327,9 +251,9 @@ export function IndexPageContent() {
           </CardGrid>
         </StyledGridItem>
         <StyledGridItem gridColumn="1">
-          <CardGrid background={magma.colors.neutral200}>
+          <CardGrid>
             <CardIcon>
-              <DevicesIcon color={magma.colors.neutral0} />
+              <DevicesIcon color={magma.colors.brand.navy} />
             </CardIcon>
             <CardBody>
               <CardHeading>Platform Agnostic</CardHeading>
@@ -338,9 +262,9 @@ export function IndexPageContent() {
           </CardGrid>
         </StyledGridItem>
         <StyledGridItem gridColumn="2">
-          <CardGrid background={magma.colors.neutral200}>
+          <CardGrid>
             <CardIcon>
-              <ExtensionIcon color={magma.colors.neutral0} />
+              <ExtensionIcon color={magma.colors.brand.navy} />
             </CardIcon>
             <CardBody>
               <CardHeading>Scalable</CardHeading>
@@ -350,9 +274,9 @@ export function IndexPageContent() {
           </CardGrid>
         </StyledGridItem>
         <StyledGridItem gridColumn="1">
-          <CardGrid background={magma.colors.neutral200}>
+          <CardGrid>
             <CardIcon>
-              <TimelineIcon color={magma.colors.neutral0} />
+              <TimelineIcon color={magma.colors.brand.navy} />
             </CardIcon>
             <CardBody>
               <CardHeading>Efficient</CardHeading>
@@ -362,9 +286,9 @@ export function IndexPageContent() {
           </CardGrid>
         </StyledGridItem>
         <StyledGridItem gridColumn="2">
-          <CardGrid background={magma.colors.neutral200}>
+          <CardGrid>
             <CardIcon>
-              <GroupsIcon color={magma.colors.neutral0} />
+              <GroupsIcon color={magma.colors.brand.navy} />
             </CardIcon>
             <CardBody>
               <CardHeading>Living</CardHeading>
@@ -377,10 +301,14 @@ export function IndexPageContent() {
           <p>
             We welcome all ideas and feedback to help us produce the best
             possible experience for our users. If you're interested in
-            contributing, review our contribution guidelines to get started.
+            contributing, review our{' '}
+            <Hyperlink hasUnderline to="/contribution-guidelines/">
+              {linkProps => <Link {...linkProps}>contribution guidelines</Link>}
+            </Hyperlink>{' '}
+            to get started.
           </p>
 
-          <IconButton
+          <ContributeButton
             icon={<GithubIcon />}
             aria-label="Start Contributing"
             onClick={() => {
@@ -393,7 +321,7 @@ export function IndexPageContent() {
             }}
           >
             Start Contributing
-          </IconButton>
+          </ContributeButton>
         </CenterBlock>
       </StyledGrid>
     </div>

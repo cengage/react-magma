@@ -23,15 +23,15 @@ const StyledHeadingContainer = styled(Container)`
 const HeadingWrapper = styled.div`
   background: ${props =>
     props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral100};
-  padding: 34px 0;
+  padding: 24px 0;
   margin: 0 auto;
   max-width: ${CONTENT_MAX_WIDTH}px;
 
   @media (max-width: ${CONTENT_MAX_WIDTH + PANEL_WIDTH}px) {
-    padding: 34px 24px;
+    padding: 24px;
   }
   @media (max-width: ${magma.breakpoints.medium}px) {
-    padding: 32px 16px 22px;
+    padding: 24px 16px;
   }
 `;
 
@@ -42,7 +42,7 @@ export const LayoutComponent = props => {
   return (
     <>
       <Helmet
-        title={title ? `${title} - React Magma` : 'React Magma'}
+        title={title ? `${title} - Magma` : 'Magma'}
         meta={[
           { name: 'description', content: 'Sample' },
           { name: 'keywords', content: 'sample, something' },

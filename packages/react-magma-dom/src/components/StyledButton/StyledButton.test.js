@@ -175,7 +175,10 @@ describe('Styled Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', magma.colors.brand.amber);
+        expect(button).toHaveStyleRule(
+          'background',
+          magma.colors.brand.sunriseOrange
+        );
         expect(button).toHaveStyleRule(
           'background',
           magma.colors.tangerine400,
@@ -183,13 +186,13 @@ describe('Styled Button', () => {
         );
         expect(button).toHaveStyleRule(
           'background',
-          magma.colors.brand.amber,
+          magma.colors.brand.sunriseOrange,
 
           { target: ':active' }
         );
         expect(button).toHaveStyleRule(
           'border-color',
-          magma.colors.secondary500
+          magma.colors.tangerine500
         );
         expect(button).toHaveStyleRule('color', magma.colors.brand.navy);
       });
@@ -336,7 +339,7 @@ describe('Styled Button', () => {
               : transparentize(0.5, magma.colors.neutral200);
           const activeBackground =
             color === 'marketing'
-              ? magma.colors.brand.amber
+              ? magma.colors.brand.sunriseOrange
               : transparentize(0.25, magma.colors.neutral200);
 
           expect(button).toHaveStyleRule('background', 'none');
@@ -430,11 +433,11 @@ describe('Styled Button', () => {
         ],
         [
           'marketing',
-          magma.colors.brand.amber,
+          magma.colors.brand.sunriseOrange,
           magma.colors.brand.navy,
           magma.colors.tangerine400,
           magma.colors.brand.navy,
-          magma.colors.brand.amber,
+          magma.colors.brand.sunriseOrange,
           magma.colors.brand.navy,
         ],
       ])(
@@ -554,9 +557,9 @@ describe('Styled Button', () => {
         ],
         [
           'marketing',
-          magma.colors.brand.amber,
-          magma.colors.brand.amber,
-          magma.colors.brand.amber,
+          magma.colors.brand.sunriseOrange,
+          magma.colors.brand.sunriseOrange,
+          magma.colors.brand.sunriseOrange,
         ],
       ])(
         '%s inverse link states',

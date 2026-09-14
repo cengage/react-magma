@@ -55,7 +55,10 @@ describe('Tag', () => {
       const { getByText } = render(<Tag color={TagColor.primary}>{TEXT}</Tag>);
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.brand.amber);
+      expect(tag).toHaveStyleRule(
+        'background',
+        magma.colors.brand.sunriseOrange
+      );
       expect(tag).toHaveStyleRule('color', magma.colors.brand.navy);
     });
 
@@ -217,7 +220,10 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.brand.amber);
+      expect(tag).toHaveStyleRule(
+        'background',
+        magma.colors.brand.sunriseOrange
+      );
       expect(tag).toHaveStyleRule('color', magma.colors.brand.navy);
     });
 

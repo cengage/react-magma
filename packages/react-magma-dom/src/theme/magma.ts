@@ -6,28 +6,13 @@ export interface Colors {
     cyan: string;
     cyanDeep: string;
     cyanElectric: string;
-    amber: string;
+    sunriseOrange: string;
+    galeOrange: string;
   };
 
   primary: string;
-  primary100: string;
-  primary200: string;
-  primary300: string;
-  primary400: string;
-  primary500: string;
-  primary600: string;
-  primary700: string;
-
   secondary: string;
-  secondary500: string;
-  secondary600: string;
-  secondary700: string;
-
   tertiary: string;
-  tertiary500: string;
-  tertiary600: string;
-  tertiary700: string;
-
   neutral: string;
   neutral0: string;
   neutral100: string;
@@ -148,40 +133,9 @@ export interface Colors {
   purple1000: string;
 
   info: string;
-  info100: string;
-  info200: string;
-  info300: string;
-  info400: string;
-  info500: string;
-  info600: string;
-  info700: string;
-
   danger: string;
-  danger100: string;
-  danger200: string;
-  danger300: string;
-  danger400: string;
-  danger500: string;
-  danger600: string;
-  danger700: string;
-
   warning: string;
-  warning100: string;
-  warning200: string;
-  warning300: string;
-  warning400: string;
-  warning500: string;
-  warning600: string;
-  warning700: string;
-
   success: string;
-  success100: string;
-  success200: string;
-  success300: string;
-  success400: string;
-  success500: string;
-  success600: string;
-  success700: string;
 
   focus: string;
   focusInverse: string;
@@ -515,28 +469,6 @@ const typeScale = {
   },
 };
 
-const primaryColors = {
-  primary100: '#E8E9F8',
-  primary200: '#BABDE9',
-  primary300: '#8B91DA',
-  primary400: '#5D65CB',
-  primary500: '#3942B0',
-  primary600: '#292F7C',
-  primary700: '#1A1E51',
-};
-
-const secondaryColors = {
-  secondary500: '#FEE449',
-  secondary600: '#FEDA0D',
-  secondary700: '#ECC901',
-};
-
-const tertiaryColors = {
-  tertiary500: '#CDDEFF',
-  tertiary600: '#A2C1FF',
-  tertiary700: '#79A5FF',
-};
-
 const neutralColors = {
   neutral0: '#FFFFFF',
   neutral100: '#F7F9FC',
@@ -560,7 +492,8 @@ const brandColors = {
   cyan: '#00B8D9',
   cyanDeep: '#008EBA',
   cyanElectric: '#00E7FF',
-  amber: '#FD9A04',
+  sunriseOrange: '#FD9A04',
+  galeOrange: '#F03500',
 };
 
 const rebrandColors = {
@@ -608,7 +541,7 @@ const rebrandColors = {
   tangerine200: '#FFDDB8',
   tangerine300: '#FFC483',
   tangerine400: '#FFA94B',
-  tangerine500: brandColors.amber,
+  tangerine500: brandColors.sunriseOrange,
   tangerine600: '#C97100',
   tangerine700: '#A25900',
   tangerine800: '#784100',
@@ -666,65 +599,18 @@ const rebrandColors = {
   purple1000: '#1D0832',
 };
 
-const infoColors = {
-  info100: '#E8F5FC',
-  info200: '#A6DEFF',
-  info300: '#2FB3FF',
-  info400: '#009AF3',
-  info500: '#0074B7',
-  info600: '#005F96',
-  info700: '#004A75',
-};
-
-const dangerColors = {
-  danger100: '#FDEFEE',
-  danger200: '#FAAEB0',
-  danger300: '#E8716D',
-  danger400: '#E24943',
-  danger500: '#D32821',
-  danger600: '#A91F1A',
-  danger700: '#7F1714',
-};
-
-const warningColors = {
-  warning100: '#FCEEE5',
-  warning200: '#F6CDB2',
-  warning300: '#E98B4C',
-  warning400: '#E06A1C',
-  warning500: '#AD5115',
-  warning600: '#8D4311',
-  warning700: '#6E340E',
-};
-
-const successColors = {
-  success100: '#E3FAEA',
-  success200: '#ACF0C1',
-  success300: '#3EDD6E',
-  success400: '#21B94E',
-  success500: '#178037',
-  success600: '#136A2D',
-  success700: '#0F5323',
-};
-
 const colors = {
   brand: brandColors,
   primary: brandColors.navy,
-  secondary: brandColors.amber,
+  secondary: brandColors.sunriseOrange,
   tertiary: '#007D95',
   neutral: neutralColors.neutral600,
   info: '#0A56A4',
   danger: '#C60034',
   warning: '#8C6300',
   success: '#00844B',
-  ...primaryColors,
-  ...secondaryColors,
-  ...tertiaryColors,
   ...neutralColors,
   ...rebrandColors,
-  ...infoColors,
-  ...dangerColors,
-  ...warningColors,
-  ...successColors,
 
   focus: rebrandColors.blue500,
   focusInverse: '#5EA4E1',
@@ -986,7 +872,7 @@ export const magma = {
       padding: `${spaceScale.spacing05} ${spaceScale.spacing05} ${spaceScale.spacing05} ${spaceScale.spacing06}`,
     },
     inverse: {
-      backgroundColor: colors.primary600,
+      backgroundColor: colors.indigo600,
       textColor: colors.neutral0,
     },
   },
