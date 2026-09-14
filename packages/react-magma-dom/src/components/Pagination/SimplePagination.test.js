@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
-import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -28,10 +27,7 @@ describe('Simple Pagination', () => {
 
     const selected = getByText('2').parentElement.parentElement;
 
-    expect(selected).toHaveStyleRule(
-      'background-color',
-      magma.colors.neutral100
-    );
+    expect(selected).toHaveStyleRule('background-color', magma.colors.neutral0);
     expect(selected).toHaveStyleRule('border-radius', '8px');
   });
 
@@ -44,7 +40,7 @@ describe('Simple Pagination', () => {
 
     expect(selected).toHaveStyleRule(
       'background-color',
-      transparentize(0.8, magma.colors.neutral900)
+      magma.colors.neutral1150
     );
   });
 
@@ -131,20 +127,11 @@ describe('Simple Pagination', () => {
 
       expect(selected).toHaveStyleRule('cursor', 'not-allowed');
 
-      expect(selected).toHaveStyleRule(
-        'color',
-        transparentize(0.4, magma.colors.neutral500)
-      );
+      expect(selected).toHaveStyleRule('color', magma.colors.neutral500);
       expect(selected).toHaveAttribute('disabled');
 
-      expect(previousButton).toHaveStyleRule(
-        'color',
-        transparentize(0.4, magma.colors.neutral500)
-      );
-      expect(nextButton).toHaveStyleRule(
-        'color',
-        transparentize(0.4, magma.colors.neutral500)
-      );
+      expect(previousButton).toHaveStyleRule('color', magma.colors.neutral500);
+      expect(nextButton).toHaveStyleRule('color', magma.colors.neutral500);
       expect(previousButton).toHaveAttribute('disabled');
       expect(nextButton).toHaveAttribute('disabled');
     });
@@ -160,20 +147,11 @@ describe('Simple Pagination', () => {
 
       expect(selected).toHaveStyleRule('cursor', 'not-allowed');
 
-      expect(selected).toHaveStyleRule(
-        'color',
-        transparentize(0.6, magma.colors.neutral100)
-      );
+      expect(selected).toHaveStyleRule('color', magma.colors.neutral700);
       expect(selected).toHaveAttribute('disabled');
 
-      expect(previousButton).toHaveStyleRule(
-        'color',
-        transparentize(0.7, magma.colors.neutral100)
-      );
-      expect(nextButton).toHaveStyleRule(
-        'color',
-        transparentize(0.7, magma.colors.neutral100)
-      );
+      expect(previousButton).toHaveStyleRule('color', magma.colors.neutral600);
+      expect(nextButton).toHaveStyleRule('color', magma.colors.neutral600);
       expect(previousButton).toHaveAttribute('disabled');
       expect(nextButton).toHaveAttribute('disabled');
     });

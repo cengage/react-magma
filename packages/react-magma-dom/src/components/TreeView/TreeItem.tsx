@@ -23,6 +23,7 @@ import {
 } from './useTreeItem';
 import {
   calculateOffset,
+  getTreeItemIconColor,
   getTreeItemLabelColor,
   getTreeItemWrapperCursor,
   TreeNodeType,
@@ -59,8 +60,8 @@ const StyledTreeItem = styled.li<{
 }>`
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   list-style-type: none;
   cursor: ${props =>
     getTreeItemWrapperCursor(
@@ -103,7 +104,7 @@ const StyledTreeItem = styled.li<{
   > div:first-of-type {
     background: ${props =>
       props.selected && props.isInverse
-        ? transparentize(0.7, props.theme.colors.neutral900)
+        ? props.theme.colors.neutral900
         : props.selected &&
           transparentize(0.92, props.theme.colors.neutral900)};
     position: relative;
@@ -133,9 +134,7 @@ const StyledTreeItem = styled.li<{
       css`
         &:before {
           position: absolute;
-          background-color: ${props.isInverse
-            ? props.theme.colors.tertiary500
-            : props.theme.colors.primary500};
+          background-color: ${props.theme.colors.brand.sunriseOrange};
           block-size: 100%;
           content: '';
           inline-size: ${props.theme.spaceScale.spacing02};
@@ -159,9 +158,9 @@ function getHoverBackground({ isDisabled, hoverColor, isInverse, theme }) {
   if (isDisabled) return undefined;
   if (hoverColor) return hoverColor;
 
-  const transparency = isInverse ? 0.8 : 0.95;
-
-  return transparentize(transparency, theme.colors.neutral900);
+  return isInverse
+    ? transparentize(0.5, theme.colors.neutral900)
+    : transparentize(0.1, theme.colors.neutral150);
 }
 
 const IconWrapper = styled.span<{
@@ -170,7 +169,7 @@ const IconWrapper = styled.span<{
   isInverse?: boolean;
 }>`
   color: ${props =>
-    getTreeItemLabelColor(props.isInverse, props.isDisabled, props.theme)};
+    getTreeItemIconColor(props.isInverse, props.isDisabled, props.theme)};
   margin-right: ${props => props.theme.spaceScale.spacing03};
   margin-left: 0;
 
@@ -205,7 +204,7 @@ const StyledExpandWrapper = styled.div<{
   margin-right: ${props => props.theme.spaceScale.spacing03};
   color: ${props =>
     props.color ||
-    getTreeItemLabelColor(props.isInverse, props.isDisabled, props.theme)};
+    getTreeItemIconColor(props.isInverse, props.isDisabled, props.theme)};
   border-radius: 0;
   width: ${({ size, theme }) =>
     size !== undefined ? `${size}px` : theme.spaceScale.spacing06};
@@ -226,8 +225,8 @@ const GuideLine = styled.div<{
   border-inline-start: 1px solid
     ${props =>
       props.isInverse
-        ? transparentize(0.7, props.theme.colors.neutral100)
-        : props.theme.colors.neutral300};
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
   pointer-events: none;
   z-index: 1;
 `;
@@ -243,8 +242,8 @@ const VirtualizedGuideLine = styled.div<{
   border-inline-start: 1px solid
     ${props =>
       props.isInverse
-        ? transparentize(0.7, props.theme.colors.neutral100)
-        : props.theme.colors.neutral300};
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
   pointer-events: none;
   z-index: 1;
 `;

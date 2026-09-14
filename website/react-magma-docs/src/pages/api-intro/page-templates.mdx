@@ -69,8 +69,8 @@ export function Example() {
       <GridItem
         gridColumn="1 / 5"
         style={{
-          backgroundColor: magma.colors.primary500,
-          color: magma.colors.neutral100,
+          backgroundColor: magma.colors.indigo500,
+          color: magma.colors.neutral0,
           textAlign: 'center',
           padding: magma.spaceScale.spacing05,
           width: 'calc(100% - 48px)',
@@ -82,7 +82,7 @@ export function Example() {
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '1 / 3'}
         style={{
-          backgroundColor: magma.colors.primary100,
+          backgroundColor: magma.colors.indigo100,
           textAlign: 'center',
           padding: magma.spaceScale.spacing05,
           width: isSmallerScreen ? 'calc(100% - 48px)' : 'auto',
@@ -94,8 +94,8 @@ export function Example() {
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '3 / 4'}
         style={{
-          backgroundColor: magma.colors.primary300,
-          color: magma.colors.neutral100,
+          backgroundColor: magma.colors.indigo300,
+          color: magma.colors.neutral0,
           textAlign: 'center',
           padding: magma.spaceScale.spacing05,
           width: isSmallerScreen ? 'calc(100% - 48px)' : 'auto',
@@ -107,8 +107,8 @@ export function Example() {
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '4 /5'}
         style={{
-          backgroundColor: magma.colors.primary400,
-          color: magma.colors.neutral100,
+          backgroundColor: magma.colors.indigo400,
+          color: magma.colors.neutral0,
           textAlign: 'center',
           padding: magma.spaceScale.spacing05,
           width: isSmallerScreen ? 'calc(100% - 48px)' : 'auto',
@@ -120,8 +120,8 @@ export function Example() {
       <GridItem
         gridColumn="1 / 5"
         style={{
-          backgroundColor: magma.colors.primary600,
-          color: magma.colors.neutral100,
+          backgroundColor: magma.colors.indigo600,
+          color: magma.colors.neutral0,
           textAlign: 'center',
           padding: magma.spaceScale.spacing05,
           width: 'calc(100% - 48px)',
@@ -181,8 +181,8 @@ export function Example() {
           isCompact={isSmallerScreen}
           onMenuButtonClick={() => setShowDrawer(true)}
           style={{
-            backgroundColor: magma.colors.warning400,
-            color: magma.colors.neutral100,
+            backgroundColor: magma.colors.yellow400,
+            color: magma.colors.neutral0,
           }}
         />
       </GridItem>
@@ -199,8 +199,8 @@ export function Example() {
         gridColumn="1 / 3"
         style={{
           textAlign: 'center',
-          backgroundColor: magma.colors.warning500,
-          color: magma.colors.neutral100,
+          backgroundColor: magma.colors.yellow500,
+          color: magma.colors.neutral0,
           width: 'calc(100% - 148px)',
           maxWidth: '952px',
           justifySelf: 'center',
@@ -215,8 +215,8 @@ export function Example() {
         gridColumn={isSmallerScreen ? '1 / 3' : '1 /  2'}
         style={{
           textAlign: 'center',
-          backgroundColor: magma.colors.warning300,
-          color: magma.colors.neutral100,
+          backgroundColor: magma.colors.yellow300,
+          color: magma.colors.neutral0,
           padding: magma.spaceScale.spacing05,
           justifySelf: isSmallerScreen ? 'center' : 'stretch',
           width: isSmallerScreen ? 'calc(100% - 148px)' : 'auto',
@@ -229,8 +229,8 @@ export function Example() {
         gridColumn={isSmallerScreen ? '1 / 3' : '2 / 3'}
         style={{
           textAlign: 'center',
-          backgroundColor: magma.colors.warning300,
-          color: magma.colors.neutral100,
+          backgroundColor: magma.colors.yellow300,
+          color: magma.colors.neutral0,
           padding: magma.spaceScale.spacing05,
           justifySelf: isSmallerScreen ? 'center' : 'stretch',
           width: isSmallerScreen ? 'calc(100% - 148px)' : 'auto',
@@ -292,7 +292,7 @@ export function Example() {
         <Drawer position={DrawerPosition.left} isOpen={openDrawer}>
           <div
             style={{
-              background: magma.colors.secondary700,
+              background: magma.colors.tangerine700,
               padding: magma.spaceScale.spacing05,
               width: '240px',
               height: 'calc(100vh - 32px)',
@@ -306,7 +306,7 @@ export function Example() {
           as={'sidebar'}
           gridColumn="1 / 2"
           gridRow="1 / 3"
-          style={{ background: magma.colors.secondary700, width: '240px' }}
+          style={{ background: magma.colors.tangerine700, width: '240px' }}
         >
           Sidebar
         </GridItem>
@@ -331,7 +331,7 @@ export function Example() {
           maxWidth: '1600px',
           width: '100%',
           justifySelf: 'center',
-          background: magma.colors.secondary500,
+          background: magma.colors.tangerine500,
           padding: magma.spaceScale.spacing05,
           margin: '0 auto',
           height: 'calc(100vh - 122px)',
@@ -406,7 +406,7 @@ export function Example() {
         <Drawer position={DrawerPosition.left} isOpen={openDrawer}>
           <div
             style={{
-              background: magma.colors.primary200,
+              background: magma.colors.indigo200,
               padding: magma.spaceScale.spacing05,
               width: '240px',
               height: 'calc(100vh - 32px)',
@@ -422,7 +422,7 @@ export function Example() {
           gridRow="2 / 4"
           style={{
             width: '240px',
-            background: magma.colors.primary200,
+            background: magma.colors.indigo200,
             padding: magma.spaceScale.spacing05,
             height: 'calc(100vh - 95px)',
           }}
@@ -439,8 +439,8 @@ export function Example() {
           maxWidth: '1600px',
           width: '100%',
           justifySelf: 'center',
-          background: magma.colors.primary500,
-          color: magma.colors.neutral100,
+          background: magma.colors.indigo500,
+          color: magma.colors.neutral0,
           padding: magma.spaceScale.spacing05,
           height: 'calc(100vh - 122px)',
         }}
@@ -456,8 +456,8 @@ export function Example() {
           maxWidth: '1600px',
           width: '100%',
           justifySelf: 'center',
-          background: magma.colors.primary700,
-          color: magma.colors.neutral100,
+          background: magma.colors.indigo700,
+          color: magma.colors.neutral0,
           padding: magma.spaceScale.spacing05,
           height: '10vh',
         }}

@@ -2,7 +2,7 @@
   "name": "react-magma-docs",
   "version": "6.0.5-rc.0",
   "private": true,
-  "description": "React Magma docs",
+  "description": "Magma docs",
   "keywords": [
     "gatsby"
   ],

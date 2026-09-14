@@ -695,8 +695,8 @@ const InputExampleTemplate = args => {
                 <CloseIcon
                   color={
                     args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
+                      ? magma.colors.red200
+                      : magma.colors.red500
                   }
                   size={16}
                 />
@@ -704,8 +704,8 @@ const InputExampleTemplate = args => {
                 <DoneIcon
                   color={
                     args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500
+                      ? magma.colors.green200
+                      : magma.colors.green500
                   }
                   size={16}
                 />
@@ -715,11 +715,11 @@ const InputExampleTemplate = args => {
                 style={{
                   color: errorState.length
                     ? args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
+                      ? magma.colors.red200
+                      : magma.colors.red500
                     : args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500,
+                      ? magma.colors.green200
+                      : magma.colors.green500,
                 }}
               >
                 Includes at least 6 characters
@@ -730,8 +730,8 @@ const InputExampleTemplate = args => {
                 <CloseIcon
                   color={
                     args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
+                      ? magma.colors.red200
+                      : magma.colors.red500
                   }
                   size={16}
                 />
@@ -739,8 +739,8 @@ const InputExampleTemplate = args => {
                 <DoneIcon
                   color={
                     args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500
+                      ? magma.colors.green200
+                      : magma.colors.green500
                   }
                   size={16}
                 />
@@ -750,11 +750,11 @@ const InputExampleTemplate = args => {
                 style={{
                   color: errorState.number
                     ? args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
+                      ? magma.colors.red200
+                      : magma.colors.red500
                     : args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500,
+                      ? magma.colors.green200
+                      : magma.colors.green500,
                 }}
               >
                 Includes number
@@ -765,8 +765,8 @@ const InputExampleTemplate = args => {
                 <CloseIcon
                   color={
                     args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
+                      ? magma.colors.red200
+                      : magma.colors.red500
                   }
                   size={16}
                 />
@@ -774,8 +774,8 @@ const InputExampleTemplate = args => {
                 <DoneIcon
                   color={
                     args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500
+                      ? magma.colors.green200
+                      : magma.colors.green500
                   }
                   size={16}
                 />
@@ -785,11 +785,11 @@ const InputExampleTemplate = args => {
                 style={{
                   color: errorState.lowercase
                     ? args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
+                      ? magma.colors.red200
+                      : magma.colors.red500
                     : args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500,
+                      ? magma.colors.green200
+                      : magma.colors.green500,
                 }}
               >
                 Includes lowercase letter
@@ -800,8 +800,8 @@ const InputExampleTemplate = args => {
                 <CloseIcon
                   color={
                     args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
+                      ? magma.colors.red200
+                      : magma.colors.red500
                   }
                   size={16}
                 />
@@ -809,8 +809,8 @@ const InputExampleTemplate = args => {
                 <DoneIcon
                   color={
                     args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500
+                      ? magma.colors.green200
+                      : magma.colors.green500
                   }
                   size={16}
                 />
@@ -820,11 +820,11 @@ const InputExampleTemplate = args => {
                 style={{
                   color: errorState.uppercase
                     ? args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
+                      ? magma.colors.red200
+                      : magma.colors.red500
                     : args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500,
+                      ? magma.colors.green200
+                      : magma.colors.green500,
                 }}
               >
                 Includes uppercase letter
@@ -835,8 +835,8 @@ const InputExampleTemplate = args => {
                 <CloseIcon
                   color={
                     args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
+                      ? magma.colors.red200
+                      : magma.colors.red500
                   }
                   size={16}
                 />
@@ -844,8 +844,8 @@ const InputExampleTemplate = args => {
                 <DoneIcon
                   color={
                     args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500
+                      ? magma.colors.green200
+                      : magma.colors.green500
                   }
                   size={16}
                 />
@@ -855,11 +855,11 @@ const InputExampleTemplate = args => {
                 style={{
                   color: errorState.specialSymbol
                     ? args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
+                      ? magma.colors.red200
+                      : magma.colors.red500
                     : args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500,
+                      ? magma.colors.green200
+                      : magma.colors.green500,
                 }}
               >
                 Includes special symbol
@@ -1250,7 +1250,7 @@ export const SeveralPopovers = () => {
           {
             label: 'Responsibility & Control',
             icon: <EcoIcon />,
-            background: magma.colors.primary400,
+            background: magma.colors.indigo400,
           },
           {
             label: 'Competition',
@@ -1260,7 +1260,7 @@ export const SeveralPopovers = () => {
           {
             label: 'Task Planning',
             icon: <CheckBoxIcon />,
-            background: magma.colors.info600,
+            background: magma.colors.blue600,
           },
           {
             label: 'Expectations',

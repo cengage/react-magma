@@ -106,23 +106,24 @@ describe('DateTimePicker', () => {
 
   describe('Timezone', () => {
     it('should render it correctly', async () => {
-      const date = new Date();
-      const timezone = 'EST';
+      const date = new Date('2020-01-15T12:00:00Z');
+      const timezone = 'America/New_York';
+      const timezoneAbbr = 'EST';
 
       const { getByText, getByPlaceholderText, getByLabelText } = render(
         <DateTimePicker value={date} timezone={timezone} />
       );
 
-      expect(getByText(timezone)).toBeInTheDocument();
-      expect(getByText(timezone)).not.toBeVisible();
+      expect(getByText(timezoneAbbr)).toBeInTheDocument();
+      expect(getByText(timezoneAbbr)).not.toBeVisible();
 
       const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
 
-      expect(input.value).toContain(timezone);
+      expect(input.value).toContain(timezoneAbbr);
 
       await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-      expect(getByText(timezone)).toBeVisible();
+      expect(getByText(timezoneAbbr)).toBeVisible();
     });
 
     it('should render with correct abbreviature', async () => {
@@ -223,7 +224,10 @@ describe('DateTimePicker', () => {
 
       userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-      expect(getByText('Done')).toBeInTheDocument();
+      const doneButton = getByText('Done').closest('button');
+
+      expect(doneButton).toBeInTheDocument();
+      expect(doneButton).toHaveAttribute('color', 'secondary');
     });
 
     it('should close calendar when Done button is clicked', async () => {
@@ -478,30 +482,32 @@ describe('DateTimePicker', () => {
 
   describe('Inverse Styling', () => {
     it('should apply inverse styling when isInverse is true', () => {
-      const { getByLabelText } = render(
+      const { getByLabelText, getByTestId } = render(
         <DateTimePicker labelText="Date Time Picker Label" isInverse />
       );
 
       userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-      const doneButton = screen.getByText('Done');
-
-      expect(doneButton.closest('div')).toHaveStyle({
-        backgroundColor: magma.colors.primary600,
+      expect(getByTestId('date-time-picker-time-section')).toHaveStyle({
+        borderBlock: `1px solid ${magma.colors.neutral800}`,
+      });
+      expect(getByTestId('date-time-picker-done-footer')).toHaveStyle({
+        backgroundColor: magma.colors.neutral1100,
       });
     });
 
     it('should apply normal styling when isInverse is false', () => {
-      const { getByLabelText } = render(
+      const { getByLabelText, getByTestId } = render(
         <DateTimePicker labelText="Date Time Picker Label" isInverse={false} />
       );
 
       userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-      const doneButton = screen.getByText('Done');
-
-      expect(doneButton.closest('div')).toHaveStyle({
-        backgroundColor: magma.colors.neutral200,
+      expect(getByTestId('date-time-picker-time-section')).toHaveStyle({
+        borderBlock: `1px solid ${magma.colors.neutral200}`,
+      });
+      expect(getByTestId('date-time-picker-done-footer')).toHaveStyle({
+        backgroundColor: magma.colors.neutral100,
       });
     });
   });

@@ -4,6 +4,6 @@ export enum TabsOrientation {
 }
 
 export enum TabsTextTransform {
-  uppercase = 'uppercase', // default
-  none = 'none',
+  uppercase = 'uppercase',
+  none = 'none', // default
 }

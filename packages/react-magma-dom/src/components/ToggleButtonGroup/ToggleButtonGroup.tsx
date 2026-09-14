@@ -1,5 +1,8 @@
 import * as React from 'react';
 
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { descriptionSuffix, useGenerateId } from '../../utils';
@@ -81,6 +84,57 @@ export interface ToggleButtonGroupContextInterface {
 
 export const ToggleButtonGroupContext =
   React.createContext<ToggleButtonGroupContextInterface>({});
+
+const StyledButtonGroup = styled(ButtonGroup)<any>`
+  gap: ${props => (props.noSpace ? '0' : props.theme.spaceScale.spacing03)};
+
+  &&&& > button {
+    margin: 0;
+  }
+
+  ${props =>
+    props.noSpace &&
+    css`
+      &&&& > button:not(:first-child) {
+        border-left: 1px solid
+          ${props.isInverse
+            ? props.theme.colors.neutral800
+            : props.theme.colors.neutral300};
+      }
+
+      &&&& > button:last-child[aria-checked='true'],
+      &&&& > button:last-child[aria-selected='true'] {
+        border-right-color: transparent;
+      }
+
+      &&&& > button:focus {
+        box-shadow:
+          0 0 0 2px
+            ${props.isInverse
+              ? props.theme.colors.neutral1100
+              : props.theme.colors.neutral0},
+          0 0 0 4px
+            ${props.isInverse
+              ? props.theme.colors.focusInverse
+              : props.theme.colors.focus};
+        outline: none;
+        z-index: 2;
+      }
+
+      &&&& > button[aria-checked='true']:focus,
+      &&&& > button[aria-selected='true']:focus {
+        box-shadow:
+          0 0 0 2px
+            ${props.isInverse
+              ? props.theme.colors.neutral1100
+              : props.theme.colors.neutral0},
+          0 0 0 4px
+            ${props.isInverse
+              ? props.theme.colors.focusInverse
+              : props.theme.colors.focus};
+      }
+    `}
+`;
 
 export const ToggleButtonGroup = React.forwardRef<
   HTMLDivElement,
@@ -181,9 +235,9 @@ export const ToggleButtonGroup = React.forwardRef<
     : `${id}${descriptionSuffix}`;
 
   return (
-    <ButtonGroup
+    <StyledButtonGroup
       aria-describedby={descriptionId}
-      color={ButtonColor.subtle}
+      color={ButtonColor.secondary}
       isInverse={isInverse}
       noSpace={noSpace}
       ref={ref}
@@ -207,6 +261,6 @@ export const ToggleButtonGroup = React.forwardRef<
       >
         {ToggleButtons}
       </ToggleButtonGroupContext.Provider>
-    </ButtonGroup>
+    </StyledButtonGroup>
   );
 });

@@ -20,6 +20,10 @@ describe('ProgressBar', () => {
     const { container } = render(<ProgressBar />);
 
     expect(container).toBeInTheDocument();
+    expect(container.firstChild.firstChild).toHaveStyleRule(
+      'box-shadow',
+      `inset 0 0 0 1px ${magma.colors.neutral600}`
+    );
   });
 
   it('should render the progress bar component with inverse styles', () => {
@@ -28,6 +32,10 @@ describe('ProgressBar', () => {
     expect(container.firstChild.firstChild).toHaveStyleRule(
       'background',
       transparentize(0.75, magma.colors.neutral900)
+    );
+    expect(container.firstChild.firstChild).toHaveStyleRule(
+      'box-shadow',
+      `inset 0 0 0 1px ${magma.colors.neutral600}`
     );
   });
 
@@ -93,7 +101,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      magma.colors.tertiary
+      magma.colors.brand.cyan
     );
   });
 
@@ -104,7 +112,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      magma.colors.danger300
+      magma.colors.red500
     );
   });
 
@@ -115,7 +123,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      magma.colors.success300
+      magma.colors.green500
     );
   });
 
@@ -142,6 +150,7 @@ describe('ProgressBar', () => {
     );
 
     expect(getByText('50%')).toBeInTheDocument();
+    expect(getByText('50%')).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it('Does not violate accessibility standards', () => {

@@ -6,7 +6,7 @@ order: 3
 <PageContent componentName="usage" type="api_intro">
 
 <LeadParagraph>
-  How to use React Magma components. The examples here use the{' '}
+  How to use Magma components. The examples here use the{' '}
   <Link to="/api/button">Button</Link> component. More information about each of
   the components can be found in the Component API section.
 </LeadParagraph>
@@ -28,7 +28,7 @@ export function Example() {
 
 ## Using TypeScript Enums
 
-When using a prop that takes an enum, you must import that type from React Magma if you are using TypeScript.
+When using a prop that takes an enum, you must import that type from Magma if you are using TypeScript.
 
 ```tsx
 import React from 'react';
@@ -42,8 +42,8 @@ export function Example() {
 
 ## Importing Global Styles
 
-Most of the styles for React Magma are bundled within their components. However, a `GlobalStyles` object is available, which provides a
-very basic CSS reset plus the required fonts, body styles, and some generic styles for links. It is recommended that you use this `GlobalStyles` component in any app that uses React Magma
+Most of the styles for Magma are bundled within their components. However, a `GlobalStyles` object is available, which provides a
+very basic CSS reset plus the required fonts, body styles, and some generic styles for links. It is recommended that you use this `GlobalStyles` component in any app that uses Magma
 to insure consistency across products.
 
 To use the `GlobalStyles` object, simply import it from `react-magma-dom` and include it in your App.
@@ -66,7 +66,7 @@ export function Example() {
 
 ## Using the Magma Theme
 
-React Magma uses the Magma theme for styles, which includes fonts, colors and screen sizes for media queries. To remain consistent,
+Magma uses the Magma theme for styles, which includes fonts, colors and screen sizes for media queries. To remain consistent,
 you can import `magma` and reference these values in your application's styles.
 
 The complete Magma theme can be found in the [Github repository](https://github.com/cengage/react-magma/blob/acc469c1499da986248c312009951a9d74ed8f16/packages/react-magma-dom/src/theme/magma.ts).
@@ -81,7 +81,7 @@ import { magma } from 'react-magma-dom';
 export function Example() {
   const StyledDiv = styled('div')(props => ({
     background: props.theme.colors.neutral,
-    color: props.theme.colors.neutral100,
+    color: props.theme.colors.neutral0,
     padding: props.theme.spaceScale.spacing02,
   }));
 

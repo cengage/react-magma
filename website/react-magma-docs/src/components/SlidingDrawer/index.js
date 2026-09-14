@@ -4,7 +4,7 @@ import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import FocusLock from 'react-focus-lock';
 import { Container, IconButton, magma, Spacer } from 'react-magma-dom';
-import { MenuIcon, CloseIcon } from 'react-magma-icons';
+import { CloseIcon } from 'react-magma-icons';
 
 import { Logo } from '../Logo';
 import { MainNav } from '../MainNav';
@@ -18,7 +18,7 @@ export class SlidingDrawer extends React.Component {
       isOpen: false,
       isActivated: false,
     };
-    this.toggleButtonRef = React.createRef();
+    this.toggleButtonRef = props.toggleButtonRef || React.createRef();
     this.openMenu = this.openMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
     this.handleCloseMenu = this.handleCloseMenu.bind(this);
@@ -34,6 +34,9 @@ export class SlidingDrawer extends React.Component {
       }
 
       this.setState({ isOpen: false }, () => {
+        if (this.props.onOpenChange) {
+          this.props.onOpenChange(false);
+        }
         setTimeout(() => {
           this.setState({ isActivated: false });
           if (returnFocus) {
@@ -55,7 +58,11 @@ export class SlidingDrawer extends React.Component {
       document.getElementsByTagName('html')[0].style.overflow = 'hidden';
       document.addEventListener('keydown', this.handleKeypress, false);
     }
-    this.setState({ isOpen: true, isActivated: true });
+    this.setState({ isOpen: true, isActivated: true }, () => {
+      if (this.props.onOpenChange) {
+        this.props.onOpenChange(true);
+      }
+    });
   };
 
   handleCloseMenu() {
@@ -84,6 +91,8 @@ export class SlidingDrawer extends React.Component {
         `;
 
     const Panel = styled(Container)`
+      background: ${props =>
+        props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral0};
       border-right: 1px solid
         ${props =>
           props.isInverse ? magma.colors.borderInverse : magma.colors.border};
@@ -113,7 +122,8 @@ export class SlidingDrawer extends React.Component {
 
       @media (min-width: 1025px) {
         animation: none;
-        background: ${magma.colors.neutral200};
+        background: ${props =>
+          props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral0};
         top: 56px;
         transform: translateX(0);
       }
@@ -137,16 +147,6 @@ export class SlidingDrawer extends React.Component {
       right: 0;
       top: 0;
       z-index: 10;
-    `;
-
-    const MenuButton = styled.span`
-      position: fixed;
-      top: 4px;
-      left: 6px;
-      z-index: 11;
-      @media (min-width: 1025px) {
-        display: none;
-      }
     `;
 
     const SmallLogoLink = styled.div`
@@ -183,46 +183,33 @@ export class SlidingDrawer extends React.Component {
 
     return (
       <FocusLock disabled={!isOpen}>
-        <Container gutterWidth={0}>
-          <nav aria-label="Main site navigation">
-            <MenuButton>
-              <IconButton
-                aria-label="Open navigation menu"
-                aria-expanded={isOpen}
-                color="secondary"
-                icon={<MenuIcon />}
-                onClick={this.openMenu}
-                ref={this.toggleButtonRef}
-                variant="link"
-              />
-            </MenuButton>
-            <Panel
-              isOpen={isOpen}
-              isActivated={isActivated}
-              isInverse={isInverse}
-            >
-              <PanelInner isOpen={isOpen}>
-                <SmallLogoLink to="/">
-                  <Spacer size={magma.spaceScale.spacing05} />
-                  <Logo />
-                  <Spacer size={magma.spaceScale.spacing04} />
-                  React Magma
-                  <CloseButton>
-                    <IconButton
-                      aria-label="Close navigation menu"
-                      color="secondary"
-                      icon={<CloseIcon />}
-                      onClick={this.handleCloseMenu}
-                      variant="link"
-                    />
-                  </CloseButton>
-                </SmallLogoLink>
-                <MainNav handleClick={this.handleCloseMenuFromNav} />
-              </PanelInner>
-            </Panel>
-            {isOpen && <Overlay onClick={this.handleCloseMenu} />}
-          </nav>
-        </Container>
+        <nav aria-label="Main site navigation">
+          <Panel
+            isOpen={isOpen}
+            isActivated={isActivated}
+            isInverse={isInverse}
+          >
+            <PanelInner isOpen={isOpen}>
+              <SmallLogoLink to="/">
+                <Spacer size={magma.spaceScale.spacing05} />
+                <Logo />
+                <Spacer size={magma.spaceScale.spacing04} />
+                Magma
+                <CloseButton>
+                  <IconButton
+                    aria-label="Close navigation menu"
+                    color="secondary"
+                    icon={<CloseIcon />}
+                    onClick={this.handleCloseMenu}
+                    variant="link"
+                  />
+                </CloseButton>
+              </SmallLogoLink>
+              <MainNav handleClick={this.handleCloseMenuFromNav} />
+            </PanelInner>
+          </Panel>
+          {isOpen && <Overlay onClick={this.handleCloseMenu} />}
+        </nav>
       </FocusLock>
     );
   }

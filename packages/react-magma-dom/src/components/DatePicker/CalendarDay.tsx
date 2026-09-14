@@ -6,7 +6,6 @@ import styled from '@emotion/styled';
 import { isAfter, isBefore, isSameDay, isSameMonth } from 'date-fns';
 // eslint-disable-next-line import/no-duplicates
 import { enUS } from 'date-fns/locale';
-import { transparentize } from 'polished';
 
 import { CalendarContext } from './CalendarContext';
 import { i18nFormat as format } from './utils';
@@ -30,22 +29,26 @@ function getCalendarDayBackground(
   theme: Theme
 ) {
   if (isInverse) {
-    return isChosen ? theme.colors.tertiary : theme.colors.primary;
+    return isChosen
+      ? theme.colors.brand.sunriseOrange
+      : theme.colors.neutral1100;
   }
 
-  return isChosen ? theme.colors.primary : theme.colors.neutral100;
+  return isChosen ? theme.colors.blue600 : theme.colors.neutral0;
 }
 
 const getTodayColor = (isChosen: boolean, isInverse: boolean, theme: Theme) => {
   if (isInverse) {
-    return isChosen ? theme.colors.primary600 : theme.colors.secondary500;
+    return isChosen
+      ? theme.colors.brand.navy
+      : theme.colors.brand.sunriseOrange;
   }
 
-  return isChosen ? theme.colors.neutral100 : theme.colors.primary500;
+  return isChosen ? theme.colors.neutral0 : theme.colors.blue600;
 };
 
 const getChosenDayColor = (isInverse: boolean, theme: Theme) => {
-  return isInverse ? theme.colors.primary600 : theme.colors.neutral100;
+  return isInverse ? theme.colors.brand.navy : theme.colors.neutral0;
 };
 
 const getDisabledColor = (
@@ -54,22 +57,18 @@ const getDisabledColor = (
   theme: Theme
 ) => {
   if (isChosen) {
-    return isInverse ? theme.colors.primary600 : theme.colors.neutral100;
+    return isInverse ? theme.colors.brand.navy : theme.colors.neutral0;
   }
 
-  return isInverse
-    ? transparentize(0.6, theme.colors.neutral100)
-    : transparentize(0.4, theme.colors.neutral500);
+  return isInverse ? theme.colors.neutral700 : theme.colors.neutral500;
 };
 
 const getNotCurrentMonthColor = (isInverse: boolean, theme: Theme) => {
-  return isInverse
-    ? transparentize(0.3, theme.colors.neutral100)
-    : theme.colors.neutral500;
+  return isInverse ? theme.colors.neutral500 : theme.colors.neutral700;
 };
 
 const getCurrentMonthColor = (isInverse: boolean, theme: Theme) => {
-  return isInverse ? theme.colors.neutral100 : theme.colors.neutral700;
+  return isInverse ? theme.colors.neutral0 : theme.colors.brand.navy;
 };
 
 const getCalendarDayColor = (
@@ -93,7 +92,7 @@ function getChosenDayBorder(
 ) {
   if (isChosen) {
     return `1px solid ${
-      isInverse ? theme.colors.primary600 : theme.colors.neutral100
+      isInverse ? theme.colors.neutral1100 : theme.colors.neutral0
     }`;
   }
 }
@@ -104,10 +103,10 @@ function getChosenDayHover(
   theme: Theme
 ) {
   if (isChosen) {
-    return isInverse ? theme.colors.neutral200 : theme.colors.primary600;
+    return isInverse ? theme.colors.brand.sunriseOrange : theme.colors.blue600;
   }
 
-  return isInverse ? theme.colors.primary600 : theme.colors.neutral200;
+  return isInverse ? theme.colors.neutral900 : theme.colors.neutral150;
 }
 
 const getCalendarDayFontSize = (state: CalendarDayState) => {
@@ -154,7 +153,6 @@ const CalendarDayInner = styled.button<{
   overflow: hidden;
   outline-offset: 0;
   position: relative;
-  transition: background 0.5s ease-in-out 0s;
   width: 43px;
 
   &:focus {
@@ -170,25 +168,7 @@ const CalendarDayInner = styled.button<{
     margin: 1px;
   }
 
-  &:before {
-    background: ${props =>
-      props.isInverse
-        ? props.theme.colors.danger200
-        : props.theme.colors.neutral};
-    content: '';
-    height: 200%;
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: -50%;
-    transition: 0.2s;
-    width: 200%;
-  }
-
   &:hover {
-    &:before {
-      opacity: ${props => (props.state.disabled ? 0 : 0.1)};
-    }
     border: none;
     background: ${props =>
       getChosenDayHover(props.state.isChosen, props.isInverse, props.theme)};

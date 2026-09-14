@@ -23,7 +23,7 @@ overlay rather than by editing history.
 | File | Applied to | Notes |
 |------|-----------|-------|
 | `actions-v2.tsx` | major 2 (e.g. 2.6.2) | `@emotion/core`; older magma palette (`foundation02` / `neutral07`). |
-| `actions-emotion-core.tsx` | major 3 + v4 tags on `@emotion/core` (3.11.0, 4.0.0–4.4.0) | `primary700` / `neutral200` palette. |
+| `actions-emotion-core.tsx` | major 3 + v4 tags on `@emotion/core` (3.11.0, 4.0.0–4.4.0) | `indigo700` / `neutral200` palette. |
 | `actions-emotion-react.tsx` | v4 tags on `@emotion/react` (4.5.0+) | Same as above but `@emotion/react` import. |
 | `update-package.js` | all patched tags | Removes `react-codesandboxer`, adds `lz-string@^1.5.0` in the docs `package.json`. |
 

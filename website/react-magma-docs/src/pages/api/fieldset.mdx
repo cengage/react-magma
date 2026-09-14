@@ -95,11 +95,11 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Fieldset, Checkbox, Card, CardBody } from 'react-magma-dom';
+import { Fieldset, Checkbox, Card, CardBody, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <Fieldset legend="Inverse fieldset" isInverse>
           <Checkbox labelText="Option A" />

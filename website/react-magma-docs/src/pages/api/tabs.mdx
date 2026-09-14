@@ -34,6 +34,7 @@ import {
   Tab,
   TabPanelsContainer,
   TabPanel,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -713,7 +714,11 @@ export function Example() {
 
 ## ScrollSpy Tabs
 
-<Alert variant="warning"> <strong>Important</strong> ScrollSpy is a beta component. Please use at your own risk.</Alert>
+<Alert variant="warning">
+  {' '}
+  <strong>Important</strong> ScrollSpy is a beta component. Please use at your
+  own risk.
+</Alert>
 
 The `TabsScrollSpyContainer` enables a vertical nav which follows the active content in view as the user scrolls. The component requires the `TabScrollSpyPanel` to house each area and a `tabLabel` to assign it's navigation title.
 
@@ -1106,7 +1111,7 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
 The default value is false. It can be applied just to the `Tabs` (just the navigation), or to the `TabsContainer` (navigation plus panel content).
 It can also be applied to the `TabPanelsContainer` or the individual `TabPanel`.
 
-### With Blue Background
+### With Neutral Background
 
 ```tsx
 import React from 'react';
@@ -1119,11 +1124,12 @@ import {
   Tab,
   TabPanelsContainer,
   TabPanel,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <TabsContainer isInverse>
           <Tabs aria-label="Sample Inverse Colors Tabs" isInverse>

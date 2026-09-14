@@ -1,18 +1,27 @@
 import React from 'react';
 
+import styled from '@emotion/styled';
 import { StoryFn, Meta } from '@storybook/react-webpack5';
 import { AccountCircleIcon } from 'react-magma-icons';
 
+import { magma } from '../../theme/magma';
 import { Button } from '../Button';
 import { Card, CardBody } from '../Card';
 
 import { Tag, TagColor, TagProps, TagSize } from '.';
 
+const ExampleRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${magma.spaceScale.spacing05};
+  margin-bottom: ${magma.spaceScale.spacing05};
+`;
+
 const Template: StoryFn<TagProps> = args => {
   return (
     <Card isInverse={args.isInverse}>
       <CardBody>
-        <p>
+        <ExampleRow>
           <Tag {...args}>Default</Tag>
           <Tag {...args} color={TagColor.primary}>
             Primary
@@ -23,8 +32,8 @@ const Template: StoryFn<TagProps> = args => {
           <Tag {...args} color={TagColor.lowContrast}>
             Low Contrast
           </Tag>
-        </p>
-        <p>
+        </ExampleRow>
+        <ExampleRow>
           <Tag {...args} icon={<AccountCircleIcon />}>
             Default Icon
           </Tag>
@@ -45,8 +54,8 @@ const Template: StoryFn<TagProps> = args => {
           >
             Low Contrast Icon
           </Tag>
-        </p>
-        <p>
+        </ExampleRow>
+        <ExampleRow>
           <Tag {...args} size={TagSize.small}>
             Default Small
           </Tag>
@@ -59,8 +68,8 @@ const Template: StoryFn<TagProps> = args => {
           <Tag {...args} size={TagSize.small} color={TagColor.lowContrast}>
             Low Contrast Small
           </Tag>
-        </p>
-        <p>
+        </ExampleRow>
+        <ExampleRow>
           <Tag {...args} icon={<AccountCircleIcon />} size={TagSize.small}>
             Default Small Icon
           </Tag>
@@ -88,8 +97,8 @@ const Template: StoryFn<TagProps> = args => {
           >
             Low Contrast Small Icon
           </Tag>
-        </p>
-        <p>
+        </ExampleRow>
+        <ExampleRow>
           <Tag
             size={args.size}
             color={args.color}
@@ -112,7 +121,7 @@ const Template: StoryFn<TagProps> = args => {
           >
             Deletetable
           </Tag>
-        </p>
+        </ExampleRow>
       </CardBody>
     </Card>
   );

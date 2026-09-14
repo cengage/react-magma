@@ -203,11 +203,12 @@ import {
   CardBody,
   TypographyVisualStyle,
   TypographyContextVariant,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <Form
           onSubmit={() => alert('form submitted')}

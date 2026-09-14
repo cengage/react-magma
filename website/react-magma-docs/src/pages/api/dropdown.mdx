@@ -1043,11 +1043,12 @@ import {
   DropdownMenuItem,
   Card,
   CardBody,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <Dropdown isInverse>
           <DropdownButton>Basic Dropdown</DropdownButton>

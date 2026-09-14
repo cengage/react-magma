@@ -35,8 +35,13 @@ describe('Input', () => {
   });
 
   it('should render a label for the input', () => {
-    const { getByLabelText } = render(<Input labelText={label} />);
+    const { getByLabelText, getByText } = render(<Input labelText={label} />);
     expect(getByLabelText(label)).toBeInTheDocument();
+    expect(getByText(label).parentElement).toHaveStyleRule(
+      'margin',
+      `0 0 ${magma.spaceScale.spacing03} 0`
+    );
+    expect(getByText(label)).not.toHaveStyleRule('margin-block');
   });
 
   it('should render a input text with desired attributes', () => {
@@ -59,14 +64,38 @@ describe('Input', () => {
 
   it('should render the default input styles input', () => {
     const testId = 'test-id';
-    const { getByTestId } = render(<Input testId={testId} />);
+    const { getByTestId, getByText, container } = render(
+      <Input
+        helperMessage="Helper text"
+        icon={<CheckIcon />}
+        labelText="Input label"
+        placeholder="Placeholder text"
+        testId={testId}
+      />
+    );
     const input = getByTestId(testId);
+    const wrapper = getByTestId(`${testId}-wrapper`).firstElementChild;
+    const icon = container.querySelector('span[aria-hidden="true"]');
 
     expect(input).toHaveStyleRule('background', 'transparent');
-    expect(getByTestId(testId).parentElement).toHaveStyleRule(
+    expect(input).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(input).toHaveStyleRule('color', magma.colors.neutral700, {
+      target: '::placeholder',
+    });
+    expect(wrapper).toHaveStyleRule(
       'border',
-      '1px solid #707070'
+      `1px solid ${magma.colors.neutral500}`
     );
+    expect(getByText('Input label')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
+    expect(getByText('Input label')).toHaveStyleRule('font-weight', '600');
+    expect(getByTestId('inputMessage')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral700
+    );
+    expect(icon).toHaveStyleRule('color', magma.colors.neutral600);
   });
 
   it('should render custom styles', () => {
@@ -100,12 +129,42 @@ describe('Input', () => {
 
   it('should render an inverse input with the correct styles', () => {
     const labelText = 'test label';
-    const { getByText } = render(<Input labelText={labelText} isInverse />);
+    const testId = 'inverse-input';
+    const { container, getByTestId, getByText } = render(
+      <Input
+        helperMessage="Helper text"
+        icon={<CheckIcon />}
+        labelText={labelText}
+        placeholder="Placeholder text"
+        isInverse
+        testId={testId}
+      />
+    );
+    const input = getByTestId(testId);
+    const wrapper = getByTestId(`${testId}-wrapper`).firstElementChild;
+    const icon = container.querySelector('span[aria-hidden="true"]');
 
     expect(getByText(labelText)).toHaveStyleRule(
       'color',
-      magma.colors.neutral100
+      magma.colors.neutral0
     );
+    expect(getByText(labelText).parentElement).toHaveStyleRule(
+      'margin',
+      `0 0 ${magma.spaceScale.spacing03} 0`
+    );
+    expect(getByText(labelText)).not.toHaveStyleRule('margin-block');
+    expect(wrapper).toHaveStyleRule(
+      'background-color',
+      magma.colors.neutral1150
+    );
+    expect(wrapper).toHaveStyleRule(
+      'border',
+      `1px solid ${magma.colors.neutral700}`
+    );
+    expect(input).toHaveStyleRule('color', magma.colors.neutral500, {
+      target: '::placeholder',
+    });
+    expect(icon).toHaveStyleRule('color', magma.colors.neutral600);
   });
 
   it('should render an input with a correctly styled helper message', () => {
@@ -114,7 +173,7 @@ describe('Input', () => {
 
     const helperMessage = getByTestId('inputMessage');
 
-    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral);
+    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral700);
   });
 
   it('should render an inverse input with a correctly styled helper message', () => {
@@ -125,10 +184,7 @@ describe('Input', () => {
 
     const helperMessage = getByTestId('inputMessage');
 
-    expect(helperMessage).toHaveStyleRule(
-      'color',
-      transparentize(0.3, magma.colors.neutral100)
-    );
+    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral500);
   });
 
   it('should render an input with a correctly styled error message', () => {
@@ -159,9 +215,9 @@ describe('Input', () => {
     const errorMessage = getByTestId('inputMessage');
     const errorIcon = getByRole('img').firstChild;
 
-    expect(input).toHaveStyleRule('border-color', magma.colors.danger300);
-    expect(errorMessage).toHaveStyleRule('color', magma.colors.danger200);
-    expect(errorIcon).toHaveAttribute('fill', magma.colors.danger300);
+    expect(input).toHaveStyleRule('border-color', magma.colors.red500);
+    expect(errorMessage).toHaveStyleRule('color', magma.colors.red500);
+    expect(errorIcon).toHaveAttribute('fill', magma.colors.red500);
   });
 
   it('should render an input with a right-aligned icon by default', () => {
@@ -376,9 +432,55 @@ describe('Input', () => {
 
   it('should disable the input', () => {
     const labelText = 'test label';
-    const { getByLabelText } = render(<Input labelText={labelText} disabled />);
+    const testId = 'disabled-input';
+    const { container, getByLabelText, getByTestId } = render(
+      <Input
+        disabled
+        icon={<CheckIcon />}
+        labelText={labelText}
+        placeholder="Placeholder text"
+        testId={testId}
+      />
+    );
+    const input = getByLabelText(labelText);
+    const icon = container.querySelector('span[aria-hidden="true"]');
 
-    expect(getByLabelText(labelText)).toBeDisabled();
+    expect(input).toBeDisabled();
+    expect(input).toHaveStyleRule('color', magma.colors.neutral500);
+    expect(input).toHaveStyleRule('color', magma.colors.neutral500, {
+      target: '::placeholder',
+    });
+    expect(icon).toHaveStyleRule('color', magma.colors.neutral500);
+    expect(getByTestId(`${testId}-wrapper`)).toBeInTheDocument();
+  });
+
+  it('should render inverse disabled input colors', () => {
+    const labelText = 'test label';
+    const testId = 'inverse-disabled-input';
+    const { container, getByLabelText, getByTestId } = render(
+      <Input
+        disabled
+        icon={<CheckIcon />}
+        isInverse
+        labelText={labelText}
+        placeholder="Placeholder text"
+        testId={testId}
+      />
+    );
+    const input = getByLabelText(labelText);
+    const wrapper = getByTestId(`${testId}-wrapper`).firstElementChild;
+    const icon = container.querySelector('span[aria-hidden="true"]');
+
+    expect(wrapper).toHaveStyleRule(
+      'background-color',
+      magma.colors.neutral1100
+    );
+    expect(wrapper).toHaveStyleRule('border-color', magma.colors.neutral900);
+    expect(input).toHaveStyleRule('color', magma.colors.neutral700);
+    expect(input).toHaveStyleRule('color', magma.colors.neutral700, {
+      target: '::placeholder',
+    });
+    expect(icon).toHaveStyleRule('color', magma.colors.neutral700);
   });
 
   it('should render the input with visually hidden label text', () => {

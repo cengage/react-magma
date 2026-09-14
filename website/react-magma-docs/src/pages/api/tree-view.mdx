@@ -248,7 +248,7 @@ export function Example() {
           label={<>I have an icon</>}
           icon={
             <FavoriteIcon
-              style={{ color: magma.colors.primary500 }}
+              style={{ color: magma.colors.indigo500 }}
               aria-hidden
             />
           }
@@ -260,7 +260,7 @@ export function Example() {
             label={<>I have an icon</>}
             icon={
               <FavoriteIcon
-                style={{ color: magma.colors.primary500 }}
+                style={{ color: magma.colors.indigo500 }}
                 aria-hidden
               />
             }
@@ -1818,11 +1818,15 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { TreeView, TreeItem, Card } from 'react-magma-dom';
+import { TreeView, TreeItem, Card, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse style={{ padding: '12px' }}>
+    <Card
+      background={magma.colors.neutral1100}
+      isInverse
+      style={{ padding: '12px' }}
+    >
       <TreeView ariaLabel="animals" isInverse>
         <TreeItem label="Mammals" itemId="inverse-Mammals">
           <TreeItem label="Dogs" itemId="inverse-Dogs">
@@ -1876,13 +1880,13 @@ export function Example() {
         <TreeItem
           label="Reptiles"
           itemId="custom-Reptiles"
-          labelStyle={{ color: magma.colors.danger600 }}
+          labelStyle={{ color: magma.colors.red600 }}
         >
           <TreeItem
             label="Snakes"
             itemId="custom-Snakes"
-            labelStyle={{ color: magma.colors.info700, fontWeight: '600' }}
-            style={{ background: magma.colors.info100 }}
+            labelStyle={{ color: magma.colors.blue700, fontWeight: '600' }}
+            style={{ background: magma.colors.blue100 }}
           >
             <TreeItem label="Python" itemId="custom-Python" />
             <TreeItem label="Boa Constrictor" itemId="custom-Boa Constrictor" />
@@ -1915,8 +1919,8 @@ export function Example() {
           <TreeItem
             label="Marine Mammals"
             itemId="custom-Marine Mammals"
-            labelStyle={{ color: magma.colors.success700, fontWeight: '600' }}
-            style={{ background: magma.colors.success100 }}
+            labelStyle={{ color: magma.colors.green700, fontWeight: '600' }}
+            style={{ background: magma.colors.green100 }}
           >
             <TreeItem label="Dolphins" itemId="custom-Dolphins" />
             <TreeItem label="Whales" itemId="custom-Whales" />

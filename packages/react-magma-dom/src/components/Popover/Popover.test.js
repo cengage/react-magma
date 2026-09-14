@@ -4,6 +4,8 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { FilterAltIcon } from 'react-magma-icons';
 
+import { magma } from '../../theme/magma';
+
 import { PopoverAlignment, PopoverPosition } from './Popover';
 import { PopoverHeader, PopoverFooter } from './PopoverSection';
 import { Button } from '../Button';
@@ -416,6 +418,53 @@ describe('Popover', () => {
     expect(popoverContent).toContainElement(popoverHeader);
     expect(popoverContent).toContainElement(popoverFooter);
   });
+
+  it.each([
+    ['regular', false, 'neutral0', 'neutral200', magma.colors.brand.navy],
+    ['inverse', true, 'neutral1100', 'neutral800', magma.colors.neutral0],
+  ])(
+    'uses the rebrand colors for the %s popover',
+    (_name, isInverse, background, border, text) => {
+      const { getByTestId, getByText } = render(
+        <Popover hasPointer isInverse={isInverse} openByDefault>
+          <PopoverTrigger />
+          <PopoverContent>
+            <PopoverHeader>
+              <span>Header</span>
+            </PopoverHeader>
+            <span>Content</span>
+            <PopoverFooter>
+              <span>Footer</span>
+            </PopoverFooter>
+          </PopoverContent>
+        </Popover>
+      );
+
+      const popoverContent = getByTestId('popoverContent');
+      const popoverArrow = getByTestId('popoverArrow');
+      const headerDivider =
+        getByText('Header').parentElement.nextElementSibling;
+      const footerDivider =
+        getByText('Footer').parentElement.nextElementSibling;
+
+      expect(popoverContent).toHaveStyle({
+        background: magma.colors[background],
+        borderColor: magma.colors[border],
+        color: text,
+      });
+      expect(popoverArrow).toHaveAttribute('fill', magma.colors[background]);
+      expect(popoverArrow.querySelector('path')).toHaveAttribute(
+        'stroke',
+        magma.colors[border]
+      );
+      expect(headerDivider).toHaveStyle({
+        backgroundColor: magma.colors[border],
+      });
+      expect(footerDivider).toHaveStyle({
+        backgroundColor: magma.colors[border],
+      });
+    }
+  );
 
   it('should render the popover with max height', () => {
     const { getByTestId } = render(

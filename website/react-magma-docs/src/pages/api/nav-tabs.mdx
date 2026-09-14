@@ -207,7 +207,11 @@ export function Example() {
 Options for the `textTransform` prop for navtabs include `uppercase` and `none`, with `uppercase` (all caps) being the default value.
 This sets the CSS `text-transform` property.
 
-<Alert variant="warning" style={{padding: '4px'}}>When multiple `NavTabs` components are used on the same page, each one should have its own accessible name. You can provide this by using `aria-label`, ensuring that every `NavTabs` instance has a unique label.</Alert>
+<Alert variant="warning" style={{ padding: '4px' }}>
+  When multiple `NavTabs` components are used on the same page, each one should
+  have its own accessible name. You can provide this by using `aria-label`,
+  ensuring that every `NavTabs` instance has a unique label.
+</Alert>
 
 ```tsx
 import React from 'react';
@@ -501,16 +505,16 @@ export function Example() {
 
 The `isInverse` property is an optional boolean, that reverses the colors so that the tabs can better appear on a dark background. It is applied to the `Tabs` component.
 
-### With Blue Background
+### With Neutral Background
 
 ```tsx
 import React from 'react';
 
-import { Card, CardBody, NavTab, NavTabs } from 'react-magma-dom';
+import { Card, CardBody, NavTab, NavTabs, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <NavTabs aria-label="Sample Inverse Colors Nav Tabs" isInverse>
           <NavTab isActive to="javascript:void(0)">

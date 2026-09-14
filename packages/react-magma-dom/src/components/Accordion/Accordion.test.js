@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
 import { Button } from '../Button';
 import { Heading } from '../Heading';
 
@@ -46,8 +47,19 @@ describe('Accordion', () => {
     const accordion = getByTestId(testId);
 
     expect(btn).toHaveStyleRule('background', 'transparent');
+    expect(btn).toHaveStyleRule(
+      'border-top',
+      `1px solid ${magma.colors.neutral200}`
+    );
+    expect(btn).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(btn).toHaveStyleRule('font-weight', '600');
     expect(panel).toHaveStyleRule('background', 'transparent');
+    expect(panel).toHaveStyleRule('color', magma.colors.brand.navy);
     expect(accordion).toHaveStyleRule('background', 'transparent');
+    expect(accordion).toHaveStyleRule(
+      'border-bottom',
+      `1px solid ${magma.colors.neutral200}`
+    );
   });
 
   it('should render the component with the correct inverse styles', () => {
@@ -67,8 +79,16 @@ describe('Accordion', () => {
     const accordion = getByTestId(testId);
 
     expect(btn).toHaveStyleRule('background', 'transparent');
+    expect(btn).toHaveStyleRule(
+      'border-top',
+      `1px solid ${magma.colors.neutral800}`
+    );
     expect(panel).toHaveStyleRule('background', 'transparent');
     expect(accordion).toHaveStyleRule('background', 'transparent');
+    expect(accordion).toHaveStyleRule(
+      'border-bottom',
+      `1px solid ${magma.colors.neutral800}`
+    );
   });
 
   it('should not override the styles of a Heading nested inside an AccordionPanel', () => {

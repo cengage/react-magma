@@ -25,10 +25,7 @@ describe('Container', () => {
       </Container>
     );
 
-    expect(getByTestId(testId)).toHaveStyleRule(
-      'color',
-      magma.colors.neutral100
-    );
+    expect(getByTestId(testId)).toHaveStyleRule('color', magma.colors.neutral0);
   });
 
   it('should render with max-width', () => {

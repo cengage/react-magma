@@ -34,12 +34,14 @@ const TabsWrapper = styled.div`
   position: sticky;
   top: 56px;
   z-index: 8;
-  background: ${magma.colors.neutral200};
+  background: ${props =>
+    props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral100};
 `;
 
 // Implementation & Design tabs
 const StyledTabs = styled(NavTabs)`
-  background: ${magma.colors.neutral200};
+  background: ${props =>
+    props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral100};
   margin: 0 auto;
   max-width: ${CONTENT_MAX_WIDTH}px;
   position: sticky;
@@ -71,13 +73,16 @@ const StyledTabsContainer = styled(TabsContainer)`
 `;
 
 const StyledTabPanelsContainer = styled(TabPanelsContainer)`
-  background: ${magma.colors.neutral100};
+  background: ${props =>
+    props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral0};
   @media (max-width: 1024px) {
     max-width: 100%;
   }
 `;
 
 const Content = styled.div`
+  color: ${props =>
+    props.isInverse ? magma.colors.neutral0 : magma.colors.brand.navy};
   flex: 1 1 auto;
   margin: 48px auto;
   max-width: 868px;
@@ -96,6 +101,12 @@ const Content = styled.div`
 
 const ContentOutsideDocs = styled(Content)`
   max-width: 1164px;
+`;
+
+const ContentWithoutNav = styled.div`
+  background: ${props =>
+    props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral0};
+  display: flex;
 `;
 
 const PageNavigation = styled.div`
@@ -120,7 +131,7 @@ export const PageContent = ({ children, componentName, type }) => {
     query SideNavQuery {
       designComponentDocs: allMdx(
         filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
+          internal: { contentFilePath: { regex: "//src/pages/design//" } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -130,7 +141,7 @@ export const PageContent = ({ children, componentName, type }) => {
       }
       apiDocs: allMdx(
         filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/api/**" } }
+          internal: { contentFilePath: { regex: "//src/pages/api//" } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -141,7 +152,7 @@ export const PageContent = ({ children, componentName, type }) => {
       dataVisualization: allMdx(
         filter: {
           internal: {
-            contentFilePath: { glob: "**/src/pages/data-visualization/**" }
+            contentFilePath: { regex: "//src/pages/data-visualization//" }
           }
         }
         sort: { frontmatter: { order: ASC } }
@@ -152,9 +163,7 @@ export const PageContent = ({ children, componentName, type }) => {
       }
       designIntro: allMdx(
         filter: {
-          internal: {
-            contentFilePath: { glob: "**/src/pages/design-intro/**" }
-          }
+          internal: { contentFilePath: { regex: "//src/pages/design-intro//" } }
         }
         sort: { frontmatter: { order: ASC } }
       ) {
@@ -164,7 +173,7 @@ export const PageContent = ({ children, componentName, type }) => {
       }
       apiIntro: allMdx(
         filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/api-intro/**" } }
+          internal: { contentFilePath: { regex: "//src/pages/api-intro//" } }
         }
         sort: { frontmatter: { order: ASC } }
       ) {
@@ -228,8 +237,13 @@ export const PageContent = ({ children, componentName, type }) => {
         <>
           <StyledTabsContainer isInverse={isInverse}>
             {hasNavTabs && (
-              <TabsWrapper>
-                <StyledTabs aria-label="">
+              <TabsWrapper isInverse={isInverse}>
+                <StyledTabs
+                  aria-label=""
+                  hasBorder
+                  isInverse={isInverse}
+                  textTransform="none"
+                >
                   {apiDocs ? (
                     <NavTab
                       component={
@@ -250,7 +264,7 @@ export const PageContent = ({ children, componentName, type }) => {
 
             <StyledTabPanelsContainer>
               <StyledTabPanel>
-                <Content>{children}</Content>
+                <Content isInverse={isInverse}>{children}</Content>
                 <PageNavigation>
                   <SubPageTabs
                     pageData={getPageData()}
@@ -262,17 +276,19 @@ export const PageContent = ({ children, componentName, type }) => {
           </StyledTabsContainer>
         </>
       ) : (
-        <div style={{ display: 'flex', background: magma.colors.neutral100 }}>
+        <ContentWithoutNav isInverse={isInverse}>
           {PAGES_NO_NAV.includes(componentName) ? (
-            <ContentOutsideDocs>{children}</ContentOutsideDocs>
+            <ContentOutsideDocs isInverse={isInverse}>
+              {children}
+            </ContentOutsideDocs>
           ) : (
-            <Content>{children}</Content>
+            <Content isInverse={isInverse}>{children}</Content>
           )}
 
           <PageNavigation>
             <SubPageTabs pageData={getPageData()} hasHorizontalNav={hasDocs} />
           </PageNavigation>
-        </div>
+        </ContentWithoutNav>
       )}
     </>
   );

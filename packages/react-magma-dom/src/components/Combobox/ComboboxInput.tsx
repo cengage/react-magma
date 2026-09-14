@@ -8,7 +8,6 @@ import {
   UseComboboxGetInputPropsOptions,
   UseComboboxGetToggleButtonPropsOptions,
 } from 'downshift';
-import { transparentize } from 'polished';
 
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { ThemeInterface } from '../../theme/magma';
@@ -35,12 +34,12 @@ const InputContainer = styled.div<{
   align-items: center;
   background-color: ${props =>
     props.isInverse
-      ? transparentize(0.8, props.theme.colors.neutral900)
-      : props.theme.colors.neutral100};
+      ? props.theme.colors.neutral1150
+      : props.theme.colors.neutral0};
   border: 1px solid;
   border-color: ${props =>
     props.isInverse
-      ? transparentize(0.5, props.theme.colors.neutral100)
+      ? props.theme.colors.neutral700
       : props.theme.colors.neutral500};
   border-radius: ${props => props.theme.borderRadius};
   display: flex;
@@ -63,7 +62,7 @@ const InputContainer = styled.div<{
     props.hasError &&
     css`
       border-color: ${props.isInverse
-        ? props.theme.colors.danger200
+        ? props.theme.colors.red500
         : props.theme.colors.danger};
     `}
 
@@ -71,17 +70,21 @@ const InputContainer = styled.div<{
     props.disabled &&
     css`
       background: ${props.isInverse
-        ? transparentize(0.9, props.theme.colors.neutral900)
+        ? props.theme.colors.neutral1100
         : props.theme.colors.neutral200};
       border-color: ${props.isInverse
-        ? transparentize(0.85, props.theme.colors.neutral100)
+        ? props.theme.colors.neutral900
         : props.theme.colors.neutral300};
-      color: ${transparentize(0.4, props.theme.colors.neutral500)};
+      color: ${props.isInverse
+        ? props.theme.colors.neutral700
+        : props.theme.colors.neutral500};
       cursor: not-allowed;
       outline: 0;
 
       &::placeholder {
-        color: ${transparentize(0.4, props.theme.colors.neutral500)};
+        color: ${props.isInverse
+          ? props.theme.colors.neutral700
+          : props.theme.colors.neutral500};
       }
     `}
 `;
@@ -187,16 +190,16 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
   const dropdownIndicatorColor = () => {
     if (disabled) {
       if (isInverse) {
-        return transparentize(0.6, theme.colors.neutral100);
+        return theme.colors.neutral700;
       }
 
       return theme.colors.neutral500;
     }
     if (isInverse) {
-      return theme.colors.neutral100;
+      return theme.colors.neutral0;
     }
 
-    return theme.colors.neutral;
+    return theme.colors.brand.navy;
   };
 
   const selectedItemAriaLabel =

@@ -124,6 +124,120 @@ describe('Table', () => {
     expect(getByText('heading 1')).toHaveStyleRule('border-right', '1px solid');
   });
 
+  it('should render the regular table color tokens', () => {
+    const { getByTestId, getByText } = render(
+      <Table hasOutsideBorder hasVerticalBorders testId="table">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell
+              isSortable
+              sortDirection="ascending"
+              testId="active-header"
+            >
+              Active heading
+            </TableHeaderCell>
+            <TableHeaderCell isSortable testId="inactive-header">
+              Inactive heading
+            </TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell testId="cell">cell</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('table')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
+    expect(getByTestId('active-header')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral150
+    );
+    expect(getByTestId('active-header')).toHaveStyleRule(
+      'border-color',
+      magma.colors.neutral200
+    );
+    expect(getByTestId('active-header')).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size02.fontSize
+    );
+    expect(
+      getByTestId('active-header').querySelector('button')
+    ).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(
+      getByTestId('active-header').querySelector('button')
+    ).toHaveStyleRule('font-size', magma.typeScale.size02.fontSize);
+    expect(getByTestId('active-header')).toHaveStyleRule(
+      'text-overflow',
+      'ellipsis'
+    );
+    expect(getByTestId('active-header')).toHaveStyleRule(
+      'white-space',
+      'nowrap'
+    );
+    expect(getByTestId('active-header')).toHaveStyleRule('max-width', '0');
+    expect(getByText('Active heading')).toHaveStyleRule(
+      'text-overflow',
+      'ellipsis'
+    );
+    expect(getByTestId('sort-ascending')).toHaveAttribute(
+      'fill',
+      magma.colors.brand.navy
+    );
+    expect(getByTestId('sort-ascending')).toHaveAttribute('width', '16');
+    expect(getByTestId('sort-ascending')).toHaveAttribute('height', '16');
+    expect(getByTestId('sort-none')).toHaveAttribute(
+      'fill',
+      magma.colors.neutral700
+    );
+    expect(getByTestId('sort-none')).toHaveAttribute('width', '16');
+    expect(getByTestId('sort-none')).toHaveAttribute('height', '16');
+    expect(getByTestId('cell')).toHaveStyleRule(
+      'border-color',
+      magma.colors.neutral200
+    );
+  });
+
+  it('should render the inverse table color tokens', () => {
+    const { getByTestId } = render(
+      <Table hasOutsideBorder hasVerticalBorders isInverse testId="table">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell isSortable testId="header">
+              Heading
+            </TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell testId="cell">cell</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('header')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral1000
+    );
+    expect(getByTestId('header')).toHaveStyleRule(
+      'border-color',
+      magma.colors.neutral800
+    );
+    expect(getByTestId('sort-none')).toHaveAttribute(
+      'fill',
+      magma.colors.neutral500
+    );
+    expect(getByTestId('cell')).toHaveStyleRule(
+      'border-color',
+      magma.colors.neutral800
+    );
+  });
+
   it('should render table with zebra striping', () => {
     const { getByTestId } = render(
       <Table hasZebraStripes>
@@ -142,7 +256,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      magma.colors.neutral200,
+      magma.colors.neutral150,
       {
         target: ':nth-of-type(even)',
       }
@@ -167,7 +281,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      transparentize(0.93, magma.colors.neutral900),
+      magma.colors.neutral150,
       {
         target: ':hover',
       }
@@ -254,12 +368,12 @@ describe('Table', () => {
 
     expect(getByText('heading 1')).toHaveStyleRule(
       'background',
-      transparentize(0.93, magma.colors.neutral100)
+      magma.colors.neutral1000
     );
 
     expect(getByTestId('row1')).toHaveStyleRule(
       'background',
-      transparentize(0.85, magma.colors.neutral100),
+      magma.colors.neutral1000,
       {
         target: ':hover',
       }
@@ -267,7 +381,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      transparentize(0.93, magma.colors.neutral100),
+      magma.colors.neutral1000,
       {
         target: ':nth-of-type(even)',
       }
@@ -446,7 +560,7 @@ describe('Table', () => {
 
     expect(button).toHaveStyleRule(
       'background',
-      transparentize(0.85, magma.colors.neutral100),
+      transparentize(0.85, magma.colors.neutral0),
       {
         target: ':hover',
       }
@@ -476,7 +590,7 @@ describe('Table', () => {
 
       expect(getByTestId(testId)).toHaveStyle('border-collapse: separate');
       expect(getByTestId(testId)).toHaveStyle(
-        `border: 1px solid ${magma.colors.neutral300}`
+        `border: 1px solid ${magma.colors.neutral200}`
       );
       expect(getByTestId(testId)).toHaveStyle(
         `border-radius: ${magma.borderRadius}`
@@ -509,7 +623,7 @@ describe('Table', () => {
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'border',
-        `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+        `1px solid ${magma.colors.neutral800}`
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'border-radius',

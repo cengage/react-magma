@@ -151,7 +151,7 @@ const ModalBackdrop = styled(Transition)<{
   theme: ThemeInterface;
 }>`
   backdrop-filter: blur(3px);
-  background: ${props => transparentize(0.4, props.theme.colors.neutral900)};
+  background: ${props => transparentize(0.6, props.theme.colors.neutral1200)};
   bottom: 0;
   left: 0;
   right: 0;
@@ -163,8 +163,8 @@ const ModalBackdrop = styled(Transition)<{
 const ModalContent = styled.div<ModalProps>`
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.primary600
-      : props.theme.colors.neutral100};
+      ? props.theme.colors.neutral1100
+      : props.theme.colors.neutral0};
   border: ${props => {
     if (!props.showBackgroundOverlay && props.isInverse) {
       return `1px solid ${transparentize(0.5, props.theme.colors.tertiary)}`;
@@ -172,16 +172,19 @@ const ModalContent = styled.div<ModalProps>`
 
     return 'none';
   }};
-  border-radius: ${props => props.theme.borderRadius};
+  border-radius: ${props => props.theme.borderRadiusMedium};
   box-shadow: ${props => {
-    const amount = props.isInverse ? 0.82 : 0.6;
+    const amount = props.isInverse ? 0.2 : 0.4;
 
-    return `0 2px 6px ${transparentize(amount, props.theme.colors.neutral900)}`;
+    return `0 2px 6px ${transparentize(
+      amount,
+      props.theme.colors.neutral1200
+    )}`;
   }};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   margin: 0 auto;
   position: relative;
   z-index: 1000;
@@ -227,8 +230,8 @@ const H2 = styled(Heading)<{ theme?: ThemeInterface; isInverse?: boolean }>`
     props.theme.typographyVisualStyles.headingSmall.desktop.lineHeight};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   margin: 0;
   padding-right: ${props => props.theme.spaceScale.spacing10};
   font-weight: 600;
@@ -457,7 +460,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                           ? closeAriaLabel
                           : i18n.modal.closeAriaLabel
                       }
-                      color={ButtonColor.primary}
+                      color={
+                        isInverse ? ButtonColor.primary : ButtonColor.subtle
+                      }
                       icon={CloseIconButton}
                       isInverse={isInverse}
                       onClick={handleClose}

@@ -8,7 +8,7 @@ import { Donut } from '../../components/Donut';
 <PageContent componentName="styles_and_themes" type="api_intro">
 
 <LeadParagraph>
-  The React Magma component library has been intentionally designed for use
+  The Magma component library has been intentionally designed for use
   across multiple platforms. It is recommended to use the default styles that
   come with any component whenever possible. However, there may be occasions
   where overriding the default styles is required, and this can be accomplished
@@ -70,10 +70,10 @@ export function Example() {
 
 ## Extending Styles With Emotion
 
-React Magma styles are built with the [Emotion library](https://emotion.sh/docs/styled) using styled-components.  
-If you are using Emotion in your app, you can extend the styles of React Magma components. This is useful if you want to add custom styles that do not fit into the `style` prop, such as styles for pseudo elements, pseudo classes, and media queries.
+Magma styles are built with the [Emotion library](https://emotion.sh/docs/styled) using styled-components.
+If you are using Emotion in your app, you can extend the styles of Magma components. This is useful if you want to add custom styles that do not fit into the `style` prop, such as styles for pseudo elements, pseudo classes, and media queries.
 
-Note: If the styles in your app are injected before the React Magma styles, your styles might not get applied if the specificity is the same.
+Note: If the styles in your app are injected before the Magma styles, your styles might not get applied if the specificity is the same.
 To ensure your styles are applied, you can use use the ampersand (&) character, as shown in this example.
 
 ```tsx
@@ -128,7 +128,7 @@ export function Example() {
 
 ## Using Themes
 
-By default, all components in the React Magma library use the Magma theme. You can use the ThemeContext to pass in a custom theme.
+By default, all components in the Magma library use the Magma theme. You can use the ThemeContext to pass in a custom theme.
 
 Use the `<ThemeContext.Provider>` to pass in an alternative theme using the `value` property. Any descendants of the context provider will receive the theme that is passed in.
 
@@ -155,11 +155,11 @@ import {
 
 const magmaDark = Object.assign({}, magma, {
   colors: Object.assign({}, magma.colors, {
-    primary: magma.colors.secondary600, // link color
+    primary: magma.colors.tangerine600, // link color
     focus: '#FFFFFF',
-    danger: magma.colors.danger200,
+    danger: magma.colors.red200,
     neutral: '#DFDFDF',
-    neutral100: '#000000',
+    neutral0: '#000000',
     neutral200: '#F7F7F7',
     neutral300: '#DFDFDF',
     neutral400: '#BFBFBF',
@@ -168,7 +168,7 @@ const magmaDark = Object.assign({}, magma, {
     neutral900: '#575757',
     neutral800: '#3F3F3F',
     neutral700: '#ffffff',
-    border: magma.colors.secondary600,
+    border: magma.colors.tangerine600,
   }),
 });
 
@@ -228,9 +228,9 @@ export function Example() {
 
 ## Setting up a Theme
 
-To implement theming in your project, we recommend a theme file that contains a theme object that matches React Magma's existing theme structure.
+To implement theming in your project, we recommend a theme file that contains a theme object that matches Magma's existing theme structure.
 The complete Magma theme can be found in the [Github repository](https://github.com/cengage/react-magma/blob/dev/packages/react-magma-dom/src/theme/magma.ts).
-You'll have to wrap your entire app - or individual components, for more specific theme changes - in the ThemeContext provider from React Magma. Any descendants of the context provider will receive the theme that is passed in. Individual
+You'll have to wrap your entire app - or individual components, for more specific theme changes - in the ThemeContext provider from Magma. Any descendants of the context provider will receive the theme that is passed in. Individual
 theme elements can be accessed using context.
 
 A project can have multiple theme files that are triggered conditionally by the Theme Provider.
@@ -297,104 +297,11 @@ const typeScale = {
   },
 };
 
-const primaryColors = {
-  primary100: '#E2F4FE',
-  primary200: '#B1E3FE',
-  primary300: '#4FC0FF',
-  primary400: '#1EAFFF',
-  primary500: '#006298',
-  primary600: '#003865',
-  primary700: '#00263E',
-};
-
-const secondaryColors = {
-  secondary500: '#FFC72C',
-  secondary600: '#FFCE47',
-  secondary700: '#F2A900',
-};
-
-const tertiaryColors = {
-  tertiary500: '#CDDEFF',
-  tertiary600: '#78A6FF',
-  tertiary700: '#4785FF',
-};
-
-const neutralColors = {
-  neutral100: '#FFFFFF', // white
-  neutral200: '#F7F7F7',
-  neutral300: '#DFDFDF',
-  neutral400: '#BFBFBF',
-  neutral500: '#707070',
-  neutral600: '#575757',
-  neutral700: '#3F3F3F',
-  neutral800: '#2D2D2D',
-  neutral900: '#000000', // black
-  neutral110: '#EDEDED',
-};
-
-const infoColors = {
-  info100: '#E8F5FC',
-  info200: '#70CDFF',
-  info300: '#2FB3FF',
-  info400: '#009AF3',
-  info500: '#027EE1',
-  info600: '#005F96',
-  info700: '#004A75',
-};
-
-const dangerColors = {
-  danger100: '#FDEFEE',
-  danger200: '#F59295',
-  danger300: '#E8716D',
-  danger400: '#E24943',
-  danger500: '#C61D23',
-  danger600: '#A91F1A',
-  danger700: '#7F1714',
-};
-
-const warningColors = {
-  warning100: '#FCEEE5',
-  warning200: '#F6CDB2',
-  warning300: '#E98B4C',
-  warning400: '#E06A1C',
-  warning500: '#AD5115',
-  warning600: '#8D4311',
-  warning700: '#6E340E',
-};
-
-const successColors = {
-  success100: '#E3FAEA',
-  success200: '#91CF60',
-  success300: '#3EDD6E',
-  success400: '#21B94E',
-  success500: '#3A8200',
-  success600: '#136A2D',
-  success700: '#0F5323',
-};
-
 const colors = {
-  primary: primaryColors.primary500,
-  secondary: secondaryColors.secondary500,
-  tertiary: tertiaryColors.tertiary500,
-  neutral: neutralColors.neutral500,
-  info: infoColors.info500,
-  danger: dangerColors.danger500,
-  warning: warningColors.warning500,
-  success: successColors.success500,
-  ...primaryColors,
-  ...secondaryColors,
-  ...tertiaryColors,
-  ...neutralColors,
-  ...infoColors,
-  ...dangerColors,
-  ...warningColors,
-  ...successColors,
-
-  focus: infoColors.info500,
-  focusInverse: infoColors.info200,
-
-  border: neutralColors.neutral300,
-  borderInverse: 'rgba(255,255,255,0.25)',
+  ...magma.colors,
+  brand: {
+    ...magma.colors.brand,
+  },
 };
 
 const spaceScale = {
@@ -440,11 +347,11 @@ The theme object for each above component can be found on its documentation page
     "backgroundColor": "colors.neutral",
     "fontWeight": 600,
     "maxWidth": "300px",
-    "textColor": "colors.neutral100",
+    "textColor": "colors.neutral0",
     "typeScale": "typeScale.size01",
     "zIndex": 999,
     "inverse": {
-      "backgroundColor": "colors.neutral100",
+      "backgroundColor": "colors.neutral0",
       "textColor": "colors.neutral"
     }
   }
@@ -669,15 +576,15 @@ import styled from '../../theme/styled';
 const springfieldDonut = Object.assign({}, magma, {
   colors: Object.assign({}, magma.colors, {
     danger: '#f3772b',
-    danger600: '#b94d1c',
+    red600: '#b94d1c',
     marketing: '#1a85e0',
     neutral500: '#893013',
     primary: '#3493f1',
-    primary600: '#215fb3',
+    indigo600: '#215fb3',
     neutral: '#7b361e',
-    neutral100: '#ebf88b',
-    secondary500: '#42e093',
-    secondary600: '#43fd94',
+    neutral0: '#ebf88b',
+    tangerine500: '#42e093',
+    tangerine600: '#43fd94',
   }),
 
   bodyFont: '"Varela Round", sans-serif',
@@ -873,8 +780,8 @@ const springfieldDonut = Object.assign({}, magma, {
       padding: `${magma.spaceScale.spacing05} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing06}`,
     },
     inverse: {
-      backgroundColor: magma.colors.primary600,
-      textColor: magma.colors.neutral100,
+      backgroundColor: magma.colors.indigo600,
+      textColor: magma.colors.neutral0,
     },
   },
 
