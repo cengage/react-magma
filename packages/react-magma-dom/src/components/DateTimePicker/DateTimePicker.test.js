@@ -106,23 +106,24 @@ describe('DateTimePicker', () => {
 
   describe('Timezone', () => {
     it('should render it correctly', async () => {
-      const date = new Date();
-      const timezone = 'EST';
+      const date = new Date('2020-01-15T12:00:00Z');
+      const timezone = 'America/New_York';
+      const timezoneAbbr = 'EST';
 
       const { getByText, getByPlaceholderText, getByLabelText } = render(
         <DateTimePicker value={date} timezone={timezone} />
       );
 
-      expect(getByText(timezone)).toBeInTheDocument();
-      expect(getByText(timezone)).not.toBeVisible();
+      expect(getByText(timezoneAbbr)).toBeInTheDocument();
+      expect(getByText(timezoneAbbr)).not.toBeVisible();
 
       const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
 
-      expect(input.value).toContain(timezone);
+      expect(input.value).toContain(timezoneAbbr);
 
       await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-      expect(getByText(timezone)).toBeVisible();
+      expect(getByText(timezoneAbbr)).toBeVisible();
     });
 
     it('should render with correct abbreviature', async () => {
