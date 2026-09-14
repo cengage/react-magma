@@ -70,19 +70,24 @@ export const StyledTabsChild = styled('li', {
         ? '100%'
         : 'auto'};
       &:after {
-        background: ${props.theme.colors.brand.amber};
+        background: ${props.isActive
+          ? props.theme.colors.brand.amber
+          : props.isInverse
+            ? props.theme.colors.neutral600
+            : props.theme.colors.neutral500};
         border-radius: 0;
         content: '';
         display: block;
-        height: 4px;
+        height: 2px;
         opacity: ${props.isActive ? '1' : '0'};
         position: absolute;
-        transition: 0.4s all;
+        transition: ${props.isActive ? '0.4s all' : 'none'};
         width: auto;
         bottom: ${props.borderPosition === 'top' ? 'auto' : '0'};
         left: ${props.isActive ? '0' : '50%'};
         right: ${props.isActive ? '0' : '50%'};
         top: ${props.borderPosition === 'top' ? '0' : 'auto'};
+        z-index: 1;
         ${props.orientation === 'vertical' &&
         css`
           height: auto;
@@ -90,9 +95,26 @@ export const StyledTabsChild = styled('li', {
           left: ${props.borderPosition === 'right' ? 'auto' : '0'};
           right: ${props.borderPosition === 'right' ? '0' : 'auto'};
           top: ${props.isActive ? '0' : '50%'};
-          width: 4px;
+          width: 2px;
         `}
       }
+
+      ${!props.disabled &&
+      !props.isActive &&
+      css`
+        &:hover:after {
+          opacity: 1;
+          ${props.orientation === 'vertical'
+            ? css`
+                bottom: 0;
+                top: 0;
+              `
+            : css`
+                left: 0;
+                right: 0;
+              `}
+        }
+      `}
     `}
 `;
 
@@ -137,6 +159,7 @@ export const TabStyles = props => css`
   align-items: center;
   background: transparent;
   border: 0;
+  box-sizing: border-box;
   color: ${buildTabStylesColor(props)};
   cursor: ${props.disabled ? 'auto' : 'pointer'};
   display: flex;
@@ -148,10 +171,19 @@ export const TabStyles = props => css`
   font-family: ${props.theme.bodyFont};
   letter-spacing: ${props.theme.typeScale.size02.letterSpacing};
   line-height: ${props.theme.typeScale.size02.lineHeight};
-  height: 100%;
+  height: ${props.hasStackedIcon ? 'auto' : '40px'};
   justify-content: ${props.iconPosition === 'left' ? 'flex-start' : 'center'};
-  padding: ${props.theme.spaceScale.spacing04}
-    ${props.theme.spaceScale.spacing05};
+  padding: ${props.hasStackedIcon
+    ? `${props.theme.spaceScale.spacing04} ${
+        props.orientation === TabsOrientation.vertical
+          ? props.theme.spaceScale.spacing05
+          : props.theme.spaceScale.spacing03
+      }`
+    : `0 ${
+        props.orientation === TabsOrientation.vertical
+          ? props.theme.spaceScale.spacing05
+          : props.theme.spaceScale.spacing03
+      }`};
   position: relative;
   pointer-events: ${props.disabled ? 'none' : ''};
   text-align: center;
@@ -176,7 +208,7 @@ export const TabStyles = props => css`
       ? ''
       : props.isInverse
         ? props.theme.colors.neutral900
-        : props.theme.colors.neutral200};
+        : props.theme.colors.neutral150};
     color: ${props.isActive
       ? props.isInverse
         ? props.theme.colors.neutral0
@@ -209,6 +241,7 @@ export const TabStyles = props => css`
 
 const StyledTab = styled('button', { shouldForwardProp: isPropValid })<{
   borderPosition?: TabsBorderPosition;
+  hasStackedIcon?: boolean;
   iconPosition?: TabsIconPosition;
   isActive?: boolean;
   isFullWidth?: boolean;
@@ -310,6 +343,11 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
           : TabsIconPosition.top;
     }
 
+    const hasStackedIcon =
+      Boolean(icon) &&
+      (tabIconPosition === TabsIconPosition.top ||
+        tabIconPosition === TabsIconPosition.bottom);
+
     const tabId = `tab-${instanceId}-${index}`;
     const panelId = `tabpanel-${instanceId}-${index}`;
 
@@ -376,6 +414,7 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
           aria-selected={isActive}
           data-testid={testId}
           disabled={disabled}
+          hasStackedIcon={hasStackedIcon}
           iconPosition={tabIconPosition}
           id={tabId}
           isActive={isActive}

@@ -51,7 +51,7 @@ const StyledScrollButton = styled.button<ScrollButtonProps>`
     background: ${props =>
       props.isInverse
         ? props.theme.colors.neutral900
-        : props.theme.colors.neutral200};
+        : props.theme.colors.neutral150};
   }
 
   ${props =>
@@ -79,6 +79,11 @@ const StyledButtonPrev = styled(StyledScrollButton)<ScrollButtonProps>`
   ${props =>
     props.orientation === 'vertical' &&
     css`
+      border-bottom: 1px solid
+        ${props.isInverse
+          ? props.theme.colors.neutral800
+          : props.theme.colors.neutral200};
+      border-right: 0;
       bottom: auto;
     `}
 `;
@@ -98,6 +103,11 @@ const StyledButtonNext = styled(StyledScrollButton)<ScrollButtonProps>`
   ${props =>
     props.orientation === 'vertical' &&
     css`
+      border-left: 0;
+      border-top: 1px solid
+        ${props.isInverse
+          ? props.theme.colors.neutral800
+          : props.theme.colors.neutral200};
       top: auto;
     `}
 `;

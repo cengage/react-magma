@@ -210,6 +210,7 @@ describe('Tab', () => {
     );
     expect(getByTestId(testId)).toHaveStyleRule('flex-direction', 'column');
     expect(getByTestId(testId)).toHaveStyleRule('align-items', 'center');
+    expect(getByTestId(testId)).toHaveStyleRule('height', 'auto');
 
     rerender(
       <Tabs iconPosition="left">
@@ -224,6 +225,11 @@ describe('Tab', () => {
       `0 ${magma.spaceScale.spacing03} 0 0`
     );
     expect(getByTestId(testId)).not.toHaveStyleRule('flex-direction', 'column');
+    expect(getByTestId(testId)).toHaveStyleRule('height', '40px');
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'padding',
+      `0 ${magma.spaceScale.spacing03}`
+    );
   });
 
   it('should show icon in left position', () => {
@@ -243,6 +249,7 @@ describe('Tab', () => {
       `0 ${magma.spaceScale.spacing03} 0 0`
     );
     expect(getByTestId(testId)).not.toHaveStyleRule('flex-direction', 'column');
+    expect(getByTestId(testId)).toHaveStyleRule('height', '40px');
   });
 });
 

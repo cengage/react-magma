@@ -134,14 +134,47 @@ interface StyledContainerProps {
   theme: ThemeInterface;
 }
 
-function getTabsBorder(props: StyledContainerProps, side: TabsBorderPosition) {
+interface TabsBorderLayoutProps {
+  borderPosition?: TabsBorderPosition;
+  hasBorder?: boolean;
+  orientation: TabsOrientation;
+}
+
+function hasTabsBorderAt(
+  props: TabsBorderLayoutProps,
+  side: TabsBorderPosition
+) {
   const resolvedBorderPosition =
     props.borderPosition ||
     (props.orientation === TabsOrientation.vertical
       ? TabsBorderPosition.left
       : TabsBorderPosition.bottom);
 
-  return props.hasBorder && resolvedBorderPosition === side
+  return props.hasBorder && resolvedBorderPosition === side;
+}
+
+function getTabsBorderTransform(props: TabsBorderLayoutProps) {
+  if (hasTabsBorderAt(props, TabsBorderPosition.top)) {
+    return 'translateY(-1px)';
+  }
+
+  if (hasTabsBorderAt(props, TabsBorderPosition.bottom)) {
+    return 'translateY(1px)';
+  }
+
+  if (hasTabsBorderAt(props, TabsBorderPosition.left)) {
+    return 'translateX(-1px)';
+  }
+
+  if (hasTabsBorderAt(props, TabsBorderPosition.right)) {
+    return 'translateX(1px)';
+  }
+
+  return 'none';
+}
+
+function getTabsBorder(props: StyledContainerProps, side: TabsBorderPosition) {
+  return hasTabsBorderAt(props, side)
     ? `1px solid ${
         props.isInverse
           ? props.theme.colors.neutral800
@@ -171,12 +204,30 @@ export const StyledContainer = styled('div', {
 export const StyledTabsWrapper = styled('div', {
   shouldForwardProp: isPropValid,
 })<{
+  borderPosition?: TabsBorderPosition;
+  hasBorder?: boolean;
   orientation: TabsOrientation;
 }>`
   display: flex;
   flex-grow: 1;
+  margin-bottom: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.bottom) ? '-1px' : '0'};
+  margin-left: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.left) ? '-1px' : '0'};
+  margin-right: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.right) ? '-1px' : '0'};
+  margin-top: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.top) ? '-1px' : '0'};
   overflow-x: ${props => (props.orientation === 'vertical' ? '' : 'auto')};
   overflow-y: ${props => (props.orientation === 'vertical' ? 'auto' : '')};
+  padding-bottom: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.bottom) ? '1px' : '0'};
+  padding-left: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.left) ? '1px' : '0'};
+  padding-right: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.right) ? '1px' : '0'};
+  padding-top: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.top) ? '1px' : '0'};
 
   &::-webkit-scrollbar {
     width: 0;
@@ -187,12 +238,15 @@ export const StyledTabsWrapper = styled('div', {
 
 export const StyledTabs = styled('ul', { shouldForwardProp: isPropValid })<{
   alignment?: TabsAlignment;
+  borderPosition?: TabsBorderPosition;
+  hasBorder?: boolean;
   orientation: TabsOrientation;
 }>`
   align-items: center;
   display: flex;
   flex-direction: ${props =>
     props.orientation === 'vertical' ? 'column' : 'row'};
+  gap: 8px;
   justify-content: ${props =>
     props.alignment === 'center'
       ? 'center'
@@ -201,6 +255,7 @@ export const StyledTabs = styled('ul', { shouldForwardProp: isPropValid })<{
         : ''};
   margin: 0;
   padding: 0;
+  transform: ${props => getTabsBorderTransform(props)};
   width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
 `;
 
@@ -549,7 +604,9 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           theme={theme}
         />
         <StyledTabsWrapper
+          borderPosition={borderPosition}
           data-testid="tabsWrapper"
+          hasBorder={hasBorder}
           onScroll={handleTabsScroll}
           orientation={orientation}
           ref={tabsWrapperRef}
@@ -558,6 +615,8 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
             alignment={alignment ? alignment : TabsAlignment.left}
             aria-label={ariaLabel}
             aria-orientation={orientation || TabsOrientation.horizontal}
+            borderPosition={borderPosition}
+            hasBorder={hasBorder}
             onKeyDown={handleKeyDown}
             orientation={orientation}
             ref={childrenWrapperRef}

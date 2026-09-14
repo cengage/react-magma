@@ -27,7 +27,7 @@ describe('Tabs', () => {
   });
 
   it('should render the children tabs', () => {
-    const { getByText } = render(
+    const { container, getByText } = render(
       <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
         <Tabs>
           <Tab>Tab 1</Tab>
@@ -38,6 +38,15 @@ describe('Tabs', () => {
 
     expect(getByText('Tab 1')).toBeInTheDocument();
     expect(getByText('Tab 2')).toBeInTheDocument();
+    expect(getByText('Tab 1')).toHaveStyleRule(
+      'padding',
+      `0 ${magma.spaceScale.spacing03}`
+    );
+    expect(getByText('Tab 1')).toHaveStyleRule('height', '40px');
+    expect(container.querySelector("[role='tablist']")).toHaveStyleRule(
+      'gap',
+      '8px'
+    );
   });
 
   it('should render a custom wrapped tab', () => {
@@ -102,13 +111,19 @@ describe('Tabs', () => {
       'aria-label',
       'Tabs, use the right and left arrow keys to activate other tabs'
     );
+    expect(container.querySelector("[role='tablist']")).toHaveStyleRule(
+      'transform',
+      'translateY(1px)'
+    );
+    expect(getByTestId('tabsWrapper')).toHaveStyleRule('padding-bottom', '1px');
+    expect(getByTestId('tabsWrapper')).toHaveStyleRule('margin-bottom', '-1px');
     expect(getAllByTestId('tabContainer')[0]).toHaveStyleRule('height', '100%');
   });
 
   it('should render the tabs vertically', () => {
     const testId = 'test-id';
 
-    const { getByTestId, getAllByTestId, container } = render(
+    const { getByTestId, getAllByTestId, getByText, container } = render(
       <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
         <Tabs testId={testId} orientation="vertical" aria-label="Tabs">
           <Tab>Tab 1</Tab>
@@ -129,12 +144,22 @@ describe('Tabs', () => {
       'aria-label',
       'Tabs, use the down and up arrow keys to activate other tabs'
     );
+    expect(container.querySelector("[role='tablist']")).toHaveStyleRule(
+      'transform',
+      'translateX(-1px)'
+    );
+    expect(getByTestId('tabsWrapper')).toHaveStyleRule('padding-left', '1px');
+    expect(getByTestId('tabsWrapper')).toHaveStyleRule('margin-left', '-1px');
     expect(getAllByTestId('tabContainer')[0]).toHaveStyleRule('height', 'auto');
+    expect(getByText('Tab 1')).toHaveStyleRule(
+      'padding',
+      `0 ${magma.spaceScale.spacing05}`
+    );
   });
 
   it('should move or hide the divider border', () => {
     const testId = 'test-id';
-    const { getByTestId, rerender } = render(
+    const { container, getByTestId, rerender } = render(
       <Tabs testId={testId} borderPosition="top">
         <Tab>Tab 1</Tab>
       </Tabs>
@@ -168,6 +193,10 @@ describe('Tabs', () => {
     );
 
     expect(getByTestId(testId)).toHaveStyleRule('border-bottom', '0');
+    expect(container.querySelector("[role='tablist']")).toHaveStyleRule(
+      'transform',
+      'none'
+    );
   });
 
   it('should render scroll buttons if orientation horizontal', () => {
@@ -200,12 +229,12 @@ describe('Tabs', () => {
     );
     expect(getByTestId('buttonPrev')).toHaveStyleRule(
       'background',
-      magma.colors.neutral200,
+      magma.colors.neutral150,
       { target: ':hover' }
     );
     expect(getByTestId('buttonNext')).toHaveStyleRule(
       'background',
-      magma.colors.neutral200,
+      magma.colors.neutral150,
       { target: ':hover' }
     );
     expect(getByTestId('buttonPrev')).toHaveStyleRule(
@@ -229,6 +258,16 @@ describe('Tabs', () => {
     expect(getByTestId('buttonNext')).toHaveStyleRule('height', '40px');
     expect(getByTestId('buttonPrev')).toHaveStyleRule('width', '100%');
     expect(getByTestId('buttonNext')).toHaveStyleRule('width', '100%');
+    expect(getByTestId('buttonPrev')).toHaveStyleRule(
+      'border-bottom',
+      `1px solid ${magma.colors.neutral200}`
+    );
+    expect(getByTestId('buttonPrev')).toHaveStyleRule('border-right', '0');
+    expect(getByTestId('buttonNext')).toHaveStyleRule(
+      'border-top',
+      `1px solid ${magma.colors.neutral200}`
+    );
+    expect(getByTestId('buttonNext')).toHaveStyleRule('border-left', '0');
   });
 
   it('should render tabs with textTransform prop', () => {
@@ -323,6 +362,12 @@ describe('Tabs', () => {
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('bottom', '0', {
       target: ':after',
     });
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule('height', '2px', {
+      target: ':after',
+    });
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule('z-index', '1', {
+      target: ':after',
+    });
     expect(getByText('Tab 1').parentElement).toHaveStyleRule(
       'background',
       magma.colors.brand.amber,
@@ -345,8 +390,21 @@ describe('Tabs', () => {
     expect(getByTestId('inactive-tab')).toHaveStyleRule('font-weight', '400');
     expect(getByTestId('inactive-tab')).toHaveStyleRule(
       'background-color',
-      magma.colors.neutral200,
+      magma.colors.neutral150,
       { target: ':hover' }
+    );
+    expect(getByText('Tab 2').parentElement).toHaveStyleRule(
+      'background',
+      magma.colors.neutral500,
+      { target: ':after' }
+    );
+    expect(getByText('Tab 2').parentElement).toHaveStyleRule('opacity', '1', {
+      target: ':hover:after',
+    });
+    expect(getByText('Tab 2').parentElement).toHaveStyleRule(
+      'transition',
+      'none',
+      { target: ':after' }
     );
     expect(getByTestId('inactive-tab')).toHaveStyleRule(
       'color',
@@ -356,7 +414,7 @@ describe('Tabs', () => {
   });
 
   it('should render active tab styles for top border position', () => {
-    const { getByText } = render(
+    const { container, getByTestId, getByText } = render(
       <TabsContainer activeIndex={0}>
         <Tabs borderPosition="top">
           <Tab>Tab 1</Tab>
@@ -368,10 +426,16 @@ describe('Tabs', () => {
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('bottom', 'auto', {
       target: ':after',
     });
+    expect(container.querySelector("[role='tablist']")).toHaveStyleRule(
+      'transform',
+      'translateY(-1px)'
+    );
+    expect(getByTestId('tabsWrapper')).toHaveStyleRule('padding-top', '1px');
+    expect(getByTestId('tabsWrapper')).toHaveStyleRule('margin-top', '-1px');
   });
 
   it('should render active tab styles for right border position', () => {
-    const { getByText } = render(
+    const { container, getByTestId, getByText } = render(
       <TabsContainer activeIndex={0}>
         <Tabs borderPosition="right" orientation="vertical">
           <Tab>Tab 1</Tab>
@@ -383,6 +447,12 @@ describe('Tabs', () => {
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('left', 'auto', {
       target: ':after',
     });
+    expect(container.querySelector("[role='tablist']")).toHaveStyleRule(
+      'transform',
+      'translateX(1px)'
+    );
+    expect(getByTestId('tabsWrapper')).toHaveStyleRule('padding-right', '1px');
+    expect(getByTestId('tabsWrapper')).toHaveStyleRule('margin-right', '-1px');
   });
 
   it('should render active tab styles for vertical tabs', () => {
@@ -398,12 +468,16 @@ describe('Tabs', () => {
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('bottom', '0', {
       target: ':after',
     });
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule('width', '2px', {
+      target: ':after',
+    });
   });
 
   it('should render the inverse tabs with the correct styles', () => {
     const { getByText, getByTestId } = render(
       <Tabs isInverse>
         <Tab>Tab 1</Tab>
+        <Tab>Tab 2</Tab>
       </Tabs>
     );
 
@@ -413,6 +487,11 @@ describe('Tabs', () => {
       {
         target: ':after',
       }
+    );
+    expect(getByText('Tab 2').parentElement).toHaveStyleRule(
+      'background',
+      magma.colors.neutral600,
+      { target: ':after' }
     );
     expect(getByTestId('buttonPrev')).toHaveStyleRule(
       'color',

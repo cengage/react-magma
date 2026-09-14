@@ -243,13 +243,17 @@ export const NavTabs = React.forwardRef<
       />
 
       <StyledTabsWrapper
+        borderPosition={borderPosition}
         data-testid="navTabsWrapper"
+        hasBorder={hasBorder}
         onScroll={handleTabsScroll}
         orientation={orientation || TabsOrientation.horizontal}
         ref={tabsWrapperRef}
       >
         <StyledTabs
           alignment={alignment ? alignment : TabsAlignment.left}
+          borderPosition={borderPosition}
+          hasBorder={hasBorder}
           orientation={orientation}
           ref={childrenWrapperRef}
           role="tablist"
