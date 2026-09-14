@@ -185,12 +185,19 @@ const StyledDivider = styled.hr`
   padding: 0;
 `;
 
-const StyledAccordionDivider = styled(StyledDivider)`
-  margin-bottom: 0;
-`;
-
 const SpacedAccordionItem = styled(StyledAccordionItem)`
   margin-top: ${magma.spaceScale.spacing03};
+  padding-top: ${magma.spaceScale.spacing03};
+  position: relative;
+
+  &::before {
+    border-top: 1px solid ${magma.colors.neutral300};
+    content: '';
+    left: 18px;
+    position: absolute;
+    right: 18px;
+    top: 0;
+  }
 `;
 
 const List = styled.ul`
@@ -371,9 +378,9 @@ const foundationSlugs = [
 const PANEL_INDEX = {
   design: 0,
   develop: 1,
-  foundations: 3,
-  components: 4,
-  dataVisualization: 5,
+  foundations: 2,
+  components: 3,
+  dataVisualization: 4,
 };
 
 const componentNavGroups = [
@@ -437,6 +444,7 @@ const componentNavGroups = [
       'Empty State',
       'Loading Indicator',
       'Progress Bar',
+      'Skeleton',
       'Spinner',
       'Toast',
     ],
@@ -605,6 +613,9 @@ const MainNavItems = ({
   };
 
   const isPanelOpen = index => expandedIndex.includes(index);
+  const handleInternalLinkClick = (event, targetPath) => {
+    handleClick?.(event, targetPath);
+  };
 
   return (
     <>
@@ -625,7 +636,9 @@ const MainNavItems = ({
                 <ListItem key={getDocsPageSlug(node)}>
                   <StyledLink2
                     activeStyle={activeStyle}
-                    onClick={handleClick}
+                    onClick={event =>
+                      handleInternalLinkClick(event, getDocsPageSlug(node))
+                    }
                     to={getDocsPageSlug(node)}
                   >
                     {node.frontmatter.title}
@@ -648,7 +661,9 @@ const MainNavItems = ({
                 <ListItem key={getDocsPageSlug(node)}>
                   <StyledLink2
                     activeStyle={activeStyle}
-                    onClick={handleClick}
+                    onClick={event =>
+                      handleInternalLinkClick(event, getDocsPageSlug(node))
+                    }
                     to={getDocsPageSlug(node)}
                   >
                     {node.frontmatter.title}
@@ -658,7 +673,9 @@ const MainNavItems = ({
               <ListItem>
                 <StyledLink2
                   activeStyle={activeStyle}
-                  onClick={handleClick}
+                  onClick={event =>
+                    handleInternalLinkClick(event, '/contribution-guidelines/')
+                  }
                   to="/contribution-guidelines/"
                 >
                   Contribution Guidelines
@@ -667,8 +684,6 @@ const MainNavItems = ({
             </GuidedList>
           </MainNavAccordionPanel>
         </StyledAccordionItem>
-
-        <StyledAccordionDivider />
 
         <SpacedAccordionItem isOpen={isPanelOpen(PANEL_INDEX.foundations)}>
           <StyledAccordionButton
@@ -684,7 +699,9 @@ const MainNavItems = ({
                 <ListItem key={getDocsPageSlug(node)}>
                   <StyledLink2
                     activeStyle={activeStyle}
-                    onClick={handleClick}
+                    onClick={event =>
+                      handleInternalLinkClick(event, getDocsPageSlug(node))
+                    }
                     to={getDocsPageSlug(node)}
                   >
                     {node.frontmatter.title}
@@ -714,18 +731,19 @@ const MainNavItems = ({
                       const isCurrentComponent =
                         isCurrentPath(location, apiSlug) ||
                         isCurrentPath(location, designSlug);
+                      const isCurrentApiPage = isCurrentPath(location, apiSlug);
 
                       return (
                         <ListItem key={apiSlug}>
                           <StyledLink2
                             activeStyle={activeStyle}
-                            aria-current={
-                              isCurrentComponent ? 'page' : undefined
-                            }
+                            aria-current={isCurrentApiPage ? 'page' : undefined}
                             data-current={
                               isCurrentComponent ? 'true' : undefined
                             }
-                            onClick={handleClick}
+                            onClick={event =>
+                              handleInternalLinkClick(event, apiSlug)
+                            }
                             to={apiSlug}
                           >
                             {node.frontmatter.title}
@@ -758,7 +776,9 @@ const MainNavItems = ({
                 <ListItem key={getDocsPageSlug(node)}>
                   <StyledLink2
                     activeStyle={activeStyle}
-                    onClick={handleClick}
+                    onClick={event =>
+                      handleInternalLinkClick(event, getDocsPageSlug(node))
+                    }
                     to={getDocsPageSlug(node)}
                   >
                     {node.frontmatter.title}
@@ -817,7 +837,7 @@ export const MainNav = ({ ...props }) => {
     query NavQuery {
       designComponentDocs: allMdx(
         filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
+          internal: { contentFilePath: { regex: "//src/pages/design//" } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -827,7 +847,7 @@ export const MainNav = ({ ...props }) => {
       }
       apiDocs: allMdx(
         filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/api/**" } }
+          internal: { contentFilePath: { regex: "//src/pages/api//" } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -838,7 +858,7 @@ export const MainNav = ({ ...props }) => {
       dataVisualization: allMdx(
         filter: {
           internal: {
-            contentFilePath: { glob: "**/src/pages/data-visualization/**" }
+            contentFilePath: { regex: "//src/pages/data-visualization//" }
           }
         }
         sort: { frontmatter: { order: ASC } }
@@ -849,9 +869,7 @@ export const MainNav = ({ ...props }) => {
       }
       designIntro: allMdx(
         filter: {
-          internal: {
-            contentFilePath: { glob: "**/src/pages/design-intro/**" }
-          }
+          internal: { contentFilePath: { regex: "//src/pages/design-intro//" } }
         }
         sort: { frontmatter: { order: ASC } }
       ) {
@@ -861,7 +879,7 @@ export const MainNav = ({ ...props }) => {
       }
       developDocs: allMdx(
         filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/api-intro/**" } }
+          internal: { contentFilePath: { regex: "//src/pages/api-intro//" } }
         }
         sort: { frontmatter: { order: ASC } }
       ) {

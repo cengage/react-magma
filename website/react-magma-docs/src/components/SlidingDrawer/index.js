@@ -93,7 +93,7 @@ export class SlidingDrawer extends React.Component {
     this.closeMenu(true);
   }
 
-  handleCloseMenuFromNav(event) {
+  handleCloseMenuFromNav(event, targetPath) {
     const shouldDelayNavigation =
       event &&
       this.state.isOpen &&
@@ -104,8 +104,6 @@ export class SlidingDrawer extends React.Component {
       !event.altKey &&
       !event.ctrlKey &&
       !event.shiftKey;
-    const targetPath = event?.currentTarget?.getAttribute('href');
-
     if (shouldDelayNavigation && targetPath?.startsWith('/')) {
       event.preventDefault();
       this.closeMenu(false);
@@ -272,7 +270,10 @@ export class SlidingDrawer extends React.Component {
             >
               <PanelInner isActivated={isActivated}>
                 <MobileDrawerHeader>
-                  <SmallLogoLink to="/">
+                  <SmallLogoLink
+                    onClick={event => this.handleCloseMenuFromNav(event, '/')}
+                    to="/"
+                  >
                     <Logo />
                     <Spacer size={magma.spaceScale.spacing04} />
                     React Magma
