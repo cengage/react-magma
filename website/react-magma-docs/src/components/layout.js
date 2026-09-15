@@ -51,6 +51,61 @@ const LinkHeading = props => (
 const H4 = props => <Heading level={4}>{props.children}</Heading>;
 const H5 = props => <Heading level={5}>{props.children}</Heading>;
 const H6 = props => <Heading level={6}>{props.children}</Heading>;
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
+function scrollWithoutAnimation(top) {
+  const html = document.querySelector('html');
+  const previousScrollBehavior = html?.style.scrollBehavior;
+
+  if (html) {
+    html.style.scrollBehavior = 'auto';
+  }
+
+  window.scrollTo(0, Math.max(0, top));
+
+  window.requestAnimationFrame(() => {
+    if (html) {
+      html.style.scrollBehavior = previousScrollBehavior;
+    }
+  });
+}
+
+function scrollToHash(hash) {
+  if (!hash) {
+    return false;
+  }
+
+  const targetId = decodeURIComponent(hash.slice(1));
+  const element =
+    document.getElementById(targetId) ||
+    document.getElementsByName(targetId)[0];
+
+  if (!element) {
+    return false;
+  }
+
+  const offset = -40;
+  const elementPosition =
+    element.getBoundingClientRect().top + window.pageYOffset;
+
+  scrollWithoutAnimation(elementPosition + offset);
+
+  return true;
+}
+
+function scrollToRoute(location) {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  if (location?.hash && scrollToHash(location.hash)) {
+    return;
+  }
+
+  scrollWithoutAnimation(0);
+}
+
 const SmartDocsHeading = props => {
   return props && props.children && props.children.props ? (
     <h1>{props.children.props.children}</h1>
@@ -59,7 +114,7 @@ const SmartDocsHeading = props => {
   );
 };
 
-export const Layout = ({ children, pageContext }) => {
+export const Layout = ({ children, location, pageContext }) => {
   const title =
     pageContext && pageContext.frontmatter
       ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
@@ -67,6 +122,16 @@ export const Layout = ({ children, pageContext }) => {
   const heading =
     pageContext && pageContext.frontmatter ? pageContext.frontmatter.title : '';
   const properties = (pageContext && pageContext.properties) || [];
+
+  useIsomorphicLayoutEffect(() => {
+    scrollToRoute(location);
+
+    const frame = window.requestAnimationFrame(() => {
+      scrollToRoute(location);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [location?.hash, location?.pathname, location?.search]);
 
   return (
     <LayoutComponent title={title} heading={heading}>
@@ -94,11 +159,11 @@ export const Layout = ({ children, pageContext }) => {
           ButtonProps,
           IconButtonProps,
           SimplePropsTable,
-          ...properties.reduce((acc, { name, properties }) => {
+          ...properties.reduce((acc, { name, properties: propertyValues }) => {
             return {
               ...acc,
               [name]: args => (
-                <SimplePropsTable propertyValues={properties} {...args} />
+                <SimplePropsTable propertyValues={propertyValues} {...args} />
               ),
             };
           }, {}),
@@ -115,4 +180,5 @@ export const Layout = ({ children, pageContext }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  location: PropTypes.object,
 };
