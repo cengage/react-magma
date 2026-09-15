@@ -104,6 +104,7 @@ export class SlidingDrawer extends React.Component {
       !event.altKey &&
       !event.ctrlKey &&
       !event.shiftKey;
+
     if (shouldDelayNavigation && targetPath?.startsWith('/')) {
       event.preventDefault();
       this.closeMenu(false);

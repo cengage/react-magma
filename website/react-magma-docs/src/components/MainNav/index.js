@@ -837,7 +837,7 @@ export const MainNav = ({ ...props }) => {
     query NavQuery {
       designComponentDocs: allMdx(
         filter: {
-          internal: { contentFilePath: { regex: "//src/pages/design//" } }
+          internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -847,7 +847,7 @@ export const MainNav = ({ ...props }) => {
       }
       apiDocs: allMdx(
         filter: {
-          internal: { contentFilePath: { regex: "//src/pages/api//" } }
+          internal: { contentFilePath: { glob: "**/src/pages/api/**" } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -858,7 +858,7 @@ export const MainNav = ({ ...props }) => {
       dataVisualization: allMdx(
         filter: {
           internal: {
-            contentFilePath: { regex: "//src/pages/data-visualization//" }
+            contentFilePath: { glob: "**/src/pages/data-visualization/**" }
           }
         }
         sort: { frontmatter: { order: ASC } }
@@ -869,7 +869,9 @@ export const MainNav = ({ ...props }) => {
       }
       designIntro: allMdx(
         filter: {
-          internal: { contentFilePath: { regex: "//src/pages/design-intro//" } }
+          internal: {
+            contentFilePath: { glob: "**/src/pages/design-intro/**" }
+          }
         }
         sort: { frontmatter: { order: ASC } }
       ) {
@@ -879,7 +881,7 @@ export const MainNav = ({ ...props }) => {
       }
       developDocs: allMdx(
         filter: {
-          internal: { contentFilePath: { regex: "//src/pages/api-intro//" } }
+          internal: { contentFilePath: { glob: "**/src/pages/api-intro/**" } }
         }
         sort: { frontmatter: { order: ASC } }
       ) {
