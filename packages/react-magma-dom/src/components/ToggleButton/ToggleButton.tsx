@@ -158,9 +158,7 @@ function setDisabledBackgroundColor(props) {
     );
   }
 
-  return props.isSelected
-    ? props.theme.colors.neutral900
-    : transparentize(0.5, props.theme.colors.neutral900);
+  return transparentize(0.5, props.theme.colors.neutral900);
 }
 
 function setBorder(props) {
@@ -169,13 +167,15 @@ function setBorder(props) {
 
 function setInverseBackgroundColor(props, interaction = 'default') {
   if (props.disabled) {
-    return props.isSelected
-      ? props.theme.colors.neutral900
-      : transparentize(0.5, props.theme.colors.neutral900);
+    return transparentize(0.5, props.theme.colors.neutral900);
   }
 
   if (props.isSelected) {
-    return interaction === 'hover' || interaction === 'active'
+    if (interaction === 'active') {
+      return props.theme.colors.neutral900;
+    }
+
+    return interaction === 'hover' || interaction === 'focus'
       ? props.theme.colors.neutral800
       : props.theme.colors.neutral700;
   }
@@ -202,7 +202,7 @@ export const ToggleButtonStyles = props => css`
     &:not(:disabled):focus {
       background: ${props.isInverse
         ? setInverseBackgroundColor(props, 'focus')
-        : props.theme.colors.neutral700};
+        : props.theme.colors.neutral800};
       color: ${setColor(props)};
       outline-offset: 2px;
     }
@@ -217,7 +217,7 @@ export const ToggleButtonStyles = props => css`
     &:not(:disabled):active {
       background: ${props.isInverse
         ? setInverseBackgroundColor(props, 'active')
-        : props.theme.colors.neutral800};
+        : props.theme.colors.neutral900};
       color: ${setColor(props)};
     }
   `}

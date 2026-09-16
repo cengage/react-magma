@@ -44,6 +44,11 @@ const StyledHeader = styled(AppBar)`
       props.isInverse ? magma.colors.neutral800 : magma.colors.neutral200};
   box-shadow: none;
   padding: 24px 16px;
+
+  @media (max-width: 1024px) {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 `;
 
 const HeaderWrap = styled.div`
@@ -55,6 +60,7 @@ const HeaderWrap = styled.div`
 const MenuButton = styled.span`
   align-items: center;
   display: inline-flex;
+  margin-right: 8px;
 
   @media (min-width: 1025px) {
     display: none;
@@ -134,6 +140,7 @@ export const Masthead = props => {
       <MenuButton>
         <IconButton
           aria-label="Open navigation menu"
+          aria-controls="main-site-navigation-panel"
           aria-expanded={props.isMenuOpen}
           color={ButtonColor.subtle}
           icon={<MenuIcon />}

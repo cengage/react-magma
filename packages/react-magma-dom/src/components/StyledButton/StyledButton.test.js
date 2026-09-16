@@ -136,9 +136,11 @@ describe('Styled Button', () => {
           transparentize(0.5, magma.colors.neutral200),
           { target: ':hover' }
         );
-        expect(button).toHaveStyleRule('background', magma.colors.neutral0, {
-          target: ':active',
-        });
+        expect(button).toHaveStyleRule(
+          'background',
+          transparentize(0.25, magma.colors.neutral200),
+          { target: ':active' }
+        );
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral300);
         expect(button).toHaveStyleRule('color', magma.colors.brand.navy);
       });
@@ -214,16 +216,19 @@ describe('Styled Button', () => {
           'background',
           transparentize(0.5, magma.colors.neutral200)
         );
-        expect(button).toHaveStyleRule('background', magma.colors.neutral200, {
-          target: ':hover',
-        });
         expect(button).toHaveStyleRule(
           'background',
           transparentize(0.25, magma.colors.neutral200),
-          {
-            target: ':active',
-          }
+          { target: ':hover' }
         );
+        expect(button).toHaveStyleRule(
+          'background',
+          transparentize(0.25, magma.colors.neutral200),
+          { target: ':focus' }
+        );
+        expect(button).toHaveStyleRule('background', magma.colors.neutral200, {
+          target: ':active',
+        });
         expect(button).toHaveStyleRule('border', '0');
         expect(button).toHaveStyleRule('color', magma.colors.brand.navy);
       });
@@ -401,16 +406,16 @@ describe('Styled Button', () => {
           magma.colors.neutral0,
           transparentize(0.5, magma.colors.neutral900),
           magma.colors.neutral0,
-          'none',
+          transparentize(0.25, magma.colors.neutral900),
           magma.colors.neutral0,
         ],
         [
           'subtle',
           transparentize(0.5, magma.colors.neutral900),
           magma.colors.neutral0,
-          magma.colors.neutral900,
+          transparentize(0.25, magma.colors.neutral900),
           magma.colors.neutral0,
-          transparentize(0.5, magma.colors.neutral900),
+          magma.colors.neutral900,
           magma.colors.neutral0,
         ],
         [
@@ -468,6 +473,9 @@ describe('Styled Button', () => {
           expect(button).toHaveStyleRule('background', hoverBackground, {
             target: ':hover',
           });
+          expect(button).toHaveStyleRule('background', hoverBackground, {
+            target: ':focus',
+          });
           expect(button).toHaveStyleRule('color', hoverTextColor, {
             target: ':hover',
           });
@@ -491,12 +499,12 @@ describe('Styled Button', () => {
       );
 
       it.each([
-        ['primary', magma.colors.neutral900],
+        ['primary', transparentize(0.5, magma.colors.neutral900)],
         ['secondary', 'none'],
-        ['subtle', magma.colors.neutral900],
-        ['danger', magma.colors.neutral900],
-        ['success', magma.colors.neutral900],
-        ['marketing', magma.colors.neutral900],
+        ['subtle', transparentize(0.5, magma.colors.neutral900)],
+        ['danger', transparentize(0.5, magma.colors.neutral900)],
+        ['success', transparentize(0.5, magma.colors.neutral900)],
+        ['marketing', transparentize(0.5, magma.colors.neutral900)],
       ])('%s disabled solid button', (color, background) => {
         const { getByTestId } = render(
           <StyledButton
@@ -553,7 +561,7 @@ describe('Styled Button', () => {
           'success',
           magma.colors.green500,
           magma.colors.green500,
-          magma.colors.green500,
+          magma.colors.green400,
         ],
         [
           'marketing',
@@ -575,20 +583,21 @@ describe('Styled Button', () => {
             </StyledButton>
           );
           const button = getByTestId('button-test');
-          const interactionBackground = transparentize(
-            0.5,
+          const hoverBackground = transparentize(0.5, magma.colors.neutral900);
+          const activeBackground = transparentize(
+            0.25,
             magma.colors.neutral900
           );
 
           expect(button).toHaveStyleRule('background', 'none');
           expect(button).toHaveStyleRule('color', textColor);
-          expect(button).toHaveStyleRule('background', interactionBackground, {
+          expect(button).toHaveStyleRule('background', hoverBackground, {
             target: ':hover',
           });
           expect(button).toHaveStyleRule('color', hoverTextColor, {
             target: ':hover',
           });
-          expect(button).toHaveStyleRule('background', interactionBackground, {
+          expect(button).toHaveStyleRule('background', activeBackground, {
             target: ':active',
           });
           expect(button).toHaveStyleRule('color', activeTextColor, {

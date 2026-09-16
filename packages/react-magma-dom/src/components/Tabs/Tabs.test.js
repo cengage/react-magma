@@ -148,6 +148,10 @@ describe('Tabs', () => {
       'transform',
       'translateX(-1px)'
     );
+    expect(container.querySelector("[role='tablist']")).toHaveStyleRule(
+      'gap',
+      '1px'
+    );
     expect(getByTestId('tabsWrapper')).toHaveStyleRule('padding-left', '1px');
     expect(getByTestId('tabsWrapper')).toHaveStyleRule('margin-left', '-1px');
     expect(getAllByTestId('tabContainer')[0]).toHaveStyleRule('height', 'auto');

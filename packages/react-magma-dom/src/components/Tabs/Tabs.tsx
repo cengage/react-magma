@@ -246,7 +246,7 @@ export const StyledTabs = styled('ul', { shouldForwardProp: isPropValid })<{
   display: flex;
   flex-direction: ${props =>
     props.orientation === 'vertical' ? 'column' : 'row'};
-  gap: 8px;
+  gap: ${props => (props.orientation === 'vertical' ? '1px' : '8px')};
   justify-content: ${props =>
     props.alignment === 'center'
       ? 'center'

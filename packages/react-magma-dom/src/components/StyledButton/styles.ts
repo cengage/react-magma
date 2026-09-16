@@ -87,7 +87,7 @@ export function buildButtonBackground(props) {
     if (props.variant === 'solid' && props.isInverse) {
       return props.color === 'secondary'
         ? 'none'
-        : props.theme.colors.neutral900;
+        : transparentize(0.5, props.theme.colors.neutral900);
     }
 
     if (props.isInverse) {
@@ -338,7 +338,7 @@ export function buildFocusBackground(props) {
       case 'secondary':
         return transparentize(0.5, props.theme.colors.neutral200);
       case 'subtle':
-        return props.theme.colors.neutral200;
+        return transparentize(0.25, props.theme.colors.neutral200);
       case 'marketing':
         return props.theme.colors.tangerine400;
       case 'danger':
@@ -355,7 +355,7 @@ export function buildFocusBackground(props) {
       case 'secondary':
         return transparentize(0.5, props.theme.colors.neutral900);
       case 'subtle':
-        return props.theme.colors.neutral900;
+        return transparentize(0.25, props.theme.colors.neutral900);
       case 'marketing':
         return props.theme.colors.tangerine400;
       case 'danger':
@@ -420,7 +420,21 @@ export function buildFocusBackground(props) {
   return props.theme.colors.indigo600;
 }
 
-// Same styles for hover and focus
+export function buildHoverBackground(props) {
+  props = buildPropsWithDefaultButtonStyles(props);
+
+  if (
+    props.variant === 'solid' &&
+    !props.isInverse &&
+    props.color === 'subtle'
+  ) {
+    return transparentize(0.25, props.theme.colors.neutral200);
+  }
+
+  return buildFocusBackground(props);
+}
+
+// Hover and focus use the same text colors.
 export function buildFocusColor(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
@@ -523,15 +537,19 @@ export function buildFocusColor(props) {
   return props.theme.colors.neutral0;
 }
 
+export function buildHoverColor(props) {
+  return buildFocusColor(props);
+}
+
 export function buildActiveBackground(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
   if (props.variant === 'solid' && !props.isInverse) {
     switch (props.color) {
       case 'secondary':
-        return props.theme.colors.neutral0;
-      case 'subtle':
         return transparentize(0.25, props.theme.colors.neutral200);
+      case 'subtle':
+        return props.theme.colors.neutral200;
       case 'marketing':
         return props.theme.colors.brand.sunriseOrange;
       case 'danger':
@@ -546,9 +564,9 @@ export function buildActiveBackground(props) {
   if (props.variant === 'solid' && props.isInverse) {
     switch (props.color) {
       case 'secondary':
-        return 'none';
+        return transparentize(0.25, props.theme.colors.neutral900);
       case 'subtle':
-        return transparentize(0.5, props.theme.colors.neutral900);
+        return props.theme.colors.neutral900;
       case 'marketing':
         return props.theme.colors.brand.sunriseOrange;
       case 'danger':
@@ -567,7 +585,7 @@ export function buildActiveBackground(props) {
   }
 
   if (props.variant === 'link' && props.isInverse) {
-    return transparentize(0.5, props.theme.colors.neutral900);
+    return transparentize(0.25, props.theme.colors.neutral900);
   }
 
   if (props.color === 'marketing') {
@@ -670,7 +688,7 @@ export function buildActiveColor(props) {
       case 'danger':
         return props.theme.colors.red400;
       case 'success':
-        return props.theme.colors.green500;
+        return props.theme.colors.green400;
       case 'marketing':
         return props.theme.colors.brand.sunriseOrange;
       case 'primary':

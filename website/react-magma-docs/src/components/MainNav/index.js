@@ -45,7 +45,7 @@ const StyledAccordionItem = styled(AccordionItem)`
   }
   button {
     svg {
-      color: ${magma.colors.neutral700};
+      color: ${magma.colors.brand.navy};
     }
   }
   > div {
@@ -93,7 +93,7 @@ MainNavAccordionPanel.propTypes = {
 const LinkStyles = () => `
   align-items: center;
   display: flex;
-  color: ${magma.colors.neutral700};
+  color: ${magma.colors.brand.navy};
   font-size: ${magma.typeScale.size02.fontSize};
   font-weight: 500;
   line-height: ${magma.typeScale.size02.lineHeight};
@@ -106,14 +106,9 @@ const LinkStyles = () => `
   }
 `;
 
-const LinkHoverStyles = () => `
-  color: ${magma.colors.neutral700};
-  background: ${magma.colors.neutral200};
-`;
-
 const activeStyleDefault = {
-  background: magma.colors.primary100,
-  color: magma.colors.primary500,
+  background: magma.colors.neutral150,
+  color: magma.colors.brand.navy,
 };
 
 const menuItemInsetStyles = `
@@ -126,6 +121,7 @@ const menuItemInsetStyles = `
 
 const headingStyles = `
   align-items: center;
+  color: ${magma.colors.brand.navy};
   display: flex;
   gap: ${magma.spaceScale.spacing03};
   justify-content: flex-start;
@@ -135,9 +131,6 @@ const headingStyles = `
   margin: 0;
   padding: ${magma.spaceScale.spacing03};
   border-radius: ${magma.borderRadius};
-  &:hover {
-    ${LinkHoverStyles};
-  }
 `;
 
 const TopLevelLabel = styled.span`
@@ -169,16 +162,25 @@ const StyledAccordionButton = styled(AccordionButton)`
   &:focus {
     position: relative;
     z-index: 2;
+
+    svg {
+      color: ${magma.colors.neutral700};
+    }
   }
 
   &:hover {
-    ${LinkHoverStyles};
+    background: ${magma.colors.neutral150};
+    color: ${magma.colors.brand.navy};
+
+    svg {
+      color: ${magma.colors.brand.navy};
+    }
   }
 `;
 
 const StyledDivider = styled.hr`
   border: 0;
-  border-top: 1px solid ${magma.colors.neutral300};
+  border-top: 1px solid ${magma.colors.neutral200};
   display: block;
   height: 0;
   margin: ${magma.spaceScale.spacing03} 18px;
@@ -191,7 +193,7 @@ const SpacedAccordionItem = styled(StyledAccordionItem)`
   position: relative;
 
   &::before {
-    border-top: 1px solid ${magma.colors.neutral300};
+    border-top: 1px solid ${magma.colors.neutral200};
     content: '';
     left: 18px;
     position: absolute;
@@ -220,7 +222,7 @@ const GuidedList = styled(List)`
   position: relative;
 
   &::before {
-    background: ${magma.colors.neutral300};
+    background: ${magma.colors.neutral200};
     bottom: 0;
     content: '';
     left: ${guideLineLeft};
@@ -238,7 +240,7 @@ const ComponentGroupItem = styled.li`
   position: relative;
 
   &::before {
-    background: ${magma.colors.neutral300};
+    background: ${magma.colors.neutral200};
     bottom: 0;
     content: '';
     left: ${guideLineLeft};
@@ -250,7 +252,7 @@ const ComponentGroupItem = styled.li`
 
   &::after {
     background: ${magma.colors.neutral100};
-    border: 1px solid ${magma.colors.neutral300};
+    border: 1px solid ${magma.colors.neutral200};
     border-radius: 50%;
     content: '';
     height: 9px;
@@ -272,9 +274,9 @@ const ComponentGroupsList = styled(List)`
 `;
 
 const ComponentGroupLabel = styled.p`
-  color: ${magma.colors.neutral500};
+  color: ${magma.colors.neutral700};
   font-size: ${magma.typeScale.size01.fontSize};
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: ${magma.typeScale.size01.letterSpacing};
   line-height: ${magma.typeScale.size01.lineHeight};
   margin: ${magma.spaceScale.spacing03} 0 0;
@@ -289,18 +291,40 @@ const StyledHyperlink = styled(Hyperlink)`
   ${menuItemInsetStyles};
   padding: ${magma.spaceScale.spacing03};
   text-decoration: none;
-  &:hover {
-    ${LinkHoverStyles}
-    text-decoration: none;
+
+  svg {
+    color: ${magma.colors.brand.navy};
   }
+
+  &:hover,
   &:not([disabled]):hover {
-    ${LinkHoverStyles}
+    background: ${magma.colors.neutral150};
+    color: ${magma.colors.brand.navy};
     text-decoration: none;
+
+    svg {
+      color: ${magma.colors.brand.navy};
+    }
+  }
+  &:active,
+  &:not([disabled]):active {
+    background: ${magma.colors.neutral150};
+    color: ${magma.colors.brand.navy};
+    text-decoration: none;
+
+    svg {
+      color: ${magma.colors.brand.navy};
+    }
   }
   &:not([disabled]):focus {
-    color: inherit;
+    background: ${magma.colors.neutral150};
+    color: ${magma.colors.brand.navy};
     position: relative;
     z-index: 2;
+
+    svg {
+      color: ${magma.colors.brand.navy};
+    }
   }
 `;
 
@@ -314,7 +338,12 @@ const StyledActiveLink2 = {
   width: '2px',
   transform: 'none',
   borderRadius: '0',
-  background: ` ${magma.colors.primary}`,
+  background: magma.colors.brand.sunriseOrange,
+};
+
+const StyledHoverLink2 = {
+  ...StyledActiveLink2,
+  background: magma.colors.neutral500,
 };
 
 const pageItemRowStateStyles = `
@@ -327,14 +356,15 @@ const pageItemRowStateStyles = `
 
 const PageItemHoverStyles = () => `
   ${pageItemRowStateStyles}
-  background: ${magma.colors.neutral200};
-  color: ${magma.colors.neutral700};
+  background: ${magma.colors.neutral150};
+  color: ${magma.colors.brand.navy};
 `;
 
 const PageItemCurrentStyles = () => `
   ${pageItemRowStateStyles}
-  background: ${magma.colors.primary100};
-  color: ${magma.colors.primary500};
+  background: ${magma.colors.neutral150};
+  color: ${magma.colors.brand.navy};
+  font-weight: 600;
 `;
 
 const StyledLink2 = styled(Link)`
@@ -350,8 +380,11 @@ const StyledLink2 = styled(Link)`
   &:hover {
     ${PageItemHoverStyles};
   }
+  &:not([aria-current='page']):not([data-current='true']):hover:before {
+    ${StyledHoverLink2};
+  }
   &:focus {
-    color: ${magma.colors.neutral700};
+    color: ${magma.colors.brand.navy};
     outline: 2px solid ${magma.colors.focus};
     outline-offset: -2px;
     z-index: 4;
@@ -837,7 +870,7 @@ export const MainNav = ({ ...props }) => {
     query NavQuery {
       designComponentDocs: allMdx(
         filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
+          internal: { contentFilePath: { regex: "//src/pages/design//" } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -847,7 +880,7 @@ export const MainNav = ({ ...props }) => {
       }
       apiDocs: allMdx(
         filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/api/**" } }
+          internal: { contentFilePath: { regex: "//src/pages/api//" } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -858,7 +891,7 @@ export const MainNav = ({ ...props }) => {
       dataVisualization: allMdx(
         filter: {
           internal: {
-            contentFilePath: { glob: "**/src/pages/data-visualization/**" }
+            contentFilePath: { regex: "//src/pages/data-visualization//" }
           }
         }
         sort: { frontmatter: { order: ASC } }
@@ -869,9 +902,7 @@ export const MainNav = ({ ...props }) => {
       }
       designIntro: allMdx(
         filter: {
-          internal: {
-            contentFilePath: { glob: "**/src/pages/design-intro/**" }
-          }
+          internal: { contentFilePath: { regex: "//src/pages/design-intro//" } }
         }
         sort: { frontmatter: { order: ASC } }
       ) {
@@ -881,7 +912,7 @@ export const MainNav = ({ ...props }) => {
       }
       developDocs: allMdx(
         filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/api-intro/**" } }
+          internal: { contentFilePath: { regex: "//src/pages/api-intro//" } }
         }
         sort: { frontmatter: { order: ASC } }
       ) {

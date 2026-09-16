@@ -249,7 +249,11 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   z-index: 1;
 }
 
-.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-2:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -536,7 +540,11 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   z-index: 1;
 }
 
-.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-2:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -763,7 +771,11 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   z-index: 1;
 }
 
-.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-2:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -938,7 +950,11 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   z-index: 1;
 }
 
-.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-2:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -1162,7 +1178,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   z-index: 1;
 }
 
-.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-2:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -1258,7 +1278,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   z-index: 1;
 }
 
-.emotion-9:not(:disabled):hover,
+.emotion-9:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-9:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -1494,7 +1518,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   z-index: 1;
 }
 
-.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-2:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -1590,7 +1618,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   z-index: 1;
 }
 
-.emotion-9:not(:disabled):hover,
+.emotion-9:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-9:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -2038,7 +2070,11 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   z-index: 1;
 }
 
-.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-4:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -2139,7 +2175,11 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   z-index: 1;
 }
 
-.emotion-8:not(:disabled):hover,
+.emotion-8:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-8:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -2424,7 +2464,11 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   z-index: 1;
 }
 
-.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-4:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -2525,7 +2569,11 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   z-index: 1;
 }
 
-.emotion-8:not(:disabled):hover,
+.emotion-8:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-8:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -2973,7 +3021,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   z-index: 1;
 }
 
-.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-2:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -3069,7 +3121,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   z-index: 1;
 }
 
-.emotion-9:not(:disabled):hover,
+.emotion-9:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-9:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -3354,7 +3410,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   z-index: 1;
 }
 
-.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-2:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -3450,7 +3510,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   z-index: 1;
 }
 
-.emotion-9:not(:disabled):hover,
+.emotion-9:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-9:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -3959,7 +4023,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   z-index: 1;
 }
 
-.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-2:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -4055,7 +4123,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   z-index: 1;
 }
 
-.emotion-9:not(:disabled):hover,
+.emotion-9:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-9:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -4406,7 +4478,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   z-index: 1;
 }
 
-.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-2:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -4502,7 +4578,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   z-index: 1;
 }
 
-.emotion-9:not(:disabled):hover,
+.emotion-9:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-9:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -5041,7 +5121,11 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   z-index: 1;
 }
 
-.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-4:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -5358,7 +5442,11 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   z-index: 1;
 }
 
-.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-4:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;

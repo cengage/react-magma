@@ -67,12 +67,47 @@ describe('Calendar Day', () => {
 
     expect(getByTestId('calendar-day')).toHaveStyleRule(
       'background',
-      magma.colors.blue600
+      magma.colors.cyan700
     );
     expect(getByTestId('calendar-day')).toHaveStyleRule(
       'background',
-      magma.colors.blue600,
+      magma.colors.cyan700,
       { target: ':hover' }
+    );
+  });
+
+  it('uses the updated today color when today is not selected', () => {
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+    const { getByTestId } = render(
+      <CalendarContext.Provider
+        value={{
+          dateFocused: false,
+          focusedDate: today,
+          setDateFocused: jest.fn(),
+          setFocusedDate: jest.fn(),
+          onDateChange: jest.fn(),
+          chosenDate: yesterday,
+        }}
+      >
+        <table>
+          <tbody>
+            <tr>
+              <CalendarDay day={today} />
+            </tr>
+          </tbody>
+        </table>
+      </CalendarContext.Provider>
+    );
+
+    expect(getByTestId('calendar-day')).toHaveStyleRule(
+      'color',
+      magma.colors.cyan700
+    );
+    expect(getByTestId('todayIndicator')).toHaveStyleRule(
+      'background',
+      magma.colors.cyan700
     );
   });
 

@@ -20,6 +20,8 @@ const StyledContainer = styled.div`
   > #gatsby-focus-wrapper {
     grid-area: content;
     min-width: 0;
+    position: relative;
+    z-index: 0;
   }
   @media (min-width: 1025px) {
     display: grid;

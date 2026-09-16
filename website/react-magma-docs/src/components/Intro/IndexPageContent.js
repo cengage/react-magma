@@ -20,8 +20,6 @@ import {
   PaletteIcon,
   DevicesIcon,
   ExtensionIcon,
-  TimelineIcon,
-  GroupsIcon,
   GithubIcon,
 } from 'react-magma-icons';
 
@@ -52,27 +50,22 @@ const StyledGridItem = styled(GridItem)`
 
 const HeaderBlock = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  gap: ${magma.spaceScale.spacing09};
   padding: ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06}
     ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing10};
   text-align: left;
 
   svg {
-    justify-self: flex-end;
-    padding: 0 1em 0 2em;
-    height: 200px;
-    width: 200px;
-    margin: auto;
+    flex: 0 0 auto;
+    height: 136px;
+    width: 136px;
+    margin: 0;
     filter: drop-shadow(0 2px 6px rgba(0 0 0 / 0.18));
   }
 
   @media (max-width: ${magma.breakpoints.medium}px) {
     padding: ${magma.spaceScale.spacing10} ${magma.spaceScale.spacing10} 0;
-    svg {
-      height: 220px;
-      width: 220px;
-      padding: 0 1em;
-    }
   }
 
   @media (max-width: ${magma.breakpoints.small}px) {
@@ -81,17 +74,17 @@ const HeaderBlock = styled.div`
     text-align: center;
 
     svg {
-      height: 140px;
-      width: 140px;
-      padding: 0;
-      margin: 0 auto ${magma.spaceScale.spacing05};
+      height: 104px;
+      width: 104px;
+      margin: 0 auto;
       order: -1;
     }
   }
 `;
 
 const HeaderText = styled.div`
-  width: 66%;
+  flex: 1;
+  min-width: 0;
 
   > h1 {
     margin-bottom: 16px;
@@ -99,6 +92,7 @@ const HeaderText = styled.div`
 
   > h2 {
     margin-top: 0;
+    max-inline-size: min(65ch, 600px);
   }
 
   @media (max-width: ${magma.breakpoints.small}px) {
@@ -110,6 +104,12 @@ const CenterBlock = styled.div`
   grid-column: 1 / 3;
   margin: auto;
   text-align: center;
+
+  > div,
+  > p {
+    margin-inline: auto;
+    max-inline-size: min(65ch, 600px);
+  }
 `;
 
 const IntroCenterBlock = styled(CenterBlock)`
@@ -127,6 +127,12 @@ const CardGrid = styled(Card)`
 
   h4 {
     margin-bottom: 0;
+  }
+`;
+
+const FeatureCardBody = styled(CardBody)`
+  && {
+    padding: ${magma.spaceScale.spacing05};
   }
 `;
 
@@ -155,7 +161,7 @@ const CardIcon = styled(Flex)`
   height: 56px;
   width: 56px;
   border-radius: 8px;
-  margin: ${magma.spaceScale.spacing06} 0 0 ${magma.spaceScale.spacing06};
+  margin: ${magma.spaceScale.spacing05} 0 0 ${magma.spaceScale.spacing05};
   background-color: ${magma.colors.neutral150};
 
   > * {
@@ -169,8 +175,7 @@ const CardIcon = styled(Flex)`
   @media (max-width: ${magma.breakpoints.small}px) {
     height: ${magma.spaceScale.spacing09};
     width: ${magma.spaceScale.spacing09};
-    margin: ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} 0
-      ${magma.spaceScale.spacing05};
+    margin: ${magma.spaceScale.spacing05} 0 0 ${magma.spaceScale.spacing05};
 
     > * {
       height: ${magma.spaceScale.spacing07};
@@ -183,6 +188,7 @@ export function IndexPageContent() {
   return (
     <div style={{ maxWidth: '1200px', margin: 'auto' }}>
       <HeaderBlock>
+        <Logo />
         <HeaderText>
           <Heading level={1}>Magma Design&nbsp;System</Heading>
           <Heading level={2} visualStyle={TypographyVisualStyle.bodyLarge}>
@@ -214,7 +220,6 @@ export function IndexPageContent() {
             </Hyperlink>
           </HeroActions>
         </HeaderText>
-        <Logo />
       </HeaderBlock>
 
       <HeroDivider />
@@ -233,10 +238,10 @@ export function IndexPageContent() {
             <CardIcon>
               <AccessibilityIcon color={magma.colors.brand.navy} />
             </CardIcon>
-            <CardBody>
+            <FeatureCardBody>
               <CardHeading>Accessible</CardHeading>
               Designed and developed for WCAG 2.2 compliance.
-            </CardBody>
+            </FeatureCardBody>
           </CardGrid>
         </StyledGridItem>
         <StyledGridItem gridColumn="2">
@@ -244,10 +249,10 @@ export function IndexPageContent() {
             <CardIcon>
               <PaletteIcon color={magma.colors.brand.navy} />
             </CardIcon>
-            <CardBody>
+            <FeatureCardBody>
               <CardHeading>Themeable</CardHeading>
               Easily theme all components with your brand's specific styles.
-            </CardBody>
+            </FeatureCardBody>
           </CardGrid>
         </StyledGridItem>
         <StyledGridItem gridColumn="1">
@@ -255,10 +260,10 @@ export function IndexPageContent() {
             <CardIcon>
               <DevicesIcon color={magma.colors.brand.navy} />
             </CardIcon>
-            <CardBody>
+            <FeatureCardBody>
               <CardHeading>Platform Agnostic</CardHeading>
               Design and develop experiences for any platform.
-            </CardBody>
+            </FeatureCardBody>
           </CardGrid>
         </StyledGridItem>
         <StyledGridItem gridColumn="2">
@@ -266,34 +271,11 @@ export function IndexPageContent() {
             <CardIcon>
               <ExtensionIcon color={magma.colors.brand.navy} />
             </CardIcon>
-            <CardBody>
+            <FeatureCardBody>
               <CardHeading>Scalable</CardHeading>
               Manage design at scale with a design system that evolves as needs
               change.
-            </CardBody>
-          </CardGrid>
-        </StyledGridItem>
-        <StyledGridItem gridColumn="1">
-          <CardGrid>
-            <CardIcon>
-              <TimelineIcon color={magma.colors.brand.navy} />
-            </CardIcon>
-            <CardBody>
-              <CardHeading>Efficient</CardHeading>
-              Save time so you can focus on larger issues of usability and
-              meaning.
-            </CardBody>
-          </CardGrid>
-        </StyledGridItem>
-        <StyledGridItem gridColumn="2">
-          <CardGrid>
-            <CardIcon>
-              <GroupsIcon color={magma.colors.brand.navy} />
-            </CardIcon>
-            <CardBody>
-              <CardHeading>Living</CardHeading>
-              Open source design system that is constantly expanding.
-            </CardBody>
+            </FeatureCardBody>
           </CardGrid>
         </StyledGridItem>
         <CenterBlock>

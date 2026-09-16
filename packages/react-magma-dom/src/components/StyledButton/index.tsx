@@ -17,6 +17,8 @@ import {
   buildColor,
   buildFocusBackground,
   buildFocusColor,
+  buildHoverBackground,
+  buildHoverColor,
 } from './styles';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -76,7 +78,11 @@ export const buttonStyles = props => css`
       z-index: 1;
     }
 
-    &:hover,
+    &:hover {
+      background: ${buildHoverBackground(props)};
+      color: ${buildHoverColor(props)};
+    }
+
     &:focus {
       background: ${buildFocusBackground(props)};
       color: ${buildFocusColor(props)};

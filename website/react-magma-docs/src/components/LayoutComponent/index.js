@@ -32,7 +32,7 @@ const HeadingWrapper = styled.div`
   margin: 0 auto;
   max-width: ${CONTENT_MAX_WIDTH}px;
 
-  @media (max-width: ${CONTENT_MAX_WIDTH + PANEL_WIDTH}px) {
+  @media (max-width: ${CONTENT_MAX_WIDTH + PANEL_WIDTH + 48}px) {
     padding: 24px;
   }
   @media (max-width: ${magma.breakpoints.medium}px) {

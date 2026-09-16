@@ -71,7 +71,11 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   z-index: 1;
 }
 
-.emotion-1:not(:disabled):hover,
+.emotion-1:not(:disabled):hover {
+  background: rgba(222,229,238,0.5);
+  color: #005F72;
+}
+
 .emotion-1:not(:disabled):focus {
   background: rgba(222,229,238,0.5);
   color: #005F72;
@@ -198,7 +202,11 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   z-index: 1;
 }
 
-.emotion-1:not(:disabled):hover,
+.emotion-1:not(:disabled):hover {
+  background: rgba(222,229,238,0.5);
+  color: #005F72;
+}
+
 .emotion-1:not(:disabled):focus {
   background: rgba(222,229,238,0.5);
   color: #005F72;

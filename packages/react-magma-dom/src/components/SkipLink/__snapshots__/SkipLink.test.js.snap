@@ -55,7 +55,11 @@ exports[`SkipLink should render the skip link component 1`] = `
   z-index: 1;
 }
 
-.emotion-1:not(:disabled):hover,
+.emotion-1:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-1:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -146,7 +150,11 @@ exports[`SkipLink should render the skip link component 1`] = `
   z-index: 1;
 }
 
-.emotion-1:not(:disabled):hover,
+.emotion-1:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-1:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;

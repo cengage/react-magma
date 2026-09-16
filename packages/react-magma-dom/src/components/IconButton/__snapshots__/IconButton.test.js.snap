@@ -63,7 +63,11 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -164,7 +168,11 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -298,7 +306,11 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -399,7 +411,11 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -533,14 +549,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: rgba(222,229,238,0.5);
+  color: #0B1F3A;
+}
+
 .emotion-0:not(:disabled):focus {
   background: rgba(222,229,238,0.5);
   color: #0B1F3A;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #FFFFFF;
+  background: rgba(222,229,238,0.75);
   color: #0B1F3A;
 }
 
@@ -634,14 +654,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: rgba(222,229,238,0.5);
+  color: #0B1F3A;
+}
+
 .emotion-0:not(:disabled):focus {
   background: rgba(222,229,238,0.5);
   color: #0B1F3A;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #FFFFFF;
+  background: rgba(222,229,238,0.75);
   color: #0B1F3A;
 }
 
@@ -768,7 +792,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -869,7 +897,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -1003,7 +1035,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -1104,7 +1140,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -1227,7 +1267,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -1322,7 +1366,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -1455,7 +1503,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -1550,7 +1602,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -1683,7 +1739,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -1778,7 +1838,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -1911,14 +1975,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: rgba(222,229,238,0.5);
+  color: #0B1F3A;
+}
+
 .emotion-0:not(:disabled):focus {
   background: rgba(222,229,238,0.5);
   color: #0B1F3A;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #FFFFFF;
+  background: rgba(222,229,238,0.75);
   color: #0B1F3A;
 }
 
@@ -2006,14 +2074,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: rgba(222,229,238,0.5);
+  color: #0B1F3A;
+}
+
 .emotion-0:not(:disabled):focus {
   background: rgba(222,229,238,0.5);
   color: #0B1F3A;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #FFFFFF;
+  background: rgba(222,229,238,0.75);
   color: #0B1F3A;
 }
 
@@ -2139,7 +2211,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -2234,7 +2310,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -2367,7 +2447,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -2462,7 +2546,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -2595,7 +2683,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;
@@ -2690,7 +2782,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
   background: #063565;
   color: #FFFFFF;

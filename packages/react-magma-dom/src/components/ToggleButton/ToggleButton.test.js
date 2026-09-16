@@ -243,7 +243,7 @@ describe('ToggleButton', () => {
       expect(button).toHaveStyleRule('color', magma.colors.neutral0, {
         target: ':not(:disabled):hover',
       });
-      expect(button).toHaveStyleRule('background', magma.colors.neutral700, {
+      expect(button).toHaveStyleRule('background', magma.colors.neutral800, {
         target: ':not(:disabled):focus',
       });
       expect(button).toHaveStyleRule('color', magma.colors.neutral0, {
@@ -252,7 +252,7 @@ describe('ToggleButton', () => {
       expect(button).toHaveStyleRule('outline-offset', '2px', {
         target: ':not(:disabled):focus',
       });
-      expect(button).toHaveStyleRule('background', magma.colors.neutral800, {
+      expect(button).toHaveStyleRule('background', magma.colors.neutral900, {
         target: ':not(:disabled):active',
       });
       expect(button).toHaveStyleRule('color', magma.colors.neutral0, {
@@ -286,9 +286,11 @@ describe('ToggleButton', () => {
       expect(button).toHaveStyleRule('color', magma.colors.brand.navy, {
         target: ':not(:disabled):focus',
       });
-      expect(button).toHaveStyleRule('background', magma.colors.neutral0, {
-        target: ':not(:disabled):active',
-      });
+      expect(button).toHaveStyleRule(
+        'background',
+        transparentize(0.25, magma.colors.neutral200),
+        { target: ':not(:disabled):active' }
+      );
       expect(button).toHaveStyleRule('color', magma.colors.brand.navy, {
         target: ':not(:disabled):active',
       });
@@ -317,9 +319,11 @@ describe('ToggleButton', () => {
         transparentize(0.5, magma.colors.neutral900),
         { target: ':not(:disabled):focus' }
       );
-      expect(button).toHaveStyleRule('background', 'none', {
-        target: ':not(:disabled):active',
-      });
+      expect(button).toHaveStyleRule(
+        'background',
+        transparentize(0.25, magma.colors.neutral900),
+        { target: ':not(:disabled):active' }
+      );
       fireEvent.click(getByTestId(testId));
 
       expect(button).toHaveStyleRule('background', magma.colors.neutral700);
@@ -331,13 +335,13 @@ describe('ToggleButton', () => {
       expect(button).toHaveStyleRule('color', magma.colors.neutral0, {
         target: ':not(:disabled):hover',
       });
-      expect(button).toHaveStyleRule('background', magma.colors.neutral700, {
+      expect(button).toHaveStyleRule('background', magma.colors.neutral800, {
         target: ':not(:disabled):focus',
       });
       expect(button).toHaveStyleRule('color', magma.colors.neutral0, {
         target: ':not(:disabled):focus',
       });
-      expect(button).toHaveStyleRule('background', magma.colors.neutral800, {
+      expect(button).toHaveStyleRule('background', magma.colors.neutral900, {
         target: ':not(:disabled):active',
       });
       expect(button).toHaveStyleRule('color', magma.colors.neutral0, {
@@ -376,7 +380,10 @@ describe('ToggleButton', () => {
       );
 
       const onButton = getByTestId(`${testId}-on`);
-      expect(onButton).toHaveStyleRule('background', magma.colors.neutral900);
+      expect(onButton).toHaveStyleRule(
+        'background',
+        transparentize(0.5, magma.colors.neutral900)
+      );
       expect(onButton).toHaveStyleRule('color', magma.colors.neutral600);
       expect(onButton).toHaveStyleRule('border', '1px solid transparent');
     });
