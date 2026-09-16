@@ -9,6 +9,7 @@
     "react-magma-landing": "1.1.9"
   },
   "changesets": [
+    "free-dots-hide",
     "sync-main-to-dev-5-2-0"
   ]
 }
