@@ -2,7 +2,13 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
-import { magma, useIsInverse } from 'react-magma-dom';
+import {
+  Badge,
+  BadgeColor,
+  magma,
+  Paragraph,
+  useIsInverse,
+} from 'react-magma-dom';
 
 export const ColorRampGrid = styled.div`
   display: grid;
@@ -177,4 +183,94 @@ ColorRamp.propTypes = {
   colorPrefix: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   shades: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
+
+const LegacySwatchContainer = styled.div`
+  background: ${magma.colors.neutral200};
+  border: 1px solid
+    ${props =>
+      props.isInverse ? magma.colors.borderInverse : magma.colors.border};
+  border-radius: ${magma.borderRadius};
+  margin: 0 ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06} 0;
+  overflow: hidden;
+  width: 240px;
+
+  @media (max-width: ${magma.breakpoints.small}px) {
+    margin-right: 0;
+    width: 100%;
+  }
+`;
+
+const LegacySwatchColor = styled.div`
+  background: ${props => props.color};
+  display: flex;
+  height: 88px;
+  justify-content: center;
+`;
+
+const LegacyColorDetails = styled.div`
+  border-top: 1px solid
+    ${props =>
+      props.isInverse ? magma.colors.borderInverse : magma.colors.border};
+  display: flex;
+  flex-direction: column;
+  font-size: ${magma.typeScale.size01.fontSize};
+  line-height: ${magma.typeScale.size01.lineHeight};
+  padding: ${magma.spaceScale.spacing05};
+
+  span {
+    margin-bottom: ${magma.spaceScale.spacing02};
+  }
+
+  span:last-of-type {
+    margin-bottom: 0;
+  }
+`;
+
+const ColorTestContainer = styled.div`
+  align-self: flex-end;
+  flex: 0 0 auto;
+  margin: ${magma.spaceScale.spacing03};
+  text-align: center;
+`;
+
+const ResultBadge = styled(Badge)`
+  font-weight: 600;
+  margin: 0;
+`;
+
+export const ColorSwatch = ({
+  children,
+  color,
+  passesDarkTest,
+  passesLightTest,
+}) => {
+  const isInverse = useIsInverse();
+
+  return (
+    <LegacySwatchContainer isInverse={isInverse}>
+      <LegacySwatchColor color={color}>
+        <ColorTestContainer>
+          <Paragraph className="color-test-dark">A</Paragraph>
+          <ResultBadge color={BadgeColor.secondary}>
+            {passesDarkTest ? 'PASS' : 'FAIL'}
+          </ResultBadge>
+        </ColorTestContainer>
+        <ColorTestContainer>
+          <Paragraph className="color-test-light">A</Paragraph>
+          <ResultBadge color={BadgeColor.secondary}>
+            {passesLightTest ? 'PASS' : 'FAIL'}
+          </ResultBadge>
+        </ColorTestContainer>
+      </LegacySwatchColor>
+      <LegacyColorDetails isInverse={isInverse}>{children}</LegacyColorDetails>
+    </LegacySwatchContainer>
+  );
+};
+
+ColorSwatch.propTypes = {
+  children: PropTypes.node.isRequired,
+  color: PropTypes.any.isRequired,
+  passesDarkTest: PropTypes.bool,
+  passesLightTest: PropTypes.bool,
 };
