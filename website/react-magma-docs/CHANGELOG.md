@@ -1,5 +1,20 @@
 # Change Log
 
+## 5.3.9-next.1
+
+### Patch Changes
+
+- d98d803bd: feat(Tag): Add data visualization color tokens and new color options.
+
+  - Adds `dataViz*` color tokens to the theme and reuses them for `chartColors` and `chartColorsInverse`.
+  - Adds `blue`, `teal`, `pink` and `purple` options to `TagColor`.
+  - Updates existing Tag styling: `TagColor.primary` and `TagColor.default` backgrounds and text colors, inverse colors, the outline (now a `border` instead of a `box-shadow`), fixed heights, text weight, and the dismiss icon (`CancelIcon` is now `CloseIcon`).
+
+- Updated dependencies [d98d803bd]
+  - react-magma-dom@4.17.0-next.0
+  - @react-magma/charts@14.0.0-next.0
+  - @react-magma/dropzone@14.0.0-next.0
+
 ## 5.3.9-next.0
 
 ### Patch Changes
