@@ -2,7 +2,7 @@ import React from 'react';
 
 import { render, fireEvent, getByTestId } from '@testing-library/react';
 import { transparentize } from 'polished';
-import { AccountCircleIcon, CancelIcon } from 'react-magma-icons';
+import { AccountCircleIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -10,6 +10,70 @@ import { magma } from '../../theme/magma';
 import { Tag, TagColor, TagSize } from '.';
 
 const TEXT = 'Text Label';
+
+const DATA_VIZ_TAG_COLORS = [
+  {
+    color: TagColor.blue,
+    label: 'blue',
+    light: {
+      background: magma.colors.dataVizBlue200,
+      border: magma.colors.dataVizBlue700,
+      text: magma.colors.dataVizBlue700,
+    },
+    inverse: {
+      background: magma.colors.dataVizBlue700,
+      border: magma.colors.dataVizBlue500,
+      borderTransparency: 0.5,
+      text: magma.colors.dataVizBlue200,
+    },
+  },
+  {
+    color: TagColor.teal,
+    label: 'teal',
+    light: {
+      background: magma.colors.dataVizTeal400,
+      backgroundTransparency: 0.85,
+      border: magma.colors.dataVizTeal700,
+      text: magma.colors.dataVizTeal700,
+    },
+    inverse: {
+      background: magma.colors.dataVizTeal700,
+      border: magma.colors.dataVizTeal500,
+      borderTransparency: 0.3,
+      text: magma.colors.dataVizTeal200,
+    },
+  },
+  {
+    color: TagColor.pink,
+    label: 'pink',
+    light: {
+      background: magma.colors.dataVizPink200,
+      border: magma.colors.dataVizPink700,
+      text: magma.colors.dataVizPink700,
+    },
+    inverse: {
+      background: magma.colors.dataVizPink700,
+      border: magma.colors.dataVizPink500,
+      borderTransparency: 0.3,
+      text: magma.colors.dataVizPink200,
+    },
+  },
+  {
+    color: TagColor.purple,
+    label: 'purple',
+    light: {
+      background: magma.colors.dataVizPurple200,
+      border: magma.colors.dataVizPurple700,
+      text: magma.colors.dataVizPurple700,
+    },
+    inverse: {
+      background: magma.colors.dataVizPurple700,
+      border: magma.colors.dataVizPurple500,
+      borderTransparency: 0.3,
+      text: magma.colors.dataVizPurple200,
+    },
+  },
+];
 
 describe('Tag', () => {
   it('should render the tag', () => {
@@ -47,14 +111,27 @@ describe('Tag', () => {
       const { getByText } = render(<Tag>{TEXT}</Tag>);
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral300);
+      expect(tag).toHaveStyleRule(
+        'background',
+        transparentize(0.6, magma.colors.neutral300)
+      );
+      expect(tag).toHaveStyleRule(
+        'border',
+        `1px solid ${magma.colors.neutral300}`
+      );
+      expect(tag).toHaveStyleRule('box-sizing', 'border-box');
     });
 
     it('Should render a Tag with a primary background', () => {
       const { getByText } = render(<Tag color={TagColor.primary}>{TEXT}</Tag>);
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.primary);
+      expect(tag).toHaveStyleRule('background', magma.colors.primary100);
+      expect(tag).toHaveStyleRule('color', magma.colors.primary500);
+      expect(tag).toHaveStyleRule(
+        'border',
+        `1px solid ${transparentize(0.85, magma.colors.primary500)}`
+      );
     });
 
     it('Should render a Tag with a high contrast background', () => {
@@ -73,6 +150,27 @@ describe('Tag', () => {
       const tag = getByText('Text Label').parentElement;
 
       expect(tag).toHaveStyleRule('background', magma.colors.neutral100);
+      expect(tag).toHaveStyleRule(
+        'border',
+        `1px solid ${magma.colors.neutral300}`
+      );
+    });
+
+    DATA_VIZ_TAG_COLORS.forEach(({ color, label, light }) => {
+      it(`Should render a ${label} Tag`, () => {
+        const { getByText } = render(<Tag color={color}>{TEXT}</Tag>);
+        const tag = getByText('Text Label').parentElement;
+
+        expect(tag).toHaveStyleRule(
+          'background',
+          transparentize(light.backgroundTransparency || 0.6, light.background)
+        );
+        expect(tag).toHaveStyleRule('color', light.text);
+        expect(tag).toHaveStyleRule(
+          'border',
+          `1px solid ${transparentize(0.85, light.border)}`
+        );
+      });
     });
   });
 
@@ -129,8 +227,8 @@ describe('Tag', () => {
 
       expect(tag).toHaveStyleRule('background', magma.colors.neutral100);
       expect(tag).toHaveStyleRule(
-        'box-shadow',
-        `0 0 0 1px ${magma.colors.neutral300}`
+        'border',
+        `1px solid ${magma.colors.neutral300}`
       );
     });
   });
@@ -188,8 +286,8 @@ describe('Tag', () => {
 
       expect(tag).toHaveStyleRule('background', 'none');
       expect(tag).toHaveStyleRule(
-        'box-shadow',
-        `0 0 0 1px ${transparentize(0.8, magma.colors.neutral100)}`
+        'border',
+        `1px solid ${transparentize(0.8, magma.colors.neutral100)}`
       );
     });
   });
@@ -199,7 +297,14 @@ describe('Tag', () => {
       const { getByText } = render(<Tag isInverse>{TEXT}</Tag>);
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral);
+      expect(tag).toHaveStyleRule(
+        'background',
+        transparentize(0.5, magma.colors.neutral900)
+      );
+      expect(tag).toHaveStyleRule(
+        'border',
+        `1px solid ${transparentize(0.7, magma.colors.neutral100)}`
+      );
     });
 
     it('Should render a inverse Tag with a primary background', () => {
@@ -210,7 +315,15 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.tertiary500);
+      expect(tag).toHaveStyleRule(
+        'background',
+        transparentize(0.2, magma.colors.primary500)
+      );
+      expect(tag).toHaveStyleRule('color', magma.colors.primary100);
+      expect(tag).toHaveStyleRule(
+        'border',
+        `1px solid ${magma.colors.primary400}`
+      );
     });
 
     it('Should render a inverse Tag with a high contrast background', () => {
@@ -233,6 +346,35 @@ describe('Tag', () => {
       const tag = getByText('Text Label').parentElement;
 
       expect(tag).toHaveStyleRule('background', 'none');
+      expect(tag).toHaveStyleRule('color', magma.colors.neutral100);
+      expect(tag).toHaveStyleRule(
+        'border',
+        `1px solid ${transparentize(0.7, magma.colors.neutral100)}`
+      );
+    });
+
+    DATA_VIZ_TAG_COLORS.forEach(({ color, label, inverse }) => {
+      it(`Should render an inverse ${label} Tag`, () => {
+        const { getByText } = render(
+          <Tag color={color} isInverse>
+            {TEXT}
+          </Tag>
+        );
+        const tag = getByText('Text Label').parentElement;
+
+        expect(tag).toHaveStyleRule(
+          'background',
+          transparentize(0.5, inverse.background)
+        );
+        expect(tag).toHaveStyleRule('color', inverse.text);
+        expect(tag).toHaveStyleRule(
+          'border',
+          `1px solid ${transparentize(
+            inverse.borderTransparency,
+            inverse.border
+          )}`
+        );
+      });
     });
   });
 
@@ -246,6 +388,7 @@ describe('Tag', () => {
       const tag = getByText('Text Label').parentElement;
 
       expect(tag).toHaveStyleRule('padding', `0 ${magma.spaceScale.spacing02}`);
+      expect(tag).toHaveStyleRule('height', magma.spaceScale.spacing06);
     });
 
     it('Should render a small Tag size with an icon', () => {
@@ -257,6 +400,7 @@ describe('Tag', () => {
       const tag = getByText('Text Label').parentElement;
 
       expect(tag).toHaveStyleRule('padding', `0 ${magma.spaceScale.spacing02}`);
+      expect(tag).toHaveStyleRule('height', magma.spaceScale.spacing06);
     });
 
     it('Should render a medium Tag size with an icon', () => {
@@ -271,6 +415,8 @@ describe('Tag', () => {
         'padding',
         `${magma.spaceScale.spacing02} 6px`
       );
+      expect(tag).toHaveStyleRule('height', magma.spaceScale.spacing08);
+      expect(tag).toHaveStyleRule('font-weight', '500');
     });
   });
 
@@ -339,6 +485,23 @@ describe('Tag', () => {
 
       fireEvent.click(tag);
       expect(onTagDelete).toHaveBeenCalled();
+    });
+
+    it('Should render the close icon with the tag text color', () => {
+      const onTagDelete = jest.fn();
+      const { getByTestId } = render(
+        <Tag onDelete={onTagDelete} testId={testId}>
+          {TEXT}
+        </Tag>
+      );
+      const tag = getByTestId(testId);
+
+      expect(tag).toHaveStyleRule('color', 'currentColor', {
+        target: 'svg:last-child',
+      });
+      expect(tag).toHaveStyleRule('opacity', 'inherit', {
+        target: 'svg:last-child',
+      });
     });
 
     it('Should have a focus state', () => {
