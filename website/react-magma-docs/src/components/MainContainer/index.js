@@ -5,7 +5,7 @@ import { SkipLink, magma, Container, GlobalStyles } from 'react-magma-dom';
 
 import { DarkModeContext } from '../DarkMode/DarkModeContext';
 import { Masthead } from '../Masthead';
-import { SlidingDrawer } from '../SlidingDrawer';
+import { PANEL_WIDTH, SlidingDrawer } from '../SlidingDrawer';
 
 const RootContainer = styled(Container)`
   background: ${props =>
@@ -16,9 +16,14 @@ const RootContainer = styled(Container)`
 const StyledContainer = styled.div`
   background: ${props =>
     props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral100};
+
+  > #gatsby-focus-wrapper {
+    grid-area: content;
+    min-width: 0;
+  }
   @media (min-width: 1025px) {
     display: grid;
-    grid-template-columns: 240px auto;
+    grid-template-columns: ${PANEL_WIDTH}px auto;
     grid-template-rows: 56px auto;
     grid-template-areas:
       'masthead masthead'
@@ -55,7 +60,11 @@ export const MainContainer = ({ children }) => {
         className={isDarkMode ? 'isInverse' : undefined}
       >
         <GlobalStyles />
-        <StyledSkipLink positionLeft={220} positionTop={3} variant="solid" />
+        <StyledSkipLink
+          positionLeft={PANEL_WIDTH - 20}
+          positionTop={3}
+          variant="solid"
+        />
         <StyledContainer isInverse={isDarkMode}>
           <Masthead
             isMenuOpen={isMenuOpen}

@@ -11,6 +11,11 @@ const ContentSection = styled.section`
   grid-area: content;
 `;
 
+const StyledMain = styled.main`
+  grid-area: content;
+  min-width: 0;
+`;
+
 const StyledHeadingContainer = styled(Container)`
   background: ${props =>
     props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral100};
@@ -50,7 +55,7 @@ export const LayoutComponent = props => {
       >
         <html lang="en" />
       </Helmet>
-      <main>
+      <StyledMain>
         {/* components have headings, main page doesn't */}
         {heading ? (
           <>
@@ -70,7 +75,7 @@ export const LayoutComponent = props => {
             </ContentSection>
           </Container>
         )}
-      </main>
+      </StyledMain>
     </>
   );
 };
