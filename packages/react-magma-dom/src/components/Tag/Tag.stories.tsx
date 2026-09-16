@@ -17,21 +17,37 @@ const ExampleRow = styled.div`
   margin-bottom: ${magma.spaceScale.spacing05};
 `;
 
+const dataVizTagColors = [
+  { color: TagColor.blue, label: 'Blue' },
+  { color: TagColor.teal, label: 'Teal' },
+  { color: TagColor.pink, label: 'Pink' },
+  { color: TagColor.purple, label: 'Purple' },
+];
+
+const tagColorExamples = [
+  { color: TagColor.primary, label: 'Primary' },
+  ...dataVizTagColors,
+];
+
 const Template: StoryFn<TagProps> = args => {
   return (
     <Card isInverse={args.isInverse}>
       <CardBody>
         <ExampleRow>
           <Tag {...args}>Default</Tag>
-          <Tag {...args} color={TagColor.primary}>
-            Primary
-          </Tag>
           <Tag {...args} color={TagColor.highContrast}>
             High Contrast
           </Tag>
           <Tag {...args} color={TagColor.lowContrast}>
             Low Contrast
           </Tag>
+        </ExampleRow>
+        <ExampleRow>
+          {tagColorExamples.map(({ color, label }) => (
+            <Tag {...args} color={color} key={color}>
+              {label}
+            </Tag>
+          ))}
         </ExampleRow>
         <ExampleRow>
           <Tag {...args} icon={<AccountCircleIcon />}>
@@ -56,6 +72,18 @@ const Template: StoryFn<TagProps> = args => {
           </Tag>
         </ExampleRow>
         <ExampleRow>
+          {dataVizTagColors.map(({ color, label }) => (
+            <Tag
+              {...args}
+              color={color}
+              icon={<AccountCircleIcon />}
+              key={color}
+            >
+              {label} Icon
+            </Tag>
+          ))}
+        </ExampleRow>
+        <ExampleRow>
           <Tag {...args} size={TagSize.small}>
             Default Small
           </Tag>
@@ -68,6 +96,13 @@ const Template: StoryFn<TagProps> = args => {
           <Tag {...args} size={TagSize.small} color={TagColor.lowContrast}>
             Low Contrast Small
           </Tag>
+        </ExampleRow>
+        <ExampleRow>
+          {dataVizTagColors.map(({ color, label }) => (
+            <Tag {...args} color={color} key={color} size={TagSize.small}>
+              {label} Small
+            </Tag>
+          ))}
         </ExampleRow>
         <ExampleRow>
           <Tag {...args} icon={<AccountCircleIcon />} size={TagSize.small}>
@@ -121,6 +156,38 @@ const Template: StoryFn<TagProps> = args => {
           >
             Deletetable
           </Tag>
+        </ExampleRow>
+        <ExampleRow>
+          {dataVizTagColors.map(({ color, label }) => (
+            <Tag
+              color={color}
+              disabled={args.disabled}
+              isInverse={args.isInverse}
+              key={color}
+              onDelete={() => {
+                console.log('clicked');
+              }}
+              size={args.size}
+            >
+              {label} Deletable
+            </Tag>
+          ))}
+        </ExampleRow>
+        <ExampleRow>
+          {dataVizTagColors.map(({ color, label }) => (
+            <Tag
+              color={color}
+              disabled={args.disabled}
+              isInverse={args.isInverse}
+              key={color}
+              onDelete={() => {
+                console.log('clicked');
+              }}
+              size={TagSize.small}
+            >
+              {label} Small Deletable
+            </Tag>
+          ))}
         </ExampleRow>
       </CardBody>
     </Card>
