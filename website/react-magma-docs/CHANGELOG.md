@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.1.0-rc.1
+
+### Minor Changes
+
+- e64991a: feat(docs): update navigation structure and styling
+
 ## 6.0.5-rc.0
 
 ### Patch Changes
