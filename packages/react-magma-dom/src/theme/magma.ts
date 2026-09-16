@@ -67,6 +67,36 @@ export interface Colors {
   success600: string;
   success700: string;
 
+  dataVizBlue200: string;
+  dataVizBlue400: string;
+  dataVizBlue500: string;
+  dataVizBlue700: string;
+
+  dataVizPink200: string;
+  dataVizPink400: string;
+  dataVizPink500: string;
+  dataVizPink700: string;
+
+  dataVizGreen200: string;
+  dataVizGreen400: string;
+  dataVizGreen500: string;
+  dataVizGreen700: string;
+
+  dataVizOrange200: string;
+  dataVizOrange400: string;
+  dataVizOrange500: string;
+  dataVizOrange700: string;
+
+  dataVizPurple200: string;
+  dataVizPurple400: string;
+  dataVizPurple500: string;
+  dataVizPurple700: string;
+
+  dataVizTeal200: string;
+  dataVizTeal400: string;
+  dataVizTeal500: string;
+  dataVizTeal700: string;
+
   focus: string;
   focusInverse: string;
 
@@ -468,6 +498,38 @@ const successColors = {
   success700: '#0F5323',
 };
 
+const dataVizColors = {
+  dataVizBlue200: '#85D4FF',
+  dataVizBlue400: '#1FB0FF',
+  dataVizBlue500: '#009AF3',
+  dataVizBlue700: '#005F96',
+
+  dataVizPink200: '#FF99BD',
+  dataVizPink400: '#FF337A',
+  dataVizPink500: '#E0004D',
+  dataVizPink700: '#8F0033',
+
+  dataVizGreen200: '#C7FF99',
+  dataVizGreen400: '#65E000',
+  dataVizGreen500: '#1EA746',
+  dataVizGreen700: '#136A2D',
+
+  dataVizOrange200: '#FFB685',
+  dataVizOrange400: '#FF9147',
+  dataVizOrange500: '#FA6600',
+  dataVizOrange700: '#B84900',
+
+  dataVizPurple200: '#E9AFE7',
+  dataVizPurple400: '#D45ED0',
+  dataVizPurple500: '#B12FAD',
+  dataVizPurple700: '#711E6E',
+
+  dataVizTeal200: '#99FFF5',
+  dataVizTeal400: '#00E0CA',
+  dataVizTeal500: '#00A393',
+  dataVizTeal700: '#005249',
+};
+
 const colors = {
   primary: primaryColors.primary500,
   secondary: secondaryColors.secondary500,
@@ -485,6 +547,7 @@ const colors = {
   ...dangerColors,
   ...warningColors,
   ...successColors,
+  ...dataVizColors,
 
   focus: infoColors.info500,
   focusInverse: infoColors.info200,
@@ -795,33 +858,33 @@ export const magma = {
   ],
 
   chartColors: [
-    '#009AF3',
-    '#E0004D',
-    '#1EA746',
-    '#FA6600',
-    '#B12FAD',
-    '#00A393',
-    '#005F96',
-    '#8F0033',
-    '#136A2D',
-    '#B84900',
-    '#711E6E',
-    '#005249',
+    colors.dataVizBlue500,
+    colors.dataVizPink500,
+    colors.dataVizGreen500,
+    colors.dataVizOrange500,
+    colors.dataVizPurple500,
+    colors.dataVizTeal500,
+    colors.dataVizBlue700,
+    colors.dataVizPink700,
+    colors.dataVizGreen700,
+    colors.dataVizOrange700,
+    colors.dataVizPurple700,
+    colors.dataVizTeal700,
   ],
 
   chartColorsInverse: [
-    '#1FB0FF',
-    '#FF337A',
-    '#65E000',
-    '#FF9147',
-    '#D45ED0',
-    '#00E0CA',
-    '#85D4FF',
-    '#FF99BD',
-    '#C7FF99',
-    '#FFB685',
-    '#E9AFE7',
-    '#99FFF5',
+    colors.dataVizBlue400,
+    colors.dataVizPink400,
+    colors.dataVizGreen400,
+    colors.dataVizOrange400,
+    colors.dataVizPurple400,
+    colors.dataVizTeal400,
+    colors.dataVizBlue200,
+    colors.dataVizPink200,
+    colors.dataVizGreen200,
+    colors.dataVizOrange200,
+    colors.dataVizPurple200,
+    colors.dataVizTeal200,
   ],
 
   tabs: {
