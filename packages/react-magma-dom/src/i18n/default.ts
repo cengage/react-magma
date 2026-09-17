@@ -167,6 +167,8 @@ export const defaultI18n: I18nInterface = {
   },
   dateTimePickerLabel: 'Pick a date and time',
   dropdown: {
+    expandedAnnounce: 'Dropdown menu expanded',
+    collapsedAnnounce: 'Dropdown menu collapsed',
     toggleMenuAriaLabel: 'Toggle menu',
   },
   dropzone: {
