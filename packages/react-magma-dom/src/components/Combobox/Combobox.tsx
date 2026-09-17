@@ -30,6 +30,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     disableCreateItem,
     errorMessage,
     hasError,
+    hasSelectedItemContent,
     helperMessage,
     initialSelectedItem,
     inputStyle,
@@ -364,17 +365,21 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         })}
         getToggleButtonProps={getToggleButtonProps}
         hasError={hasError}
+        hasSelectedItemContent={hasSelectedItemContent}
         innerRef={ref}
         inputStyle={inputStyle}
         isInverse={isInverse}
         isLoading={isLoading}
+        isOpen={isOpen}
         isTypeahead={isTypeahead}
+        itemToString={itemToString}
         onInputBlur={onInputBlur}
         onInputFocus={onInputFocus}
         onInputKeyDown={handleOnKeyDown}
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
         placeholder={placeholder}
+        selectedItem={selectedItem}
         setReference={refs.setReference}
         toggleButtonRef={toggleButtonRef}
       >
