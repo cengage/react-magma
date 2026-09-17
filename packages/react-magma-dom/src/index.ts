@@ -164,6 +164,14 @@ export { Modal, ModalSize } from './components/Modal';
 export type { ModalProps } from './components/Modal';
 export { Search } from './components/Search';
 export type { SearchProps } from './components/Search';
+export { LeftPanelNavigation } from './components/LeftPanelNavigation';
+export type {
+  LeftPanelNavigationBadge,
+  LeftPanelNavigationGroup,
+  LeftPanelNavigationIconColor,
+  LeftPanelNavigationItem,
+  LeftPanelNavigationProps,
+} from './components/LeftPanelNavigation';
 
 export {
   Select,
