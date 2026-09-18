@@ -127,8 +127,8 @@ export interface DateTimePickerProps
 const DoneButtonWrapper = styled.div<{ isInverse?: boolean }>`
   background-color: ${props =>
     props.isInverse
-      ? props.theme.colors.primary600
-      : props.theme.colors.neutral200};
+      ? props.theme.colors.neutral1100
+      : props.theme.colors.neutral100};
   padding: ${props => props.theme.spaceScale.spacing05};
   margin: ${props =>
     `0 -${props.theme.spaceScale.spacing03} -${props.theme.spaceScale.spacing03}`};
@@ -314,6 +314,7 @@ export const DateTimePicker = React.forwardRef<
       dateTimePickerContent={
         <>
           <TimePicker
+            testId="date-time-picker-time-section"
             value={!additionalInputContent ? undefined : additionalInputContent}
             onChange={onTimeHandleChange}
             labelPosition={LabelPosition.left}
@@ -322,15 +323,19 @@ export const DateTimePicker = React.forwardRef<
             containerStyle={{
               padding: theme.spaceScale.spacing05,
               margin: `0 -${theme.spaceScale.spacing03}`,
-              borderBlock: `1px solid ${props.isInverse ? theme.colors.primary400 : theme.colors.neutral300}`,
+              borderBlock: `1px solid ${props.isInverse ? theme.colors.neutral800 : theme.colors.neutral200}`,
             }}
             timezone={timezoneAbbr}
           />
-          <DoneButtonWrapper theme={theme} isInverse={props.isInverse}>
+          <DoneButtonWrapper
+            data-testid="date-time-picker-done-footer"
+            theme={theme}
+            isInverse={props.isInverse}
+          >
             <Button
               onClick={handleDoneClick}
               size={ButtonSize.small}
-              color={ButtonColor.subtle}
+              color={ButtonColor.secondary}
             >
               {buttonLabelText ?? 'Done'}
             </Button>

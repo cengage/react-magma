@@ -9,6 +9,268 @@ import { magma } from '../../theme/magma';
 import userEvent from '@testing-library/user-event';
 
 describe('Calendar Day', () => {
+  it('uses the updated regular day colors', () => {
+    const focusedDate = new Date(2019, 0, 17);
+    const { getByTestId } = render(
+      <CalendarContext.Provider
+        value={{
+          dateFocused: false,
+          focusedDate,
+          setDateFocused: jest.fn(),
+          setFocusedDate: jest.fn(),
+          onDateChange: jest.fn(),
+          chosenDate: new Date(2019, 0, 18),
+        }}
+      >
+        <table>
+          <tbody>
+            <tr>
+              <CalendarDay day={focusedDate} />
+            </tr>
+          </tbody>
+        </table>
+      </CalendarContext.Provider>
+    );
+
+    expect(getByTestId('calendar-day')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral0
+    );
+    expect(getByTestId('calendar-day')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
+  });
+
+  it('uses the updated selected and selected-hover colors', () => {
+    const selectedDate = new Date(2019, 0, 17);
+    const { getByTestId } = render(
+      <CalendarContext.Provider
+        value={{
+          dateFocused: false,
+          focusedDate: selectedDate,
+          setDateFocused: jest.fn(),
+          setFocusedDate: jest.fn(),
+          onDateChange: jest.fn(),
+          chosenDate: selectedDate,
+        }}
+      >
+        <table>
+          <tbody>
+            <tr>
+              <CalendarDay day={selectedDate} />
+            </tr>
+          </tbody>
+        </table>
+      </CalendarContext.Provider>
+    );
+
+    expect(getByTestId('calendar-day')).toHaveStyleRule(
+      'background',
+      magma.colors.cyan700
+    );
+    expect(getByTestId('calendar-day')).toHaveStyleRule(
+      'background',
+      magma.colors.cyan700,
+      { target: ':hover' }
+    );
+  });
+
+  it('uses the updated today color when today is not selected', () => {
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+    const { getByTestId } = render(
+      <CalendarContext.Provider
+        value={{
+          dateFocused: false,
+          focusedDate: today,
+          setDateFocused: jest.fn(),
+          setFocusedDate: jest.fn(),
+          onDateChange: jest.fn(),
+          chosenDate: yesterday,
+        }}
+      >
+        <table>
+          <tbody>
+            <tr>
+              <CalendarDay day={today} />
+            </tr>
+          </tbody>
+        </table>
+      </CalendarContext.Provider>
+    );
+
+    expect(getByTestId('calendar-day')).toHaveStyleRule(
+      'color',
+      magma.colors.cyan700
+    );
+    expect(getByTestId('todayIndicator')).toHaveStyleRule(
+      'background',
+      magma.colors.cyan700
+    );
+  });
+
+  it('uses the updated regular hover background', () => {
+    const focusedDate = new Date(2019, 0, 17);
+    const { getByTestId } = render(
+      <CalendarContext.Provider
+        value={{
+          dateFocused: false,
+          focusedDate,
+          setDateFocused: jest.fn(),
+          setFocusedDate: jest.fn(),
+          onDateChange: jest.fn(),
+          chosenDate: new Date(2019, 0, 18),
+        }}
+      >
+        <table>
+          <tbody>
+            <tr>
+              <CalendarDay day={focusedDate} />
+            </tr>
+          </tbody>
+        </table>
+      </CalendarContext.Provider>
+    );
+
+    expect(getByTestId('calendar-day')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral150,
+      { target: ':hover' }
+    );
+  });
+
+  it('uses the updated disabled and outside-month colors', () => {
+    const focusedDate = new Date(2019, 0, 17);
+    const { getAllByTestId } = render(
+      <>
+        <CalendarContext.Provider
+          value={{
+            dateFocused: false,
+            focusedDate,
+            maxDate: new Date(2019, 0, 16),
+            setDateFocused: jest.fn(),
+            setFocusedDate: jest.fn(),
+            onDateChange: jest.fn(),
+            chosenDate: new Date(2019, 0, 15),
+          }}
+        >
+          <table>
+            <tbody>
+              <tr>
+                <CalendarDay day={focusedDate} />
+              </tr>
+            </tbody>
+          </table>
+        </CalendarContext.Provider>
+        <CalendarContext.Provider
+          value={{
+            dateFocused: false,
+            focusedDate,
+            setDateFocused: jest.fn(),
+            setFocusedDate: jest.fn(),
+            onDateChange: jest.fn(),
+            chosenDate: new Date(2019, 0, 15),
+          }}
+        >
+          <table>
+            <tbody>
+              <tr>
+                <CalendarDay day={new Date(2019, 1, 1)} />
+              </tr>
+            </tbody>
+          </table>
+        </CalendarContext.Provider>
+      </>
+    );
+
+    const [disabledDay, outsideMonthDay] = getAllByTestId('calendar-day');
+    expect(disabledDay).toHaveStyleRule('color', magma.colors.neutral500);
+    expect(outsideMonthDay).toHaveStyleRule('color', magma.colors.neutral700);
+  });
+
+  it('uses the updated inverse day colors', () => {
+    const focusedDate = new Date(2019, 0, 17);
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+    const contexts = [
+      {
+        focusedDate,
+        chosenDate: new Date(2019, 0, 18),
+        day: focusedDate,
+      },
+      { focusedDate, chosenDate: focusedDate, day: focusedDate },
+      {
+        focusedDate,
+        chosenDate: new Date(2019, 0, 15),
+        maxDate: new Date(2019, 0, 16),
+        day: focusedDate,
+      },
+      {
+        focusedDate,
+        chosenDate: new Date(2019, 0, 15),
+        day: new Date(2019, 1, 1),
+      },
+      { focusedDate: today, chosenDate: yesterday, day: today },
+    ];
+    const { getAllByTestId, getByTestId } = render(
+      <>
+        {contexts.map((context, index) => (
+          <CalendarContext.Provider
+            key={index}
+            value={{
+              dateFocused: false,
+              setDateFocused: jest.fn(),
+              setFocusedDate: jest.fn(),
+              onDateChange: jest.fn(),
+              isInverse: true,
+              ...context,
+            }}
+          >
+            <table>
+              <tbody>
+                <tr>
+                  <CalendarDay day={context.day} />
+                </tr>
+              </tbody>
+            </table>
+          </CalendarContext.Provider>
+        ))}
+      </>
+    );
+
+    const [defaultDay, selectedDay, disabledDay, outsideMonthDay, todayDay] =
+      getAllByTestId('calendar-day');
+    expect(defaultDay).toHaveStyleRule('background', magma.colors.neutral1100);
+    expect(defaultDay).toHaveStyleRule('background', magma.colors.neutral900, {
+      target: ':hover',
+    });
+    expect(selectedDay).toHaveStyleRule(
+      'background',
+      magma.colors.brand.sunriseOrange
+    );
+    expect(selectedDay).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(selectedDay).toHaveStyleRule(
+      'background',
+      magma.colors.brand.sunriseOrange,
+      { target: ':hover' }
+    );
+    expect(selectedDay).toHaveStyleRule(
+      'border',
+      `1px solid ${magma.colors.neutral1100}`,
+      { target: ':focus' }
+    );
+    expect(disabledDay).toHaveStyleRule('color', magma.colors.neutral700);
+    expect(outsideMonthDay).toHaveStyleRule('color', magma.colors.neutral500);
+    expect(todayDay).toHaveStyleRule('color', magma.colors.brand.sunriseOrange);
+    expect(getByTestId('todayIndicator')).toHaveStyleRule(
+      'background',
+      magma.colors.brand.sunriseOrange
+    );
+  });
+
   it('renders a day', () => {
     const defaultDate = new Date(2019, 0, 17);
     const { getByText } = render(
@@ -115,12 +377,9 @@ describe('Calendar Day', () => {
     const todayIndicator = getByTestId('todayIndicator');
 
     expect(todayIndicator).toBeInTheDocument();
-    expect(todayIndicator).toHaveStyleRule(
-      'background',
-      magma.colors.neutral100
-    );
+    expect(todayIndicator).toHaveStyleRule('background', magma.colors.neutral0);
     expect(calendarDay).toBeInTheDocument();
-    expect(calendarDay).toHaveStyleRule('color', magma.colors.neutral100);
+    expect(calendarDay).toHaveStyleRule('color', magma.colors.neutral0);
     expect(calendarDay).toHaveStyleRule('font-weight', '700');
     expect(calendarDay).toHaveAttribute('aria-current', 'date');
   });
@@ -154,10 +413,10 @@ describe('Calendar Day', () => {
     expect(todayIndicator).toBeInTheDocument();
     expect(todayIndicator).toHaveStyleRule(
       'background',
-      magma.colors.primary600
+      magma.colors.brand.navy
     );
     expect(calendarDay).toBeInTheDocument();
-    expect(calendarDay).toHaveStyleRule('color', magma.colors.primary600);
+    expect(calendarDay).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it("does not show an indicator if it is not today's date", () => {
@@ -187,7 +446,7 @@ describe('Calendar Day', () => {
 
     expect(todayIndicator).not.toBeInTheDocument();
     expect(calendarDay).toBeInTheDocument();
-    expect(calendarDay).toHaveStyleRule('color', magma.colors.neutral100);
+    expect(calendarDay).toHaveStyleRule('color', magma.colors.neutral0);
     expect(calendarDay).toHaveStyleRule('font-weight', '500');
     expect(calendarDay).not.toHaveAttribute('aria-current', 'date');
   });
@@ -217,7 +476,7 @@ describe('Calendar Day', () => {
 
     const calendarDay = queryByTestId('calendar-day');
     expect(calendarDay).toBeInTheDocument();
-    expect(calendarDay).toHaveStyleRule('color', magma.colors.primary600);
+    expect(calendarDay).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it('does not click on the day if it is disabled', async () => {

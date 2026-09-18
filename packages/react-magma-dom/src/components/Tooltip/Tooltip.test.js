@@ -24,7 +24,7 @@ describe('Tooltip', () => {
   });
 
   it('should render the tooltip component, positioned top by default', async () => {
-    const { container, getByTestId } = render(
+    const { container, queryByTestId } = render(
       <Tooltip id="tooltipID" content={CONTENT_TEXT}>
         {TRIGGER_ELEMENT}
       </Tooltip>
@@ -40,10 +40,8 @@ describe('Tooltip', () => {
     });
 
     const tooltip = container.querySelector('div[role="tooltip"]');
-    const arrow = getByTestId('tooltip-arrow');
-
     expect(tooltip).toBeInTheDocument();
-    expect(arrow).toBeInTheDocument();
+    expect(queryByTestId('tooltip-arrow')).not.toBeInTheDocument();
 
     expect(tooltip).toHaveAttribute('data-tooltip-placement', 'top');
 
@@ -221,8 +219,8 @@ describe('Tooltip', () => {
 
     const tooltip = container.querySelector('div[role="tooltip"]');
 
-    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral100);
-    expect(tooltip).toHaveStyleRule('color', magma.colors.neutral700);
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral0);
+    expect(tooltip).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it('should render the tooltip component with the correct styles for the inverse prop, positioned bottom', async () => {
@@ -239,8 +237,8 @@ describe('Tooltip', () => {
 
     const tooltip = container.querySelector('div[role="tooltip"]');
 
-    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral100);
-    expect(tooltip).toHaveStyleRule('color', magma.colors.neutral700);
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral0);
+    expect(tooltip).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it('should render the tooltip component with the correct styles for the inverse prop, positioned left', async () => {
@@ -257,8 +255,8 @@ describe('Tooltip', () => {
 
     const tooltip = container.querySelector('div[role="tooltip"]');
 
-    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral100);
-    expect(tooltip).toHaveStyleRule('color', magma.colors.neutral700);
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral0);
+    expect(tooltip).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it('should render the tooltip component with the correct styles for the inverse prop, positioned right', async () => {
@@ -275,8 +273,8 @@ describe('Tooltip', () => {
 
     const tooltip = container.querySelector('div[role="tooltip"]');
 
-    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral100);
-    expect(tooltip).toHaveStyleRule('color', magma.colors.neutral700);
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral0);
+    expect(tooltip).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it('should throw an error if the tooltip children is more than one element', () => {

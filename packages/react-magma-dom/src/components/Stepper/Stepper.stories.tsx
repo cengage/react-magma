@@ -2,15 +2,16 @@ import React from 'react';
 
 import { StoryFn, Meta } from '@storybook/react-webpack5';
 
+import { magma } from '../../theme/magma';
 import { Button } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
 import { Container } from '../Container';
+import { Dropdown, DropdownButton, DropdownContent } from '../Dropdown';
 import { Flex, FlexBehavior, FlexJustify } from '../Flex';
 import { Input } from '../Input';
 import { InputType } from '../InputBase';
 import { LabelPosition } from '../Label';
 import { ResponsiveStepperContainer } from './ResponsiveStepperContainer';
-import { Dropdown, DropdownButton, DropdownContent } from '../Dropdown';
 
 import {
   Stepper,
@@ -25,7 +26,15 @@ export default {
   component: Stepper,
   decorators: [
     (Story, context) => (
-      <Container isInverse={context.args.isInverse} style={{ padding: '20px' }}>
+      <Container
+        isInverse={context.args.isInverse}
+        style={{
+          background: context.args.isInverse
+            ? magma.colors.neutral1100
+            : undefined,
+          padding: '20px',
+        }}
+      >
         <Story />
       </Container>
     ),
@@ -132,7 +141,7 @@ const Template: StoryFn<StepperProps> = args => {
     >
       <Container
         style={{
-          background: args.isInverse ? '#1A1E51' : '#F5F5F5',
+          background: args.isInverse ? magma.colors.neutral1100 : '#F5F5F5',
           borderRadius: '6px',
           padding: '20px',
           width: '100%',
@@ -269,7 +278,7 @@ const RealisticLabels: StoryFn<StepperProps> = args => {
     >
       <Container
         style={{
-          background: args.isInverse ? '#1A1E51' : '#F5F5F5',
+          background: args.isInverse ? magma.colors.neutral1100 : '#F5F5F5',
           borderRadius: '6px',
           padding: '20px',
           width: '100%',
@@ -327,7 +336,7 @@ const ErrorTemplate: StoryFn<StepperProps> = args => {
     >
       <Container
         style={{
-          background: args.isInverse ? '#1A1E51' : '#F5F5F5',
+          background: args.isInverse ? magma.colors.neutral1100 : '#F5F5F5',
           borderRadius: '6px',
           padding: '20px',
           width: '100%',

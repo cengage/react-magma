@@ -20,8 +20,8 @@ export const StyledTabHeading = styled.p`
   margin: 0;
   margin-top: 44px;
   color: ${props =>
-    props.isInverse ? magma.colors.neutral100 : magma.colors.neutral500};
-  font-weight: 500;
+    props.isInverse ? magma.colors.neutral100 : magma.colors.neutral700};
+  font-weight: 600;
   padding: 12px 16px;
 `;
 
@@ -57,6 +57,11 @@ export const StyledNavTab = styled(NavTab)`
   &&:not([aria-current='page']) {
     color: ${props =>
       props.isInverse ? magma.colors.neutral100 : magma.colors.neutral700};
+  }
+
+  &&[aria-current='page'] {
+    color: ${magma.colors.brand.navy};
+    font-weight: 600;
   }
 `;
 

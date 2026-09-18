@@ -86,7 +86,7 @@ Inverse is an optional boolean prop, that may be passed in when inputs are to be
 ```tsx
 import React from 'react';
 
-import { Search, Card, CardBody } from 'react-magma-dom';
+import { Search, Card, CardBody, magma } from 'react-magma-dom';
 
 export function Example() {
   function handleSearch(term) {
@@ -94,7 +94,7 @@ export function Example() {
   }
 
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <Search
           isInverse

@@ -20,10 +20,10 @@ import { NavButton, PaginationProps } from './';
 function buildLabelColor(props) {
   if (props.isInverse) {
     if (props.disabled) {
-      return transparentize(0.8, props.theme.colors.neutral100);
+      return transparentize(0.8, props.theme.colors.neutral0);
     }
 
-    return props.theme.colors.neutral100;
+    return props.theme.colors.neutral0;
   }
   if (props.disabled) {
     return props.theme.colors.neutral500;

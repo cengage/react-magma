@@ -1,12 +1,21 @@
 import React from 'react';
 
-import { cleanup, render, fireEvent, waitFor } from '@testing-library/react';
+import {
+  cleanup,
+  render,
+  fireEvent,
+  waitFor,
+  within,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { transparentize } from 'polished';
 import { I18nContext, defaultI18n, magma } from 'react-magma-dom';
 
 import { axe } from '../../../axe-helper.js';
 
 import { Dropzone } from '.';
+import { FileIcon } from './FileIcon';
+import { Preview } from './Preview';
 
 describe('File Uploader', () => {
   let files;
@@ -113,6 +122,212 @@ describe('File Uploader', () => {
     expect(input).toHaveAttribute('multiple');
   });
 
+  it('uses the regular rebrand colors', () => {
+    const helperMessage = 'Upload a supported file.';
+    const labelText = 'Upload files';
+    const { container, getByTestId, getByText } = render(
+      <Dropzone
+        helperMessage={helperMessage}
+        labelText={labelText}
+        testId="testId"
+      />
+    );
+
+    expect(getByTestId('testId')).toHaveStyle({
+      backgroundColor: magma.colors.neutral100,
+      border: `2px dashed ${magma.colors.neutral300}`,
+      borderRadius: magma.borderRadiusSmall,
+    });
+    expect(
+      within(container).getByText(defaultI18n.dropzone.dragMessage)
+    ).toHaveStyle({
+      color: magma.colors.brand.navy,
+    });
+    expect(within(container).getByText(helperMessage)).toHaveStyle({
+      color: magma.colors.neutral700,
+    });
+    expect(within(container).getByText(labelText)).toHaveStyle({
+      color: magma.colors.brand.navy,
+    });
+    expect(container.querySelector('svg[aria-hidden="true"]')).toHaveAttribute(
+      'fill',
+      magma.colors.neutral700
+    );
+  });
+
+  it('uses the inverse rebrand colors', () => {
+    const helperMessage = 'Upload a supported file.';
+    const { getByTestId, getByText } = render(
+      <Dropzone helperMessage={helperMessage} isInverse testId="testId" />
+    );
+
+    expect(getByTestId('testId')).toHaveStyle({
+      backgroundColor: transparentize(0.6, magma.colors.neutral1200),
+      border: `2px dashed ${magma.colors.neutral800}`,
+    });
+    expect(getByText(helperMessage)).toHaveStyle({
+      color: magma.colors.neutral500,
+    });
+  });
+
+  it('uses the rebrand colors for default file icons', () => {
+    const file = createFile('file.bin', 1111, 'application/octet-stream');
+    const { container, rerender } = render(<FileIcon file={file} />);
+
+    expect(container.querySelector('svg')).toHaveStyle({
+      color: magma.colors.neutral700,
+    });
+
+    rerender(<FileIcon file={file} isInverse />);
+
+    expect(container.querySelector('svg')).toHaveStyle({
+      color: magma.colors.neutral300,
+    });
+  });
+
+  it.each([
+    ['word', 'docx', 'application/msword', 'blue500', 'blue500'],
+    ['excel', 'xlsx', 'application/vnd.ms-excel', 'green500', 'green500'],
+    [
+      'powerpoint',
+      'pptx',
+      'application/vnd.ms-powerpoint',
+      'tangerine600',
+      'tangerine500',
+    ],
+    ['pdf', 'pdf', 'application/pdf', 'red600', 'red500'],
+    ['image', 'png', 'image/png', 'neutral700', 'neutral300'],
+    ['video', 'mp4', 'video/mp4', 'neutral700', 'neutral300'],
+    ['audio', 'mp3', 'audio/mpeg', 'neutral700', 'neutral300'],
+    ['archive', 'zip', 'application/zip', 'neutral700', 'neutral300'],
+  ])(
+    'uses the rebrand colors for %s file icons',
+    (_name, extension, type, regularColor, inverseColor) => {
+      const file = createFile(`file.${extension}`, 1111, type);
+      Object.defineProperty(file, 'path', {
+        value: `file.${extension}`,
+      });
+      const { container, rerender } = render(<FileIcon file={file} />);
+
+      expect(container.querySelector('svg')).toHaveStyle({
+        color: magma.colors[regularColor],
+      });
+
+      rerender(<FileIcon file={file} isInverse />);
+
+      expect(container.querySelector('svg')).toHaveStyle({
+        color: magma.colors[inverseColor],
+      });
+    }
+  );
+
+  it('uses brand navy for regular preview text', () => {
+    const { getByText } = render(
+      <Preview
+        file={files[0]}
+        isInverse={false}
+        testId="preview"
+        thumbnails={false}
+      />
+    );
+
+    const previewCard = getByText(files[0].name).parentElement.parentElement;
+
+    expect(previewCard).toHaveStyle({
+      borderColor: magma.colors.neutral200,
+      borderRadius: magma.borderRadiusSmall,
+      color: magma.colors.brand.navy,
+    });
+  });
+
+  it('uses the inverse rebrand colors for the default preview', () => {
+    const { getByText } = render(
+      <Preview file={files[0]} isInverse thumbnails={false} />
+    );
+
+    const previewCard = getByText(files[0].name).parentElement.parentElement;
+
+    expect(previewCard).toHaveStyle({
+      borderColor: magma.colors.neutral800,
+    });
+  });
+
+  it('uses the inverse rebrand colors for pending and successful previews', async () => {
+    const pendingFile = files[0];
+    pendingFile.processor = { status: 'pending', percent: '25%' };
+
+    const { container, getByLabelText, rerender } = render(
+      <Preview file={pendingFile} isInverse thumbnails={false} />
+    );
+
+    await waitFor(() => {
+      expect(getByLabelText('Loading')).toHaveAttribute(
+        'color',
+        magma.colors.brand.cyan
+      );
+    });
+
+    const successfulFile = createFile(
+      'successful-file.pdf',
+      1111,
+      'application/pdf'
+    );
+    successfulFile.processor = { status: 'success', percent: '100%' };
+
+    rerender(<Preview file={successfulFile} isInverse thumbnails={false} />);
+
+    await waitFor(() => {
+      expect(
+        container.querySelector(`svg[fill="${magma.colors.green500}"]`)
+      ).toBeInTheDocument();
+    });
+  });
+
+  it('uses the inverse rebrand colors for preview errors', () => {
+    const errorFile = files[0];
+    errorFile.errors = [
+      {
+        code: 'file-invalid-type',
+        message: 'Invalid file type',
+      },
+    ];
+
+    const { container, getByText } = render(
+      <Preview
+        accept="application/pdf"
+        file={errorFile}
+        isInverse
+        thumbnails={false}
+      />
+    );
+
+    const previewCard = getByText(errorFile.name).parentElement.parentElement;
+
+    expect(previewCard).toHaveStyle({
+      borderColor: magma.colors.red500,
+    });
+    expect(
+      container.querySelector(`svg[fill="${magma.colors.red500}"]`)
+    ).toBeInTheDocument();
+
+    const errorHeading = getByText('Invalid File Type');
+    expect(errorHeading).toHaveStyle({ color: magma.colors.red500 });
+    expect(errorHeading.parentElement).toHaveStyle({
+      borderTopColor: magma.colors.neutral500,
+    });
+  });
+
+  it('uses a subtle link IconButton for preview actions', () => {
+    const { getByLabelText } = render(
+      <Preview file={files[0]} isInverse={false} thumbnails={false} />
+    );
+
+    expect(getByLabelText(`Remove file ${files[0].name}`)).toHaveAttribute(
+      'color',
+      'subtle'
+    );
+  });
+
   it('allows adding files via drop', () => {
     const { container } = render(<Dropzone />);
 
@@ -136,7 +351,7 @@ describe('File Uploader', () => {
     const dropzone = getByTestId(testId);
 
     expect(dropzone).toHaveStyle(
-      `border: 1px dashed ${magma.colors.neutral400}`
+      `border: 2px dashed ${magma.colors.neutral300}`
     );
 
     fireDragEnter(dropzone, data);
@@ -145,7 +360,7 @@ describe('File Uploader', () => {
 
     await waitFor(() => {
       expect(dropzone).toHaveStyle(
-        `border: 1px dashed ${magma.colors.success}`
+        `border: 2px dashed ${magma.colors.green500}`
       );
     });
   });
@@ -160,7 +375,7 @@ describe('File Uploader', () => {
 
     const dropzone = getByTestId(testId);
     expect(dropzone).toHaveStyle(
-      `border: 1px dashed ${magma.colors.neutral400}`
+      `border: 2px dashed ${magma.colors.neutral300}`
     );
 
     fireDragEnter(dropzone, data);
@@ -168,7 +383,35 @@ describe('File Uploader', () => {
     rerender(ui);
 
     await waitFor(() => {
-      expect(dropzone).toHaveStyle(`border: 1px dashed ${magma.colors.danger}`);
+      expect(dropzone).toHaveStyle(`border: 2px dashed ${magma.colors.danger}`);
+    });
+  });
+
+  it('uses red400 for inverse rejection borders', async () => {
+    const data = createDtWithFiles(files);
+    const testId = 'testId';
+    const ui = <Dropzone accept="image/*" isInverse testId={testId} />;
+    const { getByTestId, rerender } = render(ui);
+    const dropzone = getByTestId(testId);
+
+    fireDragEnter(dropzone, data);
+    rerender(ui);
+
+    await waitFor(() => {
+      expect(dropzone).toHaveStyle(`border: 2px dashed ${magma.colors.red400}`);
+    });
+  });
+
+  it('uses red500 for inverse error borders', async () => {
+    const { getByTestId } = render(
+      <Dropzone isInverse minFiles={1} testId="testId" />
+    );
+
+    await waitFor(() => {
+      expect(getByTestId('testId')).toHaveStyle({
+        borderColor: magma.colors.red500,
+        borderWidth: '1px',
+      });
     });
   });
 

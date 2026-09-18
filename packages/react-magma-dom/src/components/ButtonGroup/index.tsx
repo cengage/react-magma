@@ -147,22 +147,22 @@ function buildButtonAlignment(props: StyledButtonGroupProps): string {
 function buildNoSpaceBorderColor(props: StyledButtonGroupProps): string {
   if (props.isInverse) {
     if (props.color === ButtonColor.secondary) {
-      return props.theme.colors.tertiary;
+      return props.theme.colors.neutral800;
     }
     if (props.color === ButtonColor.subtle) {
       return transparentize(0.8, props.theme.colors.neutral300);
     }
 
-    return props.theme.colors.neutral100;
+    return props.theme.colors.neutral0;
   }
   if (props.color === ButtonColor.secondary) {
-    return props.theme.colors.primary300;
+    return props.theme.colors.neutral300;
   }
   if (props.color === ButtonColor.subtle) {
     return props.theme.colors.neutral300;
   }
 
-  return props.theme.colors.neutral100;
+  return props.theme.colors.neutral0;
 }
 
 function buildFlex(props: StyledButtonGroupProps): string {
@@ -180,7 +180,7 @@ function buildBorderRight(props: StyledButtonGroupProps): string {
   return props.color === ButtonColor.secondary ||
     props.color === ButtonColor.subtle
     ? '0'
-    : `1px solid ${props.theme.colors.neutral100}`;
+    : `1px solid ${props.theme.colors.neutral0}`;
 }
 
 function shouldApplyNoSpaceStyles(props: StyledButtonGroupProps): boolean {

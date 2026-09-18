@@ -159,11 +159,17 @@ The `isInverse` prop renders white text for the quotation and nearly white text 
 ```tsx
 import React from 'react';
 
-import { BlockQuote, BlockQuoteItem, Card, CardBody } from 'react-magma-dom';
+import {
+  BlockQuote,
+  BlockQuoteItem,
+  Card,
+  CardBody,
+  magma,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <BlockQuote isInverse>
           <BlockQuoteItem>I like biscuits!</BlockQuoteItem>

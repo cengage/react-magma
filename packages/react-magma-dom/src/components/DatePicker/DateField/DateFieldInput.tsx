@@ -28,6 +28,7 @@ import {
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
+  getInputFormFieldColors,
 } from '../../FormFieldContainer';
 import { IconButton } from '../../IconButton';
 import { IconButtonContainer } from '../../InputBase';
@@ -362,6 +363,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
 
   return (
     <FormFieldContainer
+      {...getInputFormFieldColors(theme, isInverse)}
       containerStyle={containerStyle}
       errorMessage={isInvalidYear ? invalidYearErrorMessage : errorMessage}
       fieldId={id}

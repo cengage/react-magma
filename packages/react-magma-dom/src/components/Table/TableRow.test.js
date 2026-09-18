@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
-import { transparentize } from 'polished';
 
 import { magma } from '../../theme/magma';
 
@@ -46,7 +45,7 @@ describe('Table Row', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule(
       'border-bottom',
-      `1px solid ${magma.colors.neutral300}`
+      `1px solid ${magma.colors.neutral200}`
     );
   });
 
@@ -64,7 +63,7 @@ describe('Table Row', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule(
       'border-bottom',
-      `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+      `1px solid ${magma.colors.neutral800}`
     );
   });
 
@@ -117,7 +116,7 @@ describe('Table Row', () => {
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral100
+        magma.colors.neutral0
       );
     });
 
@@ -139,7 +138,7 @@ describe('Table Row', () => {
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral100
+        magma.colors.neutral0
       );
     });
 
@@ -157,11 +156,11 @@ describe('Table Row', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.warning
+        magma.colors.yellow400
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral100
+        magma.colors.brand.navy
       );
     });
 
@@ -183,9 +182,35 @@ describe('Table Row', () => {
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral100
+        magma.colors.neutral0
       );
     });
+
+    it.each([
+      [TableRowColor.success, magma.colors.green500, magma.colors.green1000],
+      [TableRowColor.warning, magma.colors.yellow400, magma.colors.brand.navy],
+      [TableRowColor.danger, magma.colors.red500, magma.colors.red1000],
+      [TableRowColor.info, magma.colors.blue500, magma.colors.blue1000],
+    ])(
+      'should render an inverse %s row with the rebrand colors',
+      (color, background, text) => {
+        const { getByTestId } = render(
+          <Table isInverse>
+            <TableBody>
+              <TableRow color={color} testId="inverse-row">
+                <TableCell />
+              </TableRow>
+            </TableBody>
+          </Table>
+        );
+
+        expect(getByTestId('inverse-row')).toHaveStyleRule(
+          'background',
+          background
+        );
+        expect(getByTestId('inverse-row')).toHaveStyleRule('color', text);
+      }
+    );
   });
 
   describe('sortable', () => {

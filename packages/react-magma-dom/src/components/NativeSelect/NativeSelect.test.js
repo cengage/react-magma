@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
-import { transparentize } from 'polished';
 import { HelpIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
@@ -22,6 +21,26 @@ describe('NativeSelect', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
+  it('should render the dropdown indicator in brand navy', () => {
+    const { getByTestId } = render(<NativeSelect testId={testId} />);
+
+    expect(getByTestId(testId).parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy,
+      { target: 'svg' }
+    );
+  });
+
+  it('should render the inverse dropdown indicator in neutral0', () => {
+    const { getByTestId } = render(<NativeSelect isInverse testId={testId} />);
+
+    expect(getByTestId(testId).parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.neutral0,
+      { target: 'svg' }
+    );
+  });
+
   it('Does not violate accessibility standards', () => {
     const { container } = render(
       <NativeSelect labelText="Test">
@@ -37,10 +56,7 @@ describe('NativeSelect', () => {
   it('should render a disabled select', () => {
     const { getByTestId } = render(<NativeSelect disabled testId={testId} />);
     const nativeselect = getByTestId(testId);
-    expect(nativeselect).toHaveStyleRule(
-      'color',
-      transparentize(0.4, magma.colors.neutral500)
-    );
+    expect(nativeselect).toHaveStyleRule('color', magma.colors.neutral500);
   });
 
   it('should display a disabled option that is preselected via defaultValue', () => {
@@ -79,9 +95,14 @@ describe('NativeSelect', () => {
       <NativeSelect disabled isInverse testId={testId} />
     );
     const nativeselect = getByTestId(testId);
-    expect(nativeselect).toHaveStyleRule(
-      'color',
-      transparentize(0.6, magma.colors.neutral100)
+    expect(nativeselect).toHaveStyleRule('color', magma.colors.neutral700);
+    expect(nativeselect.parentElement).toHaveStyleRule(
+      'background-color',
+      magma.colors.neutral1100
+    );
+    expect(nativeselect.parentElement).toHaveStyleRule(
+      'border',
+      `1px solid ${magma.colors.neutral900}`
     );
   });
 
@@ -114,7 +135,7 @@ describe('NativeSelect', () => {
 
     expect(getByTestId(testId).parentElement).toHaveStyleRule(
       'border',
-      `1px solid ${transparentize(0.5, magma.colors.neutral100)}`
+      `1px solid ${magma.colors.neutral700}`
     );
   });
 
@@ -183,7 +204,7 @@ describe('NativeSelect', () => {
 
     expect(getByTestId(testId).parentElement).toHaveStyleRule(
       'border',
-      `1px solid ${magma.colors.danger300}`
+      `1px solid ${magma.colors.red500}`
     );
 
     expect(getAllByText(errorMessage)[0]).toBeInTheDocument();

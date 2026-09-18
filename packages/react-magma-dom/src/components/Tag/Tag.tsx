@@ -143,10 +143,7 @@ function buildBorder(props) {
   if (props.disabled) {
     if (props.color === TagColor.lowContrast) {
       if (props.isInverse) {
-        return `1px solid ${transparentize(
-          0.8,
-          props.theme.colors.neutral100
-        )}`;
+        return `1px solid ${transparentize(0.8, props.theme.colors.neutral0)}`;
       }
 
       return `1px solid ${props.theme.colors.neutral300}`;
@@ -154,7 +151,7 @@ function buildBorder(props) {
 
     if (isDefaultColor) {
       if (props.isInverse) {
-        return `1px solid ${transparentize(0.8, props.theme.colors.neutral100)}`;
+        return `1px solid ${transparentize(0.8, props.theme.colors.neutral0)}`;
       }
 
       return `1px solid ${props.theme.colors.neutral300}`;
@@ -175,16 +172,12 @@ function buildBorder(props) {
   }
 
   if (props.color === TagColor.primary) {
-    if (props.isInverse) {
-      return `1px solid ${props.theme.colors.primary400}`;
-    }
-
-    return `1px solid ${transparentize(0.85, props.theme.colors.primary500)}`;
+    return `1px solid transparent`;
   }
 
   if (isDefaultColor) {
     if (props.isInverse) {
-      return `1px solid ${transparentize(0.7, props.theme.colors.neutral100)}`;
+      return `1px solid ${transparentize(0.7, props.theme.colors.neutral0)}`;
     }
 
     return `1px solid ${props.theme.colors.neutral300}`;
@@ -192,7 +185,7 @@ function buildBorder(props) {
 
   if (props.color === TagColor.lowContrast) {
     if (props.isInverse) {
-      return `1px solid ${transparentize(0.7, props.theme.colors.neutral100)}`;
+      return `1px solid ${props.theme.colors.neutral800}`;
     }
 
     return `1px solid ${props.theme.colors.neutral300}`;
@@ -210,11 +203,11 @@ function buildButtonBackground(props) {
       switch (props.color) {
         case 'primary':
         case 'highContrast':
-          return transparentize(0.7, props.theme.colors.neutral100);
+          return transparentize(0.7, props.theme.colors.neutral0);
         case 'lowContrast':
           return `none`;
         default:
-          return transparentize(0.7, props.theme.colors.neutral100);
+          return transparentize(0.7, props.theme.colors.neutral0);
       }
     }
     // Inverse background colors
@@ -224,13 +217,13 @@ function buildButtonBackground(props) {
 
     switch (props.color) {
       case 'primary':
-        return transparentize(0.2, props.theme.colors.primary500);
+        return props.theme.colors.brand.sunriseOrange;
       case 'lowContrast':
         return `none;`;
       case 'highContrast':
-        return props.theme.colors.neutral100;
+        return props.theme.colors.brand.cyan;
       default:
-        return transparentize(0.5, props.theme.colors.neutral900);
+        return props.theme.colors.neutral800;
     }
   } else if (props.disabled && !props.isInverse) {
     // Disabled state background colors
@@ -239,7 +232,7 @@ function buildButtonBackground(props) {
       case 'highContrast':
         return transparentize(0.4, props.theme.colors.neutral300);
       case 'lowContrast':
-        return props.theme.colors.neutral100;
+        return props.theme.colors.neutral0;
       default:
         return transparentize(0.4, props.theme.colors.neutral300);
     }
@@ -254,13 +247,13 @@ function buildButtonBackground(props) {
 
   switch (props.color) {
     case 'primary':
-      return props.theme.colors.primary100;
+      return props.theme.colors.brand.sunriseOrange;
     case 'lowContrast':
-      return props.theme.colors.neutral100;
+      return props.theme.colors.neutral0;
     case 'highContrast':
-      return props.theme.colors.neutral700;
+      return props.theme.colors.brand.navy;
     default:
-      return transparentize(0.6, props.theme.colors.neutral300);
+      return props.theme.colors.neutral200;
   }
 }
 
@@ -273,13 +266,13 @@ function buildButtonTextColor(props) {
       switch (props.color) {
         case 'primary':
         case 'highContrast':
-          return transparentize(0.6, props.theme.colors.neutral100);
+          return transparentize(0.6, props.theme.colors.neutral0);
 
         case 'lowContrast':
-          return transparentize(0.7, props.theme.colors.neutral100);
+          return transparentize(0.7, props.theme.colors.neutral0);
 
         default:
-          return transparentize(0.6, props.theme.colors.neutral100);
+          return transparentize(0.6, props.theme.colors.neutral0);
       }
     }
     // Inverse text colors
@@ -289,13 +282,13 @@ function buildButtonTextColor(props) {
 
     switch (props.color) {
       case 'primary':
-        return props.theme.colors.primary100;
+        return props.theme.colors.brand.navy;
       case 'lowContrast':
-        return props.theme.colors.neutral100;
+        return props.theme.colors.neutral0;
       case 'highContrast':
-        return props.theme.colors.neutral700;
+        return props.theme.colors.brand.navy;
       default:
-        return props.theme.colors.neutral100;
+        return props.theme.colors.neutral0;
     }
   } else if (props.disabled && !props.isInverse) {
     // Disabled state text colors
@@ -308,13 +301,13 @@ function buildButtonTextColor(props) {
 
   switch (props.color) {
     case 'primary':
-      return props.theme.colors.primary500;
+      return props.theme.colors.brand.navy;
     case 'highContrast':
-      return props.theme.colors.neutral100;
+      return props.theme.colors.neutral0;
     case 'lowContrast':
-      return props.theme.colors.neutral700;
+      return props.theme.colors.brand.navy;
     default:
-      return props.theme.colors.neutral700;
+      return props.theme.colors.brand.navy;
   }
 }
 

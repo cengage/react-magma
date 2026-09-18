@@ -20,6 +20,7 @@ import * as es from 'date-fns/locale/es';
 
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+import { magma } from '../../theme/magma';
 import { Button } from '../Button';
 import { Modal } from '../Modal';
 
@@ -63,6 +64,32 @@ const errorMessage = 'Error message';
 const helperMessage = 'Helper message';
 
 describe('Date Picker', () => {
+  it('should use the updated regular calendar container colors', () => {
+    const { getByTestId } = render(<DatePicker labelText={labelText} />);
+    const calendar = getByTestId('calendarContainer');
+
+    expect(calendar).toHaveStyleRule(
+      'border',
+      `1px solid ${magma.colors.neutral200}`
+    );
+    expect(calendar).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(calendar).toHaveStyleRule(
+      'box-shadow',
+      '0 2px 6px 0 rgba(0, 0, 0, 0.1)'
+    );
+  });
+
+  it('should use the updated inverse calendar border', () => {
+    const { getByTestId } = render(
+      <DatePicker isInverse labelText={labelText} />
+    );
+
+    expect(getByTestId('calendarContainer')).toHaveStyleRule(
+      'border',
+      `1px solid ${magma.colors.neutral800}`
+    );
+  });
+
   it('should find element by testId', async () => {
     const testId = 'test-id';
     const { getByTestId } = render(

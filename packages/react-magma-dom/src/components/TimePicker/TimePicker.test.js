@@ -6,6 +6,7 @@ import { zhCN } from 'date-fns/locale';
 
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+import { magma } from '../../theme/magma';
 
 import { TimePicker } from '.';
 
@@ -677,6 +678,6 @@ describe('TimePicker', () => {
     const label = 'test label';
     const { getByText } = render(<TimePicker isInverse labelText={label} />);
 
-    expect(getByText(label)).toHaveStyleRule('color', '#FFFFFF');
+    expect(getByText(label)).toHaveStyleRule('color', magma.colors.neutral0);
   });
 });

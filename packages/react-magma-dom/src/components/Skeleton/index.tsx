@@ -96,14 +96,14 @@ const pulse = keyframes`
 
 function buildBaseColor(props: SkeletonProps) {
   return props.isInverse
-    ? transparentize(0.8, props.theme.colors.neutral100)
-    : props.theme.colors.neutral300;
+    ? props.theme.colors.neutral1000
+    : props.theme.colors.neutral200;
 }
 
 function buildShimmerColor(props: SkeletonProps) {
   return props.isInverse
-    ? transparentize(0.85, props.theme.colors.neutral100)
-    : transparentize(0.35, props.theme.colors.neutral100);
+    ? transparentize(0.85, props.theme.colors.neutral0)
+    : transparentize(0.35, props.theme.colors.neutral0);
 }
 
 function buildBorderRadius(props: SkeletonProps) {

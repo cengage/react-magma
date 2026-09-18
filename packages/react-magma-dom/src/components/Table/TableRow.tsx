@@ -62,13 +62,13 @@ function buildTableRowBackground(props) {
   if (props.isInverse) {
     switch (props.color) {
       case 'success':
-        return props.theme.colors.success200;
+        return props.theme.colors.green500;
       case 'warning':
-        return props.theme.colors.warning200;
+        return props.theme.colors.yellow400;
       case 'danger':
-        return props.theme.colors.danger200;
+        return props.theme.colors.red500;
       case 'info':
-        return props.theme.colors.info200;
+        return props.theme.colors.blue500;
       default:
         return 'inherit';
     }
@@ -78,7 +78,7 @@ function buildTableRowBackground(props) {
     case 'success':
       return props.theme.colors.success;
     case 'warning':
-      return props.theme.colors.warning;
+      return props.theme.colors.yellow400;
     case 'danger':
       return props.theme.colors.danger;
     case 'info':
@@ -90,10 +90,23 @@ function buildTableRowBackground(props) {
 
 function buildTableRowColor(props) {
   if (props.color && props.isInverse) {
-    return props.theme.colors.neutral700;
+    switch (props.color) {
+      case 'success':
+        return props.theme.colors.green1000;
+      case 'warning':
+        return props.theme.colors.brand.navy;
+      case 'danger':
+        return props.theme.colors.red1000;
+      case 'info':
+        return props.theme.colors.blue1000;
+      default:
+        return 'inherit';
+    }
   }
   if (props.color && !props.isInverse) {
-    return props.theme.colors.neutral100;
+    return props.color === 'warning'
+      ? props.theme.colors.brand.navy
+      : props.theme.colors.neutral0;
   }
 
   return 'inherit';
@@ -101,9 +114,7 @@ function buildTableRowColor(props) {
 
 function getBorderBottom(isInverse: boolean) {
   return `1px solid ${
-    isInverse
-      ? transparentize(0.6, magma.colors.neutral100)
-      : magma.colors.neutral300
+    isInverse ? magma.colors.neutral800 : magma.colors.neutral200
   }`;
 }
 
@@ -156,8 +167,8 @@ const StyledTableRow = styled.tr<{
       &:nth-of-type(even) {
         background: ${props.hasZebraStripes
           ? props.isInverse
-            ? transparentize(0.93, props.theme.colors.neutral100)
-            : props.theme.colors.neutral200
+            ? props.theme.colors.neutral1000
+            : props.theme.colors.neutral150
           : 'none'};
       }
     `};
@@ -169,8 +180,8 @@ const StyledTableRow = styled.tr<{
     &:hover {
       background: ${
         props.isInverse
-          ? transparentize(0.85, props.theme.colors.neutral100)
-          : transparentize(0.93, props.theme.colors.neutral900)
+          ? props.theme.colors.neutral1000
+          : props.theme.colors.neutral150
       };
     `}
 
@@ -190,14 +201,14 @@ const HeaderStyledCell = styled(TableCell)<{
   &&& {
     background: ${props =>
       props.isInverse
-        ? transparentize(0.93, props.theme.colors.neutral100)
-        : props.theme.colors.neutral200};
+        ? props.theme.colors.neutral1000
+        : props.theme.colors.neutral150};
     border-bottom-width: 2px;
     border-bottom-style: solid;
     border-bottom-color: ${props =>
       props.isInverse
-        ? transparentize(0.6, props.theme.colors.neutral100)
-        : props.theme.colors.neutral300};
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
     font-weight: bold;
     vertical-align: bottom;
   }
@@ -218,8 +229,8 @@ const SortButton = styled.button<{
   border: 0;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   margin: 0;
   text-align: left;
   width: 100%;
@@ -240,7 +251,7 @@ const SortButton = styled.button<{
     svg {
       fill: ${props =>
         props.isInverse
-          ? props.theme.colors.neutral100
+          ? props.theme.colors.neutral0
           : props.theme.colors.neutral700};
     }
   }

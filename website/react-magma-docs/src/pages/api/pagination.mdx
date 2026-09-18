@@ -70,7 +70,7 @@ The default value is `false`.
 ```tsx
 import React from 'react';
 
-import { Card, CardBody, Pagination } from 'react-magma-dom';
+import { Card, CardBody, Pagination, magma } from 'react-magma-dom';
 
 export function Example() {
   const [page, setPage] = React.useState(2);
@@ -80,7 +80,7 @@ export function Example() {
   }
 
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <Pagination
           isInverse

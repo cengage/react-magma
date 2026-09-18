@@ -120,6 +120,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       containerStyle,
       errorMessage,
       helperMessage,
+      isInverse: isInverseProp,
       required,
       isTextVisuallyHidden,
       labelledById,
@@ -137,7 +138,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
 
     const theme = React.useContext(ThemeContext);
 
-    const isInverse = useIsInverse(props.isInverse);
+    const isInverse = useIsInverse(isInverseProp);
 
     return (
       <div
@@ -182,6 +183,8 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
 
           <InputMessage
             id={descriptionId}
+            errorColor={isInverse ? theme.colors.red500 : undefined}
+            errorIconColor={isInverse ? theme.colors.red500 : undefined}
             hasError={!!errorMessage}
             isInverse={isInverse}
           >

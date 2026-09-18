@@ -4,6 +4,8 @@ import {
   ButtonColor,
   ButtonVariant,
   Card,
+  CardBorderRadius,
+  CardCornerTreatment,
   Flex,
   FlexAlignItems,
   FlexBehavior,
@@ -74,8 +76,10 @@ const IconStyles = {
   display: 'flex',
 };
 
-const Errors = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.colors.neutral300};
+const Errors = styled.div<{ isInverse: boolean }>`
+  border-top: 1px solid
+    ${({ theme, isInverse }) =>
+      isInverse ? theme.colors.neutral500 : theme.colors.neutral300};
   padding: 16px;
   font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
   line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
@@ -104,10 +108,18 @@ const StyledCard = styled(Card)<{ file: FilePreview; isInverse: boolean }>`
   border-color: ${({ file, theme, isInverse }) =>
     file.errors
       ? isInverse
-        ? theme.colors.danger300
+        ? theme.colors.red500
         : theme.colors.danger
-      : theme.colors.neutral300};
+      : isInverse
+        ? theme.colors.neutral800
+        : theme.colors.neutral200};
   border-width: 1px;
+  color: ${({ file, theme, isInverse }) =>
+    isInverse
+      ? theme.colors.neutral0
+      : file.errors
+        ? theme.colors.neutral700
+        : theme.colors.brand.navy};
   margin: 10px 0;
 `;
 
@@ -221,7 +233,7 @@ export const Preview = forwardRef<
           <IconButton
             onClick={handleRemoveFile}
             variant={ButtonVariant.link}
-            color={ButtonColor.secondary}
+            color={ButtonColor.subtle}
             aria-label={`${i18n.dropzone.removeFile} ${file.name}`}
             icon={<CloseIcon />}
           />
@@ -233,7 +245,7 @@ export const Preview = forwardRef<
       return (
         <StatusIcons>
           <Spinner
-            color={isInverse ? theme.colors.neutral100 : theme.colors.primary}
+            color={isInverse ? theme.colors.brand.cyan : theme.colors.primary}
           />
         </StatusIcons>
       );
@@ -243,7 +255,7 @@ export const Preview = forwardRef<
       <StatusIcons>
         <Transition isOpen={!done} unmountOnExit fade>
           <CheckCircleIcon
-            color={isInverse ? theme.colors.success200 : theme.colors.success}
+            color={isInverse ? theme.colors.green500 : theme.colors.success}
             style={{ marginTop: '4px' }}
           />
         </Transition>
@@ -251,7 +263,7 @@ export const Preview = forwardRef<
           <IconButton
             onClick={handleDeleteFile}
             variant={ButtonVariant.link}
-            color={ButtonColor.secondary}
+            color={ButtonColor.subtle}
             aria-label={`${i18n.dropzone.deleteFile} ${file.name}`}
             icon={<DeleteIcon />}
           />
@@ -267,6 +279,8 @@ export const Preview = forwardRef<
   return (
     <InverseContext.Provider value={{ isInverse }}>
       <StyledCard
+        borderRadius={CardBorderRadius.small}
+        cornerTreatment={CardCornerTreatment.all}
         isInverse={isInverse}
         theme={theme}
         file={file}
@@ -287,7 +301,7 @@ export const Preview = forwardRef<
           >
             {file.errors ? (
               <ErrorIcon
-                color={isInverse ? theme.colors.danger300 : theme.colors.danger}
+                color={isInverse ? theme.colors.red500 : theme.colors.danger}
                 size={24}
               />
             ) : file.preview &&
@@ -314,7 +328,7 @@ export const Preview = forwardRef<
           <Flex behavior={FlexBehavior.item}>{actions}</Flex>
         </StyledFlex>
         {file.errors && (
-          <Errors theme={theme}>
+          <Errors theme={theme} isInverse={isInverse}>
             {file.errors.slice(0, 1).map(({ code, ...rest }) => {
               const { header = '', message } = formatError(
                 { code, ...rest, ...i18n.dropzone.errors[code] },
@@ -327,7 +341,7 @@ export const Preview = forwardRef<
                   <ErrorHeader
                     style={{
                       color: isInverse
-                        ? theme.colors.danger200
+                        ? theme.colors.red500
                         : theme.colors.danger,
                     }}
                   >

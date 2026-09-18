@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { transparentize } from 'polished';
 
 import {
   UseAccordionProps,
@@ -107,12 +106,10 @@ const StyledAccordion = styled.div<AccordionProps>`
   border-bottom: 1px solid
     ${props =>
       props.isInverse
-        ? transparentize(0.6, props.theme.colors.neutral100)
-        : props.theme.colors.neutral300};
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral};
+    props.isInverse ? props.theme.colors.neutral0 : props.theme.colors.neutral};
   font-family: ${props => props.theme.bodyFont};
 `;
 

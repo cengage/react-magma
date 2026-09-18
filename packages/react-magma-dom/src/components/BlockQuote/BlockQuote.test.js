@@ -54,8 +54,11 @@ describe('BlockQuote', () => {
     const blockquoteitem = getByTestId(testIdChild);
     const blockquote = getByTestId(testIdParent);
 
-    expect(blockquoteitem).toHaveStyleRule('color', '#FFFFFF');
-    expect(blockquote).toHaveStyleRule('border-left', '4px solid #FFFFFF');
+    expect(blockquoteitem).toHaveStyleRule('color', magma.colors.neutral0);
+    expect(blockquote).toHaveStyleRule(
+      'border-left',
+      `4px solid ${magma.colors.neutral700}`
+    );
   });
 
   it('should render the component with a narrative font style', () => {
@@ -130,10 +133,10 @@ describe('BlockQuote', () => {
 
     expect(blockquoteitem).toHaveStyleRule(
       'font-size',
-      magma.typeScale.size03.fontSize,
-      'color',
-      magma.colors.neutral200
+      magma.typeScale.size03.fontSize
     );
+    expect(blockquoteitem).toHaveStyleRule('color', magma.colors.neutral500);
+    expect(blockquoteitem).toHaveStyleRule('opacity', '1');
   });
 
   it('should render border with the correct color according to the overwritten theme', () => {

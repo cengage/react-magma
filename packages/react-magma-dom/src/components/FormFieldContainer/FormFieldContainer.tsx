@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { InverseContext, useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { descriptionSuffix, labelSuffix } from '../../utils';
 import { Announce } from '../Announce';
@@ -34,6 +35,14 @@ export interface FormFieldContainerBaseProps {
    * Content of the error message. If a value is provided, the field will be styled as an error state and the error message will display.
    */
   errorMessage?: React.ReactNode;
+  /**
+   * @internal
+   */
+  errorMessageColor?: string;
+  /**
+   * @internal
+   */
+  errorIconColor?: string;
   /**
    * ID of the form field.  Also used in the description ID.
    */
@@ -87,6 +96,14 @@ export interface FormFieldContainerBaseProps {
    */
   labelWidth?: number;
   /**
+   * @internal
+   */
+  labelColor?: string;
+  /**
+   * @internal
+   */
+  labelFontWeight?: React.CSSProperties['fontWeight'];
+  /**
    * Enables the Character Counter and sets the maximum amount of characters allowed within the Input.
    */
   maxCount?: number;
@@ -102,12 +119,34 @@ export interface FormFieldContainerBaseProps {
   /**
    * @internal
    */
+  messageColor?: string;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal
    */
   additionalContent?: React.ReactNode;
 }
+
+export const getInputFormFieldColors = (
+  theme: ThemeInterface,
+  isInverse: boolean
+): Pick<
+  FormFieldContainerBaseProps,
+  | 'errorIconColor'
+  | 'errorMessageColor'
+  | 'labelColor'
+  | 'labelFontWeight'
+  | 'messageColor'
+> => ({
+  errorIconColor: isInverse ? theme.colors.red500 : undefined,
+  errorMessageColor: isInverse ? theme.colors.red500 : undefined,
+  labelColor: isInverse ? theme.colors.neutral0 : theme.colors.brand.navy,
+  labelFontWeight: 600,
+  messageColor: isInverse ? theme.colors.neutral500 : theme.colors.neutral700,
+});
 
 const StyledFormFieldContainer = styled.div<{
   isInverse?: boolean;
@@ -116,9 +155,7 @@ const StyledFormFieldContainer = styled.div<{
   inputSize?: InputSize;
 }>`
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral};
+    props.isInverse ? props.theme.colors.neutral0 : props.theme.colors.neutral};
   font-family: ${props => props.theme.bodyFont};
   display: ${props =>
     props.labelPosition === LabelPosition.left ? 'flex' : ''};
@@ -169,6 +206,8 @@ export const FormFieldContainer = React.forwardRef<
     children,
     containerStyle,
     errorMessage,
+    errorMessageColor,
+    errorIconColor,
     fieldId,
     hasCharacterCounter = true,
     helperMessage,
@@ -181,9 +220,12 @@ export const FormFieldContainer = React.forwardRef<
     labelStyle,
     labelText,
     labelWidth,
+    labelColor,
+    labelFontWeight,
     maxCount,
     maxLength,
     messageStyle,
+    messageColor,
     testId,
     additionalContent,
     ...rest
@@ -223,6 +265,8 @@ export const FormFieldContainer = React.forwardRef<
               labelPosition={labelPosition}
               size={inputSize}
               style={labelStyle}
+              textColor={labelColor}
+              fontWeight={labelFontWeight}
             >
               {isLabelVisuallyHidden ? (
                 <VisuallyHidden>{labelText}</VisuallyHidden>
@@ -248,15 +292,19 @@ export const FormFieldContainer = React.forwardRef<
               isInverse={isInverse}
               maxCount={maxCount}
               maxLength={maxLength}
+              messageColor={messageColor}
               testId={testId && `${testId}-character-counter`}
             />
           )}
 
           {(errorMessage || helperMessage) && (
             <InputMessage
+              errorColor={errorMessageColor}
+              errorIconColor={errorIconColor}
               hasError={!!errorMessage}
               id={messageDescriptionId}
               isInverse={isInverse}
+              messageColor={messageColor}
               style={messageStyle}
             >
               {(errorMessage || helperMessage) && (

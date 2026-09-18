@@ -129,7 +129,7 @@ export const SquareCorners = {
 
     return (
       <div style={{ background: magma.colors.neutral300, padding: '16px' }}>
-        <Table style={{ background: magma.colors.neutral100 }} {...args}>
+        <Table style={{ background: magma.colors.neutral0 }} {...args}>
           <TableHead>
             <TableRow>
               <TableHeaderCell>Column</TableHeaderCell>
@@ -456,7 +456,7 @@ export const PaginationWithSquareCorners = {
     return (
       <div style={{ background: magma.colors.neutral300, padding: '16px' }}>
         <Table
-          style={{ background: magma.colors.neutral100 }}
+          style={{ background: magma.colors.neutral0 }}
           {...args}
           hasTablePagination
         >

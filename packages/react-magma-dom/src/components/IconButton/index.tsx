@@ -161,7 +161,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         shape={shape || ButtonShape.fill}
         size={size || ButtonSize.medium}
         testId={testId}
-        textTransform={textTransform || ButtonTextTransform.uppercase}
+        textTransform={textTransform || ButtonTextTransform.none}
         variant={variant || ButtonVariant.solid}
       >
         {iconPosition === ButtonIconPosition.right && (

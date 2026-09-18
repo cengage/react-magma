@@ -110,8 +110,8 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
                       isInverse={isInverse}
                       style={{
                         color: isInverse
-                          ? theme.colors.neutral100
-                          : theme.colors.neutral700,
+                          ? theme.colors.neutral0
+                          : theme.colors.brand.navy,
                       }}
                     >
                       {title}
@@ -122,6 +122,11 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
                       isInverse={isInverse}
                       noMargins
                       color={descriptionColor}
+                      style={
+                        isInverse
+                          ? { color: theme.colors.neutral500 }
+                          : undefined
+                      }
                     >
                       {description}
                     </Paragraph>
