@@ -112,11 +112,11 @@ describe('Modal', () => {
 
     expect(getByTestId('modal-backdrop')).toHaveStyleRule(
       'background',
-      transparentize(0.6, magma.colors.neutral1200)
+      transparentize(0.4, magma.colors.neutral1200)
     );
     expect(getByTestId('modal-content')).toHaveStyleRule(
       'box-shadow',
-      `0 2px 6px ${transparentize(0.4, magma.colors.neutral1200)}`
+      `0 2px 6px ${transparentize(0.6, magma.colors.neutral1200)}`
     );
     expect(getByTestId('modal-content')).toHaveStyleRule(
       'color',

@@ -151,7 +151,7 @@ const ModalBackdrop = styled(Transition)<{
   theme: ThemeInterface;
 }>`
   backdrop-filter: blur(3px);
-  background: ${props => transparentize(0.6, props.theme.colors.neutral1200)};
+  background: ${props => transparentize(0.4, props.theme.colors.neutral1200)};
   bottom: 0;
   left: 0;
   right: 0;
@@ -174,7 +174,7 @@ const ModalContent = styled.div<ModalProps>`
   }};
   border-radius: ${props => props.theme.borderRadiusMedium};
   box-shadow: ${props => {
-    const amount = props.isInverse ? 0.2 : 0.4;
+    const amount = props.isInverse ? 0.2 : 0.6;
 
     return `0 2px 6px ${transparentize(
       amount,
