@@ -155,7 +155,9 @@ const StyledFormFieldContainer = styled.div<{
   inputSize?: InputSize;
 }>`
   color: ${props =>
-    props.isInverse ? props.theme.colors.neutral0 : props.theme.colors.neutral};
+    props.isInverse
+      ? props.theme.colors.neutral0
+      : props.theme.colors.neutral700};
   font-family: ${props => props.theme.bodyFont};
   display: ${props =>
     props.labelPosition === LabelPosition.left ? 'flex' : ''};

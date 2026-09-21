@@ -259,6 +259,19 @@ describe('TreeView', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
+  it('uses neutral700 as the default inherited text color', () => {
+    const { getByTestId } = render(
+      <TreeView testId={testId}>
+        <TreeItem>{TEXT}</TreeItem>
+      </TreeView>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'color',
+      magma.colors.neutral700
+    );
+  });
+
   it('Does not violate accessibility standards', () => {
     const { container } = render(
       <TreeView testId={testId}>
