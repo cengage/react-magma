@@ -46,12 +46,13 @@ export interface OnSendFileProps {
   onProgress?: ({}: { percent: number; file: FilePreview }) => void;
 }
 
-type DragState =
-  | 'error'
-  | 'dragAccept'
-  | 'dragReject'
-  | 'dragActive'
-  | 'default';
+enum DragState {
+  error = 'error',
+  dragAccept = 'dragAccept',
+  dragReject = 'dragReject',
+  dragActive = 'dragActive',
+  default = 'default',
+}
 
 // NOTE: These props are manually copied to dropzone.mdx
 export interface DropzoneProps
@@ -148,27 +149,29 @@ const Container = styled(Flex)<
   padding: ${({ noDrag }) => (noDrag ? '0px' : '24px')};
   border-radius: ${({ noDrag, theme }) =>
     noDrag ? theme.borderRadiusNone : theme.borderRadiusSmall};
-  border: ${({ dragState = 'default', noDrag, theme, isInverse }) =>
+  border: ${({ dragState = DragState.default, noDrag, theme, isInverse }) =>
     noDrag
       ? `0px`
-      : dragState === 'dragReject' || dragState === 'error'
+      : dragState === DragState.dragReject || dragState === DragState.error
         ? isInverse
-          ? `${dragState === 'error' ? '1px' : '2px'} dashed ${
-              dragState === 'error' ? theme.colors.red500 : theme.colors.red400
+          ? `${dragState === DragState.error ? '1px' : '2px'} dashed ${
+              dragState === DragState.error
+                ? theme.colors.red500
+                : theme.colors.red400
             }`
-          : `${dragState === 'error' ? '1px' : '2px'} dashed ${
+          : `${dragState === DragState.error ? '1px' : '2px'} dashed ${
               theme.colors.danger
             }`
-        : dragState === 'dragActive'
+        : dragState === DragState.dragActive
           ? `2px dashed ${theme.colors.blue500}`
-          : dragState === 'dragAccept'
+          : dragState === DragState.dragAccept
             ? `2px dashed ${theme.colors.green500}`
             : `2px dashed ${
                 isInverse ? theme.colors.neutral800 : theme.colors.neutral300
               }`};
 
-  border-style: ${({ dragState = 'default' }) =>
-    dragState === 'error' ? 'solid' : 'dashed'};
+  border-style: ${({ dragState = DragState.default }) =>
+    dragState === DragState.error ? 'solid' : 'dashed'};
   background-color: ${({ theme, noDrag, isInverse }) =>
     noDrag
       ? 'transparent'
@@ -310,16 +313,16 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
 
     const inputProps = getInputProps({ id });
 
-    let dragState: DragState = 'default';
+    let dragState = DragState.default;
 
     if (errorMessage) {
-      dragState = 'error';
+      dragState = DragState.error;
     } else if (isDragAccept) {
-      dragState = 'dragAccept';
+      dragState = DragState.dragAccept;
     } else if (isDragReject) {
-      dragState = 'dragReject';
+      dragState = DragState.dragReject;
     } else if (isDragActive) {
-      dragState = 'dragActive';
+      dragState = DragState.dragActive;
     }
 
     const handleRemoveFile = (removedFile: FilePreview) => {
