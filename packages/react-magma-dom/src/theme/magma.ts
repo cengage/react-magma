@@ -933,7 +933,7 @@ export const magma = {
       padding: `${spaceScale.spacing05} ${spaceScale.spacing05} ${spaceScale.spacing05} ${spaceScale.spacing06}`,
     },
     inverse: {
-      backgroundColor: colors.indigo600,
+      backgroundColor: colors.neutral1200,
       textColor: colors.neutral0,
     },
   },

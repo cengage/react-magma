@@ -25,6 +25,10 @@ describe('Container', () => {
       </Container>
     );
 
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'background',
+      magma.colors.neutral1200
+    );
     expect(getByTestId(testId)).toHaveStyleRule('color', magma.colors.neutral0);
   });
 
