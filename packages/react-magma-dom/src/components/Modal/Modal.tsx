@@ -165,13 +165,8 @@ const ModalContent = styled.div<ModalProps>`
     props.isInverse
       ? props.theme.colors.neutral1100
       : props.theme.colors.neutral0};
-  border: ${props => {
-    if (!props.showBackgroundOverlay && props.isInverse) {
-      return `1px solid ${transparentize(0.5, props.theme.colors.tertiary)}`;
-    }
-
-    return 'none';
-  }};
+  border: ${props =>
+    props.isInverse ? `1px solid ${props.theme.colors.neutral800}` : 'none'};
   border-radius: ${props => props.theme.borderRadiusMedium};
   box-shadow: ${props => {
     const amount = props.isInverse ? 0.2 : 0.6;

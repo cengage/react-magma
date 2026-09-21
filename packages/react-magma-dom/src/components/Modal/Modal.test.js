@@ -144,6 +144,10 @@ describe('Modal', () => {
       magma.colors.neutral1100
     );
     expect(getByTestId('modal-content')).toHaveStyleRule(
+      'border',
+      `1px solid ${magma.colors.neutral800}`
+    );
+    expect(getByTestId('modal-content')).toHaveStyleRule(
       'box-shadow',
       `0 2px 6px ${transparentize(0.2, magma.colors.neutral1200)}`
     );
