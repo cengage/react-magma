@@ -168,7 +168,7 @@ const StyledTableRow = styled.tr<{
         background: ${props.hasZebraStripes
           ? props.isInverse
             ? props.theme.colors.neutral1000
-            : props.theme.colors.neutral150
+            : props.theme.colors.neutral100
           : 'none'};
       }
     `};
@@ -181,7 +181,7 @@ const StyledTableRow = styled.tr<{
       background: ${
         props.isInverse
           ? props.theme.colors.neutral1000
-          : props.theme.colors.neutral150
+          : props.theme.colors.neutral100
       };
     `}
 
@@ -202,7 +202,7 @@ const HeaderStyledCell = styled(TableCell)<{
     background: ${props =>
       props.isInverse
         ? props.theme.colors.neutral1000
-        : props.theme.colors.neutral150};
+        : props.theme.colors.neutral100};
     border-bottom-width: 2px;
     border-bottom-style: solid;
     border-bottom-color: ${props =>

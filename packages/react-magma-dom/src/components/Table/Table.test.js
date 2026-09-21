@@ -155,7 +155,7 @@ describe('Table', () => {
     );
     expect(getByTestId('active-header')).toHaveStyleRule(
       'background',
-      magma.colors.neutral150
+      magma.colors.neutral100
     );
     expect(getByTestId('active-header')).toHaveStyleRule(
       'border-color',
@@ -256,7 +256,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      magma.colors.neutral150,
+      magma.colors.neutral100,
       {
         target: ':nth-of-type(even)',
       }
@@ -281,7 +281,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      magma.colors.neutral150,
+      magma.colors.neutral100,
       {
         target: ':hover',
       }
