@@ -393,11 +393,11 @@ describe('Styled Button', () => {
       it.each([
         [
           'primary',
-          magma.colors.brand.cyan,
+          magma.colors.brand.skyBlue,
           magma.colors.brand.navy,
           magma.colors.cyan400,
           magma.colors.brand.navy,
-          magma.colors.brand.cyan,
+          magma.colors.brand.skyBlue,
           magma.colors.brand.navy,
         ],
         [
@@ -421,20 +421,20 @@ describe('Styled Button', () => {
         [
           'danger',
           magma.colors.red500,
-          magma.colors.brand.navy,
+          magma.colors.red1000,
           magma.colors.red400,
-          magma.colors.brand.navy,
+          magma.colors.red1000,
           magma.colors.red500,
-          magma.colors.brand.navy,
+          magma.colors.red1000,
         ],
         [
           'success',
           magma.colors.green500,
-          magma.colors.brand.navy,
+          magma.colors.green1000,
           magma.colors.green400,
-          magma.colors.brand.navy,
+          magma.colors.green1000,
           magma.colors.green500,
-          magma.colors.brand.navy,
+          magma.colors.green1000,
         ],
         [
           'marketing',
@@ -478,6 +478,9 @@ describe('Styled Button', () => {
           });
           expect(button).toHaveStyleRule('color', hoverTextColor, {
             target: ':hover',
+          });
+          expect(button).toHaveStyleRule('color', hoverTextColor, {
+            target: ':focus',
           });
           expect(button).toHaveStyleRule('background', activeBackground, {
             target: ':active',
@@ -535,15 +538,15 @@ describe('Styled Button', () => {
       it.each([
         [
           'primary',
-          magma.colors.brand.cyan,
-          magma.colors.brand.cyan,
-          magma.colors.brand.cyan,
+          magma.colors.brand.skyBlue,
+          magma.colors.brand.skyBlue,
+          magma.colors.brand.skyBlue,
         ],
         [
           'secondary',
-          magma.colors.brand.cyan,
-          magma.colors.brand.cyan,
-          magma.colors.brand.cyan,
+          magma.colors.brand.skyBlue,
+          magma.colors.brand.skyBlue,
+          magma.colors.brand.skyBlue,
         ],
         [
           'subtle',

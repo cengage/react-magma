@@ -83,7 +83,7 @@ describe('SkipLink', () => {
     const { container } = render(<SkipLink isInverse />);
     const link = container.querySelector('a');
 
-    expect(link).toHaveStyleRule('background', magma.colors.brand.cyan);
+    expect(link).toHaveStyleRule('background', magma.colors.brand.skyBlue);
     expect(link).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 

@@ -53,7 +53,7 @@ export const Logo = ({ variant = LogoVariant.light }) => {
         fill={isDarkVariant ? magma.colors.brand.navy : magma.colors.neutral0}
       />
       <path d={geometry.center} fill={magma.colors.brand.sunriseOrange} />
-      <path d={geometry.bottom} fill={magma.colors.brand.cyan} />
+      <path d={geometry.bottom} fill={magma.colors.brand.skyBlue} />
     </svg>
   );
 };

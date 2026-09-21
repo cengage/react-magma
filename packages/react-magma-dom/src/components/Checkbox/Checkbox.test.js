@@ -221,7 +221,7 @@ describe('Checkbox', () => {
     const { container } = render(<Checkbox checked isInverse />);
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('color', magma.colors.brand.cyan);
+    expect(span).toHaveStyleRule('color', magma.colors.brand.skyBlue);
   });
 
   it('should render a checkbox with hidden label text with the correct styles', () => {

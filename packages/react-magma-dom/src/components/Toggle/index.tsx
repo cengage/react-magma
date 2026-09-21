@@ -86,7 +86,9 @@ export interface ToggleProps
 export function buildIconContainerColor(props) {
   if (props.disabled) {
     if (props.isInverse) {
-      return props.theme.colors.neutral900;
+      return props.isChecked
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral1200;
     }
 
     return props.isChecked
@@ -108,7 +110,7 @@ export function buildIconContainerColor(props) {
 function buildToggleBorderColor(props) {
   if (props.disabled) {
     if (props.isInverse) {
-      return transparentize(0.85, props.theme.colors.neutral0);
+      return props.theme.colors.neutral800;
     }
 
     return props.theme.colors.neutral300;
@@ -137,7 +139,9 @@ function buildToggleBorderColor(props) {
 function buildToggleBackgroundColor(props) {
   if (props.disabled) {
     if (props.isInverse) {
-      return transparentize(0.9, props.theme.colors.neutral900);
+      return props.isChecked
+        ? props.theme.colors.neutral800
+        : transparentize(0.9, props.theme.colors.neutral900);
     }
 
     return props.isChecked ? props.theme.colors.neutral300 : 'transparent';
@@ -163,7 +167,9 @@ function buildToggleBackgroundColor(props) {
 function buildThumbBackgroundColor(props) {
   if (props.disabled) {
     if (props.isInverse) {
-      return transparentize(0.6, props.theme.colors.neutral0);
+      return props.isChecked
+        ? props.theme.colors.neutral1200
+        : props.theme.colors.neutral800;
     }
 
     return props.isChecked

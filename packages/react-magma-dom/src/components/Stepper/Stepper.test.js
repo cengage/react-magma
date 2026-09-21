@@ -348,7 +348,7 @@ describe('Stepper', () => {
 
         expect(step).toHaveStyleRule(
           'box-shadow',
-          `inset 0 0 0 2px ${magma.colors.brand.cyan}`
+          `inset 0 0 0 2px ${magma.colors.brand.skyBlue}`
         );
       });
 
@@ -378,7 +378,7 @@ describe('Stepper', () => {
 
         const step = getByTestId(testId).querySelector('span');
 
-        expect(step).toHaveStyleRule('background', magma.colors.brand.cyan);
+        expect(step).toHaveStyleRule('background', magma.colors.brand.skyBlue);
         expect(step).toHaveStyleRule('color', magma.colors.brand.navy, {
           target: 'svg',
         });
@@ -454,7 +454,7 @@ describe('Stepper', () => {
 
         expect(separator).toHaveStyleRule(
           'background',
-          magma.colors.brand.cyan
+          magma.colors.brand.skyBlue
         );
       });
     });

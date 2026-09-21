@@ -8,6 +8,7 @@ import {
   UseComboboxGetInputPropsOptions,
   UseComboboxGetToggleButtonPropsOptions,
 } from 'downshift';
+import { transparentize } from 'polished';
 
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { ThemeInterface } from '../../theme/magma';
@@ -71,7 +72,7 @@ const InputContainer = styled.div<{
     css`
       background: ${props.isInverse
         ? props.theme.colors.neutral1100
-        : props.theme.colors.neutral200};
+        : transparentize(0.4, props.theme.colors.neutral200)};
       border-color: ${props.isInverse
         ? props.theme.colors.neutral900
         : props.theme.colors.neutral300};

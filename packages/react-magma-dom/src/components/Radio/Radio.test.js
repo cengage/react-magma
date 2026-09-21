@@ -217,7 +217,7 @@ describe('Radio', () => {
     );
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('color', magma.colors.brand.cyan);
+    expect(span).toHaveStyleRule('color', magma.colors.brand.skyBlue);
   });
 
   it('should render an inverse, disabled radio with the correct styles', () => {
@@ -336,7 +336,7 @@ describe('Radio', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.brand.cyan
+      magma.colors.brand.skyBlue
     );
   });
 

@@ -37,7 +37,7 @@ describe('BlockQuote', () => {
 
     expect(blockquote).toHaveStyleRule(
       'border-left',
-      `4px solid ${magma.colors.neutral300}`
+      `4px solid ${magma.colors.brand.sunriseOrange}`
     );
   });
 
@@ -57,7 +57,7 @@ describe('BlockQuote', () => {
     expect(blockquoteitem).toHaveStyleRule('color', magma.colors.neutral0);
     expect(blockquote).toHaveStyleRule(
       'border-left',
-      `4px solid ${magma.colors.neutral700}`
+      `4px solid ${magma.colors.brand.sunriseOrange}`
     );
   });
 

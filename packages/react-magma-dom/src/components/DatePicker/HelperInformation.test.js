@@ -108,7 +108,7 @@ describe('Calendar Month', () => {
     );
     expect(getByLabelText('Back to Calendar').parentElement).toHaveStyleRule(
       'color',
-      magma.colors.brand.cyan
+      magma.colors.brand.skyBlue
     );
     expect(getByLabelText('Back to Calendar').parentElement).toHaveStyleRule(
       'color',

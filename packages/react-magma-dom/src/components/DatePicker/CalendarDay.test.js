@@ -244,7 +244,7 @@ describe('Calendar Day', () => {
     const [defaultDay, selectedDay, disabledDay, outsideMonthDay, todayDay] =
       getAllByTestId('calendar-day');
     expect(defaultDay).toHaveStyleRule('background', magma.colors.neutral1100);
-    expect(defaultDay).toHaveStyleRule('background', magma.colors.neutral900, {
+    expect(defaultDay).toHaveStyleRule('background', magma.colors.neutral1000, {
       target: ':hover',
     });
     expect(selectedDay).toHaveStyleRule(

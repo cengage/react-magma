@@ -122,18 +122,18 @@ describe('NavTabs', () => {
 
     expect(container.querySelector('a')).toHaveStyleRule(
       'text-transform',
-      'uppercase'
+      'none'
     );
 
     rerender(
-      <NavTabs textTransform="none">
+      <NavTabs textTransform="uppercase">
         <NavTab>Tab 1</NavTab>
       </NavTabs>
     );
 
     expect(container.querySelector('a')).toHaveStyleRule(
       'text-transform',
-      'none'
+      'uppercase'
     );
   });
 

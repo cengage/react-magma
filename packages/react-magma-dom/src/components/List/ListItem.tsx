@@ -104,7 +104,7 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
             <StyledIcon
               iconBackground={
                 theme.colors[iconBackground] ||
-                (isInverse ? theme.colors.brand.cyan : theme.colors.primary)
+                (isInverse ? theme.colors.brand.skyBlue : theme.colors.primary)
               }
               iconColor={
                 theme.colors[iconColor] ||

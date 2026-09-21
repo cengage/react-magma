@@ -89,7 +89,7 @@ function buildRadioIconColor(props) {
   }
   if (props.isInverse) {
     if (props.isChecked) {
-      return props.theme.colors.brand.cyan;
+      return props.theme.colors.brand.skyBlue;
     }
 
     if (props.hasError) {

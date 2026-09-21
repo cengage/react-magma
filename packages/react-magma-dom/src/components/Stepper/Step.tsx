@@ -68,7 +68,7 @@ function buildStepCircleOutlineColors(props) {
 
   if (isInverse && !hasError) {
     if (stepStatus === StepStatus.active) {
-      return theme.colors.brand.cyan;
+      return theme.colors.brand.skyBlue;
     } else if (stepStatus === StepStatus.incomplete) {
       return theme.colors.neutral900;
     }
@@ -88,7 +88,7 @@ function buildStepCircleBackgroundColors(props) {
 
   if (isInverse) {
     if (stepStatus === StepStatus.completed && !hasError) {
-      return theme.colors.brand.cyan;
+      return theme.colors.brand.skyBlue;
     } else if (hasError) {
       return theme.colors.red500;
     }

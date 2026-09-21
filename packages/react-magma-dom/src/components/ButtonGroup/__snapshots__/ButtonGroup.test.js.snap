@@ -1317,7 +1317,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 .emotion-16 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
@@ -1335,7 +1334,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   text-align: left;
   width: auto;
   background: #FFFFFF;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
   display: none;
   max-height: 250px;
   opacity: 0;
@@ -1657,7 +1656,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 .emotion-16 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
@@ -1675,7 +1673,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   text-align: left;
   width: auto;
   background: #FFFFFF;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
   display: none;
   max-height: 250px;
   opacity: 0;
@@ -2209,7 +2207,6 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 .emotion-13 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
@@ -2227,7 +2224,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   text-align: left;
   width: auto;
   background: #FFFFFF;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
   display: none;
   max-height: 250px;
   opacity: 0;
@@ -2603,7 +2600,6 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 .emotion-13 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
@@ -2621,7 +2617,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   text-align: left;
   width: auto;
   background: #FFFFFF;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
   display: none;
   max-height: 250px;
   opacity: 0;
@@ -3160,7 +3156,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 .emotion-16 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
@@ -3178,7 +3173,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   text-align: left;
   width: auto;
   background: #FFFFFF;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
   display: none;
   max-height: 250px;
   opacity: 0;
@@ -3549,7 +3544,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 .emotion-16 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
@@ -3567,7 +3561,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   text-align: left;
   width: auto;
   background: #FFFFFF;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
   display: none;
   max-height: 250px;
   opacity: 0;
@@ -4162,7 +4156,6 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 .emotion-16 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
@@ -4180,7 +4173,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   text-align: left;
   width: auto;
   background: #FFFFFF;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
   display: none;
   max-height: 250px;
   opacity: 0;
@@ -4617,7 +4610,6 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 .emotion-16 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
@@ -4635,7 +4627,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   text-align: left;
   width: auto;
   background: #FFFFFF;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.1);
   display: none;
   max-height: 250px;
   opacity: 0;

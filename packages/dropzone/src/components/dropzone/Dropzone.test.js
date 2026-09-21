@@ -263,7 +263,7 @@ describe('File Uploader', () => {
     await waitFor(() => {
       expect(getByLabelText('Loading')).toHaveAttribute(
         'color',
-        magma.colors.brand.cyan
+        magma.colors.brand.skyBlue
       );
     });
 

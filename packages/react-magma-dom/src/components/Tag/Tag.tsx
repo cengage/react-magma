@@ -221,7 +221,7 @@ function buildButtonBackground(props) {
       case 'lowContrast':
         return `none;`;
       case 'highContrast':
-        return props.theme.colors.brand.cyan;
+        return props.theme.colors.brand.skyBlue;
       default:
         return props.theme.colors.neutral800;
     }

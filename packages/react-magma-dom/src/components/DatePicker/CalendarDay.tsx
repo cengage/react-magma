@@ -106,7 +106,7 @@ function getChosenDayHover(
     return isInverse ? theme.colors.brand.sunriseOrange : theme.colors.cyan700;
   }
 
-  return isInverse ? theme.colors.neutral900 : theme.colors.neutral150;
+  return isInverse ? theme.colors.neutral1000 : theme.colors.neutral150;
 }
 
 const getCalendarDayFontSize = (state: CalendarDayState) => {

@@ -3,11 +3,10 @@ import { ThemeTransitions, transitions } from './components/transition';
 export interface Colors {
   brand: {
     navy: string;
-    cyan: string;
-    cyanDeep: string;
+    skyBlue: string;
+    oceanBlue: string;
     cyanElectric: string;
     sunriseOrange: string;
-    galeOrange: string;
   };
 
   primary: string;
@@ -519,11 +518,10 @@ const neutralColors = {
 
 const brandColors = {
   navy: '#0B1F3A',
-  cyan: '#00B8D9',
-  cyanDeep: '#008EBA',
+  skyBlue: '#00B8D9',
+  oceanBlue: '#008EBA',
   cyanElectric: '#00E7FF',
   sunriseOrange: '#FD9A04',
-  galeOrange: '#F03500',
 };
 
 const rebrandColors = {

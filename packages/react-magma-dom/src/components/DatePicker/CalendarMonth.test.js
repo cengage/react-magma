@@ -97,7 +97,7 @@ describe('Calendar Month', () => {
     );
     expect(getByTestId('todayWrapper')).toHaveStyleRule(
       'color',
-      magma.colors.brand.cyan
+      magma.colors.brand.skyBlue
     );
     expect(getByTestId('todayWrapper')).toHaveStyleRule(
       'color',

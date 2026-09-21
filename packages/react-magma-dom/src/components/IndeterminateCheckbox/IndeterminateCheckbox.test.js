@@ -120,7 +120,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.brand.cyan
+      magma.colors.brand.skyBlue
     );
   });
 

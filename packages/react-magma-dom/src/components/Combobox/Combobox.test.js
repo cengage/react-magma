@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { render, act, waitFor } from '@testing-library/react';
+import { transparentize } from 'polished';
 
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
@@ -659,8 +660,12 @@ describe('Combobox', () => {
     );
 
     await waitFor(() => {
-      expect(getByLabelText(labelText, { selector: 'input' })).toHaveAttribute(
-        'disabled'
+      const input = getByLabelText(labelText, { selector: 'input' });
+
+      expect(input).toHaveAttribute('disabled');
+      expect(input.parentElement.parentElement).toHaveStyleRule(
+        'background',
+        transparentize(0.4, magma.colors.neutral200)
       );
     });
   });

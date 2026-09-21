@@ -314,6 +314,7 @@ export const DateTimePicker = React.forwardRef<
       dateTimePickerContent={
         <>
           <TimePicker
+            disabled={props.disabled}
             testId="date-time-picker-time-section"
             value={!additionalInputContent ? undefined : additionalInputContent}
             onChange={onTimeHandleChange}
@@ -333,6 +334,7 @@ export const DateTimePicker = React.forwardRef<
             isInverse={props.isInverse}
           >
             <Button
+              disabled={props.disabled}
               onClick={handleDoneClick}
               size={ButtonSize.small}
               color={ButtonColor.secondary}

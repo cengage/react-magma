@@ -127,7 +127,7 @@ const BackToCalendarWrapper = styled.span<{
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.brand.cyan
+      ? props.theme.colors.brand.skyBlue
       : props.theme.colors.cyan700};
 
   &:hover {

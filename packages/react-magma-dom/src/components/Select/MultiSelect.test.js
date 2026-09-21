@@ -33,6 +33,29 @@ describe('MultiSelect', () => {
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
+  it('should use inverse primary badge colors for selected items', () => {
+    const { getByText } = render(
+      <MultiSelect
+        isInverse
+        isMulti
+        initialSelectedItems={[items[0]]}
+        labelText={labelText}
+        items={items}
+      />
+    );
+
+    const selectedItemButton = getByText(items[0]).closest('button');
+
+    expect(selectedItemButton).toHaveStyleRule(
+      'background',
+      magma.colors.brand.skyBlue
+    );
+    expect(selectedItemButton).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
+  });
+
   it('should render a select with a passed in placeholder', async () => {
     const placeholder = 'Test';
 

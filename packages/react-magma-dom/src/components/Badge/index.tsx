@@ -126,7 +126,7 @@ export function buildBadgeBackground(props) {
       case BadgeColor.light:
         return 'transparent';
       case BadgeColor.primary:
-        return props.theme.colors.brand.cyan;
+        return props.theme.colors.brand.skyBlue;
       case BadgeColor.secondary:
         return props.theme.colors.brand.sunriseOrange;
       case BadgeColor.success:
@@ -135,7 +135,7 @@ export function buildBadgeBackground(props) {
         return props.theme.colors.yellow400;
 
       default:
-        return props.theme.colors.brand.cyan;
+        return props.theme.colors.brand.skyBlue;
     }
   }
 

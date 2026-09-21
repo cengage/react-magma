@@ -3,6 +3,11 @@ import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 
 import { ThemeInterface } from '../../theme/magma';
+import {
+  BadgeColor,
+  buildBadgeBackground,
+  buildBadgeTextColor,
+} from '../Badge';
 import { Card } from '../Card';
 import { inputBaseStyles } from '../InputBase';
 
@@ -156,11 +161,7 @@ function buildSelectedItemButtonBackground(props) {
 
     return props.theme.colors.neutral300;
   }
-  if (isInverse) {
-    return props.theme.colors.tertiary;
-  }
-
-  return props.theme.colors.primary;
+  return buildBadgeBackground({ ...props, color: BadgeColor.primary });
 }
 
 function buildSelectedItemButtonColor(props) {
@@ -173,11 +174,7 @@ function buildSelectedItemButtonColor(props) {
 
     return transparentize(0.4, props.theme.colors.neutral500);
   }
-  if (isInverse) {
-    return props.theme.colors.indigo600;
-  }
-
-  return props.theme.colors.neutral0;
+  return buildBadgeTextColor({ ...props, color: BadgeColor.primary });
 }
 
 export const SelectedItemButton = styled.button<{

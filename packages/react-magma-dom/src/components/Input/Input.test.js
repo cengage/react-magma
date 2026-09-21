@@ -443,9 +443,14 @@ describe('Input', () => {
       />
     );
     const input = getByLabelText(labelText);
+    const wrapper = getByTestId(`${testId}-wrapper`).firstElementChild;
     const icon = container.querySelector('span[aria-hidden="true"]');
 
     expect(input).toBeDisabled();
+    expect(wrapper).toHaveStyleRule(
+      'background-color',
+      transparentize(0.4, magma.colors.neutral200)
+    );
     expect(input).toHaveStyleRule('color', magma.colors.neutral500);
     expect(input).toHaveStyleRule('color', magma.colors.neutral500, {
       target: '::placeholder',

@@ -185,7 +185,7 @@ describe('List', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'background',
-      magma.colors.brand.cyan
+      magma.colors.brand.skyBlue
     );
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',

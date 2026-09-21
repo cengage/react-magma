@@ -4,7 +4,6 @@ exports[`Popover should render the popover with isFullWidth=true 1`] = `
 .emotion-1 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
@@ -64,7 +63,6 @@ exports[`Popover should render the popover with isFullWidth=true 1`] = `
 .emotion-1 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
@@ -155,7 +153,6 @@ exports[`Popover should render the popover with isInverse prop 1`] = `
 .emotion-1 {
   background: #101820;
   border: 1px solid #3D4A60;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #FFFFFF;
@@ -215,7 +212,6 @@ exports[`Popover should render the popover with isInverse prop 1`] = `
 .emotion-1 {
   background: #101820;
   border: 1px solid #3D4A60;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #FFFFFF;
@@ -306,7 +302,6 @@ exports[`Popover should render the popover with pointer by default 1`] = `
 .emotion-1 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
@@ -366,7 +361,6 @@ exports[`Popover should render the popover with pointer by default 1`] = `
 .emotion-1 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
@@ -457,7 +451,6 @@ exports[`Popover should render the popover with target width 1`] = `
 .emotion-1 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
@@ -517,7 +510,6 @@ exports[`Popover should render the popover with target width 1`] = `
 .emotion-1 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
@@ -608,7 +600,6 @@ exports[`Popover should render the popover without pointer 1`] = `
 .emotion-1 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;
@@ -668,7 +659,6 @@ exports[`Popover should render the popover without pointer 1`] = `
 .emotion-1 {
   background: #FFFFFF;
   border: 1px solid #DEE5EE;
-  border-left-width: 1px;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.10);
   color: #56667A;

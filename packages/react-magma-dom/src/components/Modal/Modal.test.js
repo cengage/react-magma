@@ -150,7 +150,7 @@ describe('Modal', () => {
     expect(getByTestId('modal-closebtn')).toHaveStyleRule('background', 'none');
     expect(getByTestId('modal-closebtn')).toHaveStyleRule(
       'color',
-      magma.colors.brand.cyan
+      magma.colors.brand.skyBlue
     );
   });
 

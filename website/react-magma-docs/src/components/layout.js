@@ -28,6 +28,16 @@ const ContentArticle = styled.article`
   }
 `;
 
+const DocsAlert = styled(Alert)`
+  p {
+    margin-bottom: 0;
+  }
+
+  > div > div > span {
+    white-space: normal;
+  }
+`;
+
 const Table = props => <table {...props} />;
 
 const PageHeading = props => <Heading level={1}>{props.children}</Heading>;
@@ -150,7 +160,7 @@ export const Layout = ({ children, location, pageContext }) => {
           h5: H5,
           h6: H6,
           hr: Divider,
-          Alert,
+          Alert: DocsAlert,
           Link,
           LeadParagraph,
           PageContent: props => (

@@ -96,7 +96,7 @@ describe('Dropdown', () => {
     );
     expect(content).toHaveStyleRule(
       'box-shadow',
-      `0 2px 6px 0 ${transparentize(0.8, magma.colors.neutral1200)}`
+      `0 2px 6px 0 ${transparentize(0.9, magma.colors.neutral1200)}`
     );
     expect(getByTestId('inverse-header')).toHaveStyleRule(
       'color',

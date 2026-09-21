@@ -26,9 +26,7 @@ export interface BlockQuoteProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const BlockQuoteStyles = props => css`
   border-left: 4px solid
-    ${props.isInverse
-      ? props.borderStyle || props.theme.colors.neutral700
-      : props.borderStyle || props.theme.colors.neutral300};
+    ${props.borderStyle || props.theme.colors.brand.sunriseOrange};
   padding: 10px 0 4px 20px;
   margin: 0;
   font-family: ${props.theme.bodyFont};

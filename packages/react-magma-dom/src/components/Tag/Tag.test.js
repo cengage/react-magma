@@ -327,7 +327,7 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.brand.cyan);
+      expect(tag).toHaveStyleRule('background', magma.colors.brand.skyBlue);
       expect(tag).toHaveStyleRule('color', magma.colors.brand.navy);
     });
 

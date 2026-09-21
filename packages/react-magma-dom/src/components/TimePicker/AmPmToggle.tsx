@@ -15,6 +15,7 @@ interface AmPmToggleProps
 }
 
 const StyledAmPmToggle = styled.button<{
+  disabled?: boolean;
   theme: ThemeInterface;
   isInverse?: boolean;
   isFocused?: boolean;
@@ -25,7 +26,11 @@ const StyledAmPmToggle = styled.button<{
   margin-left: 3px;
   padding: 0;
   color: ${props =>
-    getInputColor(props.isInverse, props.isFocused, props.theme)};
+    props.disabled
+      ? props.isInverse
+        ? props.theme.colors.neutral700
+        : props.theme.colors.neutral500
+      : getInputColor(props.isInverse, props.isFocused, props.theme)};
 
   &:focus {
     outline: 0;

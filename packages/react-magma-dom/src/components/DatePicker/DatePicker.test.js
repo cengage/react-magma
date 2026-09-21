@@ -17,6 +17,7 @@ import {
   subWeeks,
 } from 'date-fns';
 import * as es from 'date-fns/locale/es';
+import { transparentize } from 'polished';
 
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
@@ -1433,6 +1434,21 @@ describe('Date Picker', () => {
   });
 
   describe('Date Field Input', () => {
+    it('should disable the segmented fields and use the disabled background', () => {
+      const { getByLabelText, getByTestId } = render(
+        <DatePicker disabled isDateFieldInput />
+      );
+
+      expect(getByTestId('date-field-input')).toHaveStyleRule(
+        'background-color',
+        transparentize(0.4, magma.colors.neutral200)
+      );
+      expect(getByTestId('month-input')).toBeDisabled();
+      expect(getByTestId('day-input')).toBeDisabled();
+      expect(getByTestId('year-input')).toBeDisabled();
+      expect(getByLabelText('Toggle Calendar Widget')).toBeDisabled();
+    });
+
     it('should render a helper message on the date picker input', () => {
       const { getAllByText } = render(
         <DatePicker isDateFieldInput helperMessage={helperMessage} />

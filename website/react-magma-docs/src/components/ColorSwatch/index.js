@@ -112,14 +112,10 @@ function hexToRgb(hex) {
 }
 
 const brandColors = [
-  { name: 'sky-blue', color: magma.colors.brand.cyan },
-  { name: 'ocean-teal', color: magma.colors.brand.cyanDeep },
+  { name: 'sky-blue', color: magma.colors.brand.skyBlue },
+  { name: 'ocean-blue', color: magma.colors.brand.oceanBlue },
   { name: 'electric-cyan', color: magma.colors.brand.cyanElectric },
   { name: 'sunrise-orange', color: magma.colors.brand.sunriseOrange },
-  {
-    name: 'gale-orange',
-    color: magma.colors.brand.galeOrange || '#F03500',
-  },
   { name: 'navy', color: magma.colors.brand.navy },
 ];
 

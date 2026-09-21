@@ -138,7 +138,7 @@ const TodayWrapper = styled.div<{
   font-weight: 600;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.brand.cyan
+      ? props.theme.colors.brand.skyBlue
       : props.theme.colors.cyan700};
 
   &:hover {

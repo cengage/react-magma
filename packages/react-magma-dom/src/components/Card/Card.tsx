@@ -99,10 +99,6 @@ function getCardBorderRadius(props: CardProps & { theme: ThemeInterface }) {
 function buildCardBorderRadius(props: CardProps & { theme: ThemeInterface }) {
   const radius = getCardBorderRadius(props);
 
-  if (props.calloutType) {
-    return `0 ${radius} ${radius} 0`;
-  }
-
   return props.cornerTreatment === CardCornerTreatment.squareTopLeft
     ? `0 ${radius} ${radius} ${radius}`
     : radius;
@@ -122,7 +118,7 @@ export function buildCalloutBackground(
       case 'warning':
         return props.theme.colors.yellow400;
       default:
-        return props.theme.colors.brand.cyan;
+        return props.theme.colors.brand.skyBlue;
     }
   }
 
@@ -136,51 +132,49 @@ export function buildCalloutBackground(
     case 'warning':
       return props.theme.colors.yellow400;
     default:
-      return props.theme.colors.brand.cyan;
+      return props.theme.colors.brand.oceanBlue;
   }
 }
 
 function buildCardBoxShadow(props: CardProps & { theme: ThemeInterface }) {
-  const shadows = [];
-
-  if (props.calloutType) {
-    shadows.push(`inset 4px 0 0 0 ${buildCalloutBackground(props)}`);
-  }
-
-  if (props.hasDropShadow) {
-    shadows.push('0 2px 6px 0 rgba(0,0,0,0.10)');
-  }
-
-  return shadows.length ? shadows.join(', ') : '0 0 0';
+  return props.hasDropShadow ? '0 2px 6px 0 rgba(0,0,0,0.10)' : '0 0 0';
 }
 
 const StyledCard = styled.div<CardProps>`
   background: ${props =>
     props.background
       ? props.background
-      : props.isInverse
-        ? props.theme.colors.neutral1100
-        : props.theme.colors.neutral0};
-  border: 1px solid
-    ${props =>
-      props.background
-        ? props.background
+      : props.calloutType
+        ? props.isInverse
+          ? props.theme.colors.neutral1200
+          : props.theme.colors.neutral0
         : props.isInverse
-          ? props.theme.colors.neutral800
-          : props.theme.colors.neutral200};
-  border-left-width: ${props => (props.calloutType ? '0' : '1px')};
+          ? props.theme.colors.neutral1100
+          : props.theme.colors.neutral0};
+  border: ${props => (props.calloutType ? '2px' : '1px')} solid
+    ${props =>
+      props.calloutType
+        ? buildCalloutBackground(props)
+        : props.background
+          ? props.background
+          : props.isInverse
+            ? props.theme.colors.neutral800
+            : props.theme.colors.neutral200};
   border-radius: ${buildCardBorderRadius};
   box-shadow: ${buildCardBoxShadow};
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral0
-      : props.theme.colors.neutral700};
+    props.calloutType
+      ? props.isInverse
+        ? props.theme.colors.neutral0
+        : props.theme.colors.brand.navy
+      : props.isInverse
+        ? props.theme.colors.neutral0
+        : props.theme.colors.neutral700};
   font-family: ${props => props.theme.bodyFont};
   display: flex;
   flex-direction: column;
   overflow: visible;
-  padding-left: ${props =>
-    props.calloutType ? props.theme.spaceScale.spacing03 : '0'};
+  padding-left: 0;
   position: relative;
   text-align: ${props => props.align};
   width: ${props => props.width};

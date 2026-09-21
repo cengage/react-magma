@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
+import { transparentize } from 'polished';
 import { HelpIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
@@ -57,6 +58,10 @@ describe('NativeSelect', () => {
     const { getByTestId } = render(<NativeSelect disabled testId={testId} />);
     const nativeselect = getByTestId(testId);
     expect(nativeselect).toHaveStyleRule('color', magma.colors.neutral500);
+    expect(nativeselect.parentElement).toHaveStyleRule(
+      'background-color',
+      transparentize(0.4, magma.colors.neutral200)
+    );
   });
 
   it('should display a disabled option that is preselected via defaultValue', () => {

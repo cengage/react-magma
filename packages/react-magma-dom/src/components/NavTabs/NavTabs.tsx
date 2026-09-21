@@ -47,7 +47,7 @@ export const NavTabsContext = React.createContext<NavTabsContextInterface>({
   isInverse: false,
   isFullWidth: false,
   orientation: TabsOrientation.horizontal,
-  textTransform: TabsTextTransform.uppercase,
+  textTransform: TabsTextTransform.none,
 });
 
 export const NavTabs = React.forwardRef<
@@ -265,7 +265,7 @@ export const NavTabs = React.forwardRef<
               isInverse: isInverse,
               isFullWidth,
               orientation,
-              textTransform: textTransform || TabsTextTransform.uppercase,
+              textTransform: textTransform || TabsTextTransform.none,
             }}
           >
             {navTabsChildren}

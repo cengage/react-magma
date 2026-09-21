@@ -42,7 +42,7 @@ export interface BaseNavTabProps
   orientation?: TabsOrientation;
   /**
    * Determines whether the tab appears in all-caps
-   * @default TabsTextTransform.uppercase
+   * @default TabsTextTransform.none
    */
   textTransform?: TabsTextTransform;
   /**

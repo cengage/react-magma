@@ -80,7 +80,7 @@ function buildSeparatorBackgroundColors(props) {
 
   if (isInverse) {
     if (stepStatus === StepStatus.completed) {
-      return theme.colors.brand.cyan;
+      return theme.colors.brand.skyBlue;
     }
 
     return theme.colors.neutral900;

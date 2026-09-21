@@ -65,20 +65,23 @@ describe('Card', () => {
     expect(getByText(TEXT)).toHaveStyleRule('border-radius', value);
   });
 
-  it('should square both left callout corners by default', () => {
+  it('should retain the default corner treatment for callouts', () => {
     const { getByText } = render(<Card calloutType="primary">{TEXT}</Card>);
 
-    expect(getByText(TEXT)).toHaveStyleRule('border-radius', '0 16px 16px 0');
+    expect(getByText(TEXT)).toHaveStyleRule(
+      'border-radius',
+      '0 16px 16px 16px'
+    );
   });
 
-  it('should keep both left callout corners square when all is selected', () => {
+  it('should round every callout corner when all is selected', () => {
     const { getByText } = render(
       <Card calloutType="primary" cornerTreatment={CardCornerTreatment.all}>
         {TEXT}
       </Card>
     );
 
-    expect(getByText(TEXT)).toHaveStyleRule('border-radius', '0 16px 16px 0');
+    expect(getByText(TEXT)).toHaveStyleRule('border-radius', '16px');
   });
 
   it('should render the card component with a drop shadow', () => {
@@ -90,7 +93,7 @@ describe('Card', () => {
     );
   });
 
-  it('should render a callout stripe and drop shadow together', () => {
+  it('should render a semantic callout border and drop shadow together', () => {
     const { getByText } = render(
       <Card calloutType="primary" hasDropShadow>
         {TEXT}
@@ -99,7 +102,15 @@ describe('Card', () => {
 
     expect(getByText(TEXT)).toHaveStyleRule(
       'box-shadow',
-      `inset 4px 0 0 0 ${magma.colors.brand.cyan},0 2px 6px 0 rgba(0,0,0,0.10)`
+      '0 2px 6px 0 rgba(0,0,0,0.10)'
+    );
+    expect(getByText(TEXT)).toHaveStyleRule(
+      'border',
+      `2px solid ${magma.colors.brand.oceanBlue}`
+    );
+    expect(getByText(TEXT)).toHaveStyleRule(
+      'background',
+      magma.colors.neutral0
     );
   });
 
@@ -144,11 +155,9 @@ describe('Card', () => {
 
     const card = getByText(TEXT);
 
-    expect(card).toHaveStyleRule('padding-left', magma.spaceScale.spacing03);
-    expect(card).toHaveStyleRule(
-      'box-shadow',
-      `inset 4px 0 0 0 ${magma.colors.danger}`
-    );
+    expect(card).toHaveStyleRule('padding-left', '0');
+    expect(card).toHaveStyleRule('border', `2px solid ${magma.colors.danger}`);
+    expect(card).toHaveStyleRule('background', magma.colors.neutral0);
   });
 
   it('should render the card component styled as a primary callout', () => {
@@ -156,11 +165,13 @@ describe('Card', () => {
 
     const card = getByText(TEXT);
 
-    expect(card).toHaveStyleRule('padding-left', magma.spaceScale.spacing03);
+    expect(card).toHaveStyleRule('padding-left', '0');
     expect(card).toHaveStyleRule(
-      'box-shadow',
-      `inset 4px 0 0 0 ${magma.colors.brand.cyan}`
+      'border',
+      `2px solid ${magma.colors.brand.oceanBlue}`
     );
+    expect(card).toHaveStyleRule('background', magma.colors.neutral0);
+    expect(card).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it('should render the card component styled as a success callout', () => {
@@ -168,11 +179,19 @@ describe('Card', () => {
 
     const card = getByText(TEXT);
 
-    expect(card).toHaveStyleRule('padding-left', magma.spaceScale.spacing03);
-    expect(card).toHaveStyleRule(
-      'box-shadow',
-      `inset 4px 0 0 0 ${magma.colors.success}`
-    );
+    expect(card).toHaveStyleRule('padding-left', '0');
+    expect(card).toHaveStyleRule('border', `2px solid ${magma.colors.success}`);
+    expect(card).toHaveStyleRule('background', magma.colors.neutral0);
+  });
+
+  it('should render the card component styled as an info callout', () => {
+    const { getByText } = render(<Card calloutType="info">{TEXT}</Card>);
+
+    const card = getByText(TEXT);
+
+    expect(card).toHaveStyleRule('padding-left', '0');
+    expect(card).toHaveStyleRule('border', `2px solid ${magma.colors.info}`);
+    expect(card).toHaveStyleRule('background', magma.colors.neutral0);
   });
 
   it('should render the card component styled as a warning callout', () => {
@@ -180,11 +199,12 @@ describe('Card', () => {
 
     const card = getByText(TEXT);
 
-    expect(card).toHaveStyleRule('padding-left', magma.spaceScale.spacing03);
+    expect(card).toHaveStyleRule('padding-left', '0');
     expect(card).toHaveStyleRule(
-      'box-shadow',
-      `inset 4px 0 0 0 ${magma.colors.yellow400}`
+      'border',
+      `2px solid ${magma.colors.yellow400}`
     );
+    expect(card).toHaveStyleRule('background', magma.colors.neutral0);
   });
 
   it('should render the card component with a custom width', () => {
@@ -217,14 +237,14 @@ describe('Card', () => {
   });
 
   it.each([
-    ['primary', magma.colors.brand.cyan],
+    ['primary', magma.colors.brand.skyBlue],
     ['danger', magma.colors.red500],
     ['info', magma.colors.blue500],
     ['success', magma.colors.green500],
     ['warning', magma.colors.yellow400],
   ])(
-    'should render an inverse %s callout with the rebrand color',
-    (calloutType, color) => {
+    'should render an inverse %s callout with its semantic border and surface',
+    (calloutType, borderColor) => {
       const { getByText } = render(
         <Card calloutType={calloutType} isInverse>
           {TEXT}
@@ -232,9 +252,14 @@ describe('Card', () => {
       );
 
       expect(getByText(TEXT)).toHaveStyleRule(
-        'box-shadow',
-        `inset 4px 0 0 0 ${color}`
+        'border',
+        `2px solid ${borderColor}`
       );
+      expect(getByText(TEXT)).toHaveStyleRule(
+        'background',
+        magma.colors.neutral1200
+      );
+      expect(getByText(TEXT)).toHaveStyleRule('color', magma.colors.neutral0);
     }
   );
 

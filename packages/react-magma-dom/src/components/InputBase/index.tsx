@@ -3,6 +3,7 @@ import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
+import { transparentize } from 'polished';
 import { ClearIcon, IconProps } from 'react-magma-icons';
 
 import { I18nContext } from '../../i18n';
@@ -272,7 +273,7 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
     background-color: ${props.disabledBackgroundColor ||
     (props.isInverse
       ? props.theme.colors.neutral1100
-      : props.theme.colors.neutral200)};
+      : transparentize(0.4, props.theme.colors.neutral200))};
   `}
 
   ${props.inputSize === 'large' &&

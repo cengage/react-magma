@@ -42,7 +42,7 @@ describe('Pagination', () => {
     const { getByText } = render(<Pagination count={4} isInverse />);
     const button = getByText('1').parentElement;
 
-    expect(button).toHaveStyleRule('background', magma.colors.brand.cyan);
+    expect(button).toHaveStyleRule('background', magma.colors.brand.skyBlue);
     expect(button).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
