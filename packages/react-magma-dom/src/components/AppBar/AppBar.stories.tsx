@@ -53,7 +53,15 @@ const TabsTemplate: StoryFn<AppBarProps> = args => (
     >
       <ImageIcon size={args.isCompact ? 24 : 40} />
       <Spacer size={magma.spaceScale.spacing03} />
-      <strong style={{ color: magma.colors.brand.navy }}>LOGO</strong>
+      <strong
+        style={{
+          color: args.isInverse
+            ? magma.colors.neutral0
+            : magma.colors.brand.navy,
+        }}
+      >
+        LOGO
+      </strong>
     </div>
     <div style={{ flex: '0 0 auto' }}>
       <Search onSearch={() => {}} placeholder="Search for content..." />
