@@ -16,61 +16,91 @@ const DATA_VIZ_TAG_COLORS = [
     color: TagColor.blue,
     label: 'blue',
     light: {
-      background: magma.colors.dataVizBlue200,
-      border: magma.colors.dataVizBlue700,
-      text: magma.colors.dataVizBlue700,
+      background: magma.colors.blue100,
+      text: magma.colors.blue600,
     },
     inverse: {
-      background: magma.colors.dataVizBlue700,
-      border: magma.colors.dataVizBlue500,
-      borderTransparency: 0.5,
-      text: magma.colors.dataVizBlue200,
+      background: magma.colors.blue900,
+      backgroundTransparency: 0,
+      text: magma.colors.blue400,
     },
   },
   {
     color: TagColor.teal,
     label: 'teal',
     light: {
-      background: magma.colors.dataVizTeal400,
-      backgroundTransparency: 0.85,
-      border: magma.colors.dataVizTeal700,
-      text: magma.colors.dataVizTeal700,
+      background: magma.colors.teal100,
+      text: magma.colors.teal600,
     },
     inverse: {
-      background: magma.colors.dataVizTeal700,
-      border: magma.colors.dataVizTeal500,
-      borderTransparency: 0.3,
-      text: magma.colors.dataVizTeal200,
+      background: magma.colors.teal900,
+      backgroundTransparency: 0,
+      text: magma.colors.teal400,
     },
   },
   {
     color: TagColor.pink,
     label: 'pink',
     light: {
-      background: magma.colors.dataVizPink200,
-      border: magma.colors.dataVizPink700,
-      text: magma.colors.dataVizPink700,
+      background: magma.colors.red100,
+      text: magma.colors.red600,
     },
     inverse: {
-      background: magma.colors.dataVizPink700,
-      border: magma.colors.dataVizPink500,
-      borderTransparency: 0.3,
-      text: magma.colors.dataVizPink200,
+      background: magma.colors.red900,
+      backgroundTransparency: 0,
+      text: magma.colors.red400,
     },
   },
   {
     color: TagColor.purple,
     label: 'purple',
     light: {
-      background: magma.colors.dataVizPurple200,
-      border: magma.colors.dataVizPurple700,
-      text: magma.colors.dataVizPurple700,
+      background: magma.colors.purple100,
+      text: magma.colors.purple600,
     },
     inverse: {
-      background: magma.colors.dataVizPurple700,
-      border: magma.colors.dataVizPurple500,
-      borderTransparency: 0.3,
-      text: magma.colors.dataVizPurple200,
+      background: magma.colors.purple900,
+      backgroundTransparency: 0,
+      text: magma.colors.purple400,
+    },
+  },
+  {
+    color: TagColor.tangerine,
+    label: 'tangerine',
+    light: {
+      background: magma.colors.tangerine100,
+      text: magma.colors.tangerine700,
+    },
+    inverse: {
+      background: magma.colors.tangerine900,
+      backgroundTransparency: 0,
+      text: magma.colors.tangerine400,
+    },
+  },
+  {
+    color: TagColor.indigo,
+    label: 'indigo',
+    light: {
+      background: magma.colors.indigo100,
+      text: magma.colors.indigo600,
+    },
+    inverse: {
+      background: magma.colors.indigo900,
+      backgroundTransparency: 0,
+      text: magma.colors.indigo400,
+    },
+  },
+  {
+    color: TagColor.violet,
+    label: 'violet',
+    light: {
+      background: magma.colors.violet100,
+      text: magma.colors.violet600,
+    },
+    inverse: {
+      background: magma.colors.violet900,
+      backgroundTransparency: 0,
+      text: magma.colors.violet400,
     },
   },
 ];
@@ -113,10 +143,7 @@ describe('Tag', () => {
 
       expect(tag).toHaveStyleRule('background', magma.colors.neutral200);
       expect(tag).toHaveStyleRule('color', magma.colors.brand.navy);
-      expect(tag).toHaveStyleRule(
-        'border',
-        `1px solid ${magma.colors.neutral300}`
-      );
+      expect(tag).toHaveStyleRule('border', 'none');
       expect(tag).toHaveStyleRule('box-sizing', 'border-box');
     });
 
@@ -160,15 +187,9 @@ describe('Tag', () => {
         const { getByText } = render(<Tag color={color}>{TEXT}</Tag>);
         const tag = getByText('Text Label').parentElement;
 
-        expect(tag).toHaveStyleRule(
-          'background',
-          transparentize(light.backgroundTransparency || 0.6, light.background)
-        );
+        expect(tag).toHaveStyleRule('background', light.background);
         expect(tag).toHaveStyleRule('color', light.text);
-        expect(tag).toHaveStyleRule(
-          'border',
-          `1px solid ${transparentize(0.85, light.border)}`
-        );
+        expect(tag).toHaveStyleRule('border', 'none');
       });
     });
   });
@@ -178,10 +199,9 @@ describe('Tag', () => {
       const { getByText } = render(<Tag disabled>{TEXT}</Tag>);
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule(
-        'background',
-        transparentize(0.4, magma.colors.neutral300)
-      );
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral200);
+      expect(tag).toHaveStyleRule('color', magma.colors.neutral500);
+      expect(tag).toHaveStyleRule('border', 'none');
     });
 
     it('Should render a Tag with a disabled primary background', () => {
@@ -192,10 +212,9 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule(
-        'background',
-        transparentize(0.4, magma.colors.neutral300)
-      );
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral200);
+      expect(tag).toHaveStyleRule('color', magma.colors.neutral500);
+      expect(tag).toHaveStyleRule('border', 'none');
     });
 
     it('Should render a Tag with a disabled high contrast background', () => {
@@ -206,14 +225,9 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule(
-        'background',
-        transparentize(0.4, magma.colors.neutral300)
-      );
-      expect(tag).toHaveStyleRule(
-        'color',
-        transparentize(0.4, magma.colors.neutral500)
-      );
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral200);
+      expect(tag).toHaveStyleRule('color', magma.colors.neutral500);
+      expect(tag).toHaveStyleRule('border', 'none');
     });
 
     it('Should render a Tag with a low contrast disabled background', () => {
@@ -225,10 +239,26 @@ describe('Tag', () => {
       const tag = getByText('Text Label').parentElement;
 
       expect(tag).toHaveStyleRule('background', magma.colors.neutral0);
+      expect(tag).toHaveStyleRule('color', magma.colors.neutral500);
       expect(tag).toHaveStyleRule(
         'border',
         `1px solid ${magma.colors.neutral300}`
       );
+    });
+
+    DATA_VIZ_TAG_COLORS.forEach(({ color, label }) => {
+      it(`Should render a disabled ${label} Tag like a disabled solid Button`, () => {
+        const { getByText } = render(
+          <Tag disabled color={color}>
+            {TEXT}
+          </Tag>
+        );
+        const tag = getByText('Text Label').parentElement;
+
+        expect(tag).toHaveStyleRule('background', magma.colors.neutral200);
+        expect(tag).toHaveStyleRule('color', magma.colors.neutral500);
+        expect(tag).toHaveStyleRule('border', 'none');
+      });
     });
   });
 
@@ -243,8 +273,10 @@ describe('Tag', () => {
 
       expect(tag).toHaveStyleRule(
         'background',
-        transparentize(0.7, magma.colors.neutral0)
+        transparentize(0.5, magma.colors.neutral900)
       );
+      expect(tag).toHaveStyleRule('color', magma.colors.neutral600);
+      expect(tag).toHaveStyleRule('border', 'none');
     });
 
     it('Should render a inverse Tag with a disabled primary background', () => {
@@ -257,8 +289,10 @@ describe('Tag', () => {
 
       expect(tag).toHaveStyleRule(
         'background',
-        transparentize(0.7, magma.colors.neutral0)
+        transparentize(0.5, magma.colors.neutral900)
       );
+      expect(tag).toHaveStyleRule('color', magma.colors.neutral600);
+      expect(tag).toHaveStyleRule('border', 'none');
     });
 
     it('Should render a inverse Tag with a disabled high contrast background', () => {
@@ -271,8 +305,10 @@ describe('Tag', () => {
 
       expect(tag).toHaveStyleRule(
         'background',
-        transparentize(0.7, magma.colors.neutral0)
+        transparentize(0.5, magma.colors.neutral900)
       );
+      expect(tag).toHaveStyleRule('color', magma.colors.neutral600);
+      expect(tag).toHaveStyleRule('border', 'none');
     });
 
     it('Should render a inverse Tag with a low contrast disabled background', () => {
@@ -284,10 +320,29 @@ describe('Tag', () => {
       const tag = getByText('Text Label').parentElement;
 
       expect(tag).toHaveStyleRule('background', 'none');
+      expect(tag).toHaveStyleRule('color', magma.colors.neutral600);
       expect(tag).toHaveStyleRule(
         'border',
-        `1px solid ${transparentize(0.8, magma.colors.neutral0)}`
+        `1px solid ${magma.colors.neutral800}`
       );
+    });
+
+    DATA_VIZ_TAG_COLORS.forEach(({ color, label }) => {
+      it(`Should render a disabled inverse ${label} Tag like a disabled inverse solid Button`, () => {
+        const { getByText } = render(
+          <Tag disabled isInverse color={color}>
+            {TEXT}
+          </Tag>
+        );
+        const tag = getByText('Text Label').parentElement;
+
+        expect(tag).toHaveStyleRule(
+          'background',
+          transparentize(0.5, magma.colors.neutral900)
+        );
+        expect(tag).toHaveStyleRule('color', magma.colors.neutral600);
+        expect(tag).toHaveStyleRule('border', 'none');
+      });
     });
   });
 
@@ -297,10 +352,7 @@ describe('Tag', () => {
       const tag = getByText('Text Label').parentElement;
 
       expect(tag).toHaveStyleRule('background', magma.colors.neutral800);
-      expect(tag).toHaveStyleRule(
-        'border',
-        `1px solid ${transparentize(0.7, magma.colors.neutral0)}`
-      );
+      expect(tag).toHaveStyleRule('border', 'none');
     });
 
     it('Should render a inverse Tag with a primary background', () => {
@@ -358,16 +410,15 @@ describe('Tag', () => {
 
         expect(tag).toHaveStyleRule(
           'background',
-          transparentize(0.5, inverse.background)
+          inverse.backgroundTransparency === 0
+            ? inverse.background
+            : transparentize(
+                inverse.backgroundTransparency,
+                inverse.background
+              )
         );
         expect(tag).toHaveStyleRule('color', inverse.text);
-        expect(tag).toHaveStyleRule(
-          'border',
-          `1px solid ${transparentize(
-            inverse.borderTransparency,
-            inverse.border
-          )}`
-        );
+        expect(tag).toHaveStyleRule('border', 'none');
       });
     });
   });

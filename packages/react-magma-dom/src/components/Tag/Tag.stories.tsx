@@ -22,6 +22,9 @@ const dataVizTagColors = [
   { color: TagColor.teal, label: 'Teal' },
   { color: TagColor.pink, label: 'Pink' },
   { color: TagColor.purple, label: 'Purple' },
+  { color: TagColor.tangerine, label: 'Tangerine' },
+  { color: TagColor.indigo, label: 'Indigo' },
+  { color: TagColor.violet, label: 'Violet' },
 ];
 
 const tagColorExamples = [
