@@ -29,6 +29,15 @@ const ContentArticle = styled.article`
 `;
 
 const DocsAlert = styled(Alert)`
+  code {
+    background: none;
+    border: 0;
+    border-radius: 0;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+  }
+
   p {
     margin-bottom: 0;
   }

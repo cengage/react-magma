@@ -1264,19 +1264,14 @@ The `type` property in the `changes` object that is returned from the `onStateCh
 corresponds to a `stateChangeTypes` property. The list of all the possible types for a `select` or a
 `multi-select` are listed below.
 
-<Alert variant="info" style={{ maxWidth: '100%', overflow: 'scroll' }}>
+<Alert variant="info" style={{ maxWidth: '100%', overflow: 'auto' }}>
   In the development environment these types equate to strings
   <br /> (eg:{' '}
-  <code className="inverse">
-    ComboboxStateChangeTypes.InputKeyDownArrowDown =
-    '__input_keydown_arrow_down__'
-  </code>
+  <code className="inverse">ComboboxStateChangeTypes.InputKeyDownArrowDown = '__input_keydown_arrow_down__'</code>
   ). However, in the production environment the types equate to numbers
   <br />
-  (eg:
-  <code className="inverse">
-    ComboboxStateChangeTypes.InputKeyDownArrowDown = 0
-  </code>
+  (eg:{' '}
+  <code className="inverse">ComboboxStateChangeTypes.InputKeyDownArrowDown = 0</code>
   ).
 </Alert>
 
@@ -1358,7 +1353,7 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
 
 ### MultiSelect
 
-<div>
+<div style={{ overflowX: 'auto' }}>
   <ul>
     <li>
       <code>MultipleSelectionStateChangeTypes.SelectedItemClick</code>
@@ -1367,24 +1362,16 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
       <code>MultipleSelectionStateChangeTypes.SelectedItemKeyDownDelete</code>
     </li>
     <li>
-      <code>
-        MultipleSelectionStateChangeTypes.SelectedItemKeyDownBackspace
-      </code>
+      <code>MultipleSelectionStateChangeTypes.SelectedItemKeyDownBackspace</code>
     </li>
     <li>
-      <code>
-        MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationNext
-      </code>
+      <code>MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationNext</code>
     </li>
     <li>
-      <code>
-        MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationPrevious
-      </code>
+      <code>MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationPrevious</code>
     </li>
     <li>
-      <code>
-        MultipleSelectionStateChangeTypes.DropdownKeyDownNavigationPrevious
-      </code>
+      <code>MultipleSelectionStateChangeTypes.DropdownKeyDownNavigationPrevious</code>
     </li>
     <li>
       <code>MultipleSelectionStateChangeTypes.DropdownKeyDownBackspace</code>

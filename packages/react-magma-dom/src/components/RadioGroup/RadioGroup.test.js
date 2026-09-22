@@ -26,6 +26,8 @@ describe('Radio Group', () => {
     const label = getByText(labelText);
 
     expect(label).toBeInTheDocument();
+    expect(label).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(label).toHaveStyleRule('font-weight', '600');
   });
 
   it('should render children under radiogroup', () => {
@@ -148,6 +150,10 @@ describe('Radio Group', () => {
     expect(getByText(helperMessage).parentElement).toHaveAttribute(
       'id',
       'testId__desc'
+    );
+    expect(getByText(helperMessage).parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.neutral700
     );
   });
 

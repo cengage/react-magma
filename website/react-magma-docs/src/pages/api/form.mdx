@@ -27,6 +27,7 @@ import {
   Spacer,
   Announce,
   VisuallyHidden,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -148,7 +149,7 @@ export function Example() {
           autoComplete="given-name"
           ref={firstNameRef}
         />
-        <Spacer size="12" />
+        <Spacer size={magma.spaceScale.spacing06} />
         <Input
           labelText="Last Name (required)"
           value={state.lastName}
@@ -162,7 +163,7 @@ export function Example() {
           autoComplete="family-name"
           ref={lastNameRef}
         />
-        <Spacer size="12" />
+        <Spacer size={magma.spaceScale.spacing06} />
         <Input
           labelText="Email (required)"
           value={state.email}
@@ -176,7 +177,7 @@ export function Example() {
           autoComplete="email"
           ref={emailRef}
         />
-        <Spacer size="24" />
+        <Spacer size={magma.spaceScale.spacing06} />
         <Announce>
           <VisuallyHidden>{announcement}</VisuallyHidden>
         </Announce>
@@ -227,9 +228,9 @@ export function Example() {
         >
           <>
             <Input labelText="Name" autoComplete="given-name" />
-            <Spacer size="12" />
+            <Spacer size={magma.spaceScale.spacing06} />
             <Input labelText="Email" autoComplete="email" />
-            <Spacer size="24" />
+            <Spacer size={magma.spaceScale.spacing06} />
           </>
         </Form>
       </CardBody>

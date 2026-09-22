@@ -95,7 +95,7 @@ describe('Form', () => {
 
     expect(getByTestId(props.testId)).toHaveStyleRule(
       'background',
-      magma.colors.neutral1200
+      magma.colors.neutral1100
     );
   });
 

@@ -49,7 +49,7 @@ function getStyles(theme, isInverse: boolean) {
     html,
     body {
       background: ${isInverse
-        ? theme.colors.neutral1200
+        ? theme.colors.neutral1100
         : theme.colors.neutral0};
       color: ${isInverse ? theme.colors.neutral0 : theme.colors.neutral800};
       margin: 0;
