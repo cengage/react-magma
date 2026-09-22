@@ -77,7 +77,7 @@ function buildProgressBarBackground(props) {
   ) {
     return props.color;
   } else if (props.color === ProgressBarColor.primary) {
-    return props.theme.colors.primary;
+    return props.theme.colors.brand.oceanBlue;
   } else if (props.color === ProgressBarColor.danger) {
     return props.theme.colors.danger;
   } else if (props.color === ProgressBarColor.success) {

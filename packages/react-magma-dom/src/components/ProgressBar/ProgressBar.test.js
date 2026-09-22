@@ -59,7 +59,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      magma.colors.primary
+      magma.colors.brand.oceanBlue
     );
   });
 
