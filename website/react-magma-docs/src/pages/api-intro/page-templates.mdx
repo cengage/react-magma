@@ -16,7 +16,7 @@ This template is ideal for applications that need as much of the screen as possi
 <figure>
   <img
     src="../../images/layout/template-full-width.png"
-    alt=" "
+    alt="Full-width page layout with a header spanning the page and a twelve-column content grid below."
   />
 </figure>
 
@@ -50,11 +50,14 @@ export function Example() {
     >
       <GridItem gridColumn="1 / 5">
         <AppBar
-          isInverse
           logo={<strong>LOGO</strong>}
           breakpoint={magma.breakpoints.large}
           isCompact={isSmallerScreen}
           onMenuButtonClick={() => setShowDrawer(true)}
+          style={{
+            backgroundColor: magma.colors.blue600,
+            color: magma.colors.neutral0,
+          }}
         />
       </GridItem>
 
@@ -63,14 +66,23 @@ export function Example() {
         isOpen={showDrawer}
         position={DrawerPosition.left}
       >
-        Content
+        <div
+          style={{
+            background: magma.colors.blue400,
+            color: magma.colors.brand.navy,
+            padding: magma.spaceScale.spacing05,
+            height: '100%',
+          }}
+        >
+          Content
+        </div>
       </Drawer>
 
       <GridItem
         gridColumn="1 / 5"
         style={{
-          backgroundColor: magma.colors.indigo500,
-          color: magma.colors.neutral0,
+          backgroundColor: magma.colors.blue300,
+          color: magma.colors.brand.navy,
           textAlign: 'center',
           padding: magma.spaceScale.spacing05,
           width: 'calc(100% - 48px)',
@@ -82,7 +94,8 @@ export function Example() {
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '1 / 3'}
         style={{
-          backgroundColor: magma.colors.indigo100,
+          backgroundColor: magma.colors.blue400,
+          color: magma.colors.brand.navy,
           textAlign: 'center',
           padding: magma.spaceScale.spacing05,
           width: isSmallerScreen ? 'calc(100% - 48px)' : 'auto',
@@ -94,8 +107,8 @@ export function Example() {
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '3 / 4'}
         style={{
-          backgroundColor: magma.colors.indigo300,
-          color: magma.colors.neutral0,
+          backgroundColor: magma.colors.blue400,
+          color: magma.colors.brand.navy,
           textAlign: 'center',
           padding: magma.spaceScale.spacing05,
           width: isSmallerScreen ? 'calc(100% - 48px)' : 'auto',
@@ -107,8 +120,8 @@ export function Example() {
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '4 /5'}
         style={{
-          backgroundColor: magma.colors.indigo400,
-          color: magma.colors.neutral0,
+          backgroundColor: magma.colors.blue400,
+          color: magma.colors.brand.navy,
           textAlign: 'center',
           padding: magma.spaceScale.spacing05,
           width: isSmallerScreen ? 'calc(100% - 48px)' : 'auto',
@@ -120,7 +133,7 @@ export function Example() {
       <GridItem
         gridColumn="1 / 5"
         style={{
-          backgroundColor: magma.colors.indigo600,
+          backgroundColor: magma.colors.blue600,
           color: magma.colors.neutral0,
           textAlign: 'center',
           padding: magma.spaceScale.spacing05,
@@ -144,7 +157,7 @@ This template is great for pages that focus more on reading content like marketi
 <figure>
   <img
     src="../../images/layout/template-restricted-width.png"
-    alt=" "
+    alt="Restricted-width page layout with a centered content grid and wide margins on both sides."
   />
 </figure>
 
@@ -181,7 +194,7 @@ export function Example() {
           isCompact={isSmallerScreen}
           onMenuButtonClick={() => setShowDrawer(true)}
           style={{
-            backgroundColor: magma.colors.yellow400,
+            backgroundColor: magma.colors.blue600,
             color: magma.colors.neutral0,
           }}
         />
@@ -192,15 +205,24 @@ export function Example() {
         onClose={() => setShowDrawer(false)}
         isOpen={showDrawer}
       >
-        Sidebar
+        <div
+          style={{
+            background: magma.colors.blue300,
+            color: magma.colors.brand.navy,
+            padding: magma.spaceScale.spacing05,
+            height: '100%',
+          }}
+        >
+          Sidebar
+        </div>
       </Drawer>
 
       <GridItem
         gridColumn="1 / 3"
         style={{
           textAlign: 'center',
-          backgroundColor: magma.colors.yellow500,
-          color: magma.colors.neutral0,
+          backgroundColor: magma.colors.blue400,
+          color: magma.colors.brand.navy,
           width: 'calc(100% - 148px)',
           maxWidth: '952px',
           justifySelf: 'center',
@@ -215,8 +237,8 @@ export function Example() {
         gridColumn={isSmallerScreen ? '1 / 3' : '1 /  2'}
         style={{
           textAlign: 'center',
-          backgroundColor: magma.colors.yellow300,
-          color: magma.colors.neutral0,
+          backgroundColor: magma.colors.blue300,
+          color: magma.colors.brand.navy,
           padding: magma.spaceScale.spacing05,
           justifySelf: isSmallerScreen ? 'center' : 'stretch',
           width: isSmallerScreen ? 'calc(100% - 148px)' : 'auto',
@@ -229,8 +251,8 @@ export function Example() {
         gridColumn={isSmallerScreen ? '1 / 3' : '2 / 3'}
         style={{
           textAlign: 'center',
-          backgroundColor: magma.colors.yellow300,
-          color: magma.colors.neutral0,
+          backgroundColor: magma.colors.blue300,
+          color: magma.colors.brand.navy,
           padding: magma.spaceScale.spacing05,
           justifySelf: isSmallerScreen ? 'center' : 'stretch',
           width: isSmallerScreen ? 'calc(100% - 148px)' : 'auto',
@@ -253,7 +275,7 @@ This template includes a screen region for a left sidebar and includes all of th
 <figure>
   <img
     src="../../images/layout/template-sidebar-app-header.png"
-    alt=" "
+    alt="Page layout with a full-height left sidebar and a header spanning the content area to its right."
   />
 </figure>
 
@@ -292,7 +314,8 @@ export function Example() {
         <Drawer position={DrawerPosition.left} isOpen={openDrawer}>
           <div
             style={{
-              background: magma.colors.tangerine700,
+              background: magma.colors.blue300,
+              color: magma.colors.brand.navy,
               padding: magma.spaceScale.spacing05,
               width: '240px',
               height: 'calc(100vh - 32px)',
@@ -306,7 +329,11 @@ export function Example() {
           as={'sidebar'}
           gridColumn="1 / 2"
           gridRow="1 / 3"
-          style={{ background: magma.colors.tangerine700, width: '240px' }}
+          style={{
+            background: magma.colors.blue300,
+            color: magma.colors.brand.navy,
+            width: '240px',
+          }}
         >
           Sidebar
         </GridItem>
@@ -314,12 +341,15 @@ export function Example() {
 
       <GridItem as={'header'} gridColumn="2 / 3">
         <AppBar
-          isInverse
           logo={<strong>LOGO</strong>}
           breakpoint={magma.breakpoints.large}
           isCompact={isSmallerScreen}
           onMenuButtonClick={() => {
             setOpenDrawer(!openDrawer);
+          }}
+          style={{
+            backgroundColor: magma.colors.blue600,
+            color: magma.colors.neutral0,
           }}
         />
       </GridItem>
@@ -331,7 +361,8 @@ export function Example() {
           maxWidth: '1600px',
           width: '100%',
           justifySelf: 'center',
-          background: magma.colors.tangerine500,
+          background: magma.colors.blue400,
+          color: magma.colors.brand.navy,
           padding: magma.spaceScale.spacing05,
           margin: '0 auto',
           height: 'calc(100vh - 122px)',
@@ -353,7 +384,7 @@ This template also includes the sidebar screen region, but the header extends al
 <figure>
   <img
     src="../../images/layout/template-sidebar-global-header.png"
-    alt=" "
+    alt="Page layout with a full-width header above a left sidebar and the main content area."
   />
 </figure>
 
@@ -392,12 +423,15 @@ export function Example() {
     >
       <GridItem as="header" gridColumn="1 / 4">
         <AppBar
-          isInverse
           logo={<strong>LOGO</strong>}
           breakpoint={magma.breakpoints.large}
           isCompact={isSmallerScreen}
           onMenuButtonClick={() => {
             setOpenDrawer(!openDrawer);
+          }}
+          style={{
+            backgroundColor: magma.colors.blue600,
+            color: magma.colors.neutral0,
           }}
         />
       </GridItem>
@@ -406,7 +440,8 @@ export function Example() {
         <Drawer position={DrawerPosition.left} isOpen={openDrawer}>
           <div
             style={{
-              background: magma.colors.indigo200,
+              background: magma.colors.blue300,
+              color: magma.colors.brand.navy,
               padding: magma.spaceScale.spacing05,
               width: '240px',
               height: 'calc(100vh - 32px)',
@@ -422,7 +457,8 @@ export function Example() {
           gridRow="2 / 4"
           style={{
             width: '240px',
-            background: magma.colors.indigo200,
+            background: magma.colors.blue300,
+            color: magma.colors.brand.navy,
             padding: magma.spaceScale.spacing05,
             height: 'calc(100vh - 95px)',
           }}
@@ -439,8 +475,8 @@ export function Example() {
           maxWidth: '1600px',
           width: '100%',
           justifySelf: 'center',
-          background: magma.colors.indigo500,
-          color: magma.colors.neutral0,
+          background: magma.colors.blue400,
+          color: magma.colors.brand.navy,
           padding: magma.spaceScale.spacing05,
           height: 'calc(100vh - 122px)',
         }}
@@ -456,7 +492,7 @@ export function Example() {
           maxWidth: '1600px',
           width: '100%',
           justifySelf: 'center',
-          background: magma.colors.indigo700,
+          background: magma.colors.blue600,
           color: magma.colors.neutral0,
           padding: magma.spaceScale.spacing05,
           height: '10vh',

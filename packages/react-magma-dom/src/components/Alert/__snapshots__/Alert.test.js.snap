@@ -9,7 +9,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   background: none;
   border: 0;
   border-radius: 100%;
-  color: #007D95;
+  color: #007085;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -140,7 +140,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   background: none;
   border: 0;
   border-radius: 100%;
-  color: #007D95;
+  color: #007085;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;

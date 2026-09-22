@@ -27,8 +27,9 @@ export const StyledTabHeading = styled.p`
 
 // Side navigation
 export const StyledNavTabs = styled(NavTabs)`
+  flex: 1 1 auto;
+  min-height: 0;
   width: 240px;
-  max-height: calc(100vh - 150px);
   margin-right: 24px;
   align-items: stretch;
   overflow-y: auto;
@@ -69,6 +70,9 @@ export const StyledNavTabWrapper = styled.div`
   border-left: 1px solid
     ${props =>
       props.isInverse ? magma.colors.primary400 : magma.colors.neutral300};
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
 `;
 
 const Wrapper = styled.div`

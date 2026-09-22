@@ -113,6 +113,7 @@ const getHeaderLogo = isInverse => (
     </LogoLink>
     <RepoLink>
       <IconButton
+        aria-label="View project on GitHub"
         color={ButtonColor.subtle}
         icon={<GithubIcon />}
         variant={ButtonVariant.link}

@@ -47,7 +47,7 @@ export interface CheckboxProps
   checked?: boolean;
   /**
    * Hex code for the background color
-   * @default #007D95 (theme.colors.cyan700)
+   * @default #007085 (theme.colors.cyan700)
    */
   color?: string;
   /**

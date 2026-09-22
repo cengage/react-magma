@@ -8,11 +8,11 @@ import { Donut } from '../../components/Donut';
 <PageContent componentName="styles_and_themes" type="api_intro">
 
 <LeadParagraph>
-  The Magma component library has been intentionally designed for use
-  across multiple platforms. It is recommended to use the default styles that
-  come with any component whenever possible. However, there may be occasions
-  where overriding the default styles is required, and this can be accomplished
-  in a number of ways.
+  The Magma component library has been intentionally designed for use across
+  multiple platforms. It is recommended to use the default styles that come with
+  any component whenever possible. However, there may be occasions where
+  overriding the default styles is required, and this can be accomplished in a
+  number of ways.
 </LeadParagraph>
 
 ## Style Prop
@@ -156,34 +156,32 @@ import {
 const magmaDark = Object.assign({}, magma, {
   colors: Object.assign({}, magma.colors, {
     primary: magma.colors.tangerine600, // link color
-    focus: '#FFFFFF',
+    focus: magma.colors.neutral0,
     danger: magma.colors.red200,
-    neutral: '#DFDFDF',
-    neutral0: '#000000',
-    neutral200: '#F7F7F7',
-    neutral300: '#DFDFDF',
-    neutral400: '#BFBFBF',
-    neutral500: '#8f8f8f',
-    neutral600: '#707070',
-    neutral900: '#575757',
-    neutral800: '#3F3F3F',
-    neutral700: '#ffffff',
     border: magma.colors.tangerine600,
   }),
 });
 
-function DemoComponent() {
+function DemoComponent({ isInverse }) {
   return (
-    <Card>
+    <Card isInverse={isInverse}>
       <CardBody>
         <CardHeading level={3}>Theme Example</CardHeading>
-        <Input labelText="Text input" helperMessage="Helper text" />
-        <Input labelText="Text input with error" errorMessage="Error message" />
-        <RadioGroup labelText="Radio Group" name="radio">
+        <Input
+          isInverse={isInverse}
+          labelText="Text input"
+          helperMessage="Helper text"
+        />
+        <Input
+          isInverse={isInverse}
+          labelText="Text input with error"
+          errorMessage="Error message"
+        />
+        <RadioGroup isInverse={isInverse} labelText="Radio Group" name="radio">
           <Radio labelText="Radio 1" value="1" />
           <Radio labelText="Radio 2" value="2" />
         </RadioGroup>
-        <ButtonGroup>
+        <ButtonGroup isInverse={isInverse}>
           <Button>Button</Button>
           <Button color={ButtonColor.secondary}>Secondary Button</Button>
           <Button color={ButtonColor.danger}>Danger Button</Button>
@@ -219,7 +217,7 @@ export function Example() {
       />
       <Spacer size="24" />
       <ThemeContext.Provider value={theme}>
-        <DemoComponent />
+        <DemoComponent isInverse={theme === magmaDark} />
       </ThemeContext.Provider>
     </div>
   );
