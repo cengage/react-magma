@@ -369,7 +369,7 @@ const PageItemCurrentStyles = () => `
 
 const StyledLink2 = styled(Link)`
   align-items: center;
-  color: ${magma.colors.neutral700};
+  color: ${magma.colors.neutral800};
   display: flex;
   font-size: ${magma.typeScale.size02.fontSize};
   justify-content: space-between;

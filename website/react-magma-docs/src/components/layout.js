@@ -4,7 +4,13 @@ import styled from '@emotion/styled';
 import { MDXProvider } from '@mdx-js/react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
-import { Alert, Heading, magma, SkipLinkContent } from 'react-magma-dom';
+import {
+  Alert,
+  Heading,
+  magma,
+  SkipLinkContent,
+  useIsInverse,
+} from 'react-magma-dom';
 
 import { PageContent } from './PageContent';
 import { convertTextToId } from '../utils';
@@ -39,7 +45,12 @@ const DocsAlert = styled(Alert)`
   }
 
   p {
+    color: inherit;
     margin-bottom: 0;
+  }
+
+  li {
+    color: inherit;
   }
 
   > div > div > span {
@@ -48,6 +59,28 @@ const DocsAlert = styled(Alert)`
 `;
 
 const Table = props => <table {...props} />;
+
+const StyledDocsParagraph = styled.p`
+  color: ${props =>
+    props.isInverse ? magma.colors.neutral0 : magma.colors.neutral800};
+`;
+
+const StyledDocsListItem = styled.li`
+  color: ${props =>
+    props.isInverse ? magma.colors.neutral0 : magma.colors.neutral800};
+`;
+
+const DocsParagraph = props => {
+  const isInverse = useIsInverse();
+
+  return <StyledDocsParagraph {...props} isInverse={isInverse} />;
+};
+
+const DocsListItem = props => {
+  const isInverse = useIsInverse();
+
+  return <StyledDocsListItem {...props} isInverse={isInverse} />;
+};
 
 const PageHeading = props => <Heading level={1}>{props.children}</Heading>;
 
@@ -162,6 +195,8 @@ export const Layout = ({ children, location, pageContext }) => {
             return <CodeBlock children={preChildren} {...preChildren.props} />;
           },
           table: Table,
+          p: DocsParagraph,
+          li: DocsListItem,
           h1: SmartDocsHeading,
           h2: SectionHeading,
           h3: LinkHeading,
