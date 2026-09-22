@@ -274,7 +274,7 @@ const ComponentGroupsList = styled(List)`
 `;
 
 const ComponentGroupLabel = styled.p`
-  color: ${magma.colors.neutral700};
+  color: ${magma.colors.brand.navy};
   font-size: ${magma.typeScale.size01.fontSize};
   font-weight: 600;
   letter-spacing: ${magma.typeScale.size01.letterSpacing};
@@ -335,10 +335,10 @@ const StyledActiveLink2 = {
   top: '0',
   left: '0',
   height: '100%',
-  width: '2px',
+  width: '3px',
   transform: 'none',
   borderRadius: '0',
-  background: magma.colors.brand.sunriseOrange,
+  background: magma.colors.brand.oceanBlue,
 };
 
 const StyledHoverLink2 = {
@@ -364,7 +364,7 @@ const PageItemCurrentStyles = () => `
   ${pageItemRowStateStyles}
   background: ${magma.colors.neutral150};
   color: ${magma.colors.brand.navy};
-  font-weight: 600;
+  font-weight: 700;
 `;
 
 const StyledLink2 = styled(Link)`

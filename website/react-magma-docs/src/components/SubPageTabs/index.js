@@ -43,7 +43,7 @@ export const StyledNavTabs = styled(NavTabs)`
   }
 
   > div ul > li::after {
-    width: 2px;
+    width: ${props => (props.isInverse ? '2px' : '3px')};
   }
 `;
 
@@ -62,7 +62,7 @@ export const StyledNavTab = styled(NavTab)`
 
   &&[aria-current='page'] {
     color: ${magma.colors.brand.navy};
-    font-weight: 600;
+    font-weight: 700;
   }
 `;
 

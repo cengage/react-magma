@@ -71,14 +71,16 @@ export const StyledTabsChild = styled('li', {
         : 'auto'};
       &:after {
         background: ${props.isActive
-          ? props.theme.colors.brand.sunriseOrange
+          ? props.isInverse
+            ? props.theme.colors.brand.sunriseOrange
+            : props.theme.colors.brand.oceanBlue
           : props.isInverse
             ? props.theme.colors.neutral600
             : props.theme.colors.neutral500};
         border-radius: 0;
         content: '';
         display: block;
-        height: 2px;
+        height: ${props.isInverse ? '2px' : '3px'};
         opacity: ${props.isActive ? '1' : '0'};
         position: absolute;
         transition: ${props.isActive ? '0.4s all' : 'none'};
@@ -95,7 +97,7 @@ export const StyledTabsChild = styled('li', {
           left: ${props.borderPosition === 'right' ? 'auto' : '0'};
           right: ${props.borderPosition === 'right' ? '0' : 'auto'};
           top: ${props.isActive ? '0' : '50%'};
-          width: 2px;
+          width: ${props.isInverse ? '2px' : '3px'};
         `}
       }
 
@@ -166,7 +168,7 @@ export const TabStyles = props => css`
   flex-direction: ${getFlexDirection(props.iconPosition)};
   flex-grow: 0;
   flex-shrink: ${props.isFullWidth ? '1' : '0'};
-  font-weight: ${props.isActive ? 600 : 400};
+  font-weight: ${props.isActive ? (props.isInverse ? 600 : 700) : 400};
   font-size: ${props.theme.typeScale.size02.fontSize};
   font-family: ${props.theme.bodyFont};
   letter-spacing: ${props.theme.typeScale.size02.letterSpacing};

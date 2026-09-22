@@ -366,7 +366,7 @@ describe('Tabs', () => {
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('bottom', '0', {
       target: ':after',
     });
-    expect(getByText('Tab 1').parentElement).toHaveStyleRule('height', '2px', {
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule('height', '3px', {
       target: ':after',
     });
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('z-index', '1', {
@@ -374,7 +374,7 @@ describe('Tabs', () => {
     });
     expect(getByText('Tab 1').parentElement).toHaveStyleRule(
       'background',
-      magma.colors.brand.sunriseOrange,
+      magma.colors.brand.oceanBlue,
       { target: ':after' }
     );
     expect(getByText('Tab 1').parentElement).toHaveStyleRule(
@@ -386,7 +386,7 @@ describe('Tabs', () => {
       'color',
       magma.colors.brand.navy
     );
-    expect(getByTestId('active-tab')).toHaveStyleRule('font-weight', '600');
+    expect(getByTestId('active-tab')).toHaveStyleRule('font-weight', '700');
     expect(getByTestId('inactive-tab')).toHaveStyleRule(
       'color',
       magma.colors.neutral700
@@ -472,7 +472,7 @@ describe('Tabs', () => {
     expect(getByText('Tab 1').parentElement).toHaveStyleRule('bottom', '0', {
       target: ':after',
     });
-    expect(getByText('Tab 1').parentElement).toHaveStyleRule('width', '2px', {
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule('width', '3px', {
       target: ':after',
     });
   });
@@ -492,6 +492,10 @@ describe('Tabs', () => {
         target: ':after',
       }
     );
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule('height', '2px', {
+      target: ':after',
+    });
+    expect(getByText('Tab 1')).toHaveStyleRule('font-weight', '600');
     expect(getByText('Tab 2').parentElement).toHaveStyleRule(
       'background',
       magma.colors.neutral600,
