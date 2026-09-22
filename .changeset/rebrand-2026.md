@@ -11,3 +11,5 @@ feat: apply the 2026 Magma rebrand across components and documentation
 - Update component colors, typography, interaction states, spacing, and styling.
 - Refresh the documentation navigation, homepage, examples, branding, and accessibility guidance.
 - Align Dropzone and Charts with the updated theme tokens.
+
+See the [2026 theme migration guide](https://react-magma.cengage.com/api-intro/2026-theme-migration/) for guidance on replacing removed color tokens and preserving legacy border radii.

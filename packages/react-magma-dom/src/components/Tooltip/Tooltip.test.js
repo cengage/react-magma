@@ -24,7 +24,7 @@ describe('Tooltip', () => {
   });
 
   it('should render the tooltip component, positioned top by default', async () => {
-    const { container, queryByTestId } = render(
+    const { container, getByTestId } = render(
       <Tooltip id="tooltipID" content={CONTENT_TEXT}>
         {TRIGGER_ELEMENT}
       </Tooltip>
@@ -40,8 +40,10 @@ describe('Tooltip', () => {
     });
 
     const tooltip = container.querySelector('div[role="tooltip"]');
+    const arrow = getByTestId('tooltip-arrow');
+
     expect(tooltip).toBeInTheDocument();
-    expect(queryByTestId('tooltip-arrow')).not.toBeInTheDocument();
+    expect(arrow).toBeInTheDocument();
 
     expect(tooltip).toHaveAttribute('data-tooltip-placement', 'top');
 

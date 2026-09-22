@@ -51,7 +51,7 @@ function getStyles(theme, isInverse: boolean) {
       background: ${isInverse
         ? theme.colors.neutral1200
         : theme.colors.neutral0};
-      color: ${isInverse ? theme.colors.neutral0 : theme.colors.neutral};
+      color: ${isInverse ? theme.colors.neutral0 : theme.colors.neutral800};
       margin: 0;
       padding: 0;
     }

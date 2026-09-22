@@ -155,7 +155,7 @@ describe('Table', () => {
     );
     expect(getByTestId('active-header')).toHaveStyleRule(
       'background',
-      magma.colors.neutral100
+      magma.colors.neutral150
     );
     expect(getByTestId('active-header')).toHaveStyleRule(
       'border-color',
@@ -256,7 +256,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      magma.colors.neutral100,
+      magma.colors.neutral150,
       {
         target: ':nth-of-type(even)',
       }

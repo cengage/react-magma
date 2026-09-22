@@ -6,8 +6,10 @@ import {
   flip,
   autoUpdate,
   AlignedPlacement,
+  arrow,
   shift,
   useFloating,
+  FloatingArrow,
   useHover,
   useFocus,
   useDismiss,
@@ -17,7 +19,7 @@ import {
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useForkedRef, useGenerateId } from '../../utils';
+import { useForkedRef, useGenerateId, removePxStyleStrings } from '../../utils';
 
 export enum TooltipPosition {
   bottom = 'bottom',
@@ -29,6 +31,10 @@ export enum TooltipPosition {
 export const EnumTooltipPosition = TooltipPosition;
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Style properties for the arrow element
+   */
+  arrowStyle?: React.CSSProperties;
   /**
    * The element that triggers the tooltip when it is hovered or focused. Must be a react element (not a string) and should be a focusable element to meet a11y requirements
    */
@@ -71,6 +77,29 @@ const TooltipContainer = styled.div`
   pointer-events: auto;
 `;
 
+export const TooltipArrow = styled.span<{
+  position?: any;
+  isInverse?: boolean;
+}>`
+  &&,
+  &&:before {
+    display: block;
+    height: ${props => props.theme.tooltip.arrowSizeDoubled};
+    position: absolute;
+    width: ${props => props.theme.tooltip.arrowSizeDoubled};
+    z-index: -1;
+  }
+
+  &&::before {
+    content: '';
+    transform: rotate(45deg);
+    background: ${props =>
+      props.isInverse
+        ? props.theme.tooltip.inverse.backgroundColor
+        : props.theme.tooltip.backgroundColor};
+  }
+`;
+
 export const StyledTooltip = styled.div<{
   isInverse?: boolean;
   isVisible?: boolean;
@@ -102,8 +131,10 @@ export const StyledTooltip = styled.div<{
 export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   const isOpen = props.open !== undefined;
   const [isVisible, setIsVisible] = React.useState<boolean>(props.open);
+  const arrowElement = React.useRef(null);
 
   const {
+    arrowStyle,
     children,
     content,
     containerStyle,
@@ -114,6 +145,18 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     ...other
   } = props;
 
+  const isArrowVisible = React.useMemo(() => {
+    if (arrowElement.current) {
+      const computedStyle = window.getComputedStyle(arrowElement.current);
+      const isHidden =
+        computedStyle.display === 'none' ||
+        computedStyle.visibility === 'hidden' ||
+        parseFloat(computedStyle.opacity) === 0;
+
+      return !isHidden;
+    }
+  }, [arrowStyle, arrowElement, arrowElement.current]);
+
   const { refs, floatingStyles, placement, context, elements, update } =
     useFloating({
       open: isVisible,
@@ -121,7 +164,13 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
       //flip() - Changes the placement of the floating element to keep it in view.
       //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
       //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
-      middleware: [flip(), shift(), offset(8)],
+      //arrow() - Positions an arrow element pointing at the reference element, ensuring proper alignment.
+      middleware: [
+        flip(),
+        shift(),
+        offset(isArrowVisible ? 14 : 0),
+        ...(isArrowVisible ? [arrow({ element: arrowElement })] : []),
+      ],
       placement: (position ??
         TooltipPosition.top) as unknown as AlignedPlacement,
       whileElementsMounted: autoUpdate,
@@ -220,6 +269,19 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
             },
           })}
         >
+          <FloatingArrow
+            ref={arrowElement}
+            data-testid={testId ? `${testId}-arrow` : 'tooltip-arrow'}
+            context={context}
+            style={{ ...arrowStyle, zIndex: 2 }}
+            width={removePxStyleStrings([theme.tooltip.arrowSizeDoubled])}
+            height={removePxStyleStrings([theme.tooltip.arrowSizeDoubled]) / 2}
+            fill={
+              isInverse
+                ? theme.tooltip.inverse.backgroundColor
+                : theme.tooltip.backgroundColor
+            }
+          />
           <StyledTooltip
             id={id}
             isInverse={isInverse}

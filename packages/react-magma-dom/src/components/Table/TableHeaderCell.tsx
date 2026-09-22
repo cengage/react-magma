@@ -91,7 +91,7 @@ const StyledTableHeaderCell = styled.th<{
       : {
           background: props.isInverse
             ? props.theme.colors.neutral1000
-            : props.theme.colors.neutral100,
+            : props.theme.colors.neutral150,
           borderBottom: '2px solid',
           fontWeight: 'bold',
           verticalAlign: 'bottom',
