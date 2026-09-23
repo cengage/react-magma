@@ -72,7 +72,7 @@ export const StyledTabsChild = styled('li', {
       &:after {
         background: ${props.isActive
           ? props.isInverse
-            ? props.theme.colors.brand.sunriseOrange
+            ? props.theme.colors.brand.skyBlue
             : props.theme.colors.brand.oceanBlue
           : props.isInverse
             ? props.theme.colors.neutral600
@@ -83,7 +83,7 @@ export const StyledTabsChild = styled('li', {
         height: ${props.isInverse ? '2px' : '3px'};
         opacity: ${props.isActive ? '1' : '0'};
         position: absolute;
-        transition: ${props.isActive ? '0.4s all' : 'none'};
+        transition: none;
         width: auto;
         bottom: ${props.borderPosition === 'top' ? 'auto' : '0'};
         left: ${props.isActive ? '0' : '50%'};

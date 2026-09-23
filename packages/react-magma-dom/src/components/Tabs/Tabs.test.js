@@ -373,6 +373,11 @@ describe('Tabs', () => {
       target: ':after',
     });
     expect(getByText('Tab 1').parentElement).toHaveStyleRule(
+      'transition',
+      'none',
+      { target: ':after' }
+    );
+    expect(getByText('Tab 1').parentElement).toHaveStyleRule(
       'background',
       magma.colors.brand.oceanBlue,
       { target: ':after' }
@@ -487,7 +492,7 @@ describe('Tabs', () => {
 
     expect(getByText('Tab 1').parentElement).toHaveStyleRule(
       'background',
-      magma.colors.brand.sunriseOrange,
+      magma.colors.brand.skyBlue,
       {
         target: ':after',
       }
