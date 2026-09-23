@@ -29,7 +29,7 @@ function buildLabelColor(props) {
     return props.theme.colors.neutral500;
   }
 
-  return props.theme.colors.neutral700;
+  return props.theme.colors.neutral800;
 }
 
 const StyledWrapper = styled.div<{
@@ -138,14 +138,14 @@ export const SimplePagination = React.forwardRef<
     <NavButton
       aria-label={prevTooltipContent}
       variant={ButtonVariant.link}
-      color={ButtonColor.secondary}
+      color={ButtonColor.subtle}
       disabled={disabledPrevTooltip}
       icon={<ArrowBackIcon />}
       isInverse={isInverse}
       testId={testId ? `${testId}-previous-button` : null}
       theme={theme}
       onClick={handlePrev}
-      shape={ButtonShape.fill}
+      shape={ButtonShape.round}
     />
   );
 
@@ -153,14 +153,14 @@ export const SimplePagination = React.forwardRef<
     <NavButton
       aria-label={nextTooltipContent}
       variant={ButtonVariant.link}
-      color={ButtonColor.secondary}
+      color={ButtonColor.subtle}
       disabled={disabledNextTooltip}
       icon={<ArrowForwardIcon />}
       isInverse={isInverse}
       onClick={handleNext}
       testId={testId ? `${testId}-next-button` : null}
       theme={theme}
-      shape={ButtonShape.fill}
+      shape={ButtonShape.round}
     />
   );
 

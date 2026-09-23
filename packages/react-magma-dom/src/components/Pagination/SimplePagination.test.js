@@ -115,6 +115,23 @@ describe('Simple Pagination', () => {
     expect(getByTestId(`${testId}-select`).value).toBe('3');
   });
 
+  it('Should render the end navigation buttons with subtle styling', () => {
+    const { getByLabelText, getByText } = render(
+      <Pagination type={PaginationType.simple} count={4} defaultPage={2} />
+    );
+
+    const previousButton = getByLabelText('Previous Page');
+    const nextButton = getByLabelText('Next Page');
+
+    expect(previousButton).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(nextButton).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(previousButton).toHaveStyleRule('border-radius', '100%');
+    expect(nextButton).toHaveStyleRule('border-radius', '100%');
+    expect(getByText('of 4 pages')).toHaveStyle({
+      color: magma.colors.neutral800,
+    });
+  });
+
   describe('Disabled', () => {
     it('Should render disabled navigation icons, text, and select', () => {
       const { getByText, getByLabelText } = render(
