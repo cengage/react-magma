@@ -232,7 +232,7 @@ describe('Stepper', () => {
 
       expect(step).toHaveStyleRule(
         'box-shadow',
-        `inset 0 0 0 2px ${magma.colors.brand.navy}`
+        `inset 0 0 0 2px ${magma.colors.cyan700}`
       );
     });
 
@@ -262,7 +262,7 @@ describe('Stepper', () => {
 
       const step = getByTestId(testId).querySelector('span');
 
-      expect(step).toHaveStyleRule('background', magma.colors.brand.navy);
+      expect(step).toHaveStyleRule('background', magma.colors.cyan700);
     });
 
     it('should have a error styled circle', () => {
@@ -304,7 +304,7 @@ describe('Stepper', () => {
       const secondaryLabel = getByText(TEXT);
 
       expect(secondaryLabel).toHaveStyleRule('font-size', '12px');
-      expect(secondaryLabel).toHaveStyleRule('color', magma.colors.neutral700);
+      expect(secondaryLabel).toHaveStyleRule('color', magma.colors.neutral800);
     });
 
     it('should have an incomplete styled separator', () => {
@@ -332,7 +332,7 @@ describe('Stepper', () => {
       const separator = getByTestId(testId).nextElementSibling;
 
       expect(separator).toHaveStyleRule('height', '2px');
-      expect(separator).toHaveStyleRule('background', magma.colors.brand.navy);
+      expect(separator).toHaveStyleRule('background', magma.colors.cyan700);
     });
 
     describe('Inverse', () => {
@@ -364,7 +364,7 @@ describe('Stepper', () => {
 
         expect(step).toHaveStyleRule(
           'box-shadow',
-          `inset 0 0 0 2px ${magma.colors.neutral900}`
+          `inset 0 0 0 2px ${magma.colors.neutral600}`
         );
       });
 
@@ -395,6 +395,9 @@ describe('Stepper', () => {
         const step = getByTestId(testId).querySelector('span');
 
         expect(step).toHaveStyleRule('background', magma.colors.red500);
+        expect(step).toHaveStyleRule('color', magma.colors.red1000, {
+          target: 'svg',
+        });
       });
 
       it('should have an inverse primary label', () => {
@@ -426,6 +429,26 @@ describe('Stepper', () => {
         );
       });
 
+      it('should have inverse summary text', () => {
+        const { getByTestId } = render(
+          <Stepper
+            ariaLabel="progress"
+            isInverse
+            testId={testId}
+            layout={StepperLayout.summaryView}
+            currentStep={0}
+          >
+            <Step key="step1" label={`${TEXT}-1`} />
+            <Step key="step2" label={`${TEXT}-2`} />
+          </Stepper>
+        );
+
+        expect(getByTestId(`${testId}-stepper-summary`)).toHaveStyleRule(
+          'color',
+          magma.colors.neutral500
+        );
+      });
+
       it('should have an inverse incomplete styled separator', () => {
         const { getByTestId } = render(
           <Stepper ariaLabel="progress" isInverse currentStep={0}>
@@ -438,7 +461,7 @@ describe('Stepper', () => {
 
         expect(separator).toHaveStyleRule(
           'background',
-          magma.colors.neutral900
+          magma.colors.neutral600
         );
       });
 
@@ -506,7 +529,7 @@ describe('Stepper', () => {
         expect(getByTestId(`${testId}-stepper-summary`)).toBeVisible();
         expect(getByTestId(`${testId}-stepper-summary`)).toHaveStyleRule(
           'color',
-          magma.colors.neutral700
+          magma.colors.neutral800
         );
         expect(getByTestId(testId)).toHaveTextContent('Step 1 of 2');
       });

@@ -70,12 +70,12 @@ function buildStepCircleOutlineColors(props) {
     if (stepStatus === StepStatus.active) {
       return theme.colors.brand.skyBlue;
     } else if (stepStatus === StepStatus.incomplete) {
-      return theme.colors.neutral900;
+      return theme.colors.neutral600;
     }
   } else {
     if (!isInverse && !hasError) {
       if (stepStatus === StepStatus.active) {
-        return theme.colors.brand.navy;
+        return theme.colors.cyan700;
       } else if (stepStatus === StepStatus.incomplete) {
         return theme.colors.neutral300;
       }
@@ -94,7 +94,7 @@ function buildStepCircleBackgroundColors(props) {
     }
   } else {
     if (stepStatus === StepStatus.completed && !hasError) {
-      return theme.colors.brand.navy;
+      return theme.colors.cyan700;
     } else if (hasError) {
       return theme.colors.red600;
     }
@@ -114,7 +114,7 @@ function buildStepLabelColors(props) {
     if (label) {
       return theme.colors.brand.navy;
     } else if (secondaryLabel) {
-      return theme.colors.neutral700;
+      return theme.colors.neutral800;
     }
   }
 }
@@ -124,7 +124,7 @@ function buildStepSvgColors(props) {
 
   if (isInverse) {
     if (hasError) {
-      return theme.colors.neutral0;
+      return theme.colors.red1000;
     }
 
     return theme.colors.brand.navy;
