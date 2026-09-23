@@ -106,7 +106,7 @@ const StyledTreeItem = styled.li<{
       props.selected && props.isInverse
         ? props.theme.colors.neutral900
         : props.selected &&
-          transparentize(0.92, props.theme.colors.neutral900)};
+          transparentize(0.25, props.theme.colors.neutral200)};
     position: relative;
 
     padding-inline-start: ${props =>
@@ -134,7 +134,9 @@ const StyledTreeItem = styled.li<{
       css`
         &:before {
           position: absolute;
-          background-color: ${props.theme.colors.brand.sunriseOrange};
+          background-color: ${props.isInverse
+            ? props.theme.colors.brand.skyBlue
+            : props.theme.colors.brand.oceanBlue};
           block-size: 100%;
           content: '';
           inline-size: ${props.theme.spaceScale.spacing02};
@@ -160,7 +162,7 @@ function getHoverBackground({ isDisabled, hoverColor, isInverse, theme }) {
 
   return isInverse
     ? transparentize(0.5, theme.colors.neutral900)
-    : transparentize(0.1, theme.colors.neutral150);
+    : transparentize(0.5, theme.colors.neutral200);
 }
 
 const IconWrapper = styled.span<{

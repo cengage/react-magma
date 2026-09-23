@@ -261,7 +261,7 @@ describe('TreeItem', () => {
       expect(getByTestId(testId)).toBeInTheDocument();
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        transparentize(0.1, magma.colors.neutral150),
+        transparentize(0.5, magma.colors.neutral200),
         {
           target: ':hover',
         }

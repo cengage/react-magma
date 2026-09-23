@@ -511,7 +511,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-44 {
@@ -643,7 +643,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-84>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-88 {
@@ -1250,7 +1250,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-44 {
@@ -1382,7 +1382,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-84>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-88 {
@@ -2501,7 +2501,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-44 {
@@ -2678,7 +2678,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-76 {
@@ -3350,7 +3350,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-44 {
@@ -3527,7 +3527,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-76 {
@@ -4758,7 +4758,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-44 {
@@ -4935,7 +4935,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-76 {
@@ -5542,7 +5542,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-44 {
@@ -5719,7 +5719,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-76 {
@@ -6884,7 +6884,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-44 {
@@ -7061,7 +7061,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-76 {
@@ -7668,7 +7668,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-44 {
@@ -7845,7 +7845,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-76 {
@@ -9010,7 +9010,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-44 {
@@ -9187,7 +9187,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-76 {
@@ -9859,7 +9859,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-44 {
@@ -10036,7 +10036,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-76 {
@@ -11267,7 +11267,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-44 {
@@ -11444,7 +11444,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-76 {
@@ -12116,7 +12116,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-44 {
@@ -12293,7 +12293,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-76 {
@@ -13524,7 +13524,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-44 {
@@ -13701,7 +13701,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-76 {
@@ -14308,7 +14308,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-42>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-44 {
@@ -14485,7 +14485,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-72>div:first-of-type:hover {
-  background: rgba(241,243,247,0.9);
+  background: rgba(222,229,238,0.5);
 }
 
 .emotion-76 {

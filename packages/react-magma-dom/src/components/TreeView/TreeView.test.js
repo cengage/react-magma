@@ -924,7 +924,12 @@ describe('TreeView', () => {
         await userEvent.click(getByTestId('item1-label'));
 
         expect(getByTestId('item1-itemwrapper')).toHaveStyle(
-          `background: ${transparentize(0.92, magma.colors.neutral900)}`
+          `background: ${transparentize(0.25, magma.colors.neutral200)}`
+        );
+        expect(getByTestId('item1')).toHaveStyleRule(
+          'background-color',
+          magma.colors.brand.oceanBlue,
+          { target: '>div:first-of-type:before' }
         );
       });
     });
@@ -1468,7 +1473,7 @@ describe('TreeView', () => {
       );
       expect(getByTestId('item1')).toHaveStyleRule(
         'background-color',
-        magma.colors.brand.sunriseOrange,
+        magma.colors.brand.skyBlue,
         { target: '>div:first-of-type:before' }
       );
     });
