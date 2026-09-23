@@ -10,8 +10,8 @@ export function getIconBackground(props: {
 }): string {
   if (props.isInverse) {
     return props.isDanger
-      ? props.theme.colors.red900
-      : props.theme.colors.neutral900;
+      ? props.theme.colors.red500
+      : props.theme.colors.brand.skyBlue;
   }
 
   return props.isDanger
@@ -26,8 +26,8 @@ export function getIllustrationIconColor(props: {
 }): string {
   if (props.isInverse) {
     return props.isDanger
-      ? props.theme.colors.red400
-      : props.theme.colors.neutral0;
+      ? props.theme.colors.red1000
+      : props.theme.colors.brand.navy;
   }
 
   return props.isDanger
