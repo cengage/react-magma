@@ -113,6 +113,9 @@ export const PopoverTrigger = React.forwardRef<
           theme,
           onClick: handleClick,
           ref: ref,
+          'aria-label':
+            (children as React.ReactElement)?.props?.['aria-label'] ??
+            ariaLabel,
           'aria-haspopup': 'dialog',
           'aria-controls': context.popoverContentId.current,
           'aria-describedby':
@@ -203,7 +206,6 @@ export const PopoverTrigger = React.forwardRef<
         </Button>
       ) : (
         <TriggerButtonContainer
-          aria-label={ariaLabel}
           id={context.popoverTriggerId.current}
           tabIndex={
             tabIndex
