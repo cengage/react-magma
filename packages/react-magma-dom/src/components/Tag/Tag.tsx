@@ -473,7 +473,8 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
 
     const { icon } = props;
 
-    const StyledTag = getStyledTag(Boolean(onClick || onDelete));
+    const isInteractive = Boolean(onClick || onDelete);
+    const StyledTag = getStyledTag(isInteractive);
 
     function handleClick() {
       if (onClick && typeof onClick === 'function') {
@@ -485,7 +486,9 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
 
     return (
       <StyledTag
-        aria-label={onDelete ? deleteAriaLabel : nodeLabel}
+        {...(isInteractive && {
+          'aria-label': onDelete ? deleteAriaLabel : nodeLabel,
+        })}
         color={color}
         icon={icon}
         onClick={handleClick}

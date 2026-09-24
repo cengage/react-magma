@@ -187,6 +187,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
           labelPosition={labelPosition || LabelPosition.top}
           messageStyle={messageStyle}
           {...(props as MultiComboboxProps<T>)}
+          id={id}
         />
       ) : (
         <InternalCombobox
@@ -199,6 +200,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
           labelPosition={labelPosition || LabelPosition.top}
           messageStyle={messageStyle}
           {...(props as ComboboxProps<T>)}
+          id={id}
         />
       )}
     </div>
