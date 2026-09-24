@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 15.0.0-rc.1
+
+### Patch Changes
+
+- d82751e: fix(charts): hide the hover ruler line from screen readers
+
 ## 15.0.0-rc.0
 
 ### Patch Changes

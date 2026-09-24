@@ -9,6 +9,7 @@
     "react-magma-landing": "1.1.9"
   },
   "changesets": [
+    "charts-ruler-aria-hidden",
     "free-dots-hide",
     "sync-main-to-dev-5-2-0",
     "tag-data-viz-colors"
