@@ -79,3 +79,17 @@ export const convertTextToId = text => {
     ? text.toLowerCase().replace(/\s/g, '_')
     : null;
 };
+
+export const getDocsPageSlug = node => {
+  const pagePath = node?.fileAbsolutePath?.split('/src/pages/')[1];
+
+  if (!pagePath) {
+    return node?.fields?.slug;
+  }
+
+  const slug = pagePath
+    .replace(/\.(mdx?|jsx?|tsx?)$/, '')
+    .replace(/\/index$/, '');
+
+  return `/${slug}/`.replace(/\/{2,}/g, '/');
+};
