@@ -1495,7 +1495,13 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       const timer = setTimeout(() => {
         if (internalRef.current) {
           internalRef.current
-            .querySelectorAll<SVGGElement>('g[aria-label]')
+            .querySelectorAll<SVGGElement>('g.ruler[aria-label]')
+            .forEach(g => {
+              g.setAttribute('aria-hidden', 'true');
+            });
+
+          internalRef.current
+            .querySelectorAll<SVGGElement>('g[aria-label]:not(.ruler)')
             .forEach(g => {
               const role = g.getAttribute('role');
 
@@ -1509,6 +1515,30 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       }, 0);
 
       return () => clearTimeout(timer);
+    }, [type, dataSet]);
+
+    React.useEffect(() => {
+      const container = internalRef.current;
+
+      if (!container) return;
+
+      const hideRulerFromAT = () => {
+        container
+          .querySelectorAll<SVGGElement>('g.ruler[aria-label]')
+          .forEach(g => {
+            if (!g.hasAttribute('aria-hidden')) {
+              g.setAttribute('aria-hidden', 'true');
+            }
+          });
+      };
+
+      hideRulerFromAT();
+
+      const observer = new MutationObserver(hideRulerFromAT);
+
+      observer.observe(container, { childList: true, subtree: true });
+
+      return () => observer.disconnect();
     }, [type, dataSet]);
 
     React.useEffect(() => {
