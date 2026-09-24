@@ -11,6 +11,7 @@
   },
   "changesets": [
     "charts-ruler-aria-hidden",
+    "fix-storybook-a11y-audit",
     "sync-v4-dev-deployment",
     "tag-data-viz-colors"
   ]
