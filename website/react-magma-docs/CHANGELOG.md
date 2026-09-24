@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.4.0-next.3
+
+### Minor Changes
+
+- bb66d58bc: feat(docs): update navigation structure and styling
+
 ## 5.3.9-next.2
 
 ### Patch Changes
