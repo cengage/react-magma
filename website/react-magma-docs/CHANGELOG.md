@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.3.9-next.2
+
+### Patch Changes
+
+- Updated dependencies [8875a36d8]
+  - @react-magma/charts@14.0.0-next.1
+
 ## 5.3.9-next.1
 
 ### Patch Changes

@@ -10,6 +10,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "charts-ruler-aria-hidden",
     "sync-v4-dev-deployment",
     "tag-data-viz-colors"
   ]
