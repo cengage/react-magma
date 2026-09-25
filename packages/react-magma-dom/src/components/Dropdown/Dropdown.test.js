@@ -593,6 +593,141 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
+  describe('focus behavior when selecting a menu item', () => {
+    it('should return focus to the toggle button when an item is clicked', async () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown testId="dropdown">
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      await userEvent.click(getByTestId('dropdownButton'));
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'display',
+        'block'
+      );
+
+      await userEvent.click(getByText('Menu item 1'));
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(getByTestId('dropdownButton')).toHaveFocus();
+    });
+
+    it('should return focus to the toggle button when an item is selected with the Enter key', () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown testId="dropdown">
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      fireEvent.click(getByTestId('dropdownButton'));
+
+      fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowDown' });
+
+      expect(getByText('Menu item 1')).toHaveFocus();
+
+      fireEvent.keyDown(getByText('Menu item 1'), { key: 'Enter' });
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(getByTestId('dropdownButton')).toHaveFocus();
+    });
+
+    it('should return focus to the toggle button when an item is selected with the Space key', () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown testId="dropdown">
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      fireEvent.click(getByTestId('dropdownButton'));
+
+      fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowDown' });
+      fireEvent.keyDown(getByText('Menu item 1'), { key: ' ' });
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(getByTestId('dropdownButton')).toHaveFocus();
+    });
+
+    it('should not return focus or close the dropdown when a disabled item is clicked', async () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown testId="dropdown">
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem disabled onClick={() => {}}>
+              Menu item 1
+            </DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      fireEvent.click(getByTestId('dropdownButton'));
+      fireEvent.click(getByText('Menu item 1'));
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'display',
+        'block'
+      );
+    });
+
+    it('should keep the dropdown open and not move focus for an active (selectable) item', () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown activeIndex={0} testId="dropdown">
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      fireEvent.click(getByTestId('dropdownButton'));
+
+      fireEvent.click(getByText('Menu item 2'));
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'display',
+        'block'
+      );
+    });
+
+    it('should return focus to the main button of a split dropdown when an item is clicked', async () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown testId="dropdown">
+          <DropdownSplitButton testId="dropdownSplitButton">
+            Toggle me
+          </DropdownSplitButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      await userEvent.click(getByTestId('caretDown').parentElement);
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'display',
+        'block'
+      );
+
+      await userEvent.click(getByText('Menu item 1'));
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(document.activeElement).not.toBe(document.body);
+    });
+  });
+
   it('go to the first or next item when the down arrow key is pressed', () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
