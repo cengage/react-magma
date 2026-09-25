@@ -10,6 +10,7 @@
   },
   "changesets": [
     "charts-ruler-aria-hidden",
+    "fix-chart-dot-focus-stability",
     "fix-storybook-a11y-audit",
     "free-dots-hide",
     "sync-main-to-dev-5-2-0",

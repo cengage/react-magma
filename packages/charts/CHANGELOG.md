@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 15.0.0-rc.2
+
+### Patch Changes
+
+- 7a243ae: fix(charts): improve point Tab navigation accessibility after chart rerenders
+
 ## 15.0.0-rc.1
 
 ### Patch Changes
