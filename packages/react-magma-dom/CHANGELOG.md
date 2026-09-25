@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 4.17.0-next.2
+
+### Patch Changes
+
+- cc9e82e20: fix(Dropdown): return focus to the trigger button when a menu item is selected
+
 ## 4.17.0-next.1
 
 ### Patch Changes
