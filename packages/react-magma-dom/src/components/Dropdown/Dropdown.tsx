@@ -175,21 +175,25 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     }, [activeIndex]);
 
     function openDropdown() {
-      const [filteredItems] = getFilteredItem();
-
       setIsOpen(true);
 
-      if (filteredItems.length > 0) {
-        setTimeout(() => {
-          filteredItems[0]?.current?.focus();
-        }, 0);
-      } else {
-        setTimeout(() => {
-          menuRef.current.focus();
-        }, 0);
-      }
+      setTimeout(() => {
+        const filteredItems = itemRefArray.current.filter(
+          itemRef => itemRef.current
+        );
+
+        if (filteredItems.length > 0) {
+          (filteredItems[0]?.current as HTMLElement | undefined)?.focus();
+        } else {
+          menuRef.current?.focus();
+        }
+      }, 0);
 
       onOpen && typeof onOpen === 'function' && onOpen();
+    }
+
+    function focusTriggerButton() {
+      (leftButtonRef.current ?? toggleRef.current)?.focus();
     }
 
     function closeDropdown(event) {
@@ -199,7 +203,20 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         const relatedTarget = event.relatedTarget;
 
         if (!isElementInteractive(relatedTarget)) {
-          (leftButtonRef.current ?? toggleRef.current)?.focus();
+          focusTriggerButton();
+        }
+      } else if (event) {
+        // Closing from an interaction inside the dropdown (e.g. selecting a
+        // menu item) would otherwise leave focus on a hidden element.
+        const isTriggeredFromInside = ownRef.current?.contains(
+          event.target as Node
+        );
+        const activeElement = document.activeElement;
+        const hasFocusInside = ownRef.current?.contains(activeElement);
+        const hasLostFocus = !activeElement || activeElement === document.body;
+
+        if (isTriggeredFromInside && (hasFocusInside || hasLostFocus)) {
+          focusTriggerButton();
         }
       }
 
