@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.0-rc.2
+
+### Patch Changes
+
+- bdf66e3: fix(Dropdown): return focus to the trigger button when a menu item is selected
+
 ## 5.3.0-rc.1
 
 ### Patch Changes
