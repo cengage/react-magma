@@ -1,12 +1,5 @@
 # Change Log
 
-## 15.0.0-rc.0
-
-### Patch Changes
-
-- Updated dependencies [4200dad]
-  - react-magma-dom@5.3.0-rc.0
-
 ## 14.0.1
 
 ## 14.0.0
