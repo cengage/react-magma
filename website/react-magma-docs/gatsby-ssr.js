@@ -9,12 +9,12 @@ import React from 'react';
 import { Layout } from './src/components/layout';
 import { MainContainer } from './src/components/MainContainer';
 
+export const wrapRootElement = ({ element }) => {
+  return <MainContainer>{element}</MainContainer>;
+};
+
 export const wrapPageElement = ({ element, props }) => {
   // props provide same data to Layout as Page element will get
   // including location, data, etc - you don't need to pass it
-  return (
-    <MainContainer>
-      <Layout {...props}>{element}</Layout>
-    </MainContainer>
-  );
+  return <Layout {...props}>{element}</Layout>;
 };
