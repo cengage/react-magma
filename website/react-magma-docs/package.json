@@ -32,7 +32,7 @@
     "@mdx-js/mdx": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@react-magma/charts": "^14.2.1-rc.2",
-    "@react-magma/dropzone": "^14.0.1-rc.0",
+    "@react-magma/dropzone": "^14.0.1",
     "buble": "0.19.4",
     "buffer": "6.0.3",
     "core-js": "3.42.0",
