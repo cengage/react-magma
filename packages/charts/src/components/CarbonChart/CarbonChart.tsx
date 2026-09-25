@@ -1411,7 +1411,13 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       const timer = setTimeout(() => {
         if (internalRef.current) {
           internalRef.current
-            .querySelectorAll<SVGGElement>('g[aria-label]')
+            .querySelectorAll<SVGGElement>('g.ruler[aria-label]')
+            .forEach(g => {
+              g.setAttribute('aria-hidden', 'true');
+            });
+
+          internalRef.current
+            .querySelectorAll<SVGGElement>('g[aria-label]:not(.ruler)')
             .forEach(g => {
               const role = g.getAttribute('role');
 
@@ -1425,6 +1431,30 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       }, 0);
 
       return () => clearTimeout(timer);
+    }, [type, dataSet]);
+
+    React.useEffect(() => {
+      const container = internalRef.current;
+
+      if (!container) return;
+
+      const hideRulerFromAT = () => {
+        container
+          .querySelectorAll<SVGGElement>('g.ruler[aria-label]')
+          .forEach(g => {
+            if (!g.hasAttribute('aria-hidden')) {
+              g.setAttribute('aria-hidden', 'true');
+            }
+          });
+      };
+
+      hideRulerFromAT();
+
+      const observer = new MutationObserver(hideRulerFromAT);
+
+      observer.observe(container, { childList: true, subtree: true });
+
+      return () => observer.disconnect();
     }, [type, dataSet]);
 
     React.useEffect(() => {
@@ -1494,6 +1524,16 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
       if (!wrapper) return;
 
+      const stampDotTabIndex = () => {
+        wrapper
+          .querySelectorAll<SVGCircleElement>('circle.dot')
+          .forEach(dot => {
+            if (!dot.hasAttribute('tabindex')) {
+              dot.setAttribute('tabindex', '0');
+            }
+          });
+      };
+
       const isDot = (el: EventTarget | null): el is SVGCircleElement =>
         el instanceof Element &&
         el.nodeName.toLowerCase() === 'circle' &&
@@ -1503,7 +1543,6 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         if (!isDot(e.target)) return;
         const dot = e.target as SVGCircleElement;
 
-        dot.style.opacity = '1';
         const { left, top, width, height } = dot.getBoundingClientRect();
         const cx = left + width / 2;
         const cy = top + height / 2;
@@ -1532,7 +1571,11 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         if (!isDot(e.target)) return;
         const dot = e.target;
 
-        dot.style.opacity = '';
+        // Keep tooltip context while Tab focus moves between chart points.
+        if (isDot(e.relatedTarget)) {
+          return;
+        }
+
         dot.dispatchEvent(new MouseEvent('mouseout', { bubbles: true }));
       };
 
@@ -1555,13 +1598,18 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       };
 
       const rafId = requestAnimationFrame(() => {
-        wrapper
-          .querySelectorAll<SVGCircleElement>('circle.dot')
-          .forEach(dot => {
-            if (!dot.hasAttribute('tabindex')) {
-              dot.setAttribute('tabindex', '0');
-            }
-          });
+        stampDotTabIndex();
+      });
+
+      const dotObserver = new MutationObserver(() => {
+        stampDotTabIndex();
+      });
+
+      dotObserver.observe(wrapper, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class', 'style', 'tabindex'],
       });
 
       wrapper.addEventListener('focusin', onFocusIn);
@@ -1570,11 +1618,12 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
       return () => {
         cancelAnimationFrame(rafId);
+        dotObserver.disconnect();
         wrapper.removeEventListener('focusin', onFocusIn);
         wrapper.removeEventListener('focusout', onFocusOut);
         wrapper.removeEventListener('keydown', onKeyDown);
       };
-    }, [type]);
+    }, [type, dataSet]);
 
     const groupsLength = Object.keys(colorScale).length;
 
