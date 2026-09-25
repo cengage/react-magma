@@ -17,6 +17,7 @@ import { isItemDisabled, setFocusedItem } from './utils';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { convertStyleValueToString } from '../../utils';
+import { CardBorderRadius, CardCornerTreatment } from '../Card';
 import { Spinner } from '../Spinner';
 
 import { instanceOfToBeCreatedItemObject } from '.';
@@ -44,7 +45,7 @@ const NoItemsMessage = styled.span<{
 }>`
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
+      ? props.theme.colors.neutral0
       : props.theme.colors.neutral400};
   font-family: ${props => props.theme.bodyFont};
   display: block;
@@ -151,6 +152,8 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   return (
     <div ref={setFloatingRef} style={{ ...floatingElementStyles, zIndex: '2' }}>
       <StyledCard
+        borderRadius={CardBorderRadius.small}
+        cornerTreatment={CardCornerTreatment.all}
         hasDropShadow
         isInverse={isInverse}
         isOpen={isOpen}

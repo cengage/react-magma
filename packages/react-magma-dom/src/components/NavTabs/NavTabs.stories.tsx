@@ -16,6 +16,10 @@ import { TabsOrientation, TabsTextTransform } from '../Tabs/shared';
 
 import { NavTabs, NavTabsProps } from '.';
 
+const navTabsCardStyles = {
+  paddingInline: magma.spaceScale.spacing06,
+};
+
 export default {
   component: NavTabs,
   title: 'NavTabs',
@@ -27,6 +31,9 @@ export default {
     borderPosition: {
       control: { type: 'select' },
       options: Object.values(TabsBorderPosition),
+    },
+    hasBorder: {
+      control: { type: 'boolean' },
     },
     iconPosition: {
       control: { type: 'select' },
@@ -50,7 +57,7 @@ export default {
 
 const Template: StoryFn<NavTabsProps> = args => {
   return (
-    <Card isInverse={args.isInverse}>
+    <Card isInverse={args.isInverse} style={navTabsCardStyles}>
       <NavTabs {...args} aria-label="Nav Tabs">
         <NavTab isActive to="#">
           Current Page
@@ -69,7 +76,7 @@ export const Default = {
 export const IconOnly: StoryObj<NavTabsProps> = {
   render: args => {
     return (
-      <Card isInverse={args.isInverse}>
+      <Card isInverse={args.isInverse} style={navTabsCardStyles}>
         <NavTabs {...args} aria-label="Icon Only Nav Tabs">
           <NavTab aria-label="Email" icon={<EmailIcon />} to="#" isActive />
           <NavTab aria-label="Android" icon={<AndroidIcon />} to="#" />
@@ -87,7 +94,7 @@ export const IconOnly: StoryObj<NavTabsProps> = {
 export const BackgroundColor: StoryObj<NavTabsProps> = {
   render: args => {
     return (
-      <Card isInverse={args.isInverse}>
+      <Card isInverse={args.isInverse} style={navTabsCardStyles}>
         <NavTabs
           {...args}
           aria-label="Nav Tabs"
@@ -105,7 +112,7 @@ export const BackgroundColor: StoryObj<NavTabsProps> = {
 
 const InverseTemplate: StoryFn<NavTabsProps> = args => {
   return (
-    <Card isInverse={args.isInverse}>
+    <Card isInverse={args.isInverse} style={navTabsCardStyles}>
       <NavTabs {...args} aria-label="Nav Tabs">
         <NavTab isActive to="#">
           Current Page
@@ -130,7 +137,7 @@ export const CustomTab: StoryObj<NavTabsProps> = {
     );
 
     return (
-      <Card isInverse={args.isInverse}>
+      <Card isInverse={args.isInverse} style={navTabsCardStyles}>
         <NavTabs {...args} aria-label="Sample Custom Component Navigation Tabs">
           <NavTab component={<Link to="./">Main page</Link>} />
           <NavTab isActive component={<Link to="./">FAQ</Link>} />

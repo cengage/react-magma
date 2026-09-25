@@ -21,7 +21,7 @@ export const editorTheme = {
     {
       types: ['tag', 'operator', 'number'],
       style: {
-        color: magma.colors.primary700,
+        color: magma.colors.indigo700,
       },
     },
     {
@@ -33,7 +33,7 @@ export const editorTheme = {
     {
       types: ['property', 'function'],
       style: {
-        color: magma.colors.primary700,
+        color: magma.colors.indigo700,
       },
     },
     {

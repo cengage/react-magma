@@ -9,6 +9,11 @@ import { FormFieldContainerBaseProps } from '../FormFieldContainer';
 export interface UseTimePickerProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize' | 'fieldId'> {
   /**
+   * If true, the time picker cannot be edited.
+   * @default false
+   */
+  disabled?: boolean;
+  /**
    * ID of the hidden input that stores the time value.  Also the prefix for other fields.
    */
   id?: string;

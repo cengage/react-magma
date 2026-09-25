@@ -1,9 +1,15 @@
 import React from 'react';
 
 import { act, render, fireEvent, waitFor } from '@testing-library/react';
+import { getContrast } from 'polished';
 
 import { ToastsContainer } from './ToastsContainer';
 import { magma } from '../../theme/magma';
+import {
+  AlertVariant,
+  buildAlertBackground,
+  buildAlertColor,
+} from '../AlertBase';
 
 import { Toast } from '.';
 
@@ -30,6 +36,13 @@ describe('Toast', () => {
 
     expect(getByTestId(testId)).toBeInTheDocument();
     expect(getByTestId(testId)).toHaveStyleRule('bottom', '20px');
+    expect(getByTestId(testId).firstChild).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size02.fontSize
+    );
+    expect(
+      getByTestId(testId).querySelector('[role="img"] svg')
+    ).toHaveAttribute('width', `${magma.iconSizes.small}`);
   });
 
   it('should render toast content', () => {
@@ -96,6 +109,38 @@ describe('Toast', () => {
 
     expect(container.querySelector('button')).toBeInTheDocument();
   });
+
+  it('should use the content color for the dismiss button focus ring', () => {
+    const { container } = render(<Toast>Toast Content</Toast>);
+    const dismissButton = container.querySelector('button');
+
+    expect(dismissButton).toHaveStyleRule('outline', '2px solid currentColor', {
+      target: ':focus:not(:disabled)',
+    });
+    expect(dismissButton).toHaveStyleRule('border-radius', magma.borderRadius, {
+      target: ':focus:not(:disabled)',
+    });
+  });
+
+  it.each([
+    [AlertVariant.info, false],
+    [AlertVariant.success, false],
+    [AlertVariant.warning, false],
+    [AlertVariant.danger, false],
+    [AlertVariant.info, true],
+    [AlertVariant.success, true],
+    [AlertVariant.warning, true],
+    [AlertVariant.danger, true],
+  ])(
+    'should provide at least 3:1 focus contrast for %s when inverse is %s',
+    (variant, isInverse) => {
+      const styleProps = { isInverse, theme: magma, variant };
+      const background = buildAlertBackground(styleProps);
+      const focusRing = buildAlertColor(styleProps);
+
+      expect(getContrast(focusRing, background)).toBeGreaterThanOrEqual(3);
+    }
+  );
 
   it('should call onDismiss if the dismiss button is clicked', async () => {
     const onDismiss = jest.fn();
@@ -246,7 +291,7 @@ describe('Toast', () => {
 
     expect(getByTestId('test').firstChild.firstChild).toHaveStyleRule(
       'background',
-      magma.colors.success100
+      magma.colors.green600
     );
   });
 

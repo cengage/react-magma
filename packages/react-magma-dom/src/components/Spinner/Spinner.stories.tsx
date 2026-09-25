@@ -9,7 +9,7 @@ import { Spinner, SpinnerProps } from '.';
 const Template: StoryFn<SpinnerProps> = args => (
   <div
     style={{
-      background: args.isInverse ? magma.colors.primary600 : 'transparent',
+      background: args.isInverse ? magma.colors.neutral1100 : 'transparent',
     }}
   >
     <Spinner {...args} />

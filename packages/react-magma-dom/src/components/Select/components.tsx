@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import { ArrowDropDownIcon, IconProps } from 'react-magma-icons';
+import { ArrowDropDownIcon, CheckIcon, IconProps } from 'react-magma-icons';
 
 import { ThemeInterface } from '../../theme/magma';
 import { IconButton, IconButtonProps } from '../IconButton';
 import { Spinner, SpinnerProps } from '../Spinner';
-import { StyledItem } from './shared';
+import { SelectedItemIndicator, StyledItem } from './shared';
 
 export type ItemRenderOptions<T> = {
   key: string;
@@ -51,6 +51,7 @@ export function DefaultItem<T>({
   isInverse,
   isDisabled,
   isSelected,
+  theme,
   ...props
 }: ItemRenderOptions<T>) {
   return (
@@ -59,11 +60,21 @@ export function DefaultItem<T>({
       isInverse={isInverse}
       ref={itemRef}
       isDisabled={isDisabled}
+      theme={theme}
       aria-disabled={isDisabled}
       aria-selected={isSelected}
       data-highlighted={props.isFocused}
     >
       {itemString}
+      {isSelected && (
+        <SelectedItemIndicator theme={theme}>
+          <CheckIcon
+            aria-hidden="true"
+            size={theme.iconSizes.small}
+            testId="selectedItemCheck"
+          />
+        </SelectedItemIndicator>
+      )}
     </StyledItem>
   );
 }

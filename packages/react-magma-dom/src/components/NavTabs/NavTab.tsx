@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import isPropValid from '@emotion/is-prop-valid';
 import { jsx } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -41,7 +42,7 @@ export interface BaseNavTabProps
   orientation?: TabsOrientation;
   /**
    * Determines whether the tab appears in all-caps
-   * @default TabsTextTransform.uppercase
+   * @default TabsTextTransform.none
    */
   textTransform?: TabsTextTransform;
   /**
@@ -91,8 +92,9 @@ function instanceOfNavChildrenTab(object: any): object is NavTabChildrenProps {
   return !('component' in object) && 'children' in object;
 }
 
-const StyledTab = styled.a<{
+const StyledTab = styled('a', { shouldForwardProp: isPropValid })<{
   borderPosition?: any;
+  hasStackedIcon?: boolean;
   iconPosition?: TabsIconPosition;
   isActive?: boolean;
   isFullWidth?: boolean;
@@ -104,7 +106,11 @@ const StyledTab = styled.a<{
   ${TabStyles}
 `;
 
-export const StyledCustomTab = React.forwardRef<any, NavTabComponentProps>(
+interface StyledCustomTabProps extends NavTabComponentProps {
+  hasStackedIcon?: boolean;
+}
+
+export const StyledCustomTab = React.forwardRef<any, StyledCustomTabProps>(
   (props, ref) => {
     const { children, component, icon, style, onClick, ...rest } = props;
 
@@ -125,6 +131,7 @@ export const StyledCustomTab = React.forwardRef<any, NavTabComponentProps>(
           'isActive',
           'isFullWidth',
           'borderPosition',
+          'hasStackedIcon',
           'orientation',
           'textTransform',
         ],
@@ -181,6 +188,11 @@ export const NavTab = React.forwardRef<any, NavTabProps>(
         ? TabsIconPosition.left
         : TabsIconPosition.top;
 
+    const hasStackedIcon =
+      Boolean(icon) &&
+      (tabIconPosition === TabsIconPosition.top ||
+        tabIconPosition === TabsIconPosition.bottom);
+
     const styledTabRef = React.useRef<HTMLAnchorElement>();
 
     const ref = useForkedRef(forwardRef, styledTabRef);
@@ -209,6 +221,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>(
             aria-current={isActive ? 'page' : false}
             component={component}
             data-testid={testId}
+            hasStackedIcon={hasStackedIcon}
             iconPosition={tabIconPosition}
             icon={
               icon && (
@@ -232,6 +245,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>(
             ref={ref}
             data-testid={testId}
             href={to}
+            hasStackedIcon={hasStackedIcon}
             isActive={isActive}
             isFullWidth={isFullWidth}
             iconPosition={tabIconPosition}

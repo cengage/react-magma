@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { transparentize } from 'polished';
 
 import { DropdownContext } from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -21,8 +20,8 @@ export interface DropdownHeaderProps
 const StyledDiv = styled.div<{ isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
-      ? transparentize(0.3, props.theme.colors.neutral100)
-      : props.theme.colors.neutral500};
+      ? props.theme.colors.neutral500
+      : props.theme.colors.neutral700};
   font-size: ${props => props.theme.typeScale.size01.fontSize};
   font-weight: ${props =>
     props.theme.typographyVisualStyles.heading2XSmall.fontWeight};

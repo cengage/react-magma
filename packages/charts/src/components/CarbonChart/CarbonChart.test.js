@@ -99,7 +99,7 @@ describe('CarbonChart', () => {
   });
 
   describe('Magma Theme Values Applied to Styles', () => {
-    it('should apply theme.colors.neutral700 to data table cells', () => {
+    it('should apply theme.colors.brand.navy to data table cells', () => {
       const testId = 'table-color-test';
       const { getByTestId } = render(
         <ThemeContext.Provider value={magma}>
@@ -114,10 +114,54 @@ describe('CarbonChart', () => {
 
       const wrapper = getByTestId(testId);
 
-      // CarbonChartWrapper applies theme.colors.neutral700 to .cds--data-table td
-      expect(wrapper).toHaveStyleRule('color', magma.colors.neutral700, {
+      expect(wrapper).toHaveStyleRule('color', magma.colors.brand.navy, {
         target: '.cds--data-table td',
       });
+    });
+
+    it('should apply theme.colors.brand.navy to chart text', () => {
+      const testId = 'chart-text-color-test';
+      const { getByTestId } = render(
+        <ThemeContext.Provider value={magma}>
+          <CarbonChart
+            testId={testId}
+            dataSet={dataSet}
+            options={chartOptions}
+            type={CarbonChartType.bar}
+          />
+        </ThemeContext.Provider>
+      );
+
+      const wrapper = getByTestId(testId);
+
+      expect(wrapper).toHaveStyleRule('color', magma.colors.brand.navy, {
+        target: 'p',
+      });
+      expect(wrapper).toHaveStyleRule(
+        'fill',
+        `${magma.colors.brand.navy}!important`,
+        { target: '.chart-holder text' }
+      );
+    });
+
+    it('should apply theme.colors.brand.navy to the chart title', () => {
+      const testId = 'title-color-test';
+      const { getByTestId } = render(
+        <ThemeContext.Provider value={magma}>
+          <CarbonChart
+            testId={testId}
+            dataSet={dataSet}
+            options={chartOptions}
+            type={CarbonChartType.bar}
+          />
+        </ThemeContext.Provider>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'color',
+        `${magma.colors.brand.navy}!important`,
+        { target: '.cds--cc--title p.title' }
+      );
     });
 
     it('should apply theme.colors.primary for button background in non-inverse mode', () => {
@@ -142,7 +186,7 @@ describe('CarbonChart', () => {
       });
     });
 
-    it('should apply theme.colors.tertiary500 for button background when isInverse is true', () => {
+    it('should apply theme.colors.cyan500 for button background when isInverse is true', () => {
       const testId = 'button-inverse-test';
       const { getByTestId } = render(
         <ThemeContext.Provider value={magma}>
@@ -158,13 +202,13 @@ describe('CarbonChart', () => {
 
       const wrapper = getByTestId(testId);
 
-      // CarbonChartWrapper applies theme.colors.tertiary500 to .cds--btn--primary when inverse
-      expect(wrapper).toHaveStyleRule('background', magma.colors.tertiary500, {
+      // CarbonChartWrapper applies theme.colors.cyan500 to .cds--btn--primary when inverse
+      expect(wrapper).toHaveStyleRule('background', magma.colors.cyan500, {
         target: '.chart-holder .cds--btn--primary',
       });
     });
 
-    it('should apply theme.colors.primary700 for inverse table header background', () => {
+    it('should apply theme.colors.indigo700 for inverse table header background', () => {
       const testId = 'table-inverse-test';
       const { getByTestId } = render(
         <ThemeContext.Provider value={magma}>
@@ -180,10 +224,10 @@ describe('CarbonChart', () => {
 
       const wrapper = getByTestId(testId);
 
-      // CarbonChartWrapper applies theme.colors.primary700 to table header when inverse
+      // CarbonChartWrapper applies theme.colors.indigo700 to table header when inverse
       expect(wrapper).toHaveStyleRule(
         'background',
-        `${magma.colors.primary700}!important`,
+        `${magma.colors.indigo700}!important`,
         {
           target: '.cds--data-table thead tr th',
         }
@@ -206,7 +250,7 @@ describe('CarbonChart', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background-color',
-        magma.colors.primary600,
+        magma.colors.indigo600,
         { target: '.cds--chart-holder.filled' }
       );
     });
@@ -476,7 +520,7 @@ describe('CarbonChart', () => {
       });
     });
 
-    it('should apply theme.colors.primary600 to modal header background when isInverse', () => {
+    it('should apply theme.colors.indigo600 to modal header background when isInverse', () => {
       const testId = 'modal-header-inverse-test';
       const { getByTestId } = render(
         <ThemeContext.Provider value={magma}>
@@ -492,8 +536,8 @@ describe('CarbonChart', () => {
 
       const wrapper = getByTestId(testId);
 
-      // CarbonChartWrapper applies theme.colors.primary600 to modal header when inverse
-      expect(wrapper).toHaveStyleRule('background', magma.colors.primary600, {
+      // CarbonChartWrapper applies theme.colors.indigo600 to modal header when inverse
+      expect(wrapper).toHaveStyleRule('background', magma.colors.indigo600, {
         target: '.chart-holder .cds--modal-header',
       });
     });
@@ -545,7 +589,7 @@ describe('CarbonChart', () => {
       );
     });
 
-    it('should apply theme.colors.primary600 to modal footer background when isInverse', () => {
+    it('should apply theme.colors.indigo600 to modal footer background when isInverse', () => {
       const testId = 'modal-footer-inverse-test';
       const { getByTestId } = render(
         <ThemeContext.Provider value={magma}>
@@ -561,10 +605,10 @@ describe('CarbonChart', () => {
 
       const wrapper = getByTestId(testId);
 
-      // CarbonChartWrapper applies theme.colors.primary600 to modal footer when inverse
+      // CarbonChartWrapper applies theme.colors.indigo600 to modal footer when inverse
       expect(wrapper).toHaveStyleRule(
         'background',
-        `${magma.colors.primary600}!important`,
+        `${magma.colors.indigo600}!important`,
         {
           target: '.cds--modal-footer.cds--modal-footer',
         }

@@ -29,7 +29,9 @@ describe('EmptyState', () => {
     const description = 'Try adjusting your search criteria';
     const { getByText } = render(<EmptyState description={description} />);
 
-    expect(getByText(description)).toBeInTheDocument();
+    expect(getByText(description)).toHaveStyle({
+      color: magma.colors.neutral800,
+    });
   });
 
   it('should render with icon', () => {
@@ -147,7 +149,7 @@ describe('EmptyState', () => {
       );
 
       const description = getByText('Try another search');
-      expect(description).toHaveStyleRule('color', magma.colors.neutral100);
+      expect(description).toHaveStyle({ color: magma.colors.neutral500 });
       expect(description).not.toHaveStyleRule('opacity', '0.7');
     });
 

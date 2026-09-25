@@ -3,6 +3,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
 import { Input } from '../Input';
 
 import { Form } from '.';
@@ -83,6 +84,19 @@ describe('Form', () => {
 
     expect(getByTestId(props.testId)).toHaveAttribute('method', 'post');
     expect(getByTestId(props.testId)).toHaveAttribute('action', '/login');
+  });
+
+  it('uses the global inverse surface color', () => {
+    const { getByTestId } = render(
+      <Form {...props} isInverse>
+        Test Form
+      </Form>
+    );
+
+    expect(getByTestId(props.testId)).toHaveStyleRule(
+      'background',
+      magma.colors.neutral1100
+    );
   });
 
   it('Does not violate accessibility standards', () => {

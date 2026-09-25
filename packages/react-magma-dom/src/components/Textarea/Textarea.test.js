@@ -68,7 +68,7 @@ describe('Textarea', () => {
 
     const helperMessage = getByTestId('inputMessage');
 
-    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral);
+    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral700);
   });
 
   it('should render a textarea with a correctly styled error message', () => {

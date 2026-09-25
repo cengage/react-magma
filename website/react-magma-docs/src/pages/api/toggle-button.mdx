@@ -161,12 +161,25 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Container, Flex, FlexBehavior, ToggleButton } from 'react-magma-dom';
+import {
+  Container,
+  Flex,
+  FlexBehavior,
+  ToggleButton,
+  magma,
+} from 'react-magma-dom';
 import { SettingsIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
-    <Container isInverse style={{ padding: '12px' }}>
+    <Container
+      isInverse
+      style={{
+        background: magma.colors.neutral1100,
+        borderRadius: '8px',
+        padding: '12px',
+      }}
+    >
       <Flex behavior={FlexBehavior.container} spacing={1}>
         <Flex behavior={FlexBehavior.item}>
           <ToggleButton

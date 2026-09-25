@@ -110,24 +110,117 @@ export function setIconWidth(props: ToggleButtonIconProps) {
 
 //Sets the background color for the Toggle Button
 export function setBackgroundColor(props) {
+  if (props.isInverse) {
+    return setInverseBackgroundColor(props);
+  }
+
+  if (props.disabled) {
+    return transparentize(
+      props.isSelected ? 0.25 : 0.5,
+      props.theme.colors.neutral200
+    );
+  }
+
   if (props.isSelected) {
-    if (props.isInverse) {
-      return transparentize(0.5, props.theme.colors.neutral900);
+    return props.theme.colors.neutral700;
+  }
+
+  return transparentize(0.5, props.theme.colors.neutral200);
+}
+
+function setColor(props) {
+  if (props.disabled) {
+    return props.isInverse
+      ? props.theme.colors.neutral600
+      : props.theme.colors.neutral500;
+  }
+
+  if (props.isInverse) {
+    return props.isSelected ? props.theme.colors.neutral0 : undefined;
+  }
+
+  return props.isSelected
+    ? props.theme.colors.neutral0
+    : props.theme.colors.neutral700;
+}
+
+function setDisabledColor(props) {
+  return props.isInverse
+    ? props.theme.colors.neutral600
+    : props.theme.colors.neutral500;
+}
+
+function setDisabledBackgroundColor(props) {
+  if (!props.isInverse) {
+    return transparentize(
+      props.isSelected ? 0.25 : 0.5,
+      props.theme.colors.neutral200
+    );
+  }
+
+  return transparentize(0.5, props.theme.colors.neutral900);
+}
+
+function setBorder(props) {
+  return '1px solid transparent';
+}
+
+function setInverseBackgroundColor(props, interaction = 'default') {
+  if (props.disabled) {
+    return transparentize(0.5, props.theme.colors.neutral900);
+  }
+
+  if (props.isSelected) {
+    if (interaction === 'active') {
+      return props.theme.colors.neutral900;
     }
 
-    return transparentize(0.5, props.theme.colors.neutral300);
+    return interaction === 'hover' || interaction === 'focus'
+      ? props.theme.colors.neutral800
+      : props.theme.colors.neutral700;
   }
+
+  return interaction === 'hover' || interaction === 'active'
+    ? props.theme.colors.neutral900
+    : transparentize(0.5, props.theme.colors.neutral900);
 }
 
 export const ToggleButtonStyles = props => css`
-  background: ${setBackgroundColor(props)};
-  &:not(:disabled):focus {
+  border-radius: ${props.theme.borderRadius};
+
+  ${props.isSelected &&
+  css`
     background: ${setBackgroundColor(props)};
-    outline-offset: -2px;
-  }
-  &:hover {
-    background: ${setBackgroundColor(props)};
-  }
+    border: ${setBorder(props)};
+    color: ${setColor(props)};
+
+    &:disabled {
+      background: ${setDisabledBackgroundColor(props)};
+      color: ${setDisabledColor(props)};
+    }
+
+    &:not(:disabled):focus {
+      background: ${props.isInverse
+        ? setInverseBackgroundColor(props, 'focus')
+        : props.theme.colors.neutral800};
+      color: ${setColor(props)};
+      outline-offset: 2px;
+    }
+
+    &:not(:disabled):hover {
+      background: ${props.isInverse
+        ? setInverseBackgroundColor(props, 'hover')
+        : props.theme.colors.neutral800};
+      color: ${setColor(props)};
+    }
+
+    &:not(:disabled):active {
+      background: ${props.isInverse
+        ? setInverseBackgroundColor(props, 'active')
+        : props.theme.colors.neutral900};
+      color: ${setColor(props)};
+    }
+  `}
 `;
 
 const StyledToggleButtonIcon = styled(IconButton)<any>`
@@ -215,7 +308,7 @@ export const ToggleButton = React.forwardRef<
     ...(usesAriaSelected
       ? { 'aria-selected': isSelected }
       : { 'aria-checked': isSelected }),
-    color: ButtonColor.subtle,
+    color: ButtonColor.secondary,
     disabled: disabled,
     theme: theme,
     isInverse: inverseCheck,

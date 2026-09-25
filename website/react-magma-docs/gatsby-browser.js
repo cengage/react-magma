@@ -60,10 +60,30 @@ function scrollToHashTarget(hash) {
   return true;
 }
 
+function restoreRoutePosition(location) {
+  if (location?.hash && scrollToHashTarget(location.hash)) {
+    return;
+  }
+
+  scrollToPosition(0);
+}
+
 export const onClientEntry = () => {
   if ('scrollRestoration' in window.history) {
     window.history.scrollRestoration = 'manual';
   }
+
+  document.addEventListener('focusin', event => {
+    if (event.target?.id !== 'gatsby-focus-wrapper') {
+      return;
+    }
+
+    // Gatsby focuses this wrapper after client-side navigation for
+    // accessibility. Chrome scrolls the large wrapper below the sticky
+    // masthead as part of that focus step, so restore the route position once
+    // the focus event has finished.
+    window.requestAnimationFrame(() => restoreRoutePosition(window.location));
+  });
 };
 
 export const shouldUpdateScroll = ({ routerProps }) => {
@@ -71,13 +91,7 @@ export const shouldUpdateScroll = ({ routerProps }) => {
     return false;
   }
 
-  const hash = routerProps?.location?.hash;
-
-  if (hash && scrollToHashTarget(hash)) {
-    return false;
-  }
-
-  scrollToPosition(0);
+  restoreRoutePosition(routerProps?.location);
 
   return false;
 };

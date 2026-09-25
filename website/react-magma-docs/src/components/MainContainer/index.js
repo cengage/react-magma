@@ -7,14 +7,22 @@ import { DarkModeContext } from '../DarkMode/DarkModeContext';
 import { Masthead } from '../Masthead';
 import { PANEL_WIDTH, SlidingDrawer } from '../SlidingDrawer';
 
+const RootContainer = styled(Container)`
+  background: ${props =>
+    props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral0};
+  min-height: 100vh;
+`;
+
 const StyledContainer = styled.div`
-  background: ${magma.colors.neutral100};
+  background: ${props =>
+    props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral100};
 
   > #gatsby-focus-wrapper {
     grid-area: content;
     min-width: 0;
+    position: relative;
+    z-index: 0;
   }
-
   @media (min-width: 1025px) {
     display: grid;
     grid-template-columns: ${PANEL_WIDTH}px auto;
@@ -33,12 +41,11 @@ const StyledSkipLink = styled(SkipLink)`
   }
 `;
 
-const StyledSlidingDrawer = styled(SlidingDrawer)`
-  background: ${magma.colors.neutral100};
-`;
-
 export const MainContainer = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const drawerRef = React.useRef();
+  const menuButtonRef = React.useRef();
   const value = { isDarkMode, setIsDarkMode };
 
   React.useEffect(() => {
@@ -49,19 +56,32 @@ export const MainContainer = ({ children }) => {
 
   return (
     <DarkModeContext.Provider value={value}>
-      <Container gutterWidth={0} isInverse={isDarkMode} className={isDarkMode}>
+      <RootContainer
+        gutterWidth={0}
+        isInverse={isDarkMode}
+        className={isDarkMode ? 'isInverse' : undefined}
+      >
         <GlobalStyles />
         <StyledSkipLink
           positionLeft={PANEL_WIDTH - 20}
           positionTop={3}
           variant="solid"
         />
-        <StyledContainer>
-          <Masthead />
-          <StyledSlidingDrawer isInverse={isDarkMode} />
+        <StyledContainer isInverse={isDarkMode}>
+          <Masthead
+            isMenuOpen={isMenuOpen}
+            menuButtonRef={menuButtonRef}
+            onOpenMenu={() => drawerRef.current.openMenu()}
+          />
+          <SlidingDrawer
+            isInverse={isDarkMode}
+            onOpenChange={setIsMenuOpen}
+            ref={drawerRef}
+            toggleButtonRef={menuButtonRef}
+          />
           {children}
         </StyledContainer>
-      </Container>
+      </RootContainer>
     </DarkModeContext.Provider>
   );
 };

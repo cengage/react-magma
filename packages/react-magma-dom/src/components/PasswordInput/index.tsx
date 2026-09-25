@@ -9,6 +9,7 @@ import { Button, ButtonVariant, ButtonType, ButtonSize } from '../Button';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
+  getInputFormFieldColors,
 } from '../FormFieldContainer';
 import { InputBase, InputSize, InputType } from '../InputBase';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -197,6 +198,7 @@ export const PasswordInput = React.forwardRef<
 
   return (
     <FormFieldContainer
+      {...getInputFormFieldColors(theme, isInverse)}
       containerStyle={containerStyle}
       errorMessage={errorMessage}
       fieldId={id}
@@ -208,6 +210,7 @@ export const PasswordInput = React.forwardRef<
       labelStyle={labelStyle}
       labelText={labelText}
       labelWidth={labelWidth}
+      messageStyle={messageStyle}
     >
       <InputBase
         autoCorrect="off"

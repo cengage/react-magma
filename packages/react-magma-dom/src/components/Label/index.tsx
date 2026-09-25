@@ -22,9 +22,17 @@ export interface LabelProps
    */
   labelPosition?: LabelPosition;
   /**
+   * @internal
+   */
+  fontWeight?: React.CSSProperties['fontWeight'];
+  /**
    * @default InputSize.medium
    */
   size?: InputSize;
+  /**
+   * @internal
+   */
+  textColor?: string;
   theme?: ThemeInterface;
   /**
    * @internal
@@ -38,18 +46,21 @@ const StyledLabel = styled.label<{
   theme: ThemeInterface;
   size: InputSize;
   labelPosition: LabelPosition;
+  textColor?: string;
+  fontWeight?: React.CSSProperties['fontWeight'];
 }>`
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+    props.textColor ||
+    (props.isInverse
+      ? props.theme.colors.neutral0
+      : props.theme.colors.neutral700)};
   display: block;
   font-size: ${props =>
     props.size === InputSize.large
       ? props.theme.typeScale.size03.fontSize
       : props.theme.typeScale.size02.fontSize};
   font-family: ${props => props.theme.bodyFont};
-  font-weight: 500;
+  font-weight: ${props => props.fontWeight || 500};
   letter-spacing: ${props =>
     props.size === InputSize.large
       ? 'inherit'
@@ -82,10 +93,12 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
     const {
       actionable = true,
       children,
+      fontWeight,
       iconPosition,
       labelPosition,
       size,
       testId,
+      textColor,
       ...other
     } = props;
     const theme = React.useContext(ThemeContext);
@@ -98,10 +111,12 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
         data-testid={testId}
         isInverse={isInverse}
         iconPosition={iconPosition}
+        fontWeight={fontWeight}
         labelPosition={labelPosition || LabelPosition.top}
         ref={ref}
         size={size ? size : InputSize.medium}
         theme={theme}
+        textColor={textColor}
       >
         {children}
       </StyledLabel>
@@ -111,10 +126,12 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
         data-testid={testId}
         isInverse={isInverse}
         iconPosition={iconPosition}
+        fontWeight={fontWeight}
         labelPosition={labelPosition || LabelPosition.top}
         ref={ref}
         size={size ? size : InputSize.medium}
         theme={theme}
+        textColor={textColor}
       >
         {children}
       </StyledSpan>

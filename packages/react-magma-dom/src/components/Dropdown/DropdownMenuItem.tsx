@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { transparentize } from 'polished';
 import { IconProps, CheckIcon } from 'react-magma-icons';
 
 import { DropdownContext } from './Dropdown';
@@ -41,16 +40,16 @@ export interface DropdownMenuItemProps
 export function menuColors(props) {
   if (props.disabled) {
     if (props.isInverse) {
-      return transparentize(0.6, props.theme.colors.neutral100);
+      return props.theme.colors.neutral600;
     }
 
-    return transparentize(0.4, props.theme.colors.neutral500);
+    return props.theme.colors.neutral500;
   }
   if (props.isInverse) {
-    return props.theme.colors.neutral100;
+    return props.theme.colors.neutral0;
   }
 
-  return props.theme.colors.neutral700;
+  return props.theme.colors.brand.navy;
 }
 
 export function menuBackground(props) {
@@ -58,10 +57,14 @@ export function menuBackground(props) {
     return 'none';
   }
   if (props.isInverse) {
-    return props.theme.colors.primary600;
+    return props.theme.colors.neutral1000;
   }
 
-  return props.theme.colors.neutral200;
+  return props.theme.colors.neutral100;
+}
+
+export function menuFocusBackground() {
+  return 'none';
 }
 
 function menuItemPadding(props) {
@@ -85,12 +88,12 @@ export const MenuItemStyles = props => {
     padding: ${menuItemPadding(props)};
     white-space: ${props.isFixedWidth ? 'normal' : 'nowrap'};
 
-    &:hover,
-    &:focus {
+    &:hover {
       background: ${menuBackground(props)};
     }
 
     &:focus {
+      background: ${menuFocusBackground()};
       outline-color: ${props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
@@ -115,11 +118,16 @@ const StyledItem = styled.div<{
   ${MenuItemStyles}
 `;
 
-export const IconWrapper = styled.span<{ isInverse?: boolean }>`
+export const IconWrapper = styled.span<{
+  disabled?: boolean;
+  isInverse?: boolean;
+}>`
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral500};
+      ? props.theme.colors.neutral600
+      : props.disabled
+        ? props.theme.colors.neutral500
+        : props.theme.colors.neutral600};
   display: inline-flex;
   margin-right: ${props => props.theme.spaceScale.spacing05};
 
@@ -201,12 +209,20 @@ export const DropdownMenuItem = React.forwardRef<
       value={value}
     >
       {icon && (
-        <IconWrapper theme={theme} isInverse={context.isInverse}>
+        <IconWrapper
+          disabled={disabled}
+          theme={theme}
+          isInverse={context.isInverse}
+        >
           {icon}
         </IconWrapper>
       )}
       {isActive && (
-        <IconWrapper isInverse={context.isInverse} theme={theme}>
+        <IconWrapper
+          disabled={disabled}
+          isInverse={context.isInverse}
+          theme={theme}
+        >
           <CheckIcon />
         </IconWrapper>
       )}

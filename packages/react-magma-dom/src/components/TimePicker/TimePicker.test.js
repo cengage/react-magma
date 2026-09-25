@@ -3,9 +3,11 @@ import React from 'react';
 import { fireEvent } from '@testing-library/dom';
 import { act, render } from '@testing-library/react';
 import { zhCN } from 'date-fns/locale';
+import { transparentize } from 'polished';
 
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+import { magma } from '../../theme/magma';
 
 import { TimePicker } from '.';
 
@@ -677,6 +679,31 @@ describe('TimePicker', () => {
     const label = 'test label';
     const { getByText } = render(<TimePicker isInverse labelText={label} />);
 
-    expect(getByText(label)).toHaveStyleRule('color', '#FFFFFF');
+    expect(getByText(label)).toHaveStyleRule('color', magma.colors.neutral0);
+  });
+
+  it('should render disabled controls with the non-inverse disabled background', () => {
+    const { getByTestId } = render(
+      <TimePicker disabled labelText="Time Due" />
+    );
+
+    expect(getByTestId('time-picker-input')).toHaveStyleRule(
+      'background-color',
+      transparentize(0.4, magma.colors.neutral200)
+    );
+    expect(getByTestId('hoursTimeInput')).toBeDisabled();
+    expect(getByTestId('minutesTimeInput')).toBeDisabled();
+    expect(getByTestId('amPmTimeButton')).toBeDisabled();
+  });
+
+  it('should preserve the inverse disabled background', () => {
+    const { getByTestId } = render(
+      <TimePicker disabled isInverse labelText="Time Due" />
+    );
+
+    expect(getByTestId('time-picker-input')).toHaveStyleRule(
+      'background-color',
+      magma.colors.neutral1100
+    );
   });
 });

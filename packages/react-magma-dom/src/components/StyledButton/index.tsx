@@ -17,6 +17,8 @@ import {
   buildColor,
   buildFocusBackground,
   buildFocusColor,
+  buildHoverBackground,
+  buildHoverColor,
 } from './styles';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -55,13 +57,9 @@ export const buttonStyles = props => css`
   position: relative;
   text-align: center;
   text-decoration: none;
-  text-transform: ${props.textTransform || 'uppercase'};
+  text-transform: ${props.textTransform || 'none'};
   touch-action: manipulation;
-  transition:
-    background 0.35s,
-    border-color 0.35s,
-    box-shadow 0.35s,
-    color 0.35s;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: ${props.iconOnly
@@ -80,7 +78,11 @@ export const buttonStyles = props => css`
       z-index: 1;
     }
 
-    &:hover,
+    &:hover {
+      background: ${buildHoverBackground(props)};
+      color: ${buildHoverColor(props)};
+    }
+
     &:focus {
       background: ${buildFocusBackground(props)};
       color: ${buildFocusColor(props)};
@@ -147,7 +149,7 @@ export const StyledButton = React.forwardRef<
 
   const spinnerColor =
     isInverse && variant === ButtonVariant.link
-      ? theme.colors.neutral100
+      ? theme.colors.neutral0
       : theme.colors.neutral500;
 
   const spinnerSize =

@@ -13,7 +13,10 @@ import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { handleNumericBeforeInput, labelSuffix } from '../../utils';
-import { FormFieldContainer } from '../FormFieldContainer';
+import {
+  FormFieldContainer,
+  getInputFormFieldColors,
+} from '../FormFieldContainer';
 import { inputWrapperStyles } from '../InputBase';
 import { VisuallyHidden } from '../VisuallyHidden';
 
@@ -25,12 +28,14 @@ export interface TimePickerProps extends UseTimePickerProps {
 }
 
 interface StyledNumInputProps {
+  disabled?: boolean;
   isFocused?: boolean;
   isInverse?: boolean;
   size?: number;
 }
 
 const InputsContainer = styled.div<{
+  disabled?: boolean;
   hasError?: boolean;
   isInverse?: boolean;
 }>`
@@ -48,12 +53,10 @@ const getDividerColor = (
   theme: ThemeInterface
 ): string => {
   if (isInverse) {
-    return isFocused
-      ? theme.colors.neutral100
-      : transparentize(0.3, theme.colors.neutral100);
+    return isFocused ? theme.colors.neutral0 : theme.colors.neutral500;
   }
 
-  return isFocused ? theme.colors.neutral700 : theme.colors.neutral500;
+  return isFocused ? theme.colors.brand.navy : theme.colors.neutral700;
 };
 
 export const getInputColor = (
@@ -62,15 +65,14 @@ export const getInputColor = (
   theme: ThemeInterface
 ): string => {
   if (isInverse) {
-    return isFocused
-      ? theme.colors.neutral100
-      : transparentize(0.3, theme.colors.neutral100);
+    return isFocused ? theme.colors.neutral0 : theme.colors.neutral500;
   }
 
-  return isFocused ? theme.colors.neutral700 : theme.colors.neutral500;
+  return isFocused ? theme.colors.brand.navy : theme.colors.neutral700;
 };
 
 export const Divider = styled.span<{
+  disabled?: boolean;
   isInverse?: boolean;
   isFocused?: boolean;
 }>`
@@ -78,7 +80,11 @@ export const Divider = styled.span<{
   position: relative;
   top: ${props => `-${props.theme.spaceScale.spacing01}`};
   color: ${props =>
-    getDividerColor(props.isInverse, props.isFocused, props.theme)};
+    props.disabled
+      ? props.isInverse
+        ? props.theme.colors.neutral700
+        : props.theme.colors.neutral500
+      : getDividerColor(props.isInverse, props.isFocused, props.theme)};
 `;
 
 export const StyledNumInput = styled.input<StyledNumInputProps>`
@@ -90,9 +96,13 @@ export const StyledNumInput = styled.input<StyledNumInputProps>`
   max-width: ${props => (props.size ? `${props.size}ch` : 'auto')};
   width: ${props => props.theme.spaceScale.spacing06};
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+    props.disabled
+      ? props.isInverse
+        ? props.theme.colors.neutral700
+        : props.theme.colors.neutral500
+      : props.isInverse
+        ? props.theme.colors.neutral0
+        : props.theme.colors.brand.navy};
   background: transparent;
   border-bottom: 2px solid transparent; // Reserve space for border when focused
   caret-color: transparent;
@@ -105,7 +115,11 @@ export const StyledNumInput = styled.input<StyledNumInputProps>`
 
   &::placeholder {
     color: ${props =>
-      getInputColor(props.isInverse, props.isFocused, props.theme)};
+      props.disabled
+        ? props.isInverse
+          ? props.theme.colors.neutral700
+          : props.theme.colors.neutral500
+        : getInputColor(props.isInverse, props.isFocused, props.theme)};
   }
 
   &:focus {
@@ -113,22 +127,22 @@ export const StyledNumInput = styled.input<StyledNumInputProps>`
     border-bottom: 2px solid
       ${props =>
         props.isInverse
-          ? props.theme.colors.info200
-          : props.theme.colors.info500};
+          ? props.theme.colors.blue200
+          : props.theme.colors.blue500};
     background: ${props =>
       props.isInverse
-        ? props.theme.colors.info700
-        : transparentize(0.2, props.theme.colors.info200)};
+        ? props.theme.colors.blue700
+        : transparentize(0.2, props.theme.colors.blue200)};
     color: ${props =>
       props.isInverse
-        ? props.theme.colors.neutral100
-        : props.theme.colors.neutral700};
+        ? props.theme.colors.neutral0
+        : props.theme.colors.brand.navy};
 
     &::selection {
       background: ${props =>
         props.isInverse
-          ? props.theme.colors.info700
-          : transparentize(1, props.theme.colors.info200)};
+          ? props.theme.colors.blue700
+          : transparentize(1, props.theme.colors.blue200)};
     }
   }
 `;
@@ -147,6 +161,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
 
     const {
       containerStyle,
+      disabled,
       errorMessage,
       helperMessage,
       inputStyle,
@@ -192,6 +207,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
 
     return (
       <FormFieldContainer
+        {...getInputFormFieldColors(theme, isInverse)}
         {...other}
         containerStyle={containerStyle}
         errorMessage={errorMessage}
@@ -204,6 +220,9 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       >
         <InputsWithTimezone theme={theme}>
           <InputsContainer
+            aria-disabled={disabled}
+            data-testid="time-picker-input"
+            disabled={disabled}
             isInverse={isInverse}
             hasError={!!errorMessage}
             theme={theme}
@@ -213,7 +232,11 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           >
             <ScheduleIcon
               color={
-                isInverse ? theme.colors.neutral100 : theme.colors.neutral700
+                disabled
+                  ? isInverse
+                    ? theme.colors.neutral700
+                    : theme.colors.neutral500
+                  : theme.colors.neutral600
               }
               style={{ marginRight: theme.spaceScale.spacing02 }}
             />
@@ -221,6 +244,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
               aria-label={hoursLabel}
               aria-describedby={descriptionId}
               data-testid="hoursTimeInput"
+              disabled={disabled}
               id={hourId}
               isInverse={isInverse}
               isFocused={hasTime || isFocused}
@@ -241,6 +265,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
               onBlur={() => setIsFocused(false)}
             />
             <Divider
+              disabled={disabled}
               isInverse={isInverse}
               isFocused={hasTime || isFocused}
               theme={theme}
@@ -250,6 +275,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             <StyledNumInput
               aria-label={minutesLabel}
               data-testid="minutesTimeInput"
+              disabled={disabled}
               id={minuteId}
               isInverse={isInverse}
               isFocused={hasTime || isFocused}
@@ -272,6 +298,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             />
             <AmPmToggle
               aria-label={amPmLabel}
+              disabled={disabled}
               isInverse={isInverse}
               ref={amPmRef}
               onClick={toggleAmPm}
@@ -292,7 +319,13 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           </InputsContainer>
           {timezone}
         </InputsWithTimezone>
-        <input id={id} ref={ref} type="hidden" value={time} />
+        <input
+          disabled={disabled}
+          id={id}
+          ref={ref}
+          type="hidden"
+          value={time}
+        />
       </FormFieldContainer>
     );
   }

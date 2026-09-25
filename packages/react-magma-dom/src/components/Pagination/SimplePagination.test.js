@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
-import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -28,10 +27,7 @@ describe('Simple Pagination', () => {
 
     const selected = getByText('2').parentElement.parentElement;
 
-    expect(selected).toHaveStyleRule(
-      'background-color',
-      magma.colors.neutral100
-    );
+    expect(selected).toHaveStyleRule('background-color', magma.colors.neutral0);
     expect(selected).toHaveStyleRule('border-radius', '8px');
   });
 
@@ -44,7 +40,7 @@ describe('Simple Pagination', () => {
 
     expect(selected).toHaveStyleRule(
       'background-color',
-      transparentize(0.8, magma.colors.neutral900)
+      magma.colors.neutral1150
     );
   });
 
@@ -119,6 +115,23 @@ describe('Simple Pagination', () => {
     expect(getByTestId(`${testId}-select`).value).toBe('3');
   });
 
+  it('Should render the end navigation buttons with subtle styling', () => {
+    const { getByLabelText, getByText } = render(
+      <Pagination type={PaginationType.simple} count={4} defaultPage={2} />
+    );
+
+    const previousButton = getByLabelText('Previous Page');
+    const nextButton = getByLabelText('Next Page');
+
+    expect(previousButton).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(nextButton).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(previousButton).toHaveStyleRule('border-radius', '100%');
+    expect(nextButton).toHaveStyleRule('border-radius', '100%');
+    expect(getByText('of 4 pages')).toHaveStyle({
+      color: magma.colors.neutral800,
+    });
+  });
+
   describe('Disabled', () => {
     it('Should render disabled navigation icons, text, and select', () => {
       const { getByText, getByLabelText } = render(
@@ -131,20 +144,11 @@ describe('Simple Pagination', () => {
 
       expect(selected).toHaveStyleRule('cursor', 'not-allowed');
 
-      expect(selected).toHaveStyleRule(
-        'color',
-        transparentize(0.4, magma.colors.neutral500)
-      );
+      expect(selected).toHaveStyleRule('color', magma.colors.neutral500);
       expect(selected).toHaveAttribute('disabled');
 
-      expect(previousButton).toHaveStyleRule(
-        'color',
-        transparentize(0.4, magma.colors.neutral500)
-      );
-      expect(nextButton).toHaveStyleRule(
-        'color',
-        transparentize(0.4, magma.colors.neutral500)
-      );
+      expect(previousButton).toHaveStyleRule('color', magma.colors.neutral500);
+      expect(nextButton).toHaveStyleRule('color', magma.colors.neutral500);
       expect(previousButton).toHaveAttribute('disabled');
       expect(nextButton).toHaveAttribute('disabled');
     });
@@ -160,20 +164,11 @@ describe('Simple Pagination', () => {
 
       expect(selected).toHaveStyleRule('cursor', 'not-allowed');
 
-      expect(selected).toHaveStyleRule(
-        'color',
-        transparentize(0.6, magma.colors.neutral100)
-      );
+      expect(selected).toHaveStyleRule('color', magma.colors.neutral700);
       expect(selected).toHaveAttribute('disabled');
 
-      expect(previousButton).toHaveStyleRule(
-        'color',
-        transparentize(0.7, magma.colors.neutral100)
-      );
-      expect(nextButton).toHaveStyleRule(
-        'color',
-        transparentize(0.7, magma.colors.neutral100)
-      );
+      expect(previousButton).toHaveStyleRule('color', magma.colors.neutral600);
+      expect(nextButton).toHaveStyleRule('color', magma.colors.neutral600);
       expect(previousButton).toHaveAttribute('disabled');
       expect(nextButton).toHaveAttribute('disabled');
     });

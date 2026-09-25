@@ -117,7 +117,7 @@ export const IndeterminateCheckbox = React.memo(
       const context = React.useContext(FormGroupContext);
 
       const {
-        color = theme.colors.primary,
+        color = theme.colors.cyan700,
         containerStyle,
         disabled,
         errorMessage,
@@ -193,17 +193,27 @@ export const IndeterminateCheckbox = React.memo(
               type="checkbox"
               onChange={handleChange}
             />
-            <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
+            <StyledLabel
+              htmlFor={id}
+              isInverse={isInverse}
+              style={labelStyle}
+              textColor={!isInverse ? theme.colors.brand.navy : undefined}
+            >
               <StyledFakeInput
                 isChecked={isChecked}
                 color={color}
                 disabled={disabled}
                 hasError={hasError}
                 hideFocus={props.hideFocus}
+                inverseCheckedColor={theme.colors.brand.skyBlue}
+                inverseDisabledColor={theme.colors.neutral600}
+                inverseErrorColor={theme.colors.red500}
+                inverseUncheckedColor={theme.colors.neutral0}
                 isIndeterminate={isIndeterminate}
                 isInverse={isInverse}
                 style={inputStyle}
                 theme={theme}
+                uncheckedColor={theme.colors.brand.navy}
                 aria-hidden="true"
               >
                 {isIndeterminate ? (
@@ -230,6 +240,8 @@ export const IndeterminateCheckbox = React.memo(
           {!!errorMessage && (
             <InputMessage
               id={descriptionId}
+              errorColor={isInverse ? theme.colors.red500 : undefined}
+              errorIconColor={isInverse ? theme.colors.red500 : undefined}
               hasError
               isInverse={isInverse}
               style={{ paddingLeft: theme.spaceScale.spacing08 }}

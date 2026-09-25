@@ -12,15 +12,13 @@ const Item = styled.li`
 `;
 
 const StyledLink = styled.button`
-  background: ${props => props.theme.colors.primary700};
+  background: ${props => props.theme.colors.indigo700};
   border: none;
   border-bottom: 2px solid;
   border-color: ${props =>
     props.active ? props.theme.colors.secondary : 'transparent'};
   color: ${props =>
-    props.active
-      ? props.theme.colors.secondary
-      : props.theme.colors.neutral100};
+    props.active ? props.theme.colors.secondary : props.theme.colors.neutral0};
   display: block;
   font-size: 13px;
   line-height: 1.3em;

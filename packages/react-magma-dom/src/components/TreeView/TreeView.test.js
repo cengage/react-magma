@@ -19,7 +19,7 @@ import { magma } from '../../theme/magma';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import { Paragraph } from '../Paragraph';
 import { Tag } from '../Tag';
-import { getTreeItemLabelColor } from './utils';
+import { getTreeItemIconColor } from './utils';
 
 import { TreeItem, TreeView, TreeViewSelectable } from '.';
 
@@ -257,6 +257,19 @@ describe('TreeView', () => {
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
+  it('uses neutral700 as the default inherited text color', () => {
+    const { getByTestId } = render(
+      <TreeView testId={testId}>
+        <TreeItem>{TEXT}</TreeItem>
+      </TreeView>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'color',
+      magma.colors.neutral700
+    );
   });
 
   it('Does not violate accessibility standards', () => {
@@ -911,7 +924,12 @@ describe('TreeView', () => {
         await userEvent.click(getByTestId('item1-label'));
 
         expect(getByTestId('item1-itemwrapper')).toHaveStyle(
-          `background: ${transparentize(0.92, magma.colors.neutral900)}`
+          `background: ${transparentize(0.25, magma.colors.neutral200)}`
+        );
+        expect(getByTestId('item1')).toHaveStyleRule(
+          'background-color',
+          magma.colors.brand.oceanBlue,
+          { target: '>div:first-of-type:before' }
         );
       });
     });
@@ -1437,11 +1455,11 @@ describe('TreeView', () => {
 
       expect(getByTestId('item0-label')).toHaveStyleRule(
         'color',
-        magma.colors.neutral100
+        magma.colors.neutral0
       );
       expect(getByTestId('item1-expand')).toHaveStyleRule(
         'color',
-        magma.colors.neutral100
+        magma.colors.neutral0
       );
 
       expect(getByTestId('item1-itemwrapper')).not.toHaveStyleRule(
@@ -1451,7 +1469,12 @@ describe('TreeView', () => {
       await userEvent.click(getByTestId('item1-label'));
 
       expect(getByTestId('item1-itemwrapper')).toHaveStyle(
-        `background: ${transparentize(0.7, magma.colors.neutral900)}`
+        `background: ${magma.colors.neutral900}`
+      );
+      expect(getByTestId('item1')).toHaveStyleRule(
+        'background-color',
+        magma.colors.brand.skyBlue,
+        { target: '>div:first-of-type:before' }
       );
     });
   });
@@ -1473,6 +1496,10 @@ describe('TreeView', () => {
       );
 
       expect(getByTestId(`${testId}-icon`)).toBeInTheDocument();
+      expect(getByTestId(`${testId}-icon`)).toHaveStyleRule(
+        'color',
+        magma.colors.brand.navy
+      );
     });
 
     it('icon is visible when the item does have treeItemChildren', () => {
@@ -1513,6 +1540,14 @@ describe('TreeView', () => {
 
       expect(getByTestId(`${testId}-icon`)).toBeInTheDocument();
       expect(getByTestId(`${testId}-child-icon`)).toBeInTheDocument();
+      expect(getByTestId(`${testId}-icon`)).toHaveStyleRule(
+        'color',
+        magma.colors.brand.navy
+      );
+      expect(getByTestId(`${testId}-child-icon`)).toHaveStyleRule(
+        'color',
+        magma.colors.brand.navy
+      );
     });
   });
 
@@ -2525,7 +2560,7 @@ describe('TreeView', () => {
         expect(getByTestId('item-child3-checkbox')).toHaveAttribute('disabled');
         expect(getByTestId('item-child3-label')).toHaveStyleRule(
           'color',
-          transparentize(0.6, magma.colors.neutral500)
+          magma.colors.neutral500
         );
         expect(getByTestId('item-child4-checkbox')).not.toHaveAttribute(
           'disabled'
@@ -2564,27 +2599,27 @@ describe('TreeView', () => {
         expect(getByTestId('item1-checkbox')).toHaveAttribute('disabled');
         expect(getByTestId('item1-label')).toHaveStyleRule(
           'color',
-          transparentize(0.6, magma.colors.neutral500)
+          magma.colors.neutral500
         );
         expect(getByTestId('item-child1-checkbox')).toHaveAttribute('disabled');
         expect(getByTestId('item-child1-label')).toHaveStyleRule(
           'color',
-          transparentize(0.6, magma.colors.neutral500)
+          magma.colors.neutral500
         );
         expect(getByTestId('item-child2-checkbox')).toHaveAttribute('disabled');
         expect(getByTestId('item-child2-label')).toHaveStyleRule(
           'color',
-          transparentize(0.6, magma.colors.neutral500)
+          magma.colors.neutral500
         );
         expect(getByTestId('item-child3-checkbox')).toHaveAttribute('disabled');
         expect(getByTestId('item-child3-label')).toHaveStyleRule(
           'color',
-          transparentize(0.6, magma.colors.neutral500)
+          magma.colors.neutral500
         );
         expect(getByTestId('item-child4-checkbox')).toHaveAttribute('disabled');
         expect(getByTestId('item-child4-label')).toHaveStyleRule(
           'color',
-          transparentize(0.6, magma.colors.neutral500)
+          magma.colors.neutral500
         );
       });
     });
@@ -5650,7 +5685,7 @@ describe('TreeView', () => {
       expect(getByTestId('item1-expand')).toHaveStyle({
         width: '24px',
         height: '24px',
-        color: getTreeItemLabelColor(false, false, magma),
+        color: getTreeItemIconColor(false, false, magma),
       });
     });
 
@@ -5713,9 +5748,39 @@ describe('TreeView', () => {
         </TreeView>
       );
 
-      expect(
-        container.querySelector('[data-testid="item1-guideline"]')
-      ).toBeInTheDocument();
+      const guideLine = container.querySelector(
+        '[data-testid="item1-guideline"]'
+      );
+
+      expect(guideLine).toBeInTheDocument();
+      expect(guideLine).toHaveStyleRule(
+        'border-inline-start',
+        `1px solid ${magma.colors.neutral200}`
+      );
+    });
+
+    it('should use the inverse guide line color', () => {
+      const { getByTestId } = render(
+        <TreeView
+          testId={testId}
+          hasGuideLines
+          initialExpandedItems={['item1']}
+          isInverse
+        >
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('item1-guideline')).toHaveStyleRule(
+        'border-inline-start',
+        `1px solid ${magma.colors.neutral800}`
+      );
     });
 
     it('should not render guide line when hasGuideLines is true but item is collapsed', () => {
