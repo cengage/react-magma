@@ -3092,7 +3092,7 @@ export const ComplexWithAdditionalContent = {
 
     return (
       <Card isInverse={args.isInverse}>
-        <TreeView {...args} ariaLabelledBy={'ah-textbook'}>
+        <TreeView {...args}>
           <TreeItem
             label={folderLabel(
               <Paragraph

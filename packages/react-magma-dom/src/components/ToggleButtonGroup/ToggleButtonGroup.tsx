@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { descriptionSuffix, useGenerateId } from '../../utils';
 import { ButtonColor, ButtonSize } from '../Button';
 import { ButtonGroup, ButtonGroupProps } from '../ButtonGroup';
 import { ToggleButton, ToggleButtonProps } from '../ToggleButton/ToggleButton';
@@ -90,7 +89,6 @@ export const ToggleButtonGroup = React.forwardRef<
     children,
     enforced,
     exclusive,
-    id: defaultId,
     isInverse,
     noSpace,
     onChange,
@@ -175,10 +173,7 @@ export const ToggleButtonGroup = React.forwardRef<
     return child;
   });
 
-  const id = useGenerateId(defaultId);
-  const descriptionId = props.descriptionId
-    ? props.descriptionId
-    : `${id}${descriptionSuffix}`;
+  const descriptionId = props.descriptionId;
 
   return (
     <ButtonGroup

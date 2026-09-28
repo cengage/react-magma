@@ -66,6 +66,50 @@ export function Example() {
 }
 ```
 
+## Data Visualization Colors
+
+The `blue`, `teal`, `pink` and `purple` options use the data visualization color
+tokens. They are meant for categorical distinction, such as labeling items that
+belong to different groups. Because they carry no semantic meaning, they should
+not be used to communicate states like success, warning or danger, and they
+should never be the only way information is conveyed.
+
+```tsx
+import React from 'react';
+
+import {
+  Tag,
+  TagColor,
+  Flex,
+  FlexBehavior,
+  FlexJustify,
+  magma,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Flex
+      behavior={FlexBehavior.container}
+      justify={FlexJustify.spaceBetween}
+      style={{ gap: magma.spaceScale.spacing02, maxWidth: '450px' }}
+    >
+      <Flex behavior={FlexBehavior.item}>
+        <Tag color={TagColor.blue}>Blue</Tag>
+      </Flex>
+      <Flex behavior={FlexBehavior.item}>
+        <Tag color={TagColor.teal}>Teal</Tag>
+      </Flex>
+      <Flex behavior={FlexBehavior.item}>
+        <Tag color={TagColor.pink}>Pink</Tag>
+      </Flex>
+      <Flex behavior={FlexBehavior.item}>
+        <Tag color={TagColor.purple}>Purple</Tag>
+      </Flex>
+    </Flex>
+  );
+}
+```
+
 ## Tag With Icon
 
 ```tsx
@@ -342,6 +386,26 @@ export function Example() {
           <Flex behavior={FlexBehavior.item} sx={3}>
             <Tag isInverse color={TagColor.highContrast}>
               Inverse High Contrast
+            </Tag>
+          </Flex>
+          <Flex behavior={FlexBehavior.item} sx={3}>
+            <Tag isInverse color={TagColor.blue}>
+              Inverse Blue
+            </Tag>
+          </Flex>
+          <Flex behavior={FlexBehavior.item} sx={3}>
+            <Tag isInverse color={TagColor.teal}>
+              Inverse Teal
+            </Tag>
+          </Flex>
+          <Flex behavior={FlexBehavior.item} sx={3}>
+            <Tag isInverse color={TagColor.pink}>
+              Inverse Pink
+            </Tag>
+          </Flex>
+          <Flex behavior={FlexBehavior.item} sx={3}>
+            <Tag isInverse color={TagColor.purple}>
+              Inverse Purple
             </Tag>
           </Flex>
         </Flex>
