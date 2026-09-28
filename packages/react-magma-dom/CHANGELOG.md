@@ -1,35 +1,5 @@
 # react-magma-dom
 
-## 4.17.0-next.2
-
-### Patch Changes
-
-- cc9e82e20: fix(Dropdown): return focus to the trigger button when a menu item is selected
-
-## 4.17.0-next.1
-
-### Patch Changes
-
-- c71c60b77: fix(Combobox, ToggleButtonGroup, PopoverTrigger, Tag): Fix ARIA id references
-
-  - Combobox now passes its generated id correctly
-
-  - ToggleButtonGroup no longer uses aria describedby with an id that does not exist
-
-  - PopoverTrigger now puts aria label on the actual trigger element instead of a wrapper with no role
-
-  - Tag remove aria-label from non-interactive Tag to fix ARIA prohibited attribute violation on span
-
-## 4.17.0-next.0
-
-### Minor Changes
-
-- d98d803bd: feat(Tag): Add data visualization color tokens and new color options.
-
-  - Adds `dataViz*` color tokens to the theme and reuses them for `chartColors` and `chartColorsInverse`.
-  - Adds `blue`, `teal`, `pink` and `purple` options to `TagColor`.
-  - Updates existing Tag styling: `TagColor.primary` and `TagColor.default` backgrounds and text colors, inverse colors, the outline (now a `border` instead of a `box-shadow`), fixed heights, text weight, and the dismiss icon (`CancelIcon` is now `CloseIcon`).
-
 ## 4.16.0
 
 ### Minor Changes
