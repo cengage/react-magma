@@ -192,6 +192,10 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       onOpen && typeof onOpen === 'function' && onOpen();
     }
 
+    function focusTriggerButton() {
+      (leftButtonRef.current ?? toggleRef.current)?.focus();
+    }
+
     function closeDropdown(event) {
       setIsOpen(false);
 
@@ -199,7 +203,20 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         const relatedTarget = event.relatedTarget;
 
         if (!isElementInteractive(relatedTarget)) {
-          (leftButtonRef.current ?? toggleRef.current)?.focus();
+          focusTriggerButton();
+        }
+      } else if (event) {
+        // Closing from an interaction inside the dropdown (e.g. selecting a
+        // menu item) would otherwise leave focus on a hidden element.
+        const isTriggeredFromInside = ownRef.current?.contains(
+          event.target as Node
+        );
+        const activeElement = document.activeElement;
+        const hasFocusInside = ownRef.current?.contains(activeElement);
+        const hasLostFocus = !activeElement || activeElement === document.body;
+
+        if (isTriggeredFromInside && (hasFocusInside || hasLostFocus)) {
+          focusTriggerButton();
         }
       }
 

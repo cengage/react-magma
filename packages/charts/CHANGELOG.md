@@ -1,5 +1,14 @@
 # @react-magma/charts
 
+## 13.3.1-next.2
+
+### Patch Changes
+
+- a74991937: fix(charts): improve point Tab navigation accessibility after chart rerenders
+- 8875a36d8: fix(charts): hide the hover ruler line from screen readers
+- Updated dependencies [d98d803bd]
+  - react-magma-dom@4.17.0-next.0
+
 ## 13.3.0
 
 ### Minor Changes
