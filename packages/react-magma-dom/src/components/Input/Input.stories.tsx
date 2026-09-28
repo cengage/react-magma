@@ -720,7 +720,6 @@ export const AllInputs = () => {
         </div>
         <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
           <Combobox
-            id="comboboxId"
             labelText="Combobox"
             defaultItems={[
               { label: 'Red', value: 'red' },
@@ -732,7 +731,6 @@ export const AllInputs = () => {
         </div>
         <div style={{ flex: '0 0 auto', marginTop: 'auto', maxWidth: '400px' }}>
           <Combobox
-            id="comboboxId-multi"
             isMulti
             labelText={'Combobox Multi Example'}
             defaultItems={[
