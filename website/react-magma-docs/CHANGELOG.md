@@ -1,5 +1,28 @@
 # Change Log
 
+## 5.4.0
+
+### Minor Changes
+
+- 9ecda2276: feat(docs): update navigation structure and styling
+
+### Patch Changes
+
+- 9ecda2276: Documentation deployment: resume v4/React 17 prerelease docs and Storybook builds after synchronizing v4.16.0 into v4/dev.
+- 9ecda2276: feat(Tag): Add data visualization color tokens and new color options.
+
+  - Adds `dataViz*` color tokens to the theme and reuses them for `chartColors` and `chartColorsInverse`.
+  - Adds `blue`, `teal`, `pink` and `purple` options to `TagColor`.
+  - Updates existing Tag styling: `TagColor.primary` and `TagColor.default` backgrounds and text colors, inverse colors, the outline (now a `border` instead of a `box-shadow`), fixed heights, text weight, and the dismiss icon (`CancelIcon` is now `CloseIcon`).
+
+- Updated dependencies [9ecda2276]
+- Updated dependencies [9ecda2276]
+- Updated dependencies [9ecda2276]
+- Updated dependencies [9ecda2276]
+- Updated dependencies [9ecda2276]
+  - @react-magma/charts@13.3.1
+  - react-magma-dom@4.17.0
+
 ## 5.3.8
 
 ### Patch Changes
