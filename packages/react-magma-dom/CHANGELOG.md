@@ -1,5 +1,25 @@
 # Change Log
 
+## 5.3.0
+
+### Minor Changes
+
+- 8fcb8fc: feat(Tag): Add data visualization color tokens and new color options.
+
+  - Adds `dataViz*` color tokens to the theme and reuses them for `chartColors` and `chartColorsInverse`.
+  - Adds `blue`, `teal`, `pink` and `purple` options to `TagColor`.
+  - Updates existing Tag styling: `TagColor.primary` and `TagColor.default` backgrounds and text colors, inverse colors, the outline (now a `border` instead of a `box-shadow`), fixed heights, text weight, and the dismiss icon (`CancelIcon` is now `CloseIcon`).
+
+### Patch Changes
+
+- 8fcb8fc: fix(Dropdown): return focus to the trigger button when a menu item is selected
+- 8fcb8fc: fix(Combobox, ToggleButtonGroup, PopoverTrigger, Tag): Fix ARIA id references
+
+  - Combobox now passes its generated id correctly
+  - ToggleButtonGroup no longer uses aria describedby with an id that does not exist
+  - PopoverTrigger now puts aria label on the actual trigger element instead of a wrapper with no role
+  - Tag remove aria-label from non-interactive Tag to fix ARIA prohibited attribute violation on span
+
 ## 5.2.0
 
 ### Minor Changes
