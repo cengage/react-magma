@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.4.1-next.0
+
+### Patch Changes
+
+- 0f86a050a: Documentation deployment: resume v4/React 17 prerelease docs and Storybook builds after synchronizing v4.17.0 into v4/dev.
+
 ## 5.4.0
 
 ### Minor Changes
