@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.1.1-rc.0
+
+### Patch Changes
+
+- 34af253: chore(release): sync the published 5.3.0 state from main into dev
+
 ## 6.1.0
 
 ### Minor Changes
