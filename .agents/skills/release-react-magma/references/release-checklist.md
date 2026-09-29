@@ -1,7 +1,7 @@
 # React Magma Release Checklist
 
-Use this checklist after selecting v5 or v4 in `SKILL.md`. Run commands from the
-repository root.
+Use this checklist after selecting a release line in `SKILL.md`. Run commands
+from the repository root.
 
 ## Source Priority
 
@@ -9,26 +9,29 @@ When instructions disagree, use this order:
 
 1. Current `.github/workflows/publish.yml`, package scripts, Changesets config,
    and branch contents.
-2. `AGENTS.md` and checked-in OpenWiki documentation. When the selected track
+2. `AGENTS.md` and checked-in OpenWiki documentation. When the selected line
    does not contain these files, read them from `origin/dev` as policy context,
-   then verify commands and configuration against the selected track.
+   then verify commands and configuration against the selected line.
 3. GitHub wiki pages `Releasing React Magma` and
    `React Magma V5 Branching Strategy`.
 
 The GitHub wiki may describe older split workflows. The current repository uses
-one publish workflow triggered by `dev`, `main`, `v4/dev`, and `v4/main`.
+one publish workflow triggered by all eight line branches: `dev`, `main`,
+`v6/dev`, `v6/main`, `v5/dev`, `v5/main`, `v4/dev`, and `v4/main`.
 
-## Track Matrix
+## Line Matrix
 
-| Track | Integration | Stable | Current pre tag | Stable PR target |
-| --- | --- | --- | --- | --- |
-| v5 | `origin/dev` | `origin/main` | inspect; currently `rc` | `main` |
-| v4 | `origin/v4/dev` | `origin/v4/main` | inspect; currently `next` | `v4/main` |
+| Line | Integration | Stable | Prerelease tag | Stable dist-tag | Stable PR target |
+| --- | --- | --- | --- | --- | --- |
+| v7 | `origin/dev` | `origin/main` | `next` | `latest` | `main` |
+| v6 | `origin/v6/dev` | `origin/v6/main` | `v6-next` | `v6-latest` | `v6/main` |
+| v5 | `origin/v5/dev` | `origin/v5/main` | `v5-next` | `v5-latest` | `v5/main` |
+| v4 | `origin/v4/dev` | `origin/v4/main` | `v4-next` | `v4-latest` | `v4/main` |
 
-Do not infer npm dist-tags from branch names. Inspect the workflow and npm state.
-For v4, verify that publishing cannot move the package's default `latest` tag
-back to a v4 version. Stop and obtain an approved workflow/tag fix if this is not
-explicitly guaranteed.
+The unified workflow derives these tags from the branch name; still inspect the
+workflow and npm state rather than assuming. Verify that publishing a non-`v7`
+line cannot move the package's default `latest` tag back to that line's version.
+Stop and obtain an approved workflow/tag fix if this is not explicitly guaranteed.
 
 ## 1. Refresh And Branch
 
@@ -37,7 +40,7 @@ git fetch origin
 git status --short --branch
 ```
 
-Require a clean worktree. For v5:
+Require a clean worktree. Example for v7:
 
 ```bash
 git switch --detach origin/main
@@ -45,20 +48,22 @@ git switch -c build/releaseX.Y.Z
 git merge origin/dev
 ```
 
-For v4, replace `origin/main`/`origin/dev` with
-`origin/v4/main`/`origin/v4/dev`.
+For another line, substitute its stable/integration refs from the Line Matrix
+(e.g. v6 uses `origin/v6/main`/`origin/v6/dev`).
 
 Never push the stable branch while resolving a release. A push triggers publish.
 
-## 2. Audit Fix Parity Across V5 And V4
+## 2. Audit Fix Parity Across The Active Lines
 
-Run the two-way audit after fetching both integration branches:
+Run the two-way audit after fetching both active integration branches. It
+defaults to the two active lines (v7 `dev` and v6 `v6/dev`); pass `--a-ref` /
+`--b-ref` to compare a different pair:
 
 ```bash
 .agents/skills/release-react-magma/scripts/audit-cross-track-fixes.sh
 ```
 
-The script scans fix commits on both sides of the v5/v4 branch divergence. It
+The script scans fix commits on both sides of the branch divergence. It
 recognizes exact patch equivalents, shared PR numbers, and normalized matching
 subjects. These are heuristics: an unmatched commit is a review candidate, not
 proof that a fix is missing, and a heuristic match still needs a quick
@@ -67,14 +72,14 @@ applicability check.
 For every unmatched candidate in both directions:
 
 1. Read the source diff, changeset or changelog entry, tests, and linked PR.
-2. Check whether the affected package and behavior exist on the target track.
+2. Check whether the affected package and behavior exist on the target line.
 3. Record exactly one disposition in the release PR:
    - required: port it in a focused PR to the target integration branch;
    - already ported: cite the target commit or PR the heuristic missed;
    - superseded: cite the target change that replaced it;
-   - track-specific: explain the React, dependency, or architecture difference.
+   - line-specific: explain the React, dependency, or architecture difference.
 4. For required ports, preserve adopter behavior rather than copying code
-   mechanically, add the target track's changeset and tests, and rerun the audit.
+   mechanically, add the target line's changeset and tests, and rerun the audit.
 
 Use `--since YYYY-MM-DD` only as a supplementary focused view; the release gate
 uses the default full-divergence audit. Use `--include-matched` when validating
@@ -132,7 +137,7 @@ prerelease and still needs release.
 
 Require `.changeset/pre.json` with `mode: pre`. Compare every
 `initialVersions` entry to the corresponding package version on the stable ref.
-The initial versions are stable baselines, not current RC/next versions.
+The initial versions are stable baselines, not current prerelease versions.
 
 Inspect package versions independently. DOM, Charts, Dropzone, docs, and landing
 do not necessarily advance together. For example, a DOM minor and Charts minor
@@ -144,8 +149,8 @@ branch. The stable publish workflow performs those steps after merge.
 ## 6. Clean Changelogs
 
 Before the dry run, each package changelog should begin with the latest stable
-release. Remove accumulated RC/next sections for the pending release, but retain
-all stable sections and their content.
+release. Remove accumulated prerelease sections for the pending release, but
+retain all stable sections and their content.
 
 After the dry run, require this order:
 
@@ -185,7 +190,7 @@ by `AGENTS.md`, including compiler checks, lint, tests, and build.
 Commit release-preparation changes first, then run:
 
 ```bash
-.agents/skills/release-react-magma/scripts/dry-run-release.sh <v5|v4>
+.agents/skills/release-react-magma/scripts/dry-run-release.sh <v4|v5|v6|v7>
 ```
 
 The script clones the committed release state into `/tmp`, exits prerelease mode,
@@ -219,8 +224,9 @@ artifacts, not from prerelease package files.
 Do this manually before new integration PRs merge. Do not wait for or rely on the
 repository's sync automation; it is known to fail.
 
-For v5, start from `dev` and merge `main`; target `dev`. For v4, start from
-`v4/dev` and merge `v4/main`; target `v4/dev`.
+Start from the selected line's integration branch, merge its stable branch, and
+target the integration branch. For example, v7 starts from `dev` and merges
+`main`; v6 starts from `v6/dev` and merges `v6/main`.
 
 During conflict resolution:
 
@@ -231,12 +237,14 @@ During conflict resolution:
 - Do not restore stale prerelease package versions or stale `pre.json` content.
 
 After the sync merges, verify the integration publish workflow recreates
-`.changeset/pre.json` and uses the track's expected prerelease tag. Confirm the
+`.changeset/pre.json` and uses the line's expected prerelease tag. Confirm the
 stable commit is now an ancestor of integration:
 
 ```bash
-git merge-base --is-ancestor origin/main origin/dev
-git merge-base --is-ancestor origin/v4/main origin/v4/dev
+git merge-base --is-ancestor origin/main origin/dev         # v7
+git merge-base --is-ancestor origin/v6/main origin/v6/dev   # v6
+git merge-base --is-ancestor origin/v5/main origin/v5/dev   # v5
+git merge-base --is-ancestor origin/v4/main origin/v4/dev   # v4
 ```
 
 Only reopen integration for feature PRs after this verification passes.

@@ -54,7 +54,7 @@
     "upgrade:pkgs": "manypkg upgrade",
     "version:exit": "changeset pre exit",
     "version:pkgs": "changeset version",
-    "version:prerelease": "changeset pre enter rc"
+    "version:prerelease": "changeset pre enter next"
   },
   "dependencies": {
     "@babel/cli": "7.27.2",
