@@ -13,6 +13,7 @@ import {
   filterNullEntries,
   formatAnnouncement,
   getStringifiedLabel,
+  resolveTreeViewString,
 } from './utils';
 import { useDeviceDetect } from '../../hooks/useDeviceDetect';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
@@ -221,14 +222,20 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         hasEnabledSubitem;
 
       const templates = {
-        [IndeterminateCheckboxStatus.checked]: cascadedToSubitems
-          ? i18n.treeView.branchSelectedAnnounce
-          : i18n.treeView.itemSelectedAnnounce,
-        [IndeterminateCheckboxStatus.indeterminate]:
-          i18n.treeView.itemPartiallySelectedAnnounce,
-        [IndeterminateCheckboxStatus.unchecked]: cascadedToSubitems
-          ? i18n.treeView.branchDeselectedAnnounce
-          : i18n.treeView.itemDeselectedAnnounce,
+        [IndeterminateCheckboxStatus.checked]: resolveTreeViewString(
+          i18n,
+          cascadedToSubitems ? 'branchSelectedAnnounce' : 'itemSelectedAnnounce'
+        ),
+        [IndeterminateCheckboxStatus.indeterminate]: resolveTreeViewString(
+          i18n,
+          'itemPartiallySelectedAnnounce'
+        ),
+        [IndeterminateCheckboxStatus.unchecked]: resolveTreeViewString(
+          i18n,
+          cascadedToSubitems
+            ? 'branchDeselectedAnnounce'
+            : 'itemDeselectedAnnounce'
+        ),
       };
 
       announce(formatAnnouncement(templates[status], stringifiedLabel));
@@ -241,11 +248,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       itemsById,
       checkChildren,
       selectable,
-      i18n.treeView.itemSelectedAnnounce,
-      i18n.treeView.itemPartiallySelectedAnnounce,
-      i18n.treeView.itemDeselectedAnnounce,
-      i18n.treeView.branchSelectedAnnounce,
-      i18n.treeView.branchDeselectedAnnounce,
+      i18n,
     ]
   );
 

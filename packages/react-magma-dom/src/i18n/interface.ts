@@ -367,15 +367,15 @@ export interface I18nInterface {
     expanded: string;
     collapsed: string;
   };
-  treeView: {
-    itemExpandedAnnounce: string;
-    itemCollapsedAnnounce: string;
-    allItemsExpandedAnnounce: string;
-    allItemsCollapsedAnnounce: string;
-    itemSelectedAnnounce: string;
-    itemDeselectedAnnounce: string;
-    itemPartiallySelectedAnnounce: string;
-    branchSelectedAnnounce: string;
-    branchDeselectedAnnounce: string;
+  treeView?: {
+    itemExpandedAnnounce?: string;
+    itemCollapsedAnnounce?: string;
+    allItemsExpandedAnnounce?: string;
+    allItemsCollapsedAnnounce?: string;
+    itemSelectedAnnounce?: string;
+    itemDeselectedAnnounce?: string;
+    itemPartiallySelectedAnnounce?: string;
+    branchSelectedAnnounce?: string;
+    branchDeselectedAnnounce?: string;
   };
 }

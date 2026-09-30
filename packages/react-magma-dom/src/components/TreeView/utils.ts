@@ -47,6 +47,21 @@ export function formatAnnouncement(
 
 let hasWarnedAboutExpansionState = false;
 
+type TreeViewI18n = Required<NonNullable<I18nInterface['treeView']>>;
+
+const treeViewDefaults = defaultI18n.treeView as TreeViewI18n;
+
+// `i18n.treeView` is optional, so that an interface built by hand rather than
+// spread from `defaultI18n` still type-checks and still speaks English. Reading
+// a key goes through here, which falls back per key rather than per section: a
+// consumer who translates one string does not lose the other eight.
+export function resolveTreeViewString(
+  i18n: I18nInterface,
+  key: keyof TreeViewI18n
+): string {
+  return i18n.treeView?.[key] ?? treeViewDefaults[key];
+}
+
 // Picks the template for an expand/collapse announcement. The deprecated
 // `expansionState` section still works: a value that differs from the default is
 // used as the state wording, unless its replacement has been given one too.
@@ -54,12 +69,9 @@ export function resolveExpansionAnnounceTemplate(
   i18n: I18nInterface,
   expanded: boolean
 ): string {
-  const template = expanded
-    ? i18n.treeView.itemExpandedAnnounce
-    : i18n.treeView.itemCollapsedAnnounce;
-  const defaultTemplate = expanded
-    ? defaultI18n.treeView.itemExpandedAnnounce
-    : defaultI18n.treeView.itemCollapsedAnnounce;
+  const key = expanded ? 'itemExpandedAnnounce' : 'itemCollapsedAnnounce';
+  const template = resolveTreeViewString(i18n, key);
+  const defaultTemplate = treeViewDefaults[key];
   const legacy = expanded
     ? i18n.expansionState.expanded
     : i18n.expansionState.collapsed;

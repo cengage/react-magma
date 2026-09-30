@@ -488,6 +488,56 @@ describe('TreeItem', () => {
       await expectAnnouncement(announce, 'Branch — відкрито');
     });
 
+    it('falls back per key when only part of the section is supplied', async () => {
+      mockDevice({ isSafari: true, isMacOS: true });
+
+      const { getByTestId } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            treeView: { itemExpandedAnnounce: '{labelText} — відкрито' },
+          }}
+        >
+          <TreeView testId={treeTestId}>
+            <TreeItem label="Branch" itemId="branch" testId={branchTestId}>
+              <TreeItem label="Child one" itemId="child-1" />
+            </TreeItem>
+          </TreeView>
+        </I18nContext.Provider>
+      );
+      const announce = getByTestId(`${treeTestId}-announce`);
+
+      await userEvent.click(getByTestId(`${branchTestId}-expand`));
+      await expectAnnouncement(announce, 'Branch — відкрито');
+
+      // Translating one string must not blank out the other eight.
+      await userEvent.click(getByTestId(`${branchTestId}-expand`));
+      await expectAnnouncement(announce, 'Branch, collapsed');
+    });
+
+    it('works with an i18n interface that omits the treeView section', async () => {
+      mockDevice({ isSafari: true, isMacOS: true });
+
+      const { treeView, ...withoutTreeView } = defaultI18n;
+
+      const { getByTestId } = render(
+        <I18nContext.Provider value={withoutTreeView}>
+          <TreeView testId={treeTestId}>
+            <TreeItem label="Branch" itemId="branch" testId={branchTestId}>
+              <TreeItem label="Child one" itemId="child-1" />
+            </TreeItem>
+          </TreeView>
+        </I18nContext.Provider>
+      );
+
+      await userEvent.click(getByTestId(`${branchTestId}-expand`));
+
+      await expectAnnouncement(
+        getByTestId(`${treeTestId}-announce`),
+        'Branch, expanded'
+      );
+    });
+
     it('announces a nested branch on Chrome, where VoiceOver reads none', async () => {
       mockDevice({ isChrome: true, isMacOS: true });
 

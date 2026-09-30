@@ -16,6 +16,7 @@ import { TreeViewSelectionContext } from './TreeViewSelectionContext';
 import { TreeViewSelectable } from './types';
 import { useTreeItem } from './useTreeItem';
 import { UseTreeViewProps, useTreeView } from './useTreeView';
+import { resolveTreeViewString } from './utils';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -150,9 +151,12 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       expansionContextValue.bulkExpansionRef.current = null;
 
       announceContextValue.announce(
-        bulkAction === 'expand'
-          ? i18n.treeView.allItemsExpandedAnnounce
-          : i18n.treeView.allItemsCollapsedAnnounce
+        resolveTreeViewString(
+          i18n,
+          bulkAction === 'expand'
+            ? 'allItemsExpandedAnnounce'
+            : 'allItemsCollapsedAnnounce'
+        )
       );
     });
 
