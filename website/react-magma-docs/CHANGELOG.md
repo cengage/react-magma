@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.4.1-v4-next.1
+
+### Patch Changes
+
+- 6a0420ae1: chore(release): adopt the unified multi-version publish pipeline on the v4 track (v4-next prerelease tag, v4-latest stable)
+
 ## 5.4.1-next.0
 
 ### Patch Changes
