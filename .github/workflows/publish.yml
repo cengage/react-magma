@@ -38,10 +38,10 @@ jobs:
         run: |
           ref="${GITHUB_REF_NAME}"
           case "$ref" in
-            main | dev) line=v7 ;;
-            v6/*) line=v6 ;;
-            v5/*) line=v5 ;;
-            v4/*) line=v4 ;;
+            main | dev) track=v7 ;;
+            v6/*) track=v6 ;;
+            v5/*) track=v5 ;;
+            v4/*) track=v4 ;;
           esac
           case "$ref" in
             dev) pre_id=next ;;
@@ -57,7 +57,7 @@ jobs:
           esac
           if [[ "$ref" == *dev ]]; then prod_branch="${ref%dev}main"; fi
           {
-            echo "line=$line"
+            echo "track=$track"
             echo "pre_id=$pre_id"
             echo "dist_tag=$dist_tag"
             echo "prod_branch=$prod_branch"
@@ -170,7 +170,7 @@ jobs:
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: false
-          alias: storybook-preview-${{ steps.meta.outputs.line }}-dev
+          alias: storybook-preview-${{ steps.meta.outputs.track }}-dev
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -183,7 +183,7 @@ jobs:
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
-          alias: storybook-${{ steps.meta.outputs.line }}
+          alias: storybook-${{ steps.meta.outputs.track }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
