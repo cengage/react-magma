@@ -435,7 +435,7 @@ describe('Heading', () => {
       [TypographyVisualStyle.headingMedium, 3, '32px', '40px'],
       [TypographyVisualStyle.headingSmall, 4, '24px', '28px'],
       [TypographyVisualStyle.headingXSmall, 5, '20px', '24px'],
-      [TypographyVisualStyle.heading2XSmall, 6, '14px', '17px'],
+      [TypographyVisualStyle.heading2XSmall, 6, '14px', '20px'],
     ])(
       'should render %s desktop sizing for regular and inverse headings',
       (visualStyle, level, fontSize, lineHeight) => {

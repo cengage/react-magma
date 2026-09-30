@@ -90,7 +90,7 @@ export const Default = {
 
   args: {
     borderRadius: CardBorderRadius.medium,
-    cornerTreatment: CardCornerTreatment.squareTopLeft,
+    cornerTreatment: CardCornerTreatment.all,
     isInverse: false,
     align: '',
     background: '',

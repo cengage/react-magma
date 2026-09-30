@@ -260,6 +260,7 @@ export {
   EnumTooltipPosition,
   StyledTooltip,
   Tooltip,
+  TooltipArrow,
   TooltipPosition,
 } from './components/Tooltip';
 export type { TooltipProps } from './components/Tooltip';

@@ -851,10 +851,7 @@ export const magma = {
     },
     heading2XSmall: {
       mobile: typeScale.size03,
-      desktop: {
-        fontSize: '14px',
-        lineHeight: '17px',
-      },
+      desktop: typeScale.size02,
       fontWeight: 600,
     },
     bodyLarge: {

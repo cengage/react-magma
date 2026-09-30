@@ -40,7 +40,7 @@ describe('Card', () => {
       `1px solid ${magma.colors.neutral200}`
     );
     expect(card).toHaveStyleRule('padding-left', '0');
-    expect(card).toHaveStyleRule('border-radius', '0 16px 16px 16px');
+    expect(card).toHaveStyleRule('border-radius', '16px');
     expect(card).toHaveStyleRule('text-align', 'left');
     expect(card).toHaveStyleRule('width', 'auto');
   });
@@ -65,23 +65,26 @@ describe('Card', () => {
     expect(getByText(TEXT)).toHaveStyleRule('border-radius', value);
   });
 
-  it('should retain the default corner treatment for callouts', () => {
+  it('should round every callout corner by default', () => {
     const { getByText } = render(<Card calloutType="primary">{TEXT}</Card>);
+
+    expect(getByText(TEXT)).toHaveStyleRule('border-radius', '16px');
+  });
+
+  it('should square the top-left callout corner when selected', () => {
+    const { getByText } = render(
+      <Card
+        calloutType="primary"
+        cornerTreatment={CardCornerTreatment.squareTopLeft}
+      >
+        {TEXT}
+      </Card>
+    );
 
     expect(getByText(TEXT)).toHaveStyleRule(
       'border-radius',
       '0 16px 16px 16px'
     );
-  });
-
-  it('should round every callout corner when all is selected', () => {
-    const { getByText } = render(
-      <Card calloutType="primary" cornerTreatment={CardCornerTreatment.all}>
-        {TEXT}
-      </Card>
-    );
-
-    expect(getByText(TEXT)).toHaveStyleRule('border-radius', '16px');
   });
 
   it('should render the card component with a drop shadow', () => {
@@ -257,7 +260,7 @@ describe('Card', () => {
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.neutral1200
+        magma.colors.neutral1100
       );
       expect(getByText(TEXT)).toHaveStyleRule('color', magma.colors.neutral0);
     }

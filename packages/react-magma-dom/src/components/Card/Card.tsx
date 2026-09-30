@@ -32,7 +32,7 @@ export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
   borderRadius?: CardBorderRadius;
   /**
    * Sets whether all corners are rounded or the top-left corner is square.
-   * @default CardCornerTreatment.squareTopLeft
+   * @default CardCornerTreatment.all
    */
   cornerTreatment?: CardCornerTreatment;
   /**
@@ -146,7 +146,7 @@ const StyledCard = styled.div<CardProps>`
       ? props.background
       : props.calloutType
         ? props.isInverse
-          ? props.theme.colors.neutral1200
+          ? props.theme.colors.neutral1100
           : props.theme.colors.neutral0
         : props.isInverse
           ? props.theme.colors.neutral1100
@@ -194,7 +194,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       align,
       borderRadius = CardBorderRadius.medium,
       children,
-      cornerTreatment = CardCornerTreatment.squareTopLeft,
+      cornerTreatment = CardCornerTreatment.all,
       testId,
       width,
       ...other
