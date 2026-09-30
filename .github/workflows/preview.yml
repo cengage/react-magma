@@ -6,6 +6,10 @@ on:
       - main
       - v4/dev
       - v4/main
+      - v5/dev
+      - v5/main
+      - v6/dev
+      - v6/main
     types: [opened, synchronize]
 
 jobs:
@@ -14,6 +18,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup
         uses: actions/setup-node@v4
         with:
@@ -39,15 +45,26 @@ jobs:
       - name: Build Docs
         run: npm run build:docs
       - name: Build Storybook
-        run: npm run build:storybook
+        run: npm run build-storybook
+      - name: Chromatic
+        if: github.base_ref == 'dev' || github.base_ref == 'main'
+        continue-on-error: true
+        uses: chromaui/action@v16
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          storybookBuildDir: storybook-static
+          onlyChanged: true
+          exitZeroOnChanges: true
       - name: Set version prefix
         id: version
         run: |
-          if [[ "${{ github.base_ref }}" == v4/* ]]; then
-            echo "prefix=v4" >> $GITHUB_OUTPUT
-          else
-            echo "prefix=v5" >> $GITHUB_OUTPUT
-          fi
+          case "${{ github.base_ref }}" in
+            v4/*) prefix=v4 ;;
+            v5/*) prefix=v5 ;;
+            v6/*) prefix=v6 ;;
+            *) prefix=v7 ;;
+          esac
+          echo "prefix=$prefix" >> "$GITHUB_OUTPUT"
       - name: Deploy Doc Preview to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
