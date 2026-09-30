@@ -5,7 +5,7 @@ This page explains the *why* behind the monorepo tooling; for the exact command/
 ## Monorepo orchestration: Lerna + Nx
 
 - **npm workspaces** (`package.json`): `workspaces: ["website/*", "packages/*"]`. Every folder under those two directories with a `package.json` is a workspace package.
-- **Lerna** (`lerna.json`) runs cross-package scripts (`build`, `lint`, `test`, `compiler-checks`) and handles independent semantic versioning (`"version": "independent"`) plus publishing rules (allowed branches: the eight line branches `dev`/`main`, `v6/dev`/`v6/main`, `v5/dev`/`v5/main`, `v4/dev`/`v4/main`, plus `hotfix/*`).
+- **Lerna** (`lerna.json`) runs cross-package scripts (`build`, `lint`, `test`, `compiler-checks`) and handles independent semantic versioning (`"version": "independent"`) plus publishing rules (allowed branches: the eight branches `dev`/`main`, `v6/dev`/`v6/main`, `v5/dev`/`v5/main`, `v4/dev`/`v4/main`, plus `hotfix/*`).
 - **Nx** (`nx.json`) layers task caching on top of Lerna's task running. `targetDefaults` cache `build`/`lint`/`compiler-checks`/`test`; per-project overrides declare real dependency graphs — e.g. `charts` and `dropzone` both `dependsOn: ["react-magma-dom:build"]`, so their builds only re-run when `react-magma-dom`'s build output actually changes.
 - Root `package.json` scripts wrap these tools: `npm run build` (`compiler-checks` + `lint` via `prebuild`, then `lerna run build`), `npm run build:lite` (`lerna run build --ignore react-magma-docs`, without the root `prebuild` checks — useful when you only need package builds, not the docs site, and is what `postinstall` runs after `npm ci`).
 
@@ -37,7 +37,7 @@ This keeps new components aligned with the conventions in [Component Library Arc
 
 ## Branching, commits, PRs
 
-- Branch from and target **`dev`** (the active v7 line), not `main`. Maintained older lines use their own `*/dev`/`*/main` pair — `v6/*` is active; `v5/*` and `v4/*` are maintenance-only.
+- Branch from and target **`dev`** (the active v7 track), not `main`. Maintained older tracks use their own `*/dev`/`*/main` pair — `v6/*` is active; `v5/*` and `v4/*` are maintenance-only.
 - **Conventional Commits scoped by component, package, or docs area**, e.g. `feat(TreeView): support folder expansion`, `fix(chart): add accessible chart role`, `docs(OpenWiki): correct repository guidance`, `docs(AGENTS): clarify commit rules`. Husky's `commit-msg` hook validates via commitlint; `pre-commit` runs lint-staged (`eslint --fix` + prettier) — see `.lintstagedrc`, `commitlint.config.js`, `.husky/`.
 - PRs should link the issue, describe the change, include UI screenshots/GIFs for visual changes, list test steps/edge cases, and update docs for any public-API change.
 
@@ -47,8 +47,8 @@ Because many downstream products consume these packages, a backward-incompatible
 
 ## CI workflows (`.github/workflows/`)
 
-- **`preview.yml`** — runs on PRs to any of the eight line branches (`dev`/`main`, `v6/*`, `v5/*`, `v4/*`): `npm ci`, `npm test` (Jest, includes `pretest` compiler checks), Playwright browser install + `npm run playwright:test`, `npm run build:docs`, `npm run build-storybook`, then (only when targeting `dev`/`main`) a Chromatic visual-regression run, and finally Netlify preview deploys of both the docs site and Storybook, tagged `v4`/`v5`/`v6`/`v7` based on the target branch.
-- **`publish.yml`** — the release pipeline, triggered on push to any of the eight line branches. It derives each line's prerelease id (`next`/`v6-next`/`v5-next`/`v4-next`) and stable npm dist-tag (`latest`/`v6-latest`/`v5-latest`/`v4-latest`) from the branch name, then versions/publishes the packages and deploys the versioned docs and Storybook.
+- **`preview.yml`** — runs on PRs to any of the eight branches (`dev`/`main`, `v6/*`, `v5/*`, `v4/*`): `npm ci`, `npm test` (Jest, includes `pretest` compiler checks), Playwright browser install + `npm run playwright:test`, `npm run build:docs`, `npm run build-storybook`, then (only when targeting `dev`/`main`) a Chromatic visual-regression run, and finally Netlify preview deploys of both the docs site and Storybook, tagged `v4`/`v5`/`v6`/`v7` based on the target branch.
+- **`publish.yml`** — the release pipeline, triggered on push to any of the eight branches. It derives the prerelease id (`next`/`v6-next`/`v5-next`/`v4-next`) and stable npm dist-tag (`latest`/`v6-latest`/`v5-latest`/`v4-latest`) from the branch name, then versions/publishes the packages and deploys the versioned docs and Storybook.
 - **`deploy-old-docs.yml`** — deploys documentation for older major versions.
 - **`snyk-monitor.yml` / `snyk-pr.yml`** — dependency vulnerability scanning.
 

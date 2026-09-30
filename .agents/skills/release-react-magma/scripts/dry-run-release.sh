@@ -233,7 +233,7 @@ const path = require('path');
 const root = process.argv[2];
 const domMajor = Number(process.argv[3]);
 const reactMajor = Number(process.argv[4]);
-const line = process.argv[5];
+const track = process.argv[5];
 
 const packagePaths = {
   '@react-magma/charts': 'packages/charts/package.json',
@@ -247,7 +247,7 @@ const domPkg = JSON.parse(
 const actualDomMajor = Number(domPkg.version.split('.')[0]);
 if (actualDomMajor !== domMajor) {
   throw new Error(
-    `${line} compatibility requires react-magma-dom ${domMajor}.x, generated ${domPkg.version}`
+    `${track} compatibility requires react-magma-dom ${domMajor}.x, generated ${domPkg.version}`
   );
 }
 
@@ -258,7 +258,7 @@ for (const name of ['@react-magma/charts', 'react-magma-dom']) {
 
   if (!reactPeer || !reactMajorPattern.test(reactPeer)) {
     throw new Error(
-      `${line} compatibility requires ${name} to retain a React ${reactMajor} peer range, found ${reactPeer || 'none'}`
+      `${track} compatibility requires ${name} to retain a React ${reactMajor} peer range, found ${reactPeer || 'none'}`
     );
   }
 }
@@ -287,7 +287,7 @@ for (const [name, relativePath] of Object.entries(packagePaths)) {
 }
 
 console.log(
-  `${line} compatibility: react-magma-dom ${domMajor}.x, React ${reactMajor} peers, no prerelease workspace deps.`
+  `${track} compatibility: react-magma-dom ${domMajor}.x, React ${reactMajor} peers, no prerelease workspace deps.`
 );
 NODE
 

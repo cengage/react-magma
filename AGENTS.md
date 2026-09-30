@@ -52,7 +52,7 @@ Jest + Testing Library + `@testing-library/jest-dom` + Emotion snapshots + `jest
 
 ## Branching, Commits & Pull Requests
 
-- **Branch off `dev`** (the active v7 integration branch) and target `dev` in PRs — not `main`. React Magma maintains parallel release lines, each with its own `*/dev` integration branch and `*/main` stable branch: **v7** (`dev`/`main`, React 18) and **v6** (`v6/dev`/`v6/main`, React 17) are active; **v5** (`v5/dev`/`v5/main`) and **v4** (`v4/dev`/`v4/main`) are maintenance-only and slated for retirement. Default to `dev`; target an older line's `*/dev` only for a fix specific to that line.
+- **Branch off `dev`** (the active v7 integration branch) and target `dev` in PRs — not `main`. React Magma maintains parallel release tracks, each with its own `*/dev` integration branch and `*/main` stable branch: **v7** (`dev`/`main`, React 18) and **v6** (`v6/dev`/`v6/main`, React 17) are active; **v5** (`v5/dev`/`v5/main`) and **v4** (`v4/dev`/`v4/main`) are maintenance-only and slated for retirement. Default to `dev`; target an older track's `*/dev` only for a fix specific to that track.
 - **Conventional Commits**, scoped by component, package, or docs area: `feat(TreeView): support folder expansion`, `fix(chart): add accessible chart role`, `docs(OpenWiki): correct repository guidance`, `docs(AGENTS): clarify commit rules`. commitlint relaxes subject/scope casing; husky `commit-msg` validates and `pre-commit` runs lint-staged (eslint --fix + prettier).
 - **Changesets are always added manually**: create a file under `.changeset/<descriptive-name>.md` for every change, including code, docs, CI, dependency, and workflow-only changes. Format — YAML frontmatter mapping each changed package to a semver bump, then a one-line summary:
 

@@ -57,7 +57,7 @@ Node `>=22.14.0` / npm `>=11.11.0` (pinned in `.nvmrc`). Full command list: [`AG
 - **Do not hard-code colors or use the default `magma` object as a styling source for new component styling** — read from `ThemeContext` so consumer-provided custom themes work. Existing code has a few `magma` imports for type/key defaults and fallbacks; follow the surrounding pattern. See [Component Library Architecture](architecture/component-library.md#theme-system).
 - **User-facing strings must come from `I18nContext`**, not literals — see [i18n](architecture/component-library.md#i18n-system).
 - **A changeset file is required for any user-facing package change** — `.changeset/<name>.md`, written by hand (see [Contributing & Tooling](workflows/contributing-and-tooling.md#changesets-and-release-flow)).
-- **PRs target `dev`, not `main`.** Older maintained lines use their own `*/dev` branch (`v6/*` active; `v5/*` and `v4/*` maintenance-only).
+- **PRs target `dev`, not `main`.** Older maintained tracks use their own `*/dev` branch (`v6/*` active; `v5/*` and `v4/*` maintenance-only).
 
 ## Section index
 

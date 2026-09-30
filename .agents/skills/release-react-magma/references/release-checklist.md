@@ -1,6 +1,6 @@
 # React Magma Release Checklist
 
-Use this checklist after selecting a release line in `SKILL.md`. Run commands
+Use this checklist after selecting a release track in `SKILL.md`. Run commands
 from the repository root.
 
 ## Source Priority
@@ -9,19 +9,19 @@ When instructions disagree, use this order:
 
 1. Current `.github/workflows/publish.yml`, package scripts, Changesets config,
    and branch contents.
-2. `AGENTS.md` and checked-in OpenWiki documentation. When the selected line
+2. `AGENTS.md` and checked-in OpenWiki documentation. When the selected track
    does not contain these files, read them from `origin/dev` as policy context,
-   then verify commands and configuration against the selected line.
+   then verify commands and configuration against the selected track.
 3. GitHub wiki pages `Releasing React Magma` and
    `React Magma V5 Branching Strategy`.
 
 The GitHub wiki may describe older split workflows. The current repository uses
-one publish workflow triggered by all eight line branches: `dev`, `main`,
+one publish workflow triggered by all eight branches: `dev`, `main`,
 `v6/dev`, `v6/main`, `v5/dev`, `v5/main`, `v4/dev`, and `v4/main`.
 
-## Line Matrix
+## Track Matrix
 
-| Line | Integration | Stable | Prerelease tag | Stable dist-tag | Stable PR target |
+| Track | Integration | Stable | Prerelease tag | Stable dist-tag | Stable PR target |
 | --- | --- | --- | --- | --- | --- |
 | v7 | `origin/dev` | `origin/main` | `next` | `latest` | `main` |
 | v6 | `origin/v6/dev` | `origin/v6/main` | `v6-next` | `v6-latest` | `v6/main` |
@@ -30,7 +30,7 @@ one publish workflow triggered by all eight line branches: `dev`, `main`,
 
 The unified workflow derives these tags from the branch name; still inspect the
 workflow and npm state rather than assuming. Verify that publishing a non-`v7`
-line cannot move the package's default `latest` tag back to that line's version.
+track cannot move the package's default `latest` tag back to that track's version.
 Stop and obtain an approved workflow/tag fix if this is not explicitly guaranteed.
 
 ## 1. Refresh And Branch
@@ -48,15 +48,15 @@ git switch -c build/releaseX.Y.Z
 git merge origin/dev
 ```
 
-For another line, substitute its stable/integration refs from the Line Matrix
+For another track, substitute its stable/integration refs from the Track Matrix
 (e.g. v6 uses `origin/v6/main`/`origin/v6/dev`).
 
 Never push the stable branch while resolving a release. A push triggers publish.
 
-## 2. Audit Fix Parity Across The Active Lines
+## 2. Audit Fix Parity Across The Active Tracks
 
 Run the two-way audit after fetching both active integration branches. It
-defaults to the two active lines (v7 `dev` and v6 `v6/dev`); pass `--a-ref` /
+defaults to the two active tracks (v7 `dev` and v6 `v6/dev`); pass `--a-ref` /
 `--b-ref` to compare a different pair:
 
 ```bash
@@ -72,14 +72,14 @@ applicability check.
 For every unmatched candidate in both directions:
 
 1. Read the source diff, changeset or changelog entry, tests, and linked PR.
-2. Check whether the affected package and behavior exist on the target line.
+2. Check whether the affected package and behavior exist on the target track.
 3. Record exactly one disposition in the release PR:
    - required: port it in a focused PR to the target integration branch;
    - already ported: cite the target commit or PR the heuristic missed;
    - superseded: cite the target change that replaced it;
-   - line-specific: explain the React, dependency, or architecture difference.
+   - track-specific: explain the React, dependency, or architecture difference.
 4. For required ports, preserve adopter behavior rather than copying code
-   mechanically, add the target line's changeset and tests, and rerun the audit.
+   mechanically, add the target track's changeset and tests, and rerun the audit.
 
 Use `--since YYYY-MM-DD` only as a supplementary focused view; the release gate
 uses the default full-divergence audit. Use `--include-matched` when validating
@@ -224,7 +224,7 @@ artifacts, not from prerelease package files.
 Do this manually before new integration PRs merge. Do not wait for or rely on the
 repository's sync automation; it is known to fail.
 
-Start from the selected line's integration branch, merge its stable branch, and
+Start from the selected track's integration branch, merge its stable branch, and
 target the integration branch. For example, v7 starts from `dev` and merges
 `main`; v6 starts from `v6/dev` and merges `v6/main`.
 
@@ -237,7 +237,7 @@ During conflict resolution:
 - Do not restore stale prerelease package versions or stale `pre.json` content.
 
 After the sync merges, verify the integration publish workflow recreates
-`.changeset/pre.json` and uses the line's expected prerelease tag. Confirm the
+`.changeset/pre.json` and uses the track's expected prerelease tag. Confirm the
 stable commit is now an ancestor of integration:
 
 ```bash

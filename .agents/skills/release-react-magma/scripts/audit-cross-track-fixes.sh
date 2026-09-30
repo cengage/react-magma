@@ -6,7 +6,7 @@ usage() {
 Usage: audit-cross-track-fixes.sh [options]
 
 Compare fix commits between two React Magma integration branches. Defaults to the
-two active lines (v7 origin/dev and v6 origin/v6/dev). Unmatched commits are
+two active tracks (v7 origin/dev and v6 origin/v6/dev). Unmatched commits are
 review candidates, not proof that a port is required.
 
 Options:
@@ -18,7 +18,7 @@ Options:
 EOF
 }
 
-line_label() {
+track_label() {
   case "$1" in
     origin/dev | dev) echo "v7" ;;
     origin/v6/dev | v6/dev) echo "v6" ;;
@@ -81,8 +81,8 @@ for ref in "$a_ref" "$b_ref"; do
   fi
 done
 
-a_label="$(line_label "$a_ref")"
-b_label="$(line_label "$b_ref")"
+a_label="$(track_label "$a_ref")"
+b_label="$(track_label "$b_ref")"
 
 common_base="$(git merge-base "$a_ref" "$b_ref")"
 tmp_dir="$(mktemp -d "/tmp/react-magma-fix-audit.XXXXXX")"

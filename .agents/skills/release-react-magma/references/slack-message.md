@@ -6,7 +6,7 @@ team channel. Do not send it unless explicitly requested.
 
 ## Content Rules
 
-- Lead with the released React Magma line and DOM version.
+- Lead with the released React Magma track and DOM version.
 - List exact versions for every package published in this release.
 - Select three to six adopter-visible highlights from the final changelogs.
 - Prefer public component and option names over commit or implementation detail.
@@ -14,9 +14,9 @@ team channel. Do not send it unless explicitly requested.
 - Include release notes and documentation links when available.
 - Mention internal CI, lockfile, or release-process work only when engineers must
   take action because of it.
-- For a non-`v7` line, label the release with its line and React version (v6 =
+- For a non-`v7` track, label the release with its track and React version (v6 =
   React 17, v5 = React 18 frozen/maintenance, v4 = React 17 frozen/maintenance)
-  and include that line's verified npm dist-tag (`v6-latest`, `v5-latest`, or
+  and include that track's verified npm dist-tag (`v6-latest`, `v5-latest`, or
   `v4-latest`).
 - Match a supplied prior announcement's format and tone. React Magma's preferred
   team-channel style uses the `:magma3:` emoji and the structure below.
