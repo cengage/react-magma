@@ -1,5 +1,17 @@
 # Change Log
 
+## 6.1.1-next.2
+
+### Patch Changes
+
+- 5652b12: chore(release): switch the v7 (dev) prerelease tag from rc to next
+
+## 6.1.1-rc.1
+
+### Patch Changes
+
+- bdd804f: chore(release): establish the v4/v5/v6/v7 multi-version branch topology — publish/preview/Snyk workflows, lerna publish branches, the release skill, and contributor docs
+
 ## 6.1.1-rc.0
 
 ### Patch Changes
