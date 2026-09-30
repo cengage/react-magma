@@ -534,6 +534,26 @@ describe('TreeItem', () => {
       );
     });
 
+    it('stays silent off macOS, where the screen reader reads the state', async () => {
+      mockDevice({ isChrome: true, isWindows: true });
+
+      const { getByTestId } = render(
+        <TreeView testId={treeTestId} initialExpandedItems={['top']}>
+          <TreeItem label="Top" itemId="top" testId="top">
+            <TreeItem label="Nested" itemId="nested" testId="nested">
+              <TreeItem label="Deep" itemId="deep" />
+            </TreeItem>
+          </TreeItem>
+        </TreeView>
+      );
+
+      // This covers a gap in VoiceOver. NVDA reads `aria-expanded` at every
+      // level, so the same fallback there is heard as a duplicate.
+      await userEvent.click(getByTestId('nested-expand'));
+
+      await expectNoAnnouncement(getByTestId(`${treeTestId}-announce`));
+    });
+
     it('does not announce expansion on engines that announce it natively', async () => {
       mockDevice({ isFirefox: true, isMacOS: true });
 
@@ -617,8 +637,8 @@ describe('TreeItem', () => {
         await expectAnnouncement(announce, 'Alpha, expanded');
       });
 
-      it('stays silent on engines that announce expansion natively', async () => {
-        mockDevice({ isFirefox: true, isMacOS: true });
+      it('is announced on every platform, having no native equivalent', async () => {
+        mockDevice({ isFirefox: true, isWindows: true });
 
         const { apiRef, getByTestId } = renderBulkTree();
 
@@ -626,13 +646,23 @@ describe('TreeItem', () => {
           apiRef.current.expandAll();
         });
 
-        await expectNoAnnouncement(getByTestId(`${treeTestId}-announce`));
+        // Firefox reads a single branch's `aria-expanded` itself, but a bulk
+        // action moves no focus and changes no item under the cursor, so
+        // nothing is read anywhere without this.
+        await expectAnnouncement(
+          getByTestId(`${treeTestId}-announce`),
+          'All items expanded'
+        );
       });
     });
   });
 
   describe('selection announcement (issue #2444)', () => {
     const treeTestId = 'selecting-tree';
+
+    beforeEach(() => {
+      mockDevice({ isSafari: true, isMacOS: true });
+    });
 
     function renderTree(selectable) {
       return render(
@@ -664,6 +694,18 @@ describe('TreeItem', () => {
         getByTestId(`${treeTestId}-announce`),
         'Leaf, not selected'
       );
+    });
+
+    it('stays silent where the screen reader reads the state itself', async () => {
+      mockDevice({ isChrome: true, isWindows: true });
+
+      const { getByTestId } = renderTree(TreeViewSelectable.multi);
+
+      // NVDA reads `aria-checked` on the tree item, so a second channel here is
+      // heard as a duplicate: "checked" followed by the whole sentence.
+      await userEvent.click(getByTestId('leaf-checkbox'));
+
+      await expectNoAnnouncement(getByTestId(`${treeTestId}-announce`));
     });
 
     it('announces pointer selection exactly once', async () => {

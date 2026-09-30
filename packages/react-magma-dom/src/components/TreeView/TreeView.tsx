@@ -16,7 +16,6 @@ import { TreeViewSelectionContext } from './TreeViewSelectionContext';
 import { TreeViewSelectable } from './types';
 import { useTreeItem } from './useTreeItem';
 import { UseTreeViewProps, useTreeView } from './useTreeView';
-import { useDeviceDetect } from '../../hooks/useDeviceDetect';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -105,7 +104,6 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
     const i18n = React.useContext(I18nContext);
-    const { isChrome, isSafari } = useDeviceDetect();
 
     const { selectionContextValue, expansionContextValue, configContextValue } =
       useTreeView(props);
@@ -136,10 +134,12 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       setIsMounted(true);
     }, []);
 
-    // Announces `expandAll`/`collapseAll` once, on the same engines the
-    // per-branch announcement covers. No dependency array on purpose: this runs
-    // after the tree items' effects in the same commit, so they see the flag and
-    // stay silent before it is cleared here.
+    // Announces `expandAll`/`collapseAll` once. Unlike expanding a single
+    // branch, a bulk action has no native equivalent on any platform: focus
+    // does not move and no single item's state changed under it, so every
+    // screen reader is silent without this. No dependency array on purpose:
+    // this runs after the tree items' effects in the same commit, so they see
+    // the flag and stay silent before it is cleared here.
     React.useEffect(() => {
       const bulkAction = expansionContextValue.bulkExpansionRef?.current;
 
@@ -148,10 +148,6 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       }
 
       expansionContextValue.bulkExpansionRef.current = null;
-
-      if (!isChrome && !isSafari) {
-        return;
-      }
 
       announceContextValue.announce(
         bulkAction === 'expand'

@@ -343,7 +343,7 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     );
 
     const { isDisabled } = contextValue;
-    const { isChrome, isSafari } = useDeviceDetect();
+    const { isChrome, isMacOS, isSafari } = useDeviceDetect();
     const i18n = React.useContext(I18nContext);
     const { announce } = React.useContext(TreeViewAnnounceContext);
 
@@ -365,11 +365,12 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       [label]
     );
 
-    // VoiceOver reads `aria-expanded` natively on Firefox, on Chrome only for
-    // top-level items, and not at all on WebKit, so the live region covers the
-    // gap where it exists. Leaves have no expansion state.
+    // Covers a gap in VoiceOver, so it is limited to macOS: NVDA reads
+    // `aria-expanded` and a second channel there is heard as a duplicate.
+    // VoiceOver reads it on Firefox, on Chrome only for top-level items, and
+    // not at all on WebKit. Leaves have no expansion state.
     const shouldAnnounceExpansion =
-      hasOwnTreeItems && (isSafari || (isChrome && itemDepth > 0));
+      hasOwnTreeItems && isMacOS && (isSafari || (isChrome && itemDepth > 0));
 
     const prevExpandedRef = React.useRef<boolean | undefined>(undefined);
 

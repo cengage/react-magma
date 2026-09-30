@@ -14,6 +14,7 @@ import {
   formatAnnouncement,
   getStringifiedLabel,
 } from './utils';
+import { useDeviceDetect } from '../../hooks/useDeviceDetect';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { I18nContext } from '../../i18n';
 import { useGenerateId, useForkedRef } from '../../utils';
@@ -169,6 +170,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   const i18n = React.useContext(I18nContext);
   const { announce } = React.useContext(TreeViewAnnounceContext);
+  const { isMacOS } = useDeviceDetect();
 
   const stringifiedLabel = React.useMemo(
     () => getStringifiedLabel(label),
@@ -194,8 +196,15 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   // with a disabled subitem lands on `indeterminate`. Branches say whether the
   // selection cascaded, which it does not when `checkChildren` is off or every
   // subitem is disabled.
+  //
+  // macOS only: this covers a gap in VoiceOver, and NVDA reads `aria-checked`
+  // on the tree item itself, so a second channel there is heard as a duplicate.
   const announceSelection = React.useCallback(
     (status: IndeterminateCheckboxStatus) => {
+      if (!isMacOS) {
+        return;
+      }
+
       // Disabling an item disables everything under it, so one enabled direct
       // subitem proves the cascade reached something. `itemsById` rather than
       // the child's props: `preselectedItems` can disable an item too.
@@ -226,6 +235,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     },
     [
       announce,
+      isMacOS,
       stringifiedLabel,
       treeItemChildren,
       itemsById,
