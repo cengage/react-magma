@@ -98,7 +98,7 @@ export const BackgroundColor: StoryObj<NavTabsProps> = {
         <NavTabs
           {...args}
           aria-label="Nav Tabs"
-          backgroundColor={args.isInverse ? '' : magma.colors.neutral200}
+          backgroundColor={args.isInverse ? '' : magma.colors.neutral100}
         >
           <NavTab isActive to="#">
             Current Page
