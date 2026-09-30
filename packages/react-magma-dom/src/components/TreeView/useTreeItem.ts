@@ -4,12 +4,18 @@ import { IconProps } from 'react-magma-icons';
 
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import { TreeItem } from './TreeItem';
+import { TreeViewAnnounceContext } from './TreeViewAnnounceContext';
 import { TreeViewConfigContext } from './TreeViewConfigContext';
 import { TreeViewExpansionContext } from './TreeViewExpansionContext';
 import { TreeViewSelectionContext } from './TreeViewSelectionContext';
 import { TreeViewSelectable } from './types';
-import { filterNullEntries } from './utils';
+import {
+  filterNullEntries,
+  formatAnnouncement,
+  getStringifiedLabel,
+} from './utils';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
+import { I18nContext } from '../../i18n';
 import { useGenerateId, useForkedRef } from '../../utils';
 
 export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
@@ -89,6 +95,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     children,
     itemDepth,
     itemId,
+    label,
     onClick,
     parentDepth,
     topLevel,
@@ -110,6 +117,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     treeItemRefArray,
     isTopLevelSelectable,
     selectParents = true,
+    checkChildren,
   } = React.useContext(TreeViewConfigContext);
 
   // O(1) lookup via the shared id->item Map; replaces an O(N) items.find()
@@ -159,6 +167,14 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const ref = useForkedRef(forwardedRef, ownRef);
   const forceUpdate = useForceUpdate();
 
+  const i18n = React.useContext(I18nContext);
+  const { announce } = React.useContext(TreeViewAnnounceContext);
+
+  const stringifiedLabel = React.useMemo(
+    () => getStringifiedLabel(label),
+    [label]
+  );
+
   const generatedId = useGenerateId();
 
   React.useEffect(() => {
@@ -171,6 +187,79 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   // Stable handlers so memoised checkboxProps (and React.memo on the
   // Checkbox / IndeterminateCheckbox children) can actually skip work.
+
+  // Selection is announced here rather than from the checkbox, which only sees
+  // pointer input: keyboard selection never fires a `change` event. The status
+  // announced is the one the item ended up in, not the one requested — a branch
+  // with a disabled subitem lands on `indeterminate`. Branches say whether the
+  // selection cascaded, which it does not when `checkChildren` is off or every
+  // subitem is disabled.
+  const announceSelection = React.useCallback(
+    (status: IndeterminateCheckboxStatus) => {
+      // Disabling an item disables everything under it, so one enabled direct
+      // subitem proves the cascade reached something. `itemsById` rather than
+      // the child's props: `preselectedItems` can disable an item too.
+      const hasEnabledSubitem = treeItemChildren.some(
+        (child: React.ReactElement<{ itemId?: string }>) =>
+          !itemsById.get(child.props?.itemId)?.isDisabled
+      );
+      // `checkChildren` is only honoured in multi mode — single selection moves
+      // the selection to one item and never cascades — so the prop alone is not
+      // enough to promise the user that subitems changed.
+      const cascadedToSubitems =
+        selectable === TreeViewSelectable.multi &&
+        Boolean(checkChildren) &&
+        hasEnabledSubitem;
+
+      const templates = {
+        [IndeterminateCheckboxStatus.checked]: cascadedToSubitems
+          ? i18n.treeView.branchSelectedAnnounce
+          : i18n.treeView.itemSelectedAnnounce,
+        [IndeterminateCheckboxStatus.indeterminate]:
+          i18n.treeView.itemPartiallySelectedAnnounce,
+        [IndeterminateCheckboxStatus.unchecked]: cascadedToSubitems
+          ? i18n.treeView.branchDeselectedAnnounce
+          : i18n.treeView.itemDeselectedAnnounce,
+      };
+
+      announce(formatAnnouncement(templates[status], stringifiedLabel));
+    },
+    [
+      announce,
+      stringifiedLabel,
+      treeItemChildren,
+      itemsById,
+      checkChildren,
+      selectable,
+      i18n.treeView.itemSelectedAnnounce,
+      i18n.treeView.itemPartiallySelectedAnnounce,
+      i18n.treeView.itemDeselectedAnnounce,
+      i18n.treeView.branchSelectedAnnounce,
+      i18n.treeView.branchDeselectedAnnounce,
+    ]
+  );
+
+  // Counts the selections the user made on *this* item, so the effect below
+  // announces only the item acted on and not every item a cascade touched. A
+  // counter rather than a flag because the resulting status is not always
+  // different: a branch holding a disabled subitem stays `indeterminate`.
+  const [selectionCount, setSelectionCount] = React.useState(0);
+  const announcedSelectionCount = React.useRef(0);
+
+  const requestSelectionAnnounce = React.useCallback(() => {
+    setSelectionCount(count => count + 1);
+  }, []);
+
+  React.useEffect(() => {
+    if (selectionCount === announcedSelectionCount.current) {
+      return;
+    }
+
+    announcedSelectionCount.current = selectionCount;
+
+    announceSelection(checkedStatus);
+  }, [selectionCount, checkedStatus, announceSelection]);
+
   const handleClick = React.useCallback(
     (
       event: React.SyntheticEvent | React.ChangeEvent,
@@ -203,12 +292,15 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       }
 
       if (selectable !== TreeViewSelectable.off) {
+        const nextStatus = isChecked
+          ? IndeterminateCheckboxStatus.unchecked
+          : IndeterminateCheckboxStatus.checked;
+
         selectItem({
           itemId: clickedItemId,
-          checkedStatus: isChecked
-            ? IndeterminateCheckboxStatus.unchecked
-            : IndeterminateCheckboxStatus.checked,
+          checkedStatus: nextStatus,
         });
+        requestSelectionAnnounce();
         if (typeof onClick === 'function') {
           onClick();
         }
@@ -223,6 +315,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       hasOwnTreeItems,
       selectItem,
       onClick,
+      requestSelectionAnnounce,
     ]
   );
 
@@ -464,14 +557,18 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
             itemId,
             checkedStatus: IndeterminateCheckboxStatus.checked,
           });
+          requestSelectionAnnounce();
         } else if (selectable === TreeViewSelectable.multi) {
           // In multi-select, it toggles the selection state of the focused node.
+          const nextStatus = isChecked
+            ? IndeterminateCheckboxStatus.unchecked
+            : IndeterminateCheckboxStatus.checked;
+
           selectItem({
             itemId,
-            checkedStatus: isChecked
-              ? IndeterminateCheckboxStatus.unchecked
-              : IndeterminateCheckboxStatus.checked,
+            checkedStatus: nextStatus,
           });
+          requestSelectionAnnounce();
         }
         break;
       }
@@ -532,15 +629,19 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
               itemId,
               checkedStatus: IndeterminateCheckboxStatus.checked,
             });
+            requestSelectionAnnounce();
           }
         } else if (selectable === TreeViewSelectable.multi) {
+          const nextStatus =
+            checkedStatus === IndeterminateCheckboxStatus.checked
+              ? IndeterminateCheckboxStatus.unchecked
+              : IndeterminateCheckboxStatus.checked;
+
           selectItem({
             itemId,
-            checkedStatus:
-              checkedStatus === IndeterminateCheckboxStatus.checked
-                ? IndeterminateCheckboxStatus.unchecked
-                : IndeterminateCheckboxStatus.checked,
+            checkedStatus: nextStatus,
           });
+          requestSelectionAnnounce();
         }
         break;
       }

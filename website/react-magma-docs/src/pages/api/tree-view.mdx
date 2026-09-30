@@ -1993,6 +1993,90 @@ Set `enableVirtualization={true}`. The `Treeview` height will be calculated base
 
 - `enableVirtualization`: Enable virtualization for better performance (default: `false`)
 
+## Internationalization
+
+`TreeView` announces expansion and selection to screen readers, and every one of
+those messages can be replaced through `I18nContext`.
+
+Some of the overrides use a placeholder to insert a value into the message.
+Placeholders are specific keywords surrounded by curly braces.
+
+- `{labelText}` will be replaced with the `label` of the item the user acted on.
+
+- `itemExpandedAnnounce`: a branch is expanded. Defaults to
+  `{labelText}, expanded`.
+- `itemCollapsedAnnounce`: a branch is collapsed. Defaults to
+  `{labelText}, collapsed`.
+- `allItemsExpandedAnnounce`: every branch is expanded at once, through
+  `expandAll`. Defaults to `All items expanded`.
+- `allItemsCollapsedAnnounce`: every branch is collapsed at once, through
+  `collapseAll`. Defaults to `All items collapsed`.
+- `itemSelectedAnnounce`: an item is selected, and no subitems changed with it.
+  Defaults to `{labelText}, selected`.
+- `itemDeselectedAnnounce`: an item is deselected, and no subitems changed with
+  it. Defaults to `{labelText}, not selected`.
+- `itemPartiallySelectedAnnounce`: only some of an item's subitems are selected.
+  Defaults to `{labelText}, partially selected`.
+- `branchSelectedAnnounce`: selecting the item also selected everything below it.
+  Defaults to `{labelText}, selected, all subitems selected`.
+- `branchDeselectedAnnounce`: deselecting the item also deselected everything
+  below it. Defaults to `{labelText}, not selected, no subitems selected`.
+
+`allItemsExpandedAnnounce` and `allItemsCollapsedAnnounce` name no item, because
+`expandAll` and `collapseAll` apply to the whole tree: naming one item would name
+an item the user never acted on.
+
+`branchSelectedAnnounce` and `branchDeselectedAnnounce` are used only when the
+selection actually cascaded — that is, when the item has enabled subitems and
+`checkChildren` is on. A branch whose subitems are all disabled, or a tree with
+`checkChildren={false}`, gets the plain wording instead, because nothing below it
+changed.
+
+Full example of <Link to="/api/internationalization">internationalization override options</Link>
+
+```tsx
+import React from 'react';
+
+import {
+  defaultI18n,
+  I18nContext,
+  TreeView,
+  TreeItem,
+  TreeViewSelectable,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        treeView: {
+          ...defaultI18n.treeView,
+          itemSelectedAnnounce: '{labelText} is now checked',
+          itemDeselectedAnnounce: '{labelText} is now unchecked',
+          branchSelectedAnnounce:
+            '{labelText} is now checked, along with everything inside it',
+          branchDeselectedAnnounce:
+            '{labelText} is now unchecked, along with everything inside it',
+        },
+      }}
+    >
+      <TreeView
+        ariaLabel="course-topics"
+        selectable={TreeViewSelectable.multi}
+        initialExpandedItems={['mammals']}
+      >
+        <TreeItem label="Mammals" itemId="mammals">
+          <TreeItem label="Dogs" itemId="dogs" />
+          <TreeItem label="Cats" itemId="cats" />
+        </TreeItem>
+        <TreeItem label="Birds" itemId="birds" />
+      </TreeView>
+    </I18nContext.Provider>
+  );
+}
+```
+
 ## TreeView Props
 
 **Any other props supplied will be provided to the wrapping `ul` element.**

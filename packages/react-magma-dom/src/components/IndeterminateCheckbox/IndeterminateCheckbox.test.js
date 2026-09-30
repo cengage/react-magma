@@ -235,4 +235,102 @@ describe('Indeterminate Checkbox', () => {
       return expect(result).toHaveNoViolations();
     });
   });
+
+  describe('status announcement (issue #2444)', () => {
+    const testId = 'announce-checkbox';
+
+    function getAnnouncedText(container) {
+      const liveRegion = container.querySelector('[aria-live]');
+
+      return liveRegion ? liveRegion.textContent : null;
+    }
+
+    it('does not announce the status it mounts with', () => {
+      const { container } = render(
+        <IndeterminateCheckbox
+          labelText="Parent"
+          status="checked"
+          testId={testId}
+        />
+      );
+
+      expect(getAnnouncedText(container)).toBe('');
+    });
+
+    it('announces the new status after the user operates this checkbox', async () => {
+      function Controlled() {
+        const [status, setStatus] = React.useState('unchecked');
+
+        return (
+          <IndeterminateCheckbox
+            labelText="Parent"
+            status={status}
+            testId={testId}
+            onChange={() => setStatus('checked')}
+          />
+        );
+      }
+
+      const { container, getByTestId } = render(<Controlled />);
+
+      await userEvent.click(getByTestId(testId));
+
+      expect(getAnnouncedText(container)).toBe('All subitems are selected');
+    });
+
+    it('stays silent when the status changes without a local interaction', () => {
+      // Clicking a parent cascades a new status into every descendant. If each
+      // one announced, a single click would produce N live region updates.
+      const { container, rerender } = render(
+        <IndeterminateCheckbox
+          labelText="Child"
+          status="unchecked"
+          testId={testId}
+        />
+      );
+
+      rerender(
+        <IndeterminateCheckbox
+          labelText="Child"
+          status="checked"
+          testId={testId}
+        />
+      );
+
+      expect(getAnnouncedText(container)).toBe('');
+    });
+
+    it('clears an earlier message once a cascaded change arrives', async () => {
+      function Controlled({ status: statusFromParent }) {
+        const [status, setStatus] = React.useState(statusFromParent);
+
+        React.useEffect(() => {
+          setStatus(statusFromParent);
+        }, [statusFromParent]);
+
+        return (
+          <IndeterminateCheckbox
+            labelText="Parent"
+            status={status}
+            testId={testId}
+            onChange={() => setStatus('checked')}
+          />
+        );
+      }
+
+      const { container, getByTestId, rerender } = render(
+        <Controlled status="unchecked" />
+      );
+
+      await userEvent.click(getByTestId(testId));
+
+      expect(getAnnouncedText(container)).toBe('All subitems are selected');
+
+      rerender(<Controlled status="indeterminate" />);
+
+      // The live region lives inside the tree item, so leftover text would
+      // become part of that item's accessible name.
+      expect(getAnnouncedText(container)).toBe('');
+    });
+  });
 });
