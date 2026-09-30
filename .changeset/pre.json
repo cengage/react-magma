@@ -9,6 +9,7 @@
     "react-magma-landing": "1.1.9"
   },
   "changesets": [
+    "multi-version-topology-ci",
     "sync-main-to-dev-5-3-0"
   ]
 }
