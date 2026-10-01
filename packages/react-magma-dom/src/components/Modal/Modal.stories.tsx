@@ -8,6 +8,7 @@ import {
   Toggle,
   VisuallyHidden,
 } from '../..';
+import { magma } from '../../theme/magma';
 import { Button, ButtonColor } from '../Button';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { Combobox } from '../Combobox';
@@ -379,6 +380,7 @@ export const ModalInAModal = () => {
           This is <a href="/"> some more linked text</a> in the modal
         </Paragraph>
         <Combobox
+          containerStyle={{ marginBottom: '24px' }}
           id="comboboxId3"
           isMulti
           labelText="Multi Combobox"
@@ -389,10 +391,12 @@ export const ModalInAModal = () => {
           ]}
           placeholder="Hello"
         />
-        <div>
-          <DatePicker labelText="Pick a date" />
-        </div>
+        <DatePicker
+          containerStyle={{ marginBottom: '24px' }}
+          labelText="Pick a date"
+        />
         <Combobox
+          containerStyle={{ marginBottom: '24px' }}
           id="comboboxId"
           isMulti
           labelText="Multi Combobox"
@@ -423,12 +427,11 @@ export const ModalInAModal = () => {
         isOpen={showModal2}
       >
         <Paragraph noTopMargin>This is modal 2</Paragraph>
-        <NativeSelect fieldId="">
+        <NativeSelect containerStyle={{ marginBottom: '24px' }} fieldId="">
           <option>1</option>
           <option>2</option>
           <option>3</option>
         </NativeSelect>
-        <Spacer size={10} />
         <Dropdown>
           <DropdownButton>Basic Dropdown</DropdownButton>
           <DropdownContent>
@@ -439,6 +442,7 @@ export const ModalInAModal = () => {
         </Dropdown>
         <Spacer size={10} />
         <Combobox
+          containerStyle={{ marginBottom: '24px' }}
           id="comboboxId2"
           labelText="Combobox"
           defaultItems={[
@@ -447,8 +451,8 @@ export const ModalInAModal = () => {
             { label: 'Green', value: 'green' },
           ]}
         />
-        <Spacer size={10} />
         <Combobox
+          containerStyle={{ marginBottom: '24px' }}
           id="comboboxId3"
           isMulti
           labelText="Multi Combobox"
@@ -459,8 +463,8 @@ export const ModalInAModal = () => {
           ]}
           placeholder="Hello"
         />
-        <Spacer size={10} />
         <Select
+          containerStyle={{ marginBottom: '24px' }}
           id="basicSelectId"
           labelText="Basic"
           items={[
@@ -469,8 +473,8 @@ export const ModalInAModal = () => {
             { label: 'Green', value: 'green' },
           ]}
         />
-        <Spacer size={10} />
         <Select
+          containerStyle={{ marginBottom: '24px' }}
           id="multiSelectId"
           isMulti
           labelText="Multi select"
@@ -495,7 +499,6 @@ export const ModalInAModal = () => {
             { label: 'Blah', value: 'blah' },
           ]}
         />
-        <Spacer size={10} />
       </Modal>
     </>
   );
@@ -711,7 +714,10 @@ export const Inverse = () => {
           <Button isInverse>This is a button</Button>
         </Paragraph>
       </Modal>
-      <Container isInverse style={{ padding: '12px' }}>
+      <Container
+        isInverse
+        style={{ backgroundColor: magma.colors.neutral1100, padding: '12px' }}
+      >
         <Button
           aria-haspopup="dialog"
           onClick={() => setShowModal(true)}

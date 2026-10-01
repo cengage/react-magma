@@ -28,11 +28,11 @@ describe('Banner', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.warning100
+        magma.colors.yellow400
       );
 
       const closeBtn = getByLabelText('Close this message');
-      expect(closeBtn).toHaveStyleRule('color', magma.colors.warning500);
+      expect(closeBtn).toHaveStyleRule('color', magma.colors.brand.navy);
       expect(closeBtn).toHaveStyleRule(
         'outline',
         `2px solid ${magma.colors.focus}`,
@@ -51,11 +51,11 @@ describe('Banner', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.success100
+        magma.colors.green600
       );
 
       const closeBtn = getByLabelText('Close this message');
-      expect(closeBtn).toHaveStyleRule('color', magma.colors.success500);
+      expect(closeBtn).toHaveStyleRule('color', magma.colors.neutral0);
       expect(closeBtn).toHaveStyleRule(
         'outline',
         `2px solid ${magma.colors.focus}`,
@@ -74,11 +74,11 @@ describe('Banner', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.info100
+        magma.colors.blue600
       );
 
       const closeBtn = getByLabelText('Close this message');
-      expect(closeBtn).toHaveStyleRule('color', magma.colors.info500);
+      expect(closeBtn).toHaveStyleRule('color', magma.colors.neutral0);
       expect(closeBtn).toHaveStyleRule(
         'outline',
         `2px solid ${magma.colors.focus}`,
@@ -97,11 +97,11 @@ describe('Banner', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.danger100
+        magma.colors.red600
       );
 
       const closeBtn = getByLabelText('Close this message');
-      expect(closeBtn).toHaveStyleRule('color', magma.colors.danger500);
+      expect(closeBtn).toHaveStyleRule('color', magma.colors.neutral0);
       expect(closeBtn).toHaveStyleRule(
         'outline',
         `2px solid ${magma.colors.focus}`,
@@ -121,11 +121,11 @@ describe('Banner', () => {
 
         expect(getByTestId(testId)).toHaveStyleRule(
           'background',
-          magma.colors.warning700
+          magma.colors.yellow400
         );
 
         const closeBtn = getByLabelText('Close this message');
-        expect(closeBtn).toHaveStyleRule('color', magma.colors.neutral100);
+        expect(closeBtn).toHaveStyleRule('color', magma.colors.brand.navy);
         expect(closeBtn).toHaveStyleRule(
           'outline',
           `2px solid ${magma.colors.focusInverse}`,
@@ -144,11 +144,11 @@ describe('Banner', () => {
 
         expect(getByTestId(testId)).toHaveStyleRule(
           'background',
-          magma.colors.success700
+          magma.colors.green500
         );
 
         const closeBtn = getByLabelText('Close this message');
-        expect(closeBtn).toHaveStyleRule('color', magma.colors.neutral100);
+        expect(closeBtn).toHaveStyleRule('color', magma.colors.green1000);
         expect(closeBtn).toHaveStyleRule(
           'outline',
           `2px solid ${magma.colors.focusInverse}`,
@@ -167,11 +167,11 @@ describe('Banner', () => {
 
         expect(getByTestId(testId)).toHaveStyleRule(
           'background',
-          magma.colors.info700
+          magma.colors.blue500
         );
 
         const closeBtn = getByLabelText('Close this message');
-        expect(closeBtn).toHaveStyleRule('color', magma.colors.neutral100);
+        expect(closeBtn).toHaveStyleRule('color', magma.colors.blue1000);
         expect(closeBtn).toHaveStyleRule(
           'outline',
           `2px solid ${magma.colors.focusInverse}`,
@@ -190,11 +190,11 @@ describe('Banner', () => {
 
         expect(getByTestId(testId)).toHaveStyleRule(
           'background',
-          magma.colors.danger700
+          magma.colors.red500
         );
 
         const closeBtn = getByLabelText('Close this message');
-        expect(closeBtn).toHaveStyleRule('color', magma.colors.neutral100);
+        expect(closeBtn).toHaveStyleRule('color', magma.colors.red1000);
         expect(closeBtn).toHaveStyleRule(
           'outline',
           `2px solid ${magma.colors.focusInverse}`,
@@ -240,8 +240,8 @@ describe('Banner', () => {
 
       const btn = getByText('btn text').parentElement;
 
-      expect(btn).toHaveStyleRule('color', magma.colors.neutral100);
-      expect(btn).toHaveStyleRule('background', magma.colors.primary500);
+      expect(btn).toHaveStyleRule('color', magma.colors.neutral0);
+      expect(btn).toHaveStyleRule('background', magma.colors.primary);
 
       fireEvent.click(btn);
       expect(actionBtnClick).toHaveBeenCalled();
@@ -259,7 +259,7 @@ describe('Banner', () => {
       );
       expect(getByText('btn text').parentElement).toHaveStyleRule(
         'color',
-        magma.colors.neutral100
+        magma.colors.neutral0
       );
     });
 
@@ -276,8 +276,8 @@ describe('Banner', () => {
 
       const btn = getByText('btn text').parentElement;
 
-      expect(btn).toHaveStyleRule('color', magma.colors.neutral100);
-      expect(btn).toHaveStyleRule('background', magma.colors.primary500);
+      expect(btn).toHaveStyleRule('color', magma.colors.neutral0);
+      expect(btn).toHaveStyleRule('background', magma.colors.primary);
     });
   });
 

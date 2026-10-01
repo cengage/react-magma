@@ -10,6 +10,8 @@ import { InputSize } from '../InputBase';
 
 export interface InputMessageProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  errorColor?: string;
+  errorIconColor?: string;
   hasError?: boolean;
   id?: string;
   /**
@@ -18,16 +20,32 @@ export interface InputMessageProps
   inputSize?: InputSize;
   isInverse?: boolean;
   maxCount?: number;
+  /**
+   * @internal
+   */
+  messageColor?: string;
 }
 
 function BuildMessageColor(props) {
-  const { isInverse, hasError, theme } = props;
-  if (isInverse) {
-    return hasError
-      ? theme.colors.danger200
-      : transparentize(0.3, props.theme.colors.neutral100);
+  const { errorColor, isInverse, hasError, messageColor, theme } = props;
+
+  if (hasError && errorColor) {
+    return errorColor;
   }
-  return hasError ? theme.colors.danger : theme.colors.neutral500;
+
+  if (hasError) {
+    return isInverse ? theme.colors.red200 : theme.colors.danger;
+  }
+
+  if (messageColor) {
+    return messageColor;
+  }
+
+  if (isInverse) {
+    return transparentize(0.3, props.theme.colors.neutral0);
+  }
+
+  return theme.colors.neutral500;
 }
 
 const Message = styled.div<InputMessageProps>`
@@ -54,10 +72,13 @@ const IconWrapper = styled.span`
 
 export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
   children,
+  errorColor,
+  errorIconColor,
   id,
   isInverse,
   hasError,
   maxCount,
+  messageColor,
   ...other
 }: InputMessageProps) => {
   const theme = React.useContext(ThemeContext);
@@ -67,6 +88,7 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
     if (maxCount || hasError) {
       return props.children;
     }
+
     return <Announce>{props.children}</Announce>;
   }
 
@@ -75,16 +97,20 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
       <Message
         {...other}
         data-testid="inputMessage"
+        errorColor={errorColor}
         id={id}
         isInverse={isInverse}
         hasError={hasError}
+        messageColor={messageColor}
         theme={theme}
       >
         {hasError && (
           <IconWrapper aria-label="Error" role="img" theme={theme}>
             <ErrorIcon
               size={theme.iconSizes.small}
-              color={isInverse ? theme.colors.danger300 : undefined}
+              color={
+                errorIconColor || (isInverse ? theme.colors.red300 : undefined)
+              }
             />
           </IconWrapper>
         )}

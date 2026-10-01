@@ -22,7 +22,7 @@ export const magmaCode: PrismTheme = {
     {
       types: ['tag', 'operator', 'number'],
       style: {
-        color: magma.colors.primary700,
+        color: magma.colors.indigo700,
       },
     },
     {
@@ -34,7 +34,7 @@ export const magmaCode: PrismTheme = {
     {
       types: ['tag-id', 'selector', 'atrule-id'],
       style: {
-        color: magma.colors.primary700,
+        color: magma.colors.indigo700,
       },
     },
     {
@@ -61,7 +61,7 @@ export const magmaCode: PrismTheme = {
         'variable',
       ],
       style: {
-        color: magma.colors.danger400,
+        color: magma.colors.red400,
       },
     },
     {

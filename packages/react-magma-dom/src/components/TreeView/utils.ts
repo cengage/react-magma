@@ -3,14 +3,14 @@ import React from 'react';
 import { transparentize } from 'polished';
 
 import { TreeItem } from './TreeItem';
-import { TreeViewSelectable } from './types';
-import { UseTreeViewProps } from './useTreeView';
-import { ThemeInterface } from '../../theme/magma';
-import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import {
   TreeItemSelectedInterface,
   TreeViewItemInterface,
 } from './TreeViewContext';
+import { TreeViewSelectable } from './types';
+import { UseTreeViewProps } from './useTreeView';
+import { ThemeInterface } from '../../theme/magma';
+import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
 export enum TreeNodeType {
   branch = 'branch',
@@ -84,14 +84,28 @@ export function getTreeItemLabelColor(
 ) {
   if (disabled) {
     if (isInverse) {
-      return transparentize(0.6, theme.colors.neutral100);
+      return transparentize(0.6, theme.colors.neutral0);
     }
-    return transparentize(0.6, theme.colors.neutral500);
+
+    return theme.colors.neutral500;
   }
   if (isInverse) {
-    return theme.colors.neutral100;
+    return theme.colors.neutral0;
   }
-  return theme.colors.neutral700;
+
+  return theme.colors.brand.navy;
+}
+
+export function getTreeItemIconColor(
+  isInverse: boolean,
+  disabled: boolean,
+  theme: ThemeInterface
+) {
+  if (disabled) {
+    return getTreeItemLabelColor(isInverse, disabled, theme);
+  }
+
+  return isInverse ? theme.colors.neutral0 : theme.colors.brand.navy;
 }
 
 export function getTreeItemWrapperCursor(
@@ -139,6 +153,7 @@ export function getChildrenItemIds(children, status = '') {
           child.props.children,
           childStatus
         );
+
         itemIds = itemIds.concat(nestedItemIds);
       }
     }
@@ -159,6 +174,7 @@ export function getChildrenItemIdsFlat(children) {
 
       if (child.props?.children) {
         const nestedItemIds = getChildrenItemIdsFlat(child.props.children);
+
         itemIds = itemIds.concat(nestedItemIds);
       }
     }
@@ -171,10 +187,12 @@ export function getChildrenItemIdsFlat(children) {
 export function filterNullEntries(obj) {
   if (Array.isArray(obj.current)) {
     const filteredArray = obj.current.filter(item => item?.current !== null);
+
     if (filteredArray.length > 0) {
       return { current: filteredArray };
     }
   }
+
   return {};
 }
 
@@ -243,6 +261,7 @@ const areChildrenValid = children => {
 
       if (areChildrenValid(nestedChildren)) {
         hasValidChild = true;
+
         return hasValidChild;
       }
     }
@@ -424,6 +443,7 @@ const buildParentChildMap = (items: TreeViewItemInterface[]) => {
   for (const item of items) {
     if (item.parentId) {
       const children = map.get(item.parentId) || [];
+
       children.push(item.itemId);
       map.set(item.parentId, children);
     }
@@ -448,6 +468,7 @@ export const getChildrenIds = ({
 
   while (queue.length > 0) {
     const currentId = queue.shift();
+
     if (!currentId) continue;
 
     const children = map.get(currentId);
@@ -479,6 +500,7 @@ const getChildrenUniqueStatuses = ({
     if (!item?.hasOwnTreeItems && childrenIdSet.has(item.itemId)) {
       const status =
         item.checkedStatus ?? IndeterminateCheckboxStatus.unchecked;
+
       if (status && status !== IndeterminateCheckboxStatus.indeterminate) {
         uniqueStatuses.add(status);
       }
@@ -555,6 +577,7 @@ const filterTopLevelItemsIfNeeded = (
 
   return preselectedItems.filter(item => {
     const itemData = treeViewData.find(i => i.itemId === item.itemId);
+
     return itemData ? itemData.parentId !== null : false;
   });
 };
@@ -707,10 +730,12 @@ const processParentsSelectionMut = ({
 
     for (const siblingId of siblings) {
       const sibling = itemMap.get(siblingId);
+
       if (!sibling) continue;
 
       const siblingStatus =
         sibling.checkedStatus || IndeterminateCheckboxStatus.unchecked;
+
       if (siblingStatus !== firstStatus) {
         allSameStatus = false;
         break;
@@ -893,6 +918,7 @@ export const toggleAllMulti = ({
   // Fast path: simple case without children/parent checking
   if (!checkChildren) {
     const result: TreeViewItemInterface[] = [];
+
     for (const item of items) {
       if (
         item?.isDisabled ||
@@ -903,11 +929,13 @@ export const toggleAllMulti = ({
         result.push({ ...item, checkedStatus });
       }
     }
+
     return result;
   }
 
   if (isTopLevelSelectable === false) {
     const result: TreeViewItemInterface[] = [];
+
     for (const item of items) {
       if (item.isDisabled || item.parentId === null) {
         result.push(item);
@@ -915,11 +943,13 @@ export const toggleAllMulti = ({
         result.push({ ...item, checkedStatus });
       }
     }
+
     return result;
   }
 
   if (!checkParents) {
     const result: TreeViewItemInterface[] = [];
+
     for (const item of items) {
       if (item.isDisabled) {
         result.push(item);
@@ -927,6 +957,7 @@ export const toggleAllMulti = ({
         result.push({ ...item, checkedStatus });
       }
     }
+
     return result;
   }
 

@@ -115,6 +115,7 @@ describe('Calendar Header', () => {
 
       const month = getByTestId('month-picker');
       expect(month).toBeInTheDocument();
+      expect(month).toHaveStyle('width: 18px');
 
       fireEvent.change(month, { target: { value: 5 } });
       expect(setMonthFocusedDate).toHaveBeenCalledWith(5);
