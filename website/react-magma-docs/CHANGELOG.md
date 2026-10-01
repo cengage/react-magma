@@ -1,5 +1,30 @@
 # Change Log
 
+## 7.0.0
+
+### Major Changes
+
+- 4ca06ad: feat: apply the 2026 Magma rebrand across components and documentation
+
+  - Replace legacy semantic color ramps with the new primitive and brand palette.
+  - Update component colors, typography, interaction states, spacing, and styling.
+  - Refresh the documentation navigation, homepage, examples, branding, and accessibility guidance.
+  - Align Dropzone and Charts with the updated theme tokens.
+
+  See the [2026 theme migration guide](https://react-magma.cengage.com/api-intro/2026-theme-migration/) for guidance on replacing removed color tokens and preserving legacy border radii.
+
+### Patch Changes
+
+- 5652b12: chore(release): switch the v7 (dev) prerelease tag from rc to next
+- 4372102: docs(DataVisualization): update `@react-magma/charts` version in the introduction
+- a0562bb: chore(release): guard the publish workflow's prerelease-exit step so creating a fresh stable branch (e.g. v5/main, v6/main) does not fail when the branch is not in Changesets pre mode
+- bdd804f: chore(release): establish the v4/v5/v6/v7 multi-version branch topology — publish/preview/Snyk workflows, lerna publish branches, the release skill, and contributor docs
+- 34af253: chore(release): sync the published 5.3.0 state from main into dev
+- Updated dependencies [4ca06ad]
+  - react-magma-dom@7.0.0
+  - @react-magma/dropzone@16.0.0
+  - @react-magma/charts@16.0.0
+
 ## 7.0.0-next.5
 
 ### Patch Changes
