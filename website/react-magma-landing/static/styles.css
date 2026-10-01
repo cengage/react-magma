@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap');
 
 *,
 *:before,
@@ -7,7 +7,7 @@
 }
 
 *:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #0074b7;
   outline-offset: 2px;
 }
 
@@ -24,7 +24,7 @@ body {
 body {
   background: #fff;
   color: #454545;
-  font-family: 'Work Sans', Helvetica, sans-serif;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -32,14 +32,14 @@ body {
 }
 
 a {
-  color: #3942B0;
+  color: #3942b0;
   cursor: pointer;
   text-decoration: underline;
 }
 
 a:hover,
 a:focus {
-  color: #5D65CB;
+  color: #5d65cb;
 }
 
 h1,
@@ -49,7 +49,7 @@ h4,
 h5,
 h6 {
   border-bottom: 2px solid transparent;
-  font-family: 'Work Sans', Helvetica, sans-serif;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-weight: 600;
 }
 
@@ -59,7 +59,7 @@ h3:focus,
 h4:focus,
 h5:focus,
 h6:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #0074b7;
   outline: 0;
 }
 
@@ -111,7 +111,7 @@ li {
 
 header {
   background: #fff;
-  border-bottom: 1px solid #D4D4D4;
+  border-bottom: 1px solid #d4d4d4;
   color: #fff;
   grid-area: masthead;
   padding: 0 20px;
@@ -175,7 +175,7 @@ header h1 {
   padding: 20px;
   margin: 4px;
   width: 31%;
-  border: 1px solid #D4D4D4;
+  border: 1px solid #d4d4d4;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.15);
   border-radius: 8px;
   display: flex;
@@ -198,14 +198,14 @@ header h1 {
 
 .btn {
   align-items: center;
-  background: #3942B0;
+  background: #0b1f3a;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0b1f3a;
   border-radius: 8px;
   color: #fff;
   display: inline-flex;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   line-height: 1;
   justify-content: center;
@@ -214,8 +214,10 @@ header h1 {
   position: relative;
   overflow: hidden;
   text-decoration: none;
-  text-transform: uppercase;
-  transition: background 0.35s, color 0.35s;
+  text-transform: none;
+  transition:
+    background 0.35s,
+    color 0.35s;
   touch-action: manipulation;
   vertical-align: middle;
   white-space: nowrap;
@@ -224,7 +226,7 @@ header h1 {
 
 .btn:hover,
 .btn:focus {
-  background: #292F7C;
+  background: #063565;
   color: #fff;
 }
 
@@ -239,7 +241,9 @@ header h1 {
   width: 32px;
   border-radius: 50%;
   padding: 50%;
-  transition: opacity 1s ease 0s, transform 0.5s ease 0s;
+  transition:
+    opacity 1s ease 0s,
+    transform 0.5s ease 0s;
   background: #ffffff;
 }
 
@@ -251,15 +255,100 @@ header h1 {
 
 .secondary {
   background: #ffffff;
-  border: 1px solid #8B91DA;
-  color: #3942B0;
+  border: 1px solid #8b91da;
+  color: #3942b0;
   border-radius: 8px;
 }
 
 .secondary:hover,
 .secondary:focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: #e8e9f8;
+  color: #3942b0;
+}
+
+.version-group {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.version-group-title {
+  color: #0b1f3a;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.version-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.version-pill {
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  color: #0b1f3a;
+  display: inline-block;
+  font-size: 14px;
+  padding: 6px 12px;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.version-pill:hover,
+.version-pill:focus {
+  background: #0b1f3a;
+  border-color: #0b1f3a;
+  color: #fff;
+}
+
+.version-timeline {
+  border-left: 2px solid #0b1f3a;
+  list-style: none;
+  margin: 0 0 0 4px;
+  padding: 0 0 0 24px;
+  text-align: left;
+}
+
+.version-timeline-item {
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.version-timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.version-timeline-item::before {
+  background: #fd9a04;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  content: '';
+  height: 10px;
+  left: -30px;
+  position: absolute;
+  top: 4px;
+  width: 10px;
+}
+
+.version-timeline-link {
+  color: #0b1f3a;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.version-timeline-link:hover,
+.version-timeline-link:focus {
+  text-decoration: underline;
+}
+
+.version-timeline-date {
+  color: #707070;
+  font-size: 14px;
+  margin-left: 8px;
 }
 
 @media (max-width: 600px) {

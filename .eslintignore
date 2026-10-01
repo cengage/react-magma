@@ -6,3 +6,4 @@ public
 .cache
 **/CHANGELOG.md
 packages/charts/src/components/CarbonChart/carbon-charts.css
+website/react-magma-landing/static/styles.css
