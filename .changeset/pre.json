@@ -12,6 +12,7 @@
     "dev-prerelease-next",
     "harden-exit-prerelease",
     "multi-version-topology-ci",
+    "rebrand-2026",
     "sync-main-to-dev-5-3-0"
   ]
 }
