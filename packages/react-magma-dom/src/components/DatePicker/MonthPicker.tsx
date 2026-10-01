@@ -76,7 +76,7 @@ export const MonthPicker: React.FunctionComponent<MonthPickerProps> = props => {
     const font = `${theme.typeScale.size03.fontSize} ${theme.bodyFont}`;
     const padding = parseInt(theme.spaceScale.spacing03, 10) * 2;
 
-    return Math.ceil(getTextWidth(month, font) + padding);
+    return Math.ceil(getTextWidth(month, font) + padding + 2);
   };
 
   const width = getMonthWidth(currentMonth);

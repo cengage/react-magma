@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
-import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -23,7 +22,7 @@ describe('Skeleton', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
     expect(getByTestId(testId)).toHaveStyleRule(
       'background-color',
-      magma.colors.neutral300
+      magma.colors.neutral200
     );
   });
 
@@ -220,7 +219,7 @@ describe('Skeleton', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule(
       'background-color',
-      transparentize(0.8, magma.colors.neutral100)
+      magma.colors.neutral1000
     );
   });
 

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { render, act, waitFor } from '@testing-library/react';
+import { transparentize } from 'polished';
 
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
@@ -24,6 +25,28 @@ describe('Combobox', () => {
     await userEvent.click(renderedCombobox);
 
     expect(getByText(items[0])).toBeInTheDocument();
+  });
+
+  it('should render the dropdown indicator in brand navy', () => {
+    const { getByTestId } = render(
+      <Combobox labelText={labelText} items={items} />
+    );
+
+    expect(getByTestId('caretDown')).toHaveAttribute(
+      'fill',
+      magma.colors.brand.navy
+    );
+  });
+
+  it('should render the inverse dropdown indicator in neutral0', () => {
+    const { getByTestId } = render(
+      <Combobox isInverse labelText={labelText} items={items} />
+    );
+
+    expect(getByTestId('caretDown')).toHaveAttribute(
+      'fill',
+      magma.colors.neutral0
+    );
   });
 
   it('should accept items in the default object format', async () => {
@@ -637,8 +660,12 @@ describe('Combobox', () => {
     );
 
     await waitFor(() => {
-      expect(getByLabelText(labelText, { selector: 'input' })).toHaveAttribute(
-        'disabled'
+      const input = getByLabelText(labelText, { selector: 'input' });
+
+      expect(input).toHaveAttribute('disabled');
+      expect(input.parentElement.parentElement).toHaveStyleRule(
+        'background',
+        transparentize(0.4, magma.colors.neutral200)
       );
     });
   });

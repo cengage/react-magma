@@ -72,11 +72,18 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Container, Input } from 'react-magma-dom';
+import { Container, Input, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Container isInverse style={{ padding: '12px' }}>
+    <Container
+      isInverse
+      style={{
+        background: magma.colors.neutral1100,
+        borderRadius: '8px',
+        padding: '12px',
+      }}
+    >
       <Input isInverse maxCount={4} labelText="Character Counter" />
     </Container>
   );

@@ -5,6 +5,7 @@ import { UseSelectGetLabelPropsOptions } from 'downshift';
 
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { getInputFormFieldColors } from '../FormFieldContainer';
 import { InputMessage } from '../Input/InputMessage';
 import { Label, LabelPosition } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -114,6 +115,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
   const hasError = !!errorMessage;
 
   const theme = React.useContext(ThemeContext);
+  const fieldColors = getInputFormFieldColors(theme, isInverse);
 
   // If the labelPosition is set to 'top' (default) then a <div> wraps the Label and additional content for proper styling alignment.
   function AdditionalContentWrapper(props) {
@@ -162,8 +164,10 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
           {...getLabelProps()}
           aria-label={ariaLabel}
           isInverse={isInverse}
+          fontWeight={fieldColors.labelFontWeight}
           labelPosition={labelPosition}
           style={labelStyle}
+          textColor={fieldColors.labelColor}
         >
           {isLabelVisuallyHidden ? (
             <VisuallyHidden>{ariaLabel || labelText}</VisuallyHidden>
@@ -180,9 +184,12 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
         ) &&
           (errorMessage || helperMessage) && (
             <InputMessage
+              errorColor={fieldColors.errorMessageColor}
+              errorIconColor={fieldColors.errorIconColor}
               id={descriptionId}
               isInverse={isInverse}
               hasError={hasError}
+              messageColor={fieldColors.messageColor}
               style={messageStyle}
             >
               {(errorMessage || helperMessage) && (

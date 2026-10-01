@@ -10,7 +10,11 @@ title: Dropzone
   commonly used within forms but may also exist on their own.
 </LeadParagraph>
 
-<Alert variant="warning"><strong>Important!</strong> Dropzone is imported from <code>@react-magma/dropzone</code> which must be installed as a peer dependency.</Alert>
+<Alert variant="warning">
+  <strong>Important!</strong> Dropzone is imported from{' '}
+  <code>@react-magma/dropzone</code> which must be installed as a peer
+  dependency.
+</Alert>
 
 ## Basic Usage
 
@@ -62,7 +66,7 @@ import { Card, CardBody } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <Dropzone
           isInverse

@@ -66,7 +66,7 @@ export const Default = {
 export const Inverse = {
   render: args => {
     return (
-      <div style={{ background: magma.colors.primary600, padding: '0 12px' }}>
+      <div style={{ background: magma.colors.neutral1100, padding: '0 12px' }}>
         <br />
         <DateTimePicker {...args} />
         <br />

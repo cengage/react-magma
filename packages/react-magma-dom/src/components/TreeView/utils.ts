@@ -84,16 +84,28 @@ export function getTreeItemLabelColor(
 ) {
   if (disabled) {
     if (isInverse) {
-      return transparentize(0.6, theme.colors.neutral100);
+      return transparentize(0.6, theme.colors.neutral0);
     }
 
-    return transparentize(0.6, theme.colors.neutral500);
+    return theme.colors.neutral500;
   }
   if (isInverse) {
-    return theme.colors.neutral100;
+    return theme.colors.neutral0;
   }
 
-  return theme.colors.neutral700;
+  return theme.colors.brand.navy;
+}
+
+export function getTreeItemIconColor(
+  isInverse: boolean,
+  disabled: boolean,
+  theme: ThemeInterface
+) {
+  if (disabled) {
+    return getTreeItemLabelColor(isInverse, disabled, theme);
+  }
+
+  return isInverse ? theme.colors.neutral0 : theme.colors.brand.navy;
 }
 
 export function getTreeItemWrapperCursor(

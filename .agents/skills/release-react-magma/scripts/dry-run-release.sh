@@ -3,7 +3,7 @@ set -euo pipefail
 
 usage() {
   cat <<'EOF'
-Usage: dry-run-release.sh <v5|v4> [release-ref]
+Usage: dry-run-release.sh <v4|v5|v6|v7> [release-ref]
 
 Dry-runs React Magma stable versioning from a clean, committed release ref.
 The default release ref is HEAD. Nothing is published or changed in the source
@@ -20,19 +20,41 @@ track="$1"
 release_ref="${2:-HEAD}"
 
 case "$track" in
-  v5)
+  v7)
     stable_ref="origin/main"
     integration_ref="origin/dev"
+    expected_tag="latest"
+    react_major="18"
+    dom_major="7"
+    ;;
+  v6)
+    stable_ref="origin/v6/main"
+    integration_ref="origin/v6/dev"
+    expected_tag="v6-latest"
+    react_major="17"
+    dom_major="6"
+    ;;
+  v5)
+    stable_ref="origin/v5/main"
+    integration_ref="origin/v5/dev"
+    expected_tag="v5-latest"
+    react_major="18"
+    dom_major="5"
     ;;
   v4)
     stable_ref="origin/v4/main"
     integration_ref="origin/v4/dev"
+    expected_tag="v4-latest"
+    react_major="17"
+    dom_major="4"
     ;;
   *)
     usage >&2
     exit 2
     ;;
 esac
+
+stable_branch="${stable_ref#origin/}"
 
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
@@ -51,12 +73,14 @@ done
 
 release_commit="$(git rev-parse "${release_ref}^{commit}")"
 
-if [[ "$track" == "v4" ]]; then
-  publish_workflow="$(git show "$release_commit:.github/workflows/publish.yml")"
-  if [[ "$publish_workflow" != *"npm run release -- --tag v4-latest"* ]]; then
-    echo "error: v4 stable publishing is not pinned to the v4-latest npm dist-tag" >&2
-    exit 1
-  fi
+publish_workflow="$(git show "$release_commit:.github/workflows/publish.yml")"
+if [[ "$publish_workflow" != *'npm run release -- --tag "${{ steps.meta.outputs.dist_tag }}"'* ]]; then
+  echo "error: publish workflow no longer pins stable publishing to the branch-derived dist-tag" >&2
+  exit 1
+fi
+if [[ "$publish_workflow" != *"$stable_branch) dist_tag=$expected_tag ;;"* ]]; then
+  echo "error: publish workflow does not map $stable_branch to the $expected_tag npm dist-tag" >&2
+  exit 1
 fi
 
 if ! git merge-base --is-ancestor "$stable_ref" "$release_commit"; then
@@ -202,50 +226,45 @@ for (const group of ['packages', 'website', 'patterns', 'tests']) {
 }
 NODE
 
-if [[ "$track" == "v4" ]]; then
-  node - "$tmp_dir" <<'NODE'
+node - "$tmp_dir" "$dom_major" "$react_major" "$track" <<'NODE'
 const fs = require('fs');
 const path = require('path');
 
 const root = process.argv[2];
-const expectedMajors = {
-  '@react-magma/charts': 13,
-  '@react-magma/dropzone': 13,
-  'react-magma-dom': 4,
-};
+const domMajor = Number(process.argv[3]);
+const reactMajor = Number(process.argv[4]);
+const track = process.argv[5];
+
 const packagePaths = {
   '@react-magma/charts': 'packages/charts/package.json',
   '@react-magma/dropzone': 'packages/dropzone/package.json',
   'react-magma-dom': 'packages/react-magma-dom/package.json',
 };
 
-for (const [name, expectedMajor] of Object.entries(expectedMajors)) {
-  const packagePath = path.join(root, packagePaths[name]);
-  const pkg = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
-  const actualMajor = Number(pkg.version.split('.')[0]);
-
-  if (actualMajor !== expectedMajor) {
-    throw new Error(
-      `v4 compatibility requires ${name} ${expectedMajor}.x, generated ${pkg.version}`
-    );
-  }
+const domPkg = JSON.parse(
+  fs.readFileSync(path.join(root, packagePaths['react-magma-dom']), 'utf8')
+);
+const actualDomMajor = Number(domPkg.version.split('.')[0]);
+if (actualDomMajor !== domMajor) {
+  throw new Error(
+    `${track} compatibility requires react-magma-dom ${domMajor}.x, generated ${domPkg.version}`
+  );
 }
 
+const reactMajorPattern = new RegExp(`(^|[^0-9])${reactMajor}([^0-9]|$)`);
 for (const name of ['@react-magma/charts', 'react-magma-dom']) {
-  const packagePath = path.join(root, packagePaths[name]);
-  const pkg = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
+  const pkg = JSON.parse(fs.readFileSync(path.join(root, packagePaths[name]), 'utf8'));
   const reactPeer = pkg.peerDependencies && pkg.peerDependencies.react;
 
-  if (!reactPeer || !/(^|[^0-9])17([^0-9]|$)/.test(reactPeer)) {
+  if (!reactPeer || !reactMajorPattern.test(reactPeer)) {
     throw new Error(
-      `v4 compatibility requires ${name} to retain a React 17 peer range, found ${reactPeer || 'none'}`
+      `${track} compatibility requires ${name} to retain a React ${reactMajor} peer range, found ${reactPeer || 'none'}`
     );
   }
 }
 
 for (const [name, relativePath] of Object.entries(packagePaths)) {
-  const packagePath = path.join(root, relativePath);
-  const pkg = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
+  const pkg = JSON.parse(fs.readFileSync(path.join(root, relativePath), 'utf8'));
 
   for (const field of [
     'dependencies',
@@ -257,7 +276,7 @@ for (const [name, relativePath] of Object.entries(packagePaths)) {
       if (
         (dependency.startsWith('@react-magma/') || dependency === 'react-magma-dom') &&
         typeof range === 'string' &&
-        range.includes('-next.')
+        /\d+\.\d+\.\d+-/.test(range)
       ) {
         throw new Error(
           `stable ${name} retains prerelease dependency ${dependency}@${range} in ${field}`
@@ -267,9 +286,10 @@ for (const [name, relativePath] of Object.entries(packagePaths)) {
   }
 }
 
-console.log('v4 compatibility: DOM 4.x, Charts 13.x, Dropzone 13.x, React 17 peers.');
+console.log(
+  `${track} compatibility: react-magma-dom ${domMajor}.x, React ${reactMajor} peers, no prerelease workspace deps.`
+);
 NODE
-fi
 
 echo
 echo "Generated changelog order:"

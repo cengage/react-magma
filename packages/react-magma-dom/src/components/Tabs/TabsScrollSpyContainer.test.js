@@ -36,45 +36,45 @@ describe('TabsScrollSpyContainer', () => {
 
     expect(getByTestId('tab0')).toHaveStyleRule(
       'color',
-      magma.colors.primary500
+      magma.colors.brand.navy
     );
     expect(getByTestId('tab1')).toHaveStyleRule(
       'color',
-      magma.colors.neutral500
+      magma.colors.neutral700
     );
     expect(getByTestId('tab2')).toHaveStyleRule(
       'color',
-      magma.colors.neutral500
+      magma.colors.neutral700
     );
 
     await userEvent.click(getByTestId('tab1'));
 
     expect(getByTestId('tab0')).toHaveStyleRule(
       'color',
-      magma.colors.neutral500
+      magma.colors.neutral700
     );
     expect(getByTestId('tab1')).toHaveStyleRule(
       'color',
-      magma.colors.primary500
+      magma.colors.brand.navy
     );
     expect(getByTestId('tab2')).toHaveStyleRule(
       'color',
-      magma.colors.neutral500
+      magma.colors.neutral700
     );
 
     await userEvent.click(getByTestId('tab2'));
 
     expect(getByTestId('tab0')).toHaveStyleRule(
       'color',
-      magma.colors.neutral500
+      magma.colors.neutral700
     );
     expect(getByTestId('tab1')).toHaveStyleRule(
       'color',
-      magma.colors.neutral500
+      magma.colors.neutral700
     );
     expect(getByTestId('tab2')).toHaveStyleRule(
       'color',
-      magma.colors.primary500
+      magma.colors.brand.navy
     );
   });
 

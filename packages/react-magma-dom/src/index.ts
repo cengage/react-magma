@@ -52,7 +52,13 @@ export {
   ButtonType,
 } from './components/Button';
 export type { ButtonProps } from './components/Button';
-export { Card, CardAlignment, CardCalloutType } from './components/Card';
+export {
+  Card,
+  CardAlignment,
+  CardBorderRadius,
+  CardCalloutType,
+  CardCornerTreatment,
+} from './components/Card';
 export type { CardProps } from './components/Card';
 export { CardBody } from './components/Card/CardBody';
 export { CardHeading } from './components/Card/CardHeading';
