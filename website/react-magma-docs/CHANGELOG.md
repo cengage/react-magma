@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-next.5
+
+### Patch Changes
+
+- 4372102: docs(DataVisualization): update `@react-magma/charts` version in the introduction
+
 ## 7.0.0-next.4
 
 ### Major Changes

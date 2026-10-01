@@ -10,6 +10,7 @@
   },
   "changesets": [
     "dev-prerelease-next",
+    "docs-charts-version",
     "harden-exit-prerelease",
     "multi-version-topology-ci",
     "rebrand-2026",
