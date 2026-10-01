@@ -6,7 +6,6 @@ import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
 import { Spinner } from '../Spinner';
 import {
-  TypographyColor,
   TypographyContextVariant,
   TypographyVisualStyle,
 } from '../Typography';
@@ -66,9 +65,6 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
 
     const isInverse = useIsInverse(props.isInverse);
     const theme = React.useContext(ThemeContext);
-    const descriptionColor = isInverse
-      ? TypographyColor.default
-      : TypographyColor.subdued;
 
     return (
       <InverseContext.Provider value={{ isInverse }}>
@@ -110,8 +106,8 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
                       isInverse={isInverse}
                       style={{
                         color: isInverse
-                          ? theme.colors.neutral100
-                          : theme.colors.neutral700,
+                          ? theme.colors.neutral0
+                          : theme.colors.brand.navy,
                       }}
                     >
                       {title}
@@ -121,7 +117,11 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
                     <Paragraph
                       isInverse={isInverse}
                       noMargins
-                      color={descriptionColor}
+                      style={{
+                        color: isInverse
+                          ? theme.colors.neutral500
+                          : theme.colors.neutral800,
+                      }}
                     >
                       {description}
                     </Paragraph>

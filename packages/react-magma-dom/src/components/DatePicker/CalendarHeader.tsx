@@ -42,8 +42,8 @@ const CalendarHeaderText = styled.div<{ isInverse?: boolean }>`
   caption-side: initial;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   font-size: ${props => props.theme.typeScale.size03.fontSize};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   text-align: center;

@@ -26,6 +26,29 @@ describe('MultiCombobox', () => {
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
+  it('should use inverse primary badge colors for selected items', () => {
+    const { getByText } = render(
+      <MultiCombobox
+        isInverse
+        isMulti
+        initialSelectedItems={[items[0]]}
+        labelText={labelText}
+        items={items}
+      />
+    );
+
+    const selectedItemButton = getByText(items[0]).closest('button');
+
+    expect(selectedItemButton).toHaveStyleRule(
+      'background',
+      magma.colors.brand.skyBlue
+    );
+    expect(selectedItemButton).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
+  });
+
   it('should accept items in the default object format', async () => {
     const items = [
       { label: 'Red', value: 'red' },

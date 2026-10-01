@@ -816,25 +816,25 @@ export const DefaultIcon = {
             icon={<FavoriteIcon aria-hidden />}
             itemId="1"
             label={<>I have an icon</>}
-            labelStyle={{ color: magma.colors.info700, fontWeight: '600' }}
+            labelStyle={{ color: magma.colors.blue700, fontWeight: '600' }}
           />
           <TreeItem
             icon={<StarIcon aria-hidden />}
             itemId="2"
             label={<>I have an icon</>}
-            labelStyle={{ color: magma.colors.danger700, fontWeight: '700' }}
-            style={{ background: magma.colors.info100 }}
+            labelStyle={{ color: magma.colors.red700, fontWeight: '700' }}
+            style={{ background: magma.colors.blue100 }}
           />
           <TreeItem itemId="3" label={<>Branch with no icon</>}>
             <TreeItem
               itemId="4"
               label={<>I am a leaf without an icon</>}
-              style={{ background: magma.colors.info100 }}
+              style={{ background: magma.colors.blue100 }}
             />
             <TreeItem
               icon={
                 <EmergencyIcon
-                  style={{ color: magma.colors.danger500 }}
+                  style={{ color: magma.colors.red500 }}
                   aria-hidden
                 />
               }

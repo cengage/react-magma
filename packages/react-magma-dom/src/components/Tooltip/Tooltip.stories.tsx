@@ -39,8 +39,8 @@ const Template: StoryFn<TooltipProps> = args => (
       display: 'flex',
       justifyContent: 'center',
       background: args.isInverse
-        ? magma.colors.neutral
-        : magma.colors.neutral100,
+        ? magma.colors.neutral1100
+        : magma.colors.neutral0,
     }}
   >
     <Tooltip {...args}>
@@ -254,13 +254,6 @@ export const Complex = () => {
 };
 
 const CustomStylesTemplate: StoryFn<TooltipProps> = args => {
-  const customArrowStyles = {
-    background: 'yellow',
-    height: '15px',
-    width: '15px',
-    fill: 'red',
-  };
-
   const customContainerStyles = {
     background: 'blue',
     padding: '10px',
@@ -279,13 +272,12 @@ const CustomStylesTemplate: StoryFn<TooltipProps> = args => {
         display: 'flex',
         justifyContent: 'center',
         background: args.isInverse
-          ? magma.colors.neutral
-          : magma.colors.neutral100,
+          ? magma.colors.neutral1100
+          : magma.colors.neutral0,
       }}
     >
       <Tooltip
         {...args}
-        arrowStyle={customArrowStyles}
         containerStyle={customContainerStyles}
         tooltipStyle={customTooltipStyles}
       >

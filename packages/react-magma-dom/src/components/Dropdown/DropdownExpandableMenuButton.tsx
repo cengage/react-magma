@@ -11,7 +11,11 @@ import {
 import { DropdownContext } from './Dropdown';
 import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
 import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem';
-import { IconWrapper, menuBackground } from './DropdownMenuItem';
+import {
+  IconWrapper,
+  menuBackground,
+  menuFocusBackground,
+} from './DropdownMenuItem';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 
@@ -37,10 +41,13 @@ const StyledAccordionButton = styled(AccordionButton)<{
   &:focus {
     outline-offset: -2px;
   }
-  &:hover,
-  &:focus {
+  &:hover {
     background: ${props =>
       props.isMenuItemContextDisabled ? '' : menuBackground};
+  }
+  &:focus {
+    background: ${props =>
+      props.isMenuItemContextDisabled ? '' : menuFocusBackground};
   }
   > span {
     display: flex;
@@ -49,6 +56,10 @@ const StyledAccordionButton = styled(AccordionButton)<{
 
 const StyledIconWrapper = styled(IconWrapper)`
   justify-content: center;
+
+  && svg {
+    color: inherit;
+  }
 `;
 
 export const DropdownExpandableMenuButton = React.forwardRef<
@@ -103,7 +114,11 @@ export const DropdownExpandableMenuButton = React.forwardRef<
       testId={testId}
     >
       {icon && (
-        <StyledIconWrapper theme={theme} isInverse={context.isInverse}>
+        <StyledIconWrapper
+          disabled={expandableMenuItemContext.disabled}
+          theme={theme}
+          isInverse={context.isInverse}
+        >
           {icon}
         </StyledIconWrapper>
       )}

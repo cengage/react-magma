@@ -41,7 +41,7 @@
 }
 
 .description > p {
-  font-family: Work Sans;
+  font-family: Inter;
   margin-top: 8px;
   font-size: 14px;
   font-weight: 400;
@@ -57,10 +57,7 @@
   color: #454545;
   cursor: pointer;
   flex-shrink: 0;
-  font-family:
-    Work Sans,
-    Helvetica,
-    sans-serif;
+  font-family: Inter, Helvetica, sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;

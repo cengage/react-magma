@@ -3,7 +3,7 @@ import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
-import { CheckIcon } from 'react-magma-icons';
+import { CheckIcon, CloseIcon } from 'react-magma-icons';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
@@ -84,41 +84,108 @@ export interface ToggleProps
 }
 
 export function buildIconContainerColor(props) {
-  if (props.isInverse) {
-    if (props.disabled) {
-      if (props.isChecked) {
-        return transparentize(0.6, props.theme.colors.neutral100);
-      }
-
-      return 'transparent';
+  if (props.disabled) {
+    if (props.isInverse) {
+      return props.isChecked
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral1200;
     }
 
-    return props.theme.colors.success200;
-  }
-  if (props.disabled) {
-    return transparentize(0.6, props.theme.colors.neutral);
+    return props.isChecked
+      ? props.theme.colors.neutral300
+      : props.theme.colors.neutral100;
   }
 
-  return props.theme.colors.neutral100;
+  if (props.isInverse) {
+    return props.isChecked
+      ? props.theme.colors.green400
+      : props.theme.colors.neutral1000;
+  }
+
+  return props.isChecked
+    ? props.theme.colors.green600
+    : props.theme.colors.neutral200;
 }
 
 function buildToggleBorderColor(props) {
-  if (props.isInverse) {
-    if (props.hasError) {
-      return props.theme.colors.danger200;
+  if (props.disabled) {
+    if (props.isInverse) {
+      return props.theme.colors.neutral800;
     }
 
-    return transparentize(0.5, props.theme.colors.neutral100);
+    return props.theme.colors.neutral300;
+  }
+
+  if (props.isInverse) {
+    if (props.hasError) {
+      return props.theme.colors.red500;
+    }
+
+    return props.isChecked
+      ? props.theme.colors.green400
+      : props.theme.colors.neutral400;
   }
 
   if (props.hasError) {
     return props.theme.colors.danger;
   }
   if (props.isChecked) {
-    return props.theme.colors.success;
+    return props.theme.colors.green600;
   }
 
-  return props.theme.colors.neutral;
+  return props.theme.colors.neutral700;
+}
+
+function buildToggleBackgroundColor(props) {
+  if (props.disabled) {
+    if (props.isInverse) {
+      return props.isChecked
+        ? props.theme.colors.neutral800
+        : transparentize(0.9, props.theme.colors.neutral900);
+    }
+
+    return props.isChecked ? props.theme.colors.neutral300 : 'transparent';
+  }
+
+  if (props.hasError) {
+    return props.isInverse
+      ? props.theme.colors.neutral900
+      : props.theme.colors.neutral300;
+  }
+
+  if (props.isInverse) {
+    return props.isChecked
+      ? props.theme.colors.green400
+      : props.theme.colors.neutral1000;
+  }
+
+  return props.isChecked
+    ? props.theme.colors.green600
+    : props.theme.colors.neutral200;
+}
+
+function buildThumbBackgroundColor(props) {
+  if (props.disabled) {
+    if (props.isInverse) {
+      return props.isChecked
+        ? props.theme.colors.neutral1200
+        : props.theme.colors.neutral800;
+    }
+
+    return props.isChecked
+      ? props.theme.colors.neutral0
+      : props.theme.colors.neutral300;
+  }
+
+  if (props.isChecked) {
+    return props.isInverse
+      ? props.theme.colors.green900
+      : props.theme.colors.neutral0;
+  }
+
+  return props.isInverse
+    ? props.theme.colors.neutral400
+    : props.theme.colors.neutral700;
 }
 
 const HiddenLabelText = styled.span`
@@ -136,39 +203,30 @@ const Track = styled.span<{
   isInverse?: boolean;
   theme?: ThemeInterface;
 }>`
-  background: ${props =>
-    props.isInverse
-      ? transparentize(0.8, props.theme.colors.neutral900)
-      : props.theme.colors.neutral};
+  background: ${buildToggleBackgroundColor};
   border: 2px solid ${props => buildToggleBorderColor(props)};
-  border-radius: 12px;
+  border-radius: 9999px;
   box-shadow: ${props =>
     props.isInverse && props.hasError
-      ? `0 0 0 1px ${props.theme.colors.neutral100}`
+      ? `0 0 0 1px ${props.theme.colors.neutral0}`
       : '0 0 0'};
   cursor: pointer;
-  height: 24px;
+  height: 28px;
   position: relative;
   width: 48px;
 
   ${props =>
     props.isChecked &&
     css`
-      background: ${props.isInverse
-        ? transparentize(0.8, props.theme.colors.neutral900)
-        : props.theme.colors.success};
+      background: ${buildToggleBackgroundColor(props)};
       border-color: ${buildToggleBorderColor(props)};
     `}
 
   ${props =>
     props.disabled &&
     css`
-      background: ${props.isInverse
-        ? transparentize(0.9, props.theme.colors.neutral900)
-        : props.theme.colors.neutral300};
-      border-color: ${props.isInverse
-        ? transparentize(0.85, props.theme.colors.neutral100)
-        : props.theme.colors.neutral300};
+      background: ${buildToggleBackgroundColor(props)};
+      border-color: ${buildToggleBorderColor(props)};
       cursor: not-allowed;
     `}
 
@@ -188,13 +246,10 @@ const Thumb = styled.span<{
   disabled?: boolean;
   theme?: ThemeInterface;
 }>`
-  background: ${props =>
-    props.isInverse && props.disabled
-      ? transparentize(0.6, props.theme.colors.neutral100)
-      : props.theme.colors.neutral100};
+  background: ${buildThumbBackgroundColor};
   border-radius: 100%;
   height: 20px;
-  left: 0;
+  left: 2px;
   margin-top: -10px;
   position: absolute;
   top: 50%;
@@ -204,7 +259,7 @@ const Thumb = styled.span<{
   ${props =>
     props.isChecked &&
     css`
-      left: 24px;
+      left: 22px;
     `}
 `;
 
@@ -215,9 +270,9 @@ const IconContainer = styled.span<{
   isInverse?: boolean;
 }>`
   color: ${props => buildIconContainerColor(props)};
-  left: ${props => props.theme.spaceScale.spacing02};
+  left: 2px;
   position: absolute;
-  top: ${props => props.theme.spaceScale.spacing01};
+  top: 2px;
 
   svg {
     display: block;
@@ -330,6 +385,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
             htmlFor={id}
             isInverse={isInverse}
             style={containerStyle}
+            textColor={!isInverse ? theme.colors.brand.navy : undefined}
           >
             {textPosition !== ToggleTextPosition.right &&
               renderLabelText(
@@ -347,21 +403,27 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
               style={trackStyle}
               theme={theme}
             >
-              <IconContainer
-                disabled={disabled}
-                theme={theme}
-                isInverse={isInverse}
-                isChecked={isChecked}
-              >
-                <CheckIcon size={theme.iconSizes.xSmall} />
-              </IconContainer>
               <Thumb
                 isChecked={isChecked}
                 isInverse={isInverse}
                 disabled={disabled}
                 style={thumbStyle}
                 theme={theme}
-              />
+              >
+                <IconContainer
+                  data-testid="toggle-state-icon"
+                  disabled={disabled}
+                  theme={theme}
+                  isInverse={isInverse}
+                  isChecked={isChecked}
+                >
+                  {isChecked ? (
+                    <CheckIcon aria-hidden size={theme.iconSizes.xSmall} />
+                  ) : (
+                    <CloseIcon aria-hidden size={theme.iconSizes.xSmall} />
+                  )}
+                </IconContainer>
+              </Thumb>
             </Track>
             {textPosition === ToggleTextPosition.right &&
               renderLabelText(
@@ -373,7 +435,13 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
           </StyledLabel>
         </StyledContainer>
         {!!errorMessage && (
-          <InputMessage id={descriptionId} hasError isInverse={isInverse}>
+          <InputMessage
+            errorColor={isInverse ? theme.colors.red500 : undefined}
+            errorIconColor={isInverse ? theme.colors.red500 : undefined}
+            id={descriptionId}
+            hasError
+            isInverse={isInverse}
+          >
             {errorMessage}
           </InputMessage>
         )}

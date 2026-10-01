@@ -146,16 +146,28 @@ export function Example() {
   return (
     <EmptyState
       graphic={
-        <svg viewBox="0 0 200 150" width="200" height="150" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          viewBox="0 0 200 150"
+          width="200"
+          height="150"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <rect width="200" height="150" rx="0" fill="#E0E0E0" />
-          <text x="100" y="80" textAnchor="middle" fill="#616161" fontSize="16" fontFamily="sans-serif">Graphic</text>
+          <text
+            x="100"
+            y="80"
+            textAnchor="middle"
+            fill="#616161"
+            fontSize="16"
+            fontFamily="sans-serif"
+          >
+            Graphic
+          </text>
         </svg>
       }
       title="No courses found"
       description="Try browsing by category instead."
-      actions={
-        <Button color={ButtonColor.primary}>Browse Courses</Button>
-      }
+      actions={<Button color={ButtonColor.primary}>Browse Courses</Button>}
     />
   );
 }
@@ -230,9 +242,7 @@ export function Example() {
       icon={<SearchIcon />}
       title="No results found"
       description="Try a different search term or browse by category."
-      additionalContent={
-        <Search isClearable placeholder="Search courses..." />
-      }
+      additionalContent={<Search isClearable placeholder="Search courses..." />}
     />
   );
 }
@@ -245,7 +255,13 @@ You can also use `additionalContent` for browsable categories. Here, clickable `
 ```tsx
 import React from 'react';
 
-import { EmptyState, Button, ButtonColor, ButtonVariant, Tag } from 'react-magma-dom';
+import {
+  EmptyState,
+  Button,
+  ButtonColor,
+  ButtonVariant,
+  Tag,
+} from 'react-magma-dom';
 import { SearchIcon } from 'react-magma-icons';
 
 export function Example() {
@@ -260,7 +276,14 @@ export function Example() {
         </Button>
       }
       additionalContent={
-        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <div
+          style={{
+            display: 'flex',
+            gap: '8px',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+          }}
+        >
           <Tag>Biology</Tag>
           <Tag>Chemistry</Tag>
           <Tag>Physics</Tag>
@@ -289,9 +312,7 @@ export function Example() {
       icon={<SchoolIcon />}
       title="No courses yet"
       description="Enter a course access code from your instructor to get started."
-      actions={
-        <Button color={ButtonColor.primary}>Join Course</Button>
-      }
+      actions={<Button color={ButtonColor.primary}>Join Course</Button>}
       additionalContent={<Input placeholder="Enter access code" />}
     />
   );
@@ -349,7 +370,7 @@ import { SearchIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
-    <Card background={magma.colors.primary600} isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <EmptyState
           icon={<SearchIcon />}
