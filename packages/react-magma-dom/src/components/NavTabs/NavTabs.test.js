@@ -22,6 +22,38 @@ describe('NavTabs', () => {
     const { getByTestId } = render(<NavTabs testId={testId} />);
 
     expect(getByTestId(testId)).toBeInTheDocument();
+    expect(getByTestId(testId)).toHaveStyleRule('border-bottom', '0');
+  });
+
+  it('should move or hide the divider border', () => {
+    const testId = 'test-id';
+    const { getByTestId, rerender } = render(
+      <NavTabs testId={testId} borderPosition="top" hasBorder />
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border-top',
+      `1px solid ${magma.colors.neutral200}`
+    );
+
+    rerender(
+      <NavTabs
+        testId={testId}
+        borderPosition="right"
+        hasBorder
+        orientation="vertical"
+        isInverse
+      />
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border-right',
+      `1px solid ${magma.colors.neutral800}`
+    );
+
+    rerender(<NavTabs testId={testId} hasBorder={false} />);
+
+    expect(getByTestId(testId)).toHaveStyleRule('border-bottom', '0');
   });
 
   it('should render tab as passed in component', () => {
@@ -90,18 +122,18 @@ describe('NavTabs', () => {
 
     expect(container.querySelector('a')).toHaveStyleRule(
       'text-transform',
-      'uppercase'
+      'none'
     );
 
     rerender(
-      <NavTabs textTransform="none">
+      <NavTabs textTransform="uppercase">
         <NavTab>Tab 1</NavTab>
       </NavTabs>
     );
 
     expect(container.querySelector('a')).toHaveStyleRule(
       'text-transform',
-      'none'
+      'uppercase'
     );
   });
 

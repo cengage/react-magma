@@ -53,7 +53,7 @@ const StyledHeader = styled.header<{
   border-bottom: 1px solid
     ${props =>
       props.isInverse
-        ? props.theme.colors.primary700
+        ? props.theme.colors.indigo700
         : props.theme.colors.neutral300};
   box-shadow: ${props =>
     props.position === AppBarPosition.sticky ||

@@ -147,7 +147,7 @@ export function Example() {
 
   return (
     <>
-       <Button
+      <Button
         aria-expanded={isAllExpanded}
         aria-label={buttonText}
         onClick={handleToggleAll}
@@ -256,11 +256,12 @@ import {
   AccordionPanel,
   Card,
   CardBody,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <Accordion isInverse>
           <AccordionItem>

@@ -6,6 +6,7 @@ import { TabPanel } from './TabPanel';
 import { TabPanelsContainer } from './TabPanelsContainer';
 import { TabsContainerContext } from './TabsContainer';
 import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
 
 describe('TabPanel', () => {
   it('should correctly apply the testId', () => {
@@ -20,6 +21,10 @@ describe('TabPanel', () => {
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
   });
 
   it('should render children', () => {
@@ -64,6 +69,7 @@ it('should render with inverse styles', () => {
   );
 
   expect(getByTestId(testId)).toHaveStyleRule('background', 'none');
+  expect(getByTestId(testId)).toHaveStyleRule('color', magma.colors.neutral0);
 });
 
 describe('Test for accessibility', () => {

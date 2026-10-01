@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import { StoryObj, StoryFn, Meta } from '@storybook/react-webpack5';
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 
+import { magma } from '../../theme/magma';
 import { Button } from '../Button';
 import { Tab } from './Tab';
 import { TabPanel } from './TabPanel';
@@ -38,7 +39,15 @@ export default {
   component: Tabs,
   decorators: [
     (Story, context) => (
-      <Container isInverse={context.args.isInverse} style={{ padding: '20px' }}>
+      <Container
+        isInverse={context.args.isInverse}
+        style={{
+          backgroundColor: context.args.isInverse
+            ? magma.colors.neutral1100
+            : undefined,
+          padding: '20px',
+        }}
+      >
         <Story />
       </Container>
     ),
@@ -51,6 +60,9 @@ export default {
     borderPosition: {
       control: { type: 'select' },
       options: Object.values(TabsBorderPosition),
+    },
+    hasBorder: {
+      control: { type: 'boolean' },
     },
     iconPosition: {
       control: { type: 'select' },

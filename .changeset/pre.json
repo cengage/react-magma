@@ -2,15 +2,17 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "@react-magma/charts": "14.2.1",
-    "@react-magma/dropzone": "14.0.1",
-    "react-magma-dom": "5.3.0",
+    "@react-magma/charts": "16.0.0",
+    "@react-magma/dropzone": "16.0.0",
+    "react-magma-dom": "7.0.0",
     "react-magma-docs": "6.1.0",
     "react-magma-landing": "1.1.9"
   },
   "changesets": [
     "dev-prerelease-next",
+    "harden-exit-prerelease",
     "multi-version-topology-ci",
+    "rebrand-2026",
     "sync-main-to-dev-5-3-0"
   ]
 }

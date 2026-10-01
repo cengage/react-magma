@@ -5,6 +5,7 @@ import { render } from '@testing-library/react';
 import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+import { magma } from '../../theme/magma';
 
 import { Breadcrumb, BreadcrumbItem } from '.';
 
@@ -37,16 +38,30 @@ describe('Breadcrumb', () => {
     expect(getByLabelText('Breadcrumb')).toBeInTheDocument();
   });
 
-  it('should render the breadcrumb component with inverse styles', () => {
-    const { getByText } = render(
-      <Breadcrumb isInverse>
-        <BreadcrumbItem to="#">{LINK_TEXT}</BreadcrumbItem>
-        <BreadcrumbItem>{SPAN_TEXT}</BreadcrumbItem>
-      </Breadcrumb>
-    );
+  it.each([
+    [false, magma.colors.neutral700, magma.colors.brand.navy],
+    [true, magma.colors.neutral500, magma.colors.neutral0],
+  ])(
+    'should render the breadcrumb colors when inverse is %s',
+    (isInverse, separatorColor, currentColor) => {
+      const { getByText } = render(
+        <Breadcrumb isInverse={isInverse}>
+          <BreadcrumbItem to="#">{LINK_TEXT}</BreadcrumbItem>
+          <BreadcrumbItem>{SPAN_TEXT}</BreadcrumbItem>
+        </Breadcrumb>
+      );
 
-    expect(getByText(SPAN_TEXT)).toHaveStyleRule('color', '#FFFFFF');
-  });
+      const separator = getByText('/');
+
+      expect(separator).toHaveAttribute('aria-hidden', 'true');
+      expect(separator).toHaveStyleRule('color', separatorColor);
+      expect(separator).toHaveStyleRule(
+        'margin',
+        `0 ${magma.spaceScale.spacing03}`
+      );
+      expect(getByText(SPAN_TEXT)).toHaveStyleRule('color', currentColor);
+    }
+  );
 
   it('should render the breadcrumb component with custom aria-label', () => {
     const { queryByLabelText, getByLabelText } = render(

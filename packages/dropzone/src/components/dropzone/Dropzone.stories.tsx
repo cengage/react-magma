@@ -86,7 +86,7 @@ export const Default = {
     return (
       <div
         style={{
-          background: args.isInverse ? magma.colors.primary600 : 'none',
+          background: args.isInverse ? magma.colors.neutral1100 : 'none',
           padding: '24px',
         }}
       >
@@ -116,7 +116,7 @@ export const NoLimits = {
     return (
       <div
         style={{
-          background: args.isInverse ? magma.colors.primary600 : 'none',
+          background: args.isInverse ? magma.colors.neutral1100 : 'none',
           padding: '24px',
         }}
       >
@@ -159,7 +159,7 @@ export const Image = {
     return (
       <div
         style={{
-          background: args.isInverse ? magma.colors.primary600 : 'none',
+          background: args.isInverse ? magma.colors.neutral1100 : 'none',
           padding: '24px',
         }}
       >
@@ -205,7 +205,7 @@ export const Text = {
     return (
       <div
         style={{
-          background: args.isInverse ? magma.colors.primary600 : 'none',
+          background: args.isInverse ? magma.colors.neutral1100 : 'none',
           padding: '24px',
         }}
       >
@@ -253,7 +253,7 @@ export const Csv = {
     return (
       <div
         style={{
-          background: args.isInverse ? magma.colors.primary600 : 'none',
+          background: args.isInverse ? magma.colors.neutral1100 : 'none',
           padding: '24px',
         }}
       >

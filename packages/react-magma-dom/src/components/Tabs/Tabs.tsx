@@ -67,6 +67,11 @@ export interface TabsProps
    */
   iconPosition?: TabsIconPosition;
   /**
+   * If false, the divider border is hidden
+   * @default true
+   */
+  hasBorder?: boolean;
+  /**
    * If true, the components takes the full width of the screen
    */
   isFullWidth?: boolean;
@@ -81,7 +86,7 @@ export interface TabsProps
   orientation?: TabsOrientation;
   /**
    * Determines whether the tab appears in all-caps
-   * @default TabsTextTransform.uppercase
+   * @default TabsTextTransform.none
    */
   textTransform?: TabsTextTransform;
   /**
@@ -115,22 +120,80 @@ export const TabsContext = React.createContext<TabsContextInterface>({
   isInverse: false,
   isFullWidth: false,
   orientation: TabsOrientation.horizontal,
-  textTransform: TabsTextTransform.uppercase,
+  textTransform: TabsTextTransform.none,
   registerTabButton: (elements, element) => {},
 });
 
-export const StyledContainer = styled('div', {
-  shouldForwardProp: isPropValid,
-})<{
+interface StyledContainerProps {
   as?: string;
+  borderPosition?: TabsBorderPosition;
+  hasBorder?: boolean;
   orientation: TabsOrientation;
   isInverse: boolean;
   backgroundColor: string;
   theme: ThemeInterface;
-}>`
+}
+
+interface TabsBorderLayoutProps {
+  borderPosition?: TabsBorderPosition;
+  hasBorder?: boolean;
+  orientation: TabsOrientation;
+}
+
+function hasTabsBorderAt(
+  props: TabsBorderLayoutProps,
+  side: TabsBorderPosition
+) {
+  const resolvedBorderPosition =
+    props.borderPosition ||
+    (props.orientation === TabsOrientation.vertical
+      ? TabsBorderPosition.left
+      : TabsBorderPosition.bottom);
+
+  return props.hasBorder && resolvedBorderPosition === side;
+}
+
+function getTabsBorderTransform(props: TabsBorderLayoutProps) {
+  if (hasTabsBorderAt(props, TabsBorderPosition.top)) {
+    return 'translateY(-1px)';
+  }
+
+  if (hasTabsBorderAt(props, TabsBorderPosition.bottom)) {
+    return 'translateY(1px)';
+  }
+
+  if (hasTabsBorderAt(props, TabsBorderPosition.left)) {
+    return 'translateX(-1px)';
+  }
+
+  if (hasTabsBorderAt(props, TabsBorderPosition.right)) {
+    return 'translateX(1px)';
+  }
+
+  return 'none';
+}
+
+function getTabsBorder(props: StyledContainerProps, side: TabsBorderPosition) {
+  return hasTabsBorderAt(props, side)
+    ? `1px solid ${
+        props.isInverse
+          ? props.theme.colors.neutral800
+          : props.theme.colors.neutral200
+      }`
+    : 0;
+}
+
+export const StyledContainer = styled('div', {
+  shouldForwardProp: isPropValid,
+})<StyledContainerProps>`
   background-color: ${props =>
     props.backgroundColor ? props.backgroundColor : 'transparent'};
   background: backgroundColor;
+  border-bottom: ${props => getTabsBorder(props, TabsBorderPosition.bottom)};
+  border-left: ${props => getTabsBorder(props, TabsBorderPosition.left)};
+  border-right: ${props => getTabsBorder(props, TabsBorderPosition.right)};
+  border-top: ${props => getTabsBorder(props, TabsBorderPosition.top)};
+  box-sizing: border-box;
   display: flex;
   height: ${props => (props.orientation === 'vertical' ? '100%' : 'auto')};
 
@@ -141,12 +204,30 @@ export const StyledContainer = styled('div', {
 export const StyledTabsWrapper = styled('div', {
   shouldForwardProp: isPropValid,
 })<{
+  borderPosition?: TabsBorderPosition;
+  hasBorder?: boolean;
   orientation: TabsOrientation;
 }>`
   display: flex;
   flex-grow: 1;
+  margin-bottom: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.bottom) ? '-1px' : '0'};
+  margin-left: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.left) ? '-1px' : '0'};
+  margin-right: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.right) ? '-1px' : '0'};
+  margin-top: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.top) ? '-1px' : '0'};
   overflow-x: ${props => (props.orientation === 'vertical' ? '' : 'auto')};
   overflow-y: ${props => (props.orientation === 'vertical' ? 'auto' : '')};
+  padding-bottom: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.bottom) ? '1px' : '0'};
+  padding-left: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.left) ? '1px' : '0'};
+  padding-right: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.right) ? '1px' : '0'};
+  padding-top: ${props =>
+    hasTabsBorderAt(props, TabsBorderPosition.top) ? '1px' : '0'};
 
   &::-webkit-scrollbar {
     width: 0;
@@ -157,12 +238,15 @@ export const StyledTabsWrapper = styled('div', {
 
 export const StyledTabs = styled('ul', { shouldForwardProp: isPropValid })<{
   alignment?: TabsAlignment;
+  borderPosition?: TabsBorderPosition;
+  hasBorder?: boolean;
   orientation: TabsOrientation;
 }>`
   align-items: center;
   display: flex;
   flex-direction: ${props =>
     props.orientation === 'vertical' ? 'column' : 'row'};
+  gap: ${props => (props.orientation === 'vertical' ? '1px' : '8px')};
   justify-content: ${props =>
     props.alignment === 'center'
       ? 'center'
@@ -171,6 +255,7 @@ export const StyledTabs = styled('ul', { shouldForwardProp: isPropValid })<{
         : ''};
   margin: 0;
   padding: 0;
+  transform: ${props => getTabsBorderTransform(props)};
   width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
 `;
 
@@ -181,6 +266,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       backgroundColor,
       borderPosition,
       children,
+      hasBorder = true,
       isFullWidth,
       orientation,
       onChange,
@@ -500,6 +586,8 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       <StyledContainer
         data-testid={testId}
         backgroundColor={background}
+        borderPosition={borderPosition}
+        hasBorder={hasBorder}
         isInverse={isInverse}
         orientation={orientation || TabsOrientation.horizontal}
         ref={ref}
@@ -516,7 +604,9 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           theme={theme}
         />
         <StyledTabsWrapper
+          borderPosition={borderPosition}
           data-testid="tabsWrapper"
+          hasBorder={hasBorder}
           onScroll={handleTabsScroll}
           orientation={orientation}
           ref={tabsWrapperRef}
@@ -525,6 +615,8 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
             alignment={alignment ? alignment : TabsAlignment.left}
             aria-label={ariaLabel}
             aria-orientation={orientation || TabsOrientation.horizontal}
+            borderPosition={borderPosition}
+            hasBorder={hasBorder}
             onKeyDown={handleKeyDown}
             orientation={orientation}
             ref={childrenWrapperRef}
@@ -539,7 +631,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
                 isInverse,
                 isFullWidth,
                 orientation,
-                textTransform: textTransform || TabsTextTransform.uppercase,
+                textTransform: textTransform || TabsTextTransform.none,
                 registerTabButton,
               }}
             >

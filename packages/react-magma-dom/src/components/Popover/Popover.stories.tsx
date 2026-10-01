@@ -613,6 +613,10 @@ const InputExampleTemplate = args => {
     specialSymbol: true,
   });
   const inputRef = React.useRef<HTMLInputElement>();
+  const errorColor = args.isInverse ? magma.colors.red500 : magma.colors.red600;
+  const successColor = args.isInverse
+    ? magma.colors.green500
+    : magma.colors.green600;
 
   const resetErrors = () => {
     setErrorState({
@@ -692,34 +696,14 @@ const InputExampleTemplate = args => {
           >
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               {errorState.length ? (
-                <CloseIcon
-                  color={
-                    args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
-                  }
-                  size={16}
-                />
+                <CloseIcon color={errorColor} size={16} />
               ) : (
-                <DoneIcon
-                  color={
-                    args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500
-                  }
-                  size={16}
-                />
+                <DoneIcon color={successColor} size={16} />
               )}
 
               <span
                 style={{
-                  color: errorState.length
-                    ? args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
-                    : args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500,
+                  color: errorState.length ? errorColor : successColor,
                 }}
               >
                 Includes at least 6 characters
@@ -727,34 +711,14 @@ const InputExampleTemplate = args => {
             </div>
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               {errorState.number ? (
-                <CloseIcon
-                  color={
-                    args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
-                  }
-                  size={16}
-                />
+                <CloseIcon color={errorColor} size={16} />
               ) : (
-                <DoneIcon
-                  color={
-                    args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500
-                  }
-                  size={16}
-                />
+                <DoneIcon color={successColor} size={16} />
               )}
 
               <span
                 style={{
-                  color: errorState.number
-                    ? args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
-                    : args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500,
+                  color: errorState.number ? errorColor : successColor,
                 }}
               >
                 Includes number
@@ -762,34 +726,14 @@ const InputExampleTemplate = args => {
             </div>
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               {errorState.lowercase ? (
-                <CloseIcon
-                  color={
-                    args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
-                  }
-                  size={16}
-                />
+                <CloseIcon color={errorColor} size={16} />
               ) : (
-                <DoneIcon
-                  color={
-                    args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500
-                  }
-                  size={16}
-                />
+                <DoneIcon color={successColor} size={16} />
               )}
 
               <span
                 style={{
-                  color: errorState.lowercase
-                    ? args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
-                    : args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500,
+                  color: errorState.lowercase ? errorColor : successColor,
                 }}
               >
                 Includes lowercase letter
@@ -797,34 +741,14 @@ const InputExampleTemplate = args => {
             </div>
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               {errorState.uppercase ? (
-                <CloseIcon
-                  color={
-                    args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
-                  }
-                  size={16}
-                />
+                <CloseIcon color={errorColor} size={16} />
               ) : (
-                <DoneIcon
-                  color={
-                    args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500
-                  }
-                  size={16}
-                />
+                <DoneIcon color={successColor} size={16} />
               )}
 
               <span
                 style={{
-                  color: errorState.uppercase
-                    ? args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
-                    : args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500,
+                  color: errorState.uppercase ? errorColor : successColor,
                 }}
               >
                 Includes uppercase letter
@@ -832,34 +756,14 @@ const InputExampleTemplate = args => {
             </div>
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               {errorState.specialSymbol ? (
-                <CloseIcon
-                  color={
-                    args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
-                  }
-                  size={16}
-                />
+                <CloseIcon color={errorColor} size={16} />
               ) : (
-                <DoneIcon
-                  color={
-                    args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500
-                  }
-                  size={16}
-                />
+                <DoneIcon color={successColor} size={16} />
               )}
 
               <span
                 style={{
-                  color: errorState.specialSymbol
-                    ? args.isInverse
-                      ? magma.colors.danger200
-                      : magma.colors.danger500
-                    : args.isInverse
-                      ? magma.colors.success200
-                      : magma.colors.success500,
+                  color: errorState.specialSymbol ? errorColor : successColor,
                 }}
               >
                 Includes special symbol
@@ -1250,7 +1154,7 @@ export const SeveralPopovers = () => {
           {
             label: 'Responsibility & Control',
             icon: <EcoIcon />,
-            background: magma.colors.primary400,
+            background: magma.colors.indigo400,
           },
           {
             label: 'Competition',
@@ -1260,7 +1164,7 @@ export const SeveralPopovers = () => {
           {
             label: 'Task Planning',
             icon: <CheckBoxIcon />,
-            background: magma.colors.info600,
+            background: magma.colors.blue600,
           },
           {
             label: 'Expectations',

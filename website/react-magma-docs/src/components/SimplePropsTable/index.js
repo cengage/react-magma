@@ -88,7 +88,7 @@ export const SimplePropsTable = ({ propertyValues }) => {
                       fontWeight: 'bold',
                       fontFamily: 'Courier',
                       color: prop.deprecated
-                        ? magma.colors.neutral600
+                        ? magma.colors.neutral800
                         : magma.colors.info,
                       marginBottom: '16px',
                     }}

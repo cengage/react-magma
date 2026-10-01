@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { transparentize } from 'polished';
 
 import { DropdownContext } from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -20,8 +19,8 @@ const StyledHr = styled.hr<{
 }>`
   background: ${props =>
     props.isInverse
-      ? transparentize(0.6, props.theme.colors.neutral100)
-      : props.theme.colors.neutral300};
+      ? props.theme.colors.neutral800
+      : props.theme.colors.neutral200};
   border: 0;
   height: 1px;
   margin: ${props => props.theme.spaceScale.spacing02} 0;

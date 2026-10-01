@@ -4,7 +4,7 @@ const { resolve } = require('path-browserify');
 module.exports = {
   pathPrefix: process.env.PATH_PREFIX || '/',
   siteMetadata: {
-    title: 'React Magma Docs',
+    title: 'Magma Docs',
   },
   flags: {
     DEV_SSR: false,
@@ -97,8 +97,8 @@ module.exports = {
         name: 'gatsby-starter-default',
         short_name: 'starter',
         start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
+        background_color: '#0B1F3A',
+        theme_color: '#0B1F3A',
         display: 'minimal-ui',
         icon: 'static/images/react-magma-icon.svg',
       },
