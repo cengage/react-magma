@@ -63,7 +63,7 @@
     "react-focus-lock": "^2.9.2",
     "react-helmet": "5.2.0",
     "react-live": "^2.2.1",
-    "react-magma-dom": "^4.17.0",
+    "react-magma-dom": "^6.0.0-next.0",
     "react-magma-icons": "^3.2.5",
     "react-spring": "6.1.9",
     "semver": "^7.3.4",
