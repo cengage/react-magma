@@ -9,12 +9,88 @@ import {
 } from './TreeViewContext';
 import { TreeViewSelectable } from './types';
 import { UseTreeViewProps } from './useTreeView';
+import { defaultI18n } from '../../i18n/default';
+import { I18nInterface } from '../../i18n/interface';
 import { ThemeInterface } from '../../theme/magma';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
 export enum TreeNodeType {
   branch = 'branch',
   leaf = 'leaf',
+}
+
+// Flattens a tree item label into plain text, so an announcement can name the
+// item it applies to. A label is a `ReactNode`; a live region needs a string.
+export function getStringifiedLabel(node: React.ReactNode): string {
+  if (typeof node === 'string' || typeof node === 'number') {
+    return String(node);
+  }
+
+  if (Array.isArray(node)) {
+    return node.map(getStringifiedLabel).join('');
+  }
+
+  if (typeof node === 'object' && node && 'props' in node) {
+    return getStringifiedLabel((node as React.ReactElement).props.children);
+  }
+
+  return '';
+}
+
+// Substitutes the `{labelText}` placeholder used by the announcement strings.
+export function formatAnnouncement(
+  template: string,
+  labelText: string
+): string {
+  return template.replace(/\{labelText}/g, labelText);
+}
+
+let hasWarnedAboutExpansionState = false;
+
+type TreeViewI18n = Required<NonNullable<I18nInterface['treeView']>>;
+
+const treeViewDefaults = defaultI18n.treeView as TreeViewI18n;
+
+// `i18n.treeView` is optional, so that an interface built by hand rather than
+// spread from `defaultI18n` still type-checks and still speaks English. Reading
+// a key goes through here, which falls back per key rather than per section: a
+// consumer who translates one string does not lose the other eight.
+export function resolveTreeViewString(
+  i18n: I18nInterface,
+  key: keyof TreeViewI18n
+): string {
+  return i18n.treeView?.[key] ?? treeViewDefaults[key];
+}
+
+// Picks the template for an expand/collapse announcement. The deprecated
+// `expansionState` section still works: a value that differs from the default is
+// used as the state wording, unless its replacement has been given one too.
+export function resolveExpansionAnnounceTemplate(
+  i18n: I18nInterface,
+  expanded: boolean
+): string {
+  const key = expanded ? 'itemExpandedAnnounce' : 'itemCollapsedAnnounce';
+  const template = resolveTreeViewString(i18n, key);
+  const defaultTemplate = treeViewDefaults[key];
+  const legacy = expanded
+    ? i18n.expansionState.expanded
+    : i18n.expansionState.collapsed;
+  const defaultLegacy = expanded
+    ? defaultI18n.expansionState.expanded
+    : defaultI18n.expansionState.collapsed;
+
+  if (template !== defaultTemplate || legacy === defaultLegacy) {
+    return template;
+  }
+
+  if (process.env.NODE_ENV === 'development' && !hasWarnedAboutExpansionState) {
+    hasWarnedAboutExpansionState = true;
+    console.warn(
+      'React Magma Warning: `i18n.expansionState` is deprecated. TreeView is using it for now, but move the translation to `i18n.treeView.itemExpandedAnnounce` and `itemCollapsedAnnounce`, which also name the item the action applied to through the `{labelText}` placeholder.'
+    );
+  }
+
+  return `{labelText}, ${legacy}`;
 }
 
 /**

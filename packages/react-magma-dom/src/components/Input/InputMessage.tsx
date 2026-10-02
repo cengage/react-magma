@@ -109,8 +109,7 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
             <ErrorIcon
               size={theme.iconSizes.small}
               color={
-                errorIconColor ||
-                (isInverse ? theme.colors.red300 : undefined)
+                errorIconColor || (isInverse ? theme.colors.red300 : undefined)
               }
             />
           </IconWrapper>
