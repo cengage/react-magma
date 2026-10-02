@@ -53,7 +53,7 @@ export const Default = {
     return (
       <div
         style={{
-          background: args.isInverse ? magma.colors.primary600 : 'none',
+          background: args.isInverse ? magma.colors.neutral1100 : 'none',
         }}
       >
         <Button
@@ -97,7 +97,7 @@ export const TwoLine = {
     return (
       <div
         style={{
-          background: args.isInverse ? magma.colors.primary600 : 'none',
+          background: args.isInverse ? magma.colors.neutral1100 : 'none',
         }}
       >
         <Button
@@ -141,7 +141,7 @@ export const Strict = {
       <React.StrictMode>
         <div
           style={{
-            background: args.isInverse ? magma.colors.primary600 : 'none',
+            background: args.isInverse ? magma.colors.neutral1100 : 'none',
           }}
         >
           <Button

@@ -235,7 +235,7 @@ export const Inverse = {
 
   decorators: [
     Story => (
-      <div style={{ background: magma.colors.primary600, padding: '12px' }}>
+      <div style={{ background: magma.colors.neutral1100, padding: '12px' }}>
         <Story />
       </div>
     ),
@@ -253,17 +253,31 @@ export const WithDropdown = {
             <AccordionButton>Personal Information</AccordionButton>
             <AccordionPanel>
               <Flex behavior={FlexBehavior.container} spacing={2}>
-                <Flex behavior={FlexBehavior.item} xs={12} md={6}>
-                  <Input labelText="Email" />
-                </Flex>
-                <Flex behavior={FlexBehavior.item} xs={12} md={6}>
-                  <Input labelText="Full Name" />
-                </Flex>
                 <Flex behavior={FlexBehavior.item} xs={12}>
-                  <Textarea labelText="Message" />
-                  <Textarea labelText="Comments" />
-                  <Textarea labelText="Questions" />
-                  <Textarea labelText="Jokes" />
+                  <Input
+                    containerStyle={{ marginBottom: '24px' }}
+                    labelText="Email"
+                  />
+                  <Input
+                    containerStyle={{ marginBottom: '24px' }}
+                    labelText="Full Name"
+                  />
+                  <Textarea
+                    containerStyle={{ marginBottom: '24px' }}
+                    labelText="Message"
+                  />
+                  <Textarea
+                    containerStyle={{ marginBottom: '24px' }}
+                    labelText="Comments"
+                  />
+                  <Textarea
+                    containerStyle={{ marginBottom: '24px' }}
+                    labelText="Questions"
+                  />
+                  <Textarea
+                    containerStyle={{ marginBottom: '24px' }}
+                    labelText="Jokes"
+                  />
                 </Flex>
               </Flex>
             </AccordionPanel>
@@ -272,11 +286,13 @@ export const WithDropdown = {
             <AccordionButton>Shipping Address</AccordionButton>
             <AccordionPanel>
               <Flex behavior={FlexBehavior.container} spacing={2}>
-                <Flex behavior={FlexBehavior.item} xs={12} md={6}>
-                  <Input labelText="City" />
-                </Flex>
-                <Flex behavior={FlexBehavior.item} xs={12} md={6}>
+                <Flex behavior={FlexBehavior.item} xs={12}>
+                  <Input
+                    containerStyle={{ marginBottom: '24px' }}
+                    labelText="City"
+                  />
                   <Select
+                    containerStyle={{ marginBottom: '24px' }}
                     labelText="State"
                     items={[
                       { label: 'AL', value: 'al' },
@@ -292,9 +308,10 @@ export const WithDropdown = {
                       { label: 'WY', value: 'wy' },
                     ]}
                   />
-                </Flex>
-                <Flex behavior={FlexBehavior.item} xs={12}>
-                  <Textarea labelText="Additional Information" />
+                  <Textarea
+                    containerStyle={{ marginBottom: '24px' }}
+                    labelText="Additional Information"
+                  />
                 </Flex>
               </Flex>
             </AccordionPanel>
@@ -303,8 +320,9 @@ export const WithDropdown = {
             <AccordionButton>Random</AccordionButton>
             <AccordionPanel>
               <Flex behavior={FlexBehavior.container} spacing={2}>
-                <Flex behavior={FlexBehavior.item} xs={12} md={6}>
+                <Flex behavior={FlexBehavior.item} xs={12}>
                   <Combobox
+                    containerStyle={{ marginBottom: '24px' }}
                     isMulti
                     labelText="ComboBox Example"
                     defaultItems={[
@@ -313,24 +331,19 @@ export const WithDropdown = {
                       { label: 'Purple', value: 'purple' },
                     ]}
                   />
-                </Flex>
-                <Flex
-                  behavior={FlexBehavior.item}
-                  xs={12}
-                  md={6}
-                  style={{ marginTop: '28px' }}
-                >
-                  <Dropdown>
-                    <DropdownButton>Basic Dropdown</DropdownButton>
-                    <DropdownContent>
-                      <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-                      <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-                      <DropdownMenuItem>Menu item 3</DropdownMenuItem>
-                      <DropdownMenuItem>Menu item number 4</DropdownMenuItem>
-                      <DropdownMenuItem>Menu item number 5</DropdownMenuItem>
-                      <DropdownMenuItem>Menu item 5</DropdownMenuItem>
-                    </DropdownContent>
-                  </Dropdown>
+                  <div style={{ marginBottom: '24px' }}>
+                    <Dropdown>
+                      <DropdownButton>Basic Dropdown</DropdownButton>
+                      <DropdownContent>
+                        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+                        <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+                        <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+                        <DropdownMenuItem>Menu item number 4</DropdownMenuItem>
+                        <DropdownMenuItem>Menu item number 5</DropdownMenuItem>
+                        <DropdownMenuItem>Menu item 5</DropdownMenuItem>
+                      </DropdownContent>
+                    </Dropdown>
+                  </div>
                 </Flex>
               </Flex>
               <Modal

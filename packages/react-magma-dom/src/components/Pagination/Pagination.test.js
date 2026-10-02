@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { render, fireEvent } from '@testing-library/react';
-import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -20,7 +19,7 @@ describe('Pagination', () => {
     const { getByText } = render(<Pagination count={4} />);
     const button = getByText('2').parentElement;
 
-    expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+    expect(button).toHaveStyleRule('background', magma.colors.neutral0);
     expect(button).toHaveStyleRule('color', magma.colors.primary);
   });
 
@@ -28,7 +27,7 @@ describe('Pagination', () => {
     const { getByText } = render(<Pagination count={4} isInverse />);
     const button = getByText('2').parentElement;
 
-    expect(button).toHaveStyleRule('color', magma.colors.tertiary500);
+    expect(button).toHaveStyleRule('color', magma.colors.neutral0);
   });
 
   it('Should render a selected button with a primary background', () => {
@@ -36,27 +35,24 @@ describe('Pagination', () => {
     const button = getByText('1').parentElement;
 
     expect(button).toHaveStyleRule('background', magma.colors.primary);
-    expect(button).toHaveStyleRule('color', magma.colors.neutral100);
+    expect(button).toHaveStyleRule('color', magma.colors.neutral0);
   });
 
   it('Should render a selected inverse button with a tertiary background', () => {
     const { getByText } = render(<Pagination count={4} isInverse />);
     const button = getByText('1').parentElement;
 
-    expect(button).toHaveStyleRule('background', magma.colors.tertiary500);
-    expect(button).toHaveStyleRule('color', magma.colors.primary700);
+    expect(button).toHaveStyleRule('background', magma.colors.brand.skyBlue);
+    expect(button).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it('Should render a disabled pagination icon or text color', () => {
     const { getByLabelText } = render(<Pagination count={4} disabled />);
     const button = getByLabelText('Previous Page');
 
-    expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+    expect(button).toHaveStyleRule('background', magma.colors.neutral0);
 
-    expect(button).toHaveStyleRule(
-      'color',
-      transparentize(0.4, magma.colors.neutral500)
-    );
+    expect(button).toHaveStyleRule('color', magma.colors.neutral500);
   });
 
   it('Should render a disabled inverse icon color', () => {
@@ -65,10 +61,7 @@ describe('Pagination', () => {
     );
     const button = getByLabelText('Previous Page');
 
-    expect(button).toHaveStyleRule(
-      'color',
-      transparentize(0.7, magma.colors.neutral100)
-    );
+    expect(button).toHaveStyleRule('color', magma.colors.neutral600);
   });
 
   it('Should render a large variant of the pagination button', () => {
@@ -82,7 +75,7 @@ describe('Pagination', () => {
     const { getByText } = render(<Pagination count={4} />);
     const button = getByText('2').parentElement;
 
-    expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+    expect(button).toHaveStyleRule('background', magma.colors.neutral0);
 
     fireEvent.click(button);
 
@@ -93,28 +86,22 @@ describe('Pagination', () => {
     const { getByLabelText } = render(<Pagination count={4} defaultPage={2} />);
     const previousButton = getByLabelText('Previous Page');
 
-    expect(previousButton).toHaveStyleRule(
-      'background',
-      magma.colors.neutral100
-    );
+    expect(previousButton).toHaveStyleRule('background', magma.colors.neutral0);
 
     fireEvent.click(previousButton);
 
-    expect(previousButton).toHaveStyleRule(
-      'background',
-      magma.colors.neutral100
-    );
+    expect(previousButton).toHaveStyleRule('background', magma.colors.neutral0);
   });
 
   it('Should change the active page when clicking the next button', () => {
     const { getByLabelText } = render(<Pagination count={4} defaultPage={3} />);
     const nextButton = getByLabelText('Next Page');
 
-    expect(nextButton).toHaveStyleRule('background', magma.colors.neutral100);
+    expect(nextButton).toHaveStyleRule('background', magma.colors.neutral0);
 
     fireEvent.click(nextButton);
 
-    expect(nextButton).toHaveStyleRule('background', magma.colors.neutral100);
+    expect(nextButton).toHaveStyleRule('background', magma.colors.neutral0);
   });
 
   it('Should change the active page number', () => {

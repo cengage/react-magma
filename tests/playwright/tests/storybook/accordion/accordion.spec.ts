@@ -102,14 +102,10 @@ test.describe('Accordion', () => {
       .first();
 
     await expect(storyBookIframe.getByText(section1Text)).toBeVisible();
-    await expect(inverseContainer).toHaveCSS(
-      'background-color',
-      'rgba(0, 0, 0, 0)'
-    );
-    await expect(section1Button).toHaveCSS('color', 'rgb(69, 69, 69)');
+    await expect(section1Button).toHaveCSS('color', 'rgb(11, 31, 58)');
     await expect(storyBookIframe.getByText(section1Text)).toHaveCSS(
       'color',
-      'rgb(69, 69, 69)'
+      'rgb(11, 31, 58)'
     );
   });
 
@@ -274,7 +270,7 @@ test.describe('Accordion', () => {
     await expect(storyBookIframe.getByText(section1Text)).toBeVisible();
     await expect(inverseContainer).toHaveCSS(
       'background-color',
-      'rgb(41, 47, 124)'
+      'rgb(16, 24, 32)'
     );
     await expect(section1Button).toHaveCSS('color', 'rgb(255, 255, 255)');
     await expect(storyBookIframe.getByText(section1Text)).toHaveCSS(

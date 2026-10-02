@@ -4,6 +4,8 @@ import {
   ButtonColor,
   ButtonVariant,
   Card,
+  CardBorderRadius,
+  CardCornerTreatment,
   Flex,
   FlexAlignItems,
   FlexBehavior,
@@ -69,13 +71,47 @@ const StatusIcons = styled.div`
   }
 `;
 
+const PreviewIcon = ({
+  file,
+  isInverse,
+  theme,
+  thumbnails,
+}: {
+  file: FilePreview;
+  isInverse: boolean;
+  theme: ThemeInterface;
+  thumbnails: boolean;
+}) => {
+  if (file.errors) {
+    return (
+      <ErrorIcon
+        color={isInverse ? theme.colors.red500 : theme.colors.danger}
+        size={24}
+      />
+    );
+  }
+
+  if (
+    file.preview &&
+    thumbnails &&
+    file.type &&
+    file.type.startsWith('image')
+  ) {
+    return <Thumb role="img" file={file} />;
+  }
+
+  return <FileIcon isInverse={isInverse} file={file} />;
+};
+
 const IconStyles = {
   marginRight: '12px',
   display: 'flex',
 };
 
-const Errors = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.colors.neutral300};
+const Errors = styled.div<{ isInverse: boolean }>`
+  border-top: 1px solid
+    ${({ theme, isInverse }) =>
+      isInverse ? theme.colors.neutral500 : theme.colors.neutral300};
   padding: 16px;
   font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
   line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
@@ -104,10 +140,18 @@ const StyledCard = styled(Card)<{ file: FilePreview; isInverse: boolean }>`
   border-color: ${({ file, theme, isInverse }) =>
     file.errors
       ? isInverse
-        ? theme.colors.danger300
+        ? theme.colors.red500
         : theme.colors.danger
-      : theme.colors.neutral300};
+      : isInverse
+        ? theme.colors.neutral800
+        : theme.colors.neutral200};
   border-width: 1px;
+  color: ${({ file, theme, isInverse }) =>
+    isInverse
+      ? theme.colors.neutral0
+      : file.errors
+        ? theme.colors.neutral700
+        : theme.colors.brand.navy};
   margin: 10px 0;
 `;
 
@@ -141,6 +185,7 @@ const formatError = (
   const messageSuffix = Array.isArray(accept)
     ? `one of ${accept.join(', ')}`
     : accept;
+
   switch (error.code) {
     case 'file-too-large':
       return {
@@ -167,177 +212,175 @@ const formatError = (
   }
 };
 
-export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
-  // eslint-disable-next-line complexity
-  (props, ref) => {
-    const {
-      accept,
-      file,
-      isInverse: isInverseProp,
-      maxSize,
-      minSize,
-      onDeleteFile,
-      onRemoveFile,
-      testId,
-      thumbnails,
-      ...rest
-    } = props;
+export const Preview = forwardRef<
+  HTMLDivElement,
+  Omit<PreviewProps, 'children'>
+>((props, ref) => {
+  const {
+    accept,
+    file,
+    isInverse: isInverseProp,
+    maxSize,
+    minSize,
+    onDeleteFile,
+    onRemoveFile,
+    testId,
+    thumbnails,
+    ...rest
+  } = props;
 
-    const theme: ThemeInterface = useContext(ThemeContext);
-    const i18n: I18nInterface = React.useContext(I18nContext);
-    const isInverse = useIsInverse(isInverseProp);
-    const [actions, setActions] = useState(<CloseIcon />);
+  const theme: ThemeInterface = useContext(ThemeContext);
+  const i18n: I18nInterface = React.useContext(I18nContext);
+  const isInverse = useIsInverse(isInverseProp);
+  const [actions, setActions] = useState(<CloseIcon />);
 
-    const handleRemoveFile = () => {
-      onRemoveFile && typeof onRemoveFile === 'function' && onRemoveFile(file);
-    };
+  const handleRemoveFile = () => {
+    onRemoveFile && typeof onRemoveFile === 'function' && onRemoveFile(file);
+  };
 
-    const handleDeleteFile = () => {
-      onDeleteFile && typeof onDeleteFile === 'function' && onDeleteFile(file);
-    };
+  const handleDeleteFile = () => {
+    onDeleteFile && typeof onDeleteFile === 'function' && onDeleteFile(file);
+  };
 
-    const FinishedActions = ({ status = 'ready' }: { status?: string }) => {
-      const [done, setDone] = useState<boolean>(false);
-
-      useEffect(() => {
-        let mounted = true;
-        setTimeout(() => {
-          if (mounted) {
-            setDone(true);
-          }
-        }, 1000);
-        return () => {
-          mounted = false;
-        };
-      }, [status]);
-
-      if (status === 'error' || status === 'ready') {
-        return (
-          <StatusIcons>
-            <IconButton
-              onClick={handleRemoveFile}
-              variant={ButtonVariant.link}
-              color={ButtonColor.secondary}
-              aria-label={`${i18n.dropzone.removeFile} ${file.name}`}
-              icon={<CloseIcon />}
-            />
-          </StatusIcons>
-        );
-      }
-
-      if (status === 'pending') {
-        return (
-          <StatusIcons>
-            <Spinner
-              color={isInverse ? theme.colors.neutral100 : theme.colors.primary}
-            />
-          </StatusIcons>
-        );
-      }
-
-      return (
-        <StatusIcons>
-          <Transition isOpen={!done} unmountOnExit fade>
-            <CheckCircleIcon
-              color={isInverse ? theme.colors.success200 : theme.colors.success}
-              style={{ marginTop: '4px' }}
-            />
-          </Transition>
-          <Transition isOpen={done} unmountOnExit fade>
-            <IconButton
-              onClick={handleDeleteFile}
-              variant={ButtonVariant.link}
-              color={ButtonColor.secondary}
-              aria-label={`${i18n.dropzone.deleteFile} ${file.name}`}
-              icon={<DeleteIcon />}
-            />
-          </Transition>
-        </StatusIcons>
-      );
-    };
+  const FinishedActions = ({ status = 'ready' }: { status?: string }) => {
+    const [done, setDone] = useState<boolean>(false);
 
     useEffect(() => {
-      setActions(<FinishedActions status={file?.processor?.status} />);
-    }, [file?.processor?.status]);
+      let mounted = true;
+
+      setTimeout(() => {
+        if (mounted) {
+          setDone(true);
+        }
+      }, 1000);
+
+      return () => {
+        mounted = false;
+      };
+    }, [status]);
+
+    if (status === 'error' || status === 'ready') {
+      return (
+        <StatusIcons>
+          <IconButton
+            onClick={handleRemoveFile}
+            variant={ButtonVariant.link}
+            color={ButtonColor.subtle}
+            aria-label={`${i18n.dropzone.removeFile} ${file.name}`}
+            icon={<CloseIcon />}
+          />
+        </StatusIcons>
+      );
+    }
+
+    if (status === 'pending') {
+      return (
+        <StatusIcons>
+          <Spinner
+            color={
+              isInverse ? theme.colors.brand.skyBlue : theme.colors.primary
+            }
+          />
+        </StatusIcons>
+      );
+    }
 
     return (
-      <InverseContext.Provider value={{ isInverse }}>
-        <StyledCard
-          isInverse={isInverse}
-          theme={theme}
-          file={file}
-          data-testid={props.testId}
-          ref={ref}
-          role={file.errors ? 'alert' : ''}
-        >
-          <StyledFlex
-            theme={theme}
-            behavior={FlexBehavior.container}
-            alignItems={FlexAlignItems.center}
-            {...rest}
-          >
-            <Flex
-              behavior={FlexBehavior.item}
-              alignItems={FlexAlignItems.center}
-              style={IconStyles}
-            >
-              {file.errors ? (
-                <ErrorIcon
-                  color={
-                    isInverse ? theme.colors.danger300 : theme.colors.danger
-                  }
-                  size={24}
-                />
-              ) : file.preview &&
-                thumbnails &&
-                file.type &&
-                file.type.startsWith('image') ? (
-                <Thumb role="img" file={file} />
-              ) : (
-                <FileIcon isInverse={isInverse} file={file} />
-              )}
-            </Flex>
-            <FileName xs behavior={FlexBehavior.item} theme={theme}>
-              {file.name}
-            </FileName>
-            {file.processor && file.processor.status === 'pending' && (
-              <Flex
-                role="progressbar"
-                style={{ marginLeft: 'auto' }}
-                behavior={FlexBehavior.item}
-              >
-                {file.processor.percent}
-              </Flex>
-            )}
-            <Flex behavior={FlexBehavior.item}>{actions}</Flex>
-          </StyledFlex>
-          {file.errors && (
-            <Errors theme={theme}>
-              {file.errors.slice(0, 1).map(({ code, ...rest }) => {
-                const { header = '', message } = formatError(
-                  { code, ...rest, ...i18n.dropzone.errors[code] },
-                  { accept, minSize, maxSize },
-                  i18n.dropzone.bytes
-                );
-                return (
-                  <React.Fragment key={code}>
-                    <ErrorHeader
-                      style={{
-                        color: isInverse
-                          ? theme.colors.danger200
-                          : theme.colors.danger,
-                      }}
-                    >
-                      {header}
-                    </ErrorHeader>
-                    <ErrorMessage>{message}</ErrorMessage>
-                  </React.Fragment>
-                );
-              })}
-            </Errors>
-          )}
-        </StyledCard>
-      </InverseContext.Provider>
+      <StatusIcons>
+        <Transition isOpen={!done} unmountOnExit fade>
+          <CheckCircleIcon
+            color={isInverse ? theme.colors.green500 : theme.colors.success}
+            style={{ marginTop: '4px' }}
+          />
+        </Transition>
+        <Transition isOpen={done} unmountOnExit fade>
+          <IconButton
+            onClick={handleDeleteFile}
+            variant={ButtonVariant.link}
+            color={ButtonColor.subtle}
+            aria-label={`${i18n.dropzone.deleteFile} ${file.name}`}
+            icon={<DeleteIcon />}
+          />
+        </Transition>
+      </StatusIcons>
     );
-  }
-);
+  };
+
+  useEffect(() => {
+    setActions(<FinishedActions status={file?.processor?.status} />);
+  }, [file?.processor?.status]);
+
+  return (
+    <InverseContext.Provider value={{ isInverse }}>
+      <StyledCard
+        borderRadius={CardBorderRadius.small}
+        cornerTreatment={CardCornerTreatment.all}
+        isInverse={isInverse}
+        theme={theme}
+        file={file}
+        data-testid={props.testId}
+        ref={ref}
+        role={file.errors ? 'alert' : ''}
+      >
+        <StyledFlex
+          theme={theme}
+          behavior={FlexBehavior.container}
+          alignItems={FlexAlignItems.center}
+          {...rest}
+        >
+          <Flex
+            behavior={FlexBehavior.item}
+            alignItems={FlexAlignItems.center}
+            style={IconStyles}
+          >
+            <PreviewIcon
+              file={file}
+              isInverse={isInverse}
+              theme={theme}
+              thumbnails={thumbnails}
+            />
+          </Flex>
+          <FileName xs behavior={FlexBehavior.item} theme={theme}>
+            {file.name}
+          </FileName>
+          {file.processor && file.processor.status === 'pending' && (
+            <Flex
+              role="progressbar"
+              style={{ marginLeft: 'auto' }}
+              behavior={FlexBehavior.item}
+            >
+              {file.processor.percent}
+            </Flex>
+          )}
+          <Flex behavior={FlexBehavior.item}>{actions}</Flex>
+        </StyledFlex>
+        {file.errors && (
+          <Errors theme={theme} isInverse={isInverse}>
+            {file.errors.slice(0, 1).map(({ code, ...rest }) => {
+              const { header = '', message } = formatError(
+                { code, ...rest, ...i18n.dropzone.errors[code] },
+                { accept, minSize, maxSize },
+                i18n.dropzone.bytes
+              );
+
+              return (
+                <React.Fragment key={code}>
+                  <ErrorHeader
+                    style={{
+                      color: isInverse
+                        ? theme.colors.red500
+                        : theme.colors.danger,
+                    }}
+                  >
+                    {header}
+                  </ErrorHeader>
+                  <ErrorMessage>{message}</ErrorMessage>
+                </React.Fragment>
+              );
+            })}
+          </Errors>
+        )}
+      </StyledCard>
+    </InverseContext.Provider>
+  );
+});

@@ -199,7 +199,13 @@ Compose skeletons to mirror the layout of a real UI while it loads.
 ```tsx
 import React from 'react';
 
-import { Skeleton, SkeletonVariant, Card, CardBody } from 'react-magma-dom';
+import {
+  Skeleton,
+  SkeletonVariant,
+  Card,
+  CardBody,
+  magma,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -222,7 +228,13 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Skeleton, SkeletonVariant, Card, CardBody } from 'react-magma-dom';
+import {
+  Skeleton,
+  SkeletonVariant,
+  Card,
+  CardBody,
+  magma,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -263,7 +275,11 @@ import { Skeleton, SkeletonVariant, Card, CardBody } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse style={{ width: 360 }}>
+    <Card
+      background={magma.colors.neutral1100}
+      isInverse
+      style={{ width: 360 }}
+    >
       <CardBody>
         <div style={{ alignItems: 'center', display: 'flex', gap: 16 }}>
           <Skeleton

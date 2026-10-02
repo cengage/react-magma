@@ -227,8 +227,8 @@ describe('Tooltip', () => {
 
     const tooltip = container.querySelector('div[role="tooltip"]');
 
-    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral100);
-    expect(tooltip).toHaveStyleRule('color', magma.colors.neutral700);
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral0);
+    expect(tooltip).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it('should render the tooltip component with the correct styles for the inverse prop, positioned bottom', async () => {
@@ -245,8 +245,8 @@ describe('Tooltip', () => {
 
     const tooltip = container.querySelector('div[role="tooltip"]');
 
-    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral100);
-    expect(tooltip).toHaveStyleRule('color', magma.colors.neutral700);
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral0);
+    expect(tooltip).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it('should render the tooltip component with the correct styles for the inverse prop, positioned left', async () => {
@@ -263,8 +263,8 @@ describe('Tooltip', () => {
 
     const tooltip = container.querySelector('div[role="tooltip"]');
 
-    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral100);
-    expect(tooltip).toHaveStyleRule('color', magma.colors.neutral700);
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral0);
+    expect(tooltip).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it('should render the tooltip component with the correct styles for the inverse prop, positioned right', async () => {
@@ -281,8 +281,8 @@ describe('Tooltip', () => {
 
     const tooltip = container.querySelector('div[role="tooltip"]');
 
-    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral100);
-    expect(tooltip).toHaveStyleRule('color', magma.colors.neutral700);
+    expect(tooltip).toHaveStyleRule('background', magma.colors.neutral0);
+    expect(tooltip).toHaveStyleRule('color', magma.colors.brand.navy);
   });
 
   it('should throw an error if the tooltip children is more than one element', () => {

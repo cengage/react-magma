@@ -185,7 +185,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         }, 0);
       } else {
         setTimeout(() => {
-          menuRef.current.focus();
+          menuRef.current?.focus();
         }, 0);
       }
 
