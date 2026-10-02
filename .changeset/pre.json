@@ -10,6 +10,7 @@
     "playwright": "1.0.0"
   },
   "changesets": [
-    "rebrand-2026"
+    "rebrand-2026",
+    "update-landing-page-rebrand"
   ]
 }

@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0-v6-next.1
+
+### Patch Changes
+
+- 556392833: chore(react-magma-landing): update landing page with new rebrand style
+
 ## 6.0.0-v6-next.0
 
 ### Major Changes
