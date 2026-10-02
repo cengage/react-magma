@@ -6,7 +6,10 @@
     "@react-magma/dropzone": "15.0.0",
     "react-magma-dom": "6.0.0",
     "react-magma-docs": "5.4.0",
-    "react-magma-landing": "1.1.8"
+    "react-magma-landing": "1.1.8",
+    "playwright": "1.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "rebrand-2026"
+  ]
 }
