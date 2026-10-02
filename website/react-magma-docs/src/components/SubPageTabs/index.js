@@ -20,15 +20,16 @@ export const StyledTabHeading = styled.p`
   margin: 0;
   margin-top: 44px;
   color: ${props =>
-    props.isInverse ? magma.colors.neutral100 : magma.colors.neutral500};
-  font-weight: 500;
+    props.isInverse ? magma.colors.neutral100 : magma.colors.brand.navy};
+  font-weight: 600;
   padding: 12px 16px;
 `;
 
 // Side navigation
 export const StyledNavTabs = styled(NavTabs)`
+  flex: 1 1 auto;
+  min-height: 0;
   width: 240px;
-  max-height: calc(100vh - 150px);
   margin-right: 24px;
   align-items: stretch;
   overflow-y: auto;
@@ -42,7 +43,7 @@ export const StyledNavTabs = styled(NavTabs)`
   }
 
   > div ul > li::after {
-    width: 2px;
+    width: ${props => (props.isInverse ? '2px' : '3px')};
   }
 `;
 
@@ -56,14 +57,22 @@ export const StyledNavTab = styled(NavTab)`
 
   &&:not([aria-current='page']) {
     color: ${props =>
-      props.isInverse ? magma.colors.neutral100 : magma.colors.neutral700};
+      props.isInverse ? magma.colors.neutral100 : magma.colors.neutral800};
+  }
+
+  &&[aria-current='page'] {
+    color: ${magma.colors.brand.navy};
+    font-weight: 700;
   }
 `;
 
 export const StyledNavTabWrapper = styled.div`
   border-left: 1px solid
     ${props =>
-      props.isInverse ? magma.colors.primary400 : magma.colors.neutral300};
+      props.isInverse ? magma.colors.neutral800 : magma.colors.neutral200};
+  display: flex;
+  flex-direction: column;
+  max-height: 100%;
 `;
 
 const Wrapper = styled.div`

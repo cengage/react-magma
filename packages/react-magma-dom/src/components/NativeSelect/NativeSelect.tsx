@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { transparentize } from 'polished';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
@@ -11,17 +10,19 @@ import { descriptionSuffix, labelSuffix, useGenerateId } from '../../utils';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
+  getInputFormFieldColors,
 } from '../FormFieldContainer';
 import { inputBaseStyles, inputWrapperStyles } from '../InputBase';
 import { LabelPosition } from '../Label';
 import { DefaultDropdownIndicator } from '../Select/components';
 
-/**
- * @children required
- */
 export interface NativeSelectProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize'>,
     React.SelectHTMLAttributes<HTMLSelectElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Content above the select. For use with Icon Buttons to relay information.
    */
@@ -44,12 +45,12 @@ const StyledNativeSelectWrapper = styled.div<{
   svg {
     color: ${props =>
       props.isInverse && props.disabled
-        ? transparentize(0.6, props.theme.colors.neutral100)
+        ? props.theme.colors.neutral700
         : props.disabled
-          ? transparentize(0.4, props.theme.colors.neutral500)
+          ? props.theme.colors.neutral500
           : props.isInverse
-            ? props.theme.colors.neutral100
-            : props.theme.colors.neutral700};
+            ? props.theme.colors.neutral0
+            : props.theme.colors.brand.navy};
     margin: 0 ${props => props.theme.spaceScale.spacing03}
       0 -${props => props.theme.spaceScale.spacing08};
     pointer-events: none;
@@ -60,12 +61,13 @@ const StyledNativeSelectWrapper = styled.div<{
 function borderColors(props) {
   if (props.isInverse) {
     if (props.hasError) {
-      return props.theme.colors.danger300;
+      return props.theme.colors.red500;
     }
     if (props.disabled) {
-      return transparentize(0.85, props.theme.colors.neutral100);
+      return props.theme.colors.neutral900;
     }
-    return transparentize(0.5, props.theme.colors.neutral100);
+
+    return props.theme.colors.neutral700;
   }
   if (props.hasError) {
     return props.theme.colors.danger;
@@ -73,6 +75,7 @@ function borderColors(props) {
   if (props.disabled) {
     return props.theme.colors.neutral300;
   }
+
   return props.theme.colors.neutral500;
 }
 
@@ -167,6 +170,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
 
       // Skip disabled options
       let attempts = 0;
+
       do {
         index = (index + direction + total) % total;
         attempts++;
@@ -182,6 +186,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
 
     const nativeSelect = (
       <StyledFormFieldContainer
+        {...getInputFormFieldColors(theme, isInverse)}
         additionalContent={additionalContent}
         containerStyle={containerStyle}
         testId={testId && `${testId}-form-field-container`}
@@ -245,6 +250,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
           </StyledAdditionalContentWrapper>
         );
       }
+
       return props.children;
     }
 

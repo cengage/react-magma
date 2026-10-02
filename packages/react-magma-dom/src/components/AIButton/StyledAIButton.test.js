@@ -76,7 +76,7 @@ describe('Styled AI Button', () => {
           'border-color',
           `linear-gradient(268deg, ${magma.colors.aiColors.variantA.right} 0%, ${magma.colors.aiColors.variantA.left} 100%)`
         );
-        expect(button).toHaveStyleRule('color', magma.colors.neutral100);
+        expect(button).toHaveStyleRule('color', magma.colors.neutral0);
       });
 
       it('variant B', () => {
@@ -99,7 +99,7 @@ describe('Styled AI Button', () => {
           'border-color',
           `linear-gradient(268deg, ${magma.colors.aiColors.variantB.right} 0%, ${magma.colors.aiColors.variantB.left} 100%)`
         );
-        expect(button).toHaveStyleRule('color', magma.colors.neutral100);
+        expect(button).toHaveStyleRule('color', magma.colors.neutral0);
       });
     });
 
@@ -125,7 +125,7 @@ describe('Styled AI Button', () => {
           'border-color',
           `linear-gradient(268deg, ${magma.colors.aiColors.variantA.right} 0%, ${magma.colors.aiColors.variantA.left} 100%)`
         );
-        expect(button).toHaveStyleRule('color', magma.colors.neutral100);
+        expect(button).toHaveStyleRule('color', magma.colors.neutral0);
       });
 
       it('variant B', () => {
@@ -149,7 +149,7 @@ describe('Styled AI Button', () => {
           'border-color',
           `linear-gradient(268deg, ${magma.colors.aiColors.variantB.right} 0%, ${magma.colors.aiColors.variantB.left} 100%)`
         );
-        expect(button).toHaveStyleRule('color', magma.colors.neutral100);
+        expect(button).toHaveStyleRule('color', magma.colors.neutral0);
       });
     });
 
@@ -368,7 +368,7 @@ describe('Styled AI Button', () => {
       'border-color',
       `linear-gradient(268deg, ${rightColor} 0%, ${leftColor} 100%)`
     );
-    expect(button).toHaveStyleRule('color', magma.colors.neutral100);
+    expect(button).toHaveStyleRule('color', magma.colors.neutral0);
   });
 
   it('should work correctly with isAnimated=true', () => {

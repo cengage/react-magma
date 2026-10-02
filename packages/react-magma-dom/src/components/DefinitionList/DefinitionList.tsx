@@ -19,8 +19,8 @@ const StyledDefinitionList = styled(TypographyComponent)<any>`
   padding: 0;
   color: ${(props: DefinitionListProps) =>
     props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   line-height: ${(props: DefinitionListProps) =>
     props.theme.typeScale.size03.lineHeight};
   font-size: ${(props: DefinitionListProps) =>

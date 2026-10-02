@@ -52,7 +52,9 @@ export {
 export {
   Card,
   CardAlignment,
+  CardBorderRadius,
   CardCalloutType,
+  CardCornerTreatment,
   CardProps,
 } from './components/Card';
 export { CardBody } from './components/Card/CardBody';

@@ -38,7 +38,7 @@ export const Inverse = {
 
   decorators: [
     Story => (
-      <Card background={magma.colors.primary600} isInverse>
+      <Card background={magma.colors.neutral1100} isInverse>
         <CardBody>
           <Story />
         </CardBody>

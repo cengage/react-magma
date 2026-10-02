@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   pathPrefix: process.env.PATH_PREFIX || '/',
   siteMetadata: {
-    title: 'React Magma Docs',
+    title: 'Magma Docs',
   },
   flags: {
     FAST_DEV: true,
@@ -83,8 +83,8 @@ module.exports = {
         name: 'gatsby-starter-default',
         short_name: 'starter',
         start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
+        background_color: '#0B1F3A',
+        theme_color: '#0B1F3A',
         display: 'minimal-ui',
         icon: 'src/images/react-magma-icon.svg', // This path is relative to the root of the site.
       },

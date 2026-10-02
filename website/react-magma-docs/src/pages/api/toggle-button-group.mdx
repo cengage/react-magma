@@ -357,11 +357,23 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Container, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import {
+  Container,
+  ToggleButton,
+  ToggleButtonGroup,
+  magma,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Container isInverse style={{ padding: '12px' }}>
+    <Container
+      isInverse
+      style={{
+        background: magma.colors.neutral1100,
+        borderRadius: '8px',
+        padding: '12px',
+      }}
+    >
       <ToggleButtonGroup isInverse>
         <ToggleButton value="1">Toggle 1</ToggleButton>
         <ToggleButton value="2">Toggle 2</ToggleButton>

@@ -90,8 +90,8 @@ const StyledTableHeaderCell = styled.th<{
       ? {}
       : {
           background: props.isInverse
-            ? transparentize(0.93, props.theme.colors.neutral100)
-            : props.theme.colors.neutral200,
+            ? props.theme.colors.neutral1000
+            : props.theme.colors.neutral150,
           borderBottom: '2px solid',
           fontWeight: 'bold',
           verticalAlign: 'bottom',
@@ -100,7 +100,14 @@ const StyledTableHeaderCell = styled.th<{
 
   ${baseTableCellStyle}
 
-   &:first-child {
+  font-size: ${props =>
+    props.isRowHeader ? 'inherit' : props.theme.typeScale.size02.fontSize};
+  max-width: ${props => (props.isRowHeader ? 'none' : props.width || '0')};
+  overflow: ${props => (props.isRowHeader ? 'visible' : 'hidden')};
+  text-overflow: ${props => (props.isRowHeader ? 'clip' : 'ellipsis')};
+  white-space: ${props => (props.isRowHeader ? 'normal' : 'nowrap')};
+
+  &:first-child {
     border-radius: ${props =>
       props.hasSquareCorners ? '0' : `${props.theme.borderRadius} 0 0 0`};
   }
@@ -132,12 +139,15 @@ const SortButton = styled.button<{
   border: 0;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   display: flex;
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
   justify-content: ${props =>
     props.textAlign === TableCellAlign.right ? 'flex-end' : 'flex-start'};
   margin: 0;
+  min-width: 0;
+  overflow: hidden;
   padding: ${props => buildCellPaddingStyle(props.density, props.theme)};
   text-align: left;
   width: 100%;
@@ -147,13 +157,13 @@ const SortButton = styled.button<{
     cursor: pointer;
     background: ${props =>
       props.isInverse
-        ? transparentize(0.85, props.theme.colors.neutral100)
+        ? transparentize(0.85, props.theme.colors.neutral0)
         : transparentize(0.93, props.theme.colors.neutral900)};
 
     svg {
       fill: ${props =>
         props.isInverse
-          ? props.theme.colors.neutral100
+          ? props.theme.colors.neutral0
           : props.theme.colors.neutral700};
     }
   }
@@ -168,7 +178,15 @@ const SortButton = styled.button<{
   }
 `;
 
+const HeaderText = styled.span`
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
 const IconWrapper = styled.span`
+  flex-shrink: 0;
   padding-left: ${props => props.theme.spaceScale.spacing03};
   position: relative;
   top: ${props => props.theme.spaceScale.spacing02};
@@ -240,7 +258,7 @@ export const TableHeaderCell = React.forwardRef<
           textAlign={align || TableCellAlign.left}
           theme={theme}
         >
-          <span>{children}</span>
+          <HeaderText>{children}</HeaderText>
           <IconWrapper theme={theme}>{SortIcon}</IconWrapper>
         </SortButton>
       ) : (

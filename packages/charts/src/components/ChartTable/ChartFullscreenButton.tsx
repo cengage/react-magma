@@ -1,6 +1,11 @@
 import * as React from 'react';
 
-import { ButtonVariant, IconButton, Tooltip } from 'react-magma-dom';
+import {
+  ButtonColor,
+  ButtonVariant,
+  IconButton,
+  Tooltip,
+} from 'react-magma-dom';
 
 import { useChartToolbarI18n } from './chartToolbarI18n';
 
@@ -48,6 +53,7 @@ export function ChartFullscreenButton({
     <Tooltip content={resolvedTooltip} isInverse={isInverse}>
       <IconButton
         aria-label={ariaLabel}
+        color={ButtonColor.subtle}
         icon={resolvedIcon}
         isInverse={isInverse}
         onClick={onClick}

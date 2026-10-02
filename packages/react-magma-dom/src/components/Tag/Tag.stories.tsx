@@ -1,18 +1,30 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import styled from '@emotion/styled';
+import { StoryFn, Meta } from '@storybook/react-webpack5';
 import { AccountCircleIcon } from 'react-magma-icons';
 
+import { magma } from '../../theme/magma';
 import { Button } from '../Button';
 import { Card, CardBody } from '../Card';
 
 import { Tag, TagColor, TagProps, TagSize } from '.';
+
+const ExampleRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${magma.spaceScale.spacing05};
+  margin-bottom: ${magma.spaceScale.spacing05};
+`;
 
 const dataVizTagColors = [
   { color: TagColor.blue, label: 'Blue' },
   { color: TagColor.teal, label: 'Teal' },
   { color: TagColor.pink, label: 'Pink' },
   { color: TagColor.purple, label: 'Purple' },
+  { color: TagColor.tangerine, label: 'Tangerine' },
+  { color: TagColor.indigo, label: 'Indigo' },
+  { color: TagColor.violet, label: 'Violet' },
 ];
 
 const tagColorExamples = [
@@ -20,17 +32,11 @@ const tagColorExamples = [
   ...dataVizTagColors,
 ];
 
-const tagGroupStyles: React.CSSProperties = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  gap: '8px',
-};
-
 const Template: StoryFn<TagProps> = args => {
   return (
     <Card isInverse={args.isInverse}>
       <CardBody>
-        <p style={tagGroupStyles}>
+        <ExampleRow>
           <Tag {...args}>Default</Tag>
           <Tag {...args} color={TagColor.highContrast}>
             High Contrast
@@ -38,15 +44,15 @@ const Template: StoryFn<TagProps> = args => {
           <Tag {...args} color={TagColor.lowContrast}>
             Low Contrast
           </Tag>
-        </p>
-        <p style={tagGroupStyles}>
+        </ExampleRow>
+        <ExampleRow>
           {tagColorExamples.map(({ color, label }) => (
             <Tag {...args} color={color} key={color}>
               {label}
             </Tag>
           ))}
-        </p>
-        <p style={tagGroupStyles}>
+        </ExampleRow>
+        <ExampleRow>
           <Tag {...args} icon={<AccountCircleIcon />}>
             Default Icon
           </Tag>
@@ -67,8 +73,8 @@ const Template: StoryFn<TagProps> = args => {
           >
             Low Contrast Icon
           </Tag>
-        </p>
-        <p style={tagGroupStyles}>
+        </ExampleRow>
+        <ExampleRow>
           {dataVizTagColors.map(({ color, label }) => (
             <Tag
               {...args}
@@ -79,8 +85,8 @@ const Template: StoryFn<TagProps> = args => {
               {label} Icon
             </Tag>
           ))}
-        </p>
-        <p style={tagGroupStyles}>
+        </ExampleRow>
+        <ExampleRow>
           <Tag {...args} size={TagSize.small}>
             Default Small
           </Tag>
@@ -93,15 +99,15 @@ const Template: StoryFn<TagProps> = args => {
           <Tag {...args} size={TagSize.small} color={TagColor.lowContrast}>
             Low Contrast Small
           </Tag>
-        </p>
-        <p style={tagGroupStyles}>
+        </ExampleRow>
+        <ExampleRow>
           {dataVizTagColors.map(({ color, label }) => (
             <Tag {...args} color={color} key={color} size={TagSize.small}>
               {label} Small
             </Tag>
           ))}
-        </p>
-        <p style={tagGroupStyles}>
+        </ExampleRow>
+        <ExampleRow>
           <Tag {...args} icon={<AccountCircleIcon />} size={TagSize.small}>
             Default Small Icon
           </Tag>
@@ -129,8 +135,8 @@ const Template: StoryFn<TagProps> = args => {
           >
             Low Contrast Small Icon
           </Tag>
-        </p>
-        <p style={tagGroupStyles}>
+        </ExampleRow>
+        <ExampleRow>
           <Tag
             size={args.size}
             color={args.color}
@@ -153,8 +159,8 @@ const Template: StoryFn<TagProps> = args => {
           >
             Deletetable
           </Tag>
-        </p>
-        <p style={tagGroupStyles}>
+        </ExampleRow>
+        <ExampleRow>
           {dataVizTagColors.map(({ color, label }) => (
             <Tag
               color={color}
@@ -169,8 +175,8 @@ const Template: StoryFn<TagProps> = args => {
               {label} Deletable
             </Tag>
           ))}
-        </p>
-        <p style={tagGroupStyles}>
+        </ExampleRow>
+        <ExampleRow>
           {dataVizTagColors.map(({ color, label }) => (
             <Tag
               color={color}
@@ -185,7 +191,7 @@ const Template: StoryFn<TagProps> = args => {
               {label} Small Deletable
             </Tag>
           ))}
-        </p>
+        </ExampleRow>
       </CardBody>
     </Card>
   );
@@ -196,16 +202,12 @@ export default {
   component: Tag,
   argTypes: {
     size: {
-      control: {
-        type: 'select',
-        options: TagSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(TagSize),
     },
     color: {
-      control: {
-        type: 'select',
-        options: TagColor,
-      },
+      control: { type: 'select' },
+      options: Object.values(TagColor),
     },
     disabled: {
       control: {
@@ -232,9 +234,11 @@ export const Default = {
 export const OnClick = {
   render: args => {
     const [counter, setCounter] = React.useState<number>(0);
+
     function updateCounter() {
       setCounter(count => count + 1);
     }
+
     return (
       <Card isInverse={args.isInverse}>
         <CardBody>

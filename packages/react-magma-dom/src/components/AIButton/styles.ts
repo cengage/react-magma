@@ -80,7 +80,7 @@ export function buildAIButtonBackground(initialProps) {
 
   if (props.disabled) {
     if (props.isInverse) {
-      return transparentize(0.7, props.theme.colors.neutral100);
+      return transparentize(0.7, props.theme.colors.neutral0);
     }
 
     return props.theme.colors.neutral300;
@@ -115,12 +115,12 @@ export function buildAIColor(initialProps) {
 
   if (props.disabled) {
     if (props.isInverse) {
-      return transparentize(0.6, props.theme.colors.neutral100);
+      return transparentize(0.6, props.theme.colors.neutral0);
     }
     return transparentize(0.4, props.theme.colors.neutral500);
   }
 
-  return props.theme.colors.neutral100;
+  return props.theme.colors.neutral0;
 }
 
 export function buildAIFocusBackground(initialProps) {
@@ -137,7 +137,7 @@ export function buildAIFocusBackground(initialProps) {
 export function buildAIFocusColor(initialProps) {
   const props = buildPropsWithDefaultAIButtonStyles(initialProps);
 
-  return props.theme.colors.neutral100;
+  return props.theme.colors.neutral0;
 }
 
 export function buildAIActiveBackground(initialProps) {
@@ -153,13 +153,13 @@ export function buildAIActiveBackground(initialProps) {
 export function buildAIActiveColor(initialProps) {
   const props = buildPropsWithDefaultAIButtonStyles(initialProps);
 
-  return props.theme.colors.neutral100;
+  return props.theme.colors.neutral0;
 }
 
 export function buildBoxShadow(props) {
   if (!props.disabled) {
     return props.isInverse
       ? `0 2px 6px 0 ${transparentize(0.82, props.theme.colors.neutral900)}`
-      : `0 1px 6px ${transparentize(0.5, props.theme.colors.primary400)}`;
+      : `0 1px 6px ${transparentize(0.5, props.theme.colors.indigo400)}`;
   }
 }
