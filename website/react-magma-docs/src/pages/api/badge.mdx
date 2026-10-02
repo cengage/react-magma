@@ -266,7 +266,13 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Badge, BadgeColor, BadgeWeight, Container } from 'react-magma-dom';
+import {
+  Badge,
+  BadgeColor,
+  BadgeWeight,
+  Container,
+  magma,
+} from 'react-magma-dom';
 
 export function Example() {
   const badgeRowStyles: React.CSSProperties = {
@@ -280,7 +286,14 @@ export function Example() {
   };
 
   return (
-    <Container isInverse style={{ padding: '12px' }}>
+    <Container
+      isInverse
+      style={{
+        background: magma.colors.neutral1100,
+        borderRadius: '8px',
+        padding: '12px',
+      }}
+    >
       <div style={badgeRowStyles}>
         <Badge color={BadgeColor.primary} isInverse style={badgeStyles}>
           Primary

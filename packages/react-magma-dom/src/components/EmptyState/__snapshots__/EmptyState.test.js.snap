@@ -17,7 +17,7 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
@@ -55,9 +55,9 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #FDEFEE;
+  background: #FFE9EC;
   border-radius: 50%;
-  color: #D32821;
+  color: #C60034;
 }
 
 .emotion-4 svg {
@@ -67,9 +67,9 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 
 .emotion-6 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -77,7 +77,7 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 }
 
 .emotion-6:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -91,9 +91,8 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 }
 
 .emotion-8 {
-  color: #454545;
-  color: #707070;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #0B1F3A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
@@ -131,9 +130,9 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -144,7 +143,7 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -162,29 +161,33 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-12:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-12:not(:disabled):hover,
+.emotion-12:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-12:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-12:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -232,7 +235,7 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
@@ -270,9 +273,9 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #FDEFEE;
+  background: #FFE9EC;
   border-radius: 50%;
-  color: #D32821;
+  color: #C60034;
 }
 
 .emotion-4 svg {
@@ -282,9 +285,9 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 
 .emotion-6 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -292,7 +295,7 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 }
 
 .emotion-6:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -306,9 +309,8 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 }
 
 .emotion-8 {
-  color: #454545;
-  color: #707070;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #0B1F3A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
@@ -346,9 +348,9 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -359,7 +361,7 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -377,29 +379,33 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-12:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-12:not(:disabled):hover,
+.emotion-12:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-12:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-12:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -459,13 +465,14 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
       </div>
       <h3
         class="emotion-6 emotion-7"
-        style="color: rgb(69, 69, 69);"
+        style="color: rgb(11, 31, 58);"
       >
         Error occurred
       </h3>
       <p
         class="emotion-8 emotion-7"
-        color="subdued"
+        color="default"
+        style="color: rgb(61, 74, 96);"
       >
         Something went wrong
       </p>
@@ -507,7 +514,7 @@ exports[`EmptyState Graphic should render graphic without circular container 1`]
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
@@ -529,9 +536,9 @@ exports[`EmptyState Graphic should render graphic without circular container 1`]
 
 .emotion-4 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -539,7 +546,7 @@ exports[`EmptyState Graphic should render graphic without circular container 1`]
 }
 
 .emotion-4:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -568,7 +575,7 @@ exports[`EmptyState Graphic should render graphic without circular container 1`]
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
@@ -590,9 +597,9 @@ exports[`EmptyState Graphic should render graphic without circular container 1`]
 
 .emotion-4 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -600,7 +607,7 @@ exports[`EmptyState Graphic should render graphic without circular container 1`]
 }
 
 .emotion-4:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -630,7 +637,7 @@ exports[`EmptyState Graphic should render graphic without circular container 1`]
       </div>
       <h3
         class="emotion-4 emotion-5"
-        style="color: rgb(69, 69, 69);"
+        style="color: rgb(11, 31, 58);"
       >
         Test
       </h3>
@@ -656,7 +663,7 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
@@ -694,9 +701,9 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #7F1714;
+  background: #EB3A59;
   border-radius: 50%;
-  color: #FFFFFF;
+  color: #330008;
 }
 
 .emotion-4 svg {
@@ -706,7 +713,7 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
 
 .emotion-6 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
   color: #FFFFFF;
   font-size: 18px;
@@ -716,7 +723,7 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
 }
 
 .emotion-6:focus {
-  border-bottom: 2px solid #A6DEFF;
+  border-bottom: 2px solid #5EA4E1;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -731,7 +738,7 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
 
 .emotion-8 {
   color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
@@ -761,7 +768,7 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
@@ -799,9 +806,9 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #7F1714;
+  background: #EB3A59;
   border-radius: 50%;
-  color: #FFFFFF;
+  color: #330008;
 }
 
 .emotion-4 svg {
@@ -811,7 +818,7 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
 
 .emotion-6 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
   color: #FFFFFF;
   font-size: 18px;
@@ -821,7 +828,7 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
 }
 
 .emotion-6:focus {
-  border-bottom: 2px solid #A6DEFF;
+  border-bottom: 2px solid #5EA4E1;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -836,7 +843,7 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
 
 .emotion-8 {
   color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
@@ -885,6 +892,7 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
       <p
         class="emotion-8 emotion-7"
         color="default"
+        style="color: rgb(139, 153, 170);"
       >
         Something went wrong
       </p>
@@ -910,7 +918,7 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
@@ -948,9 +956,9 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #3942B0;
+  background: #00B8D9;
   border-radius: 50%;
-  color: #FFFFFF;
+  color: #0B1F3A;
 }
 
 .emotion-4 svg {
@@ -960,7 +968,7 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
 
 .emotion-6 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
   color: #FFFFFF;
   font-size: 18px;
@@ -970,7 +978,7 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
 }
 
 .emotion-6:focus {
-  border-bottom: 2px solid #A6DEFF;
+  border-bottom: 2px solid #5EA4E1;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -985,7 +993,7 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
 
 .emotion-8 {
   color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
@@ -1015,7 +1023,7 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
@@ -1053,9 +1061,9 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #3942B0;
+  background: #00B8D9;
   border-radius: 50%;
-  color: #FFFFFF;
+  color: #0B1F3A;
 }
 
 .emotion-4 svg {
@@ -1065,7 +1073,7 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
 
 .emotion-6 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
   color: #FFFFFF;
   font-size: 18px;
@@ -1075,7 +1083,7 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
 }
 
 .emotion-6:focus {
-  border-bottom: 2px solid #A6DEFF;
+  border-bottom: 2px solid #5EA4E1;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -1090,7 +1098,7 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
 
 .emotion-8 {
   color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
@@ -1139,6 +1147,7 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
       <p
         class="emotion-8 emotion-7"
         color="default"
+        style="color: rgb(139, 153, 170);"
       >
         Try another search
       </p>
@@ -1164,14 +1173,14 @@ exports[`EmptyState Loading state should render loading spinner when isLoading i
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
 .emotion-2 {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
-  border: 2px solid #3942B0;
+  border: 2px solid #0B1F3A;
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -1195,14 +1204,14 @@ exports[`EmptyState Loading state should render loading spinner when isLoading i
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
 .emotion-2 {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
-  border: 2px solid #3942B0;
+  border: 2px solid #0B1F3A;
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -1217,7 +1226,7 @@ exports[`EmptyState Loading state should render loading spinner when isLoading i
     <span
       aria-label="Loading"
       class="emotion-2 emotion-3"
-      color="#3942B0"
+      color="#0B1F3A"
       role="img"
     />
   </div>
@@ -1241,14 +1250,14 @@ exports[`EmptyState Loading state should render loading spinner with danger colo
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
 .emotion-2 {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
-  border: 2px solid #D32821;
+  border: 2px solid #C60034;
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -1272,14 +1281,14 @@ exports[`EmptyState Loading state should render loading spinner with danger colo
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
 .emotion-2 {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
-  border: 2px solid #D32821;
+  border: 2px solid #C60034;
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -1294,7 +1303,7 @@ exports[`EmptyState Loading state should render loading spinner with danger colo
     <span
       aria-label="Loading"
       class="emotion-2 emotion-3"
-      color="#D32821"
+      color="#C60034"
       role="img"
     />
   </div>
@@ -1318,14 +1327,14 @@ exports[`EmptyState Loading state should render loading spinner with inverse col
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
 .emotion-2 {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #0B1F3A;
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -1349,14 +1358,14 @@ exports[`EmptyState Loading state should render loading spinner with inverse col
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
 .emotion-2 {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #0B1F3A;
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -1371,7 +1380,7 @@ exports[`EmptyState Loading state should render loading spinner with inverse col
     <span
       aria-label="Loading"
       class="emotion-2 emotion-3"
-      color="#FFFFFF"
+      color="#0B1F3A"
       role="img"
     />
   </div>
@@ -1395,7 +1404,7 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
@@ -1417,9 +1426,9 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
 
 .emotion-4 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -1427,7 +1436,7 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
 }
 
 .emotion-4:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -1441,9 +1450,8 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
 }
 
 .emotion-6 {
-  color: #454545;
-  color: #707070;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #0B1F3A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
@@ -1481,9 +1489,9 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -1494,7 +1502,7 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -1512,29 +1520,33 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-10:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-10:not(:disabled):hover,
+.emotion-10:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-10:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-10:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -1582,7 +1594,7 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
@@ -1604,9 +1616,9 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
 
 .emotion-4 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -1614,7 +1626,7 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
 }
 
 .emotion-4:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -1628,9 +1640,8 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
 }
 
 .emotion-6 {
-  color: #454545;
-  color: #707070;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  color: #0B1F3A;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-weight: normal;
   font-size: 16px;
   line-height: 24px;
@@ -1668,9 +1679,9 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -1681,7 +1692,7 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -1699,29 +1710,33 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-10:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-10:not(:disabled):hover,
+.emotion-10:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-10:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-10:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -1762,13 +1777,14 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
     >
       <h3
         class="emotion-4 emotion-5"
-        style="color: rgb(69, 69, 69);"
+        style="color: rgb(11, 31, 58);"
       >
         No results
       </h3>
       <p
         class="emotion-6 emotion-5"
-        color="subdued"
+        color="default"
+        style="color: rgb(61, 74, 96);"
       >
         Try a different search
       </p>
@@ -1815,7 +1831,7 @@ exports[`EmptyState should render icon in circular container 1`] = `
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
@@ -1853,9 +1869,9 @@ exports[`EmptyState should render icon in circular container 1`] = `
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #E8E9F8;
+  background: #DEE5EE;
   border-radius: 50%;
-  color: #3942B0;
+  color: #0B1F3A;
 }
 
 .emotion-4 svg {
@@ -1865,9 +1881,9 @@ exports[`EmptyState should render icon in circular container 1`] = `
 
 .emotion-6 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -1875,7 +1891,7 @@ exports[`EmptyState should render icon in circular container 1`] = `
 }
 
 .emotion-6:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -1904,7 +1920,7 @@ exports[`EmptyState should render icon in circular container 1`] = `
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   text-align: center;
 }
 
@@ -1942,9 +1958,9 @@ exports[`EmptyState should render icon in circular container 1`] = `
   flex-shrink: 0;
   width: 48px;
   height: 48px;
-  background: #E8E9F8;
+  background: #DEE5EE;
   border-radius: 50%;
-  color: #3942B0;
+  color: #0B1F3A;
 }
 
 .emotion-4 svg {
@@ -1954,9 +1970,9 @@ exports[`EmptyState should render icon in circular container 1`] = `
 
 .emotion-6 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -1964,7 +1980,7 @@ exports[`EmptyState should render icon in circular container 1`] = `
 }
 
 .emotion-6:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -2005,7 +2021,7 @@ exports[`EmptyState should render icon in circular container 1`] = `
       </div>
       <h3
         class="emotion-6 emotion-7"
-        style="color: rgb(69, 69, 69);"
+        style="color: rgb(11, 31, 58);"
       >
         Test
       </h3>

@@ -78,6 +78,52 @@ describe('Toggle', () => {
     const label = getByText(testLabel);
 
     expect(label).toBeInTheDocument();
+    expect(label.parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
+  });
+
+  it('should render an unchecked toggle with the regular colors', () => {
+    const { getByTestId } = render(<Toggle labelText="test label" />);
+    const track = getByTestId('toggle-track');
+
+    expect(track).toHaveStyleRule('background', magma.colors.neutral200);
+    expect(track).toHaveStyleRule(
+      'border',
+      `2px solid ${magma.colors.neutral700}`
+    );
+    expect(track.lastElementChild).toHaveStyleRule(
+      'background',
+      magma.colors.neutral700
+    );
+    expect(track).toHaveStyleRule('height', '28px');
+    expect(track).toHaveStyleRule('border-radius', '9999px');
+    expect(track.lastElementChild).toHaveStyleRule('left', '2px');
+    expect(getByTestId('toggle-state-icon')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral200
+    );
+    expect(getByTestId('toggle-state-icon').querySelector('svg')).toBeVisible();
+  });
+
+  it('should render an unchecked inverse toggle with the inverse colors', () => {
+    const { getByTestId } = render(<Toggle isInverse labelText="test label" />);
+    const track = getByTestId('toggle-track');
+
+    expect(track).toHaveStyleRule('background', magma.colors.neutral1000);
+    expect(track).toHaveStyleRule(
+      'border',
+      `2px solid ${magma.colors.neutral400}`
+    );
+    expect(track.lastElementChild).toHaveStyleRule(
+      'background',
+      magma.colors.neutral400
+    );
+    expect(getByTestId('toggle-state-icon')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral1000
+    );
   });
 
   it('should render a toggle with desired attributes', () => {
@@ -104,9 +150,36 @@ describe('Toggle', () => {
     const track = getByTestId('toggle-track');
 
     expect(toggle).toHaveAttribute('checked');
+    expect(track).toHaveStyleRule('background', magma.colors.green600);
     expect(track).toHaveStyleRule(
       'border',
-      `2px solid ${magma.colors.success}`
+      `2px solid ${magma.colors.green600}`
+    );
+    expect(track.lastElementChild).toHaveStyleRule('left', '22px');
+    expect(getByTestId('toggle-state-icon')).toHaveStyleRule(
+      'color',
+      magma.colors.green600
+    );
+  });
+
+  it('should render a checked inverse toggle with the inverse colors', () => {
+    const { getByTestId } = render(
+      <Toggle checked isInverse labelText="test label" />
+    );
+    const track = getByTestId('toggle-track');
+
+    expect(track).toHaveStyleRule('background', magma.colors.green400);
+    expect(track).toHaveStyleRule(
+      'border',
+      `2px solid ${magma.colors.green400}`
+    );
+    expect(track.lastElementChild).toHaveStyleRule(
+      'background',
+      magma.colors.green900
+    );
+    expect(getByTestId('toggle-state-icon')).toHaveStyleRule(
+      'color',
+      magma.colors.green400
     );
   });
 
@@ -122,6 +195,7 @@ describe('Toggle', () => {
     const error = getByText(errorMessage);
 
     expect(toggle).toHaveAttribute('aria-describedby', 'testId__desc');
+    expect(track).toHaveStyleRule('background', magma.colors.neutral300);
     expect(track).toHaveStyleRule('border', `2px solid ${magma.colors.danger}`);
 
     expect(error).toBeInTheDocument();
@@ -148,18 +222,24 @@ describe('Toggle', () => {
     const testLabel = 'test label';
     const errorMessage = 'test error';
 
-    const { getByTestId } = render(
+    const { getByLabelText, getByTestId, getByText } = render(
       <Toggle errorMessage={errorMessage} labelText={testLabel} isInverse />
     );
     const track = getByTestId('toggle-track');
 
-    expect(track).toHaveStyleRule(
-      'border',
-      `2px solid ${magma.colors.danger200}`
-    );
+    expect(track).toHaveStyleRule('background', magma.colors.neutral900);
+    expect(track).toHaveStyleRule('border', `2px solid ${magma.colors.red500}`);
     expect(track).toHaveStyleRule(
       'box-shadow',
-      `0 0 0 1px ${magma.colors.neutral100}`
+      `0 0 0 1px ${magma.colors.neutral0}`
+    );
+    expect(getByText(errorMessage).parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.red500
+    );
+    expect(getByLabelText('Error').querySelector('svg')).toHaveAttribute(
+      'fill',
+      magma.colors.red500
     );
   });
 
@@ -219,6 +299,71 @@ describe('Toggle', () => {
     const toggle = getByLabelText(testLabel);
 
     expect(toggle).toBeDisabled();
+  });
+
+  it.each([
+    [
+      false,
+      'transparent',
+      magma.colors.neutral300,
+      magma.colors.neutral100,
+      magma.colors.neutral300,
+    ],
+    [
+      true,
+      magma.colors.neutral300,
+      magma.colors.neutral300,
+      magma.colors.neutral300,
+      magma.colors.neutral0,
+    ],
+  ])(
+    'should render a disabled regular toggle with checked set to %s',
+    (checked, background, border, icon, thumb) => {
+      const { getByTestId } = render(
+        <Toggle checked={checked} disabled labelText="test label" />
+      );
+      const track = getByTestId('toggle-track');
+
+      expect(track).toHaveStyleRule('background', background);
+      expect(track).toHaveStyleRule('border-color', border);
+      expect(getByTestId('toggle-state-icon')).toHaveStyleRule('color', icon);
+      expect(track.lastElementChild).toHaveStyleRule('background', thumb);
+    }
+  );
+
+  it('should render a disabled inverse off toggle with the submitted colors', () => {
+    const { getByTestId } = render(
+      <Toggle checked={false} disabled isInverse labelText="test label" />
+    );
+    const track = getByTestId('toggle-track');
+
+    expect(track).toHaveStyleRule('border-color', magma.colors.neutral800);
+    expect(track.lastElementChild).toHaveStyleRule(
+      'background',
+      magma.colors.neutral800
+    );
+    expect(getByTestId('toggle-state-icon')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral1200
+    );
+  });
+
+  it('should render a disabled inverse on toggle with the submitted colors', () => {
+    const { getByTestId } = render(
+      <Toggle checked disabled isInverse labelText="test label" />
+    );
+    const track = getByTestId('toggle-track');
+
+    expect(track).toHaveStyleRule('background', magma.colors.neutral800);
+    expect(track).toHaveStyleRule('border-color', magma.colors.neutral800);
+    expect(track.lastElementChild).toHaveStyleRule(
+      'background',
+      magma.colors.neutral1200
+    );
+    expect(getByTestId('toggle-state-icon')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral800
+    );
   });
 
   it('should render the toggle with the text position left by default', () => {

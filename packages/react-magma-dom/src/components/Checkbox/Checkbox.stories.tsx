@@ -98,14 +98,14 @@ export const Inverse = () => {
         <FormGroup labelText="Colors" isInverse>
           <Checkbox
             checked
-            color={magma.colors.primary200}
+            color={magma.colors.indigo200}
             isInverse
             labelText="Primary checked"
             onChange={() => updateChecked(!checked)}
           />
           <Checkbox
             checked
-            color={magma.colors.success200}
+            color={magma.colors.green200}
             isInverse
             labelText="Success checked"
             onChange={() => updateChecked(!checked)}
@@ -113,7 +113,7 @@ export const Inverse = () => {
 
           <Checkbox
             checked
-            color={magma.colors.danger200}
+            color={magma.colors.red200}
             isInverse
             labelText="Danger checked"
             onChange={() => updateChecked(!checked)}
@@ -121,7 +121,7 @@ export const Inverse = () => {
 
           <Checkbox
             checked
-            color={magma.colors.warning200}
+            color={magma.colors.yellow200}
             isInverse
             labelText="Warning checked"
             onChange={() => updateChecked(!checked)}
@@ -129,7 +129,7 @@ export const Inverse = () => {
 
           <Checkbox
             checked
-            color={magma.colors.info200}
+            color={magma.colors.blue200}
             isInverse
             labelText="Info checked"
             onChange={() => updateChecked(!checked)}

@@ -503,6 +503,7 @@ import {
   Toast,
   ToastsContainer,
   AlertVariant,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -540,7 +541,11 @@ export function Example() {
   }
 
   return (
-    <Card isInverse style={{ padding: '8px' }}>
+    <Card
+      background={magma.colors.neutral1100}
+      isInverse
+      style={{ padding: '8px' }}
+    >
       <ToastsContainer>
         <ButtonGroup>
           <Button onClick={handleClick} isInverse>

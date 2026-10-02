@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import styled from '@emotion/styled';
+import { StoryFn, Meta } from '@storybook/react-webpack5';
 
 import { magma } from '../../theme/magma';
 import { ButtonGroup } from '../ButtonGroup';
@@ -18,34 +19,36 @@ import {
   ButtonVariant,
 } from '.';
 
+const ExampleRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${magma.spaceScale.spacing05};
+  margin-bottom: ${magma.spaceScale.spacing05};
+`;
+
 const Template: StoryFn<ButtonProps> = args => (
   <>
-    <Button {...args}>Default</Button>
-    <Button {...args} color={ButtonColor.secondary}>
-      Secondary
-    </Button>
-    <Button {...args} color={ButtonColor.subtle}>
-      Subtle
-    </Button>
-    <Button {...args} color={ButtonColor.danger}>
-      Danger
-    </Button>
-    <Button {...args} color={ButtonColor.success}>
-      Success
-    </Button>
-    <Button {...args} color={ButtonColor.marketing}>
-      Marketing
-    </Button>
-    <p>
-      <Button variant={ButtonVariant.link} {...args}>
-        Default
-      </Button>
-      <Button
-        variant={ButtonVariant.link}
-        {...args}
-        color={ButtonColor.secondary}
-      >
+    <ExampleRow>
+      <Button {...args}>Primary</Button>
+      <Button {...args} color={ButtonColor.secondary}>
         Secondary
+      </Button>
+      <Button {...args} color={ButtonColor.subtle}>
+        Subtle
+      </Button>
+      <Button {...args} color={ButtonColor.danger}>
+        Danger
+      </Button>
+      <Button {...args} color={ButtonColor.success}>
+        Success
+      </Button>
+      <Button {...args} color={ButtonColor.marketing}>
+        Marketing
+      </Button>
+    </ExampleRow>
+    <ExampleRow>
+      <Button variant={ButtonVariant.link} {...args}>
+        Primary
       </Button>
       <Button variant={ButtonVariant.link} {...args} color={ButtonColor.subtle}>
         Subtle
@@ -60,14 +63,7 @@ const Template: StoryFn<ButtonProps> = args => (
       >
         Success
       </Button>
-      <Button
-        variant={ButtonVariant.link}
-        {...args}
-        color={ButtonColor.marketing}
-      >
-        Marketing
-      </Button>
-    </p>
+    </ExampleRow>
   </>
 );
 
@@ -76,40 +72,28 @@ export default {
   component: Button,
   argTypes: {
     color: {
-      control: {
-        type: 'select',
-        options: ButtonColor,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonColor),
     },
     size: {
-      control: {
-        type: 'select',
-        options: ButtonSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonSize),
     },
     variant: {
-      control: {
-        type: 'select',
-        options: ButtonVariant,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonVariant),
     },
     shape: {
-      control: {
-        type: 'select',
-        options: ButtonShape,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonShape),
     },
     textTransform: {
-      control: {
-        type: 'select',
-        options: ButtonTextTransform,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonTextTransform),
     },
     type: {
-      control: {
-        type: 'select',
-        options: ButtonType,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonType),
     },
     isLoading: {
       control: {
@@ -150,7 +134,7 @@ export const Inverse = {
 
   decorators: [
     Story => (
-      <Card background={magma.colors.primary600} isInverse>
+      <Card background={magma.colors.neutral1100} isInverse>
         <CardBody>
           <Story />
         </CardBody>
@@ -170,7 +154,7 @@ export const InverseDisabled = {
 
   decorators: [
     Story => (
-      <Card background={magma.colors.primary600} isInverse>
+      <Card background={magma.colors.neutral1100} isInverse>
         <CardBody>
           <Story />
         </CardBody>
@@ -190,13 +174,10 @@ export const All = () => {
               Primary Link
             </Button>
             <Button color={ButtonColor.secondary}>Secondary Solid</Button>
-            <Button color={ButtonColor.secondary} variant={ButtonVariant.link}>
-              Secondary Link
-            </Button>
           </ButtonGroup>
         </CardBody>
       </Card>
-      <Card isInverse>
+      <Card background={magma.colors.neutral1100} isInverse>
         <CardBody>
           <ButtonGroup>
             <Button color={ButtonColor.primary} isInverse>
@@ -212,13 +193,6 @@ export const All = () => {
             <Button color={ButtonColor.secondary} isInverse>
               Secondary Solid
             </Button>
-            <Button
-              color={ButtonColor.secondary}
-              variant={ButtonVariant.link}
-              isInverse
-            >
-              Secondary Link
-            </Button>
           </ButtonGroup>
         </CardBody>
       </Card>
@@ -233,7 +207,7 @@ export const All = () => {
           </ButtonGroup>
         </CardBody>
       </Card>
-      <Card isInverse>
+      <Card background={magma.colors.neutral1100} isInverse>
         <CardBody>
           <ButtonGroup>
             <Button color={ButtonColor.subtle} isInverse>
@@ -262,13 +236,10 @@ export const All = () => {
               Success Link
             </Button>
             <Button color={ButtonColor.marketing}>Marketing Solid</Button>
-            <Button color={ButtonColor.marketing} variant={ButtonVariant.link}>
-              Marketing Link
-            </Button>
           </ButtonGroup>
         </CardBody>
       </Card>
-      <Card isInverse>
+      <Card background={magma.colors.neutral1100} isInverse>
         <CardBody>
           <ButtonGroup>
             <Button color={ButtonColor.danger} isInverse>
@@ -294,13 +265,6 @@ export const All = () => {
             <Button color={ButtonColor.marketing} isInverse>
               Marketing Solid
             </Button>
-            <Button
-              color={ButtonColor.marketing}
-              variant={ButtonVariant.link}
-              isInverse
-            >
-              Marketing Link
-            </Button>
           </ButtonGroup>
         </CardBody>
       </Card>
@@ -311,6 +275,7 @@ export const All = () => {
 export const LoadingButton = {
   render: args => {
     const [isLoading, setIsLoading] = React.useState(args.isLoading);
+
     React.useEffect(() => {
       if (isLoading) {
         setTimeout(() => {

@@ -2193,7 +2193,7 @@ inherit the `isInverse` prop unless specified otherwise.
 ```tsx
 import React from 'react';
 
-import { Datagrid, Card } from 'react-magma-dom';
+import { Datagrid, Card, magma } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -2231,7 +2231,11 @@ export function Example() {
   ];
 
   return (
-    <Card isInverse style={{ padding: '16px' }}>
+    <Card
+      background={magma.colors.neutral1100}
+      isInverse
+      style={{ padding: '16px' }}
+    >
       <Datagrid
         hasSquareCorners={false}
         hasOutsideBorder

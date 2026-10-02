@@ -10,6 +10,7 @@ import {
   SettingsIcon,
 } from 'react-magma-icons';
 
+import { magma } from '../../theme/magma';
 import { ButtonSize } from '../Button';
 import { Container } from '../Container';
 import { ToggleButton } from '../ToggleButton';
@@ -71,7 +72,15 @@ export default {
   title: 'ToggleButtonGroup',
   decorators: [
     (Story, context) => (
-      <Container isInverse={context.args.isInverse} style={{ padding: '20px' }}>
+      <Container
+        isInverse={context.args.isInverse}
+        style={{
+          background: context.args.isInverse
+            ? magma.colors.neutral1100
+            : undefined,
+          padding: '20px',
+        }}
+      >
         <Story />
       </Container>
     ),

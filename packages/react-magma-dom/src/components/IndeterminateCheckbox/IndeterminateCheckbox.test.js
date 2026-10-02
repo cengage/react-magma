@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { render, fireEvent } from '@testing-library/react';
-import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -72,7 +71,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.primary
+      magma.colors.cyan700
     );
   });
 
@@ -85,7 +84,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.neutral100
+      magma.colors.neutral0
     );
   });
 
@@ -102,7 +101,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.neutral100
+      magma.colors.brand.skyBlue
     );
   });
 
@@ -157,7 +156,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      transparentize(0.6, magma.colors.neutral100)
+      magma.colors.neutral600
     );
   });
 
@@ -169,7 +168,7 @@ describe('Indeterminate Checkbox', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      transparentize(0.6, magma.colors.neutral100)
+      magma.colors.neutral600
     );
   });
 

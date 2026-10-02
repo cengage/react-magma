@@ -32,11 +32,14 @@ const NAV_TABS = {
 const PAGES_NO_NAV = ['contribution_guidelines', 'select_migration'];
 
 const TabsWrapper = styled.div`
-  border-bottom: 1px solid ${magma.colors.neutral300};
+  box-shadow: inset 0 -1px 0
+    ${props =>
+      props.isInverse ? magma.colors.neutral800 : magma.colors.neutral200};
   position: sticky;
   top: 56px;
-  z-index: 8;
-  background: ${magma.colors.neutral200};
+  z-index: 999;
+  background: ${props =>
+    props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral100};
   max-width: 100%;
   min-width: 0;
   width: 100%;
@@ -44,16 +47,17 @@ const TabsWrapper = styled.div`
 
 // Code & Usage tabs
 const StyledTabs = styled(NavTabs)`
-  background: ${magma.colors.neutral200};
+  background: ${props =>
+    props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral100};
   box-sizing: border-box;
   margin: 0 auto;
   max-width: ${CONTENT_MAX_WIDTH}px;
   position: sticky;
   top: 56px;
   width: 100%;
-  z-index: 8;
+  z-index: 999;
 
-  @media (max-width: ${CONTENT_MAX_WIDTH + PANEL_WIDTH}px) {
+  @media (max-width: ${CONTENT_MAX_WIDTH + PANEL_WIDTH + 48}px) {
     padding-left: 24px;
   }
   @media (max-width: ${magma.breakpoints.medium}px) {
@@ -80,7 +84,8 @@ const StyledTabsContainer = styled(TabsContainer)`
 `;
 
 const StyledTabPanelsContainer = styled(TabPanelsContainer)`
-  background: ${magma.colors.neutral100};
+  background: ${props =>
+    props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral0};
   max-width: 100%;
   min-width: 0;
   width: 100%;
@@ -90,6 +95,8 @@ const StyledTabPanelsContainer = styled(TabPanelsContainer)`
 `;
 
 const Content = styled.div`
+  color: ${props =>
+    props.isInverse ? magma.colors.neutral0 : magma.colors.brand.navy};
   flex: 1 1 auto;
   margin: 48px auto;
   max-width: 868px;
@@ -107,6 +114,12 @@ const Content = styled.div`
 
 const ContentOutsideDocs = styled(Content)`
   max-width: 1164px;
+`;
+
+const ContentWithoutNav = styled.div`
+  background: ${props =>
+    props.isInverse ? magma.colors.neutral1100 : magma.colors.neutral0};
+  display: flex;
 `;
 
 const PageNavigation = styled.div`
@@ -227,9 +240,11 @@ export const PageContent = ({ children, componentName, type }) => {
         <>
           <StyledTabsContainer isInverse={isInverse}>
             {hasNavTabs && (
-              <TabsWrapper>
+              <TabsWrapper isInverse={isInverse}>
                 <StyledTabs
                   aria-label=""
+                  hasBorder
+                  isInverse={isInverse}
                   textTransform={TabsTextTransform.none}
                 >
                   {apiDocs ? (
@@ -252,9 +267,9 @@ export const PageContent = ({ children, componentName, type }) => {
               </TabsWrapper>
             )}
 
-            <StyledTabPanelsContainer>
+            <StyledTabPanelsContainer isInverse={isInverse}>
               <StyledTabPanel>
-                <Content>{children}</Content>
+                <Content isInverse={isInverse}>{children}</Content>
                 <PageNavigation>
                   <SubPageTabs
                     pageData={getPageData()}
@@ -266,17 +281,19 @@ export const PageContent = ({ children, componentName, type }) => {
           </StyledTabsContainer>
         </>
       ) : (
-        <div style={{ display: 'flex', background: magma.colors.neutral100 }}>
+        <ContentWithoutNav isInverse={isInverse}>
           {PAGES_NO_NAV.includes(componentName) ? (
-            <ContentOutsideDocs>{children}</ContentOutsideDocs>
+            <ContentOutsideDocs isInverse={isInverse}>
+              {children}
+            </ContentOutsideDocs>
           ) : (
-            <Content>{children}</Content>
+            <Content isInverse={isInverse}>{children}</Content>
           )}
 
           <PageNavigation>
             <SubPageTabs pageData={getPageData()} hasHorizontalNav={hasDocs} />
           </PageNavigation>
-        </div>
+        </ContentWithoutNav>
       )}
     </>
   );

@@ -22,7 +22,7 @@ const Template: StoryFn<EmptyStateProps> = args => {
   // Automatically show dark background when isInverse is toggled
   if (args.isInverse) {
     return (
-      <Card background={magma.colors.primary600} isInverse>
+      <Card background={magma.colors.neutral1100} isInverse>
         <CardBody>
           <EmptyState {...args} />
         </CardBody>

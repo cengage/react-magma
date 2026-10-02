@@ -137,7 +137,7 @@ export const Default = {
 export const Inverse = {
   render: args => {
     return (
-      <Container style={{ backgroundColor: magma.colors.primary600 }}>
+      <Container style={{ backgroundColor: magma.colors.neutral1100 }}>
         <One>
           <Input
             errorMessage="danger will robinson."

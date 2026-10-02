@@ -96,11 +96,11 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Card, CardBody, Textarea } from 'react-magma-dom';
+import { Card, CardBody, Textarea, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <Textarea isInverse labelText="Inverse textarea" />
         <Textarea
