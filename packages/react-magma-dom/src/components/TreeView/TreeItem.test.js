@@ -814,6 +814,85 @@ describe('TreeItem', () => {
       await expectNoAnnouncement(getByTestId(`${treeTestId}-announce`));
     });
 
+    it('announces only the cascade off macOS, which no screen reader reports', async () => {
+      mockDevice({ isChrome: true, isWindows: true });
+
+      const { getByTestId } = renderTree(TreeViewSelectable.multi);
+      const announce = getByTestId(`${treeTestId}-announce`);
+
+      // The status itself is left to the screen reader; naming the item again
+      // here is what produced the duplicate reported on the ticket.
+      await userEvent.click(getByTestId('branch-checkbox'));
+      await expectAnnouncement(announce, 'All subitems are selected');
+
+      await userEvent.click(getByTestId('branch-checkbox'));
+      await expectAnnouncement(announce, 'No subitems are selected');
+    });
+
+    it('announces the cascade once per action, not once per subitem', async () => {
+      mockDevice({ isChrome: true, isWindows: true });
+
+      const { container, getByTestId } = render(
+        <TreeView testId={treeTestId} selectable={TreeViewSelectable.multi}>
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            <TreeItem label="Child one" itemId="child-1" />
+            <TreeItem label="Child two" itemId="child-2" />
+            <TreeItem label="Child three" itemId="child-3" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      await userEvent.click(getByTestId('branch-checkbox'));
+
+      // The defect on the ticket: one region per subitem meant the sentence was
+      // read as many times as the branch had children.
+      expect(container.querySelectorAll('[aria-live]')).toHaveLength(1);
+      await expectAnnouncement(
+        getByTestId(`${treeTestId}-announce`),
+        'All subitems are selected'
+      );
+    });
+
+    it('reports a partial cascade off macOS, which Firefox reads as unchecked', async () => {
+      mockDevice({ isFirefox: true, isWindows: true });
+
+      const { getByTestId } = render(
+        <TreeView testId={treeTestId} selectable={TreeViewSelectable.multi}>
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            <TreeItem label="Child one" itemId="child-1" />
+            <TreeItem label="Child two" itemId="child-2" isDisabled />
+          </TreeItem>
+        </TreeView>
+      );
+
+      await userEvent.click(getByTestId('branch-checkbox'));
+
+      await expectAnnouncement(
+        getByTestId(`${treeTestId}-announce`),
+        'Some subitems are selected'
+      );
+    });
+
+    it('stays silent off macOS when nothing can cascade', async () => {
+      mockDevice({ isChrome: true, isWindows: true });
+
+      const { getByTestId } = render(
+        <TreeView
+          testId={treeTestId}
+          selectable={TreeViewSelectable.multi}
+          checkChildren={false}
+        >
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            <TreeItem label="Child one" itemId="child-1" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      await userEvent.click(getByTestId('branch-checkbox'));
+
+      await expectNoAnnouncement(getByTestId(`${treeTestId}-announce`));
+    });
+
     it('announces pointer selection exactly once', async () => {
       const { container, getByTestId } = renderTree(TreeViewSelectable.multi);
 

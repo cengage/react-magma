@@ -188,38 +188,44 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     forceUpdate();
   }, [forceUpdate, isDisabled, registerTreeItem, treeItemRefArray]);
 
-  // Stable handlers so memoised checkboxProps (and React.memo on the
-  // Checkbox / IndeterminateCheckbox children) can actually skip work.
-
-  // Selection is announced here rather than from the checkbox, which only sees
-  // pointer input: keyboard selection never fires a `change` event. The status
-  // announced is the one the item ended up in, not the one requested — a branch
-  // with a disabled subitem lands on `indeterminate`. Branches say whether the
-  // selection cascaded, which it does not when `checkChildren` is off or every
-  // subitem is disabled.
-  //
-  // macOS only: this covers a gap in VoiceOver, and NVDA reads `aria-checked`
-  // on the tree item itself, so a second channel there is heard as a duplicate.
+  // Announced here rather than from the checkbox, which only sees pointer
+  // input: keyboard selection fires no `change` event.
   const announceSelection = React.useCallback(
     (status: IndeterminateCheckboxStatus) => {
-      if (!isMacOS) {
-        return;
-      }
-
       // Disabling an item disables everything under it, so one enabled direct
-      // subitem proves the cascade reached something. `itemsById` rather than
-      // the child's props: `preselectedItems` can disable an item too.
+      // subitem proves the cascade reached something.
       const hasEnabledSubitem = treeItemChildren.some(
         (child: React.ReactElement<{ itemId?: string }>) =>
           !itemsById.get(child.props?.itemId)?.isDisabled
       );
-      // `checkChildren` is only honoured in multi mode — single selection moves
-      // the selection to one item and never cascades — so the prop alone is not
-      // enough to promise the user that subitems changed.
+      // Single selection moves one selection and never cascades.
       const cascadedToSubitems =
         selectable === TreeViewSelectable.multi &&
         Boolean(checkChildren) &&
         hasEnabledSubitem;
+
+      // NVDA reads `aria-checked` on the tree item, so repeating the status
+      // would be heard twice. Only the cascade goes unreported.
+      if (!isMacOS) {
+        if (!cascadedToSubitems) {
+          return;
+        }
+
+        const subitemTemplates = {
+          [IndeterminateCheckboxStatus.checked]:
+            i18n.indeterminateCheckbox.isCheckedAnnounce,
+          [IndeterminateCheckboxStatus.indeterminate]:
+            i18n.indeterminateCheckbox.isIndeterminateAnnounce,
+          [IndeterminateCheckboxStatus.unchecked]:
+            i18n.indeterminateCheckbox.isUncheckedAnnounce,
+        };
+
+        announce(
+          formatAnnouncement(subitemTemplates[status], stringifiedLabel)
+        );
+
+        return;
+      }
 
       const templates = {
         [IndeterminateCheckboxStatus.checked]: resolveTreeViewString(
@@ -252,10 +258,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     ]
   );
 
-  // Counts the selections the user made on *this* item, so the effect below
-  // announces only the item acted on and not every item a cascade touched. A
-  // counter rather than a flag because the resulting status is not always
-  // different: a branch holding a disabled subitem stays `indeterminate`.
+  // Counts the selections made on *this* item, so a cascade does not announce
+  // every item it touched. A counter, not a flag: the status can repeat.
   const [selectionCount, setSelectionCount] = React.useState(0);
   const announcedSelectionCount = React.useRef(0);
 
