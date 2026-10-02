@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.10
+
+### Patch Changes
+
+- c1d0a5d: chore(react-magma-landing): update landing page with new rebrand style
+
 ## 1.1.9
 
 ### Patch Changes
