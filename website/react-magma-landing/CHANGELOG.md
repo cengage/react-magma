@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.11
+
+### Patch Changes
+
+- b731afe: fix(react-magma-landing): show the latest release of each major (v7–v3) in the version banner instead of one per React version
+
 ## 1.1.10
 
 ### Patch Changes
