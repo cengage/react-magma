@@ -46,14 +46,11 @@ test.describe('Alert', () => {
     await expect(defaultAlert).toBeVisible();
     await expect(defaultAlert).toHaveCSS(
       'background-color',
-      'rgb(232, 245, 252)'
+      'rgb(10, 86, 164)'
     );
-    await expect(defaultAlert).toHaveCSS(
-      'border',
-      '1px solid rgb(0, 116, 183)'
-    );
+    await expect(defaultAlert).toHaveCSS('border-style', 'none');
     await expect(defaultAlert).toHaveCSS('border-radius', '8px');
-    await expect(defaultAlert).toHaveCSS('color', 'rgb(0, 116, 183)');
+    await expect(defaultAlert).toHaveCSS('color', 'rgb(255, 255, 255)');
 
     // Success alert
     const successAlert = getAlertByName('Success hyperlink');
@@ -61,14 +58,11 @@ test.describe('Alert', () => {
     await expect(successAlert).toBeVisible();
     await expect(successAlert).toHaveCSS(
       'background-color',
-      'rgb(227, 250, 234)'
+      'rgb(0, 132, 75)'
     );
-    await expect(successAlert).toHaveCSS(
-      'border',
-      '1px solid rgb(23, 128, 55)'
-    );
+    await expect(successAlert).toHaveCSS('border-style', 'none');
     await expect(successAlert).toHaveCSS('border-radius', '8px');
-    await expect(successAlert).toHaveCSS('color', 'rgb(23, 128, 55)');
+    await expect(successAlert).toHaveCSS('color', 'rgb(255, 255, 255)');
     await expect(storyBookIframe.getByText('Badgery').first()).toBeVisible();
     await expect(
       storyBookIframe.getByText('More Badgery').first()
@@ -83,14 +77,11 @@ test.describe('Alert', () => {
     ).toBeVisible();
     await expect(warningAlert).toHaveCSS(
       'background-color',
-      'rgb(252, 238, 229)'
+      'rgb(255, 194, 0)'
     );
-    await expect(warningAlert).toHaveCSS(
-      'border',
-      '1px solid rgb(173, 81, 21)'
-    );
+    await expect(warningAlert).toHaveCSS('border-style', 'none');
     await expect(warningAlert).toHaveCSS('border-radius', '8px');
-    await expect(warningAlert).toHaveCSS('color', 'rgb(173, 81, 21)');
+    await expect(warningAlert).toHaveCSS('color', 'rgb(11, 31, 58)');
 
     // Danger alert
     const dangerAlert = getAlertByName('Danger hyperlink');
@@ -98,11 +89,11 @@ test.describe('Alert', () => {
     await expect(dangerAlert).toBeVisible();
     await expect(dangerAlert).toHaveCSS(
       'background-color',
-      'rgb(253, 239, 238)'
+      'rgb(198, 0, 52)'
     );
-    await expect(dangerAlert).toHaveCSS('border', '1px solid rgb(211, 40, 33)');
+    await expect(dangerAlert).toHaveCSS('border-style', 'none');
     await expect(dangerAlert).toHaveCSS('border-radius', '8px');
-    await expect(dangerAlert).toHaveCSS('color', 'rgb(211, 40, 33)');
+    await expect(dangerAlert).toHaveCSS('color', 'rgb(255, 255, 255)');
 
     // Default dismissible alert
     const defaultDismissibleAlert = getAlertByName('Default dismissible with');
@@ -146,7 +137,7 @@ test.describe('Alert', () => {
     await expect(page).toHaveTitle('Alert - Inverse ⋅ Storybook');
     await expect(inverseWrapper).toHaveCSS(
       'background-color',
-      'rgb(41, 47, 124)'
+      'rgb(16, 24, 32)'
     );
     await expect(inverseWrapper).toHaveCSS('color', 'rgb(255, 255, 255)');
 
@@ -154,25 +145,19 @@ test.describe('Alert', () => {
     const defaultAlert = getAlertByNameInversePage('Default');
 
     await expect(defaultAlert).toBeVisible();
-    await expect(defaultAlert).toHaveCSS('background-color', 'rgb(0, 74, 117)');
-    await expect(defaultAlert).toHaveCSS(
-      'border',
-      '1px solid rgb(47, 179, 255)'
-    );
+    await expect(defaultAlert).toHaveCSS('background-color', 'rgb(48, 130, 202)');
+    await expect(defaultAlert).toHaveCSS('border-style', 'none');
     await expect(defaultAlert).toHaveCSS('border-radius', '8px');
-    await expect(defaultAlert).toHaveCSS('color', 'rgb(255, 255, 255)');
+    await expect(defaultAlert).toHaveCSS('color', 'rgb(2, 21, 45)');
 
     // Success alert
     const successAlert = getAlertByNameInversePage('Success');
 
     await expect(successAlert).toBeVisible();
-    await expect(successAlert).toHaveCSS('background-color', 'rgb(15, 83, 35)');
-    await expect(successAlert).toHaveCSS(
-      'border',
-      '1px solid rgb(62, 221, 110)'
-    );
+    await expect(successAlert).toHaveCSS('background-color', 'rgb(23, 169, 98)');
+    await expect(successAlert).toHaveCSS('border-style', 'none');
     await expect(successAlert).toHaveCSS('border-radius', '8px');
-    await expect(successAlert).toHaveCSS('color', 'rgb(255, 255, 255)');
+    await expect(successAlert).toHaveCSS('color', 'rgb(0, 35, 17)');
 
     // Warning alert
     const warningAlert = getAlertByNameInversePage('Warning');
@@ -180,26 +165,20 @@ test.describe('Alert', () => {
     await expect(warningAlert).toBeVisible();
     await expect(warningAlert).toHaveCSS(
       'background-color',
-      'rgb(110, 52, 14)'
+      'rgb(255, 194, 0)'
     );
-    await expect(warningAlert).toHaveCSS(
-      'border',
-      '1px solid rgb(233, 139, 76)'
-    );
+    await expect(warningAlert).toHaveCSS('border-style', 'none');
     await expect(warningAlert).toHaveCSS('border-radius', '8px');
-    await expect(warningAlert).toHaveCSS('color', 'rgb(255, 255, 255)');
+    await expect(warningAlert).toHaveCSS('color', 'rgb(11, 31, 58)');
 
     // Danger alert
     const dangerAlert = getAlertByNameInversePage('Danger');
 
     await expect(dangerAlert).toBeVisible();
-    await expect(dangerAlert).toHaveCSS('background-color', 'rgb(127, 23, 20)');
-    await expect(dangerAlert).toHaveCSS(
-      'border',
-      '1px solid rgb(250, 174, 176)'
-    );
+    await expect(dangerAlert).toHaveCSS('background-color', 'rgb(235, 58, 89)');
+    await expect(dangerAlert).toHaveCSS('border-style', 'none');
     await expect(dangerAlert).toHaveCSS('border-radius', '8px');
-    await expect(dangerAlert).toHaveCSS('color', 'rgb(255, 255, 255)');
+    await expect(dangerAlert).toHaveCSS('color', 'rgb(51, 0, 8)');
 
     // Default dismissible alert
     const defaultDismissibleAlert = getAlertByNameInversePage(

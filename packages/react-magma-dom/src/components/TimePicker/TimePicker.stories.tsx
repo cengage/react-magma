@@ -17,6 +17,11 @@ export default {
   component: TimePicker,
   title: 'TimePicker',
   argTypes: {
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
     errorMessage: {
       control: {
         type: 'text',
@@ -49,6 +54,14 @@ export const Error = {
 
   args: {
     errorMessage: 'Please correct this error',
+  },
+};
+
+export const Disabled = {
+  render: Template,
+
+  args: {
+    disabled: true,
   },
 };
 

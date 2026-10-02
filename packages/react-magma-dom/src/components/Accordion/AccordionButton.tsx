@@ -42,18 +42,18 @@ const StyledButton = styled.button<{
   border-top: 1px solid
     ${props =>
       props.isInverse
-        ? transparentize(0.6, props.theme.colors.neutral100)
-        : props.theme.colors.neutral300};
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   cursor: pointer;
   display: flex;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
   font-family: ${props => props.theme.bodyFont};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
-  font-weight: 500;
+  font-weight: 600;
   padding: 12px 16px;
   text-align: left;
   width: 100%;
@@ -67,26 +67,26 @@ const StyledButton = styled.button<{
     outline-offset: 0;
   }
 
+  svg {
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral0
+        : props.theme.colors.brand.navy};
+  }
+
   &&[disabled] {
     color: ${props =>
       props.isInverse
-        ? transparentize(0.6, props.theme.colors.neutral100)
+        ? transparentize(0.6, props.theme.colors.neutral0)
         : transparentize(0.4, props.theme.colors.neutral500)};
     cursor: not-allowed;
 
     svg {
       color: ${props =>
         props.isInverse
-          ? transparentize(0.6, props.theme.colors.neutral100)
+          ? transparentize(0.6, props.theme.colors.neutral0)
           : transparentize(0.4, props.theme.colors.neutral500)};
     }
-  }
-
-  svg {
-    color: ${props =>
-      props.isInverse
-        ? props.theme.colors.neutral100
-        : props.theme.colors.neutral500};
   }
 `;
 

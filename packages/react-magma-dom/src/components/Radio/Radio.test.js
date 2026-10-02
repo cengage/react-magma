@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { render, fireEvent } from '@testing-library/react';
-import { transparentize } from 'polished';
 
 import { magma } from '../../theme/magma';
 import { RadioContext } from '../RadioGroup';
@@ -107,7 +106,7 @@ describe('Radio', () => {
   });
 
   it('should render a label for the radio', () => {
-    const { getByText } = render(
+    const { container, getByText } = render(
       <RadioContext.Provider
         value={{
           name: 'colors',
@@ -119,8 +118,11 @@ describe('Radio', () => {
       </RadioContext.Provider>
     );
     const label = getByText('blue');
+    const span = container.querySelector('span');
 
     expect(label).toBeInTheDocument();
+    expect(label).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(span).toHaveStyleRule('color', magma.colors.cyan700);
   });
 
   it('should render radio button', () => {
@@ -215,7 +217,7 @@ describe('Radio', () => {
     );
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('color', magma.colors.neutral100);
+    expect(span).toHaveStyleRule('color', magma.colors.brand.skyBlue);
   });
 
   it('should render an inverse, disabled radio with the correct styles', () => {
@@ -232,10 +234,7 @@ describe('Radio', () => {
     );
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule(
-      'color',
-      transparentize(0.6, magma.colors.neutral100)
-    );
+    expect(span).toHaveStyleRule('color', magma.colors.neutral600);
   });
 
   it('should render a radio with hidden label text with the correct styles', () => {
@@ -316,7 +315,28 @@ describe('Radio', () => {
 
     expect(span).toHaveStyleRule(
       'box-shadow',
-      `0 0 0 2px ${magma.colors.danger300}`
+      `0 0 0 2px ${magma.colors.red500}`
+    );
+  });
+
+  it('should keep the cyan icon on a checked inverse radio with an error', () => {
+    const { container } = render(
+      <RadioContext.Provider
+        value={{
+          name: 'colors',
+          hasError: true,
+          isInverse: true,
+          selectedValue: 'blue',
+          onChange: jest.fn(),
+        }}
+      >
+        <Radio labelText="blue" name="colors" value="blue" />
+      </RadioContext.Provider>
+    );
+
+    expect(container.querySelector('span')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.skyBlue
     );
   });
 

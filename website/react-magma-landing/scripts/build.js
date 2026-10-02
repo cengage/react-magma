@@ -9,6 +9,8 @@ const semver = require('semver');
 const english = new Intl.DateTimeFormat('en');
 
 const SUPPORTED_LEGACY_VERSIONS = ['2.6.2', '3.11.0'];
+// Major version where the 2026 rebrand icon/style starts applying.
+const REBRAND_MAJOR_VERSION = 6;
 
 const cleanVersions = ({ versions, time, tags }) => {
   return semver
@@ -16,6 +18,10 @@ const cleanVersions = ({ versions, time, tags }) => {
     .filter(a => a.match(/^\d+\.\d+\.\d+$/))
     .filter(a => {
       if (semver.major(a) === 4 || semver.major(a) === 5) {
+        return true;
+      }
+
+      if (semver.major(a) >= REBRAND_MAJOR_VERSION) {
         return true;
       }
 
@@ -59,7 +65,24 @@ const versionsByReactDependency = ({ versions, time, tags }) => {
     latestVersions.push(latest);
   }
 
-  return latestVersions;
+  return latestVersions.sort((a, b) => semver.compare(b.version, a.version));
+};
+
+const groupVersionsByMajor = versions => {
+  const byMajor = new Map();
+
+  versions.forEach(versionObj => {
+    const major = semver.major(versionObj.version);
+
+    if (!byMajor.has(major)) {
+      byMajor.set(major, []);
+    }
+    byMajor.get(major).push(versionObj);
+  });
+
+  return [...byMajor.entries()]
+    .sort((a, b) => b[0] - a[0])
+    .map(([major, majorVersions]) => ({ major, versions: majorVersions }));
 };
 
 const enhanceTags = ({ tags, time }) => {
@@ -79,9 +102,12 @@ const enhanceTags = ({ tags, time }) => {
 };
 
 const filterNPM = ({ versions, 'dist-tags': tags, time }) => {
+  const allVersions = cleanVersions({ versions, time, tags }).reverse();
+
   return {
     tags: enhanceTags({ tags, time }),
-    versions: cleanVersions({ versions, time, tags }).reverse(),
+    versions: allVersions,
+    versionGroups: groupVersionsByMajor(allVersions),
     reactSupport: versionsByReactDependency({ versions, time, tags }),
   };
 };

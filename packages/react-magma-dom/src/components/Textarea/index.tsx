@@ -9,6 +9,7 @@ import { useGenerateId, Omit, descriptionSuffix } from '../../utils';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
+  getInputFormFieldColors,
 } from '../FormFieldContainer';
 import {
   inputBaseStyles,
@@ -118,6 +119,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     return (
       <FormFieldContainer
+        {...getInputFormFieldColors(theme, isInverse)}
         containerStyle={containerStyle}
         errorMessage={errorMessage}
         fieldId={id}
@@ -132,6 +134,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         labelWidth={labelWidth}
         maxCount={maxCount}
         maxLength={maxLength}
+        messageStyle={messageStyle}
       >
         <StyledTextArea
           {...other}

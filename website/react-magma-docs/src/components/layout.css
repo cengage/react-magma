@@ -1,5 +1,5 @@
 img {
-  border: 1px solid #d4d4d4;
+  border: 1px solid #dee5ee;
   max-width: 100%;
   margin: 0;
   padding: 0;
@@ -30,15 +30,15 @@ figure {
 pre {
   font-size: 14px;
   line-height: 20px;
-  background: #f5f5f5;
-  border-radius: 3px;
+  background: #f7f9fc;
+  border-radius: 8px;
   overflow: auto;
   word-wrap: normal;
   padding: 24px;
   margin: 0 0 24px;
 }
 .isInverse pre {
-  background: #003865;
+  background: #101820;
 }
 li {
   margin-bottom: 12px;
@@ -80,7 +80,7 @@ code {
   font-weight: normal !important;
   padding: 2px 4px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  color: #003865;
+  color: #0b1f3a;
   margin: 0 2px;
 }
 code.inverse,
@@ -120,8 +120,8 @@ pre code {
 }
 
 .demo-icon-list-container .demo-icon-container {
-  border: 1px solid #d4d4d4;
-  border-radius: 4px;
+  border: 1px solid #dee5ee;
+  border-radius: 8px;
   font-size: 12px;
 }
 

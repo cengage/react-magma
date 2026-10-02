@@ -1,9 +1,11 @@
 import React from 'react';
 
+import styled from '@emotion/styled';
 import { StoryFn, Meta } from '@storybook/react-webpack5';
 
 import { AlertVariant } from '../AlertBase';
-import { Badge } from '../Badge';
+import { Badge, BadgeColor } from '../Badge';
+import { Button, ButtonColor, ButtonSize } from '../Button';
 import { Card, CardBody } from '../Card';
 import { Hyperlink } from '../Hyperlink';
 
@@ -13,16 +15,66 @@ function handleActionButtonClick() {
   alert('action button clicked!');
 }
 
-const AdditionalBadge = (
+const BadgeAndAction = styled.div`
+  align-items: center;
+  display: flex;
+`;
+
+const PrimaryActionButton = (
+  <Button
+    color={ButtonColor.primary}
+    isInverse={false}
+    onClick={handleActionButtonClick}
+    size={ButtonSize.small}
+  >
+    Action
+  </Button>
+);
+
+const AdditionalInverseInfoBadge = (
   <>
-    <Badge>Badgery</Badge>
-    <Badge>More Badgery</Badge>
+    <Badge color={BadgeColor.info} isInverse>
+      Badgery
+    </Badge>
+    <Badge color={BadgeColor.info} isInverse>
+      More Badgery
+    </Badge>
+  </>
+);
+
+const AdditionalInverseDangerBadge = (
+  <>
+    <Badge color={BadgeColor.danger} isInverse>
+      Badgery
+    </Badge>
+    <Badge color={BadgeColor.danger} isInverse>
+      More Badgery
+    </Badge>
+  </>
+);
+
+const AdditionalInfoBadge = (
+  <>
+    <Badge color={BadgeColor.info}>Badgery</Badge>
+    <Badge color={BadgeColor.info}>More Badgery</Badge>
+  </>
+);
+
+const AdditionalDangerBadge = (
+  <>
+    <Badge color={BadgeColor.danger}>Badgery</Badge>
+    <Badge color={BadgeColor.danger}>More Badgery</Badge>
   </>
 );
 
 const Template: StoryFn<BannerProps> = args => (
   <>
-    <Banner {...args} additionalContent={AdditionalBadge}>
+    <Banner
+      {...args}
+      additionalContent={
+        args.isInverse ? AdditionalInfoBadge : AdditionalInverseInfoBadge
+      }
+    >
       Default (info) banner with&nbsp;
       <Hyperlink to="#" isInverse={args.isInverse}>
         hyperlink
@@ -48,37 +100,35 @@ const Template: StoryFn<BannerProps> = args => (
     </Banner>
     <br />
     <br />
-    <Banner
-      isDismissible
-      actionButtonText="Action"
-      actionButtonOnClick={handleActionButtonClick}
-      {...args}
-    >
+    <Banner additionalContent={PrimaryActionButton} isDismissible {...args}>
       Dismissible (info) banner
     </Banner>
     <Banner
+      additionalContent={PrimaryActionButton}
       isDismissible
-      actionButtonText="Action"
-      actionButtonOnClick={handleActionButtonClick}
       variant={AlertVariant.success}
       {...args}
     >
       Dismissible (success) banner
     </Banner>
     <Banner
+      additionalContent={PrimaryActionButton}
       isDismissible
-      actionButtonText="Action"
-      actionButtonOnClick={handleActionButtonClick}
       variant={AlertVariant.warning}
       {...args}
     >
       Dismissible (warning) banner
     </Banner>
     <Banner
-      additionalContent={AdditionalBadge}
+      additionalContent={
+        <BadgeAndAction>
+          {args.isInverse
+            ? AdditionalDangerBadge
+            : AdditionalInverseDangerBadge}
+          {PrimaryActionButton}
+        </BadgeAndAction>
+      }
       isDismissible
-      actionButtonText="Action"
-      actionButtonOnClick={handleActionButtonClick}
       variant={AlertVariant.danger}
       {...args}
     >

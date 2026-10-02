@@ -49,6 +49,17 @@ describe('FormFieldContainer', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
+  it('uses neutral700 as the default inherited text color', () => {
+    const { getByTestId } = render(
+      <FormFieldContainer testId={testId}>{TEXT}</FormFieldContainer>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'color',
+      magma.colors.neutral700
+    );
+  });
+
   it('Should render an error message', () => {
     const errorMsg = 'Test error message';
     const { getAllByText } = render(

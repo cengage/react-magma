@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { transparentize } from 'polished';
 
 import { Step, StepProps, StepStatus } from './Step';
 import { I18nContext } from '../../i18n';
@@ -80,13 +79,13 @@ function buildSeparatorBackgroundColors(props) {
 
   if (isInverse) {
     if (stepStatus === StepStatus.completed) {
-      return theme.colors.tertiary500;
+      return theme.colors.brand.skyBlue;
     }
 
-    return theme.colors.primary400;
+    return theme.colors.neutral600;
   } else {
     if (stepStatus === StepStatus.completed) {
-      return theme.colors.primary500;
+      return theme.colors.cyan700;
     }
 
     return theme.colors.neutral300;
@@ -182,8 +181,8 @@ const StyledSummary = styled.div<{
     props.theme.typographyVisualStyles.bodySmall.desktop.lineHeight};
   color: ${props =>
     props.isInverse
-      ? transparentize(0.3, props.theme.colors.neutral100)
-      : props.theme.colors.neutral500};
+      ? props.theme.colors.neutral500
+      : props.theme.colors.neutral800};
   span {
     display: flex;
     text-align: left;

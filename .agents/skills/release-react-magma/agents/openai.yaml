@@ -1,4 +1,4 @@
 interface:
   display_name: "Release React Magma"
   short_description: "Audit and prepare React Magma releases"
-  default_prompt: "Use $release-react-magma to compare v5 and v4 fixes, then prepare and validate the selected React Magma release."
+  default_prompt: "Use $release-react-magma to compare v7 and v6 fixes, then prepare and validate the selected React Magma release track (v7, v6, v5, or v4)."
