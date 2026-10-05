@@ -168,10 +168,9 @@ export function useTreeView(props: UseTreeViewProps) {
 
   const hasPreselectedItems = Boolean(preselectedItems);
 
-  // Initialize state with useReducer instead of multiple useState calls.
-  // `expandedSet` is seeded here rather than in a mount effect: applying
-  // `initialExpandedItems` after the first commit flipped those branches from
-  // collapsed to expanded, which tree items announced on load.
+  // Initialize state with useReducer instead of multiple useState calls
+  // `expandedSet` is seeded here, not in a mount effect: applying
+  // `initialExpandedItems` after the first commit read as a state change.
   const [state, dispatch] = React.useReducer(treeViewReducer, undefined, () => {
     const initialItems = getInitialItems({
       children,
@@ -492,11 +491,8 @@ export function useTreeView(props: UseTreeViewProps) {
     [onExpandedChange, expandedSet]
   );
 
-  // Set by `expandAll`/`collapseAll` before they dispatch, so tree items can
-  // tell a bulk action from a single branch and stay silent. Every branch would
-  // otherwise announce itself into the shared live region, leaving only the last
-  // one — naming an item the user never acted on. `TreeView` consumes this and
-  // announces the action once.
+  // Set by `expandAll`/`collapseAll` before they dispatch, so tree items stay
+  // silent and TreeView announces the action once instead.
   const bulkExpansionRef = React.useRef<'expand' | 'collapse' | null>(null);
 
   const expandAll = React.useCallback(() => {

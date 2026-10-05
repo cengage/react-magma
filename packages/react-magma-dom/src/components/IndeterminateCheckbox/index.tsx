@@ -9,7 +9,13 @@ import {
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { descriptionSuffix, Omit, useGenerateId } from '../../utils';
+import {
+  descriptionSuffix,
+  formatAnnouncement,
+  getStringifiedLabelText,
+  Omit,
+  useGenerateId,
+} from '../../utils';
 import { Announce } from '../Announce';
 import {
   CheckboxProps,
@@ -50,20 +56,6 @@ export enum IndeterminateCheckboxStatus {
   checked = 'checked',
   indeterminate = 'indeterminate',
   unchecked = 'unchecked', //default
-}
-
-function getStringifiedLabelText(node: React.ReactNode): string {
-  if (typeof node === 'string' || typeof node === 'number') {
-    return String(node);
-  }
-  if (Array.isArray(node)) {
-    return node.map(getStringifiedLabelText).join('');
-  }
-  if (typeof node === 'object' && node && 'props' in node) {
-    return getStringifiedLabelText((node as React.ReactElement).props.children);
-  }
-
-  return '';
 }
 
 export const IndeterminateCheckbox = React.memo(
@@ -169,10 +161,7 @@ export const IndeterminateCheckbox = React.memo(
         };
 
         setAnnounceText(
-          announceByStatus[props.status].replace(
-            /\{labelText}/g,
-            stringifiedLabel
-          )
+          formatAnnouncement(announceByStatus[props.status], stringifiedLabel)
         );
       }, [
         props.status,

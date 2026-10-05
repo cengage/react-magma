@@ -35,9 +35,7 @@ function mockDevice(overrides = {}) {
   deviceDetect.useDeviceDetect.mockReturnValue(value);
 }
 
-// Matches the whole live region, not a fragment: the announcements differ only
-// by a trailing clause, so a substring match would let a test claiming the
-// clause is absent pass while it is being read out.
+// Anchored: announcements differ only by a trailing clause.
 function expectAnnouncement(region, text) {
   return waitFor(() =>
     expect(region).toHaveTextContent(
@@ -46,8 +44,7 @@ function expectAnnouncement(region, text) {
   );
 }
 
-// A message reaches the live region on a delay, so a region that is still empty
-// immediately after an action proves nothing. Wait past the delay first.
+// Messages arrive on a delay, so an empty region proves nothing until it passes.
 async function expectNoAnnouncement(region) {
   await act(
     () =>
@@ -383,11 +380,30 @@ describe('TreeItem', () => {
 
       const liveRegions = container.querySelectorAll('[aria-live]');
 
-      // More than one region means a single action can produce more than one
-      // announcement. A region inside the tree would become part of a tree
-      // item's accessible name.
       expect(liveRegions).toHaveLength(1);
       expect(getByTestId(treeTestId).contains(liveRegions[0])).toBe(false);
+    });
+
+    it('queues behind the screen reader off macOS, instead of jumping ahead', () => {
+      mockDevice({ isChrome: true, isWindows: true });
+
+      const { container } = renderTree();
+
+      expect(container.querySelector('[aria-live]')).toHaveAttribute(
+        'aria-live',
+        'polite'
+      );
+    });
+
+    it('is assertive on macOS, where a polite message is dropped', () => {
+      mockDevice({ isSafari: true, isMacOS: true });
+
+      const { container } = renderTree();
+
+      expect(container.querySelector('[aria-live]')).toHaveAttribute(
+        'aria-live',
+        'assertive'
+      );
     });
 
     it('is empty on mount so newly mounted items are not announced', () => {
@@ -413,10 +429,6 @@ describe('TreeItem', () => {
         </TreeView>
       );
 
-      // Reaching `deep` also expands its ancestors. Applying that after the
-      // first commit made each of them flip from collapsed to expanded, which
-      // reads as a state change: loading the page announced a branch the user
-      // never touched.
       await expectNoAnnouncement(getByTestId(`${treeTestId}-announce`));
 
       expect(getByTestId('top')).toHaveAttribute('aria-expanded', 'true');
@@ -429,8 +441,6 @@ describe('TreeItem', () => {
 
       const { getByTestId } = renderTree();
 
-      // Consecutive messages share most of their wording, so without
-      // aria-atomic a screen reader may read only the differing fragment.
       expect(getByTestId(`${treeTestId}-announce`)).toHaveAttribute(
         'aria-atomic',
         'true'
@@ -442,8 +452,6 @@ describe('TreeItem', () => {
 
       const { getByTestId } = renderTree();
 
-      // Every message is feedback on what the user just did, so a polite queue
-      // would read back states that have already been superseded.
       expect(getByTestId(`${treeTestId}-announce`)).toHaveAttribute(
         'aria-live',
         'assertive'
@@ -469,8 +477,6 @@ describe('TreeItem', () => {
           jest.advanceTimersByTime(ANNOUNCE_DELAY_MS * 2);
         });
 
-        // Both clicks land inside one delay, so the tree announces where the
-        // branch ended up rather than one message per click.
         expect(announce).toHaveTextContent('Branch, collapsed');
         expect(announce).not.toHaveTextContent('expanded');
       } finally {
@@ -566,7 +572,6 @@ describe('TreeItem', () => {
       await userEvent.click(getByTestId(`${branchTestId}-expand`));
       await expectAnnouncement(announce, 'Branch — відкрито');
 
-      // Translating one string must not blank out the other eight.
       await userEvent.click(getByTestId(`${branchTestId}-expand`));
       await expectAnnouncement(announce, 'Branch, collapsed');
     });
@@ -620,8 +625,6 @@ describe('TreeItem', () => {
 
       const { getByTestId } = renderTree();
 
-      // VoiceOver reads top-level rows itself, as "row N expanded". A second
-      // channel there is heard as a duplicate.
       await userEvent.click(getByTestId(`${branchTestId}-expand`));
 
       await expectNoAnnouncement(getByTestId(`${treeTestId}-announce`));
@@ -653,8 +656,6 @@ describe('TreeItem', () => {
         </TreeView>
       );
 
-      // This covers a gap in VoiceOver. NVDA reads `aria-expanded` at every
-      // level, so the same fallback there is heard as a duplicate.
       await userEvent.click(getByTestId('nested-expand'));
 
       await expectNoAnnouncement(getByTestId(`${treeTestId}-announce`));
@@ -665,8 +666,6 @@ describe('TreeItem', () => {
 
       const { getByTestId } = renderTree();
 
-      // Firefox announces `aria-expanded` itself; a second channel would
-      // duplicate the announcement.
       await userEvent.click(getByTestId(`${branchTestId}-expand`));
 
       await expectNoAnnouncement(getByTestId(`${treeTestId}-announce`));
@@ -711,8 +710,6 @@ describe('TreeItem', () => {
           apiRef.current.expandAll();
         });
 
-        // Every branch changes at once and they share one live region, so
-        // per-branch announcements would leave only the last one in DOM order.
         await expectAnnouncement(announce, 'All items expanded');
         expect(announce).not.toHaveTextContent('Delta');
 
@@ -737,7 +734,6 @@ describe('TreeItem', () => {
           apiRef.current.collapseAll();
         });
 
-        // The bulk flag must be cleared, or every later expansion stays silent.
         await userEvent.click(getByTestId('alpha-expand'));
 
         await expectAnnouncement(announce, 'Alpha, expanded');
@@ -752,9 +748,6 @@ describe('TreeItem', () => {
           apiRef.current.expandAll();
         });
 
-        // Firefox reads a single branch's `aria-expanded` itself, but a bulk
-        // action moves no focus and changes no item under the cursor, so
-        // nothing is read anywhere without this.
         await expectAnnouncement(
           getByTestId(`${treeTestId}-announce`),
           'All items expanded'
@@ -787,8 +780,6 @@ describe('TreeItem', () => {
       getByTestId('leaf').focus();
       await userEvent.keyboard(' ');
 
-      // Keyboard selection never fires a `change` event on the checkbox, so
-      // before this it produced no announcement at all.
       await expectAnnouncement(
         getByTestId(`${treeTestId}-announce`),
         'Leaf, selected'
@@ -807,8 +798,6 @@ describe('TreeItem', () => {
 
       const { getByTestId } = renderTree(TreeViewSelectable.multi);
 
-      // NVDA reads `aria-checked` on the tree item, so a second channel here is
-      // heard as a duplicate: "checked" followed by the whole sentence.
       await userEvent.click(getByTestId('leaf-checkbox'));
 
       await expectNoAnnouncement(getByTestId(`${treeTestId}-announce`));
@@ -820,8 +809,6 @@ describe('TreeItem', () => {
       const { getByTestId } = renderTree(TreeViewSelectable.multi);
       const announce = getByTestId(`${treeTestId}-announce`);
 
-      // The status itself is left to the screen reader; naming the item again
-      // here is what produced the duplicate reported on the ticket.
       await userEvent.click(getByTestId('branch-checkbox'));
       await expectAnnouncement(announce, 'All subitems are selected');
 
@@ -844,8 +831,6 @@ describe('TreeItem', () => {
 
       await userEvent.click(getByTestId('branch-checkbox'));
 
-      // The defect on the ticket: one region per subitem meant the sentence was
-      // read as many times as the branch had children.
       expect(container.querySelectorAll('[aria-live]')).toHaveLength(1);
       await expectAnnouncement(
         getByTestId(`${treeTestId}-announce`),
@@ -910,8 +895,6 @@ describe('TreeItem', () => {
 
       await userEvent.click(getByTestId('branch-checkbox'));
 
-      // Selecting a branch also selects its subtree; announcing each one would
-      // turn a single click into N announcements.
       await expectAnnouncement(
         getByTestId(`${treeTestId}-announce`),
         'Branch, selected, all subitems selected'
@@ -962,7 +945,6 @@ describe('TreeItem', () => {
 
       await userEvent.click(getByTestId('branch-checkbox'));
 
-      // The subtree is left alone here, so claiming otherwise would be wrong.
       await expectAnnouncement(
         getByTestId(`${treeTestId}-announce`),
         'Branch, selected'
@@ -987,8 +969,6 @@ describe('TreeItem', () => {
       getByTestId('branch').focus();
       await userEvent.keyboard(' ');
 
-      // The keyboard paths used to announce the status they asked the reducer
-      // for, which is not the one a branch holding a disabled subitem lands on.
       await expectAnnouncement(
         getByTestId(`${treeTestId}-announce`),
         'Branch, partially selected'
@@ -1010,8 +990,6 @@ describe('TreeItem', () => {
 
       await userEvent.click(getByTestId('branch-itemwrapper'));
 
-      // `checkChildren` is accepted in single select but ignored by the
-      // reducer, so the prop alone must not promise the subtree changed.
       await expectAnnouncement(
         getByTestId(`${treeTestId}-announce`),
         'Branch, selected'
@@ -1034,7 +1012,6 @@ describe('TreeItem', () => {
 
       await userEvent.click(getByTestId('branch-checkbox'));
 
-      // A cascade skips disabled items, so nothing below actually changed.
       await expectAnnouncement(
         getByTestId(`${treeTestId}-announce`),
         'Branch, selected'
@@ -1058,8 +1035,6 @@ describe('TreeItem', () => {
 
       await userEvent.click(getByTestId('branch-checkbox'));
 
-      // Selecting was requested, but the disabled subitem cannot follow, so the
-      // branch lands on indeterminate. Announcing the request would be a lie.
       expect(getByTestId('branch')).toHaveAttribute('aria-checked', 'mixed');
       await expectAnnouncement(
         getByTestId(`${treeTestId}-announce`),
@@ -1083,8 +1058,6 @@ describe('TreeItem', () => {
       const { getByRole } = renderTree();
       const tree = getByRole('tree');
 
-      // `tree` owns its tree items; the layout wrapper must stay out of the
-      // accessibility tree.
       Array.from(tree.children).forEach(child => {
         expect(child).toHaveAttribute('role', 'none');
       });
@@ -1108,9 +1081,6 @@ describe('TreeItem', () => {
     it('leaves nothing generic between a tree item and the group it owns', () => {
       const { getByTestId, getByRole } = renderTree();
 
-      // A generic element here is the only structural difference between a
-      // top-level item and a nested one, and `treeitem` is required to own its
-      // `group` directly.
       let node = getByRole('group').parentElement;
 
       while (node && node !== getByTestId('branch')) {
@@ -1134,7 +1104,6 @@ describe('TreeItem', () => {
 
       const groups = getAllByRole('group');
 
-      // Splitting siblings across one group each breaks set-position reporting.
       expect(groups).toHaveLength(1);
       expect(
         groups[0].querySelectorAll(':scope > * > [role="treeitem"]')
@@ -1143,6 +1112,8 @@ describe('TreeItem', () => {
   });
 
   describe('accessible name (issue #2444)', () => {
+    // jsdom does not stop the name computation at a nested group, so these
+    // tests pin the structure rather than the name itself.
     function renderDeepTree(props = {}) {
       return render(
         <TreeView
@@ -1160,9 +1131,6 @@ describe('TreeItem', () => {
       );
     }
 
-    // Browsers stop the name computation at the nested `group`, so a branch is
-    // named by its label row alone. jsdom has no such stop, so the name itself
-    // cannot be asserted here — these tests pin the structure instead.
     it('keeps the nested subtree out of the item label row', () => {
       const { getByTestId } = renderDeepTree();
 
@@ -1197,9 +1165,6 @@ describe('TreeItem', () => {
     it('leaves tree items named by their own contents', () => {
       const { getAllByRole } = renderDeepTree();
 
-      // An explicit `aria-labelledby` made VoiceOver in Firefox summarise the
-      // rest of the item as "and 1 more item" on entering every branch, and the
-      // computed name is unchanged without it.
       getAllByRole('treeitem').forEach(item => {
         expect(item).not.toHaveAttribute('aria-labelledby');
       });

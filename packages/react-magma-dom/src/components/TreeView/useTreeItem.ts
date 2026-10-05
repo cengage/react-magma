@@ -9,16 +9,16 @@ import { TreeViewConfigContext } from './TreeViewConfigContext';
 import { TreeViewExpansionContext } from './TreeViewExpansionContext';
 import { TreeViewSelectionContext } from './TreeViewSelectionContext';
 import { TreeViewSelectable } from './types';
-import {
-  filterNullEntries,
-  formatAnnouncement,
-  getStringifiedLabel,
-  resolveTreeViewString,
-} from './utils';
+import { filterNullEntries, resolveTreeViewString } from './utils';
 import { useDeviceDetect } from '../../hooks/useDeviceDetect';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { I18nContext } from '../../i18n';
-import { useGenerateId, useForkedRef } from '../../utils';
+import {
+  formatAnnouncement,
+  getStringifiedLabelText,
+  useGenerateId,
+  useForkedRef,
+} from '../../utils';
 
 export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
   /**
@@ -149,8 +149,12 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     treeViewItemData?.checkedStatus,
   ]);
 
-  const treeItemChildren = React.Children.toArray(children).filter(
-    (child: React.ReactElement<any>) => child.type === TreeItem
+  const treeItemChildren = React.useMemo(
+    () =>
+      React.Children.toArray(children).filter(
+        (child: React.ReactElement<any>) => child.type === TreeItem
+      ),
+    [children]
   );
 
   const hasOwnTreeItems = React.useMemo(() => {
@@ -174,7 +178,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const { isMacOS } = useDeviceDetect();
 
   const stringifiedLabel = React.useMemo(
-    () => getStringifiedLabel(label),
+    () => getStringifiedLabelText(label),
     [label]
   );
 
@@ -188,16 +192,21 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     forceUpdate();
   }, [forceUpdate, isDisabled, registerTreeItem, treeItemRefArray]);
 
+  // Disabling an item disables everything under it, so one enabled direct
+  // subitem proves a selection would cascade somewhere.
+  const hasEnabledSubitem = React.useMemo(
+    () =>
+      treeItemChildren.some(
+        (child: React.ReactElement<{ itemId?: string }>) =>
+          !itemsById.get(child.props?.itemId)?.isDisabled
+      ),
+    [treeItemChildren, itemsById]
+  );
+
   // Announced here rather than from the checkbox, which only sees pointer
   // input: keyboard selection fires no `change` event.
   const announceSelection = React.useCallback(
     (status: IndeterminateCheckboxStatus) => {
-      // Disabling an item disables everything under it, so one enabled direct
-      // subitem proves the cascade reached something.
-      const hasEnabledSubitem = treeItemChildren.some(
-        (child: React.ReactElement<{ itemId?: string }>) =>
-          !itemsById.get(child.props?.itemId)?.isDisabled
-      );
       // Single selection moves one selection and never cascades.
       const cascadedToSubitems =
         selectable === TreeViewSelectable.multi &&
@@ -250,16 +259,14 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       announce,
       isMacOS,
       stringifiedLabel,
-      treeItemChildren,
-      itemsById,
+      hasEnabledSubitem,
       checkChildren,
       selectable,
       i18n,
     ]
   );
 
-  // Counts the selections made on *this* item, so a cascade does not announce
-  // every item it touched. A counter, not a flag: the status can repeat.
+  // A counter, not a flag: the same status can repeat.
   const [selectionCount, setSelectionCount] = React.useState(0);
   const announcedSelectionCount = React.useRef(0);
 

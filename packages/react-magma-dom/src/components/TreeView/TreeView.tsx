@@ -119,9 +119,9 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     const parentRef = React.useRef<HTMLUListElement>(null);
     const [isMounted, setIsMounted] = React.useState(false);
 
-    // The tree owns exactly one live region for every announcement its items
-    // need to make. See TreeViewAnnounceContext for why it cannot live inside a
-    // tree item, and TreeViewAnnouncer for why it is driven imperatively.
+    // One live region per tree, rendered as a sibling of it: a `ul[role="tree"]`
+    // may only own tree items, and anything inside one becomes part of that
+    // item's accessible name.
     const announcerRef = React.useRef<TreeViewAnnouncerHandle>(null);
 
     const announceContextValue = React.useMemo(
@@ -135,12 +135,9 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       setIsMounted(true);
     }, []);
 
-    // Announces `expandAll`/`collapseAll` once. Unlike expanding a single
-    // branch, a bulk action has no native equivalent on any platform: focus
-    // does not move and no single item's state changed under it, so every
-    // screen reader is silent without this. No dependency array on purpose:
-    // this runs after the tree items' effects in the same commit, so they see
-    // the flag and stay silent before it is cleared here.
+    // A bulk action moves no focus and changes no item under the cursor, so no
+    // screen reader reports it. No dependency array on purpose: this must run
+    // after the tree items' effects in the same commit, which read the flag.
     React.useEffect(() => {
       const bulkAction = expansionContextValue.bulkExpansionRef?.current;
 
@@ -347,9 +344,6 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                   )}
                 </StyledTreeView>
 
-                {/* Sibling of the tree on purpose: a `ul[role="tree"]` may only
-                 own tree items, and anything inside a tree item becomes part of
-                 that item's accessible name. */}
                 <TreeViewAnnouncer
                   ref={announcerRef}
                   testId={testId ? `${testId}-announce` : undefined}

@@ -1983,7 +1983,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
             >
               <div
                 aria-atomic="true"
-                aria-live="assertive"
+                aria-live="polite"
               />
             </div>
             <span
@@ -4274,7 +4274,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
             >
               <div
                 aria-atomic="true"
-                aria-live="assertive"
+                aria-live="polite"
               />
             </div>
             <span
@@ -6434,7 +6434,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
             >
               <div
                 aria-atomic="true"
-                aria-live="assertive"
+                aria-live="polite"
               />
             </div>
             <span
@@ -8594,7 +8594,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
             >
               <div
                 aria-atomic="true"
-                aria-live="assertive"
+                aria-live="polite"
               />
             </div>
             <span
@@ -10885,7 +10885,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
             >
               <div
                 aria-atomic="true"
-                aria-live="assertive"
+                aria-live="polite"
               />
             </div>
             <span
@@ -13176,7 +13176,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
             >
               <div
                 aria-atomic="true"
-                aria-live="assertive"
+                aria-live="polite"
               />
             </div>
             <span
@@ -15336,7 +15336,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
             >
               <div
                 aria-atomic="true"
-                aria-live="assertive"
+                aria-live="polite"
               />
             </div>
             <span

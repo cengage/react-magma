@@ -19,42 +19,15 @@ export enum TreeNodeType {
   leaf = 'leaf',
 }
 
-// Flattens a tree item label into plain text, so an announcement can name the
-// item it applies to. A label is a `ReactNode`; a live region needs a string.
-export function getStringifiedLabel(node: React.ReactNode): string {
-  if (typeof node === 'string' || typeof node === 'number') {
-    return String(node);
-  }
-
-  if (Array.isArray(node)) {
-    return node.map(getStringifiedLabel).join('');
-  }
-
-  if (typeof node === 'object' && node && 'props' in node) {
-    return getStringifiedLabel((node as React.ReactElement).props.children);
-  }
-
-  return '';
-}
-
-// Substitutes the `{labelText}` placeholder used by the announcement strings.
-export function formatAnnouncement(
-  template: string,
-  labelText: string
-): string {
-  return template.replace(/\{labelText}/g, labelText);
-}
-
 let hasWarnedAboutExpansionState = false;
 
 type TreeViewI18n = Required<NonNullable<I18nInterface['treeView']>>;
 
 const treeViewDefaults = defaultI18n.treeView as TreeViewI18n;
 
-// `i18n.treeView` is optional, so that an interface built by hand rather than
-// spread from `defaultI18n` still type-checks and still speaks English. Reading
-// a key goes through here, which falls back per key rather than per section: a
-// consumer who translates one string does not lose the other eight.
+// `i18n.treeView` is optional, so an interface built by hand still type-checks.
+// Falls back per key, not per section: translating one string does not drop
+// the other eight.
 export function resolveTreeViewString(
   i18n: I18nInterface,
   key: keyof TreeViewI18n
@@ -62,9 +35,8 @@ export function resolveTreeViewString(
   return i18n.treeView?.[key] ?? treeViewDefaults[key];
 }
 
-// Picks the template for an expand/collapse announcement. The deprecated
-// `expansionState` section still works: a value that differs from the default is
-// used as the state wording, unless its replacement has been given one too.
+// The deprecated `expansionState` section still works: a value differing from
+// the default wins, unless its replacement has been given one too.
 export function resolveExpansionAnnounceTemplate(
   i18n: I18nInterface,
   expanded: boolean

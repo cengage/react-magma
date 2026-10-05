@@ -1491,15 +1491,9 @@ describe('TreeView', () => {
 
         await userEvent.click(getByTestId('item1-label'));
 
-        // A focused element inside an aria-hidden subtree is announced by
-        // screen readers anyway, which made a single click produce two
-        // announcements.
         expect(checkbox).not.toHaveFocus();
         expect(document.activeElement).not.toBe(checkbox);
-        // Focus lands on the tree item, which is what the tree treats as
-        // focusable everywhere else.
         expect(getByTestId('item1')).toHaveFocus();
-        // The click still selects, exactly as the keyboard path does.
         expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'true');
       });
 
@@ -1552,10 +1546,8 @@ describe('TreeView', () => {
           })
         );
 
-        // Scanned as an element rather than as markup: passing markup makes
-        // jest-axe replace `document.body` with a static copy of itself, which
-        // detaches the rendered container and leaves the copy behind for the
-        // following tests.
+        // Passing markup instead makes jest-axe swap `document.body` for a
+        // static copy, detaching the container for the following tests.
         const results = await axe(container);
 
         expect(results).toHaveNoViolations();
@@ -4127,9 +4119,8 @@ describe('TreeView', () => {
         expect(
           getByLabelText('item-title-5.1', { selector: 'input' })
         ).toBeInTheDocument();
-        // Visibility is deliberately not asserted here: the accordion panel
-        // wrapping this tree keeps `opacity: 0` for the whole test in jsdom,
-        // so nothing inside it can ever report as visible.
+        // Visibility is not asserted: the accordion panel around this tree
+        // keeps `opacity: 0` throughout in jsdom.
         expect(
           getByLabelText('item-title-3.1', { selector: 'input' })
         ).toBeDisabled();
