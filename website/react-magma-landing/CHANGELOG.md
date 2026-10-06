@@ -1,5 +1,17 @@
 # Change Log
 
+## 1.1.11
+
+### Patch Changes
+
+- b731afe: fix(react-magma-landing): show the latest release of each major (v7–v3) in the version banner instead of one per React version
+
+## 1.1.10
+
+### Patch Changes
+
+- c1d0a5d: chore(react-magma-landing): update landing page with new rebrand style
+
 ## 1.1.9
 
 ### Patch Changes
