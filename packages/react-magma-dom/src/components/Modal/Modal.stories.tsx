@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+  Input,
   Modal,
   ModalProps,
   ModalSize,
@@ -861,6 +862,58 @@ export const EscWithForeignAriaModal = () => {
         </Paragraph>
         <Button onClick={() => setShowModal(false)}>Close</Button>
       </Modal>
+    </>
+  );
+};
+
+export const SubmitButtonBecomesDisabled = () => {
+  const [showModal, setShowModal] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
+
+  const onModalClose = () => {
+    setShowModal(false);
+    setIsSubmitting(false);
+    buttonRef.current.focus();
+  };
+
+  React.useEffect(() => {
+    if (!isSubmitting) {
+      return undefined;
+    }
+
+    const timeout = setTimeout(() => setIsSubmitting(false), 3000);
+
+    return () => clearTimeout(timeout);
+  }, [isSubmitting]);
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+  };
+
+  return (
+    <>
+      <Modal header="Submit form" onClose={onModalClose} isOpen={showModal}>
+        <form onSubmit={handleSubmit}>
+          <Paragraph noTopMargin>
+            The submit button is disabled for 3 seconds after click. Focus
+            should stay inside the modal.
+          </Paragraph>
+          <Input labelText="Name" />
+          <Spacer size={16} />
+          <Button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? 'Submitting...' : 'Submit'}
+          </Button>
+        </form>
+      </Modal>
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
+        Show Modal
+      </Button>
     </>
   );
 };
