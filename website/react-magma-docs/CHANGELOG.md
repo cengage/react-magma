@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.1-v6-next.0
+
+### Patch Changes
+
+- cc9370eda: chore(release): sync the published 6.0.0 state from v6/main into v6/dev
+
 ## 6.0.0
 
 ### Major Changes
