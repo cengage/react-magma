@@ -245,6 +245,31 @@ export function getNodeText(node) {
   if (typeof node === 'object' && node) return getNodeText(node.props.children);
 }
 
+// Unlike `getNodeText`, always returns a string and tolerates a node without
+// `props`, so it is safe on a label a consumer passed as an arbitrary node.
+export function getStringifiedLabelText(node: React.ReactNode): string {
+  if (typeof node === 'string' || typeof node === 'number') {
+    return String(node);
+  }
+
+  if (Array.isArray(node)) {
+    return node.map(getStringifiedLabelText).join('');
+  }
+
+  if (typeof node === 'object' && node && 'props' in node) {
+    return getStringifiedLabelText((node as React.ReactElement).props.children);
+  }
+
+  return '';
+}
+
+export function formatAnnouncement(
+  template: string,
+  labelText: string
+): string {
+  return template.replace(/\{labelText}/g, labelText);
+}
+
 const candidateSelectors = [
   'input',
   'select',

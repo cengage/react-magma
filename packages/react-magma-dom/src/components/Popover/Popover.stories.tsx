@@ -613,9 +613,7 @@ const InputExampleTemplate = args => {
     specialSymbol: true,
   });
   const inputRef = React.useRef<HTMLInputElement>();
-  const errorColor = args.isInverse
-    ? magma.colors.red500
-    : magma.colors.red600;
+  const errorColor = args.isInverse ? magma.colors.red500 : magma.colors.red600;
   const successColor = args.isInverse
     ? magma.colors.green500
     : magma.colors.green600;
@@ -705,9 +703,7 @@ const InputExampleTemplate = args => {
 
               <span
                 style={{
-                  color: errorState.length
-                    ? errorColor
-                    : successColor,
+                  color: errorState.length ? errorColor : successColor,
                 }}
               >
                 Includes at least 6 characters
@@ -722,9 +718,7 @@ const InputExampleTemplate = args => {
 
               <span
                 style={{
-                  color: errorState.number
-                    ? errorColor
-                    : successColor,
+                  color: errorState.number ? errorColor : successColor,
                 }}
               >
                 Includes number
@@ -739,9 +733,7 @@ const InputExampleTemplate = args => {
 
               <span
                 style={{
-                  color: errorState.lowercase
-                    ? errorColor
-                    : successColor,
+                  color: errorState.lowercase ? errorColor : successColor,
                 }}
               >
                 Includes lowercase letter
@@ -756,9 +748,7 @@ const InputExampleTemplate = args => {
 
               <span
                 style={{
-                  color: errorState.uppercase
-                    ? errorColor
-                    : successColor,
+                  color: errorState.uppercase ? errorColor : successColor,
                 }}
               >
                 Includes uppercase letter
@@ -773,9 +763,7 @@ const InputExampleTemplate = args => {
 
               <span
                 style={{
-                  color: errorState.specialSymbol
-                    ? errorColor
-                    : successColor,
+                  color: errorState.specialSymbol ? errorColor : successColor,
                 }}
               >
                 Includes special symbol

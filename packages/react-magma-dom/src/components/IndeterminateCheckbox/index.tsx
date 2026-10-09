@@ -9,7 +9,13 @@ import {
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { descriptionSuffix, Omit, useGenerateId } from '../../utils';
+import {
+  descriptionSuffix,
+  formatAnnouncement,
+  getStringifiedLabelText,
+  Omit,
+  useGenerateId,
+} from '../../utils';
 import { Announce } from '../Announce';
 import {
   CheckboxProps,
@@ -38,26 +44,18 @@ export interface IndeterminateCheckboxProps
    * @internal
    */
   hideFocus?: boolean;
+  /**
+   * Suppresses this checkbox's own status live region. Used by `TreeView`,
+   * which announces selection itself.
+   * @internal
+   */
+  suppressStatusAnnounce?: boolean;
 }
 
 export enum IndeterminateCheckboxStatus {
   checked = 'checked',
   indeterminate = 'indeterminate',
   unchecked = 'unchecked', //default
-}
-
-function getStringifiedLabelText(node: React.ReactNode): string {
-  if (typeof node === 'string' || typeof node === 'number') {
-    return String(node);
-  }
-  if (Array.isArray(node)) {
-    return node.map(getStringifiedLabelText).join('');
-  }
-  if (typeof node === 'object' && node && 'props' in node) {
-    return getStringifiedLabelText((node as React.ReactElement).props.children);
-  }
-
-  return '';
 }
 
 export const IndeterminateCheckbox = React.memo(
@@ -67,11 +65,11 @@ export const IndeterminateCheckbox = React.memo(
       // extra render on every status change for no benefit on a controlled component.
       const isChecked = props.status === 'checked';
       const isIndeterminate = props.status === 'indeterminate';
-      const isUnchecked = props.status === 'unchecked';
 
-      // Track whether the user has interacted at least once so we don't announce
-      // the initial mount status to screen readers.
-      const [hasInteracted, setHasInteracted] = React.useState(false);
+      // Only a change the user made on *this* checkbox is worth announcing:
+      // `status` is controlled, so it also changes when a parent or child
+      // cascades a value down. A ref rather than state — it must not render.
+      const wasInteractedWith = React.useRef(false);
 
       const id = useGenerateId(props.id);
 
@@ -105,7 +103,7 @@ export const IndeterminateCheckbox = React.memo(
       );
 
       function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-        setHasInteracted(true);
+        wasInteractedWith.current = true;
 
         props.onChange &&
           typeof props.onChange === 'function' &&
@@ -125,39 +123,50 @@ export const IndeterminateCheckbox = React.memo(
         labelStyle,
         labelText,
         isTextVisuallyHidden,
+        suppressStatusAnnounce,
         testId,
         ...other
       } = props;
 
-      const showAnnounce =
-        hasInteracted && (isChecked || isIndeterminate || isUnchecked);
+      const [announceText, setAnnounceText] = React.useState('');
 
-      // Compute announce text only when it will be rendered (avoids walking
-      // the labelText React tree on every render).
-      const announceText = React.useMemo(() => {
-        if (!showAnnounce) return '';
+      const previousStatus = React.useRef(props.status);
+
+      React.useEffect(() => {
+        if (previousStatus.current === props.status) {
+          return;
+        }
+
+        previousStatus.current = props.status;
+
+        // A cascaded change still has to clear the previous message: this live
+        // region sits inside the tree item, so stale text would stay part of
+        // that item's accessible name.
+        if (suppressStatusAnnounce || !wasInteractedWith.current) {
+          setAnnounceText('');
+
+          return;
+        }
+
+        wasInteractedWith.current = false;
 
         const stringifiedLabel = getStringifiedLabelText(labelText);
-        const replace = (template: string) =>
-          template.replace(/\{labelText\}/g, stringifiedLabel);
+        const announceByStatus = {
+          [IndeterminateCheckboxStatus.checked]:
+            i18n.indeterminateCheckbox.isCheckedAnnounce,
+          [IndeterminateCheckboxStatus.indeterminate]:
+            i18n.indeterminateCheckbox.isIndeterminateAnnounce,
+          [IndeterminateCheckboxStatus.unchecked]:
+            i18n.indeterminateCheckbox.isUncheckedAnnounce,
+        };
 
-        if (isChecked) {
-          return replace(i18n.indeterminateCheckbox.isCheckedAnnounce);
-        }
-        if (isIndeterminate) {
-          return replace(i18n.indeterminateCheckbox.isIndeterminateAnnounce);
-        }
-        if (isUnchecked) {
-          return replace(i18n.indeterminateCheckbox.isUncheckedAnnounce);
-        }
-
-        return '';
+        setAnnounceText(
+          formatAnnouncement(announceByStatus[props.status], stringifiedLabel)
+        );
       }, [
-        showAnnounce,
-        isChecked,
-        isIndeterminate,
-        isUnchecked,
+        props.status,
         labelText,
+        suppressStatusAnnounce,
         i18n.indeterminateCheckbox.isCheckedAnnounce,
         i18n.indeterminateCheckbox.isIndeterminateAnnounce,
         i18n.indeterminateCheckbox.isUncheckedAnnounce,
@@ -233,9 +242,13 @@ export const IndeterminateCheckbox = React.memo(
                 labelText
               )}
             </StyledLabel>
-            <Announce>
-              {showAnnounce && <VisuallyHidden>{announceText}</VisuallyHidden>}
-            </Announce>
+            {!suppressStatusAnnounce && (
+              <Announce>
+                {announceText && (
+                  <VisuallyHidden>{announceText}</VisuallyHidden>
+                )}
+              </Announce>
+            )}
           </StyledContainer>
           {!!errorMessage && (
             <InputMessage
