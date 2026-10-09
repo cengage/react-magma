@@ -1,0 +1,14 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@react-magma/charts": "16.0.0",
+    "@react-magma/dropzone": "16.0.0",
+    "react-magma-dom": "7.0.0",
+    "react-magma-docs": "7.0.0",
+    "react-magma-landing": "1.1.11"
+  },
+  "changesets": [
+    "sync-main-to-dev-7-0-0"
+  ]
+}

@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1-next.0
+
+### Patch Changes
+
+- 8e8d935: chore(release): sync the published 7.0.0 state from main into dev
+
 ## 7.0.0
 
 ### Major Changes
