@@ -50,6 +50,8 @@ Match existing components before introducing new patterns (`CONTRIBUTING.md`: st
 
 Jest + Testing Library + `@testing-library/jest-dom` + Emotion snapshots + `jest-axe`. Add tests beside changed components, assert behavior and accessibility (`jest-axe`) where relevant, and update `__snapshots__` intentionally (review diffs). Playwright specs under `tests/playwright/tests/storybook/**` cover Storybook flows. No enforced coverage threshold; reports land in `coverage/`.
 
+For bug fixes, verify that the new tests actually cover the change: run them without the fix and confirm they fail, then restore the fix and confirm they pass. A test that passes without the fix does not prove anything; rewrite it or mark it as a regression guard (e.g. "should not move focus when...").
+
 ## Branching, Commits & Pull Requests
 
 - **Branch off `dev`** (the active v7 integration branch) and target `dev` in PRs — not `main`. React Magma maintains parallel release tracks, each with its own `*/dev` integration branch and `*/main` stable branch: **v7** (`dev`/`main`, React 18) and **v6** (`v6/dev`/`v6/main`, React 17) are active; **v5** (`v5/dev`/`v5/main`) and **v4** (`v4/dev`/`v4/main`) are maintenance-only and slated for retirement. Default to `dev`; target an older track's `*/dev` only for a fix specific to that track.
