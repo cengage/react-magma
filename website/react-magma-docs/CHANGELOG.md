@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.4.1-v4-next.0
+
+### Patch Changes
+
+- 0f86a050a: Documentation deployment: resume v4/React 17 prerelease docs and Storybook builds after synchronizing v4.17.0 into v4/dev.
+- 6a0420ae1: chore(release): adopt the unified multi-version publish pipeline on the v4 track (v4-next prerelease tag, v4-latest stable)
+
 ## 5.4.0
 
 ### Minor Changes
