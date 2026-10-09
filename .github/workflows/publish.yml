@@ -90,7 +90,10 @@ jobs:
           git add .changeset/pre.json
       - name: Exit Prerelease Mode
         if: endsWith(github.ref_name, 'main')
-        run: npm run version:exit
+        run: |
+          if [ -f .changeset/pre.json ]; then
+            npm run version:exit
+          fi
       - name: Publish
         env:
           NPM_CONFIG_PROVENANCE: true
