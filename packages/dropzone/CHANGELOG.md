@@ -1,6 +1,6 @@
 # Change Log
 
-## 16.0.0-next.1
+## 16.0.0
 
 ### Major Changes
 
@@ -12,11 +12,6 @@
   - Align Dropzone and Charts with the updated theme tokens.
 
   See the [2026 theme migration guide](https://react-magma.cengage.com/api-intro/2026-theme-migration/) for guidance on replacing removed color tokens and preserving legacy border radii.
-
-### Patch Changes
-
-- Updated dependencies [4ca06ad]
-  - react-magma-dom@7.0.0-next.1
 
 ## 14.0.1
 
