@@ -52,6 +52,8 @@ Jest + Testing Library + `@testing-library/jest-dom` + Emotion snapshots + `jest
 
 For bug fixes, verify that the new tests actually cover the change: run them without the fix and confirm they fail, then restore the fix and confirm they pass. A test that passes without the fix does not prove anything; rewrite it or mark it as a regression guard (e.g. "should not move focus when...").
 
+`@react-magma/charts` and `@react-magma/dropzone` import `react-magma-dom` from `packages/react-magma-dom/dist`, not from `src`. After changing a `react-magma-dom` component they use (e.g. `Dropdown`, `Button`, `Tooltip`), rebuild it (`cd packages/react-magma-dom && npm run build`) before running their tests; a stale local `dist` makes them pass locally and fail on CI.
+
 ## Branching, Commits & Pull Requests
 
 - **Branch off `dev`** (the active v7 integration branch) and target `dev` in PRs — not `main`. React Magma maintains parallel release tracks, each with its own `*/dev` integration branch and `*/main` stable branch: **v7** (`dev`/`main`, React 18) and **v6** (`v6/dev`/`v6/main`, React 17) are active; **v5** (`v5/dev`/`v5/main`) and **v4** (`v4/dev`/`v4/main`) are maintenance-only and slated for retirement. Default to `dev`; target an older track's `*/dev` only for a fix specific to that track.
