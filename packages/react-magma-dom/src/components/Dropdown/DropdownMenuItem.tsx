@@ -180,6 +180,17 @@ export const DropdownMenuItem = React.forwardRef<
     }
   }
 
+  function handleFocus(event: React.FocusEvent<HTMLDivElement>) {
+    context.setFocusedItem?.(ownRef.current);
+    other.onFocus?.(event);
+  }
+
+  const isFocusedItem =
+    !!ownRef.current && context.focusedItem === ownRef.current;
+
+  // Roving tabindex: only the focused item is in the Tab order
+  const rovingTabIndex = isFocusedItem ? 0 : -1;
+
   const isActive =
     context.activeItemIndex >= 0 && context.activeItemIndex === index;
 
@@ -201,11 +212,12 @@ export const DropdownMenuItem = React.forwardRef<
       isInactive={isInactive}
       isInverse={context.isInverse}
       onClick={handleClick}
+      onFocus={handleFocus}
       onKeyDown={handleKeyDown}
       ref={disabled ? null : ref}
       role="menuitem"
       theme={theme}
-      tabIndex={disabled ? null : -1}
+      tabIndex={disabled ? null : rovingTabIndex}
       value={value}
     >
       {icon && (

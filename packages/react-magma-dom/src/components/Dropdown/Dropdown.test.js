@@ -1027,6 +1027,82 @@ describe('Dropdown', () => {
     });
   });
 
+  it('should render menu groups inside an element with role "menu"', () => {
+    const { getByLabelText } = render(
+      <Dropdown>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuGroup header="header">
+            <DropdownMenuItem>Menu Item 1</DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    expect(getByLabelText('header').parentElement).toHaveAttribute(
+      'role',
+      'menu'
+    );
+  });
+
+  it('should give tabIndex 0 only to the focused menu item', async () => {
+    const { getByTestId, getByText } = render(
+      <Dropdown>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu Item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu Item 2</DropdownMenuItem>
+          <DropdownMenuNavItem to="#">Nav Item</DropdownMenuNavItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    fireEvent.click(getByText('Toggle me'));
+
+    await waitFor(() => {
+      expect(getByText('Menu Item 1')).toHaveFocus();
+      expect(getByText('Menu Item 1')).toHaveAttribute('tabindex', '0');
+    });
+
+    expect(getByText('Menu Item 2')).toHaveAttribute('tabindex', '-1');
+    expect(getByText('Nav Item')).toHaveAttribute('tabindex', '-1');
+    expect(getByTestId('dropdownContent')).toHaveAttribute('tabindex', '-1');
+
+    fireEvent.keyDown(getByText('Menu Item 1'), { key: 'ArrowUp' });
+
+    await waitFor(() => {
+      expect(getByText('Nav Item')).toHaveFocus();
+      expect(getByText('Nav Item')).toHaveAttribute('tabindex', '0');
+    });
+
+    expect(getByText('Menu Item 1')).toHaveAttribute('tabindex', '-1');
+  });
+
+  it('should close the menu and move focus to the button on Shift+Tab from a menu item', async () => {
+    const onClose = jest.fn();
+    const { getByText, getByTestId } = render(
+      <Dropdown onClose={onClose}>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu Item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu Item 2</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    await userEvent.click(getByText('Toggle me'));
+
+    await waitFor(() => {
+      expect(getByText('Menu Item 1')).toHaveFocus();
+    });
+
+    await userEvent.tab({ shift: true });
+
+    expect(getByText('Toggle me').closest('button')).toHaveFocus();
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
   it('should render a dropdown menu divider', () => {
     const { container } = render(<DropdownDivider />);
 

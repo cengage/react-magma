@@ -59,15 +59,27 @@ export const DropdownMenuNavItem = React.forwardRef<
     return undefined;
   }, []);
 
+  function handleFocus(event: React.FocusEvent<HTMLAnchorElement>) {
+    context.setFocusedItem?.(ownRef.current);
+    other.onFocus?.(event);
+  }
+
+  const isFocusedItem =
+    !!ownRef.current && context.focusedItem === ownRef.current;
+
+  // Roving tabindex: only the focused item is in the Tab order
+  const rovingTabIndex = isFocusedItem ? 0 : -1;
+
   return (
     <StyledItem
       {...other}
       href={to}
       isFixedWidth={context.isFixedWidth}
       isInverse={context.isInverse}
+      onFocus={handleFocus}
       ref={ref}
       role="menuitem"
-      tabIndex={-1}
+      tabIndex={rovingTabIndex}
       theme={theme}
       aria-label={ariaLabel}
     >

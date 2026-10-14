@@ -104,6 +104,7 @@ interface DropdownContextInterface {
   dropdownButtonId?: React.MutableRefObject<string>;
   dropDirection?: DropdownDropDirection;
   floatingStyles?: React.CSSProperties;
+  focusedItem?: Element | null;
   handleDropdownBlur?: (event: React.FocusEvent) => void;
   itemRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
   isFixedWidth?: boolean;
@@ -117,6 +118,7 @@ interface DropdownContextInterface {
     itemRef: React.MutableRefObject<Element>
   ) => void;
   setActiveItemIndex?: React.Dispatch<React.SetStateAction<number>>;
+  setFocusedItem?: React.Dispatch<React.SetStateAction<Element | null>>;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setFloating?: (node: ReferenceType) => void;
   setReference?: (node: ReferenceType) => void;
@@ -157,6 +159,9 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     const [activeItemIndex, setActiveItemIndex] = React.useState<number>(
       activeIndex || -1
     );
+
+    // Menu item that holds tabIndex={0} (roving tabindex)
+    const [focusedItem, setFocusedItem] = React.useState<Element | null>(null);
 
     const ownRef = React.useRef<any>();
     const toggleRef = React.useRef<HTMLButtonElement>(null);
@@ -261,6 +266,20 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         event.stopPropagation();
         closeDropdown(event);
         (leftButtonRef.current ?? toggleRef.current)?.focus();
+      }
+
+      if (event.key === 'Tab' && event.shiftKey) {
+        const [, filteredItemIndex] = getFilteredItem();
+
+        // Shift+Tab from a menu item: the browser moves focus to the trigger
+        // button, the menu should close (WAI-ARIA APG menu pattern)
+        if (filteredItemIndex !== -1) {
+          setIsOpen(false);
+
+          if (typeof onClose === 'function') {
+            onClose(event);
+          }
+        }
       }
 
       if (event.key === 'ArrowDown') {
@@ -374,6 +393,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         dropdownButtonId,
         dropDirection,
         floatingStyles,
+        focusedItem,
         handleDropdownBlur,
         itemRefArray,
         isFixedWidth: !!width,
@@ -384,6 +404,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         openDropdown,
         registerDropdownMenuItem,
         setActiveItemIndex,
+        setFocusedItem,
         setIsOpen,
         setReference: refs.setReference,
         setFloating: refs.setFloating,
@@ -398,6 +419,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         dropdownButtonId,
         dropDirection,
         floatingStyles,
+        focusedItem,
         handleDropdownBlur,
         itemRefArray,
         width,
@@ -408,6 +430,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         openDropdown,
         registerDropdownMenuItem,
         setActiveItemIndex,
+        setFocusedItem,
         setIsOpen,
         refs.setReference,
         refs.setFloating,
