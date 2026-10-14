@@ -1,5 +1,13 @@
 # Change Log
 
+## 16.0.1-next.0
+
+### Patch Changes
+
+- b188410: chore: update `react-magma-icons` to `^3.3.0`
+- Updated dependencies [b188410]
+  - react-magma-dom@7.0.1-next.0
+
 ## 16.0.0
 
 ### Major Changes
