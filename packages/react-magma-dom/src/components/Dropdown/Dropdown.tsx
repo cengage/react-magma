@@ -182,6 +182,12 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     function openDropdown() {
       setIsOpen(true);
 
+      // Set the roving tabindex target together with opening, so the deferred
+      // focus below doesn't trigger a separate state update
+      setFocusedItem(
+        itemRefArray.current.find(itemRef => itemRef.current)?.current ?? null
+      );
+
       setTimeout(() => {
         const filteredItems = itemRefArray.current.filter(
           itemRef => itemRef.current

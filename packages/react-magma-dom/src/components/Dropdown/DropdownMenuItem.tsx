@@ -180,13 +180,15 @@ export const DropdownMenuItem = React.forwardRef<
     }
   }
 
-  function handleFocus(event: React.FocusEvent<HTMLDivElement>) {
-    context.setFocusedItem?.(ownRef.current);
-    other.onFocus?.(event);
-  }
-
   const isFocusedItem =
     !!ownRef.current && context.focusedItem === ownRef.current;
+
+  function handleFocus(event: React.FocusEvent<HTMLDivElement>) {
+    if (!isFocusedItem) {
+      context.setFocusedItem?.(ownRef.current);
+    }
+    other.onFocus?.(event);
+  }
 
   // Roving tabindex: only the focused item is in the Tab order
   const rovingTabIndex = isFocusedItem ? 0 : -1;
