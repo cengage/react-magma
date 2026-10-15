@@ -12,6 +12,7 @@ import {
 
 import { TreeItemContext } from './TreeItemContext';
 import { TreeItemHierarchyContext } from './TreeItemHierarchyContext';
+import { TreeViewAnnounceContext } from './TreeViewAnnounceContext';
 import { TreeViewConfigContext } from './TreeViewConfigContext';
 import { TreeViewExpansionContext } from './TreeViewExpansionContext';
 import { TreeViewSelectionContext } from './TreeViewSelectionContext';
@@ -26,6 +27,7 @@ import {
   getTreeItemIconColor,
   getTreeItemLabelColor,
   getTreeItemWrapperCursor,
+  resolveExpansionAnnounceTemplate,
   TreeNodeType,
 } from './utils';
 import { I18nContext } from '../..';
@@ -34,15 +36,17 @@ import { useFocusLock } from '../../hooks/useFocusLock';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { mergeRefs } from '../../utils';
-import { Announce } from '../Announce';
+import {
+  formatAnnouncement,
+  getStringifiedLabelText,
+  mergeRefs,
+} from '../../utils';
 import { Checkbox } from '../Checkbox';
 import {
   IndeterminateCheckbox,
   IndeterminateCheckboxStatus,
 } from '../IndeterminateCheckbox';
 import { Transition } from '../Transition';
-import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface TreeItemProps extends UseTreeItemProps {}
 
@@ -315,7 +319,9 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
     // Consume split contexts for reduced re-render scope
     const { itemToFocus } = React.useContext(TreeViewSelectionContext);
-    const { handleExpandedChange } = React.useContext(TreeViewExpansionContext);
+    const { handleExpandedChange, bulkExpansionRef } = React.useContext(
+      TreeViewExpansionContext
+    );
     const {
       expandIconStyles,
       hasGuideLines,
@@ -340,8 +346,9 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     );
 
     const { isDisabled } = contextValue;
-    const { isMacOS } = useDeviceDetect();
+    const { isChrome, isMacOS, isSafari } = useDeviceDetect();
     const i18n = React.useContext(I18nContext);
+    const { announce } = React.useContext(TreeViewAnnounceContext);
 
     const {
       checkboxChangeHandler,
@@ -355,6 +362,53 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     } = contextValue;
 
     const nodeType = hasOwnTreeItems ? TreeNodeType.branch : TreeNodeType.leaf;
+
+    const stringifiedLabel = React.useMemo(
+      () => getStringifiedLabelText(label),
+      [label]
+    );
+
+    // Fills a VoiceOver gap, hence macOS only: NVDA reads `aria-expanded`
+    // itself, and so does VoiceOver on Firefox and on top-level Chrome rows.
+    const shouldAnnounceExpansion =
+      hasOwnTreeItems && isMacOS && (isSafari || (isChrome && itemDepth > 0));
+
+    const prevExpandedRef = React.useRef<boolean | undefined>(undefined);
+
+    React.useEffect(() => {
+      const prevExpanded = prevExpandedRef.current;
+
+      prevExpandedRef.current = expanded;
+
+      if (!shouldAnnounceExpansion) {
+        return;
+      }
+
+      // Expanding a branch mounts its children; announcing their initial
+      // state would turn one action into N announcements.
+      if (prevExpanded === undefined || prevExpanded === expanded) {
+        return;
+      }
+
+      // TreeView announces bulk expansion once instead.
+      if (bulkExpansionRef?.current) {
+        return;
+      }
+
+      announce(
+        formatAnnouncement(
+          resolveExpansionAnnounceTemplate(i18n, expanded),
+          stringifiedLabel
+        )
+      );
+    }, [
+      announce,
+      bulkExpansionRef,
+      expanded,
+      shouldAnnounceExpansion,
+      stringifiedLabel,
+      i18n,
+    ]);
     const selectedItem =
       selectable === TreeViewSelectable.single
         ? selectedItems?.[0]?.itemId === itemId
@@ -545,6 +599,41 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       return arr;
     }, [children, itemDepth]);
 
+    // Siblings share one `ul[role="group"]`: splitting them breaks
+    // set-position reporting, and a group may only own tree items.
+    const { treeItemChildNodes, otherChildNodes } = React.useMemo(() => {
+      const treeItems: React.ReactNode[] = [];
+      const others: React.ReactNode[] = [];
+
+      React.Children.forEach(
+        children,
+        (child: React.ReactElement<any>, childIndex) => {
+          if (child?.type !== TreeItem) {
+            if (child !== null && child !== undefined) {
+              others.push(
+                <React.Fragment key={`other-child-${childIndex}`}>
+                  {child}
+                </React.Fragment>
+              );
+            }
+
+            return;
+          }
+
+          treeItems.push(
+            <TreeItemHierarchyContext.Provider
+              key={child.props.itemId}
+              value={childHierarchies[childIndex]}
+            >
+              {child}
+            </TreeItemHierarchyContext.Provider>
+          );
+        }
+      );
+
+      return { treeItemChildNodes: treeItems, otherChildNodes: others };
+    }, [children, childHierarchies]);
+
     // Memoize inline style objects to prevent unnecessary re-renders
     const checkboxInputStyle = React.useMemo(
       () => ({ marginRight: theme.spaceScale.spacing03 }),
@@ -559,9 +648,21 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       []
     );
 
+    // Focus inside an `aria-hidden` subtree stays exposed to assistive
+    // technology, and clicking a label focuses its control regardless.
+    const redirectCheckboxFocus = React.useCallback(
+      (event: React.FocusEvent<HTMLInputElement>) => {
+        event.target.closest<HTMLElement>('[role="treeitem"]')?.focus();
+      },
+      []
+    );
+
     // Props shared by Checkbox and IndeterminateCheckbox
     const checkboxProps = React.useMemo(
       () => ({
+        // Selection state belongs to the tree item's `aria-checked`; the input
+        // stays in the DOM only as the control pointer input operates.
+        'aria-hidden': true,
         disabled: isDisabled,
         hideFocus: true,
         id: `${itemId}-checkbox`,
@@ -569,6 +670,10 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
         labelStyle: checkboxLabelStyle,
         labelText: labelText,
         onChange: checkboxChangeHandler,
+        onFocus: redirectCheckboxFocus,
+        // The tree announces selection from its own live region; the
+        // checkbox's would double up on pointer input and miss the keyboard.
+        suppressStatusAnnounce: true,
         tabIndex: -1,
         testId: `${itemId}-checkbox`,
       }),
@@ -579,6 +684,7 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
         checkboxLabelStyle,
         labelText,
         checkboxChangeHandler,
+        redirectCheckboxFocus,
       ]
     );
 
@@ -739,7 +845,7 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
     return (
       <TreeItemContext.Provider value={contextValue}>
-        <div style={treeItemStyles}>
+        <div role="none" style={treeItemStyles}>
           <StyledTreeItem
             {...rest}
             aria-disabled={isDisabled || null}
@@ -860,38 +966,14 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
                     />
                   ))}
 
-            {React.Children.map(
-              children,
-              (child: React.ReactElement<any>, childIndex) => {
-                if (child?.type !== TreeItem) {
-                  return child;
-                }
+            {otherChildNodes}
 
-                // Use the stable, pre-memoised value (see childHierarchies above).
-                const nestedHierarchyValue = childHierarchies[childIndex];
-
-                return (
-                  <Transition isOpen={expanded} unmountOnExit>
-                    <ul role="group">
-                      <TreeItemHierarchyContext.Provider
-                        key={child.props.itemId}
-                        value={nestedHierarchyValue}
-                      >
-                        {child}
-                      </TreeItemHierarchyContext.Provider>
-                    </ul>
-                  </Transition>
-                );
-              }
-            )}
-            {isMacOS && (
-              <VisuallyHidden>
-                <Announce>
-                  {expanded
-                    ? i18n.expansionState.expanded
-                    : i18n.expansionState.collapsed}
-                </Announce>
-              </VisuallyHidden>
+            {treeItemChildNodes.length > 0 && (
+              // `role="none"` keeps this animation wrapper out of the
+              // accessibility tree, so the item owns its group directly.
+              <Transition isOpen={expanded} unmountOnExit role="none">
+                <ul role="group">{treeItemChildNodes}</ul>
+              </Transition>
             )}
           </StyledTreeItem>
         </div>
