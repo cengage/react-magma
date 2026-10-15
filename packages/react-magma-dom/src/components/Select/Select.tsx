@@ -173,6 +173,8 @@ export function Select<T>(props: SelectProps<T>) {
   });
 
   const toggleButtonProps = getToggleButtonProps({
+    // role="combobox" requires aria-controls pointing to the listbox
+    'aria-controls': getMenuProps().id,
     disabled: disabled,
     onBlur,
     onKeyDown: (event: any) => {
