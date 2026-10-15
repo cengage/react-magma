@@ -304,4 +304,192 @@ describe('TreeItem', () => {
       );
     });
   });
+
+  describe('cursor', () => {
+    function renderTree(props = {}) {
+      return render(
+        <TreeView initialExpandedItems={['branch']} {...props}>
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            <TreeItem label="Child" itemId="child" testId="child" />
+          </TreeItem>
+          <TreeItem label="Leaf" itemId="leaf" testId="leaf" />
+        </TreeView>
+      );
+    }
+
+    function getRow(getByTestId, id) {
+      return getByTestId(`${id}-itemwrapper`);
+    }
+
+    describe('multi select', () => {
+      it('is selected by clicking the label, not the row', () => {
+        const { getByText, getByTestId } = renderTree({
+          selectable: TreeViewSelectable.multi,
+        });
+
+        fireEvent.click(getByTestId('leaf-itemwrapper'));
+        expect(getByTestId('leaf')).toHaveAttribute('aria-checked', 'false');
+
+        fireEvent.click(getByText('Leaf'));
+        expect(getByTestId('leaf')).toHaveAttribute('aria-checked', 'true');
+      });
+
+      it('shows a pointer on the label', () => {
+        const { container } = renderTree({
+          selectable: TreeViewSelectable.multi,
+        });
+
+        container.querySelectorAll('label').forEach(label => {
+          expect(window.getComputedStyle(label).cursor).toBe('pointer');
+        });
+      });
+
+      it('shows a not-allowed cursor on a disabled label', () => {
+        const { container } = render(
+          <TreeView selectable={TreeViewSelectable.multi}>
+            <TreeItem label="Leaf" itemId="leaf" testId="leaf" isDisabled />
+          </TreeView>
+        );
+
+        expect(
+          window.getComputedStyle(container.querySelector('label')).cursor
+        ).toBe('not-allowed');
+      });
+
+      it('uses the default cursor on the row', () => {
+        const { getByTestId } = renderTree({
+          selectable: TreeViewSelectable.multi,
+        });
+
+        expect(getRow(getByTestId, 'leaf')).toHaveStyleRule(
+          'cursor',
+          'default'
+        );
+      });
+
+      it('leaves a label in additional content alone', () => {
+        const { getByTestId } = render(
+          <TreeView selectable={TreeViewSelectable.multi}>
+            <TreeItem
+              label="Leaf"
+              itemId="leaf"
+              testId="leaf"
+              isDisabled
+              additionalContent={<label htmlFor="other">Other</label>}
+            />
+          </TreeView>
+        );
+
+        const other = getByTestId('leaf-additionalcontentwrapper').firstChild;
+
+        expect(window.getComputedStyle(other).cursor).not.toBe('not-allowed');
+      });
+    });
+
+    describe('single select', () => {
+      it('is selected by clicking the row', () => {
+        const { getByTestId } = renderTree({
+          selectable: TreeViewSelectable.single,
+        });
+
+        fireEvent.click(getByTestId('leaf-itemwrapper'));
+
+        expect(getByTestId('leaf')).toHaveAttribute('aria-selected', 'true');
+      });
+
+      it('shows a pointer on the row', () => {
+        const { getByTestId } = renderTree({
+          selectable: TreeViewSelectable.single,
+        });
+
+        expect(getRow(getByTestId, 'leaf')).toHaveStyleRule(
+          'cursor',
+          'pointer'
+        );
+        expect(getRow(getByTestId, 'branch')).toHaveStyleRule(
+          'cursor',
+          'pointer'
+        );
+      });
+    });
+
+    describe('selection off', () => {
+      it('expands a branch by clicking the row', () => {
+        const { getByTestId, queryByTestId } = render(
+          <TreeView selectable={TreeViewSelectable.off}>
+            <TreeItem label="Branch" itemId="branch" testId="branch">
+              <TreeItem label="Child" itemId="child" testId="child" />
+            </TreeItem>
+          </TreeView>
+        );
+
+        expect(queryByTestId('child')).toBeNull();
+        fireEvent.click(getByTestId('branch-itemwrapper'));
+        expect(queryByTestId('child')).not.toBeNull();
+      });
+
+      it('shows a pointer on a branch row only', () => {
+        const { getByTestId } = renderTree({
+          selectable: TreeViewSelectable.off,
+        });
+
+        expect(getRow(getByTestId, 'branch')).toHaveStyleRule(
+          'cursor',
+          'pointer'
+        );
+        expect(getRow(getByTestId, 'leaf')).toHaveStyleRule(
+          'cursor',
+          'default'
+        );
+      });
+    });
+
+    describe('expand icon', () => {
+      it('is the only way to expand a branch in multi select', () => {
+        const { getByText, getByTestId, queryByTestId } = render(
+          <TreeView selectable={TreeViewSelectable.multi}>
+            <TreeItem label="Branch" itemId="branch" testId="branch">
+              <TreeItem label="Child" itemId="child" testId="child" />
+            </TreeItem>
+          </TreeView>
+        );
+
+        fireEvent.click(getByText('Branch'));
+        expect(queryByTestId('child')).toBeNull();
+
+        fireEvent.click(getByTestId('branch-expand'));
+        expect(queryByTestId('child')).not.toBeNull();
+      });
+
+      it('shows a pointer even when the row does not', () => {
+        const { getByTestId } = renderTree({
+          selectable: TreeViewSelectable.multi,
+        });
+
+        expect(getRow(getByTestId, 'branch')).toHaveStyleRule(
+          'cursor',
+          'default'
+        );
+        expect(getByTestId('branch-expand')).toHaveStyleRule(
+          'cursor',
+          'pointer'
+        );
+      });
+
+      it('shows a not-allowed cursor on a disabled item', () => {
+        const { getByTestId } = render(
+          <TreeView selectable={TreeViewSelectable.multi}>
+            <TreeItem label="Branch" itemId="branch" testId="branch" isDisabled>
+              <TreeItem label="Child" itemId="child" />
+            </TreeItem>
+          </TreeView>
+        );
+
+        expect(getByTestId('branch-expand')).toHaveStyleRule(
+          'cursor',
+          'not-allowed'
+        );
+      });
+    });
+  });
 });
