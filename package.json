@@ -163,5 +163,9 @@
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
     "rollup-plugin-postcss": "^4.0.2"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-darwin-arm64": "4.52.4",
+    "@rollup/rollup-darwin-x64": "4.52.4"
   }
 }
