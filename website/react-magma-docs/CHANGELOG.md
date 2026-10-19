@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.0.1-v6-next.1
+
+### Patch Changes
+
+- 478635752: chore: update `react-magma-icons` to `^3.3.0`
+- Updated dependencies [478635752]
+  - react-magma-dom@6.0.1-v6-next.0
+  - @react-magma/charts@15.0.1-v6-next.0
+  - @react-magma/dropzone@15.0.1-v6-next.0
+
 ## 6.0.1-v6-next.0
 
 ### Patch Changes

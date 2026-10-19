@@ -10,6 +10,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
-    "sync-v6-main-to-v6-dev-6-0-0"
+    "sync-v6-main-to-v6-dev-6-0-0",
+    "update-react-magma-icons"
   ]
 }
