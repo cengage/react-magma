@@ -113,10 +113,10 @@ export const PopoverContent = React.forwardRef<
 
     checkScrollability();
 
-    let resizeObserver: ResizeObserver | null = null;
+    let resizeObserver: any = null;
 
     if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
-      resizeObserver = new ResizeObserver(checkScrollability);
+      resizeObserver = new (window as any).ResizeObserver(checkScrollability);
       resizeObserver.observe(element);
     }
 
