@@ -231,9 +231,10 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     throw new Error('Tooltip children can only be one element.');
   }
 
-  const isDescriptionRedundant =
-    normalizeAccessibleText(content) ===
-    normalizeAccessibleText(children.props?.['aria-label']);
+  const isDescriptionRedundant = isSameAccessibleText(
+    content,
+    children.props?.['aria-label']
+  );
 
   const tooltipTrigger = React.cloneElement(
     children,
