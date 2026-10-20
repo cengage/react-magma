@@ -12,6 +12,7 @@ import {
   SettingsIcon,
 } from 'react-magma-icons';
 
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { ButtonSize } from '../Button';
 import { ButtonIconPosition } from '../IconButton';
@@ -1541,6 +1542,32 @@ describe('Dropdown', () => {
 
       expect(getByTestId(expandablePanelId)).toBeInTheDocument();
       expect(queryByTestId(expandablePanelTwoId)).not.toBeInTheDocument();
+    });
+
+    it('Does not violate accessibility standards with expandable items', async () => {
+      const { container, getByText } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup defaultIndex={[0]}>
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Pasta
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      await userEvent.click(getByText('Expandable Items Dropdown'));
+
+      expect(await axe(container)).toHaveNoViolations();
     });
 
     it('should have multiple open menu items when isMulti is true', async () => {
