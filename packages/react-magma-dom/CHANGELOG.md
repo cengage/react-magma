@@ -1,6 +1,12 @@
 # Change Log
 
-## 7.0.0-next.1
+## 7.0.1-next.0
+
+### Patch Changes
+
+- b188410: chore: update `react-magma-icons` to `^3.3.0`
+
+## 7.0.0
 
 ### Major Changes
 
