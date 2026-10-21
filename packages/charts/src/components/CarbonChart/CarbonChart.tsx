@@ -1373,28 +1373,32 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       isInverse,
     ]);
 
-    const newOptions = {
-      ...options,
-      theme: isInverse ? ChartTheme.G100 : ChartTheme.WHITE,
-      color: {
-        scale: colorScale,
-      },
-      tooltip: {
-        ...(options?.tooltip || {}),
-        truncation: {
-          type: 'none',
+    const hasChartToolbar = Boolean(chartToolbar);
+    const newOptions = React.useMemo(
+      () => ({
+        ...options,
+        theme: isInverse ? ChartTheme.G100 : ChartTheme.WHITE,
+        color: {
+          scale: colorScale,
         },
-      },
-      ...(chartToolbar
-        ? {
-            toolbar: { enabled: false },
-            title: chartTitle,
-            ...(options.fileDownload
-              ? {}
-              : { fileDownload: { fileName: chartTitle } }),
-          }
-        : {}),
-    };
+        tooltip: {
+          ...(options?.tooltip || {}),
+          truncation: {
+            type: 'none',
+          },
+        },
+        ...(hasChartToolbar
+          ? {
+              toolbar: { enabled: false },
+              title: chartTitle,
+              ...(options.fileDownload
+                ? {}
+                : { fileDownload: { fileName: chartTitle } }),
+            }
+          : {}),
+      }),
+      [options, isInverse, colorScale, hasChartToolbar, chartTitle]
+    );
 
     const ChartType = ALL_CHARTS[type];
 
