@@ -26,7 +26,7 @@ import {
 import { Logo } from '../Logo';
 
 const StyledGrid = styled(Grid)`
-  grid-template-columns: auto auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: auto;
   padding: 0 ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06};
 
