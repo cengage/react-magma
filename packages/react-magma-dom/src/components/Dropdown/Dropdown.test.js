@@ -35,6 +35,46 @@ import {
 } from '.';
 
 describe('Dropdown', () => {
+  const originalUserAgent = navigator.userAgent;
+
+  afterEach(() => {
+    Object.defineProperty(navigator, 'userAgent', {
+      value: originalUserAgent,
+      writable: true,
+    });
+  });
+
+  it('should preserve the user description and add the Safari state description', () => {
+    Object.defineProperty(navigator, 'userAgent', {
+      value:
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15',
+      writable: true,
+    });
+
+    const { getByRole, getByText } = render(
+      <Dropdown>
+        <div id="user-description">User description</div>
+        <DropdownButton aria-describedby="user-description">
+          Toggle me
+        </DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    const button = getByRole('button', { name: 'Toggle me' });
+    const describedBy = button.getAttribute('aria-describedby');
+    const describedByIds = describedBy?.split(' ') ?? [];
+
+    expect(describedByIds).toHaveLength(2);
+    expect(describedByIds[0]).toBe('user-description');
+    expect(getByText('User description')).toBeInTheDocument();
+    expect(document.getElementById(describedByIds[1])).toHaveTextContent(
+      'collapsed'
+    );
+  });
+
   it('should find element by testId', async () => {
     const testId = 'test-id';
     const { getByTestId } = render(
