@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 15.0.1-v6-next.1
+
+### Patch Changes
+
+- 77ed889bf: fix(CarbonChart): Chart height no longer stays stretched after exiting fullscreen.
+
 ## 15.0.1-v6-next.0
 
 ### Patch Changes
