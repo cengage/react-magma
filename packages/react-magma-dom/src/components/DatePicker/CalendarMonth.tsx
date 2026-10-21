@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { CloseIcon, KeyboardIcon } from 'react-magma-icons';
+import { CloseOutlinedIcon, KeyboardOutlinedIcon } from 'react-magma-icons';
 
 import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
@@ -274,7 +274,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
                     color={ButtonColor.subtle}
                     ref={helperButtonRef}
                     aria-label={`${i18n.datePicker.helpModal.helpButtonAriaLabel} ${i18n.datePicker.helpModal.tooltipContent}`}
-                    icon={<KeyboardIcon />}
+                    icon={<KeyboardOutlinedIcon />}
                     onClick={context.showHelperInformation}
                     onFocus={turnOffDateFocused}
                     type={ButtonType.button}
@@ -312,7 +312,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
                 <IconButton
                   aria-label={i18n.datePicker.calendarCloseAriaLabel}
                   color={ButtonColor.subtle}
-                  icon={<CloseIcon />}
+                  icon={<CloseOutlinedIcon />}
                   onClick={props.handleCloseButtonClick}
                   size={ButtonSize.medium}
                   type={ButtonType.button}

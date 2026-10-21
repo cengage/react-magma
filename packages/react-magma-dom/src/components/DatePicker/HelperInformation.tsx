@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { ArrowBackIcon, CloseIcon } from 'react-magma-icons';
+import { ArrowBackOutlinedIcon, CloseOutlinedIcon } from 'react-magma-icons';
 
 import { useFocusLock } from '../../hooks/useFocusLock';
 import { I18nContext } from '../../i18n';
@@ -163,7 +163,7 @@ export const HelperInformation: React.FunctionComponent<
             aria-label={i18n.datePicker.backToCalendarAriaLabel}
             target="_self"
             to="#"
-            icon={<ArrowBackIcon />}
+            icon={<ArrowBackOutlinedIcon />}
             iconPosition={HyperlinkIconPosition.left}
             hasUnderline={false}
             isInverse={isInverse}
@@ -180,7 +180,7 @@ export const HelperInformation: React.FunctionComponent<
           <IconButton
             aria-label={i18n.datePicker.calendarCloseAriaLabel}
             color={ButtonColor.subtle}
-            icon={<CloseIcon />}
+            icon={<CloseOutlinedIcon />}
             isInverse={isInverse}
             size={ButtonSize.medium}
             type={ButtonType.button}
