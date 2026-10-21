@@ -1,10 +1,6 @@
 import * as React from 'react';
 
-import {
-  NorthOutlinedIcon,
-  SortDoubleArrowIcon,
-  SouthOutlinedIcon,
-} from 'react-magma-icons';
+import { NorthIcon, SortDoubleArrowIcon, SouthIcon } from 'react-magma-icons';
 
 import { ThemeInterface } from '../../theme/magma';
 import { TableSortDirection } from '../Table/Table';
@@ -29,7 +25,7 @@ export const getTableSortIcon = ({
   switch (sortDirection) {
     case TableSortDirection.ascending:
       return (
-        <NorthOutlinedIcon
+        <NorthIcon
           color={sortIconColor}
           size={iconSize}
           testId="sort-ascending"
@@ -38,7 +34,7 @@ export const getTableSortIcon = ({
 
     case TableSortDirection.descending:
       return (
-        <SouthOutlinedIcon
+        <SouthIcon
           color={sortIconColor}
           size={iconSize}
           testId="sort-descending"

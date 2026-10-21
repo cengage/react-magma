@@ -4,7 +4,7 @@ import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 import ReactDOM from 'react-dom';
-import { CloseOutlinedIcon } from 'react-magma-icons';
+import { CloseIcon } from 'react-magma-icons';
 
 import { useFocusLock } from '../../hooks/useFocusLock';
 import { I18nContext } from '../../i18n';
@@ -384,7 +384,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const i18n = React.useContext(I18nContext);
 
     const CloseIconButton = (
-      <CloseOutlinedIcon
+      <CloseIcon
         size={
           magma.iconSizes[closeButtonSize]
             ? magma.iconSizes[closeButtonSize]

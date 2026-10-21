@@ -4,10 +4,10 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 import {
-  ArticleOutlinedIcon,
-  ChevronRightOutlinedIcon,
-  ExpandMoreOutlinedIcon,
-  FolderOutlinedIcon,
+  ArticleIcon,
+  ChevronRightIcon,
+  ExpandMoreIcon,
+  FolderIcon,
 } from 'react-magma-icons';
 
 import { TreeItemContext } from './TreeItemContext';
@@ -463,9 +463,9 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const defaultIcon = React.useMemo(
       () =>
         nodeType === TreeNodeType.branch ? (
-          <FolderOutlinedIcon aria-hidden />
+          <FolderIcon aria-hidden />
         ) : (
-          <ArticleOutlinedIcon aria-hidden />
+          <ArticleIcon aria-hidden />
         ),
       [nodeType]
     );
@@ -791,12 +791,9 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
                   theme={theme}
                 >
                   {expanded ? (
-                    <ExpandMoreOutlinedIcon
-                      aria-hidden
-                      size={expandIconStyles?.size}
-                    />
+                    <ExpandMoreIcon aria-hidden size={expandIconStyles?.size} />
                   ) : (
-                    <ChevronRightOutlinedIcon
+                    <ChevronRightIcon
                       aria-hidden
                       size={expandIconStyles?.size}
                     />

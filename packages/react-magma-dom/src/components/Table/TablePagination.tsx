@@ -1,10 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import {
-  ArrowBackOutlinedIcon,
-  ArrowForwardOutlinedIcon,
-} from 'react-magma-icons';
+import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
 
 import { useControlled } from '../../hooks/useControlled';
 import { I18nContext } from '../../i18n';
@@ -490,7 +487,7 @@ export const TablePagination = React.forwardRef<
               aria-label={i18n.table.pagination.previousAriaLabel}
               color={ButtonColor.subtle}
               disabled={previousButton.disabled}
-              icon={<ArrowBackOutlinedIcon />}
+              icon={<ArrowBackIcon />}
               isInverse={isInverse}
               onClick={previousButtonClick}
               testId="previousBtn"
@@ -501,7 +498,7 @@ export const TablePagination = React.forwardRef<
               aria-label={i18n.table.pagination.nextAriaLabel}
               color={ButtonColor.subtle}
               disabled={nextButton.disabled}
-              icon={<ArrowForwardOutlinedIcon />}
+              icon={<ArrowForwardIcon />}
               isInverse={isInverse}
               onClick={nextButtonClick}
               testId="nextBtn"

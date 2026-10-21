@@ -5,12 +5,12 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 import {
-  InfoOutlinedIcon,
-  CheckCircleOutlinedIcon,
-  WarningOutlinedIcon,
-  ErrorOutlinedIcon,
+  InfoIcon,
+  CheckCircleIcon,
+  WarningIcon,
+  ErrorIcon,
   IconProps,
-  CloseOutlinedIcon,
+  CloseIcon,
 } from 'react-magma-icons';
 
 import { I18nContext, I18nInterface } from '../..';
@@ -25,10 +25,10 @@ import { ProgressRing } from '../ProgressRing';
 export const VARIANT_ICON: {
   [name: string]: React.FunctionComponent<IconProps>;
 } = {
-  info: InfoOutlinedIcon,
-  success: CheckCircleOutlinedIcon,
-  warning: WarningOutlinedIcon,
-  danger: ErrorOutlinedIcon,
+  info: InfoIcon,
+  success: CheckCircleIcon,
+  warning: WarningIcon,
+  danger: ErrorIcon,
 };
 
 export enum AlertVariant {
@@ -535,7 +535,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
                           closeAriaLabel || i18n.alert.dismissAriaLabel,
                       })}
                   icon={
-                    <CloseOutlinedIcon
+                    <CloseIcon
                       size={
                         hasTimerRing
                           ? theme.iconSizes.xSmall

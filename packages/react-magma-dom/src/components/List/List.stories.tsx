@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Meta } from '@storybook/react-webpack5';
 import {
-  DeleteOutlinedIcon,
-  DraftsOutlinedIcon,
-  FolderOpenOutlinedIcon,
-  InboxOutlinedIcon,
+  DeleteIcon,
+  DraftsIcon,
+  FolderOpenIcon,
+  InboxIcon,
 } from 'react-magma-icons';
 
 import { IconAlignment, List, olListType, ulListType } from './List';
@@ -295,12 +295,12 @@ export const WithIcons = {
   render: args => {
     return (
       <List {...args}>
-        <ListItem icon={<InboxOutlinedIcon />} iconBackground="neutral">
+        <ListItem icon={<InboxIcon />} iconBackground="neutral">
           Inbox
         </ListItem>
-        <ListItem icon={<DraftsOutlinedIcon />}>Drafts</ListItem>
-        <ListItem icon={<DeleteOutlinedIcon />}>Trash</ListItem>
-        <ListItem icon={<FolderOpenOutlinedIcon />}>Spam</ListItem>
+        <ListItem icon={<DraftsIcon />}>Drafts</ListItem>
+        <ListItem icon={<DeleteIcon />}>Trash</ListItem>
+        <ListItem icon={<FolderOpenIcon />}>Spam</ListItem>
       </List>
     );
   },

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { autoUpdate } from '@floating-ui/react-dom';
 import { useSelect } from 'downshift';
-import { CloseOutlinedIcon } from 'react-magma-icons';
+import { CloseIcon } from 'react-magma-icons';
 
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -276,7 +276,7 @@ export function Select<T>(props: SelectProps<T>) {
         {isClearable && selectedItem && (
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
-            icon={<CloseOutlinedIcon size={theme.iconSizes.xSmall} />}
+            icon={<CloseIcon size={theme.iconSizes.xSmall} />}
             onClick={defaultHandleClearIndicatorClick}
             isInverse={isInverse}
             size={ButtonSize.small}

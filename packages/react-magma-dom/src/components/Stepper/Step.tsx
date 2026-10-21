@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { CheckOutlinedIcon, CloseOutlinedIcon } from 'react-magma-icons';
+import { CheckIcon, CloseIcon } from 'react-magma-icons';
 
 import { StepperLayout, StepperOrientation } from './Stepper';
 import { useIsInverse } from '../../inverse';
@@ -253,9 +253,9 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
           theme={theme}
         >
           {stepStatus === StepStatus.completed && !hasError && (
-            <CheckOutlinedIcon aria-hidden="true" />
+            <CheckIcon aria-hidden="true" />
           )}
-          {hasError && <CloseOutlinedIcon aria-hidden="true" />}
+          {hasError && <CloseIcon aria-hidden="true" />}
         </StyledStepIndicator>
 
         <StyledStepTextWrapper isVerticalOrientation={isVerticalOrientation}>

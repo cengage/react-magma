@@ -5,8 +5,8 @@ import styled from '@emotion/styled';
 import { addMonths, subMonths, startOfMonth } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import {
-  KeyboardArrowLeftOutlinedIcon,
-  KeyboardArrowRightOutlinedIcon,
+  KeyboardArrowLeftIcon,
+  KeyboardArrowRightIcon,
 } from 'react-magma-icons';
 
 import { CalendarContext } from './CalendarContext';
@@ -171,7 +171,7 @@ export const CalendarHeader: React.FunctionComponent<
           )}`}
           color={ButtonColor.subtle}
           disabled={isDisabledPrevMonth}
-          icon={<KeyboardArrowLeftOutlinedIcon />}
+          icon={<KeyboardArrowLeftIcon />}
           type={ButtonType.button}
           variant={ButtonVariant.link}
           onClick={onClickPrevMonth}
@@ -184,7 +184,7 @@ export const CalendarHeader: React.FunctionComponent<
             'MMMM yyyy',
             locale
           )}`}
-          icon={<KeyboardArrowRightOutlinedIcon />}
+          icon={<KeyboardArrowRightIcon />}
           color={ButtonColor.subtle}
           disabled={isDisabledNextMonth}
           type={ButtonType.button}

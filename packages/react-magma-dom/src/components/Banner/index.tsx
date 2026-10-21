@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import isPropValid from '@emotion/is-prop-valid';
 import styled from '@emotion/styled';
-import { CloseOutlinedIcon } from 'react-magma-icons';
+import { CloseIcon } from 'react-magma-icons';
 
 import { I18nInterface } from '../..';
 import { I18nContext } from '../../i18n';
@@ -267,7 +267,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
               aria-label={
                 closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
               }
-              icon={<CloseOutlinedIcon size={theme.iconSizes.small} />}
+              icon={<CloseIcon size={theme.iconSizes.small} />}
               isInverse={isInverse}
               onClick={onDismiss}
               theme={theme}

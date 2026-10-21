@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
 import { transparentize } from 'polished';
-import { CloseOutlinedIcon, IconProps } from 'react-magma-icons';
+import { ClearIcon, IconProps } from 'react-magma-icons';
 
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
@@ -910,7 +910,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               <IconButton
                 aria-label={i18n.input.isClearableAriaLabel}
                 disabled={disabled}
-                icon={<CloseOutlinedIcon />}
+                icon={<ClearIcon />}
                 isInverse={props.isInverse}
                 onClick={handleClearInput}
                 onKeyDown={onIconKeyDown}

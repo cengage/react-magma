@@ -3,10 +3,10 @@ import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import {
-  ArrowDropDownOutlinedIcon,
-  ArrowDropUpOutlinedIcon,
-  ArrowLeftOutlinedIcon,
-  ArrowRightOutlinedIcon,
+  ArrowDropDownIcon,
+  ArrowDropUpIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
   IconProps,
 } from 'react-magma-icons';
 
@@ -98,18 +98,14 @@ export const DropdownButton = React.forwardRef<
   function getButtonIcon(dropDirection: DropdownDropDirection) {
     switch (dropDirection) {
       case DropdownDropDirection.left:
-        return <ArrowLeftOutlinedIcon testId="caretLeft" aria-hidden="true" />;
+        return <ArrowLeftIcon testId="caretLeft" aria-hidden="true" />;
       case DropdownDropDirection.right:
-        return (
-          <ArrowRightOutlinedIcon testId="caretRight" aria-hidden="true" />
-        );
+        return <ArrowRightIcon testId="caretRight" aria-hidden="true" />;
       case DropdownDropDirection.up:
-        return <ArrowDropUpOutlinedIcon testId="caretUp" aria-hidden="true" />;
+        return <ArrowDropUpIcon testId="caretUp" aria-hidden="true" />;
 
       default:
-        return (
-          <ArrowDropDownOutlinedIcon testId="caretDown" aria-hidden="true" />
-        );
+        return <ArrowDropDownIcon testId="caretDown" aria-hidden="true" />;
     }
   }
 

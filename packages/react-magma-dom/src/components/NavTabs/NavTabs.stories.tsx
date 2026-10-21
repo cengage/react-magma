@@ -1,11 +1,7 @@
 import React from 'react';
 
 import { StoryObj, Meta, StoryFn } from '@storybook/react-webpack5';
-import {
-  AndroidOutlinedIcon,
-  MailOutlinedIcon,
-  NotificationsOutlinedIcon,
-} from 'react-magma-icons';
+import { AndroidIcon, EmailIcon, NotificationsIcon } from 'react-magma-icons';
 
 import { NavTab } from './NavTab';
 import { magma } from '../../theme/magma';
@@ -82,16 +78,11 @@ export const IconOnly: StoryObj<NavTabsProps> = {
     return (
       <Card isInverse={args.isInverse} style={navTabsCardStyles}>
         <NavTabs {...args} aria-label="Icon Only Nav Tabs">
-          <NavTab
-            aria-label="Email"
-            icon={<MailOutlinedIcon />}
-            to="#"
-            isActive
-          />
-          <NavTab aria-label="Android" icon={<AndroidOutlinedIcon />} to="#" />
+          <NavTab aria-label="Email" icon={<EmailIcon />} to="#" isActive />
+          <NavTab aria-label="Android" icon={<AndroidIcon />} to="#" />
           <NavTab
             aria-label="Notifications"
-            icon={<NotificationsOutlinedIcon />}
+            icon={<NotificationsIcon />}
             to="#"
           />
         </NavTabs>

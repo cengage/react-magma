@@ -3,10 +3,10 @@ import React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import {
-  ChevronLeftOutlinedIcon,
-  ChevronRightOutlinedIcon,
-  ExpandLessOutlinedIcon,
-  ExpandMoreOutlinedIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ExpandLessIcon,
+  ExpandMoreIcon,
 } from 'react-magma-icons';
 
 import { TabsOrientation } from './shared';
@@ -132,9 +132,9 @@ export const ButtonPrev = React.forwardRef<
       theme={props.theme}
     >
       {props.orientation === TabsOrientation.vertical ? (
-        <ExpandLessOutlinedIcon size={theme.iconSizes.small} />
+        <ExpandLessIcon size={theme.iconSizes.small} />
       ) : (
-        <ChevronLeftOutlinedIcon size={theme.iconSizes.small} />
+        <ChevronLeftIcon size={theme.iconSizes.small} />
       )}
     </StyledButtonPrev>
   );
@@ -160,9 +160,9 @@ export const ButtonNext = React.forwardRef<
       theme={props.theme}
     >
       {props.orientation === TabsOrientation.vertical ? (
-        <ExpandMoreOutlinedIcon size={theme.iconSizes.small} />
+        <ExpandMoreIcon size={theme.iconSizes.small} />
       ) : (
-        <ChevronRightOutlinedIcon size={theme.iconSizes.small} />
+        <ChevronRightIcon size={theme.iconSizes.small} />
       )}
     </StyledButtonNext>
   );

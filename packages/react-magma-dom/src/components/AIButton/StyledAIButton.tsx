@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { AutoAwesomeOutlinedIcon } from 'react-magma-icons';
+import { AutoAwesomeIcon } from 'react-magma-icons';
 
 import { StyledAIButtonTemplate } from './StyledAIButtonTemplate';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -88,7 +88,7 @@ export const StyledAIButton = React.forwardRef<
 
   if (typeof isLeadingIcon === 'boolean') {
     if (isLeadingIcon) {
-      leadingIcon = <AutoAwesomeOutlinedIcon />;
+      leadingIcon = <AutoAwesomeIcon />;
     }
   } else {
     leadingIcon = isLeadingIcon;

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { ReferenceType } from '@floating-ui/react-dom';
 import { isEmpty } from 'lodash';
-import { CloseOutlinedIcon, EventOutlinedIcon } from 'react-magma-icons';
+import { ClearIcon, EventIcon } from 'react-magma-icons';
 
 import {
   DateFieldInputContainer,
@@ -402,7 +402,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             <IconButton
               aria-label={i18n.input.isClearableAriaLabel}
               disabled={disabled}
-              icon={<CloseOutlinedIcon />}
+              icon={<ClearIcon />}
               size={ButtonSize.small}
               isInverse={props.isInverse}
               shape={ButtonShape.fill}
@@ -419,7 +419,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
               aria-label={i18n.datePicker.calendarIconAriaLabel}
               data-testid="toggle-calendar-button"
               disabled={disabled}
-              icon={<EventOutlinedIcon />}
+              icon={<EventIcon />}
               size={ButtonSize.small}
               isInverse={props.isInverse}
               ref={props.iconRef}

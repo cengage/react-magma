@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
-import { ErrorOutlinedIcon } from 'react-magma-icons';
+import { ErrorIcon } from 'react-magma-icons';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Announce } from '../Announce';
@@ -106,10 +106,11 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
       >
         {hasError && (
           <IconWrapper aria-label="Error" role="img" theme={theme}>
-            <ErrorOutlinedIcon
+            <ErrorIcon
               size={theme.iconSizes.small}
               color={
-                errorIconColor || (isInverse ? theme.colors.red300 : undefined)
+                errorIconColor ||
+                (isInverse ? theme.colors.red300 : undefined)
               }
             />
           </IconWrapper>

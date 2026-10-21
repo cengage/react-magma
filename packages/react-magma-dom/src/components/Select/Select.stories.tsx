@@ -1,9 +1,8 @@
 import React from 'react';
 
 import { Meta, StoryFn } from '@storybook/react-webpack5';
-import { HelpOutlinedIcon } from 'react-magma-icons';
+import { HelpIcon } from 'react-magma-icons';
 
-import { magma } from '../../theme/magma';
 import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
@@ -120,7 +119,7 @@ const WithContentTemplate: StoryFn<SelectOptions> = args => (
       <Tooltip content={helpLinkLabel}>
         <IconButton
           aria-label={helpLinkLabel}
-          icon={<HelpOutlinedIcon size={magma.iconSizes.small} />}
+          icon={<HelpIcon />}
           onClick={onHelpLinkClick}
           type={ButtonType.button}
           size={ButtonSize.small}

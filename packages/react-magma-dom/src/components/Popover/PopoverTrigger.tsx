@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { IconProps, InfoOutlinedIcon } from 'react-magma-icons';
+import { IconProps, InfoIcon } from 'react-magma-icons';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Omit, useForkedRef, XOR } from '../../utils';
@@ -85,7 +85,7 @@ export const PopoverTrigger = React.forwardRef<
   const ref = useForkedRef(context.toggleRef, forwardedRef);
 
   const {
-    icon = <InfoOutlinedIcon />,
+    icon = <InfoIcon />,
     children,
     tabIndex,
     'aria-label': ariaLabel,

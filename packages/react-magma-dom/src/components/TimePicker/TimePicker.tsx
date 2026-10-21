@@ -3,7 +3,7 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { isEmpty } from 'lodash';
 import { transparentize } from 'polished';
-import { ScheduleOutlinedIcon } from 'react-magma-icons';
+import { ScheduleIcon } from 'react-magma-icons';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Announce } from '../Announce';
@@ -230,7 +230,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             role="group"
             aria-labelledby={`${id}${labelSuffix}`}
           >
-            <ScheduleOutlinedIcon
+            <ScheduleIcon
               color={
                 disabled
                   ? isInverse
