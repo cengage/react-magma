@@ -1534,13 +1534,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
               fill="currentColor"
               height="24"
               role="none"
-              viewBox="0 0 24 24"
+              viewBox="0 -960 960 960"
               width="24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M15.88 9.29L12 13.17 8.12 9.29a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
-                fill-rule="evenodd"
+                d="M480-362q-8 0-15-2.5t-13-8.5L268-557q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-373q-6 6-13 8.5t-15 2.5z"
               />
             </svg>
           </div>
@@ -1644,13 +1643,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -1716,13 +1714,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -1789,13 +1786,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -1861,13 +1857,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -1913,13 +1908,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -1953,13 +1947,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -2006,13 +1999,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                   fill="currentColor"
                   height="16"
                   role="none"
-                  viewBox="0 0 24 24"
+                  viewBox="0 -960 960 960"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7a.9959.9959 0 010-1.41c.39-.38 1.03-.39 1.42 0z"
-                    fill-rule="evenodd"
+                    d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5z"
                   />
                 </svg>
                 <span
@@ -3784,13 +3776,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
               fill="currentColor"
               height="24"
               role="none"
-              viewBox="0 0 24 24"
+              viewBox="0 -960 960 960"
               width="24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M15.88 9.29L12 13.17 8.12 9.29a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
-                fill-rule="evenodd"
+                d="M480-362q-8 0-15-2.5t-13-8.5L268-557q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-373q-6 6-13 8.5t-15 2.5z"
               />
             </svg>
           </div>
@@ -3894,13 +3885,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -3967,13 +3957,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8.29 13.29c-.39.39-1.02.39-1.41 0L5.71 12.7a.9959.9959 0 010-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.58 7.59z"
-                                fill-rule="evenodd"
+                                d="M424-424l-86-86q-11-11-28-11t-28 11q-11 11-11 28t11 28l114 114q12 12 28 12t28-12l226-226q11-11 11-28t-11-28q-11-11-28-11t-28 11L424-424zM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200z"
                               />
                             </svg>
                           </span>
@@ -4019,13 +4008,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -4060,13 +4048,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -4112,13 +4099,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -4152,13 +4138,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -4204,13 +4189,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -4244,13 +4228,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -4297,13 +4280,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                   fill="currentColor"
                   height="16"
                   role="none"
-                  viewBox="0 0 24 24"
+                  viewBox="0 -960 960 960"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7a.9959.9959 0 010-1.41c.39-.38 1.03-.39 1.42 0z"
-                    fill-rule="evenodd"
+                    d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5z"
                   />
                 </svg>
                 <span
@@ -5945,13 +5927,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
               fill="currentColor"
               height="24"
               role="none"
-              viewBox="0 0 24 24"
+              viewBox="0 -960 960 960"
               width="24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M15.88 9.29L12 13.17 8.12 9.29a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
-                fill-rule="evenodd"
+                d="M480-362q-8 0-15-2.5t-13-8.5L268-557q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-373q-6 6-13 8.5t-15 2.5z"
               />
             </svg>
           </div>
@@ -6055,13 +6036,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -6127,13 +6107,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -6179,13 +6158,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -6220,13 +6198,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -6272,13 +6249,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -6312,13 +6288,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -6364,13 +6339,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -6404,13 +6378,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -6457,13 +6430,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                   fill="currentColor"
                   height="16"
                   role="none"
-                  viewBox="0 0 24 24"
+                  viewBox="0 -960 960 960"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7a.9959.9959 0 010-1.41c.39-.38 1.03-.39 1.42 0z"
-                    fill-rule="evenodd"
+                    d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5z"
                   />
                 </svg>
                 <span
@@ -8105,13 +8077,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
               fill="currentColor"
               height="24"
               role="none"
-              viewBox="0 0 24 24"
+              viewBox="0 -960 960 960"
               width="24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M15.88 9.29L12 13.17 8.12 9.29a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
-                fill-rule="evenodd"
+                d="M480-362q-8 0-15-2.5t-13-8.5L268-557q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-373q-6 6-13 8.5t-15 2.5z"
               />
             </svg>
           </div>
@@ -8215,13 +8186,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -8287,13 +8257,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -8339,13 +8308,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -8380,13 +8348,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -8432,13 +8399,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -8472,13 +8438,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -8524,13 +8489,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -8564,13 +8528,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -8617,13 +8580,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                   fill="currentColor"
                   height="16"
                   role="none"
-                  viewBox="0 0 24 24"
+                  viewBox="0 -960 960 960"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7a.9959.9959 0 010-1.41c.39-.38 1.03-.39 1.42 0z"
-                    fill-rule="evenodd"
+                    d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5z"
                   />
                 </svg>
                 <span
@@ -10395,13 +10357,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
               fill="currentColor"
               height="24"
               role="none"
-              viewBox="0 0 24 24"
+              viewBox="0 -960 960 960"
               width="24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M15.88 9.29L12 13.17 8.12 9.29a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
-                fill-rule="evenodd"
+                d="M480-362q-8 0-15-2.5t-13-8.5L268-557q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-373q-6 6-13 8.5t-15 2.5z"
               />
             </svg>
           </div>
@@ -10505,13 +10466,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -10578,13 +10538,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8.29 13.29c-.39.39-1.02.39-1.41 0L5.71 12.7a.9959.9959 0 010-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.58 7.59z"
-                                fill-rule="evenodd"
+                                d="M424-424l-86-86q-11-11-28-11t-28 11q-11 11-11 28t11 28l114 114q12 12 28 12t28-12l226-226q11-11 11-28t-11-28q-11-11-28-11t-28 11L424-424zM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200z"
                               />
                             </svg>
                           </span>
@@ -10630,13 +10589,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -10671,13 +10629,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -10723,13 +10680,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -10763,13 +10719,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -10815,13 +10770,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -10855,13 +10809,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -10908,13 +10861,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   fill="currentColor"
                   height="16"
                   role="none"
-                  viewBox="0 0 24 24"
+                  viewBox="0 -960 960 960"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7a.9959.9959 0 010-1.41c.39-.38 1.03-.39 1.42 0z"
-                    fill-rule="evenodd"
+                    d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5z"
                   />
                 </svg>
                 <span
@@ -12686,13 +12638,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
               fill="currentColor"
               height="24"
               role="none"
-              viewBox="0 0 24 24"
+              viewBox="0 -960 960 960"
               width="24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M15.88 9.29L12 13.17 8.12 9.29a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
-                fill-rule="evenodd"
+                d="M480-362q-8 0-15-2.5t-13-8.5L268-557q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-373q-6 6-13 8.5t-15 2.5z"
               />
             </svg>
           </div>
@@ -12796,13 +12747,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -12869,13 +12819,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8.29 13.29c-.39.39-1.02.39-1.41 0L5.71 12.7a.9959.9959 0 010-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.58 7.59z"
-                                fill-rule="evenodd"
+                                d="M424-424l-86-86q-11-11-28-11t-28 11q-11 11-11 28t11 28l114 114q12 12 28 12t28-12l226-226q11-11 11-28t-11-28q-11-11-28-11t-28 11L424-424zM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200z"
                               />
                             </svg>
                           </span>
@@ -12921,13 +12870,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -12962,13 +12910,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -13014,13 +12961,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -13054,13 +13000,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -13106,13 +13051,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -13146,13 +13090,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -13199,13 +13142,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   fill="currentColor"
                   height="16"
                   role="none"
-                  viewBox="0 0 24 24"
+                  viewBox="0 -960 960 960"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7a.9959.9959 0 010-1.41c.39-.38 1.03-.39 1.42 0z"
-                    fill-rule="evenodd"
+                    d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5z"
                   />
                 </svg>
                 <span
@@ -14847,13 +14789,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
               fill="currentColor"
               height="24"
               role="none"
-              viewBox="0 0 24 24"
+              viewBox="0 -960 960 960"
               width="24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M15.88 9.29L12 13.17 8.12 9.29a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.59 4.59c.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41-.39-.38-1.03-.39-1.42 0z"
-                fill-rule="evenodd"
+                d="M480-362q-8 0-15-2.5t-13-8.5L268-557q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-373q-6 6-13 8.5t-15 2.5z"
               />
             </svg>
           </div>
@@ -14957,13 +14898,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -15029,13 +14969,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -15081,13 +15020,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -15122,13 +15060,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -15174,13 +15111,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -15214,13 +15150,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -15266,13 +15201,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                         fill="currentColor"
                         height="24"
                         role="none"
-                        viewBox="0 0 24 24"
+                        viewBox="0 -960 960 960"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          d="M9.29 6.71c-.39.39-.39 1.02 0 1.41L13.17 12l-3.88 3.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l4.59-4.59c.39-.39.39-1.02 0-1.41L10.7 6.7c-.38-.38-1.02-.38-1.41.01z"
-                          fill-rule="evenodd"
+                          d="M504-480L348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156z"
                         />
                       </svg>
                     </div>
@@ -15306,13 +15240,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                               fill="currentColor"
                               height="24"
                               role="none"
-                              viewBox="0 0 24 24"
+                              viewBox="0 -960 960 960"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                fill-rule="evenodd"
+                                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200zm0-80h560v-560H200v560z"
                               />
                             </svg>
                           </span>
@@ -15359,13 +15292,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                   fill="currentColor"
                   height="16"
                   role="none"
-                  viewBox="0 0 24 24"
+                  viewBox="0 -960 960 960"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7a.9959.9959 0 010-1.41c.39-.38 1.03-.39 1.42 0z"
-                    fill-rule="evenodd"
+                    d="M480-361q-8 0-15-2.5t-13-8.5L268-556q-11-11-11-28t11-28q11-11 28-11t28 11l156 156 156-156q11-11 28-11t28 11q11 11 11 28t-11 28L508-372q-6 6-13 8.5t-15 2.5z"
                   />
                 </svg>
                 <span
