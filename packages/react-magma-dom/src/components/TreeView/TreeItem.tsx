@@ -212,6 +212,7 @@ const StyledExpandWrapper = styled.div<{
     size !== undefined ? `${size}px` : theme.spaceScale.spacing06};
   height: ${({ size, theme }) =>
     size !== undefined ? `${size}px` : theme.spaceScale.spacing06};
+  cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
 `;
 
 const GuideLine = styled.div<{
@@ -553,10 +554,11 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
     const checkboxLabelStyle = React.useMemo(
       () => ({
+        cursor: isDisabled ? 'not-allowed' : 'pointer',
         padding: 0,
         width: '100%',
       }),
-      []
+      [isDisabled]
     );
 
     // Props shared by Checkbox and IndeterminateCheckbox
