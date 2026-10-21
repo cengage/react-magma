@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
-import { ExpandMoreIcon } from 'react-magma-icons';
+import { ExpandMoreOutlinedIcon } from 'react-magma-icons';
 
 import { AccordionIconPosition } from './useAccordion';
 import { useIsInverse } from '../../inverse';
@@ -125,7 +125,7 @@ export const AccordionButton = React.forwardRef<
       rotate180
       style={{ height: theme.spaceScale.spacing06 }}
     >
-      <ExpandMoreIcon />
+      <ExpandMoreOutlinedIcon />
     </Transition>
   );
 

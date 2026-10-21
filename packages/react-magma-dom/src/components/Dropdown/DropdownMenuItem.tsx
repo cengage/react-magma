@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { IconProps, CheckIcon } from 'react-magma-icons';
+import { IconProps, CheckOutlinedIcon } from 'react-magma-icons';
 
 import { DropdownContext } from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -223,7 +223,7 @@ export const DropdownMenuItem = React.forwardRef<
           isInverse={context.isInverse}
           theme={theme}
         >
-          <CheckIcon />
+          <CheckOutlinedIcon />
         </IconWrapper>
       )}
       {children}

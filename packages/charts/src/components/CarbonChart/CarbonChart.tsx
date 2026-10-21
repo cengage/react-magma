@@ -35,10 +35,10 @@ import {
   VisuallyHidden,
 } from 'react-magma-dom';
 import {
-  FullscreenExitIcon,
-  FullscreenIcon,
-  MoreVertIcon,
-  TableIcon,
+  FullscreenExitOutlinedIcon,
+  FullscreenOutlinedIcon,
+  MoreVertOutlinedIcon,
+  TableOutlinedIcon,
 } from 'react-magma-icons';
 
 import { useCarbonModalFocusManagement } from '../../hooks/useCarbonModalFocusManagement';
@@ -1064,7 +1064,7 @@ function CarbonChartToolbar({
         {showTable && (
           <ChartTableButton
             ariaLabel={resolvedTitle}
-            icon={<TableIcon size={20} />}
+            icon={<TableOutlinedIcon size={20} />}
             isInverse={isInverse}
             isTableOpen={isTableOpen}
             onClick={onOpenTable}
@@ -1073,15 +1073,15 @@ function CarbonChartToolbar({
         {showFullscreen && (
           <ChartFullscreenButton
             ariaLabel={`${isFullscreen ? 'Exit' : 'View'} ${resolvedTitle} full screen`}
-            icon={<FullscreenIcon size={20} />}
-            exitIcon={<FullscreenExitIcon size={20} />}
+            icon={<FullscreenOutlinedIcon size={20} />}
+            exitIcon={<FullscreenExitOutlinedIcon size={20} />}
             isInverse={isInverse}
             isFullscreen={isFullscreen}
             onClick={onToggleFullscreen}
           />
         )}
         <ChartMoreOptionsButton
-          icon={<MoreVertIcon size={20} />}
+          icon={<MoreVertOutlinedIcon size={20} />}
           isInverse={isInverse}
         >
           {moreOptionsContent}

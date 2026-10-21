@@ -2,7 +2,7 @@ import React from 'react';
 
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { SearchIcon } from 'react-magma-icons';
+import { SearchOutlinedIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -36,7 +36,7 @@ describe('EmptyState', () => {
 
   it('should render with icon', () => {
     const { container } = render(
-      <EmptyState icon={<SearchIcon />} title="Test" />
+      <EmptyState icon={<SearchOutlinedIcon />} title="Test" />
     );
 
     expect(container.querySelector('svg')).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe('EmptyState', () => {
 
   it('should render icon in circular container', () => {
     const { container } = render(
-      <EmptyState icon={<SearchIcon />} title="Test" />
+      <EmptyState icon={<SearchOutlinedIcon />} title="Test" />
     );
 
     expect(container).toMatchSnapshot();
@@ -112,7 +112,7 @@ describe('EmptyState', () => {
     it('should render danger mode styling', () => {
       const { container } = render(
         <EmptyState
-          icon={<SearchIcon />}
+          icon={<SearchOutlinedIcon />}
           isDanger
           title="Error occurred"
           description="Something went wrong"
@@ -128,7 +128,7 @@ describe('EmptyState', () => {
     it('should render inverse mode styling', () => {
       const { container } = render(
         <EmptyState
-          icon={<SearchIcon />}
+          icon={<SearchOutlinedIcon />}
           isInverse
           title="No results"
           description="Try another search"
@@ -141,7 +141,7 @@ describe('EmptyState', () => {
     it('should render inverse description at full opacity', () => {
       const { getByText } = render(
         <EmptyState
-          icon={<SearchIcon />}
+          icon={<SearchOutlinedIcon />}
           isInverse
           title="No results"
           description="Try another search"
@@ -156,7 +156,7 @@ describe('EmptyState', () => {
     it('should render inverse danger mode styling', () => {
       const { container } = render(
         <EmptyState
-          icon={<SearchIcon />}
+          icon={<SearchOutlinedIcon />}
           isDanger
           isInverse
           title="Error"
@@ -199,7 +199,7 @@ describe('EmptyState', () => {
     it('should not violate accessibility standards', async () => {
       const { container } = render(
         <EmptyState
-          icon={<SearchIcon />}
+          icon={<SearchOutlinedIcon />}
           title="No results found"
           description="Try adjusting your search criteria"
           actions={<Button>Clear Filters</Button>}
@@ -213,7 +213,7 @@ describe('EmptyState', () => {
     it('should not violate accessibility standards in danger mode', async () => {
       const { container } = render(
         <EmptyState
-          icon={<SearchIcon />}
+          icon={<SearchOutlinedIcon />}
           isDanger
           title="Error occurred"
           description="Please try again"
@@ -228,7 +228,7 @@ describe('EmptyState', () => {
     it('should not violate accessibility standards with multiple actions', async () => {
       const { container } = render(
         <EmptyState
-          icon={<SearchIcon />}
+          icon={<SearchOutlinedIcon />}
           title="No results found"
           description="Try adjusting your search criteria"
           actions={
@@ -278,7 +278,7 @@ describe('EmptyState', () => {
       const { getByAltText, container } = render(
         <EmptyState
           graphic={<img src="illustration.svg" alt="custom illustration" />}
-          icon={<SearchIcon />}
+          icon={<SearchOutlinedIcon />}
           title="Test"
         />
       );

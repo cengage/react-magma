@@ -34,7 +34,7 @@ import {
   Announce,
   VisuallyHidden,
 } from 'react-magma-dom';
-import { CloudUploadIcon } from 'react-magma-icons';
+import { CloudUploadOutlinedIcon } from 'react-magma-icons';
 
 import { FilePreview, FileError } from './FilePreview';
 import { Preview } from './Preview';
@@ -558,7 +558,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
               </Flex>
             ) : (
               <Flex behavior={FlexBehavior.item}>
-                <CloudUploadIcon
+                <CloudUploadOutlinedIcon
                   aria-hidden="true"
                   color={
                     isInverse ? theme.colors.neutral0 : theme.colors.neutral700

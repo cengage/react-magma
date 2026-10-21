@@ -3,7 +3,7 @@ import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
-import { CloseIcon, IconProps } from 'react-magma-icons';
+import { CloseOutlinedIcon, IconProps } from 'react-magma-icons';
 
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
@@ -445,7 +445,7 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
         <LabelWrap size={size} theme={theme}>
           {children}
         </LabelWrap>
-        {onDelete && <CloseIcon size={theme.iconSizes.small} />}
+        {onDelete && <CloseOutlinedIcon size={theme.iconSizes.small} />}
       </StyledTag>
     );
   }
