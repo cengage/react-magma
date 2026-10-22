@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Textarea, Datagrid, magma } from 'react-magma-dom';
+import { ButtonColor, Textarea, Datagrid, magma } from 'react-magma-dom';
 
 import { Dropzone, DropzoneProps, OnSendFileProps } from './Dropzone';
 
@@ -54,6 +54,17 @@ export default {
   component: Dropzone,
   title: 'Dropzone',
   argTypes: {
+    buttonColor: {
+      control: {
+        type: 'select',
+      },
+      options: Object.values(ButtonColor),
+    },
+    buttonText: {
+      control: {
+        type: 'text',
+      },
+    },
     noDrag: {
       control: {
         type: 'boolean',
@@ -82,6 +93,10 @@ export default {
 };
 
 export const Default = {
+  args: {
+    buttonColor: ButtonColor.secondary,
+    buttonText: 'Choose Files',
+  },
   render: (args: DropzoneProps) => {
     return (
       <div
