@@ -9,13 +9,10 @@ import './design-guidelines-styles.css';
 <PageContent componentName="badge" type="design">
 
 <LeadParagraph>
-  Badges are a small labeling component, used to highlight key pieces of
-  information.
+  A badge is a compact visual label that highlights important information about
+  an object, helping users quickly understand its status, significance, or
+  required action.
 </LeadParagraph>
-
-## Usage
-
-Badges are used as a form of inline feedback and labeling. They are typically used to provide additional context to components already on the page.
 
 <figure>
   <img src="../../images/badges/Badges.png" alt=" " />
@@ -29,11 +26,9 @@ Badges are used as a form of inline feedback and labeling. They are typically us
   <img src="../../images/badges/label-example.png" alt=" " />
 </figure>
 
-Text badges provide a way to provide feedback or label pieces of data.
+Use text badges to communicate a short status or state. Keep labels concise and place the badge close to the object it describes. Leading or trailing icons may reinforce the label’s meaning but should not replace it.
 
-Note that badges may be confusing for users of screen readers and similar assistive technologies. While the styling and placement of badges provide a visual cue as to their purpose, these users will simply be presented with the content of the badge. These badges may seem like random additional words or numbers at the end of a sentence, link, or button.
-
-Unless the context is clear, consider including additional context with a visually hidden piece of additional text.
+A badge may be clickable when the action is directly related to its content. For example, selecting a “3 issues” badge could open a filtered list of those issues. Do not use badges in place of standard buttons for primary or unrelated actions.
 
 ---
 
@@ -43,7 +38,9 @@ Unless the context is clear, consider including additional context with a visual
   <img src="../../images/badges/counter-example.png" alt=" " />
 </figure>
 
-Counters can be used as part of links or buttons, or simply in a context that conveys the count of something to the user. When space is limited, and if the exact count isn't important, you may consider limiting the count to "99+".
+Use counters to show a quantity associated with a nearby object or action, such as unread messages or pending tasks. Show the exact value when it affects a decision; otherwise, use a maximum such as “99+.”
+
+Always provide context for the number, including an accessible label such as “42 students” rather than simply “42.”
 
 ---
 
@@ -53,8 +50,10 @@ Counters can be used as part of links or buttons, or simply in a context that co
   <img src="../../images/badges/label-colors.png" alt=" " />
 </figure>
 
-There are multiple colors available for badges, but they should be used with purpose. The colors that should be used most commonly are primary, secondary/high contrast, and light/low contrast. The best color to use will most likely be determined by which one gives the appropriate level of emphasis with the surrounding content.
+Badge colors fall into two groups: semantic colors and decorative brand colors. Choose the color based on whether the badge communicates a specific meaning or simply needs to support the visual hierarchy of the interface.
 
-The success and danger colors can be used to enhance the meaning you're trying to convey. Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies or with vision differences. You must ensure that the meaning denoted by the color is either obvious from the content itself (e.g. the visible text), or is included through alternative means.
+Use semantic colors when the badge represents a recognizable status. Success indicates a positive or completed state, warning calls attention to something that may require action, danger identifies a critical or blocked state, and information communicates a neutral update or an in-progress state. Apply these meanings consistently throughout the product so users can learn and recognize them.
+
+Use neutral or accent colors when the badge does not carry semantic meaning. Neutral options work well for general labels and lower-emphasis statuses, while accent options can add distinction or reflect the Cengage brand. Color should reinforce the text label, never replace it as the only way meaning is communicated.
 
 </PageContent>
