@@ -123,6 +123,7 @@ export const IndeterminateCheckbox = React.memo(
         labelStyle,
         labelText,
         isTextVisuallyHidden,
+        isVisualOnly = false,
         suppressStatusAnnounce,
         testId,
         ...other
@@ -142,7 +143,11 @@ export const IndeterminateCheckbox = React.memo(
         // A cascaded change still has to clear the previous message: this live
         // region sits inside the tree item, so stale text would stay part of
         // that item's accessible name.
-        if (suppressStatusAnnounce || !wasInteractedWith.current) {
+        if (
+          isVisualOnly ||
+          suppressStatusAnnounce ||
+          !wasInteractedWith.current
+        ) {
           setAnnounceText('');
 
           return;
@@ -165,6 +170,7 @@ export const IndeterminateCheckbox = React.memo(
         );
       }, [
         props.status,
+        isVisualOnly,
         labelText,
         suppressStatusAnnounce,
         i18n.indeterminateCheckbox.isCheckedAnnounce,
@@ -191,19 +197,22 @@ export const IndeterminateCheckbox = React.memo(
       return (
         <>
           <StyledContainer style={containerStyle}>
-            <HiddenInput
-              {...other}
-              aria-describedby={describedBy}
-              checked={isChecked}
-              data-testid={testId}
-              disabled={disabled}
-              id={id}
-              ref={setRefs}
-              type="checkbox"
-              onChange={handleChange}
-            />
+            {!isVisualOnly && (
+              <HiddenInput
+                {...other}
+                aria-describedby={describedBy}
+                checked={isChecked}
+                data-testid={testId}
+                disabled={disabled}
+                id={id}
+                ref={setRefs}
+                type="checkbox"
+                onChange={handleChange}
+              />
+            )}
             <StyledLabel
-              htmlFor={id}
+              {...(!isVisualOnly && { htmlFor: id })}
+              as={isVisualOnly ? 'div' : undefined}
               isInverse={isInverse}
               style={labelStyle}
               textColor={!isInverse ? theme.colors.brand.navy : undefined}
@@ -242,7 +251,7 @@ export const IndeterminateCheckbox = React.memo(
                 labelText
               )}
             </StyledLabel>
-            {!suppressStatusAnnounce && (
+            {!isVisualOnly && !suppressStatusAnnounce && (
               <Announce>
                 {announceText && (
                   <VisuallyHidden>{announceText}</VisuallyHidden>

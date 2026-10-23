@@ -176,6 +176,12 @@ const StyledInputWrapper = styled.div`
   align-self: center;
 `;
 
+const LeftAdditionalContent = styled.div<{ theme: ThemeInterface }>`
+  align-items: center;
+  display: flex;
+  margin-left: ${props => props.theme.spaceScale.spacing03};
+`;
+
 // If the labelPosition is set to 'left' then a <div> wraps the Input, errorMessage, helperMessage, and CharacterCounter for proper styling alignment.
 function InputPositionWrapper(props) {
   if (props.labelPosition === LabelPosition.left) {
@@ -325,6 +331,11 @@ export const FormFieldContainer = React.forwardRef<
             </VisuallyHidden>
           )}
         </InputPositionWrapper>
+        {additionalContent && labelPosition === LabelPosition.left && (
+          <LeftAdditionalContent theme={theme}>
+            {additionalContent}
+          </LeftAdditionalContent>
+        )}
       </StyledFormFieldContainer>
     </InverseContext.Provider>
   );

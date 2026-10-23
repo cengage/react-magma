@@ -247,7 +247,17 @@ export const defaultI18n: I18nInterface = {
     closeAriaLabel: 'Close dialog',
   },
   multiSelect: {
+    allItemsDeselectedAnnounce: 'All items deselected. {count} selected.',
+    allItemsSelectedAnnounce: 'All items selected. {count} selected.',
+    allSelected: 'All selected ({count})',
+    clearAllButtonAriaLabel: 'Clear all selections',
+    filterPlaceholder: 'Filter options',
+    itemDeselectedAnnounce: '{item} deselected. {count} selected.',
+    itemSelectedAnnounce: '{item} selected. {count} selected.',
+    noOptions: 'No options available',
     placeholder: 'Select...',
+    selectAllLabel: 'Select all',
+    selectedCount: '{count} selected',
     selectedItemButtonAriaLabel: 'clear item {selectedItem}',
   },
   multiCombobox: {

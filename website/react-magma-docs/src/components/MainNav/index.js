@@ -440,6 +440,7 @@ const componentNavGroups = [
       'Form Group',
       'Indeterminate Checkbox',
       'Input',
+      'MultiSelect',
       'Native Select',
       'Password Input',
       'Radio Button',
