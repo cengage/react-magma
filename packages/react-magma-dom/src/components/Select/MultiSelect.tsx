@@ -270,6 +270,8 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
       preventKeyAction: isOpen,
       ...(forkedtoggleButtonRef && { ref: forkedtoggleButtonRef }),
     }),
+    // role="combobox" requires aria-controls pointing to the listbox
+    'aria-controls': getMenuProps().id,
     disabled: disabled,
   });
 
