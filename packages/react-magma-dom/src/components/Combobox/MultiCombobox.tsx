@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { autoUpdate } from '@floating-ui/react-dom';
 import { useCombobox, useMultipleSelection } from 'downshift';
-import { CloseIcon } from 'react-magma-icons';
+import { CloseOutlinedIcon } from 'react-magma-icons';
 
 import { instanceOfDefaultItemObject } from '../Select';
 import { ComboboxInput } from './ComboboxInput';
@@ -423,7 +423,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
             >
               {itemToString(multiSelectedItem)}
               <IconWrapper>
-                <CloseIcon size={theme.iconSizes.xSmall} />
+                <CloseOutlinedIcon size={theme.iconSizes.xSmall} />
               </IconWrapper>
             </SelectedItemButton>
           );
@@ -524,7 +524,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         {isClearable && selectedItems?.length > 0 && (
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
-            icon={<CloseIcon />}
+            icon={<CloseOutlinedIcon />}
             isInverse={isInverse}
             onClick={defaultHandleClearIndicatorClick}
             shape={ButtonShape.fill}
