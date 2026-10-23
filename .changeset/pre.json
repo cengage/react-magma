@@ -12,6 +12,7 @@
   "changesets": [
     "fix-charts-fullscreen-height",
     "sync-v6-main-to-v6-dev-6-0-0",
+    "treeview-cursor",
     "update-react-magma-icons"
   ]
 }

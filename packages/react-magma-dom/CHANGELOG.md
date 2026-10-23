@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.0.1-v6-next.1
+
+### Patch Changes
+
+- 0e54648b8: fix(TreeView): show a pointer cursor on the checkbox label and the expand icon
+
 ## 6.0.1-v6-next.0
 
 ### Patch Changes
