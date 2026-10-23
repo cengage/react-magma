@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1-next.1
+
+### Patch Changes
+
+- d20e59e: fix(TreeView): show a pointer cursor on the checkbox label and the expand icon
+
 ## 7.0.1-next.0
 
 ### Patch Changes

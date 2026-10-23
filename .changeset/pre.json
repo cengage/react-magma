@@ -10,6 +10,7 @@
   },
   "changesets": [
     "sync-main-to-dev-7-0-0",
+    "treeview-cursor",
     "update-react-magma-icons"
   ]
 }
