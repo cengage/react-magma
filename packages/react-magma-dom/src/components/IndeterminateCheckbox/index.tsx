@@ -125,6 +125,7 @@ export const IndeterminateCheckbox = React.memo(
         labelStyle,
         labelText,
         isTextVisuallyHidden,
+        isVisualOnly = false,
         testId,
         ...other
       } = props;
@@ -182,19 +183,22 @@ export const IndeterminateCheckbox = React.memo(
       return (
         <>
           <StyledContainer style={containerStyle}>
-            <HiddenInput
-              {...other}
-              aria-describedby={describedBy}
-              checked={isChecked}
-              data-testid={testId}
-              disabled={disabled}
-              id={id}
-              ref={setRefs}
-              type="checkbox"
-              onChange={handleChange}
-            />
+            {!isVisualOnly && (
+              <HiddenInput
+                {...other}
+                aria-describedby={describedBy}
+                checked={isChecked}
+                data-testid={testId}
+                disabled={disabled}
+                id={id}
+                ref={setRefs}
+                type="checkbox"
+                onChange={handleChange}
+              />
+            )}
             <StyledLabel
-              htmlFor={id}
+              {...(!isVisualOnly && { htmlFor: id })}
+              as={isVisualOnly ? 'div' : undefined}
               isInverse={isInverse}
               style={labelStyle}
               textColor={!isInverse ? theme.colors.brand.navy : undefined}
@@ -233,9 +237,13 @@ export const IndeterminateCheckbox = React.memo(
                 labelText
               )}
             </StyledLabel>
-            <Announce>
-              {showAnnounce && <VisuallyHidden>{announceText}</VisuallyHidden>}
-            </Announce>
+            {!isVisualOnly && (
+              <Announce>
+                {showAnnounce && (
+                  <VisuallyHidden>{announceText}</VisuallyHidden>
+                )}
+              </Announce>
+            )}
           </StyledContainer>
           {!!errorMessage && (
             <InputMessage

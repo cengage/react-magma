@@ -177,6 +177,8 @@ export {
   MultipleSelectionStateChangeTypes,
 } from './components/Select';
 export { Combobox, ComboboxStateChangeTypes } from './components/Combobox';
+export { MultiSelect } from './components/MultiSelect';
+export type { MultiSelectProps } from './components/MultiSelect';
 
 export {
   Skeleton,
