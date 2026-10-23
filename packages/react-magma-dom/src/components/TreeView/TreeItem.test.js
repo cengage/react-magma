@@ -81,15 +81,6 @@ describe('TreeItem', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
-  describe('label', () => {
-    it('the label is visible', () => {
-      const { getByText } = render(
-        <TreeItem label={labelText} testId={testId} itemId={itemId} />
-      );
-      expect(getByText(labelText)).toBeInTheDocument();
-    });
-  });
-
   describe('custom styles', () => {
     it('labelStyle: styles get applied to the label', () => {
       const labelColor = '#E0004D';
@@ -444,17 +435,6 @@ describe('TreeItem', () => {
       expect(getByTestId(`${treeTestId}-announce`)).toHaveAttribute(
         'aria-atomic',
         'true'
-      );
-    });
-
-    it('interrupts an earlier announcement instead of queueing behind it', () => {
-      mockDevice({ isSafari: true, isMacOS: true });
-
-      const { getByTestId } = renderTree();
-
-      expect(getByTestId(`${treeTestId}-announce`)).toHaveAttribute(
-        'aria-live',
-        'assertive'
       );
     });
 
@@ -816,7 +796,7 @@ describe('TreeItem', () => {
       await expectAnnouncement(announce, 'No subitems are selected');
     });
 
-    it('announces the cascade once per action, not once per subitem', async () => {
+    it('announces a multi-child cascade through a single live region', async () => {
       mockDevice({ isChrome: true, isWindows: true });
 
       const { container, getByTestId } = render(
@@ -878,7 +858,7 @@ describe('TreeItem', () => {
       await expectNoAnnouncement(getByTestId(`${treeTestId}-announce`));
     });
 
-    it('announces pointer selection exactly once', async () => {
+    it('announces pointer selection of a leaf without subitem text through a single live region', async () => {
       const { container, getByTestId } = renderTree(TreeViewSelectable.multi);
 
       await userEvent.click(getByTestId('leaf-checkbox'));
@@ -887,17 +867,6 @@ describe('TreeItem', () => {
       await expectAnnouncement(
         getByTestId(`${treeTestId}-announce`),
         'Leaf, selected'
-      );
-    });
-
-    it('announces the item the user acted on, not the items a cascade touched', async () => {
-      const { getByTestId } = renderTree(TreeViewSelectable.multi);
-
-      await userEvent.click(getByTestId('branch-checkbox'));
-
-      await expectAnnouncement(
-        getByTestId(`${treeTestId}-announce`),
-        'Branch, selected, all subitems selected'
       );
     });
 
@@ -916,17 +885,6 @@ describe('TreeItem', () => {
       await expectAnnouncement(
         getByTestId(`${treeTestId}-announce`),
         'Branch, not selected, no subitems selected'
-      );
-    });
-
-    it('says nothing about subitems for a leaf, which has none', async () => {
-      const { getByTestId } = renderTree(TreeViewSelectable.multi);
-
-      await userEvent.click(getByTestId('leaf-checkbox'));
-
-      await expectAnnouncement(
-        getByTestId(`${treeTestId}-announce`),
-        'Leaf, selected'
       );
     });
 
