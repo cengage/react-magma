@@ -11,6 +11,8 @@
   "changesets": [
     "sync-main-to-dev-7-0-0",
     "treeview-cursor",
+    "treeview-expansion-announcements",
+    "treeview-merge-tests",
     "update-react-magma-icons"
   ]
 }
