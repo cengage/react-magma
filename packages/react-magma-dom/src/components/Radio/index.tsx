@@ -65,7 +65,7 @@ export interface RadioProps
    */
   testId?: string;
   /**
-   * Whether the label appears to the left of the right of the radio button
+   * Whether the label appears to the left or the right of the radio button
    * @default RadioTextPosition.right
    */
   textPosition?: RadioTextPosition;

@@ -65,7 +65,7 @@ export interface ToggleProps
    */
   testId?: string;
   /**
-   * Whether the label appears to the left of the right of the toggle switch
+   * Whether the label appears to the left or the right of the toggle switch
    * @default ToggleTextPosition.left
    */
   textPosition?: ToggleTextPosition;
