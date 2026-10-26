@@ -9,6 +9,10 @@
     "react-magma-landing": "1.1.11"
   },
   "changesets": [
-    "sync-main-to-dev-7-0-0"
+    "sync-main-to-dev-7-0-0",
+    "treeview-cursor",
+    "treeview-expansion-announcements",
+    "treeview-merge-tests",
+    "update-react-magma-icons"
   ]
 }
