@@ -176,8 +176,28 @@ describe('Tab', () => {
     );
 
     expect(getByTestId(testId)).toHaveStyleRule('align-items', 'center');
+    expect(getByTestId(testId)).toHaveStyleRule('height', 'auto');
+    expect(getByTestId(testId)).toHaveStyleRule('min-height', '40px');
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'padding',
+      `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05}`
+    );
     expect(getByTestId(testId)).toHaveStyleRule('text-align', 'left');
     expect(getByTestId(testId)).toHaveStyleRule('width', '100%');
+  });
+
+  it('should align a vertical tab icon with the first line of text', () => {
+    const testId = 'test-id';
+
+    const { getByTestId } = render(
+      <Tabs iconPosition="left" orientation="vertical">
+        <Tab testId={testId} icon={<CheckIcon size={18} />}>
+          A long vertical tab label that wraps onto another line
+        </Tab>
+      </Tabs>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule('align-items', 'flex-start');
   });
 
   it('should render a fullWidth tab with the correct styles', () => {
