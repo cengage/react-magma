@@ -1,6 +1,6 @@
 {
   "name": "@react-magma/dropzone",
-  "version": "16.0.0",
+  "version": "17.0.0-next.1",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -35,16 +35,16 @@
     "@emotion/styled": "11.14.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-magma-dom": "^7.0.0",
-    "react-magma-icons": "^3.2.5"
+    "react-magma-dom": "^7.1.0-next.2",
+    "react-magma-icons": "^3.3.0"
   },
   "peerDependencies": {
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-magma-dom": "^7.0.0",
-    "react-magma-icons": "^3.2.5"
+    "react-magma-dom": "^7.1.0-next.2",
+    "react-magma-icons": "^3.3.0"
   },
   "engines": {
     "node": ">=22.14.0",

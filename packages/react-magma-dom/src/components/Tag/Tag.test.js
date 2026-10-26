@@ -412,10 +412,7 @@ describe('Tag', () => {
           'background',
           inverse.backgroundTransparency === 0
             ? inverse.background
-            : transparentize(
-                inverse.backgroundTransparency,
-                inverse.background
-              )
+            : transparentize(inverse.backgroundTransparency, inverse.background)
         );
         expect(tag).toHaveStyleRule('color', inverse.text);
         expect(tag).toHaveStyleRule('border', 'none');

@@ -9,12 +9,60 @@ import {
 } from './TreeViewContext';
 import { TreeViewSelectable } from './types';
 import { UseTreeViewProps } from './useTreeView';
+import { defaultI18n } from '../../i18n/default';
+import { I18nInterface } from '../../i18n/interface';
 import { ThemeInterface } from '../../theme/magma';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
 export enum TreeNodeType {
   branch = 'branch',
   leaf = 'leaf',
+}
+
+let hasWarnedAboutExpansionState = false;
+
+type TreeViewI18n = Required<NonNullable<I18nInterface['treeView']>>;
+
+const treeViewDefaults = defaultI18n.treeView as TreeViewI18n;
+
+// `i18n.treeView` is optional, so an interface built by hand still type-checks.
+// Falls back per key, not per section: translating one string does not drop
+// the other eight.
+export function resolveTreeViewString(
+  i18n: I18nInterface,
+  key: keyof TreeViewI18n
+): string {
+  return i18n.treeView?.[key] ?? treeViewDefaults[key];
+}
+
+// The deprecated `expansionState` section still works: a value differing from
+// the default wins, unless its replacement has been given one too.
+export function resolveExpansionAnnounceTemplate(
+  i18n: I18nInterface,
+  expanded: boolean
+): string {
+  const key = expanded ? 'itemExpandedAnnounce' : 'itemCollapsedAnnounce';
+  const template = resolveTreeViewString(i18n, key);
+  const defaultTemplate = treeViewDefaults[key];
+  const legacy = expanded
+    ? i18n.expansionState.expanded
+    : i18n.expansionState.collapsed;
+  const defaultLegacy = expanded
+    ? defaultI18n.expansionState.expanded
+    : defaultI18n.expansionState.collapsed;
+
+  if (template !== defaultTemplate || legacy === defaultLegacy) {
+    return template;
+  }
+
+  if (process.env.NODE_ENV === 'development' && !hasWarnedAboutExpansionState) {
+    hasWarnedAboutExpansionState = true;
+    console.warn(
+      'React Magma Warning: `i18n.expansionState` is deprecated. TreeView is using it for now, but move the translation to `i18n.treeView.itemExpandedAnnounce` and `itemCollapsedAnnounce`, which also name the item the action applied to through the `{labelText}` placeholder.'
+    );
+  }
+
+  return `{labelText}, ${legacy}`;
 }
 
 /**
