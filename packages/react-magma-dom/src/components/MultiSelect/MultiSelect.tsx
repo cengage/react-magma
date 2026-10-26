@@ -13,6 +13,13 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { descriptionSuffix, labelSuffix, useGenerateId } from '../../utils';
 import { Announce } from '../Announce';
 import { Badge, BadgeColor } from '../Badge';
+import {
+  Button,
+  ButtonColor,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from '../Button';
 import { CardBorderRadius, CardCornerTreatment } from '../Card';
 import { Checkbox } from '../Checkbox';
 import {
@@ -30,6 +37,11 @@ import { DefaultDropdownIndicator } from '../Select/components';
 import { StyledCard, StyledItem, StyledList } from '../Select/shared';
 import { isItemDisabled } from '../Select/utils';
 import { VisuallyHidden } from '../VisuallyHidden';
+
+export enum MultiSelectSelectionBehavior {
+  immediate = 'immediate',
+  deferred = 'deferred',
+}
 
 export interface MultiSelectProps<T extends SelectOptions> {
   /**
@@ -189,6 +201,12 @@ export interface MultiSelectProps<T extends SelectOptions> {
     options: { allSelected: boolean }
   ) => string;
   /**
+   * Determines whether changes are committed as options are selected or only
+   * after the user applies them.
+   * @default MultiSelectSelectionBehavior.immediate
+   */
+  selectionBehavior?: MultiSelectSelectionBehavior;
+  /**
    * Selected items when the component is controlled.
    */
   selectedItems?: T[];
@@ -209,10 +227,18 @@ interface StyledFieldProps {
 
 const Root = styled.div`
   position: relative;
+
+  &[data-trigger-focused='false'] [data-highlighted='true'] {
+    border-color: transparent;
+  }
 `;
 
 const Field = styled.div<StyledFieldProps>`
   ${inputWrapperStyles}
+
+  &[data-badge-focused='true'] {
+    outline: none;
+  }
 `;
 
 const TriggerButton = styled.button<StyledFieldProps>`
@@ -310,6 +336,19 @@ const SelectAllDivider = styled.li<{ isInverse?: boolean }>`
   margin: 0;
 `;
 
+const ActionFooter = styled.div<{ isInverse?: boolean }>`
+  align-items: center;
+  border-top: 1px solid
+    ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
+  display: flex;
+  gap: ${props => props.theme.spaceScale.spacing03};
+  justify-content: flex-end;
+  padding: ${props => props.theme.spaceScale.spacing04};
+`;
+
 function defaultItemToString(item: SelectOptions) {
   if (typeof item === 'string') {
     return item;
@@ -368,6 +407,7 @@ export function MultiSelect<T extends SelectOptions>(
     onSelectedItemsChange,
     placeholder,
     renderSelectedItems,
+    selectionBehavior = MultiSelectSelectionBehavior.immediate,
     selectedItems: controlledSelectedItems,
     testId,
   } = props;
@@ -385,21 +425,31 @@ export function MultiSelect<T extends SelectOptions>(
   const itemToValue = props.itemToValue || defaultItemToValue;
   const [internalSelectedItems, setInternalSelectedItems] =
     React.useState<T[]>(defaultSelectedItems);
+  const [draftSelectedItems, setDraftSelectedItems] = React.useState<T[]>([]);
   const [isOpen, setIsOpen] = React.useState(false);
   const [filterValue, setFilterValue] = React.useState('');
   const [highlightedIndex, setHighlightedIndex] = React.useState(0);
   const [announcement, setAnnouncement] = React.useState('');
   const rootRef = React.useRef<HTMLDivElement>(null);
+  const cancelButtonRef = React.useRef<HTMLButtonElement>(null);
+  const hadNoOptionsRef = React.useRef(false);
   const selectedItems = controlledSelectedItems ?? internalSelectedItems;
+  const isDeferred =
+    selectionBehavior === MultiSelectSelectionBehavior.deferred;
+  const menuSelectedItems = isDeferred ? draftSelectedItems : selectedItems;
 
-  const selectedValues = React.useMemo(
+  const committedSelectedValues = React.useMemo(
     () => new Set(selectedItems.map(itemToValue)),
     [itemToValue, selectedItems]
+  );
+  const menuSelectedValues = React.useMemo(
+    () => new Set(menuSelectedItems.map(itemToValue)),
+    [itemToValue, menuSelectedItems]
   );
   const enabledItems = items.filter(item => !isItemDisabled(item));
   const allItemsSelected =
     enabledItems.length > 0 &&
-    enabledItems.every(item => selectedValues.has(itemToValue(item)));
+    enabledItems.every(item => committedSelectedValues.has(itemToValue(item)));
   const filteredItems = isFilterable
     ? items.filter(item =>
         itemToString(item)
@@ -412,10 +462,15 @@ export function MultiSelect<T extends SelectOptions>(
   );
   const allSelected =
     enabledFilteredItems.length > 0 &&
-    enabledFilteredItems.every(item => selectedValues.has(itemToValue(item)));
+    enabledFilteredItems.every(item =>
+      menuSelectedValues.has(itemToValue(item))
+    );
   const someSelected = enabledFilteredItems.some(item =>
-    selectedValues.has(itemToValue(item))
+    menuSelectedValues.has(itemToValue(item))
   );
+  const hasPendingChanges =
+    selectedItems.length !== draftSelectedItems.length ||
+    selectedItems.some(item => !menuSelectedValues.has(itemToValue(item)));
   const optionCount = filteredItems.length + (hasSelectAll ? 1 : 0);
   const groupedFilteredItems = filteredItems.reduce<
     Array<{ label?: string; items: Array<{ item: T; itemIndex: number }> }>
@@ -432,6 +487,9 @@ export function MultiSelect<T extends SelectOptions>(
     return groups;
   }, []);
   const multiSelectI18n = {
+    applyButtonLabel:
+      i18n.multiSelect.applyButtonLabel ||
+      defaultI18n.multiSelect.applyButtonLabel!,
     allItemsDeselectedAnnounce:
       i18n.multiSelect.allItemsDeselectedAnnounce ||
       defaultI18n.multiSelect.allItemsDeselectedAnnounce!,
@@ -443,6 +501,9 @@ export function MultiSelect<T extends SelectOptions>(
     clearAllButtonAriaLabel:
       i18n.multiSelect.clearAllButtonAriaLabel ||
       defaultI18n.multiSelect.clearAllButtonAriaLabel!,
+    cancelButtonLabel:
+      i18n.multiSelect.cancelButtonLabel ||
+      defaultI18n.multiSelect.cancelButtonLabel!,
     filterPlaceholder:
       i18n.multiSelect.filterPlaceholder ||
       defaultI18n.multiSelect.filterPlaceholder!,
@@ -465,12 +526,23 @@ export function MultiSelect<T extends SelectOptions>(
     return `${id}__option-${index}`;
   }
 
-  function updateSelectedItems(nextSelectedItems: T[], message: string) {
+  function commitSelectedItems(nextSelectedItems: T[]) {
     if (controlledSelectedItems === undefined) {
       setInternalSelectedItems(nextSelectedItems);
     }
 
     onSelectedItemsChange?.(nextSelectedItems);
+  }
+
+  function updateSelectedItems(nextSelectedItems: T[], message: string) {
+    if (isDeferred && isOpen) {
+      setDraftSelectedItems(nextSelectedItems);
+      setAnnouncement(message);
+
+      return;
+    }
+
+    commitSelectedItems(nextSelectedItems);
     setAnnouncement(message);
   }
 
@@ -480,10 +552,10 @@ export function MultiSelect<T extends SelectOptions>(
     }
 
     const value = itemToValue(item);
-    const isSelected = selectedValues.has(value);
+    const isSelected = menuSelectedValues.has(value);
     const nextSelectedItems = isSelected
-      ? selectedItems.filter(selected => itemToValue(selected) !== value)
-      : [...selectedItems, item];
+      ? menuSelectedItems.filter(selected => itemToValue(selected) !== value)
+      : [...menuSelectedItems, item];
     const messageTemplate = isSelected
       ? multiSelectI18n.itemDeselectedAnnounce
       : multiSelectI18n.itemSelectedAnnounce;
@@ -503,9 +575,9 @@ export function MultiSelect<T extends SelectOptions>(
 
     const enabledValues = new Set(enabledFilteredItems.map(itemToValue));
     const nextSelectedItems = allSelected
-      ? selectedItems.filter(item => !enabledValues.has(itemToValue(item)))
+      ? menuSelectedItems.filter(item => !enabledValues.has(itemToValue(item)))
       : [
-          ...selectedItems.filter(
+          ...menuSelectedItems.filter(
             item => !enabledValues.has(itemToValue(item))
           ),
           ...enabledFilteredItems,
@@ -536,6 +608,12 @@ export function MultiSelect<T extends SelectOptions>(
 
   function preserveTriggerFocus(event: React.MouseEvent) {
     event.preventDefault();
+  }
+
+  function setBadgeFocus(isFocused: boolean) {
+    rootRef.current
+      ?.querySelector<HTMLElement>('[data-multiselect-field]')
+      ?.setAttribute('data-badge-focused', String(isFocused));
   }
 
   function clearAllSelections() {
@@ -620,6 +698,10 @@ export function MultiSelect<T extends SelectOptions>(
 
   function openMenu() {
     if (!disabled) {
+      if (!isOpen && isDeferred) {
+        setDraftSelectedItems(selectedItems);
+      }
+
       setIsOpen(true);
       setHighlightedIndex(Math.max(0, findEnabledOptionIndex(1)));
     }
@@ -628,6 +710,30 @@ export function MultiSelect<T extends SelectOptions>(
   function closeMenu() {
     setIsOpen(false);
     setFilterValue('');
+  }
+
+  function returnFocusToTrigger() {
+    requestAnimationFrame(() => {
+      rootRef.current?.querySelector<HTMLElement>('[role="combobox"]')?.focus();
+    });
+  }
+
+  function cancelDeferredSelection({ returnFocus = false } = {}) {
+    closeMenu();
+
+    if (returnFocus) {
+      returnFocusToTrigger();
+    }
+  }
+
+  function applyDeferredSelection() {
+    if (!hasPendingChanges) {
+      return;
+    }
+
+    commitSelectedItems(draftSelectedItems);
+    closeMenu();
+    returnFocusToTrigger();
   }
 
   function handleTriggerKeyDown(event: React.KeyboardEvent) {
@@ -675,7 +781,7 @@ export function MultiSelect<T extends SelectOptions>(
       case 'Escape':
         if (isOpen) {
           event.preventDefault();
-          closeMenu();
+          cancelDeferredSelection();
         }
         break;
       case 'Home':
@@ -691,7 +797,12 @@ export function MultiSelect<T extends SelectOptions>(
         }
         break;
       case 'Tab':
-        closeMenu();
+        if (isDeferred && isOpen && !event.shiftKey) {
+          event.preventDefault();
+          cancelButtonRef.current?.focus();
+        } else {
+          closeMenu();
+        }
         break;
       default:
         break;
@@ -716,6 +827,18 @@ export function MultiSelect<T extends SelectOptions>(
       setHighlightedIndex(Math.max(0, optionCount - 1));
     }
   }, [highlightedIndex, optionCount]);
+
+  React.useEffect(() => {
+    const hasNoOptions = isFilterable && isOpen && filteredItems.length === 0;
+
+    if (hasNoOptions && !hadNoOptionsRef.current) {
+      setAnnouncement(multiSelectI18n.noOptions);
+    } else if (!hasNoOptions && hadNoOptionsRef.current) {
+      setAnnouncement('');
+    }
+
+    hadNoOptionsRef.current = hasNoOptions;
+  }, [filteredItems.length, isFilterable, isOpen, multiSelectI18n.noOptions]);
 
   React.useEffect(() => {
     if (isOpen && highlightedIndex >= 0) {
@@ -774,8 +897,15 @@ export function MultiSelect<T extends SelectOptions>(
     'aria-labelledby': ariaLabel ? undefined : labelId,
     disabled,
     id,
-    onBlur,
-    onFocus,
+    onBlur: (event: React.FocusEvent) => {
+      rootRef.current?.setAttribute('data-trigger-focused', 'false');
+      onBlur?.(event);
+    },
+    onFocus: (event: React.FocusEvent) => {
+      setBadgeFocus(false);
+      rootRef.current?.setAttribute('data-trigger-focused', 'true');
+      onFocus?.(event);
+    },
     onKeyDown: handleTriggerKeyDown,
     onKeyPress,
     onKeyUp,
@@ -840,7 +970,7 @@ export function MultiSelect<T extends SelectOptions>(
 
   function renderOption(item: T, itemIndex: number) {
     const optionIndex = itemIndex + (hasSelectAll ? 1 : 0);
-    const isSelected = selectedValues.has(itemToValue(item));
+    const isSelected = menuSelectedValues.has(itemToValue(item));
     const itemDisabled = isItemDisabled(item);
 
     return (
@@ -899,13 +1029,26 @@ export function MultiSelect<T extends SelectOptions>(
       messageColor={fieldColors.messageColor}
       testId={testId}
     >
-      <Root ref={rootRef}>
+      <Root
+        data-trigger-focused="false"
+        onBlur={event => {
+          if (
+            isOpen &&
+            !event.currentTarget.contains(event.relatedTarget as Node | null)
+          ) {
+            closeMenu();
+          }
+        }}
+        ref={rootRef}
+      >
         {selectedItems.length > 0 && (
           <VisuallyHidden id={selectionSummaryId}>
             {selectedSummary}
           </VisuallyHidden>
         )}
         <Field
+          data-badge-focused="false"
+          data-multiselect-field
           disabled={disabled}
           hasError={!!errorMessage}
           inputSize={inputSize}
@@ -917,12 +1060,17 @@ export function MultiSelect<T extends SelectOptions>(
             <SelectionBadge key="selection-badge" theme={theme}>
               <Badge
                 aria-label={
-                  disabled ? undefined : multiSelectI18n.clearAllButtonAriaLabel
+                  disabled
+                    ? undefined
+                    : `${selectedSummary}. ${multiSelectI18n.clearAllButtonAriaLabel}`
                 }
                 color={BadgeColor.primary}
+                data-multiselect-selection-badge
                 disabled={disabled}
                 isInverse={isInverse}
+                onBlur={() => setBadgeFocus(false)}
                 onClick={disabled ? undefined : clearAllSelections}
+                onFocus={() => setBadgeFocus(true)}
                 rightIcon={disabled ? undefined : <CloseIcon />}
               >
                 {selectedSummary}
@@ -1083,6 +1231,49 @@ export function MultiSelect<T extends SelectOptions>(
                 </EmptyItem>
               )}
             </StyledList>
+            {isOpen && isDeferred && (
+              <ActionFooter
+                isInverse={isInverse}
+                onKeyDown={event => {
+                  if (event.key === 'Escape') {
+                    event.preventDefault();
+                    cancelDeferredSelection({ returnFocus: true });
+                  }
+                }}
+                theme={theme}
+              >
+                <Button
+                  color={ButtonColor.secondary}
+                  isInverse={isInverse}
+                  onKeyDown={event => {
+                    if (event.key === 'Tab' && event.shiftKey) {
+                      event.preventDefault();
+                      rootRef.current
+                        ?.querySelector<HTMLElement>('[role="combobox"]')
+                        ?.focus();
+                    }
+                  }}
+                  onClick={() => cancelDeferredSelection({ returnFocus: true })}
+                  ref={cancelButtonRef}
+                  size={ButtonSize.small}
+                  type={ButtonType.button}
+                  variant={ButtonVariant.solid}
+                >
+                  {multiSelectI18n.cancelButtonLabel}
+                </Button>
+                <Button
+                  color={ButtonColor.primary}
+                  disabled={!hasPendingChanges}
+                  isInverse={isInverse}
+                  onClick={applyDeferredSelection}
+                  size={ButtonSize.small}
+                  type={ButtonType.button}
+                  variant={ButtonVariant.solid}
+                >
+                  {multiSelectI18n.applyButtonLabel}
+                </Button>
+              </ActionFooter>
+            )}
           </StyledCard>
         </MenuPositioner>
         <VisuallyHidden>

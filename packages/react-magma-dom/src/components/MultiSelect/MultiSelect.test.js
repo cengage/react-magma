@@ -7,7 +7,7 @@ import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { LabelPosition } from '../Label';
 
-import { MultiSelect } from '.';
+import { MultiSelect, MultiSelectSelectionBehavior } from '.';
 
 describe('MultiSelect', () => {
   const items = [
@@ -114,7 +114,7 @@ describe('MultiSelect', () => {
 
     expect(editorOption).toHaveAttribute('aria-selected', 'true');
     expect(
-      getByRole('button', { name: 'Clear all selections' })
+      getByRole('button', { name: /Clear all selections/ })
     ).toHaveTextContent('1 selected');
 
     await userEvent.click(editorOption);
@@ -136,15 +136,93 @@ describe('MultiSelect', () => {
     const trigger = getByRole('combobox', { name: 'Roles' });
 
     await userEvent.click(
-      getByRole('button', { name: 'Clear all selections' })
+      getByRole('button', { name: '2 selected. Clear all selections' })
     );
 
     expect(onSelectedItemsChange).toHaveBeenLastCalledWith([]);
     expect(
-      queryByRole('button', { name: 'Clear all selections' })
+      queryByRole('button', { name: /Clear all selections/ })
     ).not.toBeInTheDocument();
     expect(trigger).toHaveTextContent('Choose roles');
     await waitFor(() => expect(trigger).toHaveFocus());
+  });
+
+  it('uses separate tab stops for the selection badge and field', async () => {
+    const { getByRole } = render(
+      <>
+        <button type="button">Before</button>
+        <MultiSelect
+          defaultSelectedItems={[items[0]]}
+          items={items}
+          labelText="Roles"
+        />
+      </>
+    );
+    const field = getByRole('combobox', { name: 'Roles' });
+    const selectionBadge = getByRole('button', {
+      name: '1 selected. Clear all selections',
+    });
+    const fieldContainer = field.closest('[data-multiselect-field]');
+
+    getByRole('button', { name: 'Before' }).focus();
+    await userEvent.tab();
+
+    expect(selectionBadge).toHaveFocus();
+    expect(field).not.toHaveFocus();
+    expect(fieldContainer).toHaveAttribute('data-badge-focused', 'true');
+
+    await userEvent.tab();
+
+    expect(field).toHaveFocus();
+    expect(fieldContainer).toHaveAttribute('data-badge-focused', 'false');
+  });
+
+  it('tabs directly to the field when there is no selection badge', async () => {
+    const { getByRole } = render(
+      <>
+        <button type="button">Before</button>
+        <MultiSelect items={items} labelText="Roles" />
+      </>
+    );
+
+    getByRole('button', { name: 'Before' }).focus();
+    await userEvent.tab();
+
+    expect(getByRole('combobox', { name: 'Roles' })).toHaveFocus();
+  });
+
+  it('restores the field focus indicator after clearing and applying filterable selections', async () => {
+    const { getByRole } = render(
+      <>
+        <button type="button">Before</button>
+        <MultiSelect
+          defaultSelectedItems={[items[0]]}
+          isFilterable
+          items={items}
+          labelText="Roles"
+          selectionBehavior={MultiSelectSelectionBehavior.deferred}
+        />
+      </>
+    );
+    const trigger = getByRole('combobox', { name: 'Roles' });
+    const fieldContainer = trigger.closest('[data-multiselect-field]');
+
+    getByRole('button', { name: 'Before' }).focus();
+    await userEvent.tab();
+
+    expect(fieldContainer).toHaveAttribute('data-badge-focused', 'true');
+
+    await userEvent.keyboard('{Enter}');
+
+    await waitFor(() => expect(trigger).toHaveFocus());
+    expect(fieldContainer).toHaveAttribute('data-badge-focused', 'false');
+
+    await userEvent.click(trigger);
+    await userEvent.click(getByRole('option', { name: 'Owner' }));
+    await userEvent.click(getByRole('button', { name: 'Apply' }));
+
+    await waitFor(() => expect(trigger).toHaveFocus());
+    expect(fieldContainer).toHaveAttribute('data-badge-focused', 'false');
   });
 
   it('selects and deselects all enabled items', async () => {
@@ -223,6 +301,45 @@ describe('MultiSelect', () => {
     expect(input).toHaveAttribute('placeholder', 'Search roles');
   });
 
+  it('announces when filtering returns no options', async () => {
+    const { getByRole, getByText, queryByText } = render(
+      <MultiSelect isFilterable items={items} labelText="Roles" />
+    );
+    const input = getByRole('combobox', { name: 'Roles' });
+
+    await userEvent.click(input);
+    await userEvent.type(input, 'No matching role');
+
+    expect(getByRole('listbox')).toHaveTextContent('No options available');
+    await waitFor(() =>
+      expect(
+        getByText('No options available', {
+          selector: '[aria-live="polite"]',
+        })
+      ).toBeInTheDocument()
+    );
+
+    await userEvent.clear(input);
+
+    await waitFor(() =>
+      expect(
+        queryByText('No options available', {
+          selector: '[aria-live="polite"]',
+        })
+      ).not.toBeInTheDocument()
+    );
+
+    await userEvent.type(input, 'Still no matching role');
+
+    await waitFor(() =>
+      expect(
+        getByText('No options available', {
+          selector: '[aria-live="polite"]',
+        })
+      ).toBeInTheDocument()
+    );
+  });
+
   it('selects only the enabled filtered results', async () => {
     const onSelectedItemsChange = jest.fn();
     const { getByRole } = render(
@@ -263,8 +380,128 @@ describe('MultiSelect', () => {
     await userEvent.click(getByRole('option', { name: 'Uploader' }));
 
     expect(
-      getByRole('button', { name: 'Clear all selections' })
+      getByRole('button', { name: /Clear all selections/ })
     ).toHaveTextContent('1 selected');
+  });
+
+  it('defers selection changes until they are applied', async () => {
+    const onSelectedItemsChange = jest.fn();
+    const { getByRole } = render(
+      <MultiSelect
+        defaultSelectedItems={[items[0]]}
+        items={items}
+        labelText="Roles"
+        onSelectedItemsChange={onSelectedItemsChange}
+        selectionBehavior={MultiSelectSelectionBehavior.deferred}
+      />
+    );
+    const trigger = getByRole('combobox', { name: 'Roles' });
+
+    await userEvent.click(trigger);
+
+    const applyButton = getByRole('button', { name: 'Apply' });
+    expect(applyButton).toBeDisabled();
+
+    await userEvent.click(getByRole('option', { name: 'Owner' }));
+
+    expect(onSelectedItemsChange).not.toHaveBeenCalled();
+    expect(trigger).toHaveAccessibleDescription('1 selected');
+    expect(applyButton).toBeEnabled();
+
+    await userEvent.click(applyButton);
+
+    expect(onSelectedItemsChange).toHaveBeenCalledTimes(1);
+    expect(onSelectedItemsChange).toHaveBeenLastCalledWith([
+      items[0],
+      items[1],
+    ]);
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    expect(trigger).toHaveAccessibleDescription('2 selected');
+    await waitFor(() => expect(trigger).toHaveFocus());
+  });
+
+  it('discards deferred changes when they are canceled', async () => {
+    const onSelectedItemsChange = jest.fn();
+    const { getByRole } = render(
+      <MultiSelect
+        items={items}
+        labelText="Roles"
+        onSelectedItemsChange={onSelectedItemsChange}
+        selectionBehavior={MultiSelectSelectionBehavior.deferred}
+      />
+    );
+    const trigger = getByRole('combobox', { name: 'Roles' });
+
+    await userEvent.click(trigger);
+    await userEvent.click(getByRole('option', { name: 'Owner' }));
+    await userEvent.click(getByRole('button', { name: 'Cancel' }));
+
+    expect(onSelectedItemsChange).not.toHaveBeenCalled();
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+
+    await userEvent.click(trigger);
+
+    expect(getByRole('option', { name: 'Owner' })).toHaveAttribute(
+      'aria-selected',
+      'false'
+    );
+  });
+
+  it('discards deferred changes when Escape is pressed', async () => {
+    const onSelectedItemsChange = jest.fn();
+    const { getByRole } = render(
+      <MultiSelect
+        items={items}
+        labelText="Roles"
+        onSelectedItemsChange={onSelectedItemsChange}
+        selectionBehavior={MultiSelectSelectionBehavior.deferred}
+      />
+    );
+    const trigger = getByRole('combobox', { name: 'Roles' });
+
+    trigger.focus();
+    await userEvent.keyboard('{ArrowDown}{Enter}{Escape}');
+
+    expect(onSelectedItemsChange).not.toHaveBeenCalled();
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+
+    await userEvent.keyboard('{ArrowDown}');
+
+    expect(getByRole('option', { name: 'Editor' })).toHaveAttribute(
+      'aria-selected',
+      'false'
+    );
+  });
+
+  it('moves focus from the active option to Cancel and restores it', async () => {
+    const { getByRole } = render(
+      <MultiSelect
+        items={items}
+        labelText="Roles"
+        selectionBehavior={MultiSelectSelectionBehavior.deferred}
+      />
+    );
+    const trigger = getByRole('combobox', { name: 'Roles' });
+
+    trigger.focus();
+    await userEvent.keyboard('{ArrowDown}{ArrowDown}{Enter}');
+
+    const ownerOption = getByRole('option', { name: 'Owner' });
+    const cancelButton = getByRole('button', { name: 'Cancel' });
+    const root = trigger.closest('[data-trigger-focused]');
+
+    expect(root).toHaveAttribute('data-trigger-focused', 'true');
+
+    await userEvent.tab();
+
+    expect(cancelButton).toHaveFocus();
+    expect(root).toHaveAttribute('data-trigger-focused', 'false');
+
+    await userEvent.tab({ shift: true });
+
+    expect(trigger).toHaveFocus();
+    expect(trigger).toHaveAttribute('aria-activedescendant', ownerOption.id);
+    expect(root).toHaveAttribute('data-trigger-focused', 'true');
   });
 
   it('supports a custom selection summary', () => {
@@ -280,7 +517,7 @@ describe('MultiSelect', () => {
     );
 
     expect(
-      getByRole('button', { name: 'Clear all selections' })
+      getByRole('button', { name: /Clear all selections/ })
     ).toHaveTextContent('2 custom selections');
   });
 

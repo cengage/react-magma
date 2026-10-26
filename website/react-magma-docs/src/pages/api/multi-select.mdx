@@ -414,6 +414,40 @@ export function Example() {
 }
 ```
 
+## Deferred Selection
+
+Use `selectionBehavior={MultiSelectSelectionBehavior.deferred}` when users
+need to review several choices before committing them. Changes made while the
+menu is open are pending: **Apply** commits them and **Cancel** restores the
+previous selection. Pressing `Escape` or dismissing the menu without applying
+also discards pending changes.
+
+```tsx
+import React from 'react';
+
+import { MultiSelect, MultiSelectSelectionBehavior } from 'react-magma-dom';
+
+const roles = [
+  { label: 'Editor', value: 'editor' },
+  { label: 'Owner', value: 'owner' },
+  { label: 'Reader', value: 'reader', disabled: true },
+  { label: 'Uploader', value: 'uploader' },
+];
+
+export function Example() {
+  return (
+    <MultiSelect
+      defaultSelectedItems={[roles[0]]}
+      hasSelectAll
+      items={roles}
+      labelText="Roles"
+      placeholder="Choose roles"
+      selectionBehavior={MultiSelectSelectionBehavior.deferred}
+    />
+  );
+}
+```
+
 ## Controlled Selection
 
 Provide `selectedItems` and `onSelectedItemsChange` to control selection from

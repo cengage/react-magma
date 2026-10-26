@@ -250,6 +250,8 @@ export const defaultI18n: I18nInterface = {
     allItemsDeselectedAnnounce: 'All items deselected. {count} selected.',
     allItemsSelectedAnnounce: 'All items selected. {count} selected.',
     allSelected: 'All selected ({count})',
+    applyButtonLabel: 'Apply',
+    cancelButtonLabel: 'Cancel',
     clearAllButtonAriaLabel: 'Clear all selections',
     filterPlaceholder: 'Filter options',
     itemDeselectedAnnounce: '{item} deselected. {count} selected.',

@@ -10,7 +10,7 @@ import { IconButton } from '../IconButton';
 import { LabelPosition } from '../Label';
 import { Tooltip } from '../Tooltip';
 
-import { MultiSelect, MultiSelectProps } from '.';
+import { MultiSelect, MultiSelectProps, MultiSelectSelectionBehavior } from '.';
 
 interface RoleOption {
   disabled?: boolean;
@@ -154,6 +154,10 @@ export default {
       options: Object.values(LabelPosition),
     },
     labelWidth: { control: 'number' },
+    selectionBehavior: {
+      control: { type: 'select' },
+      options: Object.values(MultiSelectSelectionBehavior),
+    },
   },
   component: MultiSelect,
   decorators: [
@@ -221,6 +225,30 @@ export const WithInitialSelectedItems = {
     items: roles,
     labelText: 'Roles',
     placeholder: 'Choose roles',
+  },
+};
+
+export const DeferredSelection = {
+  args: {
+    defaultSelectedItems: [roles[0]],
+    hasSelectAll: true,
+    items: roles,
+    labelText: 'Roles',
+    placeholder: 'Choose roles',
+    selectionBehavior: MultiSelectSelectionBehavior.deferred,
+  },
+};
+
+export const FilterableWithSelectAllAndDeferredSelection = {
+  args: {
+    defaultSelectedItems: [statesAndTerritories[0], statesAndTerritories[1]],
+    filterPlaceholder: 'Search states or territories',
+    hasSelectAll: true,
+    isFilterable: true,
+    items: statesAndTerritories,
+    labelText: 'States and territories',
+    placeholder: 'Choose states or territories',
+    selectionBehavior: MultiSelectSelectionBehavior.deferred,
   },
 };
 

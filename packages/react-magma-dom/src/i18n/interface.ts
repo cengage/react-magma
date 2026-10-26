@@ -249,6 +249,8 @@ export interface I18nInterface {
     allItemsDeselectedAnnounce?: string;
     allItemsSelectedAnnounce?: string;
     allSelected?: string;
+    applyButtonLabel?: string;
+    cancelButtonLabel?: string;
     clearAllButtonAriaLabel?: string;
     filterPlaceholder?: string;
     itemDeselectedAnnounce?: string;
