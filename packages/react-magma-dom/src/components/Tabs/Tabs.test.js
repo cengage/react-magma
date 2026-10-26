@@ -118,6 +118,10 @@ describe('Tabs', () => {
     expect(getByTestId('tabsWrapper')).toHaveStyleRule('padding-bottom', '1px');
     expect(getByTestId('tabsWrapper')).toHaveStyleRule('margin-bottom', '-1px');
     expect(getAllByTestId('tabContainer')[0]).toHaveStyleRule('height', '100%');
+    expect(getAllByTestId('tabContainer')[0]).toHaveStyleRule(
+      'max-width',
+      'none'
+    );
   });
 
   it('should render the tabs vertically', () => {
@@ -155,9 +159,13 @@ describe('Tabs', () => {
     expect(getByTestId('tabsWrapper')).toHaveStyleRule('padding-left', '1px');
     expect(getByTestId('tabsWrapper')).toHaveStyleRule('margin-left', '-1px');
     expect(getAllByTestId('tabContainer')[0]).toHaveStyleRule('height', 'auto');
+    expect(getAllByTestId('tabContainer')[0]).toHaveStyleRule(
+      'max-width',
+      'none'
+    );
     expect(getByText('Tab 1')).toHaveStyleRule(
       'padding',
-      `0 ${magma.spaceScale.spacing05}`
+      `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05}`
     );
   });
 
