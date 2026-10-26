@@ -32,7 +32,7 @@ import './design-guidelines-styles.css';
 
 ### Text Label
 
-Text labels should clearly and succinctly describe the content they represent. Horizontal tabs grow to fit their labels, while labels in vertical tabs can wrap when constrained by the width of their container. Long labels can have a drastic impact on the presentation, so take great care with the words you choose.
+Text labels should clearly and succinctly describe the content they represent. Tabs have a max-width of 250px by default, and long labels will wrap, but this obviously has a drastic impact on the presentation so we should take great care with the words we choose.
 
 <div className="two-col">
   <div className="row">
@@ -228,7 +228,7 @@ Tabs are displayed in a single row or column, with each tab connected to the con
 
 ### Auto-Width Tabs
 
-The default width of a horizontal tab is determined by its content plus 20px of padding on either side. Horizontal tabs do not have a maximum width, so the tab list can scroll when its contents are wider than the available space.
+The default width of a tab is undefined and is determined by the content within the tab plus 20px of padding on either side. There is, however, a max-width of 250px which could cause the text within a tab to wrap to multiple lines.
 
 #### Alignment
 
