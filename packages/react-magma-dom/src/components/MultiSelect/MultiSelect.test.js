@@ -257,6 +257,115 @@ describe('MultiSelect', () => {
     expect(onSelectedItemsChange).toHaveBeenLastCalledWith([]);
   });
 
+  it('automatically selects required items and prevents them from being changed', async () => {
+    const requiredItems = [
+      { label: 'Current school', required: true, value: 'current-school' },
+      { label: 'Optional school', value: 'optional-school' },
+    ];
+    const onSelectedItemsChange = jest.fn();
+    const { getByRole, getByText } = render(
+      <MultiSelect
+        isItemRequired={item => item.required}
+        items={requiredItems}
+        labelText="Schools"
+        onSelectedItemsChange={onSelectedItemsChange}
+      />
+    );
+
+    expect(getByText('1 selected', { selector: 'span' })).toBeInTheDocument();
+
+    await userEvent.click(getByRole('combobox', { name: 'Schools' }));
+
+    const requiredOption = getByRole('option', { name: 'Current school' });
+
+    expect(requiredOption).toHaveAttribute('aria-selected', 'true');
+    expect(requiredOption).toHaveAttribute('aria-disabled', 'true');
+    expect(requiredOption.querySelector('svg')).toBeInTheDocument();
+
+    await userEvent.click(requiredOption);
+
+    expect(onSelectedItemsChange).not.toHaveBeenCalled();
+  });
+
+  it('preserves required items when optional selections are cleared', async () => {
+    const requiredItems = [
+      { label: 'Current school', required: true, value: 'current-school' },
+      { label: 'Optional school', value: 'optional-school' },
+    ];
+    const onSelectedItemsChange = jest.fn();
+    const { getByRole } = render(
+      <MultiSelect
+        isItemRequired={item => item.required}
+        items={requiredItems}
+        labelText="Schools"
+        onSelectedItemsChange={onSelectedItemsChange}
+      />
+    );
+
+    await userEvent.click(getByRole('combobox', { name: 'Schools' }));
+    await userEvent.click(getByRole('option', { name: 'Optional school' }));
+    await userEvent.click(
+      getByRole('button', { name: /Clear all selections/ })
+    );
+
+    expect(onSelectedItemsChange).toHaveBeenLastCalledWith([requiredItems[0]]);
+    expect(
+      getByRole('combobox', { name: 'Schools' })
+    ).toHaveAccessibleDescription('1 selected');
+  });
+
+  it('preserves required items when Select all is deselected', async () => {
+    const requiredItems = [
+      { label: 'Current school', required: true, value: 'current-school' },
+      { label: 'Optional school', value: 'optional-school' },
+    ];
+    const onSelectedItemsChange = jest.fn();
+    const { getByRole } = render(
+      <MultiSelect
+        hasSelectAll
+        isItemRequired={item => item.required}
+        items={requiredItems}
+        labelText="Schools"
+        onSelectedItemsChange={onSelectedItemsChange}
+      />
+    );
+
+    await userEvent.click(getByRole('combobox', { name: 'Schools' }));
+    const selectAllOption = getByRole('option', { name: 'Select all' });
+
+    await userEvent.click(selectAllOption);
+    await userEvent.click(selectAllOption);
+
+    expect(onSelectedItemsChange).toHaveBeenLastCalledWith([requiredItems[0]]);
+    expect(getByRole('option', { name: 'Current school' })).toHaveAttribute(
+      'aria-selected',
+      'true'
+    );
+  });
+
+  it('preserves required items in deferred selection', async () => {
+    const requiredItems = [
+      { label: 'Current school', required: true, value: 'current-school' },
+      { label: 'Optional school', value: 'optional-school' },
+    ];
+    const onSelectedItemsChange = jest.fn();
+    const { getByRole } = render(
+      <MultiSelect
+        isItemRequired={item => item.required}
+        items={requiredItems}
+        labelText="Schools"
+        onSelectedItemsChange={onSelectedItemsChange}
+        selectionBehavior={MultiSelectSelectionBehavior.deferred}
+      />
+    );
+
+    await userEvent.click(getByRole('combobox', { name: 'Schools' }));
+    await userEvent.click(getByRole('option', { name: 'Optional school' }));
+    await userEvent.click(getByRole('button', { name: 'Apply' }));
+
+    expect(onSelectedItemsChange).toHaveBeenLastCalledWith(requiredItems);
+  });
+
   it('separates and indents items beneath the Select all option', async () => {
     const { getByRole, getByTestId } = render(
       <MultiSelect hasSelectAll items={items} labelText="Roles" />

@@ -15,6 +15,7 @@ import { MultiSelect, MultiSelectProps, MultiSelectSelectionBehavior } from '.';
 interface RoleOption {
   disabled?: boolean;
   label: string;
+  required?: boolean;
   value: string;
 }
 
@@ -38,6 +39,22 @@ const classes: RoleOption[] = [
   { label: 'Alvarez, Maria — Course 1A', value: 'course-1a' },
   { label: 'Alvarez, Maria — Course 1B', value: 'course-1b' },
   { label: 'Alvarez, Maria — Course 1C', value: 'course-1c' },
+];
+
+const schools: RoleOption[] = [
+  {
+    label: 'Lincoln Middle School — current school',
+    required: true,
+    value: 'lincoln-middle',
+  },
+  {
+    label: 'District Online Academy — assigned school',
+    required: true,
+    value: 'district-online-academy',
+  },
+  { label: 'Jefferson High School', value: 'jefferson-high' },
+  { label: 'Roosevelt Elementary School', value: 'roosevelt-elementary' },
+  { label: 'Washington STEM Academy', value: 'washington-stem' },
 ];
 
 const collaborators: CollaboratorOption[] = [
@@ -225,6 +242,20 @@ export const WithInitialSelectedItems = {
     items: roles,
     labelText: 'Roles',
     placeholder: 'Choose roles',
+  },
+};
+
+export const WithRequiredSelectedItems = {
+  render: (props: MultiSelectProps<RoleOption>) => (
+    <MultiSelect {...props} isItemRequired={item => !!item.required} />
+  ),
+  args: {
+    hasSelectAll: true,
+    helperMessage:
+      'Your current and assigned schools are selected automatically and cannot be removed.',
+    items: schools,
+    labelText: 'Schools',
+    placeholder: 'Choose schools',
   },
 };
 

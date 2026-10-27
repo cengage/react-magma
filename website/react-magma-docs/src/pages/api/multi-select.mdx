@@ -121,6 +121,51 @@ export function Example() {
 }
 ```
 
+## Required Selected Items
+
+Use `isItemRequired` when an option must remain selected and cannot be changed
+by the user. Required items are selected automatically, displayed with a lock
+icon, and preserved by Select All and the selection-summary Badge. They are
+also included in the value passed to `onSelectedItemsChange`.
+
+Use `helperMessage` to explain why the selections are locked. Do not rely on
+the lock icon alone to communicate this requirement.
+
+```tsx
+import React from 'react';
+
+import { MultiSelect } from 'react-magma-dom';
+
+const schools = [
+  {
+    label: 'Lincoln Middle School — current school',
+    required: true,
+    value: 'lincoln-middle',
+  },
+  {
+    label: 'District Online Academy — assigned school',
+    required: true,
+    value: 'district-online-academy',
+  },
+  { label: 'Jefferson High School', value: 'jefferson-high' },
+  { label: 'Roosevelt Elementary School', value: 'roosevelt-elementary' },
+  { label: 'Washington STEM Academy', value: 'washington-stem' },
+];
+
+export function Example() {
+  return (
+    <MultiSelect
+      hasSelectAll
+      helperMessage="Your current and assigned schools are selected automatically and cannot be removed."
+      isItemRequired={item => Boolean(item.required)}
+      items={schools}
+      labelText="Schools"
+      placeholder="Choose schools"
+    />
+  );
+}
+```
+
 ## Label Position
 
 Use `labelPosition` to place the label above or to the left of the field. The
@@ -359,11 +404,11 @@ export function Example() {
 
 ## Select All
 
-Use `hasSelectAll` to add a bulk-selection option. Disabled items are not
-changed by Select All. When some enabled items are selected, the Select All
-checkbox displays an indeterminate state. In a filterable MultiSelect, Select
-All applies to the currently visible filtered results and preserves selections
-outside the filter.
+Use `hasSelectAll` to add a bulk-selection option. Disabled and required items
+are not changed by Select All. When some enabled items are selected, the Select
+All checkbox displays an indeterminate state. In a filterable MultiSelect,
+Select All applies to the currently visible filtered results and preserves
+selections outside the filter.
 
 ```tsx
 import React from 'react';
@@ -481,7 +526,8 @@ export function Example() {
 ## Custom Selection Summary
 
 Selected items are summarized in a dismissible Badge. Dismissing the Badge
-clears every selection. Use `renderSelectedItems` to customize the text shown
+clears every non-required selection. When only required selections remain, the
+Badge is not dismissible. Use `renderSelectedItems` to customize the text shown
 inside the Badge.
 
 ```tsx
@@ -533,7 +579,8 @@ list does not select an option until the user activates it.
 Always provide a concise `labelText`. Use `helperMessage` for instructions that
 must remain visible rather than putting essential information in placeholder
 text. Selection changes and the current selected count are announced to
-assistive technology.
+assistive technology. Required items expose both their selected and unavailable
+states; pair them with helper text that explains why they cannot be changed.
 
 ## MultiSelect Props
 

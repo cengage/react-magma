@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import styled from '@emotion/styled';
 import { autoUpdate } from '@floating-ui/react-dom';
-import { CloseIcon } from 'react-magma-icons';
+import { CloseIcon, LockOutlinedIcon } from 'react-magma-icons';
 
 import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 import { I18nContext } from '../../i18n';
@@ -119,6 +119,11 @@ export interface MultiSelectProps<T extends SelectOptions> {
    * @default false
    */
   isLabelVisuallyHidden?: boolean;
+  /**
+   * Returns true when an item must remain selected. Required items are selected
+   * automatically and cannot be changed by the user.
+   */
+  isItemRequired?: (item: T) => boolean;
   /**
    * Converts an item to its visible label.
    */
@@ -288,6 +293,20 @@ const OptionItem = styled(StyledItem)<{ isIndented?: boolean }>`
       : props.theme.spaceScale.spacing05};
 `;
 
+const OptionContent = styled.div`
+  align-items: center;
+  display: flex;
+  min-width: 0;
+  width: 100%;
+`;
+
+const RequiredItemIndicator = styled.span`
+  display: inline-flex;
+  flex-shrink: 0;
+  line-height: 0;
+  margin-left: ${props => props.theme.spaceScale.spacing03};
+`;
+
 const OptionGroupContainer = styled.li`
   list-style: none;
   margin: 0;
@@ -389,6 +408,7 @@ export function MultiSelect<T extends SelectOptions>(
     inputSize = InputSize.medium,
     isFilterable = false,
     isInverse: isInverseProp,
+    isItemRequired = () => false,
     isLabelVisuallyHidden,
     itemToGroup,
     itemListMaxHeight,
@@ -433,7 +453,25 @@ export function MultiSelect<T extends SelectOptions>(
   const rootRef = React.useRef<HTMLDivElement>(null);
   const cancelButtonRef = React.useRef<HTMLButtonElement>(null);
   const hadNoOptionsRef = React.useRef(false);
-  const selectedItems = controlledSelectedItems ?? internalSelectedItems;
+  const requiredItems = React.useMemo(
+    () => items.filter(isItemRequired),
+    [isItemRequired, items]
+  );
+
+  function includeRequiredItems(nextSelectedItems: T[]) {
+    const requiredValues = new Set(requiredItems.map(itemToValue));
+
+    return [
+      ...requiredItems,
+      ...nextSelectedItems.filter(
+        item => !requiredValues.has(itemToValue(item))
+      ),
+    ];
+  }
+
+  const selectedItems = includeRequiredItems(
+    controlledSelectedItems ?? internalSelectedItems
+  );
   const isDeferred =
     selectionBehavior === MultiSelectSelectionBehavior.deferred;
   const menuSelectedItems = isDeferred ? draftSelectedItems : selectedItems;
@@ -446,7 +484,9 @@ export function MultiSelect<T extends SelectOptions>(
     () => new Set(menuSelectedItems.map(itemToValue)),
     [itemToValue, menuSelectedItems]
   );
-  const enabledItems = items.filter(item => !isItemDisabled(item));
+  const isItemUnavailable = (item: T) =>
+    isItemDisabled(item) || isItemRequired(item);
+  const enabledItems = items.filter(item => !isItemUnavailable(item));
   const allItemsSelected =
     enabledItems.length > 0 &&
     enabledItems.every(item => committedSelectedValues.has(itemToValue(item)));
@@ -458,7 +498,7 @@ export function MultiSelect<T extends SelectOptions>(
       )
     : items;
   const enabledFilteredItems = filteredItems.filter(
-    item => !isItemDisabled(item)
+    item => !isItemUnavailable(item)
   );
   const allSelected =
     enabledFilteredItems.length > 0 &&
@@ -527,27 +567,41 @@ export function MultiSelect<T extends SelectOptions>(
   }
 
   function commitSelectedItems(nextSelectedItems: T[]) {
+    const nextSelectedItemsWithRequired =
+      includeRequiredItems(nextSelectedItems);
+
     if (controlledSelectedItems === undefined) {
-      setInternalSelectedItems(nextSelectedItems);
+      setInternalSelectedItems(nextSelectedItemsWithRequired);
     }
 
-    onSelectedItemsChange?.(nextSelectedItems);
+    onSelectedItemsChange?.(nextSelectedItemsWithRequired);
   }
 
   function updateSelectedItems(nextSelectedItems: T[], message: string) {
+    const nextSelectedItemsWithRequired =
+      includeRequiredItems(nextSelectedItems);
+
     if (isDeferred && isOpen) {
-      setDraftSelectedItems(nextSelectedItems);
+      setDraftSelectedItems(nextSelectedItemsWithRequired);
       setAnnouncement(message);
 
       return;
     }
 
-    commitSelectedItems(nextSelectedItems);
+    commitSelectedItems(nextSelectedItemsWithRequired);
     setAnnouncement(message);
   }
 
+  function getAllDeselectedAnnouncement(selectedCount: number) {
+    const message = requiredItems.length
+      ? multiSelectI18n.selectedCount
+      : multiSelectI18n.allItemsDeselectedAnnounce;
+
+    return message.replace(/\{count\}/g, String(selectedCount));
+  }
+
   function toggleItem(item: T) {
-    if (isItemDisabled(item)) {
+    if (isItemUnavailable(item)) {
       return;
     }
 
@@ -585,10 +639,12 @@ export function MultiSelect<T extends SelectOptions>(
 
     updateSelectedItems(
       nextSelectedItems,
-      (allSelected
-        ? multiSelectI18n.allItemsDeselectedAnnounce
-        : multiSelectI18n.allItemsSelectedAnnounce
-      ).replace(/\{count\}/g, String(nextSelectedItems.length))
+      allSelected
+        ? getAllDeselectedAnnouncement(nextSelectedItems.length)
+        : multiSelectI18n.allItemsSelectedAnnounce.replace(
+            /\{count\}/g,
+            String(nextSelectedItems.length)
+          )
     );
   }
 
@@ -598,7 +654,7 @@ export function MultiSelect<T extends SelectOptions>(
   }
 
   function handleItemClick(item: T, optionIndex: number) {
-    if (isItemDisabled(item)) {
+    if (isItemUnavailable(item)) {
       return;
     }
 
@@ -617,13 +673,15 @@ export function MultiSelect<T extends SelectOptions>(
   }
 
   function clearAllSelections() {
-    if (disabled || selectedItems.length === 0) {
+    const requiredSelections = includeRequiredItems([]);
+
+    if (disabled || selectedItems.length === requiredSelections.length) {
       return;
     }
 
     updateSelectedItems(
-      [],
-      multiSelectI18n.allItemsDeselectedAnnounce.replace(/\{count\}/g, '0')
+      requiredSelections,
+      getAllDeselectedAnnouncement(requiredSelections.length)
     );
     setFilterValue('');
 
@@ -640,7 +698,7 @@ export function MultiSelect<T extends SelectOptions>(
     const itemIndex = index - (hasSelectAll ? 1 : 0);
     const item = filteredItems[itemIndex];
 
-    return !!item && !isItemDisabled(item);
+    return !!item && !isItemUnavailable(item);
   }
 
   function toggleHighlightedOption() {
@@ -972,14 +1030,16 @@ export function MultiSelect<T extends SelectOptions>(
     const optionIndex = itemIndex + (hasSelectAll ? 1 : 0);
     const isSelected = menuSelectedValues.has(itemToValue(item));
     const itemDisabled = isItemDisabled(item);
+    const itemRequired = isItemRequired(item);
+    const itemUnavailable = itemDisabled || itemRequired;
 
     return (
       <OptionItem
-        aria-disabled={itemDisabled || undefined}
+        aria-disabled={itemUnavailable || undefined}
         aria-selected={isSelected}
         data-highlighted={highlightedIndex === optionIndex}
         id={getOptionId(optionIndex)}
-        isDisabled={itemDisabled}
+        isDisabled={itemUnavailable}
         isFocused={highlightedIndex === optionIndex}
         isIndented={hasSelectAll}
         isInverse={isInverse}
@@ -989,20 +1049,27 @@ export function MultiSelect<T extends SelectOptions>(
         role="option"
         theme={theme}
       >
-        <Checkbox
-          checked={isSelected}
-          containerStyle={{
-            pointerEvents: 'none',
-            width: '100%',
-          }}
-          disabled={itemDisabled}
-          hideFocus
-          isInverse={isInverse}
-          isVisualOnly
-          labelStyle={{ padding: 0, width: '100%' }}
-          labelText={itemToString(item)}
-          tabIndex={-1}
-        />
+        <OptionContent>
+          <Checkbox
+            checked={isSelected}
+            containerStyle={{
+              pointerEvents: 'none',
+              width: '100%',
+            }}
+            disabled={itemUnavailable}
+            hideFocus
+            isInverse={isInverse}
+            isVisualOnly
+            labelStyle={{ padding: 0, width: '100%' }}
+            labelText={itemToString(item)}
+            tabIndex={-1}
+          />
+          {itemRequired && (
+            <RequiredItemIndicator aria-hidden="true" theme={theme}>
+              <LockOutlinedIcon size={theme.iconSizes.xSmall} />
+            </RequiredItemIndicator>
+          )}
+        </OptionContent>
       </OptionItem>
     );
   }
@@ -1060,7 +1127,7 @@ export function MultiSelect<T extends SelectOptions>(
             <SelectionBadge key="selection-badge" theme={theme}>
               <Badge
                 aria-label={
-                  disabled
+                  disabled || !selectedItems.some(item => !isItemRequired(item))
                     ? undefined
                     : `${selectedSummary}. ${multiSelectI18n.clearAllButtonAriaLabel}`
                 }
@@ -1069,9 +1136,20 @@ export function MultiSelect<T extends SelectOptions>(
                 disabled={disabled}
                 isInverse={isInverse}
                 onBlur={() => setBadgeFocus(false)}
-                onClick={disabled ? undefined : clearAllSelections}
+                onClick={
+                  disabled || !selectedItems.some(item => !isItemRequired(item))
+                    ? undefined
+                    : clearAllSelections
+                }
                 onFocus={() => setBadgeFocus(true)}
-                rightIcon={disabled ? undefined : <CloseIcon />}
+                rightIcon={
+                  disabled ||
+                  !selectedItems.some(
+                    item => !isItemRequired(item)
+                  ) ? undefined : (
+                    <CloseIcon />
+                  )
+                }
               >
                 {selectedSummary}
               </Badge>
