@@ -13,6 +13,8 @@
     "fix-charts-fullscreen-height",
     "sync-v6-main-to-v6-dev-6-0-0",
     "treeview-cursor",
+    "treeview-expansion-announcements",
+    "treeview-merge-tests",
     "update-react-magma-icons"
   ]
 }
