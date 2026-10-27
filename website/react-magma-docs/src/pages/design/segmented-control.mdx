@@ -1,0 +1,586 @@
+---
+pageTitle: Segmented Control Design Guidelines
+title: Segmented Control
+order: 1
+---
+
+import './design-guidelines-styles.css';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from 'react-magma-dom';
+
+<PageContent componentName="segmented_control" type="design">
+
+<LeadParagraph>
+  A Segmented Control lets users switch between a small set of views or filters
+  of the same content. Exactly one option is always selected, and the change
+  applies immediately.
+</LeadParagraph>
+
+![ ](../../images/segmented-control/segmented-control-intro.png)
+
+---
+
+## Anatomy
+
+<figure>
+  <img
+    src="../../images/segmented-control/anatomy.png"
+    alt=" "
+    aria-hidden="true"
+  />
+</figure>
+
+1. Container (track)
+1. Selected segment
+1. Unselected segment
+1. Label
+1. Icon (optional)
+
+---
+
+## When to Use
+
+A Segmented Control is easy to confuse with Tabs, Toggles, Radio buttons and
+Button Groups because they look alike. Ask one question: **does choosing an
+option change how the same content is shown, right now?** If yes, use a
+Segmented Control. If not, use one of the components below.
+
+<div style={{ marginBottom: '24px' }}>
+  <Table>
+    <TableHead>
+      <TableRow>
+        <TableHeaderCell>If you need to…</TableHeaderCell>
+        <TableHeaderCell>Use</TableHeaderCell>
+        <TableHeaderCell>Why not a Segmented Control</TableHeaderCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      <TableRow>
+        <TableCell>
+          Switch the view, filter, or sort of the same content
+        </TableCell>
+        <TableCell>Segmented Control</TableCell>
+        <TableCell>—</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Move between different sections or pages</TableCell>
+        <TableCell>Tabs</TableCell>
+        <TableCell>
+          Segments change the view of one set of content; they are not
+          navigation
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Turn a single setting on or off</TableCell>
+        <TableCell>Toggle</TableCell>
+        <TableCell>
+          A two-option control reads as two views, not an on/off state
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Pick several options at once</TableCell>
+        <TableCell>Toggle Button Group or Checkboxes</TableCell>
+        <TableCell>
+          A Segmented Control always has exactly one option selected
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          Choose a value that is saved later with a Submit or Save button
+        </TableCell>
+        <TableCell>Radio</TableCell>
+        <TableCell>
+          Segments apply immediately; they don't wait for a form to submit
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Trigger an action, such as Save or Delete</TableCell>
+        <TableCell>Button or ButtonGroup</TableCell>
+        <TableCell>
+          Segments select a state; they don't perform actions
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>
+          Choose from more than seven options, or options with long labels
+        </TableCell>
+        <TableCell>Select or Dropdown</TableCell>
+        <TableCell>
+          Segments must stay short enough to fit on one line
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</div>
+
+A Segmented Control can sit inside a tab panel to filter or change the view of
+that tab's content.
+
+---
+
+## Options
+
+### Size
+
+Segmented Controls come in small, medium (default), and large. Each size matches
+the height of the Button of the same size, so the control lines up when placed
+next to Buttons in a toolbar. Use medium in most cases.
+
+<figure>
+  <img src="../../images/segmented-control/sizes.png" alt=" " />
+</figure>
+
+### Content
+
+Segments can show text, an icon with text, or an icon only. Use the same type
+of content for every segment in a control.
+
+<figure>
+  <img src="../../images/segmented-control/content-types.png" alt=" " />
+</figure>
+
+### Full Width
+
+By default, the control is only as wide as its content. Full width stretches it
+to fill its container and gives every segment the same width. Use it in narrow
+containers such as cards and side panels, and on mobile screens when every
+segment still fits on one line.
+
+<figure>
+  <img src="../../images/segmented-control/full-width.png" alt=" " />
+</figure>
+
+### Inverse
+
+Use the inverse style on dark backgrounds.
+
+<figure>
+  <img src="../../images/segmented-control/inverse.png" alt=" " />
+</figure>
+
+### Responsive
+
+Keep segments visible when space allows. For familiar choices such as List and
+Grid, consider compact icon segments first. When several options or longer
+translated labels cannot fit comfortably on one line, use the optional dropdown
+presentation. It shows the current selection and marks the selected menu item
+with a checkmark.
+
+For example, Day, Week, Month, Quarter, and Year remain visible on a wide screen
+and become a dropdown on a narrow screen. Keep the same selection in both layouts.
+
+<figure>
+  <img
+    src="../../images/segmented-control/responsive-time-range.png"
+    alt="Five time-range segments on desktop and the same options in an open mobile dropdown, with Month selected in both."
+  />
+</figure>
+
+---
+
+## Usage Guidelines
+
+### Change the view, not the page
+
+Use a Segmented Control to switch between views of the same content, such as a
+list and a grid of the same items. To move between separate sections or pages,
+use Tabs.
+
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
+      <figure>
+        <img src="../../images/segmented-control/views-correct.png" alt=" " />
+        <figcaption>
+          <p className="title title-correct">Correct</p>
+          <p>Switch between views of the same set of items.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div className="col col-2">
+      <figure>
+        <img
+          src="../../images/segmented-control/navigation-incorrect.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-incorrect">Incorrect</p>
+          <p>
+            Don't use a Segmented Control to navigate between different pages or
+            sections. Use Tabs.
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+
+### Don't use segments as actions
+
+Each segment represents a state that stays selected. If clicking it should do
+something, like saving or sharing, use Buttons.
+
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
+      <figure>
+        <img
+          src="../../images/segmented-control/actions-incorrect.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-incorrect">Incorrect</p>
+          <p>
+            Don't use segments for actions such as Save, Share, or Delete. Use a
+            ButtonGroup.
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+    <div className="col col-2" />
+  </div>
+</div>
+
+### Keep it to two to five options
+
+Two to five options work best; seven is the maximum. With more options, or when
+the labels won't fit on one line, use a Select or Dropdown.
+
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
+      <figure>
+        <img
+          src="../../images/segmented-control/option-count-correct.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-correct">Correct</p>
+          <p>Use a few short options that fit comfortably.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div className="col col-2">
+      <figure>
+        <img
+          src="../../images/segmented-control/option-count-incorrect.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-incorrect">Incorrect</p>
+          <p>Don't squeeze many options into one control.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+
+### Always select an option
+
+The content below the control always reflects one choice, so one option should
+be selected when the page loads. Choose the option most people need, usually the
+first one.
+
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
+      <figure>
+        <img
+          src="../../images/segmented-control/default-selection-correct.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-correct">Correct</p>
+          <p>Select a sensible default.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div className="col col-2">
+      <figure>
+        <img
+          src="../../images/segmented-control/default-selection-incorrect.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-incorrect">Incorrect</p>
+          <p>Don't leave every option unselected.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+
+### Write short, parallel labels
+
+Use one or two words per label, written as nouns in sentence case, and keep the
+labels parallel in form. Labels describe the view, not an action.
+
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
+      <figure>
+        <img src="../../images/segmented-control/labels-correct.png" alt=" " />
+        <figcaption>
+          <p className="title title-correct">Correct</p>
+          <p>Use short nouns that follow the same pattern.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div className="col col-2">
+      <figure>
+        <img
+          src="../../images/segmented-control/labels-incorrect.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-incorrect">Incorrect</p>
+          <p>Don't use long labels, verbs, or mismatched wording.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+
+### Use one type of content
+
+Use text, icons with text, or icons only, and use the same type for every
+segment. Use icons only when they are widely understood, and show their names
+in a tooltip.
+
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
+      <figure>
+        <img
+          src="../../images/segmented-control/mixed-content-incorrect.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-incorrect">Incorrect</p>
+          <p>Don't mix icon-only segments with text segments.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div className="col col-2">
+      <figure>
+        <img
+          src="../../images/segmented-control/icon-only-tooltip-caution.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-caution">Caution</p>
+          <p>
+            Icon-only controls need familiar icons. Turn on tooltips so people
+            can confirm what each icon means.
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+
+### Use the right control for on/off, multiple, and saved choices
+
+A Segmented Control selects one view that applies immediately. For a single
+on/off setting, use a Toggle. When people can pick several options, use a Toggle
+Button Group or Checkboxes. When a choice is saved later with a Submit or Save
+button, use Radio buttons.
+
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
+      <figure>
+        <img
+          src="../../images/segmented-control/binary-incorrect.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-incorrect">Incorrect</p>
+          <p>Don't use On and Off segments for a setting. Use a Toggle.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div className="col col-2">
+      <figure>
+        <img
+          src="../../images/segmented-control/multi-select-incorrect.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-incorrect">Incorrect</p>
+          <p>
+            Don't use it when people need to pick several options. Use a Toggle
+            Button Group.
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+  <div className="row">
+    <div className="col col-1">
+      <figure>
+        <img
+          src="../../images/segmented-control/save-button-incorrect.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-incorrect">Incorrect</p>
+          <p>
+            Don't use it in a form that is saved with a button. Use Radio
+            buttons.
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+    <div className="col col-2" />
+  </div>
+</div>
+
+### Place it next to the content it controls
+
+Place the control directly above the content it changes, aligned to the left
+edge of that content, so the connection is obvious. Use one Segmented Control
+per set of content.
+
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
+      <figure>
+        <img
+          src="../../images/segmented-control/placement-correct.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-correct">Correct</p>
+          <p>Place the control directly above the content it changes.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div className="col col-2">
+      <figure>
+        <img
+          src="../../images/segmented-control/placement-incorrect.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-incorrect">Incorrect</p>
+          <p>Don't place the control far from the content it changes.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+  <div className="row">
+    <div className="col col-1">
+      <figure>
+        <img
+          src="../../images/segmented-control/stacked-incorrect.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-incorrect">Incorrect</p>
+          <p>
+            Don't stack or nest Segmented Controls for the same content. Combine
+            the choices or use a different component.
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+    <div className="col col-2" />
+  </div>
+</div>
+
+### Plan for small screens
+
+Keep every segment on one line. For familiar choices such as List and Grid,
+consider compact icon segments first. When several options still won't fit
+comfortably, use the optional dropdown display instead of wrapping or shrinking
+the text.
+
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
+      <figure>
+        <img
+          src="../../images/segmented-control/truncation-caution.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-caution">Caution</p>
+          <p>
+            In full-width controls, long labels are cut off. Shorten them so the
+            full text stays visible.
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+    <div className="col col-2">
+      <figure>
+        <img
+          src="../../images/segmented-control/wrapping-incorrect.png"
+          alt=" "
+        />
+        <figcaption>
+          <p className="title title-incorrect">Incorrect</p>
+          <p>Don't wrap segments onto a second line.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+
+---
+
+## Common Mistakes
+
+Before using a Segmented Control, check that none of these apply:
+
+- **Using it as navigation.** Moving between pages or sections calls for Tabs.
+- **Using it for actions.** Save, Share and Delete are Buttons.
+- **Using it as an on/off switch.** A single setting calls for a Toggle.
+- **Allowing several selections.** Multiple choices call for a Toggle Button
+  Group or Checkboxes.
+- **Using it in a form with a Save button.** Choices saved later call for Radio
+  buttons.
+- **Leaving nothing selected.** One option should always be selected.
+- **Adding too many options.** Keep to two to five, and never more than seven.
+- **Writing long or mismatched labels.** Use one or two parallel nouns.
+- **Mixing icons and text.** Use one type of content for every segment.
+- **Placing it far from its content.** Keep it directly above what it changes.
+- **Disabling options without explanation.** If an option is unavailable, explain
+  why nearby, or remove it.
+
+---
+
+## Accessibility
+
+- **Give the control a name.** Every Segmented Control needs a label that says
+  what it changes, such as "Time range." It can be visible text or hidden for
+  screen readers only.
+- **Keyboard.** People press Tab to move into the control, the arrow keys to
+  change the selection, and Tab again to leave.
+- **Icon-only segments.** Each icon needs a text label for screen readers, and a
+  tooltip helps sighted users.
+- **Selected state.** The selected segment is shown by its fill and shadow. Check
+  that the selected option stays clear to people with low vision, and don't rely
+  on color alone in custom designs.
+- **Motion.** The selected background slides when clicked. It doesn't animate for
+  people who have turned on reduced motion.
+
+---
+
+## Related Components
+
+- **Tabs**: move between separate sections of content.
+- **Toggle**: turn a single setting on or off.
+- **Toggle Button Group**: select one or several formatting options, such as
+  text alignment or bold.
+- **Radio**: choose one option in a form that is saved later.
+- **Select** and **Dropdown**: choose from a longer list of options.
+
+</PageContent>

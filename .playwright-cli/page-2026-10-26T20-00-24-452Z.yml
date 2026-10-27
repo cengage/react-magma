@@ -1,0 +1,564 @@
+- generic [ref=f5e3]:
+  - link "Skip Navigation" [ref=f5e4] [cursor=pointer]:
+    - /url: "#reactMagmaMainContent"
+  - generic [ref=f5e5]:
+    - banner [ref=f5e6]:
+      - generic [ref=f5e7]:
+        - link "Magma" [ref=f5e8] [cursor=pointer]:
+          - /url: /
+        - button "View project on GitHub" [ref=f5e16] [cursor=pointer]
+    - generic [ref=f5e20]:
+      - navigation "Main site navigation":
+        - generic [ref=f5e23]:
+          - list [ref=f5e24]:
+            - listitem [ref=f5e25]:
+              - button "Design" [ref=f5e27] [cursor=pointer]
+            - listitem [ref=f5e34]:
+              - button "Develop" [ref=f5e36] [cursor=pointer]
+            - listitem [ref=f5e43]:
+              - button "Foundations" [ref=f5e45] [cursor=pointer]
+            - listitem [ref=f5e52]:
+              - generic [ref=f5e53]:
+                - button "Components" [expanded] [ref=f5e54] [cursor=pointer]
+                - region "Components" [ref=f5e61]:
+                  - list [ref=f5e62]:
+                    - listitem [ref=f5e63]:
+                      - paragraph [ref=f5e64]: Buttons
+                      - list [ref=f5e65]:
+                        - listitem [ref=f5e66]:
+                          - link "Button" [ref=f5e67] [cursor=pointer]:
+                            - /url: /api/button/
+                        - listitem [ref=f5e68]:
+                          - link "ButtonGroup" [ref=f5e69] [cursor=pointer]:
+                            - /url: /api/buttongroup/
+                        - listitem [ref=f5e70]:
+                          - link "Icon Button" [ref=f5e71] [cursor=pointer]:
+                            - /url: /api/icon-button/
+                        - listitem [ref=f5e72]:
+                          - link "Segmented Control" [ref=f5e73] [cursor=pointer]:
+                            - /url: /api/segmented-control/
+                        - listitem [ref=f5e74]:
+                          - link "Toggle Button" [ref=f5e75] [cursor=pointer]:
+                            - /url: /api/toggle-button/
+                        - listitem [ref=f5e76]:
+                          - link "Toggle Button Group" [ref=f5e77] [cursor=pointer]:
+                            - /url: /api/toggle-button-group/
+                    - listitem [ref=f5e78]:
+                      - paragraph [ref=f5e79]: Inputs
+                      - list [ref=f5e80]:
+                        - listitem [ref=f5e81]:
+                          - link "Checkbox" [ref=f5e82] [cursor=pointer]:
+                            - /url: /api/checkboxes/
+                        - listitem [ref=f5e83]:
+                          - link "Combobox" [ref=f5e84] [cursor=pointer]:
+                            - /url: /api/combobox/
+                        - listitem [ref=f5e85]:
+                          - link "Date Picker" [ref=f5e86] [cursor=pointer]:
+                            - /url: /api/date-pickers/
+                        - listitem [ref=f5e87]:
+                          - link "Date Time Picker" [ref=f5e88] [cursor=pointer]:
+                            - /url: /api/date-time-picker/
+                        - listitem [ref=f5e89]:
+                          - link "Dropzone" [ref=f5e90] [cursor=pointer]:
+                            - /url: /api/dropzone/
+                        - listitem [ref=f5e91]:
+                          - link "Fieldset" [ref=f5e92] [cursor=pointer]:
+                            - /url: /api/fieldset/
+                        - listitem [ref=f5e93]:
+                          - link "Form" [ref=f5e94] [cursor=pointer]:
+                            - /url: /api/form/
+                        - listitem [ref=f5e95]:
+                          - link "Form Group" [ref=f5e96] [cursor=pointer]:
+                            - /url: /api/formgroup/
+                        - listitem [ref=f5e97]:
+                          - link "Indeterminate Checkbox" [ref=f5e98] [cursor=pointer]:
+                            - /url: /api/indeterminate/
+                        - listitem [ref=f5e99]:
+                          - link "Input" [ref=f5e100] [cursor=pointer]:
+                            - /url: /api/input/
+                        - listitem [ref=f5e101]:
+                          - link "Native Select" [ref=f5e102] [cursor=pointer]:
+                            - /url: /api/native-select/
+                        - listitem [ref=f5e103]:
+                          - link "Password Input" [ref=f5e104] [cursor=pointer]:
+                            - /url: /api/password-input/
+                        - listitem [ref=f5e105]:
+                          - link "Radio Button" [ref=f5e106] [cursor=pointer]:
+                            - /url: /api/radio/
+                        - listitem [ref=f5e107]:
+                          - link "Search" [ref=f5e108] [cursor=pointer]:
+                            - /url: /api/search/
+                        - listitem [ref=f5e109]:
+                          - link "Select" [ref=f5e110] [cursor=pointer]:
+                            - /url: /api/select/
+                        - listitem [ref=f5e111]:
+                          - link "Textarea" [ref=f5e112] [cursor=pointer]:
+                            - /url: /api/textarea/
+                        - listitem [ref=f5e113]:
+                          - link "Time Picker" [ref=f5e114] [cursor=pointer]:
+                            - /url: /api/time-picker/
+                        - listitem [ref=f5e115]:
+                          - link "Toggle" [ref=f5e116] [cursor=pointer]:
+                            - /url: /api/toggle/
+                    - listitem [ref=f5e117]:
+                      - paragraph [ref=f5e118]: AI Interface
+                      - list [ref=f5e119]:
+                        - listitem [ref=f5e120]:
+                          - link "AI Button" [ref=f5e121] [cursor=pointer]:
+                            - /url: /api/aibutton/
+                    - listitem [ref=f5e122]:
+                      - paragraph [ref=f5e123]: Data Display
+                      - list [ref=f5e124]:
+                        - listitem [ref=f5e125]:
+                          - link "Badge" [ref=f5e126] [cursor=pointer]:
+                            - /url: /api/badge/
+                        - listitem [ref=f5e127]:
+                          - link "Block Quote" [ref=f5e128] [cursor=pointer]:
+                            - /url: /api/blockquote/
+                        - listitem [ref=f5e129]:
+                          - link "Datagrid" [ref=f5e130] [cursor=pointer]:
+                            - /url: /api/datagrid/
+                        - listitem [ref=f5e131]:
+                          - link "Heading" [ref=f5e132] [cursor=pointer]:
+                            - /url: /api/heading/
+                        - listitem [ref=f5e133]:
+                          - link "Icon" [ref=f5e134] [cursor=pointer]:
+                            - /url: /api/icon/
+                        - listitem [ref=f5e135]:
+                          - link "List" [ref=f5e136] [cursor=pointer]:
+                            - /url: /api/list/
+                        - listitem [ref=f5e137]:
+                          - link "Paragraph" [ref=f5e138] [cursor=pointer]:
+                            - /url: /api/paragraph/
+                        - listitem [ref=f5e139]:
+                          - link "Table" [ref=f5e140] [cursor=pointer]:
+                            - /url: /api/table/
+                        - listitem [ref=f5e141]:
+                          - link "Tag" [ref=f5e142] [cursor=pointer]:
+                            - /url: /api/tag/
+                        - listitem [ref=f5e143]:
+                          - link "TreeView" [ref=f5e144] [cursor=pointer]:
+                            - /url: /api/tree-view/
+                    - listitem [ref=f5e145]:
+                      - paragraph [ref=f5e146]: Feedback
+                      - list [ref=f5e147]:
+                        - listitem [ref=f5e148]:
+                          - link "Alert" [ref=f5e149] [cursor=pointer]:
+                            - /url: /api/alert/
+                        - listitem [ref=f5e150]:
+                          - link "Banner" [ref=f5e151] [cursor=pointer]:
+                            - /url: /api/banner/
+                        - listitem [ref=f5e152]:
+                          - link "Empty State" [ref=f5e153] [cursor=pointer]:
+                            - /url: /api/empty-state/
+                        - listitem [ref=f5e154]:
+                          - link "Loading Indicator" [ref=f5e155] [cursor=pointer]:
+                            - /url: /api/loading-indicator/
+                        - listitem [ref=f5e156]:
+                          - link "Progress Bar" [ref=f5e157] [cursor=pointer]:
+                            - /url: /api/progress-bar/
+                        - listitem [ref=f5e158]:
+                          - link "Skeleton" [ref=f5e159] [cursor=pointer]:
+                            - /url: /api/skeleton/
+                        - listitem [ref=f5e160]:
+                          - link "Spinner" [ref=f5e161] [cursor=pointer]:
+                            - /url: /api/spinner/
+                        - listitem [ref=f5e162]:
+                          - link "Toast" [ref=f5e163] [cursor=pointer]:
+                            - /url: /api/toast/
+                    - listitem [ref=f5e164]:
+                      - paragraph [ref=f5e165]: Surface
+                      - list [ref=f5e166]:
+                        - listitem [ref=f5e167]:
+                          - link "Accordion" [ref=f5e168] [cursor=pointer]:
+                            - /url: /api/accordion/
+                        - listitem [ref=f5e169]:
+                          - link "AppBar" [ref=f5e170] [cursor=pointer]:
+                            - /url: /api/appbar/
+                        - listitem [ref=f5e171]:
+                          - link "Card" [ref=f5e172] [cursor=pointer]:
+                            - /url: /api/card/
+                    - listitem [ref=f5e173]:
+                      - paragraph [ref=f5e174]: Overlays
+                      - list [ref=f5e175]:
+                        - listitem [ref=f5e176]:
+                          - link "Drawer" [ref=f5e177] [cursor=pointer]:
+                            - /url: /api/drawer/
+                        - listitem [ref=f5e178]:
+                          - link "Modal" [ref=f5e179] [cursor=pointer]:
+                            - /url: /api/modal/
+                        - listitem [ref=f5e180]:
+                          - link "Popover" [ref=f5e181] [cursor=pointer]:
+                            - /url: /api/popover/
+                        - listitem [ref=f5e182]:
+                          - link "Tooltip" [ref=f5e183] [cursor=pointer]:
+                            - /url: /api/tooltip/
+                    - listitem [ref=f5e184]:
+                      - paragraph [ref=f5e185]: Navigation
+                      - list [ref=f5e186]:
+                        - listitem [ref=f5e187]:
+                          - link "Breadcrumb" [ref=f5e188] [cursor=pointer]:
+                            - /url: /api/breadcrumb/
+                        - listitem [ref=f5e189]:
+                          - link "Dropdown" [ref=f5e190] [cursor=pointer]:
+                            - /url: /api/dropdown/
+                        - listitem [ref=f5e191]:
+                          - link "Hyperlink" [ref=f5e192] [cursor=pointer]:
+                            - /url: /api/hyperlink/
+                        - listitem [ref=f5e193]:
+                          - link "Nav Tabs" [ref=f5e194] [cursor=pointer]:
+                            - /url: /api/nav-tabs/
+                        - listitem [ref=f5e195]:
+                          - link "Pagination" [ref=f5e196] [cursor=pointer]:
+                            - /url: /api/pagination/
+                        - listitem [ref=f5e197]:
+                          - link "Skip Link" [ref=f5e198] [cursor=pointer]:
+                            - /url: /api/skip-link/
+                        - listitem [ref=f5e199]:
+                          - link "Stepper" [ref=f5e200] [cursor=pointer]:
+                            - /url: /api/stepper/
+                        - listitem [ref=f5e201]:
+                          - link "Tabs" [ref=f5e202] [cursor=pointer]:
+                            - /url: /api/tabs/
+                    - listitem [ref=f5e203]:
+                      - paragraph [ref=f5e204]: Layout
+                      - list [ref=f5e205]:
+                        - listitem [ref=f5e206]:
+                          - link "Breakpoints Container" [ref=f5e207] [cursor=pointer]:
+                            - /url: /api/breakpoints-container/
+                        - listitem [ref=f5e208]:
+                          - link "Container" [ref=f5e209] [cursor=pointer]:
+                            - /url: /api/container/
+                        - listitem [ref=f5e210]:
+                          - link "Flex" [ref=f5e211] [cursor=pointer]:
+                            - /url: /api/flex/
+                        - listitem [ref=f5e212]:
+                          - link "Grid" [ref=f5e213] [cursor=pointer]:
+                            - /url: /api/grid/
+                        - listitem [ref=f5e214]:
+                          - link "Hide at Breakpoint" [ref=f5e215] [cursor=pointer]:
+                            - /url: /api/hide-at-breakpoint/
+                        - listitem [ref=f5e216]:
+                          - link "Spacer" [ref=f5e217] [cursor=pointer]:
+                            - /url: /api/spacer/
+                    - listitem [ref=f5e218]:
+                      - paragraph [ref=f5e219]: Utils
+                      - list [ref=f5e220]:
+                        - listitem [ref=f5e221]:
+                          - link "Announce" [ref=f5e222] [cursor=pointer]:
+                            - /url: /api/announce/
+                        - listitem [ref=f5e223]:
+                          - link "Character Counter" [ref=f5e224] [cursor=pointer]:
+                            - /url: /api/character-counter/
+                        - listitem [ref=f5e225]:
+                          - link "Global Styles" [ref=f5e226] [cursor=pointer]:
+                            - /url: /api/global-styles/
+                        - listitem [ref=f5e227]:
+                          - link "Internationalization" [ref=f5e228] [cursor=pointer]:
+                            - /url: /api/internationalization/
+                        - listitem [ref=f5e229]:
+                          - link "Transition" [ref=f5e230] [cursor=pointer]:
+                            - /url: /api/transition/
+                        - listitem [ref=f5e231]:
+                          - link "Visually Hidden" [ref=f5e232] [cursor=pointer]:
+                            - /url: /api/visually-hidden/
+                        - listitem [ref=f5e233]:
+                          - link "useDeviceDetect Hook" [ref=f5e234] [cursor=pointer]:
+                            - /url: /api/use-device-detect/
+                        - listitem [ref=f5e235]:
+                          - link "useFocusLock Hook" [ref=f5e236] [cursor=pointer]:
+                            - /url: /api/use-focus-lock/
+                        - listitem [ref=f5e237]:
+                          - link "useMediaQuery Hook" [ref=f5e238] [cursor=pointer]:
+                            - /url: /api/use-media-query/
+            - listitem [ref=f5e239]:
+              - button "Data Visualization" [ref=f5e241] [cursor=pointer]
+          - separator [ref=f5e248]
+          - link "View project on GitHub" [ref=f5e249] [cursor=pointer]:
+            - /url: https://github.com/cengage/react-magma
+            - text: GitHub
+          - generic [ref=f5e253]: Opens in a new tab
+    - main [ref=f5e255]:
+      - heading "Segmented Control" [level=1] [ref=f5e259]
+      - article [ref=f5e260]:
+        - generic [ref=f5e262]:
+          - navigation [ref=f5e264]:
+            - tablist [ref=f5e266]:
+              - link "Code" [active] [ref=f5e267] [cursor=pointer]:
+                - /url: /api/segmented-control/
+              - link "Usage" [ref=f5e268] [cursor=pointer]:
+                - /url: /design/segmented-control/
+          - tabpanel [ref=f5e271]:
+            - generic [ref=f5e272]:
+              - paragraph [ref=f5e273]:
+                - paragraph [ref=f5e274]: A Segmented Control lets users switch between a small set of views or filters of the same content. Exactly one option is always selected, and the change applies immediately.
+              - separator [ref=f5e276]
+              - heading "Anatomy" [level=2] [ref=f5e277]
+              - figure [ref=f5e278]
+              - list [ref=f5e280]:
+                - listitem [ref=f5e281]: Container (track)
+                - listitem [ref=f5e282]: Selected segment
+                - listitem [ref=f5e283]: Unselected segment
+                - listitem [ref=f5e284]: Label
+                - listitem [ref=f5e285]: Icon (optional)
+              - separator [ref=f5e286]
+              - heading "When to Use" [level=2] [ref=f5e287]
+              - paragraph [ref=f5e288]:
+                - text: "A Segmented Control is easy to confuse with Tabs, Toggles, Radio buttons and Button Groups because they look alike. Ask one question:"
+                - strong [ref=f5e289]: does choosing an option change how the same content is shown, right now?
+                - text: If yes, use a Segmented Control. If not, use one of the components below.
+              - table [ref=f5e293]:
+                - rowgroup [ref=f5e294]:
+                  - row [ref=f5e295]:
+                    - columnheader "If you need to…" [ref=f5e296]
+                    - columnheader "Use" [ref=f5e297]
+                    - columnheader "Why not a Segmented Control" [ref=f5e298]
+                - rowgroup [ref=f5e299]:
+                  - row [ref=f5e300]:
+                    - cell "Switch the view, filter, or sort of the same content" [ref=f5e301]
+                    - cell "Segmented Control" [ref=f5e302]
+                    - cell "—" [ref=f5e303]
+                  - row [ref=f5e304]:
+                    - cell "Move between different sections or pages" [ref=f5e305]
+                    - cell "Tabs" [ref=f5e306]
+                    - cell "Segments change the view of one set of content; they are not navigation" [ref=f5e307]
+                  - row [ref=f5e308]:
+                    - cell "Turn a single setting on or off" [ref=f5e309]
+                    - cell "Toggle" [ref=f5e310]
+                    - cell "A two-option control reads as two views, not an on/off state" [ref=f5e311]
+                  - row [ref=f5e312]:
+                    - cell "Pick several options at once" [ref=f5e313]
+                    - cell "Toggle Button Group or Checkboxes" [ref=f5e314]
+                    - cell "A Segmented Control always has exactly one option selected" [ref=f5e315]
+                  - row [ref=f5e316]:
+                    - cell "Choose a value that is saved later with a Submit or Save button" [ref=f5e317]
+                    - cell "Radio" [ref=f5e318]
+                    - cell "Segments apply immediately; they don't wait for a form to submit" [ref=f5e319]
+                  - row [ref=f5e320]:
+                    - cell "Trigger an action, such as Save or Delete" [ref=f5e321]
+                    - cell "Button or ButtonGroup" [ref=f5e322]
+                    - cell "Segments select a state; they don't perform actions" [ref=f5e323]
+                  - row [ref=f5e324]:
+                    - cell "Choose from more than seven options, or options with long labels" [ref=f5e325]
+                    - cell "Select or Dropdown" [ref=f5e326]
+                    - cell "Segments must stay short enough to fit on one line" [ref=f5e327]
+              - paragraph [ref=f5e328]: A Segmented Control can sit inside a tab panel to filter or change the view of that tab's content.
+              - separator [ref=f5e329]
+              - heading "Options" [level=2] [ref=f5e330]
+              - heading "Size" [level=3] [ref=f5e331]
+              - paragraph [ref=f5e332]: Segmented Controls come in small, medium (default), and large. Each size matches the height of the Button of the same size, so the control lines up when placed next to Buttons in a toolbar. Use medium in most cases.
+              - figure [ref=f5e333]
+              - heading "Content" [level=3] [ref=f5e335]
+              - paragraph [ref=f5e336]: Segments can show text, an icon with text, or an icon only. Use the same type of content for every segment in a control.
+              - figure [ref=f5e337]
+              - heading "Full Width" [level=3] [ref=f5e339]
+              - paragraph [ref=f5e340]: By default, the control is only as wide as its content. Full width stretches it to fill its container and gives every segment the same width. Use it in narrow containers such as cards and side panels, and on mobile screens when every segment still fits on one line.
+              - figure [ref=f5e341]
+              - heading "Inverse" [level=3] [ref=f5e343]
+              - paragraph [ref=f5e344]: Use the inverse style on dark backgrounds.
+              - figure [ref=f5e345]
+              - heading "Responsive" [level=3] [ref=f5e347]
+              - paragraph [ref=f5e348]: On small screens, the control can switch to a dropdown button that shows the selected option, with a checkmark on the selected item in its menu. Use this when the segments won't fit on one line.
+              - figure [ref=f5e349]
+              - separator [ref=f5e351]
+              - heading "Usage Guidelines" [level=2] [ref=f5e352]
+              - heading "Change the view, not the page" [level=3] [ref=f5e353]
+              - paragraph [ref=f5e354]: Use a Segmented Control to switch between views of the same content, such as a list and a grid of the same items. To move between separate sections or pages, use Tabs.
+              - generic [ref=f5e356]:
+                - figure [ref=f5e358]:
+                  - generic [ref=f5e360]:
+                    - paragraph [ref=f5e361]: Correct
+                    - paragraph [ref=f5e362]: Switch between views of the same set of items.
+                - figure [ref=f5e364]:
+                  - generic [ref=f5e366]:
+                    - paragraph [ref=f5e367]: Incorrect
+                    - paragraph [ref=f5e368]:
+                      - paragraph [ref=f5e369]: Don't use a Segmented Control to navigate between different pages or sections. Use Tabs.
+              - heading "Don't use segments as actions" [level=3] [ref=f5e370]
+              - paragraph [ref=f5e371]: Each segment represents a state that stays selected. If clicking it should do something, like saving or sharing, use Buttons.
+              - figure [ref=f5e375]:
+                - generic [ref=f5e377]:
+                  - paragraph [ref=f5e378]: Incorrect
+                  - paragraph [ref=f5e379]:
+                    - paragraph [ref=f5e380]: Don't use segments for actions such as Save, Share, or Delete. Use a ButtonGroup.
+              - heading "Keep it to two to five options" [level=3] [ref=f5e382]
+              - paragraph [ref=f5e383]: Two to five options work best; seven is the maximum. With more options, or when the labels won't fit on one line, use a Select or Dropdown.
+              - generic [ref=f5e385]:
+                - figure [ref=f5e387]:
+                  - generic [ref=f5e389]:
+                    - paragraph [ref=f5e390]: Correct
+                    - paragraph [ref=f5e391]: Use a few short options that fit comfortably.
+                - figure [ref=f5e393]:
+                  - generic [ref=f5e395]:
+                    - paragraph [ref=f5e396]: Incorrect
+                    - paragraph [ref=f5e397]: Don't squeeze many options into one control.
+              - heading "Always select an option" [level=3] [ref=f5e398]
+              - paragraph [ref=f5e399]: The content below the control always reflects one choice, so one option should be selected when the page loads. Choose the option most people need, usually the first one.
+              - generic [ref=f5e401]:
+                - figure [ref=f5e403]:
+                  - generic [ref=f5e405]:
+                    - paragraph [ref=f5e406]: Correct
+                    - paragraph [ref=f5e407]: Select a sensible default.
+                - figure [ref=f5e409]:
+                  - generic [ref=f5e411]:
+                    - paragraph [ref=f5e412]: Incorrect
+                    - paragraph [ref=f5e413]: Don't leave every option unselected.
+              - heading "Write short, parallel labels" [level=3] [ref=f5e414]
+              - paragraph [ref=f5e415]: Use one or two words per label, written as nouns in sentence case, and keep the labels parallel in form. Labels describe the view, not an action.
+              - generic [ref=f5e417]:
+                - figure [ref=f5e419]:
+                  - generic [ref=f5e421]:
+                    - paragraph [ref=f5e422]: Correct
+                    - paragraph [ref=f5e423]: Use short nouns that follow the same pattern.
+                - figure [ref=f5e425]:
+                  - generic [ref=f5e427]:
+                    - paragraph [ref=f5e428]: Incorrect
+                    - paragraph [ref=f5e429]: Don't use long labels, verbs, or mismatched wording.
+              - heading "Use one type of content" [level=3] [ref=f5e430]
+              - paragraph [ref=f5e431]: Use text, icons with text, or icons only, and use the same type for every segment. Use icons only when they are widely understood, and show their names in a tooltip.
+              - generic [ref=f5e433]:
+                - figure [ref=f5e435]:
+                  - generic [ref=f5e437]:
+                    - paragraph [ref=f5e438]: Incorrect
+                    - paragraph [ref=f5e439]: Don't mix icon-only segments with text segments.
+                - figure [ref=f5e441]:
+                  - generic [ref=f5e443]:
+                    - paragraph [ref=f5e444]: Caution
+                    - paragraph [ref=f5e445]:
+                      - paragraph [ref=f5e446]: Icon-only controls need familiar icons. Turn on tooltips so people can confirm what each icon means.
+              - heading "Use the right control for on/off, multiple, and saved choices" [level=3] [ref=f5e447]
+              - paragraph [ref=f5e448]: A Segmented Control selects one view that applies immediately. For a single on/off setting, use a Toggle. When people can pick several options, use a Toggle Button Group or Checkboxes. When a choice is saved later with a Submit or Save button, use Radio buttons.
+              - generic [ref=f5e449]:
+                - generic [ref=f5e450]:
+                  - figure [ref=f5e452]:
+                    - generic [ref=f5e454]:
+                      - paragraph [ref=f5e455]: Incorrect
+                      - paragraph [ref=f5e456]: Don't use On and Off segments for a setting. Use a Toggle.
+                  - figure [ref=f5e458]:
+                    - generic [ref=f5e460]:
+                      - paragraph [ref=f5e461]: Incorrect
+                      - paragraph [ref=f5e462]:
+                        - paragraph [ref=f5e463]: Don't use it when people need to pick several options. Use a Toggle Button Group.
+                - figure [ref=f5e466]:
+                  - generic [ref=f5e468]:
+                    - paragraph [ref=f5e469]: Incorrect
+                    - paragraph [ref=f5e470]:
+                      - paragraph [ref=f5e471]: Don't use it in a form that is saved with a button. Use Radio buttons.
+              - heading "Place it next to the content it controls" [level=3] [ref=f5e473]
+              - paragraph [ref=f5e474]: Place the control directly above the content it changes, aligned to the left edge of that content, so the connection is obvious. Use one Segmented Control per set of content.
+              - generic [ref=f5e475]:
+                - generic [ref=f5e476]:
+                  - figure [ref=f5e478]:
+                    - generic [ref=f5e480]:
+                      - paragraph [ref=f5e481]: Correct
+                      - paragraph [ref=f5e482]: Place the control directly above the content it changes.
+                  - figure [ref=f5e484]:
+                    - generic [ref=f5e486]:
+                      - paragraph [ref=f5e487]: Incorrect
+                      - paragraph [ref=f5e488]: Don't place the control far from the content it changes.
+                - figure [ref=f5e491]:
+                  - generic [ref=f5e493]:
+                    - paragraph [ref=f5e494]: Incorrect
+                    - paragraph [ref=f5e495]:
+                      - paragraph [ref=f5e496]: Don't stack or nest Segmented Controls for the same content. Combine the choices or use a different component.
+              - heading "Plan for small screens" [level=3] [ref=f5e498]
+              - paragraph [ref=f5e499]: Keep every segment on one line. When the labels won't fit, switch to the dropdown display instead of wrapping or shrinking the text.
+              - generic [ref=f5e501]:
+                - figure [ref=f5e503]:
+                  - generic [ref=f5e505]:
+                    - paragraph [ref=f5e506]: Caution
+                    - paragraph [ref=f5e507]:
+                      - paragraph [ref=f5e508]: In full-width controls, long labels are cut off. Shorten them so the full text stays visible.
+                - figure [ref=f5e510]:
+                  - generic [ref=f5e512]:
+                    - paragraph [ref=f5e513]: Incorrect
+                    - paragraph [ref=f5e514]: Don't wrap segments onto a second line.
+              - separator [ref=f5e515]
+              - heading "Common Mistakes" [level=2] [ref=f5e516]
+              - paragraph [ref=f5e517]: "Before using a Segmented Control, check that none of these apply:"
+              - list [ref=f5e518]:
+                - listitem [ref=f5e519]:
+                  - strong [ref=f5e520]: Using it as navigation.
+                  - text: Moving between pages or sections calls for Tabs.
+                - listitem [ref=f5e521]:
+                  - strong [ref=f5e522]: Using it for actions.
+                  - text: Save, Share and Delete are Buttons.
+                - listitem [ref=f5e523]:
+                  - strong [ref=f5e524]: Using it as an on/off switch.
+                  - text: A single setting calls for a Toggle.
+                - listitem [ref=f5e525]:
+                  - strong [ref=f5e526]: Allowing several selections.
+                  - text: Multiple choices call for a Toggle Button Group or Checkboxes.
+                - listitem [ref=f5e527]:
+                  - strong [ref=f5e528]: Using it in a form with a Save button.
+                  - text: Choices saved later call for Radio buttons.
+                - listitem [ref=f5e529]:
+                  - strong [ref=f5e530]: Leaving nothing selected.
+                  - text: One option should always be selected.
+                - listitem [ref=f5e531]:
+                  - strong [ref=f5e532]: Adding too many options.
+                  - text: Keep to two to five, and never more than seven.
+                - listitem [ref=f5e533]:
+                  - strong [ref=f5e534]: Writing long or mismatched labels.
+                  - text: Use one or two parallel nouns.
+                - listitem [ref=f5e535]:
+                  - strong [ref=f5e536]: Mixing icons and text.
+                  - text: Use one type of content for every segment.
+                - listitem [ref=f5e537]:
+                  - strong [ref=f5e538]: Placing it far from its content.
+                  - text: Keep it directly above what it changes.
+                - listitem [ref=f5e539]:
+                  - strong [ref=f5e540]: Disabling options without explanation.
+                  - text: If an option is unavailable, explain why nearby, or remove it.
+              - separator [ref=f5e541]
+              - heading "Accessibility" [level=2] [ref=f5e542]
+              - list [ref=f5e543]:
+                - listitem [ref=f5e544]:
+                  - strong [ref=f5e545]: Give the control a name.
+                  - text: Every Segmented Control needs a label that says what it changes, such as "Time range." It can be visible text or hidden for screen readers only.
+                - listitem [ref=f5e546]:
+                  - strong [ref=f5e547]: Keyboard.
+                  - text: People press Tab to move into the control, the arrow keys to change the selection, and Tab again to leave.
+                - listitem [ref=f5e548]:
+                  - strong [ref=f5e549]: Icon-only segments.
+                  - text: Each icon needs a text label for screen readers, and a tooltip helps sighted users.
+                - listitem [ref=f5e550]:
+                  - strong [ref=f5e551]: Selected state.
+                  - text: The selected segment is shown by its fill and shadow. Check that the selected option stays clear to people with low vision, and don't rely on color alone in custom designs.
+                - listitem [ref=f5e552]:
+                  - strong [ref=f5e553]: Motion.
+                  - text: The selected background slides when clicked. It doesn't animate for people who have turned on reduced motion.
+              - separator [ref=f5e554]
+              - heading "Related Components" [level=2] [ref=f5e555]
+              - list [ref=f5e556]:
+                - listitem [ref=f5e557]:
+                  - strong [ref=f5e558]: Tabs
+                  - text: ": move between separate sections of content."
+                - listitem [ref=f5e559]:
+                  - strong [ref=f5e560]: Toggle
+                  - text: ": turn a single setting on or off."
+                - listitem [ref=f5e561]:
+                  - strong [ref=f5e562]: Toggle Button Group
+                  - text: ": select one or several formatting options, such as text alignment or bold."
+                - listitem [ref=f5e563]:
+                  - strong [ref=f5e564]: Radio
+                  - text: ": choose one option in a form that is saved later."
+                - listitem [ref=f5e565]:
+                  - strong [ref=f5e566]: Select
+                  - text: and
+                  - strong [ref=f5e567]: Dropdown
+                  - text: ": choose from a longer list of options."
+            - generic [ref=f5e570]:
+              - paragraph [ref=f5e571]: On this page
+              - navigation [ref=f5e572]:
+                - tablist [ref=f5e574]:
+                  - tab "Anatomy" [ref=f5e575] [cursor=pointer]
+                  - tab "When to Use" [ref=f5e576] [cursor=pointer]
+                  - tab "Options" [ref=f5e577] [cursor=pointer]
+                  - tab "Usage Guidelines" [ref=f5e578] [cursor=pointer]
+                  - tab "Common Mistakes" [ref=f5e579] [cursor=pointer]
+                  - tab "Accessibility" [ref=f5e580] [cursor=pointer]
+                  - tab "Related Components" [ref=f5e581] [cursor=pointer]
+      - link [ref=f5e584] [cursor=pointer]:
+        - /url: https://www.netlify.com
+        - img "Deploys by Netlify" [ref=f5e585]

@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "storybook",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "storybook", "--", "--no-open"],
+      "port": 6006
+    },
+    {
+      "name": "docs-build",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "serve", "-w", "react-magma-docs"],
+      "port": 9000
+    }
+  ]
+}

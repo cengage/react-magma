@@ -1,0 +1,363 @@
+---
+pageTitle: Segmented Control API
+title: Segmented Control
+props:
+  - SegmentedControlProps
+  - SegmentedControlTextItemProps
+  - SegmentedControlIconItemProps
+---
+
+<PageContent componentName="segmented_control" type="api">
+
+<LeadParagraph>
+  A Segmented Control lets users select one option from a small set of related
+  choices, such as a time range or display mode.
+</LeadParagraph>
+
+## When to Use
+
+Use a Segmented Control to switch between a few related views or filters of the
+same content, where the user benefits from seeing every option at once.
+
+- **Do** use two to seven short, parallel options, such as Day, Week, and Month.
+- **Do** select an option by default, so the content always reflects a choice.
+- **Do** keep labels to one or two words. Use icon-only items only for familiar
+  icons, and turn on `hasTooltip` so the label is still visible.
+- **Don't** use it for actions; use Buttons. A segment changes what is shown, it
+  doesn't submit or save anything.
+- **Don't** use it to switch between separate panels of unrelated content; use
+  Tabs, which provide tab panel semantics.
+- **Don't** use it for more than seven options or long labels; use a Select or
+  Dropdown instead.
+- **Don't** use it to turn independent options on and off; use a Toggle Button
+  Group or Checkboxes.
+
+## Basic Usage
+
+Provide two to seven items with unique string values. Give the group an accessible
+name using `aria-label` or `aria-labelledby`. Use `defaultValue` for an initial
+selection. Clicking the selected item keeps it selected.
+
+Use `SegmentedControlItem` directly, in arrays, or inside React fragments.
+Conditional items are supported. Custom wrapper components are not inspected for
+options. Values must be unique; changing the items does not automatically change
+the selected value. Update a controlled `value` when its option is removed.
+
+```tsx
+import React from 'react';
+
+import { SegmentedControl, SegmentedControlItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <SegmentedControl aria-label="Time range" defaultValue="week">
+      <SegmentedControlItem value="day">Day</SegmentedControlItem>
+      <SegmentedControlItem value="week">Week</SegmentedControlItem>
+      <SegmentedControlItem value="month">Month</SegmentedControlItem>
+    </SegmentedControl>
+  );
+}
+```
+
+## Controlled Selection
+
+Use `value` and `onChange` to manage selection. The callback receives the React
+interaction event and the selected string value. Selection changes when the parent
+updates `value`; selecting an already selected item does not call `onChange`.
+
+```tsx
+import React from 'react';
+
+import { SegmentedControl, SegmentedControlItem } from 'react-magma-dom';
+
+export function Example() {
+  const [value, setValue] = React.useState('week');
+
+  return (
+    <SegmentedControl
+      aria-label="Time range"
+      value={value}
+      onChange={(_event, newValue) => setValue(newValue)}
+    >
+      <SegmentedControlItem value="day">Day</SegmentedControlItem>
+      <SegmentedControlItem value="week">Week</SegmentedControlItem>
+      <SegmentedControlItem value="month">Month</SegmentedControlItem>
+    </SegmentedControl>
+  );
+}
+```
+
+## Size and Width
+
+The `size` prop uses the same `ButtonSize` values as Button:
+`ButtonSize.small`, `ButtonSize.medium` (default), or `ButtonSize.large`. The
+outer heights match the Button of the same size (28, 40, and 56 pixels with the
+default theme), so the control lines up when placed next to Buttons.
+
+`isFullWidth` stretches the control and gives each item equal width. Long labels
+truncate visually; their full text remains available to assistive technology.
+Keep labels short, and add a `title` to an item if its label may be cut off.
+
+```tsx
+import React from 'react';
+
+import {
+  ButtonSize,
+  SegmentedControl,
+  SegmentedControlItem,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <SegmentedControl
+      aria-label="Time range"
+      defaultValue="day"
+      isFullWidth
+      size={ButtonSize.large}
+    >
+      <SegmentedControlItem value="day">Day</SegmentedControlItem>
+      <SegmentedControlItem value="week">Week</SegmentedControlItem>
+    </SegmentedControl>
+  );
+}
+```
+
+## Icons
+
+Text items support `leadingIcon`, `trailingIcon`, or both. For icon-only items,
+provide `icon` and a required `aria-label`. Set `hasTooltip` to display that label on
+hover and focus. Icons are decorative to assistive technology; the item supplies
+the accessible name.
+
+```tsx
+import React from 'react';
+
+import { SegmentedControl, SegmentedControlItem } from 'react-magma-dom';
+import { FormatListBulletedIcon, GridViewIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <SegmentedControl aria-label="Layout" defaultValue="list">
+      <SegmentedControlItem
+        aria-label="List view"
+        hasTooltip
+        icon={<FormatListBulletedIcon />}
+        value="list"
+      />
+      <SegmentedControlItem
+        aria-label="Grid view"
+        hasTooltip
+        icon={<GridViewIcon />}
+        value="grid"
+      />
+    </SegmentedControl>
+  );
+}
+```
+
+## Disabled
+
+Set `disabled` on the group to disable every item, or on an item to disable only
+that choice. Disabled items cannot be selected and are skipped by keyboard
+navigation.
+
+```tsx
+import React from 'react';
+
+import { SegmentedControl, SegmentedControlItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <SegmentedControl aria-label="Time range" defaultValue="day" disabled>
+        <SegmentedControlItem value="day">Day</SegmentedControlItem>
+        <SegmentedControlItem value="week">Week</SegmentedControlItem>
+        <SegmentedControlItem value="month">Month</SegmentedControlItem>
+      </SegmentedControl>
+      <br />
+      <br />
+      <SegmentedControl aria-label="Report period" defaultValue="day">
+        <SegmentedControlItem value="day">Day</SegmentedControlItem>
+        <SegmentedControlItem disabled value="week">
+          Week
+        </SegmentedControlItem>
+        <SegmentedControlItem value="month">Month</SegmentedControlItem>
+      </SegmentedControl>
+    </>
+  );
+}
+```
+
+## Inverse
+
+Use `isInverse` on dark surfaces. The control also inherits inverse styling from
+a surrounding inverse Magma container.
+
+```tsx
+import React from 'react';
+
+import {
+  Container,
+  SegmentedControl,
+  SegmentedControlItem,
+  magma,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Container
+      isInverse
+      style={{
+        background: magma.colors.neutral1100,
+        borderRadius: '8px',
+        padding: '12px',
+      }}
+    >
+      <SegmentedControl aria-label="Time range" defaultValue="day" isInverse>
+        <SegmentedControlItem value="day">Day</SegmentedControlItem>
+        <SegmentedControlItem value="week">Week</SegmentedControlItem>
+        <SegmentedControlItem value="month">Month</SegmentedControlItem>
+      </SegmentedControl>
+    </Container>
+  );
+}
+```
+
+## Animation
+
+`isAnimated` defaults to `true`. Clicking an item slides the selected background
+to it; keyboard selection updates immediately. The slide is skipped when the
+browser does not support the animation API or the user prefers reduced motion.
+Set `isAnimated={false}` to turn it off. Click between items below to compare.
+
+Keyboard selection, reduced motion, disabled states, layout changes, and
+replacement values stop an active slide and immediately restore the selected
+item's background. A delayed controlled change animates only when the parent
+accepts the value requested by the pointer interaction.
+
+```tsx
+import React from 'react';
+
+import {
+  Paragraph,
+  SegmentedControl,
+  SegmentedControlItem,
+  Spacer,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Paragraph id="animatedLabel" noMargins>
+        Animated (default)
+      </Paragraph>
+      <Spacer size={8} />
+      <SegmentedControl aria-labelledby="animatedLabel" defaultValue="day">
+        <SegmentedControlItem value="day">Day</SegmentedControlItem>
+        <SegmentedControlItem value="week">Week</SegmentedControlItem>
+        <SegmentedControlItem value="month">Month</SegmentedControlItem>
+      </SegmentedControl>
+      <Spacer size={24} />
+      <Paragraph id="notAnimatedLabel" noMargins>
+        Not animated
+      </Paragraph>
+      <Spacer size={8} />
+      <SegmentedControl
+        aria-labelledby="notAnimatedLabel"
+        defaultValue="day"
+        isAnimated={false}
+      >
+        <SegmentedControlItem value="day">Day</SegmentedControlItem>
+        <SegmentedControlItem value="week">Week</SegmentedControlItem>
+        <SegmentedControlItem value="month">Month</SegmentedControlItem>
+      </SegmentedControl>
+    </>
+  );
+}
+```
+
+## Responsive Display
+
+Set `breakpoint` to a viewport width in pixels to display a dropdown below that
+width and segments at or above it. Keep segments visible when they fit comfortably;
+for familiar choices such as List and Grid, consider compact icon segments first.
+Leave `breakpoint` unset to keep segments at all viewport widths. The dropdown displays the selected option and uses the same
+`value`, `defaultValue`, `onChange`, and disabled states. The menu exposes
+single-choice options to assistive technology. Up/Down arrows, Home, and End move
+focus; Enter or Space selects an option and returns focus to the trigger. Escape
+closes the menu, and Tab leaves it. Moving focus alone does not change selection.
+
+The example below switches below 768 pixels; narrow the window to see it change.
+Item handlers, IDs, metadata, labels, and button refs work in both displays. The
+`onChange` callback receives a live button click event, including for keyboard
+activation; read `event.currentTarget` synchronously to access the button. Calling
+`preventDefault()` in an item's `onClick` cancels selection. Item refs point to the
+new button when the display changes. Icon-only menu options show their text label,
+so their optional tooltip is used only in the segmented display.
+
+Focus stays within the control when its display changes or a focused option is
+removed or disabled. The group ref continues to point to the same wrapping div.
+Server-rendered controls initially render segments, then switch after hydration
+when the viewport is below the breakpoint.
+
+```tsx
+import React from 'react';
+
+import { SegmentedControl, SegmentedControlItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <SegmentedControl
+      aria-label="Time range"
+      breakpoint={768}
+      defaultValue="month"
+    >
+      <SegmentedControlItem value="day">Day</SegmentedControlItem>
+      <SegmentedControlItem value="week">Week</SegmentedControlItem>
+      <SegmentedControlItem value="month">Month</SegmentedControlItem>
+      <SegmentedControlItem value="quarter">Quarter</SegmentedControlItem>
+      <SegmentedControlItem value="year">Year</SegmentedControlItem>
+    </SegmentedControl>
+  );
+}
+```
+
+## Accessibility
+
+The component uses the radio group pattern. Tab enters at the selected enabled
+item, or the first enabled item if none is selected. Tab and Shift+Tab leave the
+group. Arrow keys move and select with wrapping, Home and End move to the first
+and last enabled items, and Space selects the focused item.
+
+This component does not submit a native form field; manage form values in the
+parent.
+
+The small variant has 20-pixel-high item targets with 4-pixel gaps under the
+default theme. Preserve adequate target spacing, particularly when customizing
+themes or placing controls next to one another.
+
+The selected segment is shown by a lighter fill and a soft shadow, which has low
+contrast against the track. Have the selected state reviewed for accessibility
+before relying on it in a custom design. In Windows High Contrast mode, an
+outline identifies the selected item.
+
+## SegmentedControl Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<SegmentedControlProps />
+
+## SegmentedControlItem Props
+
+An item is either a text item or an icon-only item.
+**Any other props supplied will be provided to the item's `button` element.**
+
+### Text Item
+
+<SegmentedControlTextItemProps />
+
+### Icon-Only Item
+
+<SegmentedControlIconItemProps />
+
+</PageContent>
