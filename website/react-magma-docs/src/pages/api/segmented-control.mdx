@@ -35,8 +35,10 @@ same content, where the user benefits from seeing every option at once.
 ## Basic Usage
 
 Provide two to seven items with unique string values. Give the group an accessible
-name using `aria-label` or `aria-labelledby`. Use `defaultValue` for an initial
-selection. Clicking the selected item keeps it selected.
+name using `aria-label` or `aria-labelledby`. Set `defaultValue` for an initial
+selection, or `value` for controlled selection. The component does not select an
+option automatically when neither is provided. Clicking the selected item keeps
+it selected.
 
 Use `SegmentedControlItem` directly, in arrays, or inside React fragments.
 Conditional items are supported. Custom wrapper components are not inspected for
@@ -296,7 +298,11 @@ new button when the display changes. Icon-only menu options show their text labe
 so their optional tooltip is used only in the segmented display.
 
 Focus stays within the control when its display changes or a focused option is
-removed or disabled. The group ref continues to point to the same wrapping div.
+removed or disabled. If a menu opens with every option disabled, the menu itself
+receives focus. When an option becomes enabled while that menu still has focus,
+focus moves to the selected enabled option, or the first enabled option.
+
+The group ref continues to point to the same wrapping div.
 Server-rendered controls initially render segments, then switch after hydration
 when the viewport is below the breakpoint.
 
