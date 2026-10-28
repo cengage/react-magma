@@ -178,10 +178,10 @@ export {
 } from './components/Select';
 export { Combobox, ComboboxStateChangeTypes } from './components/Combobox';
 export {
-  MultiSelect,
-  MultiSelectSelectionBehavior,
-} from './components/MultiSelect';
-export type { MultiSelectProps } from './components/MultiSelect';
+  CheckboxSelect,
+  CheckboxSelectSelectionBehavior,
+} from './components/CheckboxSelect';
+export type { CheckboxSelectProps } from './components/CheckboxSelect';
 
 export {
   Skeleton,

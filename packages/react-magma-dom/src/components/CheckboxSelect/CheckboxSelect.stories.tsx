@@ -10,7 +10,11 @@ import { IconButton } from '../IconButton';
 import { LabelPosition } from '../Label';
 import { Tooltip } from '../Tooltip';
 
-import { MultiSelect, MultiSelectProps, MultiSelectSelectionBehavior } from '.';
+import {
+  CheckboxSelect,
+  CheckboxSelectProps,
+  CheckboxSelectSelectionBehavior,
+} from '.';
 
 interface RoleOption {
   disabled?: boolean;
@@ -173,10 +177,10 @@ export default {
     labelWidth: { control: 'number' },
     selectionBehavior: {
       control: { type: 'select' },
-      options: Object.values(MultiSelectSelectionBehavior),
+      options: Object.values(CheckboxSelectSelectionBehavior),
     },
   },
-  component: MultiSelect,
+  component: CheckboxSelect,
   decorators: [
     Story => (
       <div style={{ maxWidth: '400px' }}>
@@ -184,7 +188,7 @@ export default {
       </div>
     ),
   ],
-  title: 'MultiSelect',
+  title: 'Checkbox Select',
 } as Meta;
 
 export const Default = {
@@ -196,8 +200,8 @@ export const Default = {
 };
 
 export const GroupedOptions = {
-  render: (props: MultiSelectProps<CollaboratorOption>) => (
-    <MultiSelect {...props} itemToGroup={item => item.group} />
+  render: (props: CheckboxSelectProps<CollaboratorOption>) => (
+    <CheckboxSelect {...props} itemToGroup={item => item.group} />
   ),
   args: {
     items: collaborators,
@@ -246,8 +250,8 @@ export const WithInitialSelectedItems = {
 };
 
 export const WithRequiredSelectedItems = {
-  render: (props: MultiSelectProps<RoleOption>) => (
-    <MultiSelect {...props} isItemRequired={item => !!item.required} />
+  render: (props: CheckboxSelectProps<RoleOption>) => (
+    <CheckboxSelect {...props} isItemRequired={item => !!item.required} />
   ),
   args: {
     hasSelectAll: true,
@@ -266,7 +270,7 @@ export const DeferredSelection = {
     items: roles,
     labelText: 'Roles',
     placeholder: 'Choose roles',
-    selectionBehavior: MultiSelectSelectionBehavior.deferred,
+    selectionBehavior: CheckboxSelectSelectionBehavior.deferred,
   },
 };
 
@@ -279,7 +283,7 @@ export const FilterableWithSelectAllAndDeferredSelection = {
     items: statesAndTerritories,
     labelText: 'States and territories',
     placeholder: 'Choose states or territories',
-    selectionBehavior: MultiSelectSelectionBehavior.deferred,
+    selectionBehavior: CheckboxSelectSelectionBehavior.deferred,
   },
 };
 
@@ -312,8 +316,8 @@ export const LeftLabel = {
 };
 
 export const WithAdditionalContent = {
-  render: (props: MultiSelectProps<RoleOption>) => (
-    <MultiSelect
+  render: (props: CheckboxSelectProps<RoleOption>) => (
+    <CheckboxSelect
       {...props}
       additionalContent={
         <Tooltip content="Learn more about roles">
@@ -346,14 +350,14 @@ export const Disabled = {
 };
 
 export const Controlled = {
-  render: (props: MultiSelectProps<RoleOption>) => {
+  render: (props: CheckboxSelectProps<RoleOption>) => {
     const [selectedItems, setSelectedItems] = React.useState<RoleOption[]>([
       roles[0],
     ]);
 
     return (
       <>
-        <MultiSelect
+        <CheckboxSelect
           {...props}
           onSelectedItemsChange={setSelectedItems}
           selectedItems={selectedItems}
@@ -390,9 +394,9 @@ export const CustomSelectionSummary = {
 };
 
 export const Inverse = {
-  render: (props: MultiSelectProps<RoleOption>) => (
+  render: (props: CheckboxSelectProps<RoleOption>) => (
     <Container isInverse style={{ minHeight: '320px', padding: '24px' }}>
-      <MultiSelect {...props} isInverse />
+      <CheckboxSelect {...props} isInverse />
     </Container>
   ),
   args: {

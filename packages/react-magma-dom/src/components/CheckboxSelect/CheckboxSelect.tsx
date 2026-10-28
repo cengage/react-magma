@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import styled from '@emotion/styled';
 import { autoUpdate } from '@floating-ui/react-dom';
-import { CloseIcon, LockOutlinedIcon } from 'react-magma-icons';
+import { CloseIcon, LockOutlinedIcon, SearchIcon } from 'react-magma-icons';
 
 import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 import { I18nContext } from '../../i18n';
@@ -10,7 +10,12 @@ import { defaultI18n } from '../../i18n/default';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { descriptionSuffix, labelSuffix, useGenerateId } from '../../utils';
+import {
+  descriptionSuffix,
+  labelSuffix,
+  useForkedRef,
+  useGenerateId,
+} from '../../utils';
 import { Announce } from '../Announce';
 import { Badge, BadgeColor } from '../Badge';
 import {
@@ -38,12 +43,12 @@ import { StyledCard, StyledItem, StyledList } from '../Select/shared';
 import { isItemDisabled } from '../Select/utils';
 import { VisuallyHidden } from '../VisuallyHidden';
 
-export enum MultiSelectSelectionBehavior {
+export enum CheckboxSelectSelectionBehavior {
   immediate = 'immediate',
   deferred = 'deferred',
 }
 
-export interface MultiSelectProps<T extends SelectOptions> {
+export interface CheckboxSelectProps<T extends SelectOptions> {
   /**
    * Content displayed beside the label. Intended for supporting actions such as help links.
    */
@@ -83,8 +88,9 @@ export interface MultiSelectProps<T extends SelectOptions> {
    */
   helperMessage?: React.ReactNode;
   /**
-   * Placeholder text shown while the filterable menu is open.
-   * Defaults to the localized MultiSelect filter placeholder.
+   * Placeholder text shown in the editable filter area after a selection is
+   * made or while the filterable menu is open.
+   * Defaults to the localized Checkbox Select filter placeholder.
    */
   filterPlaceholder?: string;
   /**
@@ -208,9 +214,9 @@ export interface MultiSelectProps<T extends SelectOptions> {
   /**
    * Determines whether changes are committed as options are selected or only
    * after the user applies them.
-   * @default MultiSelectSelectionBehavior.immediate
+   * @default CheckboxSelectSelectionBehavior.immediate
    */
-  selectionBehavior?: MultiSelectSelectionBehavior;
+  selectionBehavior?: CheckboxSelectSelectionBehavior;
   /**
    * Selected items when the component is controlled.
    */
@@ -261,7 +267,23 @@ const FilterInput = styled.input<StyledFieldProps>`
   ${inputBaseStyles}
   flex: 1;
   min-width: 0;
+  padding-left: ${props => props.theme.spaceScale.spacing02};
   padding-right: ${props => props.theme.spaceScale.spacing09};
+`;
+
+const FilterArea = styled.div`
+  align-items: center;
+  display: flex;
+  flex: 1;
+  height: 100%;
+  min-width: 0;
+`;
+
+const FilterIndicator = styled.span`
+  display: inline-flex;
+  flex-shrink: 0;
+  line-height: 0;
+  margin-left: ${props => props.theme.spaceScale.spacing03};
 `;
 
 const SelectionBadge = styled.span`
@@ -388,8 +410,8 @@ function toCssValue(value: number | string) {
   return typeof value === 'number' ? `${value}px` : value;
 }
 
-export function MultiSelect<T extends SelectOptions>(
-  props: MultiSelectProps<T>
+export function CheckboxSelect<T extends SelectOptions>(
+  props: CheckboxSelectProps<T>
 ) {
   const {
     additionalContent,
@@ -427,7 +449,7 @@ export function MultiSelect<T extends SelectOptions>(
     onSelectedItemsChange,
     placeholder,
     renderSelectedItems,
-    selectionBehavior = MultiSelectSelectionBehavior.immediate,
+    selectionBehavior = CheckboxSelectSelectionBehavior.immediate,
     selectedItems: controlledSelectedItems,
     testId,
   } = props;
@@ -451,6 +473,11 @@ export function MultiSelect<T extends SelectOptions>(
   const [highlightedIndex, setHighlightedIndex] = React.useState(0);
   const [announcement, setAnnouncement] = React.useState('');
   const rootRef = React.useRef<HTMLDivElement>(null);
+  const filterInputRef = React.useRef<HTMLInputElement>(null);
+  const forkedFilterInputRef = useForkedRef(
+    (innerRef as React.Ref<HTMLInputElement>) || null,
+    filterInputRef
+  );
   const cancelButtonRef = React.useRef<HTMLButtonElement>(null);
   const hadNoOptionsRef = React.useRef(false);
   const requiredItems = React.useMemo(
@@ -473,7 +500,7 @@ export function MultiSelect<T extends SelectOptions>(
     controlledSelectedItems ?? internalSelectedItems
   );
   const isDeferred =
-    selectionBehavior === MultiSelectSelectionBehavior.deferred;
+    selectionBehavior === CheckboxSelectSelectionBehavior.deferred;
   const menuSelectedItems = isDeferred ? draftSelectedItems : selectedItems;
 
   const committedSelectedValues = React.useMemo(
@@ -668,7 +695,7 @@ export function MultiSelect<T extends SelectOptions>(
 
   function setBadgeFocus(isFocused: boolean) {
     rootRef.current
-      ?.querySelector<HTMLElement>('[data-multiselect-field]')
+      ?.querySelector<HTMLElement>('[data-checkbox-select-field]')
       ?.setAttribute('data-badge-focused', String(isFocused));
   }
 
@@ -1003,6 +1030,14 @@ export function MultiSelect<T extends SelectOptions>(
       : theme.colors.neutral500;
   }
 
+  const filterIndicatorColor = disabled
+    ? isInverse
+      ? theme.colors.neutral700
+      : theme.colors.neutral500
+    : isInverse
+      ? theme.colors.neutral500
+      : theme.colors.neutral700;
+
   let triggerTextColor: string | undefined;
 
   if (selectedItems.length === 0) {
@@ -1019,7 +1054,7 @@ export function MultiSelect<T extends SelectOptions>(
 
   let filterInputPlaceholder: string | undefined;
 
-  if (isOpen) {
+  if (isOpen || selectedItems.length > 0) {
     filterInputPlaceholder =
       filterPlaceholder ?? multiSelectI18n.filterPlaceholder;
   } else if (selectedItems.length === 0) {
@@ -1115,7 +1150,7 @@ export function MultiSelect<T extends SelectOptions>(
         )}
         <Field
           data-badge-focused="false"
-          data-multiselect-field
+          data-checkbox-select-field
           disabled={disabled}
           hasError={!!errorMessage}
           inputSize={inputSize}
@@ -1132,7 +1167,7 @@ export function MultiSelect<T extends SelectOptions>(
                     : `${selectedSummary}. ${multiSelectI18n.clearAllButtonAriaLabel}`
                 }
                 color={BadgeColor.primary}
-                data-multiselect-selection-badge
+                data-checkbox-select-selection-badge
                 disabled={disabled}
                 isInverse={isInverse}
                 onBlur={() => setBadgeFocus(false)}
@@ -1156,25 +1191,45 @@ export function MultiSelect<T extends SelectOptions>(
             </SelectionBadge>
           )}
           {isFilterable ? (
-            <FilterInput
-              {...commonTriggerProps}
-              aria-autocomplete="list"
-              autoComplete="off"
-              inputSize={inputSize}
-              isInverse={isInverse}
+            <FilterArea
               key="trigger"
-              onChange={event => {
-                setFilterValue(event.target.value);
-                openMenu();
+              onMouseDown={event => {
+                if (!disabled && event.target !== filterInputRef.current) {
+                  event.preventDefault();
+                  filterInputRef.current?.focus();
+                  openMenu();
+                }
               }}
-              onClick={openMenu}
-              placeholder={filterInputPlaceholder}
-              ref={innerRef as React.Ref<HTMLInputElement>}
-              style={inputStyle}
-              theme={theme}
-              type="text"
-              value={filterValue}
-            />
+            >
+              <FilterIndicator
+                aria-hidden="true"
+                data-testid="checkboxSelect-filterIndicator"
+                theme={theme}
+              >
+                <SearchIcon
+                  color={filterIndicatorColor}
+                  size={theme.iconSizes.small}
+                />
+              </FilterIndicator>
+              <FilterInput
+                {...commonTriggerProps}
+                aria-autocomplete="list"
+                autoComplete="off"
+                inputSize={inputSize}
+                isInverse={isInverse}
+                onChange={event => {
+                  setFilterValue(event.target.value);
+                  openMenu();
+                }}
+                onClick={openMenu}
+                placeholder={filterInputPlaceholder}
+                ref={forkedFilterInputRef}
+                style={inputStyle}
+                theme={theme}
+                type="text"
+                value={filterValue}
+              />
+            </FilterArea>
           ) : (
             <TriggerButton
               {...commonTriggerProps}
@@ -1255,7 +1310,7 @@ export function MultiSelect<T extends SelectOptions>(
                   </StyledItem>
                   <SelectAllDivider
                     aria-hidden="true"
-                    data-testid="multiSelect-selectAllDivider"
+                    data-testid="checkboxSelect-selectAllDivider"
                     isInverse={isInverse}
                     theme={theme}
                   />
@@ -1279,7 +1334,7 @@ export function MultiSelect<T extends SelectOptions>(
                       {groupIndex > 0 && (
                         <OptionGroupDivider
                           aria-hidden="true"
-                          data-testid="multiSelect-groupDivider"
+                          data-testid="checkboxSelect-groupDivider"
                           isInverse={isInverse}
                           theme={theme}
                         />

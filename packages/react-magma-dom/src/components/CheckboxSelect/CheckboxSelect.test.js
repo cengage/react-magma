@@ -7,9 +7,9 @@ import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { LabelPosition } from '../Label';
 
-import { MultiSelect, MultiSelectSelectionBehavior } from '.';
+import { CheckboxSelect, CheckboxSelectSelectionBehavior } from '.';
 
-describe('MultiSelect', () => {
+describe('CheckboxSelect', () => {
   const items = [
     { label: 'Editor', value: 'editor' },
     { label: 'Owner', value: 'owner' },
@@ -17,9 +17,9 @@ describe('MultiSelect', () => {
     { label: 'Uploader', value: 'uploader' },
   ];
 
-  it('renders a labeled multiselect and opens its options', async () => {
+  it('renders a labeled checkbox select and opens its options', async () => {
     const { getByRole } = render(
-      <MultiSelect items={items} labelText="Roles" />
+      <CheckboxSelect items={items} labelText="Roles" />
     );
     const trigger = getByRole('combobox', { name: 'Roles' });
 
@@ -38,7 +38,7 @@ describe('MultiSelect', () => {
       { group: 'Engineering', label: 'Engineer', value: 'engineer' },
     ];
     const { container, getAllByTestId, getByRole } = render(
-      <MultiSelect
+      <CheckboxSelect
         itemToGroup={item => item.group}
         items={groupedItems}
         labelText="Project collaborators"
@@ -58,13 +58,17 @@ describe('MultiSelect', () => {
     expect(
       within(engineeringGroup).getByRole('option', { name: 'Engineer' })
     ).toBeInTheDocument();
-    expect(getAllByTestId('multiSelect-groupDivider')).toHaveLength(1);
+    expect(getAllByTestId('checkboxSelect-groupDivider')).toHaveLength(1);
     expect(await axe(container)).toHaveNoViolations();
   });
 
   it('uses the shared placeholder colors', () => {
     const { getByRole, rerender } = render(
-      <MultiSelect items={items} labelText="Roles" placeholder="Choose roles" />
+      <CheckboxSelect
+        items={items}
+        labelText="Roles"
+        placeholder="Choose roles"
+      />
     );
 
     expect(getByRole('combobox', { name: 'Roles' })).toHaveStyle(
@@ -72,7 +76,7 @@ describe('MultiSelect', () => {
     );
 
     rerender(
-      <MultiSelect
+      <CheckboxSelect
         isInverse
         items={items}
         labelText="Roles"
@@ -87,7 +91,7 @@ describe('MultiSelect', () => {
 
   it('uses disabled solid-button styles for the selection badge', () => {
     const { getByText } = render(
-      <MultiSelect
+      <CheckboxSelect
         defaultSelectedItems={[items[0]]}
         disabled
         items={items}
@@ -104,7 +108,7 @@ describe('MultiSelect', () => {
 
   it('keeps selected items visible so they can be toggled', async () => {
     const { getByRole } = render(
-      <MultiSelect items={items} labelText="Roles" />
+      <CheckboxSelect items={items} labelText="Roles" />
     );
 
     await userEvent.click(getByRole('combobox', { name: 'Roles' }));
@@ -125,7 +129,7 @@ describe('MultiSelect', () => {
   it('clears all selections when the summary badge is dismissed', async () => {
     const onSelectedItemsChange = jest.fn();
     const { getByRole, queryByRole } = render(
-      <MultiSelect
+      <CheckboxSelect
         defaultSelectedItems={items.slice(0, 2)}
         items={items}
         labelText="Roles"
@@ -151,7 +155,7 @@ describe('MultiSelect', () => {
     const { getByRole } = render(
       <>
         <button type="button">Before</button>
-        <MultiSelect
+        <CheckboxSelect
           defaultSelectedItems={[items[0]]}
           items={items}
           labelText="Roles"
@@ -162,7 +166,7 @@ describe('MultiSelect', () => {
     const selectionBadge = getByRole('button', {
       name: '1 selected. Clear all selections',
     });
-    const fieldContainer = field.closest('[data-multiselect-field]');
+    const fieldContainer = field.closest('[data-checkbox-select-field]');
 
     getByRole('button', { name: 'Before' }).focus();
     await userEvent.tab();
@@ -181,7 +185,7 @@ describe('MultiSelect', () => {
     const { getByRole } = render(
       <>
         <button type="button">Before</button>
-        <MultiSelect items={items} labelText="Roles" />
+        <CheckboxSelect items={items} labelText="Roles" />
       </>
     );
 
@@ -195,17 +199,17 @@ describe('MultiSelect', () => {
     const { getByRole } = render(
       <>
         <button type="button">Before</button>
-        <MultiSelect
+        <CheckboxSelect
           defaultSelectedItems={[items[0]]}
           isFilterable
           items={items}
           labelText="Roles"
-          selectionBehavior={MultiSelectSelectionBehavior.deferred}
+          selectionBehavior={CheckboxSelectSelectionBehavior.deferred}
         />
       </>
     );
     const trigger = getByRole('combobox', { name: 'Roles' });
-    const fieldContainer = trigger.closest('[data-multiselect-field]');
+    const fieldContainer = trigger.closest('[data-checkbox-select-field]');
 
     getByRole('button', { name: 'Before' }).focus();
     await userEvent.tab();
@@ -228,7 +232,7 @@ describe('MultiSelect', () => {
   it('selects and deselects all enabled items', async () => {
     const onSelectedItemsChange = jest.fn();
     const { getByRole } = render(
-      <MultiSelect
+      <CheckboxSelect
         hasSelectAll
         items={items}
         labelText="Roles"
@@ -264,7 +268,7 @@ describe('MultiSelect', () => {
     ];
     const onSelectedItemsChange = jest.fn();
     const { getByRole, getByText } = render(
-      <MultiSelect
+      <CheckboxSelect
         isItemRequired={item => item.required}
         items={requiredItems}
         labelText="Schools"
@@ -294,7 +298,7 @@ describe('MultiSelect', () => {
     ];
     const onSelectedItemsChange = jest.fn();
     const { getByRole } = render(
-      <MultiSelect
+      <CheckboxSelect
         isItemRequired={item => item.required}
         items={requiredItems}
         labelText="Schools"
@@ -321,7 +325,7 @@ describe('MultiSelect', () => {
     ];
     const onSelectedItemsChange = jest.fn();
     const { getByRole } = render(
-      <MultiSelect
+      <CheckboxSelect
         hasSelectAll
         isItemRequired={item => item.required}
         items={requiredItems}
@@ -350,12 +354,12 @@ describe('MultiSelect', () => {
     ];
     const onSelectedItemsChange = jest.fn();
     const { getByRole } = render(
-      <MultiSelect
+      <CheckboxSelect
         isItemRequired={item => item.required}
         items={requiredItems}
         labelText="Schools"
         onSelectedItemsChange={onSelectedItemsChange}
-        selectionBehavior={MultiSelectSelectionBehavior.deferred}
+        selectionBehavior={CheckboxSelectSelectionBehavior.deferred}
       />
     );
 
@@ -368,12 +372,12 @@ describe('MultiSelect', () => {
 
   it('separates and indents items beneath the Select all option', async () => {
     const { getByRole, getByTestId } = render(
-      <MultiSelect hasSelectAll items={items} labelText="Roles" />
+      <CheckboxSelect hasSelectAll items={items} labelText="Roles" />
     );
 
     await userEvent.click(getByRole('combobox', { name: 'Roles' }));
 
-    expect(getByTestId('multiSelect-selectAllDivider')).toHaveStyle(
+    expect(getByTestId('checkboxSelect-selectAllDivider')).toHaveStyle(
       'height: 1px'
     );
     expect(getByRole('option', { name: 'Editor' })).toHaveStyle(
@@ -383,7 +387,7 @@ describe('MultiSelect', () => {
 
   it('filters options without removing selected options from the source', async () => {
     const { getByRole, queryByRole } = render(
-      <MultiSelect isFilterable items={items} labelText="Roles" />
+      <CheckboxSelect isFilterable items={items} labelText="Roles" />
     );
     const input = getByRole('combobox', { name: 'Roles' });
 
@@ -396,7 +400,7 @@ describe('MultiSelect', () => {
 
   it('supports a custom filter placeholder', async () => {
     const { getByRole } = render(
-      <MultiSelect
+      <CheckboxSelect
         filterPlaceholder="Search roles"
         isFilterable
         items={items}
@@ -410,9 +414,31 @@ describe('MultiSelect', () => {
     expect(input).toHaveAttribute('placeholder', 'Search roles');
   });
 
+  it('keeps filtering discoverable when selections are summarized', async () => {
+    const { getByRole, getByTestId } = render(
+      <CheckboxSelect
+        defaultSelectedItems={[items[0]]}
+        filterPlaceholder="Search roles"
+        isFilterable
+        items={items}
+        labelText="Roles"
+      />
+    );
+    const input = getByRole('combobox', { name: 'Roles' });
+    const filterIndicator = getByTestId('checkboxSelect-filterIndicator');
+
+    expect(input).toHaveAttribute('placeholder', 'Search roles');
+    expect(filterIndicator).toHaveAttribute('aria-hidden', 'true');
+
+    await userEvent.click(filterIndicator);
+
+    expect(input).toHaveFocus();
+    expect(input).toHaveAttribute('aria-expanded', 'true');
+  });
+
   it('announces when filtering returns no options', async () => {
     const { getByRole, getByText, queryByText } = render(
-      <MultiSelect isFilterable items={items} labelText="Roles" />
+      <CheckboxSelect isFilterable items={items} labelText="Roles" />
     );
     const input = getByRole('combobox', { name: 'Roles' });
 
@@ -452,7 +478,7 @@ describe('MultiSelect', () => {
   it('selects only the enabled filtered results', async () => {
     const onSelectedItemsChange = jest.fn();
     const { getByRole } = render(
-      <MultiSelect
+      <CheckboxSelect
         hasSelectAll
         isFilterable
         items={items}
@@ -474,7 +500,7 @@ describe('MultiSelect', () => {
       const [selectedItems, setSelectedItems] = React.useState([]);
 
       return (
-        <MultiSelect
+        <CheckboxSelect
           items={items}
           labelText="Roles"
           onSelectedItemsChange={setSelectedItems}
@@ -496,12 +522,12 @@ describe('MultiSelect', () => {
   it('defers selection changes until they are applied', async () => {
     const onSelectedItemsChange = jest.fn();
     const { getByRole } = render(
-      <MultiSelect
+      <CheckboxSelect
         defaultSelectedItems={[items[0]]}
         items={items}
         labelText="Roles"
         onSelectedItemsChange={onSelectedItemsChange}
-        selectionBehavior={MultiSelectSelectionBehavior.deferred}
+        selectionBehavior={CheckboxSelectSelectionBehavior.deferred}
       />
     );
     const trigger = getByRole('combobox', { name: 'Roles' });
@@ -532,11 +558,11 @@ describe('MultiSelect', () => {
   it('discards deferred changes when they are canceled', async () => {
     const onSelectedItemsChange = jest.fn();
     const { getByRole } = render(
-      <MultiSelect
+      <CheckboxSelect
         items={items}
         labelText="Roles"
         onSelectedItemsChange={onSelectedItemsChange}
-        selectionBehavior={MultiSelectSelectionBehavior.deferred}
+        selectionBehavior={CheckboxSelectSelectionBehavior.deferred}
       />
     );
     const trigger = getByRole('combobox', { name: 'Roles' });
@@ -559,11 +585,11 @@ describe('MultiSelect', () => {
   it('discards deferred changes when Escape is pressed', async () => {
     const onSelectedItemsChange = jest.fn();
     const { getByRole } = render(
-      <MultiSelect
+      <CheckboxSelect
         items={items}
         labelText="Roles"
         onSelectedItemsChange={onSelectedItemsChange}
-        selectionBehavior={MultiSelectSelectionBehavior.deferred}
+        selectionBehavior={CheckboxSelectSelectionBehavior.deferred}
       />
     );
     const trigger = getByRole('combobox', { name: 'Roles' });
@@ -584,10 +610,10 @@ describe('MultiSelect', () => {
 
   it('moves focus from the active option to Cancel and restores it', async () => {
     const { getByRole } = render(
-      <MultiSelect
+      <CheckboxSelect
         items={items}
         labelText="Roles"
-        selectionBehavior={MultiSelectSelectionBehavior.deferred}
+        selectionBehavior={CheckboxSelectSelectionBehavior.deferred}
       />
     );
     const trigger = getByRole('combobox', { name: 'Roles' });
@@ -615,7 +641,7 @@ describe('MultiSelect', () => {
 
   it('supports a custom selection summary', () => {
     const { getByRole } = render(
-      <MultiSelect
+      <CheckboxSelect
         defaultSelectedItems={items.slice(0, 2)}
         items={items}
         labelText="Roles"
@@ -632,7 +658,7 @@ describe('MultiSelect', () => {
 
   it('supports keyboard selection while leaving the menu open', async () => {
     const { getByRole } = render(
-      <MultiSelect items={items} labelText="Roles" />
+      <CheckboxSelect items={items} labelText="Roles" />
     );
     const trigger = getByRole('combobox', { name: 'Roles' });
 
@@ -648,7 +674,7 @@ describe('MultiSelect', () => {
 
   it('does not move keyboard focus when an option is hovered', async () => {
     const { getByRole } = render(
-      <MultiSelect items={items} labelText="Roles" />
+      <CheckboxSelect items={items} labelText="Roles" />
     );
     const trigger = getByRole('combobox', { name: 'Roles' });
 
@@ -662,7 +688,7 @@ describe('MultiSelect', () => {
 
   it('moves the active option when an option is clicked', async () => {
     const { getByRole } = render(
-      <MultiSelect isFilterable items={items} labelText="Roles" />
+      <CheckboxSelect isFilterable items={items} labelText="Roles" />
     );
     const trigger = getByRole('combobox', { name: 'Roles' });
 
@@ -676,7 +702,7 @@ describe('MultiSelect', () => {
 
   it('continues keyboard navigation after an option is clicked', async () => {
     const { getByRole } = render(
-      <MultiSelect isFilterable items={items} labelText="Roles" />
+      <CheckboxSelect isFilterable items={items} labelText="Roles" />
     );
 
     await userEvent.click(getByRole('combobox', { name: 'Roles' }));
@@ -696,7 +722,7 @@ describe('MultiSelect', () => {
     const scrollIntoView = jest.fn();
     window.HTMLElement.prototype.scrollIntoView = scrollIntoView;
     const { getByRole } = render(
-      <MultiSelect items={items} labelText="Roles" />
+      <CheckboxSelect items={items} labelText="Roles" />
     );
     const trigger = getByRole('combobox', { name: 'Roles' });
 
@@ -712,7 +738,7 @@ describe('MultiSelect', () => {
       { label: 'Available', value: 'available' },
     ];
     const { getByRole } = render(
-      <MultiSelect items={disabledFirstItems} labelText="Roles" />
+      <CheckboxSelect items={disabledFirstItems} labelText="Roles" />
     );
     const trigger = getByRole('combobox', { name: 'Roles' });
 
@@ -727,7 +753,7 @@ describe('MultiSelect', () => {
 
   it('leaves Home and End available for editing in filterable mode', async () => {
     const { getByRole } = render(
-      <MultiSelect isFilterable items={items} labelText="Roles" />
+      <CheckboxSelect isFilterable items={items} labelText="Roles" />
     );
     const input = getByRole('combobox', { name: 'Roles' });
 
@@ -739,7 +765,7 @@ describe('MultiSelect', () => {
 
   it('exposes its selection summary and error state', () => {
     const { getByRole } = render(
-      <MultiSelect
+      <CheckboxSelect
         defaultSelectedItems={[items[0]]}
         errorMessage="Choose a valid combination"
         items={items}
@@ -760,7 +786,7 @@ describe('MultiSelect', () => {
     const { getByRole, getByText } = render(
       <>
         <p id="external-guidance">External guidance</p>
-        <MultiSelect
+        <CheckboxSelect
           additionalContent={<button type="button">Role help</button>}
           ariaDescribedBy="external-guidance"
           ariaLabel="Role choices"
@@ -786,7 +812,7 @@ describe('MultiSelect', () => {
 
   it('keeps additional content visible with a left-positioned label', () => {
     const { getByText } = render(
-      <MultiSelect
+      <CheckboxSelect
         additionalContent={<button type="button">Role help</button>}
         items={items}
         labelPosition={LabelPosition.left}
@@ -799,7 +825,7 @@ describe('MultiSelect', () => {
 
   it('describes a partially selected Select all option', async () => {
     const { getByRole } = render(
-      <MultiSelect hasSelectAll items={items} labelText="Roles" />
+      <CheckboxSelect hasSelectAll items={items} labelText="Roles" />
     );
 
     await userEvent.click(getByRole('combobox', { name: 'Roles' }));
@@ -814,7 +840,7 @@ describe('MultiSelect', () => {
 
   it('allows consumers to prevent internal keyboard handling', async () => {
     const { getByRole } = render(
-      <MultiSelect
+      <CheckboxSelect
         items={items}
         labelText="Roles"
         onKeyDown={event => event.preventDefault()}
@@ -830,7 +856,7 @@ describe('MultiSelect', () => {
 
   it('does not violate accessibility standards', async () => {
     const { container, getByRole } = render(
-      <MultiSelect hasSelectAll items={items} labelText="Roles" />
+      <CheckboxSelect hasSelectAll items={items} labelText="Roles" />
     );
 
     await userEvent.click(getByRole('combobox', { name: 'Roles' }));

@@ -1,19 +1,19 @@
 ---
-pageTitle: MultiSelect API
-title: MultiSelect
+pageTitle: Checkbox Select API
+title: Checkbox Select
 props:
-  - MultiSelectProps
+  - CheckboxSelectProps
 ---
 
-<PageContent componentName="multiselect" type="api">
+<PageContent componentName="checkbox-select" type="api">
 
 <LeadParagraph>
-  MultiSelect lets users choose zero or more options from a checkbox list. The
-  menu remains open while selections are made so users can review and change
+  Checkbox Select lets users choose zero or more options from a checkbox list.
+  The menu remains open while selections are made so users can review and change
   several options in one interaction.
 </LeadParagraph>
 
-Use MultiSelect when users may choose several values from one category. For a
+Use Checkbox Select when users may choose several values from one category. For a
 single value, use <Link to="/api/select">Select</Link>. When a long list needs
 free-form entry or suggestions, consider <Link to="/api/combobox">Combobox</Link>.
 
@@ -22,7 +22,7 @@ free-form entry or suggestions, consider <Link to="/api/combobox">Combobox</Link
 ```tsx
 import React from 'react';
 
-import { MultiSelect } from 'react-magma-dom';
+import { CheckboxSelect } from 'react-magma-dom';
 
 const roles = [
   { label: 'Editor', value: 'editor' },
@@ -33,7 +33,11 @@ const roles = [
 
 export function Example() {
   return (
-    <MultiSelect items={roles} labelText="Roles" placeholder="Choose roles" />
+    <CheckboxSelect
+      items={roles}
+      labelText="Roles"
+      placeholder="Choose roles"
+    />
   );
 }
 ```
@@ -47,7 +51,7 @@ presented as a single section.
 ```tsx
 import React from 'react';
 
-import { MultiSelect } from 'react-magma-dom';
+import { CheckboxSelect } from 'react-magma-dom';
 
 const collaborators = [
   {
@@ -84,7 +88,7 @@ const collaborators = [
 
 export function Example() {
   return (
-    <MultiSelect
+    <CheckboxSelect
       itemToGroup={item => item.group}
       items={collaborators}
       labelText="Project collaborators"
@@ -96,13 +100,13 @@ export function Example() {
 
 ## Initial Selection
 
-Use `defaultSelectedItems` to provide initial selections when MultiSelect
+Use `defaultSelectedItems` to provide initial selections when Checkbox Select
 manages its own state. Items are matched using `itemToValue`.
 
 ```tsx
 import React from 'react';
 
-import { MultiSelect } from 'react-magma-dom';
+import { CheckboxSelect } from 'react-magma-dom';
 
 const roles = [
   { label: 'Editor', value: 'editor' },
@@ -112,7 +116,7 @@ const roles = [
 
 export function Example() {
   return (
-    <MultiSelect
+    <CheckboxSelect
       defaultSelectedItems={[roles[0], roles[2]]}
       items={roles}
       labelText="Roles"
@@ -134,7 +138,7 @@ the lock icon alone to communicate this requirement.
 ```tsx
 import React from 'react';
 
-import { MultiSelect } from 'react-magma-dom';
+import { CheckboxSelect } from 'react-magma-dom';
 
 const schools = [
   {
@@ -154,7 +158,7 @@ const schools = [
 
 export function Example() {
   return (
-    <MultiSelect
+    <CheckboxSelect
       hasSelectAll
       helperMessage="Your current and assigned schools are selected automatically and cannot be removed."
       isItemRequired={item => Boolean(item.required)}
@@ -175,11 +179,11 @@ layouts where vertical space is limited, such as toolbars.
 ```tsx
 import React from 'react';
 
-import { LabelPosition, MultiSelect } from 'react-magma-dom';
+import { LabelPosition, CheckboxSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <MultiSelect
+    <CheckboxSelect
       labelPosition={LabelPosition.left}
       items={[
         { label: 'Editor', value: 'editor' },
@@ -200,11 +204,11 @@ selections remain visible in a disabled Badge.
 ```tsx
 import React from 'react';
 
-import { MultiSelect } from 'react-magma-dom';
+import { CheckboxSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <MultiSelect
+    <CheckboxSelect
       defaultSelectedItems={[
         { label: 'Editor', value: 'editor' },
         { label: 'Owner', value: 'owner' },
@@ -230,11 +234,11 @@ Select All.
 ```tsx
 import React from 'react';
 
-import { MultiSelect } from 'react-magma-dom';
+import { CheckboxSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <MultiSelect
+    <CheckboxSelect
       items={[
         { label: 'Editor', value: 'editor' },
         {
@@ -259,11 +263,11 @@ both are provided.
 ```tsx
 import React from 'react';
 
-import { MultiSelect } from 'react-magma-dom';
+import { CheckboxSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <MultiSelect
+    <CheckboxSelect
       errorMessage="Select at least one role."
       items={[
         { label: 'Editor', value: 'editor' },
@@ -284,11 +288,11 @@ remain visible below the field.
 ```tsx
 import React from 'react';
 
-import { MultiSelect } from 'react-magma-dom';
+import { CheckboxSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <MultiSelect
+    <CheckboxSelect
       helperMessage="Choose every role that applies."
       items={[
         { label: 'Editor', value: 'editor' },
@@ -309,11 +313,11 @@ Placeholder text should supplement the label rather than replace it.
 ```tsx
 import React from 'react';
 
-import { MultiSelect } from 'react-magma-dom';
+import { CheckboxSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <MultiSelect
+    <CheckboxSelect
       items={[
         { label: 'Editor', value: 'editor' },
         { label: 'Owner', value: 'owner' },
@@ -340,7 +344,7 @@ import {
   ButtonVariant,
   IconButton,
   magma,
-  MultiSelect,
+  CheckboxSelect,
   Tooltip,
 } from 'react-magma-dom';
 import { HelpIcon } from 'react-magma-icons';
@@ -349,7 +353,7 @@ export function Example() {
   const helpLinkLabel = 'Learn more about assigning roles';
 
   return (
-    <MultiSelect
+    <CheckboxSelect
       additionalContent={
         <Tooltip content={helpLinkLabel}>
           <IconButton
@@ -375,18 +379,18 @@ export function Example() {
 
 ## Inverse
 
-Use `isInverse` when MultiSelect appears on a dark background.
+Use `isInverse` when Checkbox Select appears on a dark background.
 
 ```tsx
 import React from 'react';
 
-import { Card, CardBody, magma, MultiSelect } from 'react-magma-dom';
+import { Card, CardBody, magma, CheckboxSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
     <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
-        <MultiSelect
+        <CheckboxSelect
           helperMessage="Choose every role that applies."
           isInverse
           items={[
@@ -406,18 +410,18 @@ export function Example() {
 
 Use `hasSelectAll` to add a bulk-selection option. Disabled and required items
 are not changed by Select All. When some enabled items are selected, the Select
-All checkbox displays an indeterminate state. In a filterable MultiSelect,
+All checkbox displays an indeterminate state. In a filterable Checkbox Select,
 Select All applies to the currently visible filtered results and preserves
 selections outside the filter.
 
 ```tsx
 import React from 'react';
 
-import { MultiSelect } from 'react-magma-dom';
+import { CheckboxSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <MultiSelect
+    <CheckboxSelect
       hasSelectAll
       items={[
         { label: 'Editor', value: 'editor' },
@@ -434,17 +438,20 @@ export function Example() {
 
 Use `isFilterable` when users need to find an option in a longer list.
 Selection remains immediate and the menu stays open while options are toggled.
+The search icon and filter placeholder remain visible beside the selection summary,
+so users can see that they can continue typing after making a selection. Clicking
+that editable area places focus in the filter field.
 Use `filterPlaceholder` to replace the localized “Filter options” placeholder
-for a specific MultiSelect.
+for a specific Checkbox Select.
 
 ```tsx
 import React from 'react';
 
-import { MultiSelect } from 'react-magma-dom';
+import { CheckboxSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <MultiSelect
+    <CheckboxSelect
       filterPlaceholder="Search roles"
       hasSelectAll
       isFilterable
@@ -461,7 +468,7 @@ export function Example() {
 
 ## Deferred Selection
 
-Use `selectionBehavior={MultiSelectSelectionBehavior.deferred}` when users
+Use `selectionBehavior={CheckboxSelectSelectionBehavior.deferred}` when users
 need to review several choices before committing them. Changes made while the
 menu is open are pending: **Apply** commits them and **Cancel** restores the
 previous selection. Pressing `Escape` or dismissing the menu without applying
@@ -470,7 +477,10 @@ also discards pending changes.
 ```tsx
 import React from 'react';
 
-import { MultiSelect, MultiSelectSelectionBehavior } from 'react-magma-dom';
+import {
+  CheckboxSelect,
+  CheckboxSelectSelectionBehavior,
+} from 'react-magma-dom';
 
 const roles = [
   { label: 'Editor', value: 'editor' },
@@ -481,13 +491,13 @@ const roles = [
 
 export function Example() {
   return (
-    <MultiSelect
+    <CheckboxSelect
       defaultSelectedItems={[roles[0]]}
       hasSelectAll
       items={roles}
       labelText="Roles"
       placeholder="Choose roles"
-      selectionBehavior={MultiSelectSelectionBehavior.deferred}
+      selectionBehavior={CheckboxSelectSelectionBehavior.deferred}
     />
   );
 }
@@ -501,7 +511,7 @@ the consuming application.
 ```tsx
 import React from 'react';
 
-import { MultiSelect } from 'react-magma-dom';
+import { CheckboxSelect } from 'react-magma-dom';
 
 const roles = [
   { label: 'Editor', value: 'editor' },
@@ -513,7 +523,7 @@ export function Example() {
   const [selectedItems, setSelectedItems] = React.useState([roles[0]]);
 
   return (
-    <MultiSelect
+    <CheckboxSelect
       items={roles}
       labelText="Roles"
       onSelectedItemsChange={setSelectedItems}
@@ -533,11 +543,11 @@ inside the Badge.
 ```tsx
 import React from 'react';
 
-import { MultiSelect } from 'react-magma-dom';
+import { CheckboxSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <MultiSelect
+    <CheckboxSelect
       hasSelectAll
       items={[
         { label: 'Course 1A', value: 'course-1a' },
@@ -562,16 +572,16 @@ export function Example() {
 - `Enter` toggles the focused option. `Space` also toggles an option when the
   field is not filterable.
 - `Home` and `End` move focus to the first or last enabled option in a
-  non-filterable MultiSelect.
+  non-filterable Checkbox Select.
 - `Escape` closes the menu without clearing selections.
 - `Tab` closes the menu and continues to the next focusable element.
 
-In a filterable MultiSelect, text entry narrows the visible options. Home and
+In a filterable Checkbox Select, text entry narrows the visible options. Home and
 End retain their normal text-editing behavior.
 
 ## Accessibility
 
-MultiSelect exposes the field as a combobox controlling a multi-select listbox.
+Checkbox Select exposes the field as a combobox controlling a multi-select listbox.
 Keyboard focus remains on the field while `aria-activedescendant` identifies
 the focused option. Selection and focus are separate: navigating through the
 list does not select an option until the user activates it.
@@ -582,8 +592,8 @@ text. Selection changes and the current selected count are announced to
 assistive technology. Required items expose both their selected and unavailable
 states; pair them with helper text that explains why they cannot be changed.
 
-## MultiSelect Props
+## Checkbox Select Props
 
-<MultiSelectProps />
+<CheckboxSelectProps />
 
 </PageContent>

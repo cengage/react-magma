@@ -3,6 +3,6 @@
 'react-magma-docs': patch
 ---
 
-feat(MultiSelect): add a focused checkbox multiselect component
+feat(CheckboxSelect): add a focused checkbox select component
 
 feat(Badge): add disabled styling and interaction behavior
