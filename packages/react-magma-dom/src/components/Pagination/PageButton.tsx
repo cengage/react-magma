@@ -3,13 +3,7 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 
 import { ThemeContext } from '../../theme/ThemeContext';
-import {
-  Button,
-  ButtonColor,
-  ButtonProps,
-  ButtonShape,
-  ButtonVariant,
-} from '../Button';
+import { Button, ButtonColor, ButtonProps, ButtonVariant } from '../Button';
 
 export interface PageButtonProps extends ButtonProps {
   isSelected?: boolean;
@@ -17,26 +11,10 @@ export interface PageButtonProps extends ButtonProps {
 
 export function pageButtonTypeSize(props) {
   if (props.size === 'large') {
-    return `${props.theme.typeScale.size03.fontSize}`;
+    return `${props.theme.typeScale.size05.fontSize}`;
   }
 
-  return `${props.theme.typeScale.size02.fontSize}`;
-}
-
-export function pageButtonTypeLineHeight(props) {
-  if (props.size === 'large') {
-    return `${props.theme.typeScale.size03.lineHeight}`;
-  }
-
-  return `${props.theme.typeScale.size02.lineHeight}`;
-}
-
-export function pageButtonTypeLetterSpacing(props) {
-  if (props.size === 'large') {
-    return `${props.theme.typeScale.size03.letterSpacing}`;
-  }
-
-  return `${props.theme.typeScale.size02.letterSpacing}`;
+  return `${props.theme.typeScale.size03.fontSize}`;
 }
 
 function buttonSize(props) {
@@ -49,11 +27,10 @@ function buttonSize(props) {
 }
 
 const StyledPageButton = styled(Button)`
+  border-radius: 0;
   font-size: ${pageButtonTypeSize} !important;
   height: ${buttonSize};
-  letter-spacing: ${pageButtonTypeLetterSpacing};
-  line-height: ${pageButtonTypeLineHeight};
-  margin: 0;
+  margin: 0 0 0 -1px;
   min-width: 0;
   padding: 0;
   width: ${buttonSize};
@@ -79,11 +56,10 @@ export const PageButton = React.forwardRef<HTMLButtonElement, PageButtonProps>(
       <StyledPageButton
         ref={ref}
         {...other}
-        color={isSelected ? ButtonColor.primary : ButtonColor.subtle}
+        color={isSelected ? ButtonColor.primary : ButtonColor.secondary}
         theme={theme}
         isInverse={isInverse}
-        shape={ButtonShape.round}
-        variant={isSelected ? ButtonVariant.solid : ButtonVariant.link}
+        variant={ButtonVariant.solid}
       >
         {children}
       </StyledPageButton>

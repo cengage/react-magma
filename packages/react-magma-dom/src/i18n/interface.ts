@@ -251,10 +251,7 @@ export interface I18nInterface {
   };
   pagination: {
     nextButtonLabel: string;
-    nextTooltipLabel?: string;
-    pageJumpLabel?: string;
     previousButtonLabel: string;
-    previousTooltipLabel?: string;
     pageButtonLabel: string;
   };
   password: {

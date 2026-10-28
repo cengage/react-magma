@@ -1,26 +1,18 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { transparentize } from 'polished';
 import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
 
 import { I18nContext } from '../../i18n';
-import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonColor, ButtonShape, ButtonSize, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
-import {
-  PageButton,
-  pageButtonTypeLetterSpacing,
-  pageButtonTypeLineHeight,
-  pageButtonTypeSize,
-} from './PageButton';
+import { PageButton, pageButtonTypeSize } from './PageButton';
 import { usePagination } from './usePagination';
 import { Announce, AnnouncePoliteness } from '../Announce';
 import { SimplePagination } from '../Pagination/SimplePagination';
-import { Tooltip, TooltipPosition } from '../Tooltip';
 import { VisuallyHidden } from '../VisuallyHidden';
-import { formatPageNumber, pageAriaLabel } from './utils';
+import { pageAriaLabel } from './utils';
 
 export interface BasePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -41,11 +33,6 @@ export interface BasePaginationProps
    * @default false
    */
   disabled?: boolean;
-  /**
-   * If true, ellipses in classic Pagination become page-jump controls.
-   * @default false
-   */
-  enablePageJump?: boolean;
   /**
    * If true, hides the next page button
    * @default false
@@ -129,8 +116,6 @@ const StyledNav = styled.nav`
 
 const StyledList = styled.ul`
   display: flex;
-  flex-wrap: wrap;
-  gap: ${props => props.theme.spaceScale.spacing02};
   margin: 0;
   padding: 0;
 `;
@@ -138,18 +123,14 @@ const StyledList = styled.ul`
 const StyledListItem = styled.li`
   list-style-type: none;
   position: relative;
+  &:last-child {
+    button {
+      border-left: none;
+    }
+  }
 `;
 
 function BuildButtonSize(props) {
-  switch (props.size) {
-    case 'large':
-      return `${props.theme.spaceScale.spacing11}`;
-    default:
-      return `${props.theme.spaceScale.spacing09}`;
-  }
-}
-
-function buildClassicButtonSize(props) {
   switch (props.size) {
     case 'large':
       return `${props.theme.spaceScale.spacing11}`;
@@ -165,117 +146,14 @@ export const NavButton = styled(IconButton)`
   width: ${BuildButtonSize};
 `;
 
-const ClassicNavButton = styled(NavButton)`
-  height: ${buildClassicButtonSize};
-  width: ${buildClassicButtonSize};
-`;
-
-interface PaginationControlStyles {
-  size: PageButtonSize;
-  theme: ThemeInterface;
-}
-
-interface InversePaginationControlStyles extends PaginationControlStyles {
-  isInverse?: boolean;
-}
-
-interface PageJumpSelectStyles {
-  disabled?: boolean;
-  isInverse?: boolean;
-  theme: ThemeInterface;
-}
-
-const StyledEllipsis = styled.li<PaginationControlStyles>`
+const StyledEllipsis = styled.li<any>`
   align-items: center;
   display: flex;
   font-size: ${pageButtonTypeSize};
-  height: ${buildClassicButtonSize};
+  height: ${BuildButtonSize};
   justify-content: center;
-  letter-spacing: ${pageButtonTypeLetterSpacing};
-  line-height: ${pageButtonTypeLineHeight};
-  width: ${buildClassicButtonSize};
+  width: ${BuildButtonSize};
 `;
-
-const StyledPageJump = styled.li<PaginationControlStyles>`
-  height: ${buildClassicButtonSize};
-  list-style-type: none;
-  position: relative;
-  width: ${buildClassicButtonSize};
-`;
-
-const StyledPageJumpLabel = styled.span<InversePaginationControlStyles>`
-  align-items: center;
-  border-radius: 100%;
-  color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral0
-      : props.theme.colors.brand.navy};
-  display: flex;
-  font-size: ${pageButtonTypeSize};
-  height: 100%;
-  justify-content: center;
-  letter-spacing: ${pageButtonTypeLetterSpacing};
-  line-height: ${pageButtonTypeLineHeight};
-  pointer-events: none;
-  width: 100%;
-`;
-
-const StyledPageJumpSelect = styled.select<PageJumpSelectStyles>`
-  appearance: none;
-  border: 0;
-  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
-  height: 100%;
-  inset: 0;
-  opacity: 0;
-  position: absolute;
-  width: 100%;
-  z-index: 1;
-
-  &:not(:disabled):hover
-    + ${StyledPageJumpLabel},
-    &:not(:disabled):focus
-    + ${StyledPageJumpLabel} {
-    background: ${props =>
-      props.isInverse
-        ? transparentize(0.5, props.theme.colors.neutral900)
-        : transparentize(0.5, props.theme.colors.neutral200)};
-  }
-
-  &:not(:disabled):focus + ${StyledPageJumpLabel} {
-    outline: 2px solid
-      ${props =>
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
-    outline-offset: 2px;
-  }
-
-  &:disabled + ${StyledPageJumpLabel} {
-    color: ${props =>
-      props.isInverse
-        ? props.theme.colors.neutral600
-        : props.theme.colors.neutral500};
-  }
-`;
-
-function getPageJumpBounds(pageButtons, index) {
-  const previousPage = pageButtons
-    .slice(0, index)
-    .reverse()
-    .find(item => item.type === 'page')?.page;
-  const nextPage = pageButtons
-    .slice(index + 1)
-    .find(item => item.type === 'page')?.page;
-
-  if (previousPage === undefined || nextPage === undefined) {
-    return null;
-  }
-
-  return {
-    startPage: previousPage + 1,
-    endPage: nextPage - 1,
-  };
-}
 
 export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
   (props, ref) => {
@@ -283,7 +161,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       count,
       defaultPage,
       disabled,
-      enablePageJump = false,
       hideNextButton,
       hidePreviousButton,
       isInverse,
@@ -302,7 +179,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     const buttonSize =
       size === PageButtonSize.large ? ButtonSize.large : ButtonSize.medium;
 
-    const { handlePageChange, pageButtons } = usePagination({
+    const { pageButtons } = usePagination({
       count,
       defaultPage,
       disabled,
@@ -363,7 +240,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             data-testid={testId}
             ref={ref}
           >
-            <StyledList theme={theme}>
+            <StyledList>
               {pageButtons.map(
                 (
                   {
@@ -376,67 +253,12 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                   index
                 ) => {
                   if (type === 'start-ellipsis' || type === 'end-ellipsis') {
-                    const pageJumpBounds = getPageJumpBounds(
-                      pageButtons,
-                      index
-                    );
-
-                    if (enablePageJump && pageJumpBounds) {
-                      const { startPage, endPage } = pageJumpBounds;
-                      const pageJumpLabel = (
-                        i18n.pagination.pageJumpLabel ??
-                        'Select a page between {startPage} and {endPage}'
-                      )
-                        .replace(
-                          '{startPage}',
-                          formatPageNumber(startPage)
-                        )
-                        .replace('{endPage}', formatPageNumber(endPage));
-
-                      return (
-                        <StyledPageJump key={index} size={size} theme={theme}>
-                          <StyledPageJumpSelect
-                            aria-label={pageJumpLabel}
-                            disabled={other.disabled}
-                            isInverse={isInverse}
-                            onChange={event => {
-                              const nextPage = Number(
-                                event.currentTarget.value
-                              );
-
-                              setFocusedPage(nextPage);
-                              handlePageChange(event, nextPage);
-                            }}
-                            theme={theme}
-                            value=""
-                          >
-                            <option hidden value="" />
-                            {Array.from(
-                              { length: endPage - startPage + 1 },
-                              (_, pageIndex) => startPage + pageIndex
-                            ).map(pageNumber => (
-                              <option key={pageNumber} value={pageNumber}>
-                                {formatPageNumber(pageNumber)}
-                              </option>
-                            ))}
-                          </StyledPageJumpSelect>
-                          <StyledPageJumpLabel
-                            aria-hidden="true"
-                            isInverse={isInverse}
-                            size={size}
-                            theme={theme}
-                          >
-                            &#8230;
-                          </StyledPageJumpLabel>
-                        </StyledPageJump>
-                      );
-                    }
-
                     return (
                       <StyledEllipsis
                         aria-current={Boolean(ariaCurrent)}
                         aria-hidden="true"
                         key={index}
+                        isInverse={isInverse}
                         size={size}
                         theme={theme}
                       >
@@ -460,7 +282,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                             other.onClick?.(event);
                           }}
                         >
-                          {formatPageNumber(page)}
+                          {page}
                         </PageButton>
                         <VisuallyHidden>
                           <Announce
@@ -470,45 +292,29 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                       </StyledListItem>
                     );
                   } else if (type === 'previous' || type === 'next') {
-                    const tooltipContent =
-                      type === 'previous'
-                        ? (i18n.pagination.previousTooltipLabel ??
-                          i18n.pagination.previousButtonLabel)
-                        : (i18n.pagination.nextTooltipLabel ??
-                          i18n.pagination.nextButtonLabel);
-                    const navButton = (
-                      <ClassicNavButton
-                        variant={ButtonVariant.link}
-                        color={ButtonColor.subtle}
-                        aria-label={i18n.pagination[`${type}ButtonLabel`]}
-                        icon={
-                          type === 'previous' ? (
-                            <ArrowBackIcon />
-                          ) : (
-                            <ArrowForwardIcon />
-                          )
-                        }
-                        isInverse={isInverse}
-                        theme={theme}
-                        shape={ButtonShape.round}
-                        size={buttonSize}
-                        {...other}
-                      />
-                    );
-
                     return (
                       <StyledListItem key={index}>
-                        {other.disabled ? (
-                          navButton
-                        ) : (
-                          <Tooltip
-                            content={tooltipContent}
-                            isInverse={isInverse}
-                            position={TooltipPosition.bottom}
-                          >
-                            {navButton}
-                          </Tooltip>
-                        )}
+                        <NavButton
+                          variant={ButtonVariant.solid}
+                          color={ButtonColor.secondary}
+                          aria-label={i18n.pagination[`${type}ButtonLabel`]}
+                          icon={
+                            type === 'previous' ? (
+                              <ArrowBackIcon />
+                            ) : (
+                              <ArrowForwardIcon />
+                            )
+                          }
+                          isInverse={isInverse}
+                          theme={theme}
+                          shape={
+                            type === 'previous'
+                              ? ButtonShape.leftCap
+                              : ButtonShape.rightCap
+                          }
+                          size={buttonSize}
+                          {...other}
+                        />
                       </StyledListItem>
                     );
                   }

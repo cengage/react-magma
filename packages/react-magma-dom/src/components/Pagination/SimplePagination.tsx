@@ -13,11 +13,7 @@ import { ButtonColor, ButtonShape, ButtonVariant } from '../Button';
 import { Spacer } from '../Spacer';
 import { Tooltip } from '../Tooltip';
 import { VisuallyHidden } from '../VisuallyHidden';
-import {
-  formatPageNumber,
-  pageAriaLabel,
-  paginationLabel,
-} from './utils';
+import { pageAriaLabel, paginationLabel } from './utils';
 
 import { NavButton, PaginationProps } from './';
 
@@ -209,7 +205,7 @@ export const SimplePagination = React.forwardRef<
                 onChange={handleChange}
                 value={i + 1}
               >
-                {formatPageNumber(i + 1)}
+                {i + 1}
               </option>
             ))}
           </NativeSelect>
