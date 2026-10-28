@@ -53,10 +53,7 @@ test.describe('Accordion', () => {
   let section3Button: Locator;
   let section4Button: Locator;
 
-  test.beforeEach(async ({ page }) => {
-    // Uses the baseURL
-    await page.goto('/');
-
+  test.beforeEach(({ page }) => {
     storyBookIframe = page.frameLocator(
       'iframe[title="storybook-preview-iframe"]'
     );
@@ -76,8 +73,7 @@ test.describe('Accordion', () => {
   });
 
   test('Default', async ({ page }) => {
-    await page.getByRole('button', { name: 'Accordion' }).click();
-    await page.locator('#accordion--default').click();
+    await page.goto('/?path=/story/accordion--default');
 
     await expect(page).toHaveTitle('Accordion - Default ⋅ Storybook');
 
@@ -107,8 +103,7 @@ test.describe('Accordion', () => {
   });
 
   test('No Multi', async ({ page }) => {
-    await page.getByRole('button', { name: 'Accordion' }).click();
-    await page.getByRole('link', { name: 'No Multi', exact: true }).click();
+    await page.goto('/?path=/story/accordion--no-multi');
 
     await expect(page).toHaveTitle('Accordion - No Multi ⋅ Storybook');
 
@@ -134,8 +129,7 @@ test.describe('Accordion', () => {
   });
 
   test('Controlled', async ({ page }) => {
-    await page.getByRole('button', { name: 'Accordion' }).click();
-    await page.getByRole('link', { name: 'Controlled', exact: true }).click();
+    await page.goto('/?path=/story/accordion--controlled');
 
     await expect(page).toHaveTitle('Accordion - Controlled ⋅ Storybook');
 
@@ -164,8 +158,7 @@ test.describe('Accordion', () => {
   });
 
   test('Controlled No Multi', async ({ page }) => {
-    await page.getByRole('button', { name: 'Accordion' }).click();
-    await page.getByRole('link', { name: 'Controlled No Multi' }).click();
+    await page.goto('/?path=/story/accordion--controlled-no-multi');
 
     await expect(page).toHaveTitle(
       'Accordion - Controlled No Multi ⋅ Storybook'
@@ -198,8 +191,7 @@ test.describe('Accordion', () => {
   });
 
   test('Expand Collapse all', async ({ page }) => {
-    await page.getByRole('button', { name: 'Accordion' }).click();
-    await page.getByRole('link', { name: 'Expand Collapse All' }).click();
+    await page.goto('/?path=/story/accordion--expand-collapse-all');
 
     await expect(page).toHaveTitle(
       'Accordion - Expand Collapse All ⋅ Storybook'
@@ -240,8 +232,7 @@ test.describe('Accordion', () => {
   });
 
   test('Inverse', async ({ page }) => {
-    await page.getByRole('button', { name: 'Accordion' }).click();
-    await page.locator('#accordion--inverse').click();
+    await page.goto('/?path=/story/accordion--inverse');
 
     await expect(page).toHaveTitle('Accordion - Inverse ⋅ Storybook');
 
@@ -277,8 +268,7 @@ test.describe('Accordion', () => {
   });
 
   test('With Dropdown', async ({ page }) => {
-    await page.getByRole('button', { name: 'Accordion' }).click();
-    await page.getByRole('link', { name: 'With Dropdown' }).click();
+    await page.goto('/?path=/story/accordion--with-dropdown');
     await expect(page).toHaveTitle('Accordion - With Dropdown ⋅ Storybook');
 
     const personalInfoButton = storyBookIframe.getByRole('button', {
