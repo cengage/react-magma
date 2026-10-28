@@ -153,7 +153,6 @@ const componentArgs = {
 
 export const Default = {
   render: PlaygroundTemplate,
-
   argTypes: {
     itemCount: {
       control: { type: 'range', min: 2, max: 7, step: 1 },
@@ -178,10 +177,9 @@ export const Default = {
       table: { category: 'Items' },
     },
   },
-
   args: {
     ...componentArgs,
-    breakpoint: 600,
+    breakpoint: 1000,
     itemCount: 3,
     itemContent: ItemContent.text,
     hasTooltip: false,

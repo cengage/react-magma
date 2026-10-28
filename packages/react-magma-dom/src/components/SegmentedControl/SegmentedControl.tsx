@@ -94,7 +94,6 @@ const StyledSegmentedControl = styled.div<{
   isDropdown?: boolean;
   isFullWidth?: boolean;
   isInverse?: boolean;
-  isSliding?: boolean;
   theme: ThemeInterface;
 }>`
   align-items: center;
@@ -113,9 +112,7 @@ const StyledSegmentedControl = styled.div<{
   gap: ${props => props.theme.spaceScale.spacing02};
   /* The 1px border sits inside the 4px padding, as in the design */
   padding: calc(${props => props.theme.spaceScale.spacing02} - 1px);
-  /* Positioned only while the indicator slides. At rest it must not become the
-     containing block of item tooltips, which would squeeze them to its width. */
-  position: ${props => (props.isSliding ? 'relative' : 'static')};
+  position: relative;
   vertical-align: middle;
 
   ${props =>
@@ -280,6 +277,8 @@ export const SegmentedControl = React.forwardRef<
   const indicatorRef = React.useRef<HTMLSpanElement>(null);
   // Where the next slide starts, recorded when an item is clicked
   const pendingSlideRef = React.useRef<{ from: Position; value: string }>(null);
+  // Set by SegmentedControlDropdown; closes its menu
+  const closeMenuRef = React.useRef<(event: React.SyntheticEvent) => void>();
   const previousValueRef = React.useRef(selectedValue);
   const hasFocusWithinRef = React.useRef(false);
   // The indicator only exists while it slides. At rest the selected item paints
@@ -410,11 +409,19 @@ export const SegmentedControl = React.forwardRef<
   // Keep the user's place when a focused item is replaced, removed or disabled.
   useIsomorphicLayoutEffect(() => {
     const container = containerRef.current;
-    const active = document.activeElement as HTMLButtonElement;
+    const active = document.activeElement as HTMLElement;
+    const menuNeedsFocus =
+      isDropdown &&
+      active.matches('[role="menu"]') &&
+      enabledOptions.length > 0;
 
+    // A group or empty menu can hold fallback focus until an option is available.
     if (
       !hasFocusWithinRef.current ||
-      (container.contains(active) && !active.disabled)
+      (active !== container &&
+        !menuNeedsFocus &&
+        container.contains(active) &&
+        !active.matches(':disabled'))
     ) {
       return;
     }
@@ -508,8 +515,20 @@ export const SegmentedControl = React.forwardRef<
       onKeyDown(event);
     }
 
-    // Lets consumers cancel the built-in arrow key handling
+    // Lets consumers cancel the built-in key handling
     if (event.defaultPrevented) {
+      return;
+    }
+
+    // Tab out of the open menu: close it first so native Tab navigation starts
+    // from the trigger. Outside clicks, blur and Escape stay with Dropdown.
+    if (
+      isDropdown &&
+      event.key === 'Tab' &&
+      (event.target as HTMLElement).closest('[role="menu"]')
+    ) {
+      closeMenuRef.current?.(event);
+
       return;
     }
 
@@ -565,7 +584,6 @@ export const SegmentedControl = React.forwardRef<
       isDropdown={isDropdown}
       isFullWidth={isFullWidth}
       isInverse={isInverse}
-      isSliding={Boolean(slide)}
       onBlurCapture={handleBlurCapture}
       onFocusCapture={handleFocusCapture}
       onKeyDown={handleKeyDown}
@@ -598,6 +616,7 @@ export const SegmentedControl = React.forwardRef<
       >
         {isDropdown ? (
           <SegmentedControlDropdown
+            closeMenuRef={closeMenuRef}
             aria-label={other['aria-label']}
             aria-labelledby={other['aria-labelledby']}
             disabled={disabled}

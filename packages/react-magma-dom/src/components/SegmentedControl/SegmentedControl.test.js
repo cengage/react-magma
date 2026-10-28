@@ -175,6 +175,19 @@ describe('SegmentedControl', () => {
     expect(radio('Day')).toHaveFocus();
   });
 
+  it.each([
+    ['disabling and re-enabling the group', { disabled: true }],
+    ['removing and restoring every item', { children: [] }],
+  ])('recovers item focus after %s', (_label, interrupt) => {
+    const { rerender } = render(<Example value="day" />);
+    radio('Day').focus();
+    rerender(<Example value="day" {...interrupt} />);
+    rerender(<Example value="day" />);
+    expect(radio('Day')).toHaveFocus();
+    fireEvent.keyDown(radio('Day'), { key: 'ArrowRight' });
+    expect(radio('Week')).toHaveFocus();
+  });
+
   it('forwards group and item refs, including through Tooltip', async () => {
     const groupRef = React.createRef();
     const itemRef = React.createRef();
@@ -318,6 +331,62 @@ describe('SegmentedControl', () => {
         listeners.forEach(listener => listener());
       });
     }
+
+    function unavailableOptions(weekDisabled = true) {
+      return [
+        <SegmentedControlItem disabled key="day" value="day">
+          Day
+        </SegmentedControlItem>,
+        <SegmentedControlItem disabled={weekDisabled} key="week" value="week">
+          Week
+        </SegmentedControlItem>,
+      ];
+    }
+
+    it('moves fallback menu focus to a newly enabled option', async () => {
+      const user = userEvent.setup();
+      const { rerender } = render(
+        <Example breakpoint={600}>{unavailableOptions()}</Example>
+      );
+      await user.click(screen.getByRole('button', { name: 'Time range Day' }));
+      expect(screen.getByRole('menu')).toHaveFocus();
+      rerender(<Example breakpoint={600}>{unavailableOptions(false)}</Example>);
+      expect(screen.getByRole('menuitemradio', { name: 'Week' })).toHaveFocus();
+      await user.keyboard(' ');
+      expect(
+        screen.getByRole('button', { name: 'Time range Week' })
+      ).toHaveFocus();
+      expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+    });
+
+    it('keeps fallback menu focus while every option remains disabled', async () => {
+      const user = userEvent.setup();
+      const { rerender } = render(
+        <Example breakpoint={600}>{unavailableOptions()}</Example>
+      );
+      const trigger = screen.getByRole('button', { name: 'Time range Day' });
+      await user.click(trigger);
+      const menu = screen.getByRole('menu');
+      expect(menu).toHaveFocus();
+      rerender(
+        <Example breakpoint={600} id="updated">
+          {unavailableOptions()}
+        </Example>
+      );
+      expect(menu).toHaveFocus();
+      expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    });
+
+    it('preserves trigger focus when an option becomes enabled in a closed menu', () => {
+      const { rerender } = render(
+        <Example breakpoint={600}>{unavailableOptions()}</Example>
+      );
+      const trigger = screen.getByRole('button', { name: 'Time range Day' });
+      trigger.focus();
+      rerender(<Example breakpoint={600}>{unavailableOptions(false)}</Example>);
+      expect(trigger).toHaveFocus();
+      expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    });
 
     it('provides a named menu with checked choices and no axe violations', async () => {
       const user = userEvent.setup();
@@ -535,6 +604,25 @@ describe('SegmentedControl', () => {
         expect(screen.getByRole('button', { name: 'After' })).toHaveFocus();
     });
 
+    it.each([false, true])(
+      'lets the group key handler cancel Tab in the menu (shift=%s)',
+      async shift => {
+        const user = userEvent.setup();
+        const onKeyDown = jest.fn(event => {
+          if (event.key === 'Tab') event.preventDefault();
+        });
+        render(<Example breakpoint={600} onKeyDown={onKeyDown} />);
+        const trigger = screen.getByRole('button', { name: 'Time range Day' });
+        await user.click(trigger);
+        const week = screen.getByRole('menuitemradio', { name: 'Week' });
+        week.focus();
+        await user.tab({ shift });
+        expect(onKeyDown).toHaveBeenCalled();
+        expect(trigger).toHaveAttribute('aria-expanded', 'true');
+        expect(week).toHaveFocus();
+      }
+    );
+
     it('closes without reopening when the trigger is clicked from the menu', async () => {
       const user = userEvent.setup();
       render(<Example breakpoint={600} />);
@@ -650,16 +738,6 @@ describe('SegmentedControl', () => {
       expect(indicator()).toBeNull();
       fireEvent.click(radio('Month'), { detail: 0 });
       expect(Element.prototype.animate).toHaveBeenCalledTimes(1);
-    });
-
-    it('positions the control only while the indicator slides', () => {
-      render(<Example />);
-      const group = screen.getByRole('radiogroup');
-      expect(group).toHaveStyleRule('position', 'static');
-      fireEvent.click(radio('Week'), { detail: 1 });
-      expect(group).toHaveStyleRule('position', 'relative');
-      act(() => animations[0].onfinish());
-      expect(group).toHaveStyleRule('position', 'static');
     });
 
     it('does not animate when Element.animate is unavailable', () => {

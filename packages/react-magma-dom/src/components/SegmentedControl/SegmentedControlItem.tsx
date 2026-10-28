@@ -230,17 +230,15 @@ const StyledItem = styled.button<StyleProps>`
     !props.isSelected &&
     !props.disabled &&
     css`
-      /* Inverse uses lighter neutrals than the design's neutral1000/1100,
-         which are indistinguishable from the translucent dark track */
       &:hover {
         background: ${props.isInverse
-          ? props.theme.colors.neutral800
+          ? props.theme.colors.neutral1100
           : props.theme.colors.neutral300};
       }
 
       &:active {
         background: ${props.isInverse
-          ? props.theme.colors.neutral900
+          ? props.theme.colors.neutral1150
           : props.theme.colors.neutral400};
       }
     `}
@@ -428,6 +426,12 @@ export const SegmentedControlItem = React.forwardRef<
       content={other['aria-label']}
       isInverse={context.isInverse}
       ref={ref}
+      // Natural width, so the tooltip doesn't reflow when the control's layout
+      // changes during the slide; still capped to the viewport
+      tooltipStyle={{
+        maxWidth: `calc(100vw - ${theme.spaceScale.spacing05})`,
+        width: 'max-content',
+      }}
     >
       {item}
     </Tooltip>
