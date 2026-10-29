@@ -431,6 +431,7 @@ const componentNavGroups = [
     label: 'Inputs',
     titles: [
       'Checkbox',
+      'Checkbox Select',
       'Combobox',
       'Date Picker',
       'Date Time Picker',
@@ -440,7 +441,6 @@ const componentNavGroups = [
       'Form Group',
       'Indeterminate Checkbox',
       'Input',
-      'Checkbox Select',
       'Native Select',
       'Password Input',
       'Radio Button',
