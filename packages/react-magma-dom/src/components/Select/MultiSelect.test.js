@@ -2,6 +2,7 @@ import React from 'react';
 
 import { act, render, waitFor } from '@testing-library/react';
 
+import { axe } from '../../../axe-helper';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
@@ -31,6 +32,36 @@ describe('MultiSelect', () => {
     await userEvent.click(renderedSelect);
 
     expect(getByText(items[0])).toBeInTheDocument();
+  });
+
+  it('should reference the listbox from the combobox with aria-controls', async () => {
+    const { getByRole, getByTestId } = render(
+      <MultiSelect isMulti labelText={labelText} items={items} />
+    );
+
+    const combobox = getByTestId('selectTriggerButton');
+
+    expect(combobox).toHaveAttribute('role', 'combobox');
+    expect(combobox).toHaveAttribute(
+      'aria-controls',
+      getByRole('listbox', { hidden: true }).id
+    );
+
+    await userEvent.click(combobox);
+
+    expect(combobox).toHaveAttribute('aria-controls', getByRole('listbox').id);
+  });
+
+  it('Does not violate accessibility standards when open', async () => {
+    const { container, getByTestId } = render(
+      <MultiSelect isMulti labelText={labelText} items={items} />
+    );
+
+    await userEvent.click(getByTestId('selectTriggerButton'));
+
+    const results = await axe(container);
+
+    expect(results).toHaveNoViolations();
   });
 
   it('should use inverse primary badge colors for selected items', () => {
