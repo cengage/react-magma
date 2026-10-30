@@ -14,7 +14,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # Keep preview builds deterministic while GitHub rolls `ubuntu-latest` from
+    # Ubuntu 24.04 to 26.04. Playwright 1.57.0 cannot install Chromium on 26.04;
+    # revisit this pin after Playwright is upgraded and verified on Ubuntu 26.04.
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
