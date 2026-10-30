@@ -13,6 +13,7 @@
     "treeview-cursor",
     "treeview-expansion-announcements",
     "treeview-merge-tests",
+    "update-playwright-1-64-1",
     "update-react-magma-icons"
   ]
 }
