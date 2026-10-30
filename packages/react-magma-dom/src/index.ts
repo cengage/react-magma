@@ -248,6 +248,8 @@ export { TabsScrollSpyContainer } from './components/Tabs/TabsScrollSpyContainer
 export { TabScrollSpyPanel } from './components/Tabs/TabScrollSpyPanel';
 
 export { Tag } from './components/Tag';
+export { Tagline } from './components/Tagline';
+export type { TaglineProps } from './components/Tagline';
 export type { TagProps } from './components/Tag';
 
 export { ToastsContainer } from './components/Toast/ToastsContainer';
