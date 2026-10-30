@@ -1,15 +1,28 @@
 import React from 'react';
 
 import { Meta } from '@storybook/react-webpack5';
+import { useArgs } from 'storybook/preview-api';
 
 import { Container } from '../Container';
 import { PaginationProps, PaginationType } from './Pagination';
 
 import { Pagination, PageButtonSize } from '.';
 
+function PaginationStory(args: PaginationProps) {
+  const [, updateArgs] = useArgs();
+
+  function handlePageChange(event: React.SyntheticEvent, page: number) {
+    updateArgs({ page });
+    args.onPageChange?.(event, page);
+  }
+
+  return <Pagination {...args} onPageChange={handlePageChange} />;
+}
+
 export default {
   title: 'Pagination',
   component: Pagination,
+  render: PaginationStory,
   decorators: [
     (Story, context) => (
       <Container isInverse={context.args.isInverse} style={{ padding: '20px' }}>
@@ -19,6 +32,11 @@ export default {
   ],
   argTypes: {
     disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    enablePageJump: {
       control: {
         type: 'boolean',
       },
@@ -71,6 +89,7 @@ export const Default = {
     hideNextButton: false,
     isInverse: false,
     disabled: false,
+    enablePageJump: false,
   },
 };
 
@@ -78,6 +97,24 @@ export const DefaultSelected = {
   args: {
     ...Default.args,
     defaultPage: 2,
+  },
+};
+
+export const LargePageCount = {
+  args: {
+    ...Default.args,
+    count: 1000,
+    defaultPage: 500,
+    enablePageJump: false,
+  },
+};
+
+export const PageJump = {
+  args: {
+    ...Default.args,
+    count: 20,
+    defaultPage: 10,
+    enablePageJump: true,
   },
 };
 
@@ -114,7 +151,9 @@ export const SimplePagination = {
   },
 
   parameters: {
-    controls: { exclude: ['showFirstButton', 'showLastButton', 'size'] },
+    controls: {
+      exclude: ['enablePageJump', 'showFirstButton', 'showLastButton', 'size'],
+    },
   },
 };
 
@@ -147,6 +186,8 @@ export const SimplePaginationOnPageChange = {
   },
 
   parameters: {
-    controls: { exclude: ['showFirstButton', 'showLastButton', 'size'] },
+    controls: {
+      exclude: ['enablePageJump', 'showFirstButton', 'showLastButton', 'size'],
+    },
   },
 };

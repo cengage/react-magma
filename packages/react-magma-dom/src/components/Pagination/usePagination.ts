@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useControlled } from '../../hooks/useControlled';
 import { I18nContext } from '../../i18n';
+import { formatPageNumber } from './utils';
 
 export interface UsePaginationProps {
   /**
@@ -182,7 +183,7 @@ export function usePagination(props: Partial<UsePaginationProps> = {}) {
           isSelected: item === page,
           disabled,
           'aria-current': item === page ? 'true' : undefined,
-          'aria-label': `${i18n.pagination.pageButtonLabel} ${item}`,
+          'aria-label': `${i18n.pagination.pageButtonLabel} ${formatPageNumber(item)}`,
         }
       : {
           onClick: event => {
@@ -199,6 +200,7 @@ export function usePagination(props: Partial<UsePaginationProps> = {}) {
   });
 
   return {
+    handlePageChange: handleClick,
     page,
     pageButtons,
     setPageState,
