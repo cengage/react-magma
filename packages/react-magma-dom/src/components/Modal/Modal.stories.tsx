@@ -427,7 +427,11 @@ export const ModalInAModal = () => {
         isOpen={showModal2}
       >
         <Paragraph noTopMargin>This is modal 2</Paragraph>
-        <NativeSelect containerStyle={{ marginBottom: '24px' }} fieldId="">
+        <NativeSelect
+          containerStyle={{ marginBottom: '24px' }}
+          fieldId=""
+          labelText="Native Select"
+        >
           <option>1</option>
           <option>2</option>
           <option>3</option>
