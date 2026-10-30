@@ -46,6 +46,34 @@ The Icon library is not dependent on react-magma being used. `react-magma-icons`
 npm install --save react-magma-icons
 ```
 
+## Using AI Coding Agents
+
+The `react-magma-dom` package includes a version-matched guide for coding agents at `node_modules/react-magma-dom/ai/SKILL.md`. It lists the available components and explains their APIs, theming, inverse surfaces, and icons.
+
+The package guide requires React Magma components and active-theme tokens for agent-created UI. Keep product behavior conventions in your project rules. Any intentional design-system exception must be explicitly documented with its scope and reason; existing custom CSS alone does not authorize a different design system.
+
+Add this instruction to the rules file used by your agent (for example, `AGENTS.md`, `CLAUDE.md`, or `.github/copilot-instructions.md`):
+
+```md
+For UI work, use React Magma components and the active Magma theme.
+Before changing UI, read `node_modules/react-magma-dom/ai/SKILL.md`
+and `node_modules/react-magma-dom/ai/styling.md`.
+Use Heading and Paragraph for headings and paragraphs, and Magma layout and widgets wherever supported.
+Use theme tokens for spacing, colors, typography and other design values; map intended spacing to the nearest spaceScale token (ties use the smaller value).
+Do not introduce custom fonts, arbitrary design values or cosmetic overrides of Magma components.
+Follow this project's product behavior conventions. Design-system exceptions require an explicit instruction naming their scope.
+```
+
+### Design-system rules
+
+Agents must use `Heading` instead of raw `h1`–`h6` and `Paragraph` instead of raw `p`. Use Magma layout components such as `Container`, `Flex`, `Grid` and `Spacer`, and existing widgets such as `Table`, `Tabs`, `Pagination` and `EmptyState`, whenever their API supports the task. Native semantic landmarks such as `main` and `form` remain appropriate.
+
+Use the active Magma theme for colors, typography, spacing and other available design tokens. For agent-chosen margins, padding and gaps, select the nearest `spaceScale` token, choosing the smaller value on a tie. With the default theme, an intended 5px gap uses `spacing02` (4px), and 7px uses `spacing03` (8px). Read the actual theme values rather than assuming a token name equals a pixel size.
+
+Custom styles must use tokens instead of arbitrary design values or replacement fonts. Keep the project's current styling tools; using Magma tokens does not require Emotion or another CSS library. Structural values such as `0`, `auto`, percentages and grid ratios remain valid. Explicit user requirements, accessibility constraints and unsupported API needs must be handled and explained rather than forced into an unsuitable token or component.
+
+The installed `node_modules/react-magma-dom/ai/styling.md` includes verified API examples and a review checklist. Keep intentional, scoped product-specific exceptions in the consuming project's rules.
+
 ## Known Issues
 
 1. `Legacy context API has been detected within a strict-mode tree` - https://github.com/JedWatson/react-select/pull/3487

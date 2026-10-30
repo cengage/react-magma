@@ -4,7 +4,7 @@
 
 ### Setup Requirements
 
-1. Your project needs to be running **React v17**
+1. Your project needs to be running **React v18**
 
 ### Add the react-magma components to your project
 
@@ -17,6 +17,26 @@ npm install --save react-magma-dom
 For more information on using React Magma, see the [React Magma Documentation](https://react-magma.cengage.com/version/latest/)
 
 This site has general usage information, as well as information on all of the available components, including code examples and demos. It also has design guidelines from the UX team with more details about the why and when to use each component in your project.
+
+For instructions on connecting the version-matched React Magma guide to coding agents, see [Using AI Coding Agents](https://react-magma.cengage.com/version/latest/api-intro/introduction/#using-ai-coding-agents).
+
+### Using React Magma with AI coding agents
+
+`react-magma-dom` ships a compact guide for coding agents in `node_modules/react-magma-dom/ai/`. It matches the installed version and lists the public components with search words, usage rules, and theming setup.
+
+Add this instruction to the agent's project rules file, such as `AGENTS.md`, `CLAUDE.md`, or `.github/copilot-instructions.md`:
+
+```md
+For UI work, use React Magma components and the active Magma theme.
+Before changing UI, read `node_modules/react-magma-dom/ai/SKILL.md`
+and `node_modules/react-magma-dom/ai/styling.md`.
+Use Heading and Paragraph for headings and paragraphs, and Magma layout and widgets wherever supported.
+Use theme tokens for spacing, colors, typography and other design values; map intended spacing to the nearest spaceScale token (ties use the smaller value).
+Do not introduce custom fonts, arbitrary design values or cosmetic overrides of Magma components.
+Follow this project's product behavior conventions. Design-system exceptions require an explicit instruction naming their scope.
+```
+
+React Magma is the required design-system default: use its typography and layout components and read design tokens from the active theme. Keep the application's existing styling tools; the tokens do not require a particular CSS library. Document any intentional project-specific exception with its scope and reason in the project rules. Existing custom CSS alone is not an exception. See `node_modules/react-magma-dom/ai/styling.md` for examples and structural CSS allowances.
 
 ## Contributing to React Magma
 
