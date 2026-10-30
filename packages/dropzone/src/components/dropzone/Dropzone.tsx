@@ -62,6 +62,15 @@ export interface DropzoneProps
    */
   accept?: string | string[];
   /**
+   * The color of the button used to browse for files.
+   * @default ButtonColor.primary
+   */
+  buttonColor?: ButtonColor;
+  /**
+   * The text displayed in the button used to browse for files. Defaults to the localized browse files text.
+   */
+  buttonText?: string;
+  /**
    * Enable/Disable the input
    */
   disabled?: boolean;
@@ -211,6 +220,8 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
   (props, ref) => {
     const {
       accept,
+      buttonColor = ButtonColor.primary,
+      buttonText,
       containerStyle,
       disabled,
 
@@ -545,7 +556,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
             {noDrag ? (
               <Flex xs behavior={FlexBehavior.item}>
                 <Button
-                  color={ButtonColor.primary}
+                  color={buttonColor}
                   disabled={disabled}
                   isInverse={isInverse}
                   onClick={open}
@@ -553,7 +564,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                   ref={browseFileButtonRef}
                   aria-describedby={helperMessage ? helperMessageId : undefined}
                 >
-                  {i18n.dropzone.browseFiles}
+                  {buttonText ?? i18n.dropzone.browseFiles}
                 </Button>
               </Flex>
             ) : (
@@ -569,7 +580,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                   {i18n.dropzone.dragMessage}
                 </Wrapper>
                 <Button
-                  color={ButtonColor.primary}
+                  color={buttonColor}
                   disabled={disabled}
                   isInverse={isInverse}
                   onClick={open}
@@ -578,7 +589,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                   ref={browseFileButtonRef}
                   aria-describedby={helperMessage ? helperMessageId : undefined}
                 >
-                  {i18n.dropzone.browseFiles}
+                  {buttonText ?? i18n.dropzone.browseFiles}
                 </Button>
               </Flex>
             )}
