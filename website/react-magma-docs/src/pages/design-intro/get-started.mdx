@@ -4,6 +4,8 @@ title: Getting Started
 order: 1
 ---
 
+import { BlockQuote, BlockQuoteItem } from 'react-magma-dom';
+
 <PageContent componentName="getting_started" type="design_intro">
 
 <LeadParagraph>
@@ -11,13 +13,31 @@ order: 1
   start. You'll find below everything you need to get going.
 </LeadParagraph>
 
----
-
 ## Designing with Magma
 
-The Magma team strives to provide detailed usage and style documentation. It's important to become familiar with this guidance when you are designing with our components. Consider starting with the foundations of [color](/design-intro/colors/), [typography](/design-intro/typography/), [spacing](/design-intro/spacing/), and [icons](/design/icon/), and then continue with the components.
+Magma gives designers a shared set of foundations, components, and guidance for creating consistent Cengage experiences efficiently.
 
-We also welcome contributions from people outside the Magma team. This includes both designers within Cengage as well as outside. Join us over on our [Github](https://github.com/cengage/react-magma) page to start contributing today.
+Cengage’s visual language is expressed through color, typography, spacing, layout, iconography, and other foundational decisions. Magma translates that language into reusable design assets and coded components that teams can apply across products.
+
+Start by becoming familiar with the foundations of the system, then use the component guidelines to understand how individual interface elements should look, behave, and work together.
+
+---
+
+## Explore the guidelines
+
+Use the design documentation to understand the breadth of Magma and make informed decisions when creating Cengage experiences.
+
+### Foundations
+
+Learn about the core visual and structural elements of Magma, including [color](/design-intro/colors/), [typography](/design-intro/typography/), [spacing](/design-intro/spacing/), [layout](/design-intro/layout/), and [icons](/design/icon/). These foundations help products maintain a consistent expression of the Cengage brand.
+
+### Components
+
+Components are reusable interface elements designed to create consistent experiences across Cengage products. Each component’s guidelines explain when to use it, how it should behave, and the accessibility considerations to keep in mind.
+
+### Data visualization
+
+Use Magma’s [data-visualization](/data-visualization/introduction/) guidance to communicate information clearly and accurately. The guidance covers accessible chart foundations, recommended chart types, and examples for presenting data effectively.
 
 ---
 
@@ -25,21 +45,13 @@ We also welcome contributions from people outside the Magma team. This includes 
 
 At Cengage we use Figma for our primary design tool and we have component libraries available for you to use. To access these libraries you'll need to sign in to the Cengage Figma organization using your Cengage email address.
 
-In your design file, you'll have four libraries available for you to turn on:
-
-1. Magma 3 Foundations
-1. Magma 3 Components
-1. Cengage logos
-1. Material Design Icons
-
 If you have any questions or issues, please reach out in the #react-magma Slack channel.
 
 ---
 
 ## Guiding Principles
 
-Cengage exists to empower students and instructors with the audacity to realize their potential and the tenacity to achieve their goals.
-Magma helps us build tools that are relevant and easy to use, and create educational experiences that accelerate learning while putting our users at the center of everything we do. The following design principles guide every decision we make.
+Cengage helps students and instructors realize their potential and achieve their goals. Magma supports that mission by helping teams build relevant, intuitive tools and effective learning experiences centered on the needs of our users. The following design principles guide the decisions we make.
 
 <div className="principles-c">
   <h3>Anticipate Needs</h3>
@@ -47,14 +59,10 @@ Magma helps us build tools that are relevant and easy to use, and create educati
     Don't overburden me with options or choice. Proactively assume what I need
     and when, while equipping me with the ability to change it.
   </p>
-  <blockquote>
-    <p>
-      &ldquo;I hate going through each student or each activity and changing
-      things when I'm changing the same thing ... on 10, 20 or 30 of them. It is
-      so time consuming.&rdquo;
-    </p>
-    <footer>&ndash; MindTap Instructor</footer>
-  </blockquote>
+  <BlockQuote>
+    <BlockQuoteItem>I hate going through each student or each activity and changing things when I'm changing the same thing ... on 10, 20 or 30 of them. It is so time consuming.</BlockQuoteItem>
+    <BlockQuoteItem hasAttribution>MindTap Instructor</BlockQuoteItem>
+  </BlockQuote>
 </div>
 <div className="principles-c">
   <h3>Tolerate Mistakes</h3>
@@ -63,13 +71,10 @@ Magma helps us build tools that are relevant and easy to use, and create educati
     education experience. Preventing and helping me recover from a mistake
     should be as easy as it was to make it.
   </p>
-  <blockquote>
-    <p>
-      &ldquo;...I feel like I am not learning with this software because I have
-      no way of knowing where I made my mistakes.&rdquo;
-    </p>
-    <footer>&ndash; SAM Student</footer>
-  </blockquote>
+  <BlockQuote>
+    <BlockQuoteItem>...I feel like I am not learning with this software because I have no way of knowing where I made my mistakes.</BlockQuoteItem>
+    <BlockQuoteItem hasAttribution>SAM Student</BlockQuoteItem>
+  </BlockQuote>
 </div>
 <div className="principles-c">
   <h3>Inspire Confidence</h3>
@@ -78,13 +83,10 @@ Magma helps us build tools that are relevant and easy to use, and create educati
     understanding, confidence that the paragraph I just wrote won’t get lost and
     confidence that I won’t get lost.
   </p>
-  <blockquote>
-    <p>
-      &ldquo;I’m calling in because all of my material on my account is
-      gone.&rdquo;
-    </p>
-    <footer>&ndash; MindTap Instructor</footer>
-  </blockquote>
+  <BlockQuote>
+    <BlockQuoteItem>I’m calling in because all of my material on my account is gone.</BlockQuoteItem>
+    <BlockQuoteItem hasAttribution>MindTap Instructor</BlockQuoteItem>
+  </BlockQuote>
 </div>
 <div className="principles-c">
   <h3>Cultivate Focus</h3>
@@ -93,14 +95,10 @@ Magma helps us build tools that are relevant and easy to use, and create educati
     interference must be purposefully crafted to never override my education
     experience.
   </p>
-  <blockquote>
-    <p>
-      &ldquo;... You also put up an online pop-up advertisement that would not
-      go away for a solid week and prevented me from being able to complete the
-      homework for that week at a reasonable pace.&rdquo;
-    </p>
-    <footer>&ndash; WebAssign Student</footer>
-  </blockquote>
+  <BlockQuote>
+    <BlockQuoteItem>... You also put up an online pop-up advertisement that would not go away for a solid week and prevented me from being able to complete the homework for that week at a reasonable pace.</BlockQuoteItem>
+    <BlockQuoteItem hasAttribution>WebAssign Student</BlockQuoteItem>
+  </BlockQuote>
 </div>
 <div className="principles-c">
   <h3>Preserve Simplicity</h3>
@@ -109,13 +107,10 @@ Magma helps us build tools that are relevant and easy to use, and create educati
     understand without explanation allows me to concentrate on my education
     experience.
   </p>
-  <blockquote>
-    <p>
-      &ldquo;The organization was complicated and it was difficult to find
-      assignments that were due...&rdquo;
-    </p>
-    <footer>&ndash; MindTap Student</footer>
-  </blockquote>
+  <BlockQuote>
+    <BlockQuoteItem>The organization was complicated and it was difficult to find assignments that were due...</BlockQuoteItem>
+    <BlockQuoteItem hasAttribution>MindTap Student</BlockQuoteItem>
+  </BlockQuote>
 </div>
 <div className="principles-c">
   <h3>Encourage Mobility</h3>
@@ -124,14 +119,10 @@ Magma helps us build tools that are relevant and easy to use, and create educati
     education experience. Mobile empowers me to succeed, regardless of location,
     device or time.
   </p>
-  <blockquote>
-    <p>
-      &ldquo;I shouldn't have to use my computer to take my tests or do my
-      homework when I have a perfectly capable mobile device. I take online
-      courses so that I can do my homework anywhere anytime.&rdquo;
-    </p>
-    <footer>&ndash; CNOW Student</footer>
-  </blockquote>
+  <BlockQuote>
+    <BlockQuoteItem>I shouldn't have to use my computer to take my tests or do my homework when I have a perfectly capable mobile device. I take online courses so that I can do my homework anywhere anytime.</BlockQuoteItem>
+    <BlockQuoteItem hasAttribution>CNOW Student</BlockQuoteItem>
+  </BlockQuote>
 </div>
 <span className="horizontal-spacer" />
 

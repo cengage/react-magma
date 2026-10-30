@@ -81,6 +81,41 @@ export function Example() {
 }
 ```
 
+## Corner Treatment
+
+By default, cards have rounded corners on all four sides. Use the `cornerTreatment` prop with `CardCornerTreatment.squareTopLeft` when the top-left corner should be square instead.
+
+```tsx
+import React from 'react';
+
+import {
+  Card,
+  CardBody,
+  CardCornerTreatment,
+  CardHeading,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Card>
+        <CardBody>
+          <CardHeading>All Corners Rounded (default)</CardHeading>
+          Some content
+        </CardBody>
+      </Card>
+      <br />
+      <Card cornerTreatment={CardCornerTreatment.squareTopLeft}>
+        <CardBody>
+          <CardHeading>Square Top-left Corner</CardHeading>
+          Some content
+        </CardBody>
+      </Card>
+    </>
+  );
+}
+```
+
 ## Alignment
 
 By default, content aligns to the left. However, the `align` prop can be specified, and it takes values `center`, `left`, and `right`.
@@ -203,8 +238,9 @@ export function Example() {
       <img
         height="125"
         width="250"
-        src="https://placekitten.com/250/125"
-        alt="cat"
+        src="/images/cards/card-cat.svg"
+        alt="Illustration of a cat"
+        style={{ border: 0, borderRadius: '15px 15px 0 0' }}
       />
       <CardBody>Some content</CardBody>
     </Card>

@@ -101,6 +101,7 @@ module.exports = {
         theme_color: '#0B1F3A',
         display: 'minimal-ui',
         icon: 'static/images/react-magma-icon.svg',
+        include_favicon: false,
       },
     },
   ],
