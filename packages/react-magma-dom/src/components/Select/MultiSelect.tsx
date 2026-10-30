@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { autoUpdate } from '@floating-ui/react-dom';
 import { useMultipleSelection, useSelect } from 'downshift';
-import { CloseIcon } from 'react-magma-icons';
+import { CloseOutlinedIcon } from 'react-magma-icons';
 
 import { ClearAnnouncer } from './ClearAnnouncer';
 import { defaultComponents } from './components';
@@ -413,7 +413,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
                 >
                   {multiSelectedItemString}
                   <IconWrapper>
-                    <CloseIcon size={theme.iconSizes.xSmall} />
+                    <CloseOutlinedIcon size={theme.iconSizes.xSmall} />
                   </IconWrapper>
                 </SelectedItemButton>
               );
@@ -435,7 +435,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         {isClearable && selectedItems?.length > 0 && (
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
-            icon={<CloseIcon size={theme.iconSizes.xSmall} />}
+            icon={<CloseOutlinedIcon size={theme.iconSizes.xSmall} />}
             isInverse={isInverse}
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}

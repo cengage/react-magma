@@ -3,9 +3,9 @@ import React from 'react';
 import { css, Global } from '@emotion/react';
 import { Meta, StoryFn } from '@storybook/react-webpack5';
 import {
-  ExpandMoreIcon,
-  NotificationsIcon,
-  SettingsIcon,
+  ExpandMoreOutlinedIcon,
+  NotificationsOutlinedIcon,
+  SettingsOutlinedIcon,
 } from 'react-magma-icons';
 
 import {
@@ -21,7 +21,7 @@ import { Card, CardBody } from '../Card';
 import { ButtonIconPosition, IconButton, IconButtonProps } from '.';
 
 const Template: StoryFn<IconButtonProps> = args => (
-  <IconButton icon={<SettingsIcon />} {...args}>
+  <IconButton icon={<SettingsOutlinedIcon />} {...args}>
     Button
   </IconButton>
 );
@@ -103,7 +103,11 @@ export const Inverse = {
 };
 
 const IconOnlyTemplate: StoryFn<IconButtonProps> = args => (
-  <IconButton icon={<NotificationsIcon />} aria-label="Button" {...args} />
+  <IconButton
+    icon={<NotificationsOutlinedIcon />}
+    aria-label="Button"
+    {...args}
+  />
 );
 
 export const IconOnly = {
@@ -133,7 +137,7 @@ const AnimatedIconTemplate: StoryFn<IconButtonProps> = props => {
         `}
       />
       <IconButton
-        icon={<ExpandMoreIcon />}
+        icon={<ExpandMoreOutlinedIcon />}
         aria-label="Button"
         className={
           expanded ? 'animated-icon-button expanded' : 'animated-icon-button'
@@ -157,8 +161,8 @@ export const AnimatedIcon = {
 const LeadingIconTemplate: StoryFn<IconButtonProps> = args => (
   <IconButton
     iconPosition={ButtonIconPosition.right}
-    icon={<SettingsIcon />}
-    leadingIcon={<NotificationsIcon />}
+    icon={<SettingsOutlinedIcon />}
+    leadingIcon={<NotificationsOutlinedIcon />}
     {...args}
   >
     Leading Icon

@@ -2,7 +2,11 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import { StoryObj, StoryFn, Meta } from '@storybook/react-webpack5';
-import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
+import {
+  AndroidOutlinedIcon,
+  MailOutlinedIcon,
+  NotificationsOutlinedIcon,
+} from 'react-magma-icons';
 
 import { magma } from '../../theme/magma';
 import { Button } from '../Button';
@@ -115,9 +119,9 @@ export const Default = {
 const IconTemplate: StoryFn<TabsProps> = args => (
   <TabsContainer>
     <Tabs aria-label="Sample Tabs" {...args}>
-      <Tab icon={<EmailIcon />}>First item</Tab>
-      <Tab icon={<AndroidIcon />}>Second item</Tab>
-      <Tab icon={<NotificationsIcon />}>Third item</Tab>
+      <Tab icon={<MailOutlinedIcon />}>First item</Tab>
+      <Tab icon={<AndroidOutlinedIcon />}>Second item</Tab>
+      <Tab icon={<NotificationsOutlinedIcon />}>Third item</Tab>
     </Tabs>
     <TabPanelsContainer>
       <TabPanel>
@@ -145,9 +149,9 @@ export const Icon = {
 const IconOnlyTemplate: StoryFn<TabsProps> = args => (
   <TabsContainer>
     <Tabs aria-label="Sample Tabs" {...args}>
-      <Tab icon={<EmailIcon />} aria-label="email" />
-      <Tab icon={<AndroidIcon />} aria-label="android" />
-      <Tab icon={<NotificationsIcon />} aria-label="notifications" />
+      <Tab icon={<MailOutlinedIcon />} aria-label="email" />
+      <Tab icon={<AndroidOutlinedIcon />} aria-label="android" />
+      <Tab icon={<NotificationsOutlinedIcon />} aria-label="notifications" />
     </Tabs>
     <TabPanelsContainer>
       <TabPanel>
@@ -329,23 +333,23 @@ export const ScrollSpy = {
 
 const ScrollSpyTemplateIcons: StoryFn<TabsProps> = args => (
   <TabsScrollSpyContainer isInverse={args.isInverse}>
-    <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 1">
+    <TabScrollSpyPanel icon={<AndroidOutlinedIcon />} tabLabel="Card 1">
       <Heading level={4}>Area 1</Heading>
       {scrollContent}
     </TabScrollSpyPanel>
-    <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 2">
+    <TabScrollSpyPanel icon={<AndroidOutlinedIcon />} tabLabel="Card 2">
       <Heading level={4}>Area 2</Heading>
       {scrollContent}
     </TabScrollSpyPanel>
-    <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 3">
+    <TabScrollSpyPanel icon={<AndroidOutlinedIcon />} tabLabel="Card 3">
       <Heading level={4}>Area 3</Heading>
       {scrollContent}
     </TabScrollSpyPanel>
-    <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 4">
+    <TabScrollSpyPanel icon={<AndroidOutlinedIcon />} tabLabel="Card 4">
       <Heading level={4}>Area 4</Heading>
       {scrollContent}
     </TabScrollSpyPanel>
-    <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 5">
+    <TabScrollSpyPanel icon={<AndroidOutlinedIcon />} tabLabel="Card 5">
       <Heading level={4}>Area 5</Heading>
       {scrollContent}
     </TabScrollSpyPanel>
