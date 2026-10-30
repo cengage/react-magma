@@ -1749,7 +1749,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
         <button
           aria-controls="2_dropdownMenuId"
           aria-expanded="false"
-          aria-haspopup="true"
+          aria-haspopup="menu"
           class="emotion-8 emotion-9 emotion-3"
           color="primary"
           id="2"
@@ -1815,7 +1815,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
         <button
           aria-controls="3_dropdownMenuId"
           aria-expanded="false"
-          aria-haspopup="true"
+          aria-haspopup="menu"
           class="emotion-8 emotion-9 emotion-3"
           color="primary"
           id="3"
@@ -3633,7 +3633,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
         <button
           aria-controls="2_dropdownMenuId"
           aria-expanded="false"
-          aria-haspopup="true"
+          aria-haspopup="menu"
           class="emotion-8 emotion-9 emotion-3"
           color="primary"
           id="2"
@@ -3699,7 +3699,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
         <button
           aria-controls="3_dropdownMenuId"
           aria-expanded="false"
-          aria-haspopup="true"
+          aria-haspopup="menu"
           class="emotion-8 emotion-9 emotion-3"
           color="primary"
           id="3"
@@ -4697,7 +4697,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
         <button
           aria-controls="2_dropdownMenuId"
           aria-expanded="false"
-          aria-haspopup="true"
+          aria-haspopup="menu"
           class="emotion-8 emotion-9 emotion-3"
           color="primary"
           id="2"
@@ -4763,7 +4763,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
         <button
           aria-controls="3_dropdownMenuId"
           aria-expanded="false"
-          aria-haspopup="true"
+          aria-haspopup="menu"
           class="emotion-8 emotion-9 emotion-3"
           color="primary"
           id="3"
