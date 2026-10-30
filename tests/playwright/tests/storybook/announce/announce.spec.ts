@@ -1,19 +1,16 @@
 import { expect, FrameLocator, test } from '@playwright/test';
 
-test.describe('Alert', () => {
+test.describe('Announce', () => {
   let storyBookIframe: FrameLocator;
 
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-
+  test.beforeEach(({ page }) => {
     storyBookIframe = page.frameLocator(
       'iframe[title="storybook-preview-iframe"]'
     );
   });
 
   test('Default', async ({ page }) => {
-    await page.getByRole('button', { name: 'Announce' }).click();
-    await page.locator('#announce--default').click();
+    await page.goto('/?path=/story/announce--default');
 
     await expect(page).toHaveTitle('Announce - Default ⋅ Storybook');
 
