@@ -1,0 +1,599 @@
+---
+pageTitle: Checkbox Select API
+title: Checkbox Select
+props:
+  - CheckboxSelectProps
+---
+
+<PageContent componentName="checkbox_select" type="api">
+
+<LeadParagraph>
+  Checkbox Select lets users choose zero or more options from a checkbox list.
+  The menu remains open while selections are made so users can review and change
+  several options in one interaction.
+</LeadParagraph>
+
+Use Checkbox Select when users may choose several values from one category. For a
+single value, use <Link to="/api/select">Select</Link>. When a long list needs
+free-form entry or suggestions, consider <Link to="/api/combobox">Combobox</Link>.
+
+## Basic Usage
+
+```tsx
+import React from 'react';
+
+import { CheckboxSelect } from 'react-magma-dom';
+
+const roles = [
+  { label: 'Editor', value: 'editor' },
+  { label: 'Owner', value: 'owner' },
+  { label: 'Reader', value: 'reader', disabled: true },
+  { label: 'Uploader', value: 'uploader' },
+];
+
+export function Example() {
+  return (
+    <CheckboxSelect
+      items={roles}
+      labelText="Roles"
+      placeholder="Choose roles"
+    />
+  );
+}
+```
+
+## Grouped Options
+
+Use `itemToGroup` to organize related options under group labels. Keep items
+from the same group next to one another in the `items` array so each group is
+presented as a single section.
+
+```tsx
+import React from 'react';
+
+import { CheckboxSelect } from 'react-magma-dom';
+
+const collaborators = [
+  {
+    group: 'Design',
+    label: 'Ava Patel — Product Designer',
+    value: 'ava-patel',
+  },
+  {
+    group: 'Design',
+    label: 'Marcus Lee — UX Researcher',
+    value: 'marcus-lee',
+  },
+  {
+    group: 'Engineering',
+    label: 'Priya Shah — Front-end Engineer',
+    value: 'priya-shah',
+  },
+  {
+    group: 'Engineering',
+    label: 'Daniel Kim — QA Engineer',
+    value: 'daniel-kim',
+  },
+  {
+    group: 'Product',
+    label: 'Elena Garcia — Product Manager',
+    value: 'elena-garcia',
+  },
+  {
+    group: 'Product',
+    label: 'Noah Williams — Business Analyst',
+    value: 'noah-williams',
+  },
+];
+
+export function Example() {
+  return (
+    <CheckboxSelect
+      itemToGroup={item => item.group}
+      items={collaborators}
+      labelText="Project collaborators"
+      placeholder="Choose collaborators"
+    />
+  );
+}
+```
+
+## Initial Selection
+
+Use `defaultSelectedItems` to provide initial selections when Checkbox Select
+manages its own state. Items are matched using `itemToValue`.
+
+```tsx
+import React from 'react';
+
+import { CheckboxSelect } from 'react-magma-dom';
+
+const roles = [
+  { label: 'Editor', value: 'editor' },
+  { label: 'Owner', value: 'owner' },
+  { label: 'Uploader', value: 'uploader' },
+];
+
+export function Example() {
+  return (
+    <CheckboxSelect
+      defaultSelectedItems={[roles[0], roles[2]]}
+      items={roles}
+      labelText="Roles"
+    />
+  );
+}
+```
+
+## Required Selected Items
+
+Use `isItemRequired` when an option must remain selected and cannot be changed
+by the user. Required items are selected automatically, displayed with a lock
+icon, and preserved by Select All and the selection-summary Badge. They are
+also included in the value passed to `onSelectedItemsChange`.
+
+Use `helperMessage` to explain why the selections are locked. Do not rely on
+the lock icon alone to communicate this requirement.
+
+```tsx
+import React from 'react';
+
+import { CheckboxSelect } from 'react-magma-dom';
+
+const schools = [
+  {
+    label: 'Lincoln Middle School — current school',
+    required: true,
+    value: 'lincoln-middle',
+  },
+  {
+    label: 'District Online Academy — assigned school',
+    required: true,
+    value: 'district-online-academy',
+  },
+  { label: 'Jefferson High School', value: 'jefferson-high' },
+  { label: 'Roosevelt Elementary School', value: 'roosevelt-elementary' },
+  { label: 'Washington STEM Academy', value: 'washington-stem' },
+];
+
+export function Example() {
+  return (
+    <CheckboxSelect
+      hasSelectAll
+      helperMessage="Your current and assigned schools are selected automatically and cannot be removed."
+      isItemRequired={item => Boolean(item.required)}
+      items={schools}
+      labelText="Schools"
+      placeholder="Choose schools"
+    />
+  );
+}
+```
+
+## Label Position
+
+Use `labelPosition` to place the label above or to the left of the field. The
+top position is the default. Left-aligned labels are intended for compact
+layouts where vertical space is limited, such as toolbars.
+
+```tsx
+import React from 'react';
+
+import { LabelPosition, CheckboxSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <CheckboxSelect
+      labelPosition={LabelPosition.left}
+      items={[
+        { label: 'Editor', value: 'editor' },
+        { label: 'Owner', value: 'owner' },
+        { label: 'Uploader', value: 'uploader' },
+      ]}
+      labelText="Left-aligned label"
+    />
+  );
+}
+```
+
+## Disabled
+
+Use `disabled` to prevent the field from opening or changing. Existing
+selections remain visible in a disabled Badge.
+
+```tsx
+import React from 'react';
+
+import { CheckboxSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <CheckboxSelect
+      defaultSelectedItems={[
+        { label: 'Editor', value: 'editor' },
+        { label: 'Owner', value: 'owner' },
+      ]}
+      disabled
+      items={[
+        { label: 'Editor', value: 'editor' },
+        { label: 'Owner', value: 'owner' },
+        { label: 'Uploader', value: 'uploader' },
+      ]}
+      labelText="Disabled"
+    />
+  );
+}
+```
+
+## Disabled Items
+
+Add `disabled: true` to an item to keep it visible while preventing selection.
+Disabled items are skipped during keyboard navigation and are not changed by
+Select All.
+
+```tsx
+import React from 'react';
+
+import { CheckboxSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <CheckboxSelect
+      items={[
+        { label: 'Editor', value: 'editor' },
+        {
+          disabled: true,
+          label: 'Reader – unavailable',
+          value: 'reader',
+        },
+        { label: 'Uploader', value: 'uploader' },
+      ]}
+      labelText="Roles"
+    />
+  );
+}
+```
+
+## Error Message
+
+When `errorMessage` is provided, the field is styled as invalid and the
+message appears below it. An error message replaces the helper message when
+both are provided.
+
+```tsx
+import React from 'react';
+
+import { CheckboxSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <CheckboxSelect
+      errorMessage="Select at least one role."
+      items={[
+        { label: 'Editor', value: 'editor' },
+        { label: 'Owner', value: 'owner' },
+        { label: 'Uploader', value: 'uploader' },
+      ]}
+      labelText="Roles"
+    />
+  );
+}
+```
+
+## Helper Message
+
+Use `helperMessage` for instructions or supporting information that should
+remain visible below the field.
+
+```tsx
+import React from 'react';
+
+import { CheckboxSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <CheckboxSelect
+      helperMessage="Choose every role that applies."
+      items={[
+        { label: 'Editor', value: 'editor' },
+        { label: 'Owner', value: 'owner' },
+        { label: 'Uploader', value: 'uploader' },
+      ]}
+      labelText="Roles"
+    />
+  );
+}
+```
+
+## Placeholder
+
+Use `placeholder` to customize the text shown when no items are selected.
+Placeholder text should supplement the label rather than replace it.
+
+```tsx
+import React from 'react';
+
+import { CheckboxSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <CheckboxSelect
+      items={[
+        { label: 'Editor', value: 'editor' },
+        { label: 'Owner', value: 'owner' },
+        { label: 'Uploader', value: 'uploader' },
+      ]}
+      labelText="Roles"
+      placeholder="Select roles"
+    />
+  );
+}
+```
+
+## Help Link
+
+Use `additionalContent` to place supporting content beside the label. For a
+help action, use a Tooltip containing an IconButton with an accessible label.
+
+```tsx
+import React from 'react';
+
+import {
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+  IconButton,
+  magma,
+  CheckboxSelect,
+  Tooltip,
+} from 'react-magma-dom';
+import { HelpIcon } from 'react-magma-icons';
+
+export function Example() {
+  const helpLinkLabel = 'Learn more about assigning roles';
+
+  return (
+    <CheckboxSelect
+      additionalContent={
+        <Tooltip content={helpLinkLabel}>
+          <IconButton
+            aria-label={helpLinkLabel}
+            icon={<HelpIcon size={magma.iconSizes.small} />}
+            onClick={() => {}}
+            size={ButtonSize.small}
+            type={ButtonType.button}
+            variant={ButtonVariant.link}
+          />
+        </Tooltip>
+      }
+      items={[
+        { label: 'Editor', value: 'editor' },
+        { label: 'Owner', value: 'owner' },
+        { label: 'Uploader', value: 'uploader' },
+      ]}
+      labelText="Roles"
+    />
+  );
+}
+```
+
+## Inverse
+
+Use `isInverse` when Checkbox Select appears on a dark background.
+
+```tsx
+import React from 'react';
+
+import { Card, CardBody, magma, CheckboxSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card background={magma.colors.neutral1100} isInverse>
+      <CardBody>
+        <CheckboxSelect
+          helperMessage="Choose every role that applies."
+          isInverse
+          items={[
+            { label: 'Editor', value: 'editor' },
+            { label: 'Owner', value: 'owner' },
+            { label: 'Uploader', value: 'uploader' },
+          ]}
+          labelText="Roles"
+        />
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Select All
+
+Use `hasSelectAll` to add a bulk-selection option. Disabled and required items
+are not changed by Select All. When some enabled items are selected, the Select
+All checkbox displays an indeterminate state. In a filterable Checkbox Select,
+Select All applies to the currently visible filtered results and preserves
+selections outside the filter.
+
+```tsx
+import React from 'react';
+
+import { CheckboxSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <CheckboxSelect
+      hasSelectAll
+      items={[
+        { label: 'Editor', value: 'editor' },
+        { label: 'Owner', value: 'owner' },
+        { label: 'Uploader', value: 'uploader' },
+      ]}
+      labelText="Roles"
+    />
+  );
+}
+```
+
+## Filterable
+
+Use `isFilterable` when users need to find an option in a longer list.
+Selection remains immediate and the menu stays open while options are toggled.
+The search icon and filter placeholder remain visible beside the selection summary,
+so users can see that they can continue typing after making a selection. Clicking
+that editable area places focus in the filter field.
+Use `filterPlaceholder` to replace the localized “Filter options” placeholder
+for a specific Checkbox Select.
+
+```tsx
+import React from 'react';
+
+import { CheckboxSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <CheckboxSelect
+      filterPlaceholder="Search roles"
+      hasSelectAll
+      isFilterable
+      items={[
+        { label: 'Editor', value: 'editor' },
+        { label: 'Owner', value: 'owner' },
+        { label: 'Uploader', value: 'uploader' },
+      ]}
+      labelText="Roles"
+    />
+  );
+}
+```
+
+## Deferred Selection
+
+Use `selectionBehavior={CheckboxSelectSelectionBehavior.deferred}` when users
+need to review several choices before committing them. Changes made while the
+menu is open are pending: **Apply** commits them and **Cancel** restores the
+previous selection. Pressing `Escape` or dismissing the menu without applying
+also discards pending changes.
+
+```tsx
+import React from 'react';
+
+import {
+  CheckboxSelect,
+  CheckboxSelectSelectionBehavior,
+} from 'react-magma-dom';
+
+const roles = [
+  { label: 'Editor', value: 'editor' },
+  { label: 'Owner', value: 'owner' },
+  { label: 'Reader', value: 'reader', disabled: true },
+  { label: 'Uploader', value: 'uploader' },
+];
+
+export function Example() {
+  return (
+    <CheckboxSelect
+      defaultSelectedItems={[roles[0]]}
+      hasSelectAll
+      items={roles}
+      labelText="Roles"
+      placeholder="Choose roles"
+      selectionBehavior={CheckboxSelectSelectionBehavior.deferred}
+    />
+  );
+}
+```
+
+## Controlled Selection
+
+Provide `selectedItems` and `onSelectedItemsChange` to control selection from
+the consuming application.
+
+```tsx
+import React from 'react';
+
+import { CheckboxSelect } from 'react-magma-dom';
+
+const roles = [
+  { label: 'Editor', value: 'editor' },
+  { label: 'Owner', value: 'owner' },
+  { label: 'Uploader', value: 'uploader' },
+];
+
+export function Example() {
+  const [selectedItems, setSelectedItems] = React.useState([roles[0]]);
+
+  return (
+    <CheckboxSelect
+      items={roles}
+      labelText="Roles"
+      onSelectedItemsChange={setSelectedItems}
+      selectedItems={selectedItems}
+    />
+  );
+}
+```
+
+## Custom Selection Summary
+
+Selected items are summarized in a dismissible Badge. Dismissing the Badge
+clears every non-required selection. When only required selections remain, the
+Badge is not dismissible. Use `renderSelectedItems` to customize the text shown
+inside the Badge.
+
+```tsx
+import React from 'react';
+
+import { CheckboxSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <CheckboxSelect
+      hasSelectAll
+      items={[
+        { label: 'Course 1A', value: 'course-1a' },
+        { label: 'Course 1B', value: 'course-1b' },
+        { label: 'Course 1C', value: 'course-1c' },
+      ]}
+      labelText="Class"
+      renderSelectedItems={(selectedItems, { allSelected }) =>
+        allSelected
+          ? `All Classes (${selectedItems.length})`
+          : `${selectedItems.length} classes selected`
+      }
+    />
+  );
+}
+```
+
+## Keyboard Navigation
+
+- `Down Arrow` or `Up Arrow` opens the menu and moves focus between enabled
+  options.
+- `Enter` toggles the focused option. `Space` also toggles an option when the
+  field is not filterable.
+- `Home` and `End` move focus to the first or last enabled option in a
+  non-filterable Checkbox Select.
+- `Escape` closes the menu without clearing selections.
+- `Tab` closes the menu and continues to the next focusable element.
+
+In a filterable Checkbox Select, text entry narrows the visible options. Home and
+End retain their normal text-editing behavior.
+
+## Accessibility
+
+Checkbox Select exposes the field as a combobox controlling a multi-select listbox.
+Keyboard focus remains on the field while `aria-activedescendant` identifies
+the focused option. Selection and focus are separate: navigating through the
+list does not select an option until the user activates it.
+
+Always provide a concise `labelText`. Use `helperMessage` for instructions that
+must remain visible rather than putting essential information in placeholder
+text. Selection changes and the current selected count are announced to
+assistive technology. Required items expose both their selected and unavailable
+states; pair them with helper text that explains why they cannot be changed.
+
+## Checkbox Select Props
+
+<CheckboxSelectProps />
+
+</PageContent>
