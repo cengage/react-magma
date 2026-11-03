@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.1-v6-next.5
+
+### Patch Changes
+
+- aa567d952: fix(Modal, DefinitionList): resolve axe violations in stories
+
 ## 6.0.1-v6-next.4
 
 ### Patch Changes
