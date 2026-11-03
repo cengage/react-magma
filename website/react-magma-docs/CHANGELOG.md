@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.1-v6-next.4
+
+### Patch Changes
+
+- 42c8b5f48: chore(playwright): update Playwright to 1.64.1
+
 ## 6.0.1-v6-next.3
 
 ### Patch Changes
