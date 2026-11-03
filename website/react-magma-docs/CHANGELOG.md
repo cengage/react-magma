@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1-next.3
+
+### Patch Changes
+
+- d5423df: chore(playwright): update Playwright to 1.64.1
+
 ## 7.0.1-next.2
 
 ### Patch Changes
