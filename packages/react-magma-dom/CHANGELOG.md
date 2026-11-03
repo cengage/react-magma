@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.3
+
+### Patch Changes
+
+- 87df167: fix(NavTabs): add role="tab" and remove theme attribute on custom component tabs
+
 ## 7.1.0-next.2
 
 ### Minor Changes
