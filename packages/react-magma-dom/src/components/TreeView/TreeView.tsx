@@ -30,9 +30,9 @@ export interface TreeViewProps
    */
   enableVirtualization?: boolean;
   /**
-   * Height of the TreeView container in pixels.
-   * REQUIRED when enableVirtualization is true.
-   * Without a fixed height, virtualization cannot calculate the viewport properly.
+   * Height of the scrollable TreeView container in pixels.
+   * When enableVirtualization is true, provide this prop or a bounded CSS
+   * height with overflow: auto so virtualization can calculate the viewport.
    * @example height={400}
    */
   height?: number;
@@ -231,12 +231,21 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
 
     const shouldUseVirtualization = enableVirtualization && isMounted;
 
-    const rowVirtualizer = useVirtualizer({
+    // Expansion changes row indexes. Keep measurements and ResizeObserver
+    // subscriptions attached to the same item as its index changes.
+    const getItemKey = React.useCallback(
+      (index: number) => flattenedItems[index].key,
+      [flattenedItems]
+    );
+
+    const rowVirtualizer = useVirtualizer<HTMLUListElement, HTMLDivElement>({
       count: shouldUseVirtualization ? flattenedItems.length : 0,
       getScrollElement: () => parentRef.current,
+      getItemKey,
       estimateSize: () => 32,
       overscan: 3,
       enabled: shouldUseVirtualization,
+      useAnimationFrameWithResizeObserver: true,
     });
 
     // Process children without cloneElement - use context instead
@@ -324,7 +333,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                         return (
                           <VirtualItem
                             data-index={virtualItem.index}
-                            key={item.key}
+                            key={virtualItem.key}
                             transform={virtualItem.start}
                             ref={(el: HTMLDivElement) => {
                               rowVirtualizer.measureElement(el);
