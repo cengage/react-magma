@@ -439,6 +439,24 @@ describe('Accordion', () => {
     });
   });
 
+  it('should render the panel with role "region" unless a role is passed', () => {
+    const { getByText } = render(
+      <Accordion isMulti defaultIndex={[0, 1]}>
+        <AccordionItem>
+          <AccordionButton>Section 1</AccordionButton>
+          <AccordionPanel>Panel 1</AccordionPanel>
+        </AccordionItem>
+        <AccordionItem>
+          <AccordionButton>Section 2</AccordionButton>
+          <AccordionPanel role="group">Panel 2</AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    );
+
+    expect(getByText('Panel 1')).toHaveAttribute('role', 'region');
+    expect(getByText('Panel 2')).toHaveAttribute('role', 'group');
+  });
+
   it('Does not violate accessibility standards', () => {
     const { container } = render(
       <Accordion defaultIndex={[0]}>

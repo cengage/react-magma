@@ -9,6 +9,9 @@
     "react-magma-landing": "1.1.11"
   },
   "changesets": [
+    "fix-dropdown-menu-a11y",
+    "fix-modal-definitionlist-a11y",
+    "fix-navtabs-custom-tab-role",
     "sync-main-to-dev-7-0-0",
     "treeview-cursor",
     "treeview-expansion-announcements",
