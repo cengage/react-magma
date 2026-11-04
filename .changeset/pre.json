@@ -14,6 +14,7 @@
     "fix-navtabs-custom-tab-role",
     "fix-popover-a11y",
     "fix-select-aria-controls",
+    "fix-treeview-stories-headings",
     "sync-main-to-dev-7-0-0",
     "treeview-cursor",
     "treeview-expansion-announcements",

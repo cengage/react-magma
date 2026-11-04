@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1-next.5
+
+### Patch Changes
+
+- 96527e5: fix(TreeView): use heading markup in stories
+
 ## 7.0.1-next.4
 
 ### Patch Changes
