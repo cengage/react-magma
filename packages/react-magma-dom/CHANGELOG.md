@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.4
+
+### Patch Changes
+
+- 9822948: fix(Dropdown, Accordion): add role="menu" for menu groups, roving tabindex, close menu on Shift+Tab, fix menu structure of expandable items and respect the role prop on AccordionPanel
+
 ## 7.1.0-next.3
 
 ### Patch Changes
