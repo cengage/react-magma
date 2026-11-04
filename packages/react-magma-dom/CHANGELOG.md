@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.5
+
+### Patch Changes
+
+- 3b144b9: fix(Select): add aria-controls to the Select trigger
+
 ## 7.1.0-next.4
 
 ### Patch Changes
