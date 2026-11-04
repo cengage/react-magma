@@ -32,6 +32,42 @@ describe('Select', () => {
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
+  it('should reference the listbox from the combobox with aria-controls', async () => {
+    const { getByRole, getByTestId } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    const combobox = getByTestId('selectTriggerButton');
+
+    expect(combobox).toHaveAttribute('role', 'combobox');
+    expect(combobox).toHaveAttribute(
+      'aria-controls',
+      getByRole('listbox', { hidden: true }).id
+    );
+
+    jest.useFakeTimers();
+    fireEvent.click(combobox);
+    act(() => jest.runOnlyPendingTimers());
+    jest.useRealTimers();
+
+    expect(combobox).toHaveAttribute('aria-controls', getByRole('listbox').id);
+  });
+
+  it('should reference a custom menuId from the combobox with aria-controls', () => {
+    const { getByRole, getByTestId } = render(
+      <Select labelText={labelText} items={items} menuId="custom-menu" />
+    );
+
+    expect(getByRole('listbox', { hidden: true })).toHaveAttribute(
+      'id',
+      'custom-menu'
+    );
+    expect(getByTestId('selectTriggerButton')).toHaveAttribute(
+      'aria-controls',
+      'custom-menu'
+    );
+  });
+
   it('should match the regular dropdown menu styling', async () => {
     const { container, getByLabelText, getByRole } = render(
       <Select labelText={labelText} items={items} />

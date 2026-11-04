@@ -33,6 +33,24 @@ describe('MultiSelect', () => {
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
+  it('should reference the listbox from the combobox with aria-controls', async () => {
+    const { getByRole, getByTestId } = render(
+      <MultiSelect isMulti labelText={labelText} items={items} />
+    );
+
+    const combobox = getByTestId('selectTriggerButton');
+
+    expect(combobox).toHaveAttribute('role', 'combobox');
+    expect(combobox).toHaveAttribute(
+      'aria-controls',
+      getByRole('listbox', { hidden: true }).id
+    );
+
+    await userEvent.click(combobox);
+
+    expect(combobox).toHaveAttribute('aria-controls', getByRole('listbox').id);
+  });
+
   it('should use inverse primary badge colors for selected items', () => {
     const { getByText } = render(
       <MultiSelect
