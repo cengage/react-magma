@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.6
+
+### Patch Changes
+
+- 8026382: fix(Popover): fix text field trigger ARIA and keyboard scrolling
+
 ## 7.1.0-next.5
 
 ### Patch Changes
