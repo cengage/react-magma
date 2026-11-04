@@ -14,6 +14,7 @@
     "fix-dropdown-menu-a11y",
     "fix-modal-definitionlist-a11y",
     "fix-navtabs-custom-tab-role",
+    "fix-select-aria-controls",
     "sync-v6-main-to-v6-dev-6-0-0",
     "treeview-cursor",
     "treeview-expansion-announcements",

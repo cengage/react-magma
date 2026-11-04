@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.5
+
+### Patch Changes
+
+- 30a76817a: fix(Select): add aria-controls to the Select trigger
+
 ## 6.1.0-v6-next.4
 
 ### Patch Changes
