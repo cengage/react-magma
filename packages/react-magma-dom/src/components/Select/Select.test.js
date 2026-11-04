@@ -4,6 +4,7 @@ import { act, fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { HelpIcon } from 'react-magma-icons';
 
+import { axe } from '../../../axe-helper';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
@@ -30,6 +31,51 @@ describe('Select', () => {
     fireEvent.click(renderedSelect);
 
     expect(getByText(items[0])).toBeInTheDocument();
+  });
+
+  it('should reference the listbox from the combobox with aria-controls', async () => {
+    const { getByRole, getByTestId } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    const combobox = getByTestId('selectTriggerButton');
+
+    expect(combobox).toHaveAttribute('role', 'combobox');
+    expect(combobox).toHaveAttribute(
+      'aria-controls',
+      getByRole('listbox', { hidden: true }).id
+    );
+
+    await userEvent.click(combobox);
+
+    expect(combobox).toHaveAttribute('aria-controls', getByRole('listbox').id);
+  });
+
+  it('should reference a custom menuId from the combobox with aria-controls', () => {
+    const { getByRole, getByTestId } = render(
+      <Select labelText={labelText} items={items} menuId="custom-menu" />
+    );
+
+    expect(getByRole('listbox', { hidden: true })).toHaveAttribute(
+      'id',
+      'custom-menu'
+    );
+    expect(getByTestId('selectTriggerButton')).toHaveAttribute(
+      'aria-controls',
+      'custom-menu'
+    );
+  });
+
+  it('Does not violate accessibility standards when open', async () => {
+    const { container, getByTestId } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    await userEvent.click(getByTestId('selectTriggerButton'));
+
+    const results = await axe(container);
+
+    expect(results).toHaveNoViolations();
   });
 
   it('should match the regular dropdown menu styling', async () => {
