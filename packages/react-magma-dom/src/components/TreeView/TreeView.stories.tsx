@@ -56,6 +56,7 @@ import {
   FlexJustify,
   FlexWrap,
 } from '../Flex';
+import { Heading } from '../Heading';
 import { Hyperlink } from '../Hyperlink';
 import { Paragraph } from '../Paragraph';
 import { TagColor } from '../Tag';
@@ -705,9 +706,15 @@ export const Textbook = {
     return (
       <>
         <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
-          <Paragraph id="ah-textbook" isInverse={args.isInverse} noTopMargin>
+          <Heading
+            id="ah-textbook"
+            isInverse={args.isInverse}
+            level={2}
+            noTopMargin
+            visualStyle={TypographyVisualStyle.headingXSmall}
+          >
             Art History Textbook
-          </Paragraph>
+          </Heading>
           <TreeView {...args} onSelectedItemChange={onSelection}>
             <TreeItem
               label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}
@@ -1331,7 +1338,9 @@ export const AccordionSectionWithTreeView = (props: any) => {
 
   return (
     <AccordionItem {...rest} index={customIndex} isDisabled={isDisabled}>
-      <AccordionButton>{title}</AccordionButton>
+      <Heading level={2} noMargins>
+        <AccordionButton>{title}</AccordionButton>
+      </Heading>
       <AccordionPanel>
         <ButtonGroup
           size={ButtonSize.small}
@@ -3681,9 +3690,9 @@ export const SelectChildrenOnly = {
       <Card>
         <CardBody>
           <Flex behavior={FlexBehavior.container}>
-            <Paragraph visualStyle={TypographyVisualStyle.headingSmall}>
+            <Heading level={2} visualStyle={TypographyVisualStyle.headingSmall}>
               Select Children Only (selectParents = false)
-            </Paragraph>
+            </Heading>
             <Paragraph>
               In this example, folders (parent items) can only be
               expanded/collapsed. Only files (child items) can be selected.
@@ -3931,10 +3940,10 @@ export const LargeTreePerformanceIssue = {
     return (
       <Card isInverse={treeProps.isInverse}>
         <CardBody>
-          <Paragraph visualStyle={TypographyVisualStyle.headingSmall}>
+          <Heading level={2} visualStyle={TypographyVisualStyle.headingSmall}>
             Total nodes: {totalNodes.toLocaleString()} (levels={levels},
             children/level={childrenCount})
-          </Paragraph>
+          </Heading>
           <Paragraph>
             Expand a top-level node, then click its checkbox. With
             selectable=multi + checkChildren + checkParents this should freeze
