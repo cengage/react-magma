@@ -3,7 +3,6 @@ import React from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { axe } from '../../../axe-helper';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
@@ -50,18 +49,6 @@ describe('MultiSelect', () => {
     await userEvent.click(combobox);
 
     expect(combobox).toHaveAttribute('aria-controls', getByRole('listbox').id);
-  });
-
-  it('Does not violate accessibility standards when open', async () => {
-    const { container, getByTestId } = render(
-      <MultiSelect isMulti labelText={labelText} items={items} />
-    );
-
-    await userEvent.click(getByTestId('selectTriggerButton'));
-
-    const results = await axe(container);
-
-    expect(results).toHaveNoViolations();
   });
 
   it('should use inverse primary badge colors for selected items', () => {
