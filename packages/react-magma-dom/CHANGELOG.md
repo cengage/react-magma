@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.6
+
+### Patch Changes
+
+- 69bcd2db7: fix(Popover): fix text field trigger ARIA and keyboard scrolling
+
 ## 6.1.0-v6-next.5
 
 ### Patch Changes
