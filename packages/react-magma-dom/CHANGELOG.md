@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.3
+
+### Patch Changes
+
+- e50e6de52: fix(NavTabs): add role="tab" and remove theme attribute on custom component tabs
+
 ## 6.1.0-v6-next.2
 
 ### Minor Changes
