@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.7
+
+### Patch Changes
+
+- 0ea155d: fix(useFocusLock): Keep focus inside the lock when the focused element becomes disabled, hidden or removed.
+
 ## 7.1.0-next.6
 
 ### Patch Changes
