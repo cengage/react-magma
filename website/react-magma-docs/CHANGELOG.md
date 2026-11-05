@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.1-v6-next.6
+
+### Patch Changes
+
+- 60dcea0a4: fix(TreeView): use heading markup in stories
+- Updated dependencies [8b76cb9e5]
+  - react-magma-dom@6.1.0-v6-next.7
+
 ## 6.0.1-v6-next.5
 
 ### Patch Changes
