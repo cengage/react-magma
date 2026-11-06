@@ -1,6 +1,11 @@
 import React from 'react';
 
-import { debounce, getNormalizedScrollLeft, reactNodeToString } from '.';
+import {
+  debounce,
+  getNormalizedScrollLeft,
+  normalizeAccessibleText,
+  reactNodeToString,
+} from '.';
 
 describe('Utils', () => {
   describe('Debounce', () => {
@@ -89,6 +94,21 @@ describe('Utils', () => {
       const expected = 'test';
 
       expect(actual).toEqual(expected);
+    });
+  });
+
+  describe('normalizeAccessibleText', () => {
+    it('should trim, collapse whitespace and ignore case', () => {
+      expect(normalizeAccessibleText('  Previous \n  PAGE ')).toEqual(
+        'previous page'
+      );
+    });
+
+    it('should preserve punctuation and non-Latin characters', () => {
+      expect(normalizeAccessibleText('Delete?')).toEqual('delete?');
+      expect(normalizeAccessibleText('Настройки')).not.toEqual(
+        normalizeAccessibleText('Удалить')
+      );
     });
   });
 });
