@@ -88,8 +88,8 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
   const isInverse = useIsInverse();
 
   const headings = useMemo(
-    () => pageData?.node?.fields.headings || [],
-    [pageData?.node?.fields.headings]
+    () => pageData?.node?.fields?.headings || [],
+    [pageData?.node?.fields?.headings]
   );
 
   const hasHeadings = headings.length > 0;
