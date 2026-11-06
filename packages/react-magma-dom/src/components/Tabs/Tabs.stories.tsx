@@ -2,7 +2,15 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import { StoryObj, StoryFn, Meta } from '@storybook/react-webpack5';
-import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
+import {
+  AndroidIcon,
+  AssignmentOutlinedIcon,
+  Book2OutlinedIcon,
+  EmailIcon,
+  GradeOutlinedIcon,
+  NotificationsIcon,
+  PeopleOutlineIcon,
+} from 'react-magma-icons';
 
 import { magma } from '../../theme/magma';
 import { Button } from '../Button';
@@ -10,7 +18,6 @@ import { Tab } from './Tab';
 import { TabPanel } from './TabPanel';
 import { TabPanelsContainer } from './TabPanelsContainer';
 import { TabsContainer } from './TabsContainer';
-import { Card } from '../Card';
 import { Combobox } from '../Combobox';
 import { Container } from '../Container';
 import {
@@ -81,6 +88,11 @@ export default {
         type: 'boolean',
       },
     },
+    isFullWidth: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 
@@ -110,6 +122,163 @@ export const Default = {
   render: Template,
   args: {},
   parameters: { controls: { exclude: ['iconPosition'] } },
+};
+
+export const FullWidth = {
+  render: Template,
+  args: {
+    isFullWidth: true,
+  },
+  parameters: { controls: { exclude: ['iconPosition'] } },
+};
+
+const longTabLabels = [
+  'Course Overview',
+  'Student Enrollment and Registration Management',
+  'Assignment Settings and Submission Options',
+  'Gradebook Configuration and Grading Policies',
+  'Learning Objectives and Competency Alignment',
+  'Attendance Tracking',
+  'Discussion Boards',
+  'Assessment Results',
+  'Accessibility Options',
+  'Instructor Resources',
+];
+
+const longTabIcons = [
+  <Book2OutlinedIcon />,
+  <PeopleOutlineIcon />,
+  <AssignmentOutlinedIcon />,
+  <GradeOutlinedIcon />,
+  <Book2OutlinedIcon />,
+  <PeopleOutlineIcon />,
+  <AssignmentOutlinedIcon />,
+  <GradeOutlinedIcon />,
+  <Book2OutlinedIcon />,
+  <PeopleOutlineIcon />,
+];
+
+const LongLabelsTemplate: StoryFn<TabsProps> = args => (
+  <TabsContainer>
+    <Tabs aria-label="Course management" {...args}>
+      {longTabLabels.map(label => (
+        <Tab key={label}>{label}</Tab>
+      ))}
+    </Tabs>
+    <TabPanelsContainer>
+      {longTabLabels.map(label => (
+        <TabPanel key={label}>
+          <div>{label} content</div>
+        </TabPanel>
+      ))}
+    </TabPanelsContainer>
+  </TabsContainer>
+);
+
+export const LongLabels = {
+  render: LongLabelsTemplate,
+  args: {
+    isFullWidth: false,
+  },
+  parameters: { controls: { exclude: ['iconPosition'] } },
+};
+
+const LongLabelsWithIconsTemplate: StoryFn<TabsProps> = args => (
+  <TabsContainer>
+    <Tabs aria-label="Course management" {...args}>
+      {longTabLabels.map((label, index) => (
+        <Tab icon={longTabIcons[index]} key={label}>
+          {label}
+        </Tab>
+      ))}
+    </Tabs>
+    <TabPanelsContainer>
+      {longTabLabels.map(label => (
+        <TabPanel key={label}>
+          <div>{label} content</div>
+        </TabPanel>
+      ))}
+    </TabPanelsContainer>
+  </TabsContainer>
+);
+
+export const LongLabelsWithIcons = {
+  render: LongLabelsWithIconsTemplate,
+  args: {
+    iconPosition: TabsIconPosition.left,
+    isFullWidth: false,
+  },
+};
+
+const VerticalTemplate: StoryFn<TabsProps> = args => (
+  <TabsContainer
+    style={{ alignItems: 'flex-start', flexWrap: 'nowrap', gap: '24px' }}
+  >
+    <Tabs
+      aria-label="Course management"
+      style={{ flex: '0 0 320px', width: '320px' }}
+      {...args}
+    >
+      {longTabLabels.slice(0, 4).map(label => (
+        <Tab key={label}>{label}</Tab>
+      ))}
+    </Tabs>
+    <TabPanelsContainer style={{ minWidth: 0 }}>
+      {longTabLabels.slice(0, 4).map(label => (
+        <TabPanel key={label}>
+          <div>{label} content</div>
+        </TabPanel>
+      ))}
+    </TabPanelsContainer>
+  </TabsContainer>
+);
+
+export const Vertical = {
+  render: VerticalTemplate,
+  args: {
+    orientation: TabsOrientation.vertical,
+  },
+  parameters: { controls: { exclude: ['iconPosition'] } },
+};
+
+const verticalTabsWithIcons = [
+  { icon: longTabIcons[0], label: longTabLabels[0] },
+  { icon: longTabIcons[1], label: longTabLabels[1] },
+  { icon: longTabIcons[2], label: longTabLabels[2] },
+  { icon: longTabIcons[3], label: longTabLabels[3] },
+];
+
+const VerticalWithIconsTemplate: StoryFn<TabsProps> = args => (
+  <TabsContainer
+    style={{ alignItems: 'flex-start', flexWrap: 'nowrap', gap: '24px' }}
+  >
+    <Tabs
+      aria-label="Course management"
+      style={{ flex: '0 0 320px', width: '320px' }}
+      {...args}
+    >
+      {verticalTabsWithIcons.map(({ icon, label }) => (
+        <Tab icon={icon} key={label}>
+          {label}
+        </Tab>
+      ))}
+    </Tabs>
+    <TabPanelsContainer style={{ minWidth: 0 }}>
+      {verticalTabsWithIcons.map(({ label }) => (
+        <TabPanel key={label}>
+          <div>{label} content</div>
+        </TabPanel>
+      ))}
+    </TabPanelsContainer>
+  </TabsContainer>
+);
+
+export const VerticalWithIcons = {
+  render: VerticalWithIconsTemplate,
+  args: {
+    iconPosition: TabsIconPosition.left,
+    orientation: TabsOrientation.vertical,
+  },
 };
 
 const IconTemplate: StoryFn<TabsProps> = args => (
@@ -367,27 +536,25 @@ export const ScrollSpyIcons = {
 };
 
 const InverseTemplate: StoryFn<TabsProps> = args => (
-  <Card isInverse={args.isInverse}>
-    <TabsContainer>
-      <Tabs aria-label="Sample Tabs" {...args}>
-        <Tab>First item</Tab>
-        <Tab>Second item</Tab>
-        <Tab>Third item</Tab>
-        <Tab disabled>Disabled</Tab>
-      </Tabs>
-      <TabPanelsContainer>
-        <TabPanel isInverse={args.isInverse}>
-          <div>Email</div>
-        </TabPanel>
-        <TabPanel isInverse={args.isInverse}>
-          <div>Android</div>
-        </TabPanel>
-        <TabPanel isInverse={args.isInverse}>
-          <div>Notifications</div>
-        </TabPanel>
-      </TabPanelsContainer>
-    </TabsContainer>
-  </Card>
+  <TabsContainer>
+    <Tabs aria-label="Sample Tabs" {...args}>
+      <Tab>First item</Tab>
+      <Tab>Second item</Tab>
+      <Tab>Third item</Tab>
+      <Tab disabled>Disabled</Tab>
+    </Tabs>
+    <TabPanelsContainer>
+      <TabPanel isInverse={args.isInverse}>
+        <div>Email</div>
+      </TabPanel>
+      <TabPanel isInverse={args.isInverse}>
+        <div>Android</div>
+      </TabPanel>
+      <TabPanel isInverse={args.isInverse}>
+        <div>Notifications</div>
+      </TabPanel>
+    </TabPanelsContainer>
+  </TabsContainer>
 );
 
 export const Inverse = {
@@ -402,53 +569,51 @@ export const Inverse = {
 };
 
 const WithDropdownTemplate: StoryFn<TabsProps> = args => (
-  <Card>
-    <TabsContainer>
-      <Tabs aria-label="Sample Tabs" {...args}>
-        <Tab>Dropdown</Tab>
-        <Tab>Select</Tab>
-        <Tab>ComboBox</Tab>
-      </Tabs>
-      <TabPanelsContainer>
-        <TabPanel>
-          <Dropdown>
-            <DropdownButton>Basic Dropdown</DropdownButton>
-            <DropdownContent>
-              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-            </DropdownContent>
-          </Dropdown>
-        </TabPanel>
-        <TabPanel>
-          <Select
-            labelText="Select Example"
-            items={[
-              { label: 'Red', value: 'red' },
-              { label: 'Blue', value: 'blue' },
-              { label: 'Green', value: 'green' },
-              { label: 'Yellow', value: 'yellow' },
-            ]}
-          />
-        </TabPanel>
-        <TabPanel>
-          <Combobox
-            isMulti
-            labelText="ComboBox Example"
-            defaultItems={[
-              { label: 'Pink', value: 'pink' },
-              { label: 'Orange', value: 'orange' },
-              { label: 'Purple', value: 'purple' },
-            ]}
-          />
-        </TabPanel>
-      </TabPanelsContainer>
-    </TabsContainer>
-  </Card>
+  <TabsContainer>
+    <Tabs aria-label="Sample Tabs" {...args}>
+      <Tab>Dropdown</Tab>
+      <Tab>Select</Tab>
+      <Tab>ComboBox</Tab>
+    </Tabs>
+    <TabPanelsContainer>
+      <TabPanel>
+        <Dropdown>
+          <DropdownButton>Basic Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </TabPanel>
+      <TabPanel>
+        <Select
+          labelText="Select Example"
+          items={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+            { label: 'Yellow', value: 'yellow' },
+          ]}
+        />
+      </TabPanel>
+      <TabPanel>
+        <Combobox
+          isMulti
+          labelText="ComboBox Example"
+          defaultItems={[
+            { label: 'Pink', value: 'pink' },
+            { label: 'Orange', value: 'orange' },
+            { label: 'Purple', value: 'purple' },
+          ]}
+        />
+      </TabPanel>
+    </TabPanelsContainer>
+  </TabsContainer>
 );
 
 export const WithDropdown = {
