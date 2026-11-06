@@ -3674,6 +3674,69 @@ export const VirtualizedLargeTree = {
   },
 };
 
+export const ResizableVirtualizedTree = {
+  render: ({
+    lessonsPerChapter,
+    ...args
+  }: TreeViewProps & { lessonsPerChapter: number }) => (
+    <>
+      <Paragraph>
+        Drag the bottom-right corner to resize the tree. Long labels wrap as the
+        width changes. Expand chapters and scroll before resizing to check that
+        rows stay together. Toggle enableVirtualization in the controls to
+        compare both modes. To exercise resizing after collapse, set
+        lessonsPerChapter to 2, collapse Chapter 1, then narrow and widen the
+        tree.
+      </Paragraph>
+      <div
+        data-testid="resizable-tree-container"
+        style={{
+          width: 360,
+          height: 400,
+          minWidth: 200,
+          maxWidth: 720,
+          minHeight: 160,
+          maxHeight: 640,
+          resize: 'both',
+          overflow: 'auto',
+        }}
+      >
+        <TreeView {...args} style={{ height: '100%', overflow: 'auto' }}>
+          {Array.from({ length: 20 }, (_chapter, c) => (
+            <TreeItem
+              key={c}
+              itemId={`chapter-${c + 1}`}
+              label={`Chapter ${c + 1}: ${
+                c >= 18
+                  ? 'Review'
+                  : 'Introduction to a very long section title that needs to wrap on several lines'
+              }`}
+            >
+              {Array.from({ length: lessonsPerChapter }, (_lesson, l) => (
+                <TreeItem
+                  key={l}
+                  itemId={`lesson-${c + 1}-${l + 1}`}
+                  label={`Lesson ${c + 1}.${l + 1}: A really long lesson name describing learning objectives and expected outcomes`}
+                />
+              ))}
+            </TreeItem>
+          ))}
+        </TreeView>
+      </div>
+    </>
+  ),
+  args: {
+    ariaLabel: 'Resizable course outline',
+    enableVirtualization: true,
+    initialExpandedItems: ['chapter-1'],
+    testId: 'resizable-tree',
+    lessonsPerChapter: 25,
+  },
+  argTypes: {
+    lessonsPerChapter: { control: { type: 'number', min: 1, max: 25 } },
+  },
+};
+
 export const SelectChildrenOnly = {
   render: (args: TreeViewProps) => {
     const [selectedItems, setSelectedItems] = React.useState<
