@@ -1175,6 +1175,97 @@ export function Example() {
 }
 ```
 
+## Large Tables
+
+Every row and cell in a table is rendered to the DOM, so very large tables are slow to mount and re-render.
+To keep them responsive:
+
+- Wrap row components in `React.memo` and keep their props stable (memoize data, use `useCallback` for handlers).
+  Then only the rows whose props change re-render when the parent component updates.
+- Keep heavy content, such as a `Dropdown` in every row, to a minimum. Cell content often costs more than the table itself.
+- For more than about 1,000 rows, use [pagination](#pagination) or render only the visible rows with a virtualization library.
+
+```tsx codesandbox=magma
+import React from 'react';
+
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableRowColor,
+  TableHeaderCell,
+  TableBody,
+  TableCell,
+  Checkbox,
+} from 'react-magma-dom';
+
+const rows = Array.from({ length: 200 }, (_, index) => ({
+  id: index,
+  name: `Item ${index + 1}`,
+  category: `Category ${(index % 5) + 1}`,
+  quantity: (index * 7) % 100,
+}));
+
+const ItemRow = React.memo(function ItemRow({ row, isSelected, onToggle }) {
+  return (
+    <TableRow color={isSelected ? TableRowColor.info : undefined}>
+      <TableCell>
+        <Checkbox
+          checked={isSelected}
+          labelText={`Select ${row.name}`}
+          isTextVisuallyHidden
+          onChange={() => onToggle(row.id)}
+        />
+      </TableCell>
+      <TableCell>{row.name}</TableCell>
+      <TableCell>{row.category}</TableCell>
+      <TableCell>{row.quantity}</TableCell>
+    </TableRow>
+  );
+});
+
+export function Example() {
+  const [selected, setSelected] = React.useState(new Set());
+
+  const handleToggle = React.useCallback(id => {
+    setSelected(prev => {
+      const next = new Set(prev);
+
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+
+      return next;
+    });
+  }, []);
+
+  return (
+    <Table tableTitle={`Large table (${selected.size} selected)`}>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell width={40}>Select</TableHeaderCell>
+          <TableHeaderCell>Name</TableHeaderCell>
+          <TableHeaderCell>Category</TableHeaderCell>
+          <TableHeaderCell>Quantity</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {rows.map(row => (
+          <ItemRow
+            key={row.id}
+            row={row}
+            isSelected={selected.has(row.id)}
+            onToggle={handleToggle}
+          />
+        ))}
+      </TableBody>
+    </Table>
+  );
+}
+```
+
 ## Table Props
 
 **This component uses `forwardRef`. The ref is applied to the `table` element.**
