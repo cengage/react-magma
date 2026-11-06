@@ -105,7 +105,7 @@ import {
   DropdownMenuItem,
   DropdownSplitButton,
 } from 'react-magma-dom';
-import { LibraryAddIcon } from 'react-magma-icons';
+import { LibraryAddOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   function handleSplitButtonClick() {
@@ -117,7 +117,7 @@ export function Example() {
       <DropdownSplitButton
         aria-label="Split Button"
         onClick={handleSplitButtonClick}
-        leadingIcon={<LibraryAddIcon />}
+        leadingIcon={<LibraryAddOutlinedIcon />}
       >
         Split Button
       </DropdownSplitButton>
@@ -431,9 +431,9 @@ import {
   DropdownExpandableMenuListItem,
 } from 'react-magma-dom';
 import {
-  RestaurantMenuIcon,
-  LunchDiningIcon,
-  LocalPizzaIcon,
+  RestaurantMenuOutlinedIcon,
+  LunchDiningOutlinedIcon,
+  LocalPizzaOutlinedIcon,
 } from 'react-magma-icons';
 
 export function Example() {
@@ -443,7 +443,7 @@ export function Example() {
       <DropdownContent>
         <DropdownExpandableMenuGroup>
           <DropdownExpandableMenuItem>
-            <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
+            <DropdownExpandableMenuButton icon={<RestaurantMenuOutlinedIcon />}>
               Pasta
             </DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
@@ -456,7 +456,7 @@ export function Example() {
             </DropdownExpandableMenuPanel>
           </DropdownExpandableMenuItem>
           <DropdownExpandableMenuItem>
-            <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
+            <DropdownExpandableMenuButton icon={<LunchDiningOutlinedIcon />}>
               Prosciutto
             </DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
@@ -470,7 +470,7 @@ export function Example() {
           </DropdownExpandableMenuItem>
         </DropdownExpandableMenuGroup>
         <DropdownDivider />
-        <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
+        <DropdownExpandableMenuListItem icon={<LocalPizzaOutlinedIcon />}>
           Pizza
         </DropdownExpandableMenuListItem>
       </DropdownContent>
@@ -502,9 +502,9 @@ import {
   DropdownExpandableMenuListItem,
 } from 'react-magma-dom';
 import {
-  RestaurantMenuIcon,
-  LunchDiningIcon,
-  LocalPizzaIcon,
+  RestaurantMenuOutlinedIcon,
+  LunchDiningOutlinedIcon,
+  LocalPizzaOutlinedIcon,
 } from 'react-magma-icons';
 
 export function Example() {
@@ -514,7 +514,7 @@ export function Example() {
       <DropdownContent>
         <DropdownExpandableMenuGroup isMulti defaultIndex={[0]}>
           <DropdownExpandableMenuItem>
-            <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
+            <DropdownExpandableMenuButton icon={<RestaurantMenuOutlinedIcon />}>
               Pasta
             </DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
@@ -527,7 +527,7 @@ export function Example() {
             </DropdownExpandableMenuPanel>
           </DropdownExpandableMenuItem>
           <DropdownExpandableMenuItem>
-            <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
+            <DropdownExpandableMenuButton icon={<LunchDiningOutlinedIcon />}>
               Prosciutto
             </DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
@@ -541,7 +541,7 @@ export function Example() {
           </DropdownExpandableMenuItem>
         </DropdownExpandableMenuGroup>
         <DropdownDivider />
-        <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
+        <DropdownExpandableMenuListItem icon={<LocalPizzaOutlinedIcon />}>
           Pizza
         </DropdownExpandableMenuListItem>
       </DropdownContent>
@@ -678,15 +678,20 @@ import {
   DropdownContent,
   DropdownMenuItem,
 } from 'react-magma-dom';
-import { AsteriskIcon, NotificationsIcon } from 'react-magma-icons';
+import {
+  AsteriskOutlinedIcon,
+  NotificationsOutlinedIcon,
+} from 'react-magma-icons';
 
 export function Example() {
   return (
     <Dropdown>
       <DropdownButton>Leading Icons</DropdownButton>
       <DropdownContent>
-        <DropdownMenuItem icon={<AsteriskIcon />}>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem icon={<NotificationsIcon />}>
+        <DropdownMenuItem icon={<AsteriskOutlinedIcon />}>
+          Menu item 1
+        </DropdownMenuItem>
+        <DropdownMenuItem icon={<NotificationsOutlinedIcon />}>
           Menu item 2
         </DropdownMenuItem>
       </DropdownContent>
@@ -767,7 +772,7 @@ import {
   DropdownContent,
   DropdownMenuItem,
 } from 'react-magma-dom';
-import { SettingsIcon, MenuIcon } from 'react-magma-icons';
+import { SettingsOutlinedIcon, MenuOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -779,7 +784,7 @@ export function Example() {
             color={ButtonColor.secondary}
             size={ButtonSize.large}
             variant={ButtonVariant.link}
-            icon={<SettingsIcon />}
+            icon={<SettingsOutlinedIcon />}
           />
           <DropdownContent>
             <DropdownMenuItem>Menu item 1</DropdownMenuItem>
@@ -790,7 +795,7 @@ export function Example() {
           <DropdownButton
             aria-label="Extra icon example"
             size={ButtonSize.large}
-            icon={<MenuIcon />}
+            icon={<MenuOutlinedIcon />}
           />
           <DropdownContent>
             <DropdownMenuItem>Menu item 1</DropdownMenuItem>
@@ -802,7 +807,7 @@ export function Example() {
             variant={ButtonVariant.solid}
             size={ButtonSize.small}
             iconPosition={ButtonIconPosition.right}
-            icon={<SettingsIcon />}
+            icon={<SettingsOutlinedIcon />}
           >
             Icon Right with Text
           </DropdownButton>
@@ -816,7 +821,7 @@ export function Example() {
             variant={ButtonVariant.solid}
             size={ButtonSize.small}
             iconPosition={ButtonIconPosition.left}
-            icon={<SettingsIcon />}
+            icon={<SettingsOutlinedIcon />}
           >
             Icon Left with Text
           </DropdownButton>
@@ -853,7 +858,7 @@ import {
   DropdownContent,
   DropdownMenuItem,
 } from 'react-magma-dom';
-import { SettingsIcon } from 'react-magma-icons';
+import { SettingsOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -864,7 +869,7 @@ export function Example() {
       <Dropdown>
         <DropdownButton
           size={ButtonSize.small}
-          leadingIcon={<SettingsIcon />}
+          leadingIcon={<SettingsOutlinedIcon />}
           iconPosition={ButtonIconPosition.right}
         >
           Small leading icon
@@ -877,7 +882,7 @@ export function Example() {
       <Dropdown>
         <DropdownButton
           size={ButtonSize.medium}
-          leadingIcon={<SettingsIcon />}
+          leadingIcon={<SettingsOutlinedIcon />}
           iconPosition={ButtonIconPosition.right}
         >
           Medium leading icon
@@ -890,7 +895,7 @@ export function Example() {
       <Dropdown>
         <DropdownButton
           size={ButtonSize.large}
-          leadingIcon={<SettingsIcon />}
+          leadingIcon={<SettingsOutlinedIcon />}
           iconPosition={ButtonIconPosition.right}
         >
           Large leading icon

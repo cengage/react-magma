@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { autoUpdate } from '@floating-ui/react-dom';
 import { useCombobox } from 'downshift';
-import { CloseIcon } from 'react-magma-icons';
+import { CloseOutlinedIcon } from 'react-magma-icons';
 
 import { instanceOfDefaultItemObject } from '../Select';
 import { ComboboxInput } from './ComboboxInput';
@@ -381,7 +381,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         {isClearable && selectedItem && (
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
-            icon={<CloseIcon />}
+            icon={<CloseOutlinedIcon />}
             isInverse={isInverse}
             onClick={defaultHandleClearIndicatorClick}
             shape={ButtonShape.fill}

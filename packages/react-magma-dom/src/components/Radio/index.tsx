@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import styled from '@emotion/styled';
 import {
-  RadioButtonCheckedIcon,
-  RadioButtonUncheckedIcon,
+  RadioButtonCheckedOutlinedIcon,
+  RadioButtonUncheckedOutlinedIcon,
 } from 'react-magma-icons';
 
 import { ThemeInterface } from '../../theme/magma';
@@ -220,9 +220,9 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             theme={theme}
           >
             {context.selectedValue === value ? (
-              <RadioButtonCheckedIcon aria-hidden />
+              <RadioButtonCheckedOutlinedIcon aria-hidden />
             ) : (
-              <RadioButtonUncheckedIcon aria-hidden />
+              <RadioButtonUncheckedOutlinedIcon aria-hidden />
             )}
           </StyledFakeInput>
           {isTextVisuallyHidden ? (
