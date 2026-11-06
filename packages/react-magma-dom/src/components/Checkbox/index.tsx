@@ -77,6 +77,12 @@ export interface CheckboxProps
   inputStyle?: React.CSSProperties;
   isInverse?: boolean;
   /**
+   * Renders the Magma checkbox visual without a native input. Intended for
+   * composite widgets that provide their own interaction semantics.
+   * @internal
+   */
+  isVisualOnly?: boolean;
+  /**
    * If true, label text will be hidden visually, but will still be read by assistive technology
    * @default false
    */
@@ -399,6 +405,7 @@ export const Checkbox = React.memo(
       labelStyle,
       labelText,
       isTextVisuallyHidden,
+      isVisualOnly = false,
       testId,
       textPosition,
       ariaLabel,
@@ -437,20 +444,23 @@ export const Checkbox = React.memo(
     return (
       <>
         <StyledContainer style={containerStyle}>
-          <HiddenInput
-            {...other}
-            aria-label={ariaLabel ?? reactNodeToString(labelText)}
-            aria-describedby={describedBy}
-            id={id}
-            data-testid={testId}
-            checked={isChecked}
-            disabled={disabled}
-            ref={ref}
-            type="checkbox"
-            onChange={handleChange}
-          />
+          {!isVisualOnly && (
+            <HiddenInput
+              {...other}
+              aria-label={ariaLabel ?? reactNodeToString(labelText)}
+              aria-describedby={describedBy}
+              id={id}
+              data-testid={testId}
+              checked={isChecked}
+              disabled={disabled}
+              ref={ref}
+              type="checkbox"
+              onChange={handleChange}
+            />
+          )}
           <StyledLabel
-            htmlFor={id}
+            {...(!isVisualOnly && { htmlFor: id })}
+            as={isVisualOnly ? 'div' : undefined}
             isInverse={isInverse}
             style={labelStyle}
             textColor={!isInverse ? theme.colors.brand.navy : undefined}

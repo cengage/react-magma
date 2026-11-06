@@ -5,8 +5,9 @@ import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface StyledLabelProps {
+  as?: 'div' | 'label';
   children?: any;
-  htmlFor: string;
+  htmlFor?: string;
   isInverse?: boolean;
   style?: React.CSSProperties;
   textColor?: string;
@@ -28,7 +29,10 @@ const StyledLabelComponent = styled.label<StyledLabelProps>`
   padding: ${props => props.theme.spaceScale.spacing03} 0;
 `;
 
+const StyledLabelDivComponent = StyledLabelComponent.withComponent('div');
+
 export const StyledLabel: React.FunctionComponent<StyledLabelProps> = ({
+  as = 'label',
   children,
   htmlFor,
   isInverse,
@@ -36,16 +40,21 @@ export const StyledLabel: React.FunctionComponent<StyledLabelProps> = ({
   textColor,
 }: StyledLabelProps) => (
   <ThemeContext.Consumer>
-    {theme => (
-      <StyledLabelComponent
-        htmlFor={htmlFor}
-        isInverse={isInverse}
-        style={style}
-        textColor={textColor}
-        theme={theme}
-      >
-        {children}
-      </StyledLabelComponent>
-    )}
+    {theme => {
+      const Component =
+        as === 'div' ? StyledLabelDivComponent : StyledLabelComponent;
+
+      return (
+        <Component
+          htmlFor={as === 'label' ? htmlFor : undefined}
+          isInverse={isInverse}
+          style={style}
+          textColor={textColor}
+          theme={theme}
+        >
+          {children}
+        </Component>
+      );
+    }}
   </ThemeContext.Consumer>
 );

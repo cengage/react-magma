@@ -246,7 +246,19 @@ export interface I18nInterface {
     selectedItemButtonAriaLabel: string;
   };
   multiSelect: {
+    allItemsDeselectedAnnounce?: string;
+    allItemsSelectedAnnounce?: string;
+    allSelected?: string;
+    applyButtonLabel?: string;
+    cancelButtonLabel?: string;
+    clearAllButtonAriaLabel?: string;
+    filterPlaceholder?: string;
+    itemDeselectedAnnounce?: string;
+    itemSelectedAnnounce?: string;
+    noOptions?: string;
     placeholder: string;
+    selectAllLabel?: string;
+    selectedCount?: string;
     selectedItemButtonAriaLabel: string;
   };
   pagination: {

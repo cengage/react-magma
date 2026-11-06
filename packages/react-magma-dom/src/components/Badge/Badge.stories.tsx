@@ -126,6 +126,26 @@ export const WithIcon = () => {
   );
 };
 
+export const Disabled = () => {
+  return (
+    <>
+      <Badge disabled>Disabled</Badge>
+      <Badge disabled onClick={noop}>
+        Disabled actionable badge
+      </Badge>
+      <br />
+      <br />
+      <Card background={magma.colors.neutral1100} isInverse>
+        <CardBody>
+          <Badge disabled isInverse>
+            Inverse disabled
+          </Badge>
+        </CardBody>
+      </Card>
+    </>
+  );
+};
+
 export const LightWeight = () => {
   return (
     <>
