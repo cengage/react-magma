@@ -32,61 +32,7 @@ import './design-guidelines-styles.css';
 
 ### Text Label
 
-Text labels should clearly and succinctly describe the content they represent. Tabs have a max-width of 250px by default, and long labels will wrap, but this obviously has a drastic impact on the presentation so we should take great care with the words we choose.
-
-<div className="two-col">
-  <div className="row">
-    <div className="col col-1">
-      <figure>
-        <img src="../../images/tabs/tabs-line-wrap.png" alt=" " />
-        <figcaption>
-          <p className="title title-caution">Caution</p>
-          <p>
-            Be careful how much text you use in your tab labels. The text will
-            wrap, but it has a drastic impact on the presentation of your tabs.
-          </p>
-        </figcaption>
-      </figure>
-    </div>
-    <div className="col col-2">
-      <figure>
-        <img src="../../images/tabs/tabs-resize-text.png" alt=" " />
-        <figcaption>
-          <p className="title title-incorrect">Incorrect</p>
-          <p>
-            Do not resize the text on a tab to make it fit on a single line.
-          </p>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-  <div className="row">
-    <div className="col col-1">
-      <figure>
-        <img src="../../images/tabs/tabs-truncate-text.png" alt=" " />
-        <figcaption>
-          <p className="title title-incorrect">Incorrect</p>
-          <p>
-            Do not truncate text on a tab to make it fit on a single line. This
-            could make it difficult to understand the true intent of the tab.
-          </p>
-        </figcaption>
-      </figure>
-    </div>
-    <div className="col col-2">
-      <figure>
-        <img src="../../images/tabs/tabs-icon-and-text-incorrect.png" alt=" " />
-        <figcaption>
-          <p className="title title-incorrect">Incorrect</p>
-          <p>
-            Do not mix icon-only tabs with text-only tabs. All tabs in a group
-            should use the same type of tab consistently.
-          </p>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</div>
+Text labels should clearly and succinctly describe the content they represent.
 
 ### Icons
 
@@ -136,34 +82,27 @@ Icon-only tabs can be very useful for communicating the content they represent, 
 
 The active tab indicator helps make it very clear which tab is currently selected.
 
-<div className="two-col">
-  <div className="row">
-    <div className="col col-1">
-      <figure>
-        <img src="../../images/tabs/tabs-active-indicator-bottom.png" alt=" " />
-        <figcaption>
-          <p className="title title-correct">Correct</p>
-          <p>The indicator appears on the bottom of the tab by default.</p>
-        </figcaption>
-      </figure>
-    </div>
-    <div className="col col-2">
-      <figure>
-        <img src="../../images/tabs/tabs-active-indicator-top.png" alt=" " />
-        <figcaption>
-          <p className="title title-caution">Caution</p>
-          <p>
-            Displaying tabs below their associated content panel is most
-            commonly used for navigation that appears at the bottom of the
-            viewport on mobile devices. Using this same pattern for a simple set
-            of tabbed content on a page could be unfamiliar and confusing to the
-            user, and should not be used without proper user-testing.
-          </p>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</div>
+<figure>
+  <img src="../../images/tabs/tabs-active-indicator-bottom.png" alt=" " />
+  <figcaption>
+    <p className="title title-correct">Correct</p>
+    <p>The indicator appears on the bottom of the tab by default.</p>
+  </figcaption>
+</figure>
+<span className="horizontal-spacer" />
+<figure>
+  <img src="../../images/tabs/tabs-active-indicator-top.png" alt=" " />
+  <figcaption>
+    <p className="title title-caution">Caution</p>
+    <p>
+      Displaying tabs below their associated content panel is most commonly used
+      for navigation that appears at the bottom of the viewport on mobile
+      devices. Using this same pattern for a simple set of tabbed content on a
+      page could be unfamiliar and confusing to the user, and should not be used
+      without proper user-testing.
+    </p>
+  </figcaption>
+</figure>
 
 ---
 
@@ -177,7 +116,6 @@ The active tab indicator helps make it very clear which tab is currently selecte
 1. Active
 1. Disabled
 1. Hover
-1. Focus
 
 ---
 
@@ -199,28 +137,13 @@ Tabs are displayed in a single row or column, with each tab connected to the con
   </figcaption>
 </figure>
 <span className="horizontal-spacer" />
-<div className="two-col">
-  <div className="row">
-    <div className="col col-1">
-      <figure>
-        <img src="../../images/tabs/nesting-tabs-wrong.png" alt=" " />
-        <figcaption>
-          <p className="title title-incorrect">Incorrect</p>
-          <p>Don't nest tabs to create multiple levels.</p>
-        </figcaption>
-      </figure>
-    </div>
-    <div className="col col-2">
-      <figure>
-        <img src="../../images/tabs/stacking-tabs-wrong.png" alt=" " />
-        <figcaption>
-          <p className="title title-incorrect">Incorrect</p>
-          <p>Don't stack tabs meant to be horizontal on top of each other.</p>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</div>
+<figure>
+  <img src="../../images/tabs/nesting-tabs-wrong.png" alt=" " />
+  <figcaption>
+    <p className="title title-incorrect">Incorrect</p>
+    <p>Don't nest tabs to create multiple levels.</p>
+  </figcaption>
+</figure>
 
 ---
 
@@ -228,11 +151,11 @@ Tabs are displayed in a single row or column, with each tab connected to the con
 
 ### Auto-Width Tabs
 
-The default width of a tab is undefined and is determined by the content within the tab plus 20px of padding on either side. There is, however, a max-width of 250px which could cause the text within a tab to wrap to multiple lines.
+The default width of a tab is undefined and is determined by the content within the tab plus 8px of padding on either side.
 
 #### Alignment
 
-Auto-width tabs can be left-aligned, right-aligned, or centered.
+Tabs can be left-aligned, right-aligned, or centered.
 
 <figure>
   <img src="../../images/tabs/tabs-left-aligned.png" alt=" " />
@@ -271,7 +194,7 @@ The tab container for auto-width tabs will automatically scroll if the container
 
 ### Full-Width Tabs
 
-Full-width tabs can be calculated by the width of the container divided by the number of tabs. Full-width tabs should only be used if you can guarantee that all tabs will be visible without truncation regardless of the size of the container.
+Full-width tabs can be calculated by the width of the container divided by the number of tabs. Full-width tabs should only be used if you can guarantee that all tabs will be visible without truncation or text wrapping regardless of the size of the container.
 
 <figure>
   <img src="../../images/tabs/tabs-full-width.png" alt=" " />
