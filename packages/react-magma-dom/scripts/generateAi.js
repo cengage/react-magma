@@ -14,10 +14,15 @@ const path = require('path');
 const ts = require('typescript');
 
 const PKG_ROOT = path.resolve(__dirname, '..');
-const SRC_DIR = path.join(PKG_ROOT, 'src');
-const SRC_INDEX = path.join(SRC_DIR, 'index.ts');
 const AI_SRC_DIR = path.join(PKG_ROOT, 'ai-src');
 const OUT_DIR = path.join(PKG_ROOT, 'ai');
+
+// Separate packages whose components are listed in the same catalog, so
+// agents can find them even before the package is installed.
+const ADDON_PACKAGES = {
+  '@react-magma/charts': path.resolve(PKG_ROOT, '../charts'),
+  '@react-magma/dropzone': path.resolve(PKG_ROOT, '../dropzone'),
+};
 
 const isValue = symbol => Boolean(symbol.flags & ts.SymbolFlags.Value);
 
@@ -28,17 +33,24 @@ const isComponentLike = name =>
   !/^(Styled|Enum)/.test(name);
 
 /**
- * Returns every value export of src/index.ts, grouped by component folder.
- * Type-only exports are skipped: agents find them in .d.ts files.
+ * Returns every value export of <packageRoot>/src/index.ts, grouped by
+ * component folder. Type-only exports are skipped: agents find them in
+ * .d.ts files.
  */
-function collectPublicApi() {
-  const configPath = path.join(PKG_ROOT, 'tsconfig.json');
+function collectPublicApi(packageRoot = PKG_ROOT) {
+  const srcDir = path.join(packageRoot, 'src');
+  const srcIndex = path.join(srcDir, 'index.ts');
+  const configPath = path.join(packageRoot, 'tsconfig.json');
   const { config } = ts.readConfigFile(configPath, ts.sys.readFile);
-  const { options } = ts.parseJsonConfigFileContent(config, ts.sys, PKG_ROOT);
-  const program = ts.createProgram([SRC_INDEX], { ...options, noEmit: true });
+  const { options } = ts.parseJsonConfigFileContent(
+    config,
+    ts.sys,
+    packageRoot
+  );
+  const program = ts.createProgram([srcIndex], { ...options, noEmit: true });
   const checker = program.getTypeChecker();
   const moduleSymbol = checker.getSymbolAtLocation(
-    program.getSourceFile(SRC_INDEX)
+    program.getSourceFile(srcIndex)
   );
 
   const components = {};
@@ -57,7 +69,7 @@ function collectPublicApi() {
     const name = exported.getName();
     const declaration = (symbol.declarations || [])[0];
     const fileName = declaration
-      ? path.relative(SRC_DIR, declaration.getSourceFile().fileName)
+      ? path.relative(srcDir, declaration.getSourceFile().fileName)
       : '';
     const folder = fileName.match(/^components\/([^/]+)\//);
 
@@ -84,15 +96,37 @@ function loadCatalog() {
 /**
  * Flattens the categorized catalog and validates it against the public API.
  */
-function resolveCatalog(catalog, api) {
+function resolveCatalog(catalog, api, addonApis = {}) {
   const problems = [];
   const covered = new Set();
+  const coveredAddons = new Set();
   const catalogFolders = new Map();
   const categories = [];
 
+  const getAddonExports = (name, entry) => {
+    const addon = addonApis[entry.package];
+    const folder = entry.folder || name;
+
+    if (!addon || !addon.components[folder]) {
+      problems.push(
+        `catalog.js: "${name}" has no public value exports in ${entry.package}`
+      );
+
+      return [];
+    }
+    const key = `${entry.package}/${folder}`;
+
+    if (coveredAddons.has(key)) {
+      problems.push(`catalog.js: "${key}" is listed more than once`);
+    }
+    coveredAddons.add(key);
+
+    return addon.components[folder];
+  };
+
   Object.entries(catalog).forEach(([category, entries]) => {
     const items = Object.entries(entries).map(([folder, entry]) => {
-      const folders = [folder, ...(entry.includes || [])];
+      const folders = entry.package ? [] : [folder, ...(entry.includes || [])];
       const exports = folders.flatMap(name => {
         if (catalogFolders.has(name)) {
           problems.push(
@@ -113,6 +147,10 @@ function resolveCatalog(catalog, api) {
 
         return api.components[name];
       });
+
+      if (entry.package) {
+        exports.push(...getAddonExports(folder, entry));
+      }
 
       if (!entry.purpose || !entry.keywords || !entry.keywords.length) {
         problems.push(`catalog.js: "${folder}" needs purpose and keywords`);
@@ -142,6 +180,16 @@ function resolveCatalog(catalog, api) {
     );
   });
 
+  Object.entries(addonApis).forEach(([packageName, addon]) => {
+    Object.keys(addon.components)
+      .filter(folder => !coveredAddons.has(`${packageName}/${folder}`))
+      .forEach(folder => {
+        problems.push(
+          `catalog.js: missing entry for ${packageName} component folder "${folder}"`
+        );
+      });
+  });
+
   if (missing.length) {
     categories.push({
       category: 'Uncategorized',
@@ -159,6 +207,9 @@ function resolveCatalog(catalog, api) {
 function renderCatalogItem({ folder, entry, exports }) {
   const parts = [`- **${folder}**`];
 
+  if (entry.package) {
+    parts.push(`(\`${entry.package}\`)`);
+  }
   if (entry.purpose) {
     parts.push(`— ${entry.purpose}`);
   }
@@ -215,7 +266,17 @@ function build() {
     fs.readFileSync(path.join(PKG_ROOT, 'package.json'), 'utf8')
   );
   const api = collectPublicApi();
-  const { categories, problems } = resolveCatalog(loadCatalog(), api);
+  const addonApis = Object.fromEntries(
+    Object.entries(ADDON_PACKAGES).map(([name, root]) => [
+      name,
+      collectPublicApi(root),
+    ])
+  );
+  const { categories, problems } = resolveCatalog(
+    loadCatalog(),
+    api,
+    addonApis
+  );
   const template = fs.readFileSync(
     path.join(AI_SRC_DIR, 'SKILL.template.md'),
     'utf8'

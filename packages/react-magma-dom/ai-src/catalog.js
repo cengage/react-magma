@@ -7,8 +7,11 @@
  *               the component instead of building one, so include synonyms
  *   useInstead  optional { need: BetterComponent } to steer similar requests
  *   includes    optional extra folders whose exports belong to this entry
+ *   package     add-on package that exports the component (default: react-magma-dom)
+ *   folder      add-on component folder, when it differs from the entry name
  *
- * Every component folder exported from src/index.ts must appear here;
+ * Every component folder exported from src/index.ts, and from the add-on
+ * packages in scripts/generateAi.js, must appear here;
  * `npm run check-ai` fails otherwise.
  */
 module.exports = {
@@ -372,6 +375,43 @@ module.exports = {
     Transition: {
       purpose: 'framer-motion enter/exit animations',
       keywords: ['animation', 'fade', 'slide', 'collapse animation'],
+    },
+  },
+
+  'Add-on packages': {
+    CarbonChart: {
+      package: '@react-magma/charts',
+      purpose:
+        'Accessible chart (`type`: bar, line, area, pie, donut, gauge, scatter…); `chartToolbar` adds table view, fullscreen and downloads',
+      keywords: [
+        'chart',
+        'graph',
+        'data visualization',
+        'bar chart',
+        'line chart',
+        'pie chart',
+        'dashboard',
+      ],
+    },
+    ChartTable: {
+      package: '@react-magma/charts',
+      purpose:
+        'Parts for a custom chart toolbar and table view; prefer `CarbonChart` `chartToolbar`',
+      keywords: ['chart toolbar', 'chart data table', 'fullscreen chart'],
+    },
+    Dropzone: {
+      package: '@react-magma/dropzone',
+      folder: 'dropzone',
+      purpose:
+        'Drag-and-drop file upload with previews, type/size/count limits and progress',
+      keywords: [
+        'file upload',
+        'drag and drop',
+        'dropzone',
+        'file input',
+        'attachment',
+        'uploader',
+      ],
     },
   },
 };

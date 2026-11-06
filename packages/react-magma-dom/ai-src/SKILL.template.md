@@ -30,6 +30,7 @@ Accessible React component library. This guide is generated for react-magma-dom 
 - Accessibility is built in: form fields take `labelText`, icon-only buttons require `aria-label`, `Heading` takes a semantic `level`.
 - `Hyperlink` takes `to`, not `href`.
 - When an icon is needed, look for it in `react-magma-icons` first and verify its exported name and props in the installed package. Import from `react-magma-icons`; don't draw a replacement or use another icon library unless the project specifically requires it.
+- Charts and file upload ship as separate packages, listed under Add-on packages with their package name. If the package is not installed, propose installing it and ask first. Read its declarations under `node_modules/<package>/dist`. Charts also need `import '@react-magma/charts/dist/charts.css'` once.
 
 Theme, i18n, and other package-level APIs: [setup.md](setup.md).
 
