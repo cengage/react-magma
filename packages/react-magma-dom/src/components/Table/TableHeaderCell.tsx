@@ -50,7 +50,9 @@ export interface TableHeaderCellProps
    */
   testId?: string;
   /**
-   * Width of the component, set by CSS
+   * Width of the component, set by CSS. When provided, column header text that
+   * exceeds this width is truncated with an ellipsis. When omitted, the width is
+   * determined automatically by the table layout and the header text wraps.
    * @default auto
    */
   width?: string | number;
@@ -102,10 +104,16 @@ const StyledTableHeaderCell = styled.th<{
 
   font-size: ${props =>
     props.isRowHeader ? 'inherit' : props.theme.typeScale.size02.fontSize};
-  max-width: ${props => (props.isRowHeader ? 'none' : props.width || '0')};
-  overflow: ${props => (props.isRowHeader ? 'visible' : 'hidden')};
-  text-overflow: ${props => (props.isRowHeader ? 'clip' : 'ellipsis')};
-  white-space: ${props => (props.isRowHeader ? 'normal' : 'nowrap')};
+
+  ${props =>
+    !props.isRowHeader &&
+    props.width &&
+    css`
+      max-width: ${props.width};
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    `}
 
   &:first-child {
     border-radius: ${props =>
@@ -178,11 +186,16 @@ const SortButton = styled.button<{
   }
 `;
 
-const HeaderText = styled.span`
+const HeaderText = styled.span<{ isTruncated?: boolean }>`
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+
+  ${props =>
+    props.isTruncated &&
+    css`
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    `}
 `;
 
 const IconWrapper = styled.span`
@@ -258,7 +271,9 @@ export const TableHeaderCell = React.forwardRef<
           textAlign={align || TableCellAlign.left}
           theme={theme}
         >
-          <HeaderText>{children}</HeaderText>
+          <HeaderText isTruncated={!isRowHeader && !!widthString}>
+            {children}
+          </HeaderText>
           <IconWrapper theme={theme}>{SortIcon}</IconWrapper>
         </SortButton>
       ) : (
