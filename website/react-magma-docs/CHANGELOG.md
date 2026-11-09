@@ -1,5 +1,13 @@
 # Change Log
 
+## 7.0.1-next.6
+
+### Patch Changes
+
+- 9d6039f: chore(AI): add AI agent guidance for Magma components and theme tokens, with setup instructions
+- Updated dependencies [9d6039f]
+  - react-magma-dom@7.1.0-next.9
+
 ## 7.0.1-next.5
 
 ### Patch Changes

@@ -9,6 +9,7 @@
     "react-magma-landing": "1.1.11"
   },
   "changesets": [
+    "ai-agent-guidance",
     "fix-dropdown-menu-a11y",
     "fix-modal-definitionlist-a11y",
     "fix-navtabs-custom-tab-role",

@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.9
+
+### Minor Changes
+
+- 9d6039f: chore(AI): add AI agent guidance for Magma components and theme tokens, with setup instructions
+
 ## 7.1.0-next.8
 
 ### Patch Changes
