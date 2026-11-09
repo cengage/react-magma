@@ -123,6 +123,15 @@ export function Select<T>(props: SelectProps<T>) {
   function stateReducer(state, actionAndChanges) {
     const { type, changes } = actionAndChanges;
 
+    if (
+      disabled &&
+      (type === useSelect.stateChangeTypes.ItemClick ||
+        type === useSelect.stateChangeTypes.MenuKeyDownEnter ||
+        type === useSelect.stateChangeTypes.MenuKeyDownSpaceButton)
+    ) {
+      return { ...changes, selectedItem: state.selectedItem };
+    }
+
     switch (type) {
       case useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter:
         return {
