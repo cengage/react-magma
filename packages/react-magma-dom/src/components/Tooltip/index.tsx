@@ -250,8 +250,6 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     throw new Error('Tooltip children can only be one element.');
   }
 
-  // A description identical to the trigger's accessible name adds no information
-  // and makes screen readers announce the same text twice, so it is skipped.
   const isDescriptionRedundant =
     React.isValidElement(children) &&
     isSameAccessibleText(content, children.props?.['aria-label']);
