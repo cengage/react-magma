@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.8
+
+### Patch Changes
+
+- f53f47ec9: fix(Tooltip): skip `aria-describedby` when the tooltip content matches the trigger's `aria-label` to prevent duplicate screen reader announcements
+
 ## 6.1.0-v6-next.7
 
 ### Patch Changes
