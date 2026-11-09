@@ -1,5 +1,23 @@
 # Change Log
 
+## 7.0.1-next.5
+
+### Patch Changes
+
+- 96527e5: fix(TreeView): use heading markup in stories
+
+## 7.0.1-next.4
+
+### Patch Changes
+
+- 3f41d83: fix(Modal, DefinitionList): resolve axe violations in stories
+
+## 7.0.1-next.3
+
+### Patch Changes
+
+- d5423df: chore(playwright): update Playwright to 1.64.1
+
 ## 7.0.1-next.2
 
 ### Patch Changes

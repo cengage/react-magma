@@ -2,9 +2,11 @@
 import React from 'react';
 
 import { act, render, fireEvent } from '@testing-library/react';
+import { SettingsIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+import { IconButton } from '../IconButton';
 
 import { Tooltip } from '.';
 
@@ -304,6 +306,80 @@ describe('Tooltip', () => {
     );
 
     console.error = originalError;
+  });
+
+  describe('aria-describedby on an icon-only trigger', () => {
+    const focusTrigger = async container => {
+      const trigger = container.querySelector('button');
+
+      await act(async () => {
+        trigger.focus();
+      });
+
+      return trigger;
+    };
+
+    it('should not describe the trigger when the tooltip content matches its aria-label', async () => {
+      const { container, getByRole } = render(
+        <Tooltip content="Settings">
+          <IconButton aria-label="Settings" icon={<SettingsIcon />} />
+        </Tooltip>
+      );
+      const trigger = await focusTrigger(container);
+
+      expect(getByRole('tooltip')).toBeInTheDocument();
+      expect(trigger).not.toHaveAttribute('aria-describedby');
+      expect(trigger).toHaveAccessibleName('Settings');
+      expect(trigger).toHaveAccessibleDescription('');
+    });
+
+    it('should ignore case and surrounding or repeated whitespace when comparing', async () => {
+      const { container } = render(
+        <Tooltip content="  Previous   page ">
+          <IconButton aria-label="previous page" icon={<SettingsIcon />} />
+        </Tooltip>
+      );
+      const trigger = await focusTrigger(container);
+
+      expect(trigger).not.toHaveAttribute('aria-describedby');
+    });
+
+    it('should describe the trigger when the tooltip content differs from its aria-label', async () => {
+      const { container } = render(
+        <Tooltip content="Opens the settings panel">
+          <IconButton aria-label="Settings" icon={<SettingsIcon />} />
+        </Tooltip>
+      );
+      const trigger = await focusTrigger(container);
+
+      expect(trigger).toHaveAccessibleName('Settings');
+      expect(trigger).toHaveAccessibleDescription('Opens the settings panel');
+    });
+
+    it('should describe the trigger when the tooltip content is not a string', async () => {
+      const { container } = render(
+        <Tooltip content={<>Settings</>}>
+          <IconButton aria-label="Settings" icon={<SettingsIcon />} />
+        </Tooltip>
+      );
+      const trigger = await focusTrigger(container);
+
+      expect(trigger).toHaveAccessibleDescription('Settings');
+    });
+
+    it('Does not violate accessibility standards when the description is skipped', async () => {
+      const { container } = render(
+        <Tooltip content="Settings">
+          <IconButton aria-label="Settings" icon={<SettingsIcon />} />
+        </Tooltip>
+      );
+
+      await focusTrigger(container);
+
+      const result = await axe(container.innerHTML);
+
+      expect(result).toHaveNoViolations();
+    });
   });
 
   it('Does not violate accessibility standards', () => {
