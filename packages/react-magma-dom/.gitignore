@@ -2,6 +2,7 @@ node_modules
 .rpt2_cache
 dist
 lib
+ai
 coverage
 *.log
 *.d.ts
