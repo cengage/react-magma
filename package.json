@@ -33,6 +33,7 @@
     "format": "prettier --write --log-level warn \"**/src/**/*.{js,jsx,ts,tsx,mdx,json,html,css,yml,yaml,graphql}\"",
     "getAlias": "node ./packages/react-magma-dom/scripts/getAlias.js",
     "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
+    "pretest": "npm run generate-ai --workspace=react-magma-dom && npm run check-ai --workspace=react-magma-dom",
     "postinstall": "npm run build:lite",
     "playwright:test": "lerna exec --scope playwright -- npx playwright test",
     "playwright:report": "lerna exec --scope playwright -- npx playwright show-report",
