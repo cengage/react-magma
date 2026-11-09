@@ -29,14 +29,14 @@ Add this instruction to the agent's project rules file, such as `AGENTS.md`, `CL
 ```md
 For UI work, use React Magma components and the active Magma theme.
 Before changing UI, read `node_modules/react-magma-dom/ai/SKILL.md`
-and `node_modules/react-magma-dom/ai/styling.md`.
+and `node_modules/react-magma-dom/ai/styling-guide.md`.
 Use Heading and Paragraph for headings and paragraphs, and Magma layout and widgets wherever supported.
 Use theme tokens for spacing, colors, typography and other design values; map intended spacing to the nearest spaceScale token (ties use the smaller value).
 Do not introduce custom fonts, arbitrary design values or cosmetic overrides of Magma components.
 Follow this project's product behavior conventions. Design-system exceptions require an explicit instruction naming their scope.
 ```
 
-React Magma is the required design-system default: use its typography and layout components and read design tokens from the active theme. Keep the application's existing styling tools; the tokens do not require a particular CSS library. Document any intentional project-specific exception with its scope and reason in the project rules. Existing custom CSS alone is not an exception. See `node_modules/react-magma-dom/ai/styling.md` for examples and structural CSS allowances.
+React Magma is the required design-system default: use its typography and layout components and read design tokens from the active theme. Keep the application's existing styling tools; the tokens do not require a particular CSS library. Document any intentional project-specific exception with its scope and reason in the project rules. Existing custom CSS alone is not an exception. See `node_modules/react-magma-dom/ai/styling-guide.md` for examples and structural CSS allowances.
 
 ## Contributing to React Magma
 

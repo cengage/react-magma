@@ -3,11 +3,11 @@
  *
  * Inputs:
  *   - public exports of src/index.ts (resolved with the TypeScript compiler)
- *   - hand-written ai-src/catalog.js, ai-src/SKILL.template.md, ai-src/*.md
+ *   - hand-written ai-src/component-catalog.js, ai-src/skill-template.md, ai-src/*.md
  *
  * Usage:
- *   node scripts/generateAi.js          write ai/ (warns about catalog gaps)
- *   node scripts/generateAi.js --check  verify generated files without writing
+ *   node scripts/generate-skill.js          write ai/ (warns about catalog gaps)
+ *   node scripts/generate-skill.js --check  verify generated files without writing
  */
 const fs = require('fs');
 const path = require('path');
@@ -86,7 +86,7 @@ function collectPublicApi(packageRoot = PKG_ROOT) {
 }
 
 function loadCatalog() {
-  const catalogPath = path.join(AI_SRC_DIR, 'catalog.js');
+  const catalogPath = path.join(AI_SRC_DIR, 'component-catalog.js');
 
   delete require.cache[require.resolve(catalogPath)];
 
@@ -109,7 +109,7 @@ function resolveCatalog(catalog, api, addonApis = {}) {
 
     if (!addon || !addon.components[folder]) {
       problems.push(
-        `catalog.js: "${name}" has no public value exports in ${entry.package}`
+        `component-catalog.js: "${name}" has no public value exports in ${entry.package}`
       );
 
       return [];
@@ -117,7 +117,7 @@ function resolveCatalog(catalog, api, addonApis = {}) {
     const key = `${entry.package}/${folder}`;
 
     if (coveredAddons.has(key)) {
-      problems.push(`catalog.js: "${key}" is listed more than once`);
+      problems.push(`component-catalog.js: "${key}" is listed more than once`);
     }
     coveredAddons.add(key);
 
@@ -130,7 +130,7 @@ function resolveCatalog(catalog, api, addonApis = {}) {
       const exports = folders.flatMap(name => {
         if (catalogFolders.has(name)) {
           problems.push(
-            `catalog.js: "${name}" is listed more than once (in "${category}" and "${catalogFolders.get(name)}")`
+            `component-catalog.js: "${name}" is listed more than once (in "${category}" and "${catalogFolders.get(name)}")`
           );
         } else {
           catalogFolders.set(name, category);
@@ -138,7 +138,7 @@ function resolveCatalog(catalog, api, addonApis = {}) {
 
         if (!api.components[name]) {
           problems.push(
-            `catalog.js: "${name}" has no public value exports in src/index.ts`
+            `component-catalog.js: "${name}" has no public value exports in src/index.ts`
           );
 
           return [];
@@ -153,13 +153,15 @@ function resolveCatalog(catalog, api, addonApis = {}) {
       }
 
       if (!entry.purpose || !entry.keywords || !entry.keywords.length) {
-        problems.push(`catalog.js: "${folder}" needs purpose and keywords`);
+        problems.push(
+          `component-catalog.js: "${folder}" needs purpose and keywords`
+        );
       }
 
       Object.entries(entry.useInstead || {}).forEach(([need, component]) => {
         if (!api.components[component]) {
           problems.push(
-            `catalog.js: "${folder}" useInstead for "${need}" references unknown component "${component}"`
+            `component-catalog.js: "${folder}" useInstead for "${need}" references unknown component "${component}"`
           );
         }
       });
@@ -176,7 +178,7 @@ function resolveCatalog(catalog, api, addonApis = {}) {
 
   missing.forEach(folder => {
     problems.push(
-      `catalog.js: missing entry for exported component folder "${folder}"`
+      `component-catalog.js: missing entry for exported component folder "${folder}"`
     );
   });
 
@@ -185,7 +187,7 @@ function resolveCatalog(catalog, api, addonApis = {}) {
       .filter(folder => !coveredAddons.has(`${packageName}/${folder}`))
       .forEach(folder => {
         problems.push(
-          `catalog.js: missing entry for ${packageName} component folder "${folder}"`
+          `component-catalog.js: missing entry for ${packageName} component folder "${folder}"`
         );
       });
   });
@@ -250,7 +252,7 @@ function renderCatalog(categories) {
 function fillTemplate(template, values) {
   return template.replace(/\{\{(\w+)\}\}/g, (match, key) => {
     if (!(key in values)) {
-      throw new Error(`SKILL.template.md: unknown placeholder ${match}`);
+      throw new Error(`skill-template.md: unknown placeholder ${match}`);
     }
 
     return values[key];
@@ -278,7 +280,7 @@ function build() {
     addonApis
   );
   const template = fs.readFileSync(
-    path.join(AI_SRC_DIR, 'SKILL.template.md'),
+    path.join(AI_SRC_DIR, 'skill-template.md'),
     'utf8'
   );
 
@@ -300,7 +302,7 @@ function build() {
     });
 
   sourceFiles
-    .filter(file => file.endsWith('.md') && file !== 'SKILL.template.md')
+    .filter(file => file.endsWith('.md') && file !== 'skill-template.md')
     .forEach(file => {
       files[file] = fs.readFileSync(path.join(AI_SRC_DIR, file), 'utf8');
     });

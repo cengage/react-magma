@@ -1,5 +1,5 @@
 /**
- * Hand-written part of the AI skill catalog (see scripts/generateAi.js).
+ * Hand-written component catalog for the AI skill (see scripts/generate-skill.js).
  *
  * Shape: { [category]: { [componentFolder]: entry } }
  *   purpose     what the component is for, a few words
@@ -11,7 +11,7 @@
  *   folder      add-on component folder, when it differs from the entry name
  *
  * Every component folder exported from src/index.ts, and from the add-on
- * packages in scripts/generateAi.js, must appear here;
+ * packages in scripts/generate-skill.js, must appear here;
  * `npm run check-ai` fails otherwise.
  */
 module.exports = {

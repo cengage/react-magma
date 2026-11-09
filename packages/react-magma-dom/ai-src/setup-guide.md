@@ -23,7 +23,7 @@ import {
 
 ## Required Magma styling
 
-Use Magma components and the active Magma theme for UI styling. Follow [styling.md](styling.md) for typography, layout, token selection and examples. Existing custom CSS does not authorize a different design system; design-system overrides need an explicit user or project instruction naming their scope.
+Use Magma components and the active Magma theme for UI styling. Follow [styling-guide.md](styling-guide.md) for typography, layout, token selection and examples. Existing custom CSS does not authorize a different design system; design-system overrides need an explicit user or project instruction naming their scope.
 
 ## Theme tokens and styling
 

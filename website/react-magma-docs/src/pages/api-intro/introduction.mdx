@@ -57,7 +57,7 @@ Add this instruction to the rules file used by your agent (for example, `AGENTS.
 ```md
 For UI work, use React Magma components and the active Magma theme.
 Before changing UI, read `node_modules/react-magma-dom/ai/SKILL.md`
-and `node_modules/react-magma-dom/ai/styling.md`.
+and `node_modules/react-magma-dom/ai/styling-guide.md`.
 Use Heading and Paragraph for headings and paragraphs, and Magma layout and widgets wherever supported.
 Use theme tokens for spacing, colors, typography and other design values; map intended spacing to the nearest spaceScale token (ties use the smaller value).
 Do not introduce custom fonts, arbitrary design values or cosmetic overrides of Magma components.
@@ -72,7 +72,7 @@ Use the active Magma theme for colors, typography, spacing and other available d
 
 Custom styles must use tokens instead of arbitrary design values or replacement fonts. Keep the project's current styling tools; using Magma tokens does not require Emotion or another CSS library. Structural values such as `0`, `auto`, percentages and grid ratios remain valid. Explicit user requirements, accessibility constraints and unsupported API needs must be handled and explained rather than forced into an unsuitable token or component.
 
-The installed `node_modules/react-magma-dom/ai/styling.md` includes verified API examples and a review checklist. Keep intentional, scoped product-specific exceptions in the consuming project's rules.
+The installed `node_modules/react-magma-dom/ai/styling-guide.md` includes verified API examples and a review checklist. Keep intentional, scoped product-specific exceptions in the consuming project's rules.
 
 ## Known Issues
 
