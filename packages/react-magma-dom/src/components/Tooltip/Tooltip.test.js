@@ -104,18 +104,30 @@ describe('Tooltip', () => {
   });
 
   it('should show the tooltip on focus and hide it on blur', () => {
+    const onFocus = jest.fn();
+    const onBlur = jest.fn();
     const { container } = render(
-      <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
+      <Tooltip content={CONTENT_TEXT}>
+        <button onFocus={onFocus} onBlur={onBlur}>
+          Test trigger
+        </button>
+      </Tooltip>
     );
-    const tooltipTrigger = container.querySelector('button');
+    const trigger = container.querySelector('button');
 
     expect(
       container.querySelector('div[role="tooltip"]')
     ).not.toBeInTheDocument();
-    fireEvent.focus(tooltipTrigger);
+    fireEvent.focus(trigger);
 
+    expect(onFocus).toHaveBeenCalledTimes(1);
     expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
-    fireEvent.blur(tooltipTrigger);
+    fireEvent.blur(trigger);
+
+    expect(onBlur).toHaveBeenCalledTimes(1);
+    expect(
+      container.querySelector('div[role="tooltip"]')
+    ).not.toBeInTheDocument();
   });
 
   it('should allow for a persistent tooltip that does not hide on blur', () => {
@@ -124,91 +136,91 @@ describe('Tooltip', () => {
         {TRIGGER_ELEMENT}
       </Tooltip>
     );
-    const tooltipTrigger = container.querySelector('button');
+    const trigger = container.querySelector('button');
 
     expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
-
-    fireEvent.mouseEnter(tooltipTrigger);
-
+    fireEvent.mouseEnter(trigger);
+    fireEvent.mouseLeave(trigger);
     expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
 
-    fireEvent.mouseLeave(tooltipTrigger);
+    fireEvent.focus(trigger);
+    fireEvent.blur(trigger);
+    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
 
+    fireEvent.keyDown(trigger, { key: 'Escape' });
     expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
   });
 
-  it('should show the tooltip on mouseenter and hide it on mouseleave trigger button', async () => {
-    const { container } = render(
-      <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
-    );
-    const tooltipTrigger = container.querySelector('button');
+  it.each([undefined, false])(
+    'should show the tooltip on mouseenter and hide it on mouseleave trigger button (open=%s)',
+    async open => {
+      const onMouseEnter = jest.fn();
+      const tooltipRef = React.createRef();
+      const { container } = render(
+        <Tooltip open={open} content={CONTENT_TEXT} ref={tooltipRef}>
+          <button onMouseEnter={onMouseEnter}>Test trigger</button>
+        </Tooltip>
+      );
+      const trigger = container.querySelector('button');
 
-    expect(
-      container.querySelector('div[role="tooltip"]')
-    ).not.toBeInTheDocument();
-
-    fireEvent.mouseEnter(tooltipTrigger);
-
-    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
-
-    fireEvent.mouseLeave(tooltipTrigger);
-
-    await waitFor(() => {
+      expect(tooltipRef.current).toBe(trigger);
       expect(
         container.querySelector('div[role="tooltip"]')
       ).not.toBeInTheDocument();
-    });
-  });
+      fireEvent.mouseEnter(trigger);
+
+      expect(onMouseEnter).toHaveBeenCalledTimes(1);
+      expect(
+        container.querySelector('div[role="tooltip"]')
+      ).toBeInTheDocument();
+      fireEvent.mouseLeave(trigger);
+
+      await waitFor(() => {
+        expect(
+          container.querySelector('div[role="tooltip"]')
+        ).not.toBeInTheDocument();
+      });
+    }
+  );
 
   it('should show the tooltip content on mouseenter and hide it on mouseleave tooltip content', async () => {
     const { container } = render(
       <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
     );
-    const tooltipTrigger = container.querySelector('button');
 
-    expect(
-      container.querySelector('div[role="tooltip"]')
-    ).not.toBeInTheDocument();
+    fireEvent.mouseEnter(container.querySelector('button'));
 
-    fireEvent.mouseEnter(tooltipTrigger);
+    const tooltip = container.querySelector('div[role="tooltip"]');
+    const floating = tooltip.parentElement;
 
-    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
-
-    fireEvent.mouseEnter(container.querySelector('div[role="tooltip"]'));
-
-    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
-    fireEvent.mouseLeave(container.querySelector('div[role="tooltip"]'));
+    fireEvent.mouseEnter(floating);
+    expect(tooltip).toBeInTheDocument();
+    fireEvent.mouseLeave(floating);
 
     await waitFor(() => {
-      expect(
-        container.querySelector('div[role="tooltip"]')
-      ).not.toBeInTheDocument();
+      expect(tooltip).not.toBeInTheDocument();
     });
   });
 
   it('should hide the tooltip when the escape key is pressed', async () => {
+    const onKeyDown = jest.fn();
     const { container } = render(
-      <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
+      <Tooltip content={CONTENT_TEXT} onKeyDown={onKeyDown}>
+        {TRIGGER_ELEMENT}
+      </Tooltip>
     );
-    const tooltipTrigger = container.querySelector('button');
+    const trigger = container.querySelector('button');
 
-    fireEvent.focus(tooltipTrigger);
+    fireEvent.focus(trigger);
 
     const tooltip = container.querySelector('div[role="tooltip"]');
 
     expect(tooltip).toBeInTheDocument();
-
-    fireEvent.keyDown(tooltipTrigger, {
-      key: 'ArrowDown',
-      code: 40,
-    });
-
+    fireEvent.keyDown(trigger, { key: 'ArrowDown', code: 40 });
+    expect(onKeyDown).toHaveBeenCalledTimes(1);
     expect(tooltip).toBeInTheDocument();
 
-    fireEvent.keyDown(tooltipTrigger, {
-      key: 'Escape',
-      keyCode: 27,
-    });
+    fireEvent.keyDown(trigger, { key: 'Escape', keyCode: 27 });
 
     await waitFor(() => {
       expect(tooltip).not.toBeInTheDocument();
