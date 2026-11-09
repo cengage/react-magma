@@ -33,7 +33,7 @@
     "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
     "compiler-checks": "lerna run compiler-checks --concurrency=6 --no-progress",
     "prebuild": "lerna run compiler-checks && lerna run lint --concurrency=6 --no-progress",
-    "pretest": "lerna run compiler-checks --concurrency=6 --no-progress",
+    "pretest": "npm run generate-ai --workspace=react-magma-dom && npm run check-ai --workspace=react-magma-dom && lerna run compiler-checks --concurrency=6 --no-progress",
     "postinstall": "npm run build:lite",
     "playwright:test": "lerna exec --scope playwright -- npx playwright test",
     "playwright:report": "lerna exec --scope playwright -- npx playwright show-report",
