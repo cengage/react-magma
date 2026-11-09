@@ -1,6 +1,5 @@
 ---
-"react-magma-docs": patch
-"react-magma-dom": patch
+"react-magma-dom": minor
 ---
 
 feat(Pagination): improve classic pagination navigation
