@@ -17,6 +17,7 @@
     "fix-treeview-stories-headings",
     "fix-useFocusLock-lost-focus",
     "sync-main-to-dev-7-0-0",
+    "tooltip-skip-duplicate-description",
     "treeview-cursor",
     "treeview-expansion-announcements",
     "treeview-merge-tests",

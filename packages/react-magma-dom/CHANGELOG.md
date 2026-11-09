@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.8
+
+### Patch Changes
+
+- b89eb9a: fix(Tooltip): skip `aria-describedby` when the tooltip content matches the trigger's `aria-label` to prevent duplicate screen reader announcements
+
 ## 7.1.0-next.7
 
 ### Patch Changes
