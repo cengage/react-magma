@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.1-v6-next.7
+
+### Patch Changes
+
+- f94c273b1: docs(changelog): sync the v6 changelog page through v6.0.0
+
 ## 6.0.1-v6-next.6
 
 ### Patch Changes
