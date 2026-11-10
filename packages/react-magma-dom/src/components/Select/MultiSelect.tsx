@@ -272,6 +272,8 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     }),
     // role="combobox" requires aria-controls pointing to the listbox
     'aria-controls': getMenuProps().id,
+    // Label the combobox by its label only; the selected value is already exposed as the combobox value
+    'aria-labelledby': getLabelProps().id,
     disabled: disabled,
   });
 
