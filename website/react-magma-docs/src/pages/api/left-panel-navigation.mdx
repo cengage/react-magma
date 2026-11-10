@@ -1,0 +1,455 @@
+---
+pageTitle: Left Panel Navigation API
+title: Left Panel Navigation
+props:
+  - LeftPanelNavigationProps
+  - LeftPanelNavigationItem
+  - LeftPanelNavigationGroup
+  - LeftPanelNavigationBadge
+---
+
+<PageContent componentName="left_panel_navigation" type="api">
+
+<LeadParagraph>
+  Left Panel Navigation provides persistent, vertical navigation for product
+  layouts. It supports links, expandable sections, grouped child links, badges,
+  logos, collapsed icon-only navigation, inverse styling, and optional content
+  areas above or below the navigation items.
+</LeadParagraph>
+
+## Basic Usage
+
+Use Left Panel Navigation when a product needs a stable set of destinations that
+users will move through repeatedly. The component renders a `nav` landmark and
+uses top-level items for primary destinations or expandable categories.
+
+The `items` prop defines each destination. Use `activeItemId` to identify the
+current page, and `defaultExpandedIds` to open one or more top-level sections by
+default.
+
+```tsx codesandbox=magma
+import React from 'react';
+
+import { LeftPanelNavigation, LeftPanelNavigationItem } from 'react-magma-dom';
+
+const items: LeftPanelNavigationItem[] = [
+  {
+    id: 'dashboard',
+    label: 'Dashboard',
+    to: '#dashboard',
+  },
+  {
+    id: 'content',
+    label: 'Content',
+    items: [
+      {
+        id: 'overview',
+        label: 'Overview',
+        to: '#overview',
+      },
+      {
+        id: 'assignments',
+        label: 'Assignments',
+        to: '#assignments',
+      },
+      {
+        id: 'reports',
+        label: 'Reports',
+        to: '#reports',
+      },
+    ],
+  },
+  {
+    id: 'settings',
+    label: 'Settings',
+    to: '#settings',
+  },
+];
+
+export function Example() {
+  return (
+    <LeftPanelNavigation
+      activeItemId="assignments"
+      aria-label="Course navigation"
+      defaultExpandedIds={['content']}
+      items={items}
+    />
+  );
+}
+```
+
+## Structure
+
+The navigation supports two levels of interaction: top-level items and child
+links inside expandable sections. Keep the hierarchy shallow so users can scan
+quickly. If a destination needs another level of organization, use tabs or other
+navigation within the page content instead of adding a third navigation level.
+
+Expandable sections may contain a flat `items` array or a `groups` array. Groups
+are useful when a section has many related child links and needs lightweight
+labels to improve scanning.
+
+```tsx codesandbox=magma
+import React from 'react';
+
+import { LeftPanelNavigation, LeftPanelNavigationItem } from 'react-magma-dom';
+
+const items: LeftPanelNavigationItem[] = [
+  {
+    id: 'learning',
+    label: 'Learning',
+    groups: [
+      {
+        id: 'coursework',
+        label: 'Coursework',
+        items: [
+          { id: 'modules', label: 'Modules', to: '#modules' },
+          { id: 'assignments', label: 'Assignments', to: '#assignments' },
+          { id: 'quizzes', label: 'Quizzes', to: '#quizzes' },
+        ],
+      },
+      {
+        id: 'performance',
+        label: 'Performance',
+        items: [
+          { id: 'grades', label: 'Grades', to: '#grades' },
+          { id: 'progress', label: 'Progress', to: '#progress' },
+          { id: 'reports', label: 'Reports', to: '#reports' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'help',
+    label: 'Help',
+    to: '#help',
+  },
+];
+
+export function Example() {
+  return (
+    <LeftPanelNavigation
+      activeItemId="progress"
+      defaultExpandedIds={['learning']}
+      items={items}
+    />
+  );
+}
+```
+
+## Links
+
+By default, link items render as anchors. Use `href` for standard links or `to`
+for router-style destinations.
+
+The `linkComponent` prop lets the whole navigation use a routing component such
+as Gatsby `Link`, React Router `Link`, or another app-level link wrapper. An
+individual item can also provide its own `component`.
+
+```tsx codesandbox=magma
+import React from 'react';
+
+import { LeftPanelNavigation, LeftPanelNavigationItem } from 'react-magma-dom';
+
+const RouterLink = ({ to, children, ...rest }) => (
+  <a href={to} {...rest}>
+    {children}
+  </a>
+);
+
+const items: LeftPanelNavigationItem[] = [
+  { id: 'home', label: 'Home', to: '/home' },
+  { id: 'profile', label: 'Profile', to: '/profile' },
+  { id: 'settings', label: 'Settings', to: '/settings' },
+];
+
+export function Example() {
+  return (
+    <LeftPanelNavigation
+      activeItemId="profile"
+      items={items}
+      linkComponent={RouterLink}
+    />
+  );
+}
+```
+
+## Icons and Badges
+
+Add an `icon` to any item when the visual cue helps identify the destination.
+The `iconColor` prop sets a shared icon color for the navigation, and each item
+can override it with its own `iconColor`.
+
+Use the `badge` object to add a label to the right side of a menu item. Badges
+can be used on links or expandable categories.
+
+```tsx codesandbox=magma
+import React from 'react';
+
+import {
+  BadgeColor,
+  LeftPanelNavigation,
+  LeftPanelNavigationItem,
+} from 'react-magma-dom';
+import {
+  CategoryIcon,
+  InsertDriveFileIcon,
+  SettingsIcon,
+} from 'react-magma-icons';
+
+const items: LeftPanelNavigationItem[] = [
+  {
+    id: 'content',
+    icon: <CategoryIcon />,
+    label: 'Content',
+    badge: {
+      color: BadgeColor.info,
+      label: 'New!',
+    },
+    items: [
+      {
+        id: 'lesson-one',
+        icon: <InsertDriveFileIcon />,
+        label: 'Lesson 1',
+        to: '#lesson-one',
+      },
+      {
+        id: 'lesson-two',
+        icon: <InsertDriveFileIcon />,
+        label: 'Lesson 2',
+        to: '#lesson-two',
+      },
+    ],
+  },
+  {
+    id: 'settings',
+    icon: <SettingsIcon />,
+    label: 'Settings',
+    to: '#settings',
+  },
+];
+
+export function Example() {
+  return (
+    <LeftPanelNavigation
+      activeItemId="lesson-one"
+      defaultExpandedIds={['content']}
+      iconColor="neutral700"
+      items={items}
+    />
+  );
+}
+```
+
+## Collapsible Navigation
+
+Set `isCollapsible` to add a control that collapses the navigation into an
+icon-only view. Collapsed navigation works best when top-level items have icons.
+Items without icons are hidden in the collapsed state.
+
+When a collapsed top-level item has children, those children open in a dropdown
+to the right of the navigation. The component also displays tooltips for
+collapsed icon buttons.
+
+```tsx codesandbox=magma
+import React from 'react';
+
+import { LeftPanelNavigation, LeftPanelNavigationItem } from 'react-magma-dom';
+import {
+  CategoryIcon,
+  HomeIcon,
+  InsertDriveFileIcon,
+  SettingsIcon,
+} from 'react-magma-icons';
+
+const items: LeftPanelNavigationItem[] = [
+  {
+    id: 'home',
+    icon: <HomeIcon />,
+    label: 'Home',
+    to: '#home',
+  },
+  {
+    id: 'content',
+    icon: <CategoryIcon />,
+    label: 'Content',
+    items: [
+      {
+        id: 'lesson-one',
+        icon: <InsertDriveFileIcon />,
+        label: 'Lesson 1',
+        to: '#lesson-one',
+      },
+      {
+        id: 'lesson-two',
+        icon: <InsertDriveFileIcon />,
+        label: 'Lesson 2',
+        to: '#lesson-two',
+      },
+    ],
+  },
+  {
+    id: 'settings',
+    icon: <SettingsIcon />,
+    label: 'Settings',
+    to: '#settings',
+  },
+];
+
+export function Example() {
+  return (
+    <LeftPanelNavigation
+      activeItemId="home"
+      hasRightBorder
+      iconColor="neutral700"
+      isCollapsible
+      items={items}
+    />
+  );
+}
+```
+
+## Logo and Width
+
+Use `logo` to add brand or product identity to the top of the panel. If the logo
+needs a specific rendered size, use `logoWidth`.
+
+The expanded panel width defaults to `280px`. Use the `width` prop when a product
+needs a narrower or wider navigation panel.
+
+```tsx codesandbox=magma
+import React from 'react';
+
+import { LeftPanelNavigation } from 'react-magma-dom';
+
+const items = [
+  { id: 'overview', label: 'Overview', to: '#overview' },
+  { id: 'activity', label: 'Activity', to: '#activity' },
+  { id: 'settings', label: 'Settings', to: '#settings' },
+];
+
+export function Example() {
+  return (
+    <LeftPanelNavigation
+      activeItemId="overview"
+      hasRightBorder
+      items={items}
+      logo={<strong>Product Name</strong>}
+      logoWidth={160}
+      width={320}
+    />
+  );
+}
+```
+
+## Top Content and Footer
+
+Use `topContent` for content that should appear above the navigation items but
+still scroll with them, such as a course, workspace, or account context. Use
+`footer` for content that should stay pinned to the bottom of the panel, such as
+an account menu or role switcher.
+
+Both props can receive a React node or a render function. Render functions
+receive the current `isCollapsed` and `isInverse` state.
+
+```tsx codesandbox=magma
+import React from 'react';
+
+import { LeftPanelNavigation, magma } from 'react-magma-dom';
+
+const items = [
+  { id: 'home', label: 'Home', to: '#home' },
+  { id: 'reports', label: 'Reports', to: '#reports' },
+  { id: 'settings', label: 'Settings', to: '#settings' },
+];
+
+export function Example() {
+  return (
+    <LeftPanelNavigation
+      activeItemId="home"
+      height="100vh"
+      items={items}
+      topContent={({ isCollapsed }) =>
+        isCollapsed ? null : (
+          <div style={{ padding: magma.spaceScale.spacing05 }}>
+            <strong>Biology</strong>
+            <div>Section 205-3</div>
+          </div>
+        )
+      }
+      footer={({ isCollapsed }) =>
+        isCollapsed ? null : (
+          <div>
+            <strong>Olivia Johnson</strong>
+            <div>Instructor</div>
+          </div>
+        )
+      }
+    />
+  );
+}
+```
+
+## Inverse
+
+Use `isInverse` when the navigation is placed on a dark background. When using
+inverse navigation, make sure icons, logos, custom top content, and footer
+content also meet color contrast requirements.
+
+```tsx codesandbox=magma
+import React from 'react';
+
+import { LeftPanelNavigation } from 'react-magma-dom';
+
+const items = [
+  { id: 'home', label: 'Home', to: '#home' },
+  { id: 'content', label: 'Content', to: '#content' },
+  { id: 'settings', label: 'Settings', to: '#settings' },
+];
+
+export function Example() {
+  return (
+    <LeftPanelNavigation
+      activeItemId="home"
+      height="100vh"
+      isInverse
+      items={items}
+    />
+  );
+}
+```
+
+## Accessibility
+
+Provide a clear accessible name for each navigation landmark when more than one
+navigation is present on a page. You can set this with `aria-label`.
+
+Use `activeItemId` or `isCurrent` so the current destination is communicated
+with `aria-current="page"`. When the panel is collapsible, keep the default
+expand and collapse labels or provide product-specific labels with
+`expandButtonLabel` and `collapseButtonLabel`.
+
+## Left Panel Navigation Props
+
+**This component uses `forwardRef`. The ref is applied to the wrapping `nav`
+element.**
+
+All of the
+[global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes)
+can be provided as props and will be applied to the wrapping `nav` element.
+
+<LeftPanelNavigationProps />
+
+## Left Panel Navigation Item Props
+
+<LeftPanelNavigationItem />
+
+## Left Panel Navigation Group Props
+
+<LeftPanelNavigationGroup />
+
+## Left Panel Navigation Badge Props
+
+<LeftPanelNavigationBadge />
+
+</PageContent>
