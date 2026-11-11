@@ -124,65 +124,6 @@ Some dropdowns benefit from organizing the choices or options into groups, and t
   </div>
 </div>
 
-### Width
-
-A dropdown will stretch horizontally by default to fit the longest item in the list. If you know the content of that dropdown is going to cause it to stretch beyond the boundaries of the browser window, you may set a width on that dropdown.
-
-**Note:** For Responsive applications, dropdowns should have a width no greater than 320px.
-
-<div className="two-col">
-  <div className="row">
-    <div className="col col-1">
-      <figure>
-        <img
-          src="../../images/dropdowns/menu-too-wide.png"
-          alt=" "
-        />
-        <figcaption>
-          <p className="title title-incorrect">Incorrect</p>
-          <p>
-            Don't let menus extend beyond the boundaries of the browser window
-            because of long menu labels or other wide content.
-          </p>
-        </figcaption>
-      </figure>
-    </div>
-    <div className="col col-2">
-      <figure>
-        <img
-          src="../../images/dropdowns/menu-item-wrapped.png"
-          alt=" "
-        />
-        <figcaption>
-          <p className="title title-correct">Correct</p>
-          <p>
-            Set the width of the dropdown to an appropriate value for where it's
-            placed in the UI.
-          </p>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-  <div className="row">
-    <div className="col col-1">
-      <figure>
-        <img
-          src="../../images/dropdowns/menu-adjust-placement.png"
-          alt=" "
-        />
-        <figcaption>
-          <p className="title title-correct">Correct</p>
-          <p>
-            You can change how the menu aligns with the button to ensure it
-            doesn't spill outside the browser viewport.
-          </p>
-        </figcaption>
-      </figure>
-    </div>
-    <div className="col col-2" />
-  </div>
-</div>
-
 ### Height
 
 Dropdowns have a default max-height of 250px and will scroll if necessary. This helps prevent extremely long lists of choices from stretching beyond the top and bottom boundaries of the browser window. 250px is enough to show an average of 6 single line menu choices at once. The max-height can be easily changed if a different value would improve the experience.
@@ -301,48 +242,5 @@ Other button variants may be used as a trigger for a dropdown menu. Caution shou
     </div>
   </div>
 </div>
-
----
-
-## Positioning & Alignment
-
-Dropdowns are positioned relative to the trigger element that is clicked on to open it.
-
-A dropdown is typically displayed below the trigger element, and the left edge of the dropdown is aligned with the left edge of the trigger element. To make sure dropdowns don’t become obscured by running off the edge of the browser, you may position the dropdown to the left, right, or above the trigger element. You may also change the alignment to the right, top, or bottom edges.
-
-<figure>
-  <img
-    src="../../images/dropdowns/dropdown-alignment-1.png"
-    alt=" "
-  />
-  <figcaption>
-    <p>Dropdowns can be left or right aligned.</p>
-  </figcaption>
-</figure>
-
-<figure>
-  <img
-    src="../../images/dropdowns/dropdown-alignment-2.png"
-    alt=" "
-  />
-  <figcaption>
-    <p>
-      Dropdowns can be positioned above the trigger element. If using a button,
-      you should use the dropup button style.
-    </p>
-  </figcaption>
-</figure>
-
-<figure>
-  <img
-    src="../../images/dropdowns/dropdown-alignment-3.png"
-    alt=" "
-  />
-  <figcaption>
-    <p>
-      Dropdowns can be positioned to the left or right of the trigger element.
-    </p>
-  </figcaption>
-</figure>
 
 </PageContent>

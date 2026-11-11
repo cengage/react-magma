@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="250" height="125" viewBox="0 0 250 125" role="img" aria-labelledby="title description">
+  <title id="title">Cat illustration</title>
+  <desc id="description">A friendly orange cat sitting against a pale blue background.</desc>
+  <rect width="250" height="125" fill="#e8f5fb"/>
+  <circle cx="211" cy="24" r="12" fill="#ffd166"/>
+  <path d="M0 101c31-15 60-13 89 1 31 15 65 15 101-1 23-10 43-10 60-3v27H0z" fill="#bde5d1"/>
+  <path d="M105 91c-6 2-14 8-17 17" fill="none" stroke="#c9662d" stroke-width="8" stroke-linecap="round"/>
+  <ellipse cx="125" cy="89" rx="31" ry="27" fill="#e9823b"/>
+  <path d="M100 53l7-22 17 15 20-14 5 24z" fill="#e9823b"/>
+  <circle cx="125" cy="61" r="28" fill="#f49752"/>
+  <path d="M105 42l3-9 8 8zm29 0 9-8 2 11z" fill="#f6c1a0"/>
+  <ellipse cx="115" cy="59" rx="3" ry="5" fill="#102a43"/>
+  <ellipse cx="136" cy="59" rx="3" ry="5" fill="#102a43"/>
+  <path d="M122 68l4 3 4-3" fill="#d35d6e"/>
+  <path d="M126 71c-1 5-6 6-9 3m9-3c1 5 6 6 9 3" fill="none" stroke="#7a3b24" stroke-width="2" stroke-linecap="round"/>
+  <path d="M113 69L94 65m19 9-20 2m46-7 19-4m-19 9 20 2" fill="none" stroke="#7a3b24" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M107 103v14m37-14v14" stroke="#c9662d" stroke-width="9" stroke-linecap="round"/>
+</svg>
