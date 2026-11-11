@@ -5,12 +5,9 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
 import { Spinner } from '../Spinner';
+import { TypographyContextVariant, TypographyVisualStyle } from '../Typography';
 import {
-  TypographyContextVariant,
-  TypographyVisualStyle,
-} from '../Typography';
-import {
-  getIllustrationIconColor,
+  getLoadingSpinnerColor,
   StyledActions,
   StyledEmptyState,
   StyledHeader,
@@ -76,7 +73,7 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
         >
           {isLoading ? (
             <Spinner
-              color={getIllustrationIconColor({ isInverse, isDanger, theme })}
+              color={getLoadingSpinnerColor({ isInverse, isDanger, theme })}
               isInverse={isInverse}
               size={48}
             />

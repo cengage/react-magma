@@ -191,7 +191,20 @@ describe('EmptyState', () => {
     it('should render loading spinner with inverse color', () => {
       const { container } = render(<EmptyState isLoading isInverse />);
 
+      expect(container.querySelector('[role="img"]')).toHaveStyleRule(
+        'border',
+        `2px solid ${magma.colors.neutral0}`
+      );
       expect(container).toMatchSnapshot();
+    });
+
+    it('should render inverse danger loading spinner with danger color', () => {
+      const { container } = render(<EmptyState isLoading isDanger isInverse />);
+
+      expect(container.querySelector('[role="img"]')).toHaveStyleRule(
+        'border',
+        `2px solid ${magma.colors.red500}`
+      );
     });
   });
 
