@@ -804,7 +804,7 @@ Narrative type uses Noto Serif but is otherwise styled the same as the default P
 
 The headings presets above are assigned by default to H1 through H6 in the <Link to="/api/heading/">Headings component</Link>. But it's relatively common to need a specific heading type in the markup, but not want the default styling. For this reason we have made it very easy to change which styling preset you use in the headings component.
 
-One example of this is in the <Link to="/api/modal/">Modal component</Link>. For optimal accessibility the title of the modal needs to be an H1, but we definitely don't want it to be styled with text that large. So we use an H1, but apply the Productive Heading Small style to it. This flexibility allows consumers of Magma to design using the styles that work best for the UI, but still have a clear informational hierarchy for assistive technologies.
+One example of this is in the <Link to="/api/modal/">Modal component</Link>. For optimal accessibility the title of the modal needs to be an H2, but we definitely don't want it to be styled with text that large. So we use an H2, but apply the Productive Heading Small style to it. This flexibility allows consumers of Magma to design using the styles that work best for the UI, but still have a clear informational hierarchy for assistive technologies.
 
 <figure>
   <img src="../../images/typography/modal-title-style.png" alt=" " />
@@ -838,9 +838,22 @@ Our primary typeface is Inter. It’s clear and approachable and works well for 
   Download Inter
 </a>
 
-Inter was designed for computer screens. Its tall x-height and carefully drawn
-punctuation support legibility across interface sizes, while its broad range of
-weights makes it suitable for both text and display use.
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
+      <figure>
+        <img src="../../images/typography/base-font-characters.png" alt=" " />
+      </figure>
+    </div>
+    <div className="col col-2">
+      <p>
+        Inter was designed for computer screens. Its tall x-height and carefully
+        drawn punctuation support legibility across interface sizes, while its
+        broad range of weights makes it suitable for both text and display use.
+      </p>
+    </div>
+  </div>
+</div>
 
 ### Noto Serif
 
@@ -984,7 +997,7 @@ Type color should be carefully considered, with legibility and accessibility as 
       <figure>
         <img src="../../images/typography/text-color-meaning.png" alt=" " />
         <figcaption>
-          <p className="title title-correct">Correct</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>
             Appropriate color usage can help reinforce the meaning of text, but
             is not a replacement for clear text and other helpful visual aids

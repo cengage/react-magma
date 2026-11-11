@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, waitFor } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { useFocusLock } from './useFocusLock';
@@ -210,6 +210,74 @@ const NestedFocusLocks = () => {
           <Button testId="test-id-inner-last">Inner last</Button>
         </div>
       )}
+    </div>
+  );
+};
+
+const TEST_ID_INPUT_INSIDE_MODAL = 'test-id-input-inside';
+const TEST_ID_SUBMIT_BUTTON_INSIDE_MODAL = 'test-id-submit-button-inside';
+
+/**
+ * Emulates the browser moving focus to `<body>`, which jsdom does not do for disabled elements.
+ */
+const dropFocusToBody = element => {
+  if (document.activeElement !== element) {
+    return;
+  }
+
+  const temp = document.createElement('button');
+
+  document.body.appendChild(temp);
+  temp.focus();
+  temp.remove();
+};
+
+const SubmitButtonBecomesDisabled = ({ withHeader = false }) => {
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const headerRef = React.useRef();
+  const focus = useFocusLock(true, withHeader ? headerRef : undefined);
+
+  return (
+    <>
+      <Button testId={TEST_ID_BUTTON_OUTSIDE_MODAL}>Outside the lock</Button>
+      <div ref={focus}>
+        {withHeader && (
+          <h2 ref={headerRef} tabIndex={-1}>
+            Lock heading
+          </h2>
+        )}
+        <input data-testid={TEST_ID_INPUT_INSIDE_MODAL} aria-label="Name" />
+        <Button
+          testId={TEST_ID_SUBMIT_BUTTON_INSIDE_MODAL}
+          disabled={isSubmitting}
+          onClick={() => setIsSubmitting(true)}
+        >
+          Submit
+        </Button>
+        <Button>Cancel</Button>
+      </div>
+    </>
+  );
+};
+
+const NestedLockWithDisablingButton = () => {
+  const [isDisabled, setIsDisabled] = React.useState(false);
+  const outerFocus = useFocusLock(true);
+  const innerFocus = useFocusLock(true);
+
+  return (
+    <div ref={outerFocus}>
+      <Button testId="test-id-outer-button">Outer button</Button>
+      <div ref={innerFocus}>
+        <Button testId="test-id-inner-first">Inner first</Button>
+        <Button
+          testId="test-id-inner-disabling"
+          disabled={isDisabled}
+          onClick={() => setIsDisabled(true)}
+        >
+          Inner disabling
+        </Button>
+      </div>
     </div>
   );
 };
@@ -474,5 +542,126 @@ describe('useFocusLock', () => {
     await userEvent.tab();
 
     expect(getByText('Test text')).toHaveFocus();
+  });
+
+  describe('when focus is lost', () => {
+    // jsdom returns false when `<body>` is focused, unlike browsers
+    beforeEach(() => {
+      jest.spyOn(document, 'hasFocus').mockReturnValue(true);
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('should move focus back inside the lock when the focused button becomes disabled', async () => {
+      const { getByTestId } = render(<SubmitButtonBecomesDisabled />);
+
+      const input = getByTestId(TEST_ID_INPUT_INSIDE_MODAL);
+      const submitButton = getByTestId(TEST_ID_SUBMIT_BUTTON_INSIDE_MODAL);
+
+      await waitFor(() => expect(input).toHaveFocus());
+
+      await userEvent.click(submitButton);
+
+      expect(submitButton).toBeDisabled();
+      dropFocusToBody(submitButton);
+
+      expect(document.body).toHaveFocus();
+      await waitFor(() => expect(input).toHaveFocus());
+    });
+
+    it('should move focus to the header when one is provided', async () => {
+      const { getByTestId, getByText } = render(
+        <SubmitButtonBecomesDisabled withHeader />
+      );
+
+      const header = getByText('Lock heading');
+      const submitButton = getByTestId(TEST_ID_SUBMIT_BUTTON_INSIDE_MODAL);
+
+      await waitFor(() => expect(header).toHaveFocus());
+
+      await userEvent.click(submitButton);
+      dropFocusToBody(submitButton);
+
+      expect(document.body).toHaveFocus();
+      await waitFor(() => expect(header).toHaveFocus());
+    });
+
+    it('should keep Tab inside the lock after the focused button becomes disabled', async () => {
+      const { getByTestId } = render(<SubmitButtonBecomesDisabled />);
+
+      const input = getByTestId(TEST_ID_INPUT_INSIDE_MODAL);
+      const submitButton = getByTestId(TEST_ID_SUBMIT_BUTTON_INSIDE_MODAL);
+      const buttonOutside = getByTestId(TEST_ID_BUTTON_OUTSIDE_MODAL);
+
+      await waitFor(() => expect(input).toHaveFocus());
+
+      await userEvent.click(submitButton);
+      dropFocusToBody(submitButton);
+
+      expect(document.body).toHaveFocus();
+
+      // Tab before the delayed check runs
+      fireEvent.keyDown(document.body, { key: 'Tab' });
+
+      expect(buttonOutside).not.toHaveFocus();
+      expect(input).toHaveFocus();
+    });
+
+    it('should not pull focus back when the last focused element can still hold focus', async () => {
+      const { getByTestId } = render(<SubmitButtonBecomesDisabled />);
+
+      const input = getByTestId(TEST_ID_INPUT_INSIDE_MODAL);
+
+      await waitFor(() => expect(input).toHaveFocus());
+
+      // e.g. a click on a non-focusable area
+      input.blur();
+
+      await new Promise(resolve => setTimeout(resolve, 150));
+
+      expect(document.body).toHaveFocus();
+    });
+
+    it('should not move focus while the document does not have focus', async () => {
+      const { getByTestId } = render(<SubmitButtonBecomesDisabled />);
+
+      const input = getByTestId(TEST_ID_INPUT_INSIDE_MODAL);
+      const submitButton = getByTestId(TEST_ID_SUBMIT_BUTTON_INSIDE_MODAL);
+
+      await waitFor(() => expect(input).toHaveFocus());
+
+      await userEvent.click(submitButton);
+
+      // e.g. switching to another window
+      document.hasFocus.mockReturnValue(false);
+      dropFocusToBody(submitButton);
+
+      await new Promise(resolve => setTimeout(resolve, 150));
+
+      expect(document.body).toHaveFocus();
+    });
+
+    it('should restore focus inside the nested lock, not the outer one', async () => {
+      const { getByTestId } = render(<NestedLockWithDisablingButton />);
+
+      const disablingButton = getByTestId('test-id-inner-disabling');
+
+      await waitFor(() =>
+        expect(getByTestId('test-id-outer-button')).toHaveFocus()
+      );
+
+      await userEvent.click(disablingButton);
+
+      expect(disablingButton).toBeDisabled();
+      dropFocusToBody(disablingButton);
+
+      expect(document.body).toHaveFocus();
+      await waitFor(() =>
+        expect(getByTestId('test-id-inner-first')).toHaveFocus()
+      );
+      expect(getByTestId('test-id-outer-button')).not.toHaveFocus();
+    });
   });
 });

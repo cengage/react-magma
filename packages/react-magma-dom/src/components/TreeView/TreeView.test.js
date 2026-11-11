@@ -1442,6 +1442,117 @@ describe('TreeView', () => {
         'false'
       );
     });
+
+    describe('when multiselect, selection state is exposed only once', () => {
+      it('hides the underlying checkbox input from assistive technology', () => {
+        const { getByTestId } = render(
+          getTreeItemsMultiLevel({
+            selectable: TreeViewSelectable.multi,
+            initialExpandedItems: ['item1'],
+          })
+        );
+
+        expect(getByTestId('item1-checkbox')).toHaveAttribute(
+          'aria-hidden',
+          'true'
+        );
+        expect(getByTestId('item-child1-checkbox')).toHaveAttribute(
+          'aria-hidden',
+          'true'
+        );
+      });
+
+      it('exposes no checkbox role inside the tree', () => {
+        const { getByTestId, queryAllByRole } = render(
+          getTreeItemsMultiLevel({
+            selectable: TreeViewSelectable.multi,
+            initialExpandedItems: ['item1', 'item2', 'item3'],
+          })
+        );
+
+        expect(getByTestId('item1-checkbox')).toBeInTheDocument();
+        expect(queryAllByRole('checkbox')).toHaveLength(0);
+      });
+
+      it('keeps the hidden input out of the tree item interactive elements', () => {
+        const { getByTestId } = render(
+          getTreeItemsMultiLevel({ selectable: TreeViewSelectable.multi })
+        );
+
+        expect(getByTestId('item1-checkbox')).toHaveAttribute('tabindex', '-1');
+      });
+
+      it('does not let a mouse click move focus into the hidden checkbox', async () => {
+        const { getByTestId } = render(
+          getTreeItemsMultiLevel({ selectable: TreeViewSelectable.multi })
+        );
+
+        const checkbox = getByTestId('item1-checkbox');
+
+        await userEvent.click(getByTestId('item1-label'));
+
+        expect(checkbox).not.toHaveFocus();
+        expect(document.activeElement).not.toBe(checkbox);
+        expect(getByTestId('item1')).toHaveFocus();
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'true');
+      });
+
+      it('leaves focusable additional content clickable', async () => {
+        const { getByTestId } = render(
+          <TreeView selectable={TreeViewSelectable.multi} testId={testId}>
+            <TreeItem
+              label="Node 1"
+              itemId="item1"
+              testId="item1"
+              additionalContent={
+                <button data-testid="extra-button">Extra</button>
+              }
+            />
+          </TreeView>
+        );
+
+        await userEvent.click(getByTestId('extra-button'));
+
+        expect(getByTestId('extra-button')).toHaveFocus();
+      });
+
+      it('reports the state on the tree item, in sync with the checkbox', async () => {
+        const { getByTestId } = render(
+          getTreeItemsMultiLevel({
+            selectable: TreeViewSelectable.multi,
+            initialExpandedItems: ['item1'],
+          })
+        );
+
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('item1-checkbox')).not.toBeChecked();
+
+        await userEvent.click(getByTestId('item1-checkbox'));
+
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('item1-checkbox')).toBeChecked();
+
+        await userEvent.click(getByTestId('item-child1-checkbox'));
+
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('item1-checkbox')).not.toBeChecked();
+      });
+
+      it('does not violate detectable accessibility standards', async () => {
+        const { container } = render(
+          getTreeItemsMultiLevel({
+            selectable: TreeViewSelectable.multi,
+            initialExpandedItems: ['item1', 'item2', 'item3'],
+          })
+        );
+
+        // Passing markup instead makes jest-axe swap `document.body` for a
+        // static copy, detaching the container for the following tests.
+        const results = await axe(container);
+
+        expect(results).toHaveNoViolations();
+      });
+    });
   });
 
   describe('isInverse', () => {
@@ -3668,15 +3779,29 @@ describe('TreeView', () => {
 
       expect(asFragment()).toMatchSnapshot();
 
-      expect(getByLabelText('item-title-1')).toBeInTheDocument();
-      expect(getByLabelText('item-title-2')).toBeInTheDocument();
-      expect(getByLabelText('item-title-3')).toBeInTheDocument();
-      expect(getByLabelText('item-title-4')).toBeInTheDocument();
-      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-1', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-2', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-3', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-4', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-5', { selector: 'input' })
+      ).toBeInTheDocument();
 
       await userEvent.click(getByTestId('showAllBtn'));
-      expect(getByLabelText('item-title-6')).toBeInTheDocument();
-      await userEvent.click(getByLabelText('item-title-6'));
+      expect(
+        getByLabelText('item-title-6', { selector: 'input' })
+      ).toBeInTheDocument();
+      await userEvent.click(
+        getByLabelText('item-title-6', { selector: 'input' })
+      );
       expect(getByTestId('item-id-6')).toHaveAttribute('aria-checked', 'true');
       expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
     });
@@ -3698,16 +3823,30 @@ describe('TreeView', () => {
 
       expect(asFragment()).toMatchSnapshot();
 
-      expect(getByLabelText('item-title-1')).toBeInTheDocument();
-      expect(getByLabelText('item-title-2')).toBeInTheDocument();
-      expect(getByLabelText('item-title-3')).toBeInTheDocument();
-      expect(getByLabelText('item-title-4')).toBeInTheDocument();
-      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-1', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-2', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-3', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-4', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-5', { selector: 'input' })
+      ).toBeInTheDocument();
 
       expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
       await userEvent.click(getByTestId('showAllBtn'));
-      expect(getByLabelText('item-title-6')).toBeInTheDocument();
-      await userEvent.click(getByLabelText('item-title-6'));
+      expect(
+        getByLabelText('item-title-6', { selector: 'input' })
+      ).toBeInTheDocument();
+      await userEvent.click(
+        getByLabelText('item-title-6', { selector: 'input' })
+      );
       expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
       expect(onSelectedItemChange).toHaveBeenCalledWith([
         {
@@ -3738,17 +3877,33 @@ describe('TreeView', () => {
 
       expect(asFragment()).toMatchSnapshot();
 
-      expect(getByLabelText('item-title-1')).toBeInTheDocument();
-      expect(getByLabelText('item-title-2')).toBeInTheDocument();
-      expect(getByLabelText('item-title-3')).toBeInTheDocument();
-      expect(getByLabelText('item-title-4')).toBeInTheDocument();
-      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-1', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-2', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-3', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-4', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-5', { selector: 'input' })
+      ).toBeInTheDocument();
 
       expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
-      await userEvent.click(getByLabelText('item-title-2'));
+      await userEvent.click(
+        getByLabelText('item-title-2', { selector: 'input' })
+      );
       await userEvent.click(getByTestId('showAllBtn'));
-      expect(getByLabelText('item-title-6')).toBeInTheDocument();
-      await userEvent.click(getByLabelText('item-title-6'));
+      expect(
+        getByLabelText('item-title-6', { selector: 'input' })
+      ).toBeInTheDocument();
+      await userEvent.click(
+        getByLabelText('item-title-6', { selector: 'input' })
+      );
       expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'false');
       expect(onSelectedItemChange).toHaveBeenCalledWith([
         {
@@ -3775,16 +3930,30 @@ describe('TreeView', () => {
 
       expect(asFragment()).toMatchSnapshot();
 
-      expect(getByLabelText('item-title-1')).toBeInTheDocument();
-      expect(getByLabelText('item-title-2')).toBeInTheDocument();
-      expect(getByLabelText('item-title-3')).toBeInTheDocument();
-      expect(getByLabelText('item-title-4')).toBeInTheDocument();
-      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-1', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-2', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-3', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-4', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-5', { selector: 'input' })
+      ).toBeInTheDocument();
 
       expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
       await userEvent.click(getByTestId('showAllBtn'));
-      expect(getByLabelText('item-title-6')).toBeInTheDocument();
-      await userEvent.click(getByLabelText('item-title-6'));
+      expect(
+        getByLabelText('item-title-6', { selector: 'input' })
+      ).toBeInTheDocument();
+      await userEvent.click(
+        getByLabelText('item-title-6', { selector: 'input' })
+      );
       expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
       await userEvent.click(getByTestId('showAllBtn'));
       expect(onSelectedItemChange).toHaveBeenCalledTimes(2);
@@ -3812,26 +3981,44 @@ describe('TreeView', () => {
 
       expect(asFragment()).toMatchSnapshot();
 
-      expect(getByLabelText('item-title-1')).toBeInTheDocument();
-      expect(getByLabelText('item-title-2')).toBeInTheDocument();
-      expect(getByLabelText('item-title-3')).toBeInTheDocument();
-      expect(getByLabelText('item-title-4')).toBeInTheDocument();
-      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-1', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-2', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-3', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-4', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-5', { selector: 'input' })
+      ).toBeInTheDocument();
 
       await userEvent.click(getByTestId('showAllBtn'));
-      expect(getByLabelText('item-title-7')).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-7', { selector: 'input' })
+      ).toBeInTheDocument();
 
-      await userEvent.click(getByLabelText('item-title-7'));
+      await userEvent.click(
+        getByLabelText('item-title-7', { selector: 'input' })
+      );
       await userEvent.click(getByTestId('item-id-7-expand'));
       expect(getByTestId('item-id-8')).toHaveAttribute('aria-checked', 'true');
       expect(getByTestId('item-id-9')).toHaveAttribute('aria-checked', 'true');
 
-      await userEvent.click(getByLabelText('item-title-7'));
+      await userEvent.click(
+        getByLabelText('item-title-7', { selector: 'input' })
+      );
       expect(getByTestId('item-id-8')).toHaveAttribute('aria-checked', 'false');
       expect(getByTestId('item-id-9')).toHaveAttribute('aria-checked', 'false');
 
       await userEvent.click(getByTestId('item-id-9-expand'));
-      await userEvent.click(getByLabelText('item-title-10'));
+      await userEvent.click(
+        getByLabelText('item-title-10', { selector: 'input' })
+      );
       expect(getByTestId('item-id-10')).toHaveAttribute('aria-checked', 'true');
       expect(getByTestId('item-id-9')).toHaveAttribute('aria-checked', 'true');
       expect(getByTestId('item-id-7')).toHaveAttribute('aria-checked', 'mixed');
@@ -3850,20 +4037,32 @@ describe('TreeView', () => {
 
       expect(asFragment()).toMatchSnapshot();
 
-      expect(getByLabelText('item-title-1')).toBeInTheDocument();
-      expect(getByLabelText('item-title-2')).toBeInTheDocument();
-      expect(getByLabelText('item-title-3')).toBeInTheDocument();
-      expect(getByLabelText('item-title-4')).toBeInTheDocument();
-      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-1', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-2', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-3', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-4', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-5', { selector: 'input' })
+      ).toBeInTheDocument();
 
       userEvent.click(getByText('Expand All'));
 
       let expandedItem = null;
 
       await waitFor(() => {
-        expect(getByLabelText('item-title-6')).toBeInTheDocument();
+        expect(
+          getByLabelText('item-title-6', { selector: 'input' })
+        ).toBeInTheDocument();
 
-        expandedItem = getByLabelText('item-title-4.1');
+        expandedItem = getByLabelText('item-title-4.1', { selector: 'input' });
 
         expect(expandedItem).not.toBeNull();
         expect(expandedItem).toBeInTheDocument();
@@ -3888,24 +4087,46 @@ describe('TreeView', () => {
 
       expect(asFragment()).toMatchSnapshot();
 
-      expect(getByLabelText('item-title-1')).toBeInTheDocument();
-      expect(getByLabelText('item-title-2')).toBeInTheDocument();
-      expect(getByLabelText('item-title-3')).toBeInTheDocument();
-      expect(getByLabelText('item-title-4')).toBeInTheDocument();
-      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-1', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-2', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-3', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-4', { selector: 'input' })
+      ).toBeInTheDocument();
+      expect(
+        getByLabelText('item-title-5', { selector: 'input' })
+      ).toBeInTheDocument();
 
-      expect(getByLabelText('item-title-3')).toBeDisabled();
+      expect(
+        getByLabelText('item-title-3', { selector: 'input' })
+      ).toBeDisabled();
 
       await userEvent.click(getByText('Expand All'));
 
       await waitFor(() => {
-        expect(getByLabelText('item-title-6')).toBeInTheDocument();
-        expect(getByLabelText('item-title-3.1')).toBeInTheDocument();
-        expect(getByLabelText('item-title-5.1')).toBeInTheDocument();
-        expect(getByLabelText('item-title-3.1')).toBeVisible();
-        expect(getByLabelText('item-title-5.1')).toBeVisible();
-        expect(getByLabelText('item-title-3.1')).toBeDisabled();
-        expect(getByLabelText('item-title-5.1')).toBeDisabled();
+        expect(
+          getByLabelText('item-title-6', { selector: 'input' })
+        ).toBeInTheDocument();
+        expect(
+          getByLabelText('item-title-3.1', { selector: 'input' })
+        ).toBeInTheDocument();
+        expect(
+          getByLabelText('item-title-5.1', { selector: 'input' })
+        ).toBeInTheDocument();
+        // Visibility is not asserted: the accordion panel around this tree
+        // keeps `opacity: 0` throughout in jsdom.
+        expect(
+          getByLabelText('item-title-3.1', { selector: 'input' })
+        ).toBeDisabled();
+        expect(
+          getByLabelText('item-title-5.1', { selector: 'input' })
+        ).toBeDisabled();
       });
     });
   });
