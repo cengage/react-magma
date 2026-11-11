@@ -7,7 +7,7 @@ import { CheckIcon, InfoIcon } from 'react-magma-icons';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 
-import { Badge, BadgeSize } from '.';
+import { Badge } from '.';
 
 const TEXT = 'Test Text';
 
@@ -105,37 +105,6 @@ describe('Badge', () => {
       'line-height',
       magma.typeScale.size02.lineHeight
     );
-  });
-
-  it('should render a small counter badge', () => {
-    const { getByText } = render(
-      <Badge variant="counter" size={BadgeSize.small}>
-        {TEXT}
-      </Badge>
-    );
-    const badge = getByText(TEXT);
-
-    expect(badge).toHaveStyleRule('font-size', magma.typeScale.size01.fontSize);
-    expect(badge).toHaveStyleRule(
-      'letter-spacing',
-      magma.typeScale.size01.letterSpacing
-    );
-    expect(badge).toHaveStyleRule(
-      'line-height',
-      magma.typeScale.size01.lineHeight
-    );
-    expect(badge).toHaveStyleRule('height', magma.spaceScale.spacing05);
-    expect(badge).toHaveStyleRule('min-width', magma.spaceScale.spacing05);
-  });
-
-  it('should ignore the size prop for a label badge', () => {
-    const { getByText } = render(<Badge size={BadgeSize.small}>{TEXT}</Badge>);
-
-    expect(getByText(TEXT)).toHaveStyleRule(
-      'min-width',
-      magma.spaceScale.spacing06
-    );
-    expect(getByText(TEXT)).not.toHaveStyleRule('height');
   });
 
   it('should have styles when badge is clickable', () => {

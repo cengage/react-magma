@@ -70,53 +70,6 @@ export function Example() {
 }
 ```
 
-## Counter Sizes
-
-Counter badges are available in `medium` (default) and `small`. Use the `small`
-size when placing a counter inside a small control. The `size` prop only affects
-badges using the `counter` variant.
-
-```tsx
-import React from 'react';
-
-import {
-  Badge,
-  BadgeColor,
-  BadgeSize,
-  BadgeVariant,
-  Button,
-  ButtonSize,
-} from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-      <Button>
-        Notifications
-        <Badge
-          variant={BadgeVariant.counter}
-          color={BadgeColor.secondary}
-          isInverse
-        >
-          12
-        </Badge>
-      </Button>
-      <Button size={ButtonSize.small}>
-        Notifications
-        <Badge
-          variant={BadgeVariant.counter}
-          size={BadgeSize.small}
-          color={BadgeColor.secondary}
-          isInverse
-        >
-          12
-        </Badge>
-      </Button>
-    </div>
-  );
-}
-```
-
 ## Colors
 
 Seven colors of badges are available, `primary` (default), `secondary`, `light`, `danger`, `success`, `info`, and `warning`.

@@ -22,7 +22,6 @@ export type { AppBarProps } from './components/AppBar';
 export {
   Badge,
   BadgeColor,
-  BadgeSize,
   BadgeVariant,
   BadgeWeight,
 } from './components/Badge';
