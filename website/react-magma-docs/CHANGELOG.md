@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1-next.7
+
+### Patch Changes
+
+- c38fefe: docs(changelog): sync changelog page with releases up to v7.0.0
+
 ## 7.0.1-next.6
 
 ### Patch Changes

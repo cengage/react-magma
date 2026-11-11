@@ -85,52 +85,6 @@ If a card can move, such as in a carousel or a drag and drop scenario, you shoul
 
 ---
 
-## Scrolling
-
-A card will grow vertically to display as much content as you choose to put inside it. If you decide to limit the height of a card or collection of cards, it is NOT recommended to allow the content within the card to scroll unless it's only on Desktop. This will result in multiple scrollbars on a UI, and usually ends up as a very poor experience for users on small devices.
-
-To avoid these issues, you should instead provide links within the card to view more information somewhere else, or allow the cards to expand and show more details. You may also switch from one method to the other based on a logical breakpoint.
-
-<div className="two-col">
-  <div className="row">
-    <div className="col col-1">
-      <figure>
-        <img
-          src="../../images/cards/card-truncate-correct.png"
-          alt=" "
-        />
-        <figcaption>
-          <p className="title title-correct">Correct</p>
-          <p>
-            If the maximum height of the card isn't enough to display all of the
-            content, then allow the card to expand and collapse on small
-            screens.
-          </p>
-        </figcaption>
-      </figure>
-    </div>
-    <div className="col col-2">
-      <figure>
-        <img
-          src="../../images/cards/card-scrolling-incorrect.png"
-          alt=" "
-        />
-        <figcaption>
-          <p className="title title-incorrect">Incorrect</p>
-          <p>
-            On small devices, do not allow scrolling within a card or you could
-            create a trap for the user on small devices preventing them from
-            scrolling past the card.
-          </p>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</div>
-<span className="horizontal-spacer" />
-
----
-
 ## Actions
 
 Depending how the card is being used, the card could contain any number of action buttons. Like with everything else, make sure the primary action is clear compared to any secondary actions. For small cards, avoid cluttering the card with too many actions by creating an overflow menu within a dropdown.
