@@ -33,7 +33,7 @@
     "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
     "compiler-checks": "lerna run compiler-checks --concurrency=6 --no-progress",
     "prebuild": "lerna run compiler-checks && lerna run lint --concurrency=6 --no-progress",
-    "pretest": "lerna run compiler-checks --concurrency=6 --no-progress",
+    "pretest": "npm run generate-ai --workspace=react-magma-dom && npm run check-ai --workspace=react-magma-dom && lerna run compiler-checks --concurrency=6 --no-progress",
     "postinstall": "npm run build:lite",
     "playwright:test": "lerna exec --scope playwright -- npx playwright test",
     "playwright:report": "lerna exec --scope playwright -- npx playwright show-report",
@@ -155,7 +155,7 @@
     "@eslint/plugin-kit": ">=0.3.4"
   },
   "devDependencies": {
-    "@playwright/test": "^1.55.1",
+    "@playwright/test": "^1.64.1",
     "babel-loader": "^10.0.0",
     "chromatic": "^16.8.0",
     "webpack": "^5.104.1"

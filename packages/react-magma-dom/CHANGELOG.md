@@ -1,5 +1,89 @@
 # Change Log
 
+## 7.1.0-next.9
+
+### Minor Changes
+
+- 9d6039f: chore(AI): add AI agent guidance for Magma components and theme tokens, with setup instructions
+
+## 7.1.0-next.8
+
+### Patch Changes
+
+- b89eb9a: fix(Tooltip): skip `aria-describedby` when the tooltip content matches the trigger's `aria-label` to prevent duplicate screen reader announcements
+
+## 7.1.0-next.7
+
+### Patch Changes
+
+- 0ea155d: fix(useFocusLock): Keep focus inside the lock when the focused element becomes disabled, hidden or removed.
+
+## 7.1.0-next.6
+
+### Patch Changes
+
+- 8026382: fix(Popover): fix text field trigger ARIA and keyboard scrolling
+
+## 7.1.0-next.5
+
+### Patch Changes
+
+- 3b144b9: fix(Select): add aria-controls to the Select trigger
+
+## 7.1.0-next.4
+
+### Patch Changes
+
+- 9822948: fix(Dropdown, Accordion): add role="menu" for menu groups, roving tabindex, close menu on Shift+Tab, fix menu structure of expandable items and respect the role prop on AccordionPanel
+
+## 7.1.0-next.3
+
+### Patch Changes
+
+- 87df167: fix(NavTabs): add role="tab" and remove theme attribute on custom component tabs
+
+## 7.1.0-next.2
+
+### Minor Changes
+
+- 9fcd834: fix(TreeView): correct screen reader announcements for tree items
+
+  Expansion, selection and `expandAll`/`collapseAll` are each announced once and
+  name the item they apply to, through a single live region owned by `TreeView`.
+  Keyboard selection is announced — it was previously silent — and a branch reports
+  the status it ends up in, saying its subitems followed only when they actually
+  did. `IndeterminateCheckbox` announces only a change the user made on it.
+
+  New optional i18n strings under `treeView`: `itemExpandedAnnounce`,
+  `itemCollapsedAnnounce`, `allItemsExpandedAnnounce`, `allItemsCollapsedAnnounce`,
+  `itemSelectedAnnounce`, `itemDeselectedAnnounce`, `itemPartiallySelectedAnnounce`,
+  `branchSelectedAnnounce`, `branchDeselectedAnnounce`. Each falls back to English
+  on its own, so a partially translated section is safe.
+
+  `i18n.expansionState` is deprecated in favour of `treeView.itemExpandedAnnounce`
+  / `itemCollapsedAnnounce`, which also name the item acted on. A translation
+  supplied through it still takes effect, as long as its replacement is left at
+  its default.
+
+  Notes for tests asserting on the accessibility tree:
+
+  - `li[role="treeitem"]` is now the only element carrying selection state. The
+    checkbox inside a tree item is `aria-hidden`, so `getByRole('checkbox')` no
+    longer matches inside a tree — query it with
+    `getByLabelText(label, { selector: 'input' })` or the `<itemId>-checkbox` test
+    id, and assert state on the item's `aria-checked`.
+  - Layout wrappers carry `role="none"`, siblings share one `ul[role="group"]` per
+    branch, and the per-item live regions are replaced by one region after the
+    tree (`<testId>-announce`).
+  - Announcements are published on a short delay, so assertions on announcement
+    text need `waitFor` or fake timers.
+  - Wording changed: `All subitems are selected` is now
+    `<label>, selected, all subitems selected`.
+
+### Patch Changes
+
+- 9fcd834: fix(TreeView): retain announcement and cursor regression tests when merging dev
+
 ## 7.0.1-next.1
 
 ### Patch Changes

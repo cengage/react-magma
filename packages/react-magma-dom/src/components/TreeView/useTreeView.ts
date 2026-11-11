@@ -169,8 +169,10 @@ export function useTreeView(props: UseTreeViewProps) {
   const hasPreselectedItems = Boolean(preselectedItems);
 
   // Initialize state with useReducer instead of multiple useState calls
-  const [state, dispatch] = React.useReducer(treeViewReducer, {
-    items: getInitialItems({
+  // `expandedSet` is seeded here, not in a mount effect: applying
+  // `initialExpandedItems` after the first commit read as a state change.
+  const [state, dispatch] = React.useReducer(treeViewReducer, undefined, () => {
+    const initialItems = getInitialItems({
       children,
       preselectedItems,
       checkParents,
@@ -178,9 +180,18 @@ export function useTreeView(props: UseTreeViewProps) {
       selectable,
       isDisabled,
       isTopLevelSelectable,
-    }),
-    expandedSet: new Set<string>(),
-    itemsNeedUpdate: null,
+    });
+
+    return {
+      items: initialItems,
+      expandedSet: new Set<string>(
+        getInitialExpandedIds({
+          items: initialItems,
+          initialExpandedItems: rawInitialExpandedItems,
+        })
+      ),
+      itemsNeedUpdate: null,
+    };
   });
 
   const { items, expandedSet, itemsNeedUpdate } = state;
@@ -480,6 +491,10 @@ export function useTreeView(props: UseTreeViewProps) {
     [onExpandedChange, expandedSet]
   );
 
+  // Set by `expandAll`/`collapseAll` before they dispatch, so tree items stay
+  // silent and TreeView announces the action once instead.
+  const bulkExpansionRef = React.useRef<'expand' | 'collapse' | null>(null);
+
   const expandAll = React.useCallback(() => {
     const expandableIds = items.reduce((ids: string[], item) => {
       if (item.hasOwnTreeItems) {
@@ -488,6 +503,8 @@ export function useTreeView(props: UseTreeViewProps) {
 
       return ids;
     }, []);
+
+    bulkExpansionRef.current = 'expand';
 
     dispatch({
       type: 'EXPAND_ALL',
@@ -502,6 +519,8 @@ export function useTreeView(props: UseTreeViewProps) {
   }, [items, onExpandedChange]);
 
   const collapseAll = React.useCallback(() => {
+    bulkExpansionRef.current = 'collapse';
+
     dispatch({ type: 'COLLAPSE_ALL' });
 
     const syntheticEvent = {} as React.SyntheticEvent;
@@ -583,16 +602,6 @@ export function useTreeView(props: UseTreeViewProps) {
 
   const [treeItemRefArray, registerTreeItem] = useDescendants();
 
-  // Initialize expandedSet with initialExpandedItems
-  React.useEffect(() => {
-    if (initialExpandedItems && initialExpandedItems.length > 0) {
-      dispatch({
-        type: 'EXPAND_ALL',
-        payload: { expandableIds: initialExpandedItems },
-      });
-    }
-  }, []); // Only run on mount
-
   // id -> item map for O(1) lookups in TreeItem (was items.find: O(N)).
   const itemsById = React.useMemo(() => {
     const map = new Map<string, TreeViewItemInterface>();
@@ -633,6 +642,7 @@ export function useTreeView(props: UseTreeViewProps) {
       handleExpandedChange,
       onExpandedChange,
       initialExpandedItems,
+      bulkExpansionRef,
     }),
     [expandedSet, handleExpandedChange, onExpandedChange, initialExpandedItems]
   );

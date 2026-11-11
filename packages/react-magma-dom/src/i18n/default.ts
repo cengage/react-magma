@@ -375,4 +375,15 @@ export const defaultI18n: I18nInterface = {
     expanded: 'expanded',
     collapsed: 'collapsed',
   },
+  treeView: {
+    itemExpandedAnnounce: '{labelText}, expanded',
+    itemCollapsedAnnounce: '{labelText}, collapsed',
+    allItemsExpandedAnnounce: 'All items expanded',
+    allItemsCollapsedAnnounce: 'All items collapsed',
+    itemSelectedAnnounce: '{labelText}, selected',
+    itemDeselectedAnnounce: '{labelText}, not selected',
+    itemPartiallySelectedAnnounce: '{labelText}, partially selected',
+    branchSelectedAnnounce: '{labelText}, selected, all subitems selected',
+    branchDeselectedAnnounce: '{labelText}, not selected, no subitems selected',
+  },
 };

@@ -245,7 +245,9 @@ export const Preview = forwardRef<
       return (
         <StatusIcons>
           <Spinner
-            color={isInverse ? theme.colors.brand.skyBlue : theme.colors.primary}
+            color={
+              isInverse ? theme.colors.brand.skyBlue : theme.colors.primary
+            }
           />
         </StatusIcons>
       );

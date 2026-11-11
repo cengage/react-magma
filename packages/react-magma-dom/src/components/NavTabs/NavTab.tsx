@@ -134,6 +134,7 @@ export const StyledCustomTab = React.forwardRef<any, StyledCustomTabProps>(
           'hasStackedIcon',
           'orientation',
           'textTransform',
+          'theme',
         ],
         rest
       );
@@ -237,6 +238,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>(
             ref={ref}
             theme={theme}
             tabIndex={0}
+            role="tab"
           />
         ) : (
           <StyledTab

@@ -24,7 +24,7 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
 // Multiple observers may be created per component; we collect all of them and
 // call each one so that no observer is silently skipped.
 let mutationObserverCallbacks = [];
-const mutationObserverCallback = mutations =>
+const mutationObserverCallback = (mutations = []) =>
   mutationObserverCallbacks.forEach(cb => cb(mutations));
 global.MutationObserver = jest.fn().mockImplementation(callback => {
   mutationObserverCallbacks.push(callback);
