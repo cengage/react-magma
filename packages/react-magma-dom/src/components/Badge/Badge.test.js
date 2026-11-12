@@ -128,6 +128,31 @@ describe('Badge', () => {
     expect(badge).toHaveStyleRule('min-width', magma.spaceScale.spacing05);
   });
 
+  it('should render a large counter badge', () => {
+    const { getByText } = render(
+      <Badge variant="counter" size={BadgeSize.large}>
+        {TEXT}
+      </Badge>
+    );
+    const badge = getByText(TEXT);
+
+    expect(badge).toHaveStyleRule('font-size', magma.typeScale.size03.fontSize);
+    expect(badge).toHaveStyleRule(
+      'letter-spacing',
+      magma.typeScale.size03.letterSpacing
+    );
+    expect(badge).toHaveStyleRule(
+      'line-height',
+      magma.typeScale.size03.lineHeight
+    );
+    expect(badge).toHaveStyleRule('height', magma.spaceScale.spacing07);
+    expect(badge).toHaveStyleRule('min-width', magma.spaceScale.spacing07);
+    expect(badge).toHaveStyleRule(
+      'margin',
+      `0 0 0 ${magma.spaceScale.spacing05}`
+    );
+  });
+
   it('should ignore the size prop for a label badge', () => {
     const { getByText } = render(<Badge size={BadgeSize.small}>{TEXT}</Badge>);
 

@@ -77,6 +77,16 @@ export const Default = () => {
 export const CounterSizes = () => {
   return (
     <>
+      <p>Large</p>
+      <Badge variant={BadgeVariant.counter} size={BadgeSize.large}>
+        1
+      </Badge>
+      <Badge variant={BadgeVariant.counter} size={BadgeSize.large}>
+        28
+      </Badge>
+      <Badge variant={BadgeVariant.counter} size={BadgeSize.large}>
+        999+
+      </Badge>
       <p>Default</p>
       <Badge variant={BadgeVariant.counter}>1</Badge>
       <Badge variant={BadgeVariant.counter}>28</Badge>
@@ -98,6 +108,17 @@ export const CounterSizes = () => {
 export const InButtons = () => {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+      <Button size={ButtonSize.large}>
+        Notifications
+        <Badge
+          variant={BadgeVariant.counter}
+          size={BadgeSize.large}
+          color={BadgeColor.secondary}
+          isInverse
+        >
+          12
+        </Badge>
+      </Button>
       <Button size={ButtonSize.medium}>
         Notifications
         <Badge

@@ -67,6 +67,7 @@ export enum BadgeVariant {
 }
 
 export enum BadgeSize {
+  large = 'large',
   medium = 'medium', // default
   small = 'small',
 }
@@ -316,11 +317,16 @@ export function buildBadgeBorderColor(props) {
 }
 
 function getBadgeTypeScale(props) {
-  if (
-    props.variant === BadgeVariant.counter &&
-    props.size !== BadgeSize.small
-  ) {
-    return props.theme.typeScale.size02;
+  if (props.variant === BadgeVariant.counter) {
+    switch (props.size) {
+      case BadgeSize.large:
+        return props.theme.typeScale.size03;
+      case BadgeSize.small:
+        return props.theme.typeScale.size01;
+      case BadgeSize.medium:
+      default:
+        return props.theme.typeScale.size02;
+    }
   }
 
   return props.theme.typeScale.size01;
@@ -331,17 +337,28 @@ function getBadgeMaxHeight(props) {
     return 'auto';
   }
 
-  return props.size === BadgeSize.small
-    ? props.theme.spaceScale.spacing05
-    : props.theme.spaceScale.spacing06;
+  switch (props.size) {
+    case BadgeSize.large:
+      return props.theme.spaceScale.spacing07;
+    case BadgeSize.small:
+      return props.theme.spaceScale.spacing05;
+    case BadgeSize.medium:
+    default:
+      return props.theme.spaceScale.spacing06;
+  }
 }
 
 function getBadgeMinWidth(props) {
-  if (
-    props.variant === BadgeVariant.counter &&
-    props.size === BadgeSize.small
-  ) {
-    return props.theme.spaceScale.spacing05;
+  if (props.variant === BadgeVariant.counter) {
+    switch (props.size) {
+      case BadgeSize.large:
+        return props.theme.spaceScale.spacing07;
+      case BadgeSize.small:
+        return props.theme.spaceScale.spacing05;
+      case BadgeSize.medium:
+      default:
+        return props.theme.spaceScale.spacing06;
+    }
   }
 
   return props.theme.spaceScale.spacing06;
@@ -355,6 +372,19 @@ function getBadgePadding(props) {
   return props.size === BadgeSize.small
     ? `0 ${props.theme.spaceScale.spacing01}`
     : `1px ${props.theme.spaceScale.spacing02}`;
+}
+
+function getBadgeMargin(props) {
+  if (props.variant === BadgeVariant.counter) {
+    const leftMargin =
+      props.size === BadgeSize.large
+        ? props.theme.spaceScale.spacing05
+        : props.theme.spaceScale.spacing03;
+
+    return `0 0 0 ${leftMargin}`;
+  }
+
+  return `0 ${props.theme.spaceScale.spacing03} 0 0`;
 }
 
 export const baseBadgeStyles = props => css`
@@ -372,16 +402,14 @@ export const baseBadgeStyles = props => css`
   font-family: ${props.theme.bodyFont};
   letter-spacing: ${getBadgeTypeScale(props).letterSpacing};
   line-height: ${getBadgeTypeScale(props).lineHeight};
-  margin: ${props.variant === BadgeVariant.counter
-    ? `0 0 0 ${props.theme.spaceScale.spacing03}`
-    : `0 ${props.theme.spaceScale.spacing03} 0 0`};
+  margin: ${getBadgeMargin(props)};
   max-height: ${getBadgeMaxHeight(props)};
   min-width: ${getBadgeMinWidth(props)};
   padding: ${getBadgePadding(props)};
   ${props.variant === BadgeVariant.counter &&
-  props.size === BadgeSize.small &&
+  (props.size === BadgeSize.small || props.size === BadgeSize.large) &&
   `box-sizing: border-box;
-   height: ${props.theme.spaceScale.spacing05};`}
+   height: ${getBadgeMaxHeight(props)};`}
   text-align: ${props.variant === BadgeVariant.counter ? 'center' : 'inherit'};
   ${props.hasIcon && `vertical-align: middle;`}
 `;
