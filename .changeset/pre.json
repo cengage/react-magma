@@ -18,6 +18,7 @@
     "fix-modal-definitionlist-a11y",
     "fix-navtabs-custom-tab-role",
     "fix-popover-a11y",
+    "fix-prop-description-typos",
     "fix-select-aria-controls",
     "fix-select-duplicate-labels",
     "fix-treeview-stories-headings",

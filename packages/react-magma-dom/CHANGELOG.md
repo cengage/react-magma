@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.13
+
+### Patch Changes
+
+- df640faee: docs(react-magma-dom): fix typos in Checkbox, Radio, Toggle and IndeterminateCheckbox prop descriptions
+
 ## 6.1.0-v6-next.12
 
 ### Patch Changes
