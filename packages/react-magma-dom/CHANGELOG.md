@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.12
+
+### Patch Changes
+
+- 969d93f78: fix(Table): memoize `TableContext` value so memoized rows and cells skip unnecessary re-renders
+
 ## 6.1.0-v6-next.11
 
 ### Minor Changes
