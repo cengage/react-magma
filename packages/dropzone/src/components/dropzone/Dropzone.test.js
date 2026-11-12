@@ -9,7 +9,7 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
-import { I18nContext, defaultI18n, magma } from 'react-magma-dom';
+import { ButtonColor, I18nContext, defaultI18n, magma } from 'react-magma-dom';
 
 import { axe } from '../../../axe-helper.js';
 
@@ -54,6 +54,25 @@ describe('File Uploader', () => {
       queryByText('Drag and drop or browse files to upload.')
     ).not.toBeInTheDocument();
   });
+
+  it.each([false, true])(
+    'customizes the browse button when noDrag is %s',
+    noDrag => {
+      const buttonText = 'Choose files';
+      const { getByRole } = render(
+        <Dropzone
+          buttonColor={ButtonColor.secondary}
+          buttonText={buttonText}
+          noDrag={noDrag}
+        />
+      );
+
+      const button = getByRole('button', { name: buttonText });
+
+      expect(button).toHaveStyleRule('background', magma.colors.neutral0);
+      expect(button).toHaveStyleRule('color', magma.colors.brand.navy);
+    }
+  );
 
   it('should find element by testId', () => {
     const testId = 'test-id';
