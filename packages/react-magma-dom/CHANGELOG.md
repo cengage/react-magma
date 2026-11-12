@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.11
+
+### Patch Changes
+
+- bdca9196b: fix(Select, Combobox): allow selecting items with the same label but different values
+
 ## 6.1.0-v6-next.10
 
 ### Patch Changes
