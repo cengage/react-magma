@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.15
+
+### Patch Changes
+
+- 3bfdaef: fix(TreeView): preserve virtualized row measurements when expanding, collapsing, and resizing the tree
+
 ## 7.1.0-next.14
 
 ### Patch Changes
