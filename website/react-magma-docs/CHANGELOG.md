@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.0.1-v6-next.10
+
+### Patch Changes
+
+- 8e143601c: chore: require `react-magma-icons` `^3.3.1`
+- Updated dependencies [8e143601c]
+  - react-magma-dom@6.1.0-v6-next.10
+  - @react-magma/charts@16.0.0-v6-next.3
+  - @react-magma/dropzone@16.0.0-v6-next.3
+
 ## 6.0.1-v6-next.9
 
 ### Patch Changes

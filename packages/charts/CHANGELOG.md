@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 16.0.0-v6-next.3
+
+### Patch Changes
+
+- 8e143601c: chore: require `react-magma-icons` `^3.3.1`
+
 ## 16.0.0-v6-next.2
 
 ### Patch Changes

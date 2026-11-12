@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.10
+
+### Patch Changes
+
+- 8e143601c: chore: require `react-magma-icons` `^3.3.1`
+
 ## 6.1.0-v6-next.9
 
 ### Minor Changes
