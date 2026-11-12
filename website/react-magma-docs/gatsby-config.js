@@ -87,6 +87,7 @@ module.exports = {
         theme_color: '#0B1F3A',
         display: 'minimal-ui',
         icon: 'src/images/react-magma-icon.svg', // This path is relative to the root of the site.
+        include_favicon: false,
       },
     },
     'gatsby-plugin-offline',
