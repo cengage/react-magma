@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.16
+
+### Patch Changes
+
+- ace60c1: fix(Table): prevent `TableHeaderCell` from collapsing when `width` is not provided.
+
 ## 7.1.0-next.15
 
 ### Patch Changes
