@@ -13,7 +13,7 @@ import {
   SelectComponents,
 } from './components';
 import { StyledCard, StyledItem, StyledList } from './shared';
-import { isItemDisabled, setFocusedItem } from './utils';
+import { findItemIndex, isItemDisabled, setFocusedItem } from './utils';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { convertStyleValueToString } from '../../utils';
@@ -37,7 +37,7 @@ interface ItemsListProps<T> {
   menuStyle?: React.CSSProperties;
   setFloating?: (node: ReferenceType) => void;
   setHighlightedIndex?: (index: number) => void;
-  selectedItem?: string;
+  selectedItem?: T;
 }
 
 const NoItemsMessage = styled.span<{
@@ -106,6 +106,9 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   }, [highlightedIndex, isOpen]);
 
   const hasItems = items && items.length > 0;
+  const selectedIndex = selectedItem
+    ? findItemIndex(items, selectedItem, itemToString)
+    : -1;
 
   const heightString = convertStyleValueToString(maxHeight);
   const { Item } = defaultComponents<T>({
@@ -177,7 +180,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
               });
 
               const key = `${itemString}${index}`;
-              const isSelected = selectedItem === itemToString(item);
+              const isSelected = index === selectedIndex;
 
               const itemProps: ItemRenderOptions<T> = {
                 isFocused: highlightedIndex === index,
@@ -193,7 +196,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
                 onMouseMove: () => {},
                 role: 'option',
                 'aria-label': isSelected
-                  ? `${selectedItem} is selected`
+                  ? `${itemString} is selected`
                   : itemString,
               };
 
