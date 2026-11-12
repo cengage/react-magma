@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.13
+
+### Minor Changes
+
+- 2aab6d5: feat(Tagline): add a reusable tagline typography component
+
 ## 7.1.0-next.12
 
 ### Patch Changes
