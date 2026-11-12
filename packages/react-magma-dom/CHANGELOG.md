@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.14
+
+### Patch Changes
+
+- 9b0299b: fix(Table): memoize `TableContext` value so memoized rows and cells skip unnecessary re-renders
+
 ## 7.1.0-next.13
 
 ### Minor Changes
