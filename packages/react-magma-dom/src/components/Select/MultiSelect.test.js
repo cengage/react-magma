@@ -116,6 +116,107 @@ describe('MultiSelect', () => {
     expect(getByText(items[0].label)).toBeInTheDocument();
   });
 
+  describe('items with duplicate labels', () => {
+    const duplicateLabelItems = [
+      { label: 'Red', value: 'red' },
+      { label: 'Red', value: 'green' },
+      { label: 'Blue', value: 'blue' },
+    ];
+
+    it('should only hide the selected item from the list, not every item with the same label', async () => {
+      const { getByLabelText, getAllByRole } = render(
+        <MultiSelect
+          isMulti
+          labelText={labelText}
+          items={duplicateLabelItems}
+          initialSelectedItems={[{ label: 'Red', value: 'red' }]}
+        />
+      );
+
+      await userEvent.click(getByLabelText(labelText, { selector: 'div' }));
+
+      expect(getAllByRole('option').map(option => option.textContent)).toEqual([
+        'Red',
+        'Blue',
+      ]);
+    });
+
+    it('should allow selecting every item that shares the same label', async () => {
+      const onSelectedItemsChange = jest.fn();
+      const { getByLabelText, getAllByRole, getAllByText } = render(
+        <MultiSelect
+          isMulti
+          labelText={labelText}
+          items={duplicateLabelItems}
+          onSelectedItemsChange={onSelectedItemsChange}
+        />
+      );
+
+      const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+      await userEvent.click(renderedSelect);
+      await userEvent.click(getAllByRole('option')[0]);
+      await userEvent.click(renderedSelect);
+      await userEvent.click(getAllByRole('option')[0]);
+
+      expect(getAllByText('Red', { selector: 'button' })).toHaveLength(2);
+      expect(onSelectedItemsChange).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          selectedItems: [duplicateLabelItems[0], duplicateLabelItems[1]],
+        })
+      );
+
+      await userEvent.click(renderedSelect);
+
+      expect(getAllByRole('option').map(option => option.textContent)).toEqual([
+        'Blue',
+      ]);
+    });
+
+    it('should keep preselected items that share a label with another item', () => {
+      const { getAllByText } = render(
+        <MultiSelect
+          isMulti
+          labelText={labelText}
+          items={duplicateLabelItems}
+          initialSelectedItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Red', value: 'green' },
+          ]}
+        />
+      );
+
+      expect(getAllByText('Red', { selector: 'button' })).toHaveLength(2);
+    });
+
+    it('should keep a selected item whose value is not strictly equal to the matching item value', async () => {
+      const { getByLabelText, getAllByRole, getByText } = render(
+        <MultiSelect
+          isMulti
+          labelText={labelText}
+          items={[
+            { label: 'Red', value: 1 },
+            { label: 'Blue', value: { id: 2 } },
+            { label: 'Green', value: 3 },
+          ]}
+          initialSelectedItems={[
+            { label: 'Red', value: '1' },
+            { label: 'Blue', value: { id: 2 } },
+          ]}
+        />
+      );
+
+      expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+      expect(getByText('Blue', { selector: 'button' })).toBeInTheDocument();
+
+      await userEvent.click(getByLabelText(labelText, { selector: 'div' }));
+
+      expect(getAllByRole('option').map(option => option.textContent)).toEqual([
+        'Green',
+      ]);
+    });
+  });
+
   it('should accept items in a custom item format', () => {
     function itemToString(item) {
       return item ? item.representation : '';

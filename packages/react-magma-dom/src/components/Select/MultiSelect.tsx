@@ -11,7 +11,7 @@ import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { IconWrapper, SelectedItemButton, SelectText } from './shared';
-import { isItemDisabled } from './utils';
+import { findItemIndex, getSelectedItemIndexes, isItemDisabled } from './utils';
 import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -70,18 +70,14 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   }, []);
 
   function checkSelectedItemValidity(itemToCheck: T) {
-    const itemIndex = items.findIndex(
-      i => itemToString(i) === itemToString(itemToCheck)
-    );
+    const itemIndex = findItemIndex(items, itemToCheck, itemToString);
 
     // Only reject items not in the list; disabled items may be preselected values
     return itemIndex !== -1;
   }
 
   function getFilteredItemIndex(item: T, filteredItems: T[]) {
-    const index = filteredItems.findIndex(
-      filteredItem => itemToString(filteredItem) === itemToString(item)
-    );
+    const index = findItemIndex(filteredItems, item, itemToString);
 
     if (isItemDisabled(filteredItems[index])) {
       return -1;
@@ -98,9 +94,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         setHighlightedIndex(-1);
       } else {
         setHighlightedIndex(
-          items.findIndex(
-            i => itemToString(i) === itemToString(changedSelectedItem)
-          )
+          findItemIndex(items, changedSelectedItem, itemToString)
         );
       }
     } else {
@@ -142,11 +136,14 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   });
 
   function getFilteredItems(unfilteredItems) {
+    const selectedIndexes = getSelectedItemIndexes(
+      unfilteredItems,
+      selectedItems,
+      itemToString
+    );
+
     return unfilteredItems.filter(
-      item =>
-        selectedItems.findIndex(
-          selectedItem => itemToString(selectedItem) === itemToString(item)
-        ) < 0
+      (_item, index) => !selectedIndexes.has(index)
     );
   }
 

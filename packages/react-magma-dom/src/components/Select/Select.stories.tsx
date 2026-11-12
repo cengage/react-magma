@@ -259,3 +259,69 @@ export const MultiWithDisabledItems = {
     ],
   },
 };
+
+const duplicateLabelItems = [
+  { label: 'Red', value: 'red-1' },
+  { label: 'Red', value: 'red-2' },
+  { label: 'Blue', value: 'blue' },
+  { label: 'Green', value: 'green' },
+];
+
+export const DuplicateLabels = {
+  render: (props: SelectProps<SelectOptions>) => {
+    const [selectedItem, setSelectedItem] = React.useState<SelectOptions>(
+      duplicateLabelItems[1]
+    );
+
+    return (
+      <>
+        <Select
+          {...props}
+          items={duplicateLabelItems}
+          initialSelectedItem={duplicateLabelItems[1]}
+          onSelectedItemChange={changes =>
+            setSelectedItem(changes.selectedItem)
+          }
+        />
+        <p>Selected value: {selectedItem?.value ?? 'none'}</p>
+      </>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    labelText: 'Items with duplicate labels',
+  },
+};
+
+export const MultiDuplicateLabels = {
+  render: (props: MultiSelectProps<SelectOptions>) => {
+    const [selectedItems, setSelectedItems] = React.useState<SelectOptions[]>([
+      duplicateLabelItems[0],
+    ]);
+
+    return (
+      <>
+        <Select
+          {...props}
+          isMulti
+          items={duplicateLabelItems}
+          initialSelectedItems={[duplicateLabelItems[0]]}
+          onSelectedItemsChange={changes =>
+            setSelectedItems(changes.selectedItems)
+          }
+        />
+        <p>
+          Selected values:{' '}
+          {selectedItems.map(item => item.value).join(', ') || 'none'}
+        </p>
+      </>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    labelText: 'Multi with duplicate labels',
+    isClearable: true,
+  },
+};

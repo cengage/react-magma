@@ -17,7 +17,7 @@ import { defaultComponents } from '../Select/components';
 import { ItemListAnnouncer } from '../Select/ItemListAnnouncer';
 import { ItemsList } from '../Select/ItemsList';
 import { SelectContainer } from '../Select/SelectContainer';
-import { setFocusedItem } from '../Select/utils';
+import { findItemIndex, setFocusedItem } from '../Select/utils';
 
 import { ComboboxProps } from '.';
 
@@ -182,9 +182,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     if (isTypeahead) {
       return allItems;
     }
-    return allItems.current.findIndex(
-      i => itemToString(i) === itemToString(itemToCheck)
-    ) !== -1
+    return findItemIndex(allItems.current, itemToCheck, itemToString) !== -1
       ? { [key]: itemToCheck }
       : { [key]: null };
   }
@@ -199,9 +197,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
 
     if (changedIsOpen && changedSelectedItem) {
       setHighlightedIndex(
-        displayItems.findIndex(
-          i => itemToString(i) === itemToString(changedSelectedItem)
-        )
+        findItemIndex(displayItems, changedSelectedItem, itemToString)
       );
     }
 
@@ -400,7 +396,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
         setFloating={refs.setFloating}
-        selectedItem={selectedItem ? itemToString(selectedItem) : ''}
+        selectedItem={selectedItem}
       />
       <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
       {isClearable && <ClearAnnouncer clearAnnouncement={clearAnnouncement} />}
