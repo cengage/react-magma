@@ -10,6 +10,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "dropzone-button-customization",
     "fix-charts-fullscreen-height",
     "fix-dropdown-menu-a11y",
     "fix-modal-definitionlist-a11y",

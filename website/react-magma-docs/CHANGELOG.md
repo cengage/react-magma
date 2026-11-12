@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.1-v6-next.8
+
+### Patch Changes
+
+- 84eb2b561: feat(Dropzone): allow consumers to customize the browse button color and text
+- Updated dependencies [84eb2b561]
+  - @react-magma/dropzone@16.0.0-v6-next.2
+
 ## 6.0.1-v6-next.7
 
 ### Patch Changes
