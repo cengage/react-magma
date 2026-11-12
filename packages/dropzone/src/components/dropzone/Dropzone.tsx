@@ -54,6 +54,11 @@ enum DragState {
   default = 'default',
 }
 
+const getBrowseButtonText = (
+  buttonText: string | null | undefined,
+  localizedText: string
+) => buttonText ?? localizedText;
+
 // NOTE: These props are manually copied to dropzone.mdx
 export interface DropzoneProps
   extends Omit<FormFieldContainerBaseProps, 'fieldId' | 'errorMessage'> {
@@ -61,6 +66,15 @@ export interface DropzoneProps
    * Set accepted file types. See https://github.com/okonet/attr-accept for more information. Keep in mind that mime type determination is not reliable across platforms. CSV files, for example, are reported as text/plain under macOS but as application/vnd.ms-excel under Windows. In some cases there might not be a mime type set at all. See: https://github.com/react-dropzone/react-dropzone/issues/276
    */
   accept?: string | string[];
+  /**
+   * The color of the button used to browse for files.
+   * @default ButtonColor.primary
+   */
+  buttonColor?: ButtonColor;
+  /**
+   * The text displayed in the button used to browse for files. Defaults to the localized browse files text.
+   */
+  buttonText?: string;
   /**
    * Enable/Disable the input
    */
@@ -240,6 +254,8 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
   (props, ref) => {
     const {
       accept,
+      buttonColor = ButtonColor.primary,
+      buttonText,
       containerStyle,
       disabled,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -574,7 +590,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
             {noDrag ? (
               <Flex xs behavior={FlexBehavior.item}>
                 <Button
-                  color={ButtonColor.primary}
+                  color={buttonColor}
                   disabled={disabled}
                   isInverse={isInverse}
                   onClick={open}
@@ -582,7 +598,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                   ref={browseFileButtonRef}
                   aria-describedby={helperMessage ? helperMessageId : undefined}
                 >
-                  {i18n.dropzone.browseFiles}
+                  {getBrowseButtonText(buttonText, i18n.dropzone.browseFiles)}
                 </Button>
               </Flex>
             ) : (
@@ -598,7 +614,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                   {i18n.dropzone.dragMessage}
                 </Wrapper>
                 <Button
-                  color={ButtonColor.primary}
+                  color={buttonColor}
                   disabled={disabled}
                   isInverse={isInverse}
                   onClick={open}
@@ -607,7 +623,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                   ref={browseFileButtonRef}
                   aria-describedby={helperMessage ? helperMessageId : undefined}
                 >
-                  {i18n.dropzone.browseFiles}
+                  {getBrowseButtonText(buttonText, i18n.dropzone.browseFiles)}
                 </Button>
               </Flex>
             )}

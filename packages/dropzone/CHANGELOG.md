@@ -1,5 +1,11 @@
 # Change Log
 
+## 16.0.0-v6-next.2
+
+### Minor Changes
+
+- 84eb2b561: feat(Dropzone): allow consumers to customize the browse button color and text
+
 ## 16.0.0-v6-next.1
 
 ### Patch Changes

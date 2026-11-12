@@ -1,5 +1,27 @@
 # Change Log
 
+## 6.0.1-v6-next.9
+
+### Patch Changes
+
+- bbb1d0413: chore(AI): add AI agent guidance for Magma components and theme tokens, with setup instructions
+- Updated dependencies [bbb1d0413]
+  - react-magma-dom@6.1.0-v6-next.9
+
+## 6.0.1-v6-next.8
+
+### Patch Changes
+
+- 84eb2b561: feat(Dropzone): allow consumers to customize the browse button color and text
+- Updated dependencies [84eb2b561]
+  - @react-magma/dropzone@16.0.0-v6-next.2
+
+## 6.0.1-v6-next.7
+
+### Patch Changes
+
+- f94c273b1: docs(changelog): sync the v6 changelog page through v6.0.0
+
 ## 6.0.1-v6-next.6
 
 ### Patch Changes

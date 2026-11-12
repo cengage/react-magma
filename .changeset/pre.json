@@ -10,6 +10,8 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "ai-agent-guidance",
+    "dropzone-button-customization",
     "fix-charts-fullscreen-height",
     "fix-dropdown-menu-a11y",
     "fix-modal-definitionlist-a11y",
@@ -24,6 +26,7 @@
     "treeview-expansion-announcements",
     "treeview-merge-tests",
     "update-playwright-1-64-1",
-    "update-react-magma-icons"
+    "update-react-magma-icons",
+    "v6-docs-changelog-sync"
   ]
 }
