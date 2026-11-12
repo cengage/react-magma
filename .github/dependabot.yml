@@ -1,0 +1,16 @@
+version: 2
+updates:
+  # Keep GitHub Actions current, including the SHA-pinned
+  # dequelabs/axe-linter-action in .github/workflows/axe-linter.yml. Updates are
+  # grouped into a single weekly PR against the integration branch to limit noise.
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: dev
+    schedule:
+      interval: weekly
+    groups:
+      github-actions:
+        patterns:
+          - '*'
+    commit-message:
+      prefix: chore
