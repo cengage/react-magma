@@ -6,3 +6,7 @@ public
 .cache
 **/CHANGELOG.md
 packages/charts/src/components/CarbonChart/carbon-charts.css
+
+# AI guidance is Markdown, not TypeScript.
+packages/react-magma-dom/ai-src/*.md
+packages/react-magma-dom/ai/*.md

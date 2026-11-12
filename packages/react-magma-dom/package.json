@@ -18,15 +18,19 @@
   "files": [
     "dist",
     "!dist/reports",
-    "lib"
+    "lib",
+    "ai"
   ],
   "scripts": {
     "build": "tsdx build",
-    "postbuild": "npm run generate-properties",
+    "postbuild": "npm run generate-properties && npm run generate-ai",
     "build-watch": "tsdx watch",
+    "check-ai": "node scripts/generate-skill.js --check",
     "copy-changelog": "node scripts/copy-changelog.js",
+    "generate-ai": "node scripts/generate-skill.js",
     "generate-properties": "node scripts/generateJSON.js",
     "lint": "eslint ./src",
+    "prepack": "npm run generate-ai",
     "prepublishOnly": "npm run copy-changelog",
     "test": "tsdx test",
     "test-watch": "tsdx test --watch"
