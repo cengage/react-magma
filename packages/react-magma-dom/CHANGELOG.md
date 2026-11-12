@@ -1,5 +1,13 @@
 # Change Log
 
+## 7.1.0-next.11
+
+### Patch Changes
+
+- f041d00: chore: require `react-magma-icons` `^3.3.1`
+
+  fix(docs): resolve the icons ESM entry to support Gatsby server rendering
+
 ## 7.1.0-next.10
 
 ### Patch Changes
