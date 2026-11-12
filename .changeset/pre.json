@@ -11,6 +11,7 @@
   "changesets": [
     "ai-agent-guidance",
     "docs-changelog-sync",
+    "dropzone-button-customization",
     "fix-dropdown-menu-a11y",
     "fix-modal-definitionlist-a11y",
     "fix-navtabs-custom-tab-role",
@@ -18,6 +19,7 @@
     "fix-select-aria-controls",
     "fix-treeview-stories-headings",
     "fix-useFocusLock-lost-focus",
+    "sixty-falcons-admire",
     "sync-main-to-dev-7-0-0",
     "tooltip-skip-duplicate-description",
     "treeview-cursor",

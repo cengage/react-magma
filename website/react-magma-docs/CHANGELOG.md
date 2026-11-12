@@ -1,5 +1,14 @@
 # Change Log
 
+## 7.0.1-next.8
+
+### Patch Changes
+
+- ee55600: feat(Dropzone): allow consumers to customize the browse button color and text
+- 97a996d: docs: refresh rebrand design guidelines
+- Updated dependencies [ee55600]
+  - @react-magma/dropzone@17.0.0-next.2
+
 ## 7.0.1-next.7
 
 ### Patch Changes
