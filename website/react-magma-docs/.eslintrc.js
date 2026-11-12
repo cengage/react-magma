@@ -43,6 +43,7 @@ module.exports = {
     Link: 'readonly',
     IconButtonProps: 'readonly',
     ButtonProps: 'readonly',
+    TaglineProps: 'readonly',
     ContentArticle: 'readonly',
     Table: 'readonly',
     PageHeading: 'readonly',
