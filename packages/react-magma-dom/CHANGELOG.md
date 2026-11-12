@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.9
+
+### Minor Changes
+
+- bbb1d0413: chore(AI): add AI agent guidance for Magma components and theme tokens, with setup instructions
+
 ## 6.1.0-v6-next.8
 
 ### Patch Changes
