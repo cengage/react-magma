@@ -1,5 +1,13 @@
 # @react-magma/charts
 
+## 17.0.0-next.2
+
+### Patch Changes
+
+- f041d00: chore: require `react-magma-icons` `^3.3.1`
+
+  fix(docs): resolve the icons ESM entry to support Gatsby server rendering
+
 ## 17.0.0-next.1
 
 ### Patch Changes

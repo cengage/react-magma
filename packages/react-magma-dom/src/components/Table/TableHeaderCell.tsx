@@ -50,7 +50,8 @@ export interface TableHeaderCellProps
    */
   testId?: string;
   /**
-   * Width of the component, set by CSS
+   * Width of the component, set by CSS. Header text wraps onto multiple lines
+   * when it exceeds the column width.
    * @default auto
    */
   width?: string | number;
@@ -102,10 +103,8 @@ const StyledTableHeaderCell = styled.th<{
 
   font-size: ${props =>
     props.isRowHeader ? 'inherit' : props.theme.typeScale.size02.fontSize};
-  max-width: ${props => (props.isRowHeader ? 'none' : props.width || '0')};
-  overflow: ${props => (props.isRowHeader ? 'visible' : 'hidden')};
-  text-overflow: ${props => (props.isRowHeader ? 'clip' : 'ellipsis')};
-  white-space: ${props => (props.isRowHeader ? 'normal' : 'nowrap')};
+  line-height: ${props =>
+    props.isRowHeader ? 'inherit' : props.theme.typeScale.size02.lineHeight};
 
   &:first-child {
     border-radius: ${props =>
@@ -145,6 +144,7 @@ const SortButton = styled.button<{
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   justify-content: ${props =>
     props.textAlign === TableCellAlign.right ? 'flex-end' : 'flex-start'};
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin: 0;
   min-width: 0;
   overflow: hidden;
@@ -180,9 +180,6 @@ const SortButton = styled.button<{
 
 const HeaderText = styled.span`
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 `;
 
 const IconWrapper = styled.span`

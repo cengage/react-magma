@@ -4,8 +4,6 @@ import { autoUpdate } from '@floating-ui/react-dom';
 import { useSelect } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
 
-import { I18nContext } from '../../i18n';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import { ButtonSize, ButtonVariant } from '../Button';
 import { ClearAnnouncer } from './ClearAnnouncer';
@@ -15,8 +13,10 @@ import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { SelectText } from './shared';
-import { isItemDisabled } from './utils';
+import { findItemIndex, isItemDisabled } from './utils';
 import { useMagmaFloating } from '../../hooks/useMagmaFloating';
+import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 import { SelectProps } from '.';
 
@@ -69,9 +69,7 @@ export function Select<T>(props: SelectProps<T>) {
   }
 
   function getValidItem(itemToCheck: T, key: string): object {
-    const itemIndex = items.findIndex(
-      i => itemToString(i) === itemToString(itemToCheck)
-    );
+    const itemIndex = findItemIndex(items, itemToCheck, itemToString);
 
     // Only reject items not in the list; a disabled item is still a valid selected value
     if (itemIndex === -1) {
@@ -98,9 +96,7 @@ export function Select<T>(props: SelectProps<T>) {
         setHighlightedIndex(-1);
       } else {
         setHighlightedIndex(
-          items.findIndex(
-            i => itemToString(i) === itemToString(changedSelectedItem)
-          )
+          findItemIndex(items, changedSelectedItem, itemToString)
         );
       }
     } else if (changedIsOpen && !changedSelectedItem) {
@@ -173,6 +169,8 @@ export function Select<T>(props: SelectProps<T>) {
   });
 
   const toggleButtonProps = getToggleButtonProps({
+    // role="combobox" requires aria-controls pointing to the listbox
+    'aria-controls': getMenuProps().id,
     disabled: disabled,
     onBlur,
     onKeyDown: (event: any) => {
@@ -305,7 +303,7 @@ export function Select<T>(props: SelectProps<T>) {
           menuStyle={menuStyle}
           setFloating={refs.setFloating}
           setHighlightedIndex={setHighlightedIndex}
-          selectedItem={selectedItem ? itemToString(selectedItem) : ''}
+          selectedItem={selectedItem}
         />
       </SelectContainer>
 

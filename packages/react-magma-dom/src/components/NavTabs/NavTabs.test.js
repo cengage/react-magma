@@ -87,6 +87,28 @@ describe('NavTabs', () => {
     expect(getByTestId('icon')).toBeInTheDocument();
   });
 
+  it('should render a tab passed in component with role "tab"', () => {
+    const { getByRole } = render(
+      <NavTabs>
+        <NavTab component={<a href="google.com">Test Component</a>} />
+      </NavTabs>
+    );
+
+    expect(getByRole('tab', { name: 'Test Component' })).toBeInTheDocument();
+  });
+
+  it('should not pass the theme prop to a tab passed in component as a DOM attribute', () => {
+    const { getByRole } = render(
+      <NavTabs>
+        <NavTab component={<a href="google.com">Test Component</a>} />
+      </NavTabs>
+    );
+
+    expect(getByRole('tab', { name: 'Test Component' })).not.toHaveAttribute(
+      'theme'
+    );
+  });
+
   it('should render centered tabs', () => {
     const { container } = render(
       <NavTabs alignment="center">
@@ -240,6 +262,22 @@ describe('NavTabs', () => {
           <NavTab>This is tab 1</NavTab>
           <NavTab>This is tab 2</NavTab>
           <NavTab>This is tab 3</NavTab>
+        </NavTabs>
+      );
+
+      return axe(container.innerHTML, {
+        rules: { listitem: { enabled: false } },
+      }).then(result => {
+        return expect(result).toHaveNoViolations();
+      });
+    });
+
+    it('Does not violate accessibility standards with custom component tabs', () => {
+      const { container } = render(
+        <NavTabs aria-label="Custom tabs">
+          <NavTab component={<a href="./">Main page</a>} />
+          <NavTab isActive component={<a href="./">FAQ</a>} />
+          <NavTab component={<a href="./">About us</a>} />
         </NavTabs>
       );
 

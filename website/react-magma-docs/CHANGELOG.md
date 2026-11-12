@@ -1,5 +1,67 @@
 # Change Log
 
+## 7.0.1-next.10
+
+### Patch Changes
+
+- 2aab6d5: feat(Tagline): add a reusable tagline typography component
+- Updated dependencies [2aab6d5]
+  - react-magma-dom@7.1.0-next.13
+
+## 7.0.1-next.9
+
+### Patch Changes
+
+- f041d00: chore: require `react-magma-icons` `^3.3.1`
+
+  fix(docs): resolve the icons ESM entry to support Gatsby server rendering
+
+- Updated dependencies [f041d00]
+  - react-magma-dom@7.1.0-next.11
+  - @react-magma/charts@17.0.0-next.2
+  - @react-magma/dropzone@17.0.0-next.3
+
+## 7.0.1-next.8
+
+### Patch Changes
+
+- ee55600: feat(Dropzone): allow consumers to customize the browse button color and text
+- 97a996d: docs: refresh rebrand design guidelines
+- Updated dependencies [ee55600]
+  - @react-magma/dropzone@17.0.0-next.2
+
+## 7.0.1-next.7
+
+### Patch Changes
+
+- c38fefe: docs(changelog): sync changelog page with releases up to v7.0.0
+
+## 7.0.1-next.6
+
+### Patch Changes
+
+- 9d6039f: chore(AI): add AI agent guidance for Magma components and theme tokens, with setup instructions
+- Updated dependencies [9d6039f]
+  - react-magma-dom@7.1.0-next.9
+
+## 7.0.1-next.5
+
+### Patch Changes
+
+- 96527e5: fix(TreeView): use heading markup in stories
+
+## 7.0.1-next.4
+
+### Patch Changes
+
+- 3f41d83: fix(Modal, DefinitionList): resolve axe violations in stories
+
+## 7.0.1-next.3
+
+### Patch Changes
+
+- d5423df: chore(playwright): update Playwright to 1.64.1
+
 ## 7.0.1-next.2
 
 ### Patch Changes

@@ -3,6 +3,7 @@ import React from 'react';
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { HelpIcon } from 'react-magma-icons';
 
+import { axe } from '../../../axe-helper';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
@@ -30,6 +31,51 @@ describe('Select', () => {
     await userEvent.click(renderedSelect);
 
     expect(getByText(items[0])).toBeInTheDocument();
+  });
+
+  it('should reference the listbox from the combobox with aria-controls', async () => {
+    const { getByRole, getByTestId } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    const combobox = getByTestId('selectTriggerButton');
+
+    expect(combobox).toHaveAttribute('role', 'combobox');
+    expect(combobox).toHaveAttribute(
+      'aria-controls',
+      getByRole('listbox', { hidden: true }).id
+    );
+
+    await userEvent.click(combobox);
+
+    expect(combobox).toHaveAttribute('aria-controls', getByRole('listbox').id);
+  });
+
+  it('should reference a custom menuId from the combobox with aria-controls', () => {
+    const { getByRole, getByTestId } = render(
+      <Select labelText={labelText} items={items} menuId="custom-menu" />
+    );
+
+    expect(getByRole('listbox', { hidden: true })).toHaveAttribute(
+      'id',
+      'custom-menu'
+    );
+    expect(getByTestId('selectTriggerButton')).toHaveAttribute(
+      'aria-controls',
+      'custom-menu'
+    );
+  });
+
+  it('Does not violate accessibility standards when open', async () => {
+    const { container, getByTestId } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    await userEvent.click(getByTestId('selectTriggerButton'));
+
+    const results = await axe(container);
+
+    expect(results).toHaveNoViolations();
   });
 
   it('should match the regular dropdown menu styling', async () => {
@@ -132,6 +178,97 @@ describe('Select', () => {
     await userEvent.click(renderedSelect);
 
     expect(getByText(items[0].label)).toBeInTheDocument();
+  });
+
+  describe('items with duplicate labels', () => {
+    const duplicateLabelItems = [
+      { label: 'Red', value: 'red' },
+      { label: 'Red', value: 'green' },
+      { label: 'Blue', value: 'blue' },
+    ];
+
+    it('should only mark the selected item as selected', async () => {
+      const { getByLabelText, getAllByRole, getAllByTestId } = render(
+        <Select
+          labelText={labelText}
+          items={duplicateLabelItems}
+          initialSelectedItem={{ label: 'Red', value: 'green' }}
+        />
+      );
+
+      await userEvent.click(getByLabelText(labelText, { selector: 'div' }));
+
+      const options = getAllByRole('option');
+
+      expect(options[0]).toHaveAttribute('aria-selected', 'false');
+      expect(options[0]).toHaveAttribute('aria-label', 'Red');
+      expect(options[1]).toHaveAttribute('aria-selected', 'true');
+      expect(options[1]).toHaveAttribute('aria-label', 'Red is selected');
+      expect(getAllByTestId('selectedItemCheck')).toHaveLength(1);
+      expect(options[1]).toHaveAttribute('data-highlighted', 'true');
+    });
+
+    it('should select the clicked item when another item has the same label', async () => {
+      const onSelectedItemChange = jest.fn();
+      const { getByLabelText, getAllByRole } = render(
+        <Select
+          labelText={labelText}
+          items={duplicateLabelItems}
+          onSelectedItemChange={onSelectedItemChange}
+        />
+      );
+
+      const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+      await userEvent.click(renderedSelect);
+      await userEvent.click(getAllByRole('option')[1]);
+
+      expect(onSelectedItemChange).toHaveBeenLastCalledWith(
+        expect.objectContaining({ selectedItem: duplicateLabelItems[1] })
+      );
+
+      await userEvent.click(renderedSelect);
+
+      const options = getAllByRole('option');
+
+      expect(options[0]).toHaveAttribute('aria-selected', 'false');
+      expect(options[1]).toHaveAttribute('aria-selected', 'true');
+    });
+
+    it('should keep a selected item whose value is not strictly equal to the matching item value', async () => {
+      const { getByLabelText, getAllByRole, getByTestId, rerender } = render(
+        <Select
+          labelText={labelText}
+          items={[
+            { label: 'Red', value: 1 },
+            { label: 'Blue', value: 2 },
+          ]}
+          selectedItem={{ label: 'Red', value: '1' }}
+        />
+      );
+
+      expect(getByTestId('selectedItemText')).toHaveTextContent('Red');
+
+      rerender(
+        <Select
+          labelText={labelText}
+          items={[
+            { label: 'Red', value: { id: 1 } },
+            { label: 'Blue', value: { id: 2 } },
+          ]}
+          selectedItem={{ label: 'Blue', value: { id: 2 } }}
+        />
+      );
+
+      expect(getByTestId('selectedItemText')).toHaveTextContent('Blue');
+
+      await userEvent.click(getByLabelText(labelText, { selector: 'div' }));
+
+      expect(getAllByRole('option')[1]).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+    });
   });
 
   it('should accept items in a custom item format', async () => {
