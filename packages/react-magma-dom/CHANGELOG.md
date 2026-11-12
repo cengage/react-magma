@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.14
+
+### Patch Changes
+
+- 30fc45ab6: fix(Table): prevent `TableHeaderCell` from collapsing when `width` is not provided.
+
 ## 6.1.0-v6-next.13
 
 ### Patch Changes

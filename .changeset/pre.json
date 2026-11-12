@@ -21,6 +21,7 @@
     "fix-prop-description-typos",
     "fix-select-aria-controls",
     "fix-select-duplicate-labels",
+    "fix-table-header-cell-width",
     "fix-treeview-stories-headings",
     "fix-useFocusLock-lost-focus",
     "icons-331-floor",
