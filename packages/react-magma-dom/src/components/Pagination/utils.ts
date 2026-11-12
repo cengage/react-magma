@@ -6,8 +6,13 @@ interface PaginationI18n {
   selectedLabel: string;
 }
 
+export const formatPageNumber = (pageNumber: number) =>
+  typeof pageNumber === 'number'
+    ? pageNumber.toLocaleString()
+    : String(pageNumber);
+
 export const paginationLabel = (count: number, pagination: PaginationI18n) => {
-  return `${pagination.ofLabel} ${count} ${count <= 1 ? pagination.pageLabel : pagination.pagesLabel}`;
+  return `${pagination.ofLabel} ${formatPageNumber(count)} ${count <= 1 ? pagination.pageLabel : pagination.pagesLabel}`;
 };
 
 export const pageAriaLabel = (
@@ -15,5 +20,5 @@ export const pageAriaLabel = (
   count: number,
   pagination: PaginationI18n
 ) => {
-  return `${pagination.pageNumberLabel} ${selectedPage} ${paginationLabel(count, pagination)} ${pagination.selectedLabel}`;
+  return `${pagination.pageNumberLabel} ${formatPageNumber(selectedPage)} ${paginationLabel(count, pagination)} ${pagination.selectedLabel}`;
 };
