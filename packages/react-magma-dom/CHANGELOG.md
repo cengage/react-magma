@@ -1,5 +1,15 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.11
+
+### Minor Changes
+
+- 6ba2a94f2: feat(Tagline): add a reusable tagline typography component
+
+### Patch Changes
+
+- bdca9196b: fix(Select, Combobox): allow selecting items with the same label but different values
+
 ## 6.1.0-v6-next.10
 
 ### Patch Changes

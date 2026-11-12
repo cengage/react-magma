@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.0.1-v6-next.11
+
+### Patch Changes
+
+- 6ba2a94f2: feat(Tagline): add a reusable tagline typography component
+- 6b36ff93a: docs: refresh rebrand design guidelines
+- Updated dependencies [bdca9196b]
+- Updated dependencies [6ba2a94f2]
+  - react-magma-dom@6.1.0-v6-next.11
+
 ## 6.0.1-v6-next.10
 
 ### Patch Changes
