@@ -17,6 +17,7 @@
     "fix-navtabs-custom-tab-role",
     "fix-popover-a11y",
     "fix-select-aria-controls",
+    "fix-select-duplicate-labels",
     "fix-treeview-stories-headings",
     "fix-useFocusLock-lost-focus",
     "sixty-falcons-admire",

@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.10
+
+### Patch Changes
+
+- 586f3c8: fix(Select, Combobox): allow selecting items with the same label but different values
+
 ## 7.1.0-next.9
 
 ### Minor Changes
