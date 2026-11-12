@@ -1,5 +1,92 @@
 # Change Log
 
+## 7.1.0-next.16
+
+### Patch Changes
+
+- ace60c1: fix(Table): prevent `TableHeaderCell` from collapsing when `width` is not provided.
+
+## 7.1.0-next.15
+
+### Patch Changes
+
+- 3cbc0d8: docs(react-magma-dom): fix typos in Checkbox, Radio, Toggle and IndeterminateCheckbox prop descriptions
+- 3bfdaef: fix(TreeView): preserve virtualized row measurements when expanding, collapsing, and resizing the tree
+
+## 7.1.0-next.14
+
+### Patch Changes
+
+- 9b0299b: fix(Table): memoize `TableContext` value so memoized rows and cells skip unnecessary re-renders
+
+## 7.1.0-next.13
+
+### Minor Changes
+
+- 2aab6d5: feat(Tagline): add a reusable tagline typography component
+
+## 7.1.0-next.12
+
+### Patch Changes
+
+- e5cb7da: fix(Dropdown): announce expanded state in Safari VoiceOver
+
+## 7.1.0-next.11
+
+### Patch Changes
+
+- f041d00: chore: require `react-magma-icons` `^3.3.1`
+
+  fix(docs): resolve the icons ESM entry to support Gatsby server rendering
+
+## 7.1.0-next.10
+
+### Patch Changes
+
+- 586f3c8: fix(Select, Combobox): allow selecting items with the same label but different values
+
+## 7.1.0-next.9
+
+### Minor Changes
+
+- 9d6039f: chore(AI): add AI agent guidance for Magma components and theme tokens, with setup instructions
+
+## 7.1.0-next.8
+
+### Patch Changes
+
+- b89eb9a: fix(Tooltip): skip `aria-describedby` when the tooltip content matches the trigger's `aria-label` to prevent duplicate screen reader announcements
+
+## 7.1.0-next.7
+
+### Patch Changes
+
+- 0ea155d: fix(useFocusLock): Keep focus inside the lock when the focused element becomes disabled, hidden or removed.
+
+## 7.1.0-next.6
+
+### Patch Changes
+
+- 8026382: fix(Popover): fix text field trigger ARIA and keyboard scrolling
+
+## 7.1.0-next.5
+
+### Patch Changes
+
+- 3b144b9: fix(Select): add aria-controls to the Select trigger
+
+## 7.1.0-next.4
+
+### Patch Changes
+
+- 9822948: fix(Dropdown, Accordion): add role="menu" for menu groups, roving tabindex, close menu on Shift+Tab, fix menu structure of expandable items and respect the role prop on AccordionPanel
+
+## 7.1.0-next.3
+
+### Patch Changes
+
+- 87df167: fix(NavTabs): add role="tab" and remove theme attribute on custom component tabs
+
 ## 7.1.0-next.2
 
 ### Minor Changes

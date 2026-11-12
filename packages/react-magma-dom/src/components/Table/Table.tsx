@@ -293,21 +293,36 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       return 'Scrollable table';
     };
 
+    // Stable value lets memoized rows and cells skip re-rendering when the table re-renders.
+    const tableContextValue = React.useMemo(
+      () => ({
+        density,
+        hasHoverStyles,
+        hasSquareCorners,
+        hasTablePagination,
+        hasZebraStripes,
+        hasVerticalBorders,
+        isInverse,
+        isSelectable,
+        isSortableBySelected,
+        rowCount,
+      }),
+      [
+        density,
+        hasHoverStyles,
+        hasSquareCorners,
+        hasTablePagination,
+        hasZebraStripes,
+        hasVerticalBorders,
+        isInverse,
+        isSelectable,
+        isSortableBySelected,
+        rowCount,
+      ]
+    );
+
     return (
-      <TableContext.Provider
-        value={{
-          density,
-          hasHoverStyles,
-          hasSquareCorners,
-          hasTablePagination: hasTablePagination,
-          hasZebraStripes,
-          hasVerticalBorders,
-          isInverse: isInverse,
-          isSelectable,
-          isSortableBySelected,
-          rowCount,
-        }}
-      >
+      <TableContext.Provider value={tableContextValue}>
         <TableContainer
           data-testid={tableWrapper}
           isInverse={isInverse}

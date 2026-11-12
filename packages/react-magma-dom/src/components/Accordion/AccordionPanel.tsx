@@ -37,7 +37,13 @@ export const AccordionPanel = React.forwardRef<
   HTMLDivElement,
   AccordionPanelProps
 >((props, ref) => {
-  const { children, testId, isInverse: isInverseProp, ...rest } = props;
+  const {
+    children,
+    testId,
+    isInverse: isInverseProp,
+    role = 'region',
+    ...rest
+  } = props;
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
 
@@ -55,7 +61,7 @@ export const AccordionPanel = React.forwardRef<
         isInverse={isInverse}
         ref={ref}
         theme={theme}
-        role="region"
+        role={role}
       >
         {children}
       </StyledPanel>

@@ -18,7 +18,11 @@ import { ItemListAnnouncer } from '../Select/ItemListAnnouncer';
 import { ItemsList } from '../Select/ItemsList';
 import { SelectContainer } from '../Select/SelectContainer';
 import { IconWrapper, SelectedItemButton } from '../Select/shared';
-import { setFocusedItem } from '../Select/utils';
+import {
+  findItemIndex,
+  getSelectedItemIndexes,
+  setFocusedItem,
+} from '../Select/utils';
 
 import { MultiComboboxProps } from '.';
 
@@ -88,11 +92,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       return allItems;
     }
 
-    return (
-      allItems.current.findIndex(
-        i => itemToString(i) === itemToString(itemToCheck)
-      ) !== -1
-    );
+    return findItemIndex(allItems.current, itemToCheck, itemToString) !== -1;
   }
 
   const {
@@ -126,16 +126,20 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   }
 
   function getFilteredItems(unfilteredItems) {
-    return unfilteredItems.filter(item => {
+    const selectedIndexes = getSelectedItemIndexes(
+      unfilteredItems,
+      selectedItems,
+      itemToString
+    );
+
+    return unfilteredItems.filter((item, index) => {
       const itemString =
         typeof item === 'object' && item.react_magma__created_item
           ? item.value
           : itemToString(item);
 
       return (
-        (selectedItems.findIndex(
-          selectedItem => itemToString(selectedItem) === itemToString(item)
-        ) < 0 &&
+        (!selectedIndexes.has(index) &&
           itemString.toLowerCase().startsWith(inputValue.toLowerCase())) ||
         isCreatedItem(item)
       );

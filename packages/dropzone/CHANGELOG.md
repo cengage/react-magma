@@ -1,5 +1,19 @@
 # Change Log
 
+## 17.0.0-next.3
+
+### Patch Changes
+
+- f041d00: chore: require `react-magma-icons` `^3.3.1`
+
+  fix(docs): resolve the icons ESM entry to support Gatsby server rendering
+
+## 17.0.0-next.2
+
+### Minor Changes
+
+- ee55600: feat(Dropzone): allow consumers to customize the browse button color and text
+
 ## 17.0.0-next.1
 
 ### Patch Changes

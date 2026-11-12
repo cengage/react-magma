@@ -104,6 +104,7 @@ interface DropdownContextInterface {
   dropdownButtonId?: React.MutableRefObject<string>;
   dropDirection?: DropdownDropDirection;
   floatingStyles?: React.CSSProperties;
+  focusedItem?: Element | null;
   handleDropdownBlur?: (event: React.FocusEvent) => void;
   itemRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
   isFixedWidth?: boolean;
@@ -117,6 +118,7 @@ interface DropdownContextInterface {
     itemRef: React.MutableRefObject<Element>
   ) => void;
   setActiveItemIndex?: React.Dispatch<React.SetStateAction<number>>;
+  setFocusedItem?: React.Dispatch<React.SetStateAction<Element | null>>;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setFloating?: (node: ReferenceType) => void;
   setReference?: (node: ReferenceType) => void;
@@ -158,6 +160,9 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       activeIndex || -1
     );
 
+    // Menu item that holds tabIndex={0} (roving tabindex)
+    const [focusedItem, setFocusedItem] = React.useState<Element | null>(null);
+
     const ownRef = React.useRef<any>();
     const toggleRef = React.useRef<HTMLButtonElement>(null);
     const leftButtonRef = React.useRef<HTMLButtonElement>(null);
@@ -174,10 +179,16 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       }
     }, [activeIndex]);
 
-    function openDropdown() {
+    const openDropdown = React.useCallback(() => {
       setIsOpen(true);
 
-      setTimeout(() => {
+      // Set the roving tabindex target together with opening, so the deferred
+      // focus below doesn't trigger a separate state update
+      setFocusedItem(
+        itemRefArray.current.find(itemRef => itemRef.current)?.current ?? null
+      );
+
+      const focusFirstDropdownItem = () => {
         const filteredItems = itemRefArray.current.filter(
           itemRef => itemRef.current
         );
@@ -187,41 +198,47 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         } else {
           menuRef.current?.focus();
         }
-      }, 0);
+      };
+
+      requestAnimationFrame(focusFirstDropdownItem);
 
       onOpen && typeof onOpen === 'function' && onOpen();
-    }
+    }, [itemRefArray, menuRef, onOpen]);
 
-    function focusTriggerButton() {
+    const focusTriggerButton = React.useCallback(() => {
       (leftButtonRef.current ?? toggleRef.current)?.focus();
-    }
+    }, [leftButtonRef, toggleRef]);
 
-    function closeDropdown(event) {
-      setIsOpen(false);
+    const closeDropdown = React.useCallback(
+      event => {
+        setIsOpen(false);
 
-      if (event && event.type === 'blur') {
-        const relatedTarget = event.relatedTarget;
+        if (event && event.type === 'blur') {
+          const relatedTarget = event.relatedTarget;
 
-        if (!isElementInteractive(relatedTarget)) {
-          focusTriggerButton();
+          if (!isElementInteractive(relatedTarget)) {
+            focusTriggerButton();
+          }
+        } else if (event) {
+          // Closing from an interaction inside the dropdown (e.g. selecting a
+          // menu item) would otherwise leave focus on a hidden element.
+          const isTriggeredFromInside = ownRef.current?.contains(
+            event.target as Node
+          );
+          const activeElement = document.activeElement;
+          const hasFocusInside = ownRef.current?.contains(activeElement);
+          const hasLostFocus =
+            !activeElement || activeElement === document.body;
+
+          if (isTriggeredFromInside && (hasFocusInside || hasLostFocus)) {
+            focusTriggerButton();
+          }
         }
-      } else if (event) {
-        // Closing from an interaction inside the dropdown (e.g. selecting a
-        // menu item) would otherwise leave focus on a hidden element.
-        const isTriggeredFromInside = ownRef.current?.contains(
-          event.target as Node
-        );
-        const activeElement = document.activeElement;
-        const hasFocusInside = ownRef.current?.contains(activeElement);
-        const hasLostFocus = !activeElement || activeElement === document.body;
 
-        if (isTriggeredFromInside && (hasFocusInside || hasLostFocus)) {
-          focusTriggerButton();
-        }
-      }
-
-      onClose && typeof onClose === 'function' && onClose(event);
-    }
+        onClose && typeof onClose === 'function' && onClose(event);
+      },
+      [focusTriggerButton, onClose, ownRef]
+    );
 
     React.useEffect(() => {
       if (apiRef) {
@@ -263,6 +280,20 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         (leftButtonRef.current ?? toggleRef.current)?.focus();
       }
 
+      if (event.key === 'Tab' && event.shiftKey) {
+        const [, filteredItemIndex] = getFilteredItem();
+
+        // Shift+Tab from a menu item: the browser moves focus to the trigger
+        // button, the menu should close (WAI-ARIA APG menu pattern)
+        if (filteredItemIndex !== -1) {
+          setIsOpen(false);
+
+          if (typeof onClose === 'function') {
+            onClose(event);
+          }
+        }
+      }
+
       if (event.key === 'ArrowDown') {
         const [filteredItems, filteredItemIndex] = getFilteredItem();
 
@@ -299,16 +330,19 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       }
     }
 
-    function handleDropdownBlur(event: React.FocusEvent) {
-      const { currentTarget, relatedTarget } = event;
+    const handleDropdownBlur = React.useCallback(
+      (event: React.FocusEvent) => {
+        const { currentTarget, relatedTarget } = event;
 
-      const isInMenu =
-        relatedTarget && currentTarget.contains(relatedTarget as Node);
+        const isInMenu =
+          relatedTarget && currentTarget.contains(relatedTarget as Node);
 
-      if (!isInMenu && isOpen) {
-        closeDropdown(event);
-      }
-    }
+        if (!isInMenu && isOpen) {
+          closeDropdown(event);
+        }
+      },
+      [closeDropdown, isOpen]
+    );
 
     const maxHeightString =
       typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
@@ -374,6 +408,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         dropdownButtonId,
         dropDirection,
         floatingStyles,
+        focusedItem,
         handleDropdownBlur,
         itemRefArray,
         isFixedWidth: !!width,
@@ -384,6 +419,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         openDropdown,
         registerDropdownMenuItem,
         setActiveItemIndex,
+        setFocusedItem,
         setIsOpen,
         setReference: refs.setReference,
         setFloating: refs.setFloating,
@@ -398,6 +434,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         dropdownButtonId,
         dropDirection,
         floatingStyles,
+        focusedItem,
         handleDropdownBlur,
         itemRefArray,
         width,
@@ -408,6 +445,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         openDropdown,
         registerDropdownMenuItem,
         setActiveItemIndex,
+        setFocusedItem,
         setIsOpen,
         refs.setReference,
         refs.setFloating,

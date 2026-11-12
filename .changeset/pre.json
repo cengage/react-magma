@@ -9,10 +9,31 @@
     "react-magma-landing": "1.1.11"
   },
   "changesets": [
+    "ai-agent-guidance",
+    "docs-changelog-sync",
+    "dropdown-safari-announcement",
+    "dropzone-button-customization",
+    "fix-dropdown-menu-a11y",
+    "fix-modal-definitionlist-a11y",
+    "fix-navtabs-custom-tab-role",
+    "fix-popover-a11y",
+    "fix-prop-description-typos",
+    "fix-select-aria-controls",
+    "fix-select-duplicate-labels",
+    "fix-table-header-cell-width",
+    "fix-treeview-stories-headings",
+    "fix-useFocusLock-lost-focus",
+    "icons-331-floor",
+    "lovely-taglines",
+    "sixty-falcons-admire",
     "sync-main-to-dev-7-0-0",
+    "table-context-memo",
+    "tooltip-skip-duplicate-description",
     "treeview-cursor",
     "treeview-expansion-announcements",
     "treeview-merge-tests",
+    "treeview-resize-measurements",
+    "update-playwright-1-64-1",
     "update-react-magma-icons"
   ]
 }
