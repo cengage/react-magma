@@ -466,6 +466,7 @@ const componentNavGroups = [
       'Paragraph',
       'Table',
       'Tag',
+      'Tagline',
       'TreeView',
     ],
   },
