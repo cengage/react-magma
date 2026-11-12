@@ -703,9 +703,8 @@ export function Example() {
 
 ## Cell Width
 
-The `width` prop sets the width of a cell. When `width` is provided on a column `TableHeaderCell`, header text that
-exceeds that width is truncated with an ellipsis. When `width` is omitted, the column width is determined automatically
-by the table layout and the cell content, and the header text wraps.
+The `width` prop sets the width of a cell. When `width` is omitted, the column width is determined automatically by the
+table layout and the cell content. Header text is never truncated; it wraps onto multiple lines when it exceeds the column width.
 
 ```tsx
 import React from 'react';

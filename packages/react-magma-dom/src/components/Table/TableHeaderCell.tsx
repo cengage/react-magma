@@ -50,9 +50,8 @@ export interface TableHeaderCellProps
    */
   testId?: string;
   /**
-   * Width of the component, set by CSS. When provided, column header text that
-   * exceeds this width is truncated with an ellipsis. When omitted, the width is
-   * determined automatically by the table layout and the header text wraps.
+   * Width of the component, set by CSS. Header text wraps onto multiple lines
+   * when it exceeds the column width.
    * @default auto
    */
   width?: string | number;
@@ -104,16 +103,8 @@ const StyledTableHeaderCell = styled.th<{
 
   font-size: ${props =>
     props.isRowHeader ? 'inherit' : props.theme.typeScale.size02.fontSize};
-
-  ${props =>
-    !props.isRowHeader &&
-    props.width &&
-    css`
-      max-width: ${props.width};
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    `}
+  line-height: ${props =>
+    props.isRowHeader ? 'inherit' : props.theme.typeScale.size02.lineHeight};
 
   &:first-child {
     border-radius: ${props =>
@@ -153,6 +144,7 @@ const SortButton = styled.button<{
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   justify-content: ${props =>
     props.textAlign === TableCellAlign.right ? 'flex-end' : 'flex-start'};
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin: 0;
   min-width: 0;
   overflow: hidden;
@@ -186,16 +178,8 @@ const SortButton = styled.button<{
   }
 `;
 
-const HeaderText = styled.span<{ isTruncated?: boolean }>`
+const HeaderText = styled.span`
   min-width: 0;
-
-  ${props =>
-    props.isTruncated &&
-    css`
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    `}
 `;
 
 const IconWrapper = styled.span`
@@ -271,9 +255,7 @@ export const TableHeaderCell = React.forwardRef<
           textAlign={align || TableCellAlign.left}
           theme={theme}
         >
-          <HeaderText isTruncated={!isRowHeader && !!widthString}>
-            {children}
-          </HeaderText>
+          <HeaderText>{children}</HeaderText>
           <IconWrapper theme={theme}>{SortIcon}</IconWrapper>
         </SortButton>
       ) : (
