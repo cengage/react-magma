@@ -127,7 +127,7 @@ describe('Table', () => {
   });
 
   it('should render the regular table color tokens', () => {
-    const { getByTestId, getByText } = render(
+    const { getByTestId } = render(
       <Table hasOutsideBorder hasVerticalBorders testId="table">
         <TableHead>
           <TableRow>
@@ -173,19 +173,6 @@ describe('Table', () => {
     expect(
       getByTestId('active-header').querySelector('button')
     ).toHaveStyleRule('font-size', magma.typeScale.size02.fontSize);
-    expect(getByTestId('active-header')).toHaveStyleRule(
-      'text-overflow',
-      'ellipsis'
-    );
-    expect(getByTestId('active-header')).toHaveStyleRule(
-      'white-space',
-      'nowrap'
-    );
-    expect(getByTestId('active-header')).toHaveStyleRule('max-width', '0');
-    expect(getByText('Active heading')).toHaveStyleRule(
-      'text-overflow',
-      'ellipsis'
-    );
     expect(getByTestId('sort-ascending')).toHaveAttribute(
       'fill',
       magma.colors.brand.navy
@@ -442,6 +429,134 @@ describe('Table', () => {
     expect(getByText('cell 1')).toHaveStyleRule('width', '100px');
     expect(getByText('heading 2')).toHaveStyleRule('width', '50%');
     expect(getByText('cell 2')).toHaveStyleRule('width', '50%');
+  });
+
+  describe('header cell width', () => {
+    const expectNoTruncation = element => {
+      expect(element).not.toHaveStyleRule('max-width', expect.anything());
+      expect(element).not.toHaveStyleRule('overflow', expect.anything());
+      expect(element).not.toHaveStyleRule('text-overflow', expect.anything());
+      expect(element).not.toHaveStyleRule('white-space', expect.anything());
+    };
+
+    it('should not constrain or truncate header cells when width is not provided', () => {
+      const { getByTestId, getByText } = render(
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell testId="header">Heading</TableHeaderCell>
+              <TableHeaderCell isSortable testId="sortable-header">
+                Sortable heading
+              </TableHeaderCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      );
+
+      ['header', 'sortable-header'].forEach(testId => {
+        const header = getByTestId(testId);
+
+        expect(header).not.toHaveStyleRule('width', expect.anything());
+        expectNoTruncation(header);
+      });
+
+      expectNoTruncation(getByText('Sortable heading'));
+    });
+
+    it('should wrap header text instead of truncating it when width is provided', () => {
+      const { getByTestId, getByText } = render(
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell testId="header" width={120}>
+                Heading
+              </TableHeaderCell>
+              <TableHeaderCell isSortable testId="sortable-header" width="25%">
+                Sortable heading
+              </TableHeaderCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      );
+
+      const header = getByTestId('header');
+
+      expect(header).toHaveStyleRule('width', '120px');
+      expectNoTruncation(header);
+
+      const sortableHeader = getByTestId('sortable-header');
+
+      expect(sortableHeader).toHaveStyleRule('width', '25%');
+      expectNoTruncation(sortableHeader);
+      expectNoTruncation(getByText('Sortable heading'));
+    });
+
+    it('should not truncate row header cells when width is provided', () => {
+      const { getByText } = render(
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableHeaderCell isRowHeader width={120}>
+                Row heading
+              </TableHeaderCell>
+              <TableCell>cell</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      );
+
+      const rowHeader = getByText('Row heading');
+
+      expect(rowHeader).toHaveStyleRule('width', '120px');
+      expectNoTruncation(rowHeader);
+    });
+  });
+
+  describe('header cell line-height', () => {
+    it('should use the header type scale line-height for column header cells', () => {
+      const { getByTestId } = render(
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell testId="header">Heading</TableHeaderCell>
+              <TableHeaderCell isSortable testId="sortable-header">
+                Sortable heading
+              </TableHeaderCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      );
+
+      expect(getByTestId('header')).toHaveStyleRule(
+        'line-height',
+        magma.typeScale.size02.lineHeight
+      );
+      expect(getByTestId('sortable-header')).toHaveStyleRule(
+        'line-height',
+        magma.typeScale.size02.lineHeight
+      );
+      expect(
+        getByTestId('sortable-header').querySelector('button')
+      ).toHaveStyleRule('line-height', magma.typeScale.size02.lineHeight);
+    });
+
+    it('should inherit the table line-height for row header cells', () => {
+      const { getByText } = render(
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableHeaderCell isRowHeader>Row heading</TableHeaderCell>
+              <TableCell>cell</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      );
+
+      expect(getByText('Row heading')).toHaveStyleRule(
+        'line-height',
+        'inherit'
+      );
+    });
   });
 
   it('should render table header cells with specified scope', () => {
