@@ -33,7 +33,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-magma-dom": "^6.1.0-v6-next.2",
-    "react-magma-icons": "^3.3.0"
+    "react-magma-icons": "^3.3.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.13.0",
@@ -41,7 +41,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-magma-dom": "^6.1.0-v6-next.2",
-    "react-magma-icons": "^3.3.0"
+    "react-magma-icons": "^3.3.1"
   },
   "engines": {
     "node": ">=22.14.0",
