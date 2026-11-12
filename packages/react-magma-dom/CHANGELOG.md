@@ -1,5 +1,12 @@
 # Change Log
 
+## 7.1.0-next.15
+
+### Patch Changes
+
+- 3cbc0d8: docs(react-magma-dom): fix typos in Checkbox, Radio, Toggle and IndeterminateCheckbox prop descriptions
+- 3bfdaef: fix(TreeView): preserve virtualized row measurements when expanding, collapsing, and resizing the tree
+
 ## 7.1.0-next.14
 
 ### Patch Changes

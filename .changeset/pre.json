@@ -17,6 +17,7 @@
     "fix-modal-definitionlist-a11y",
     "fix-navtabs-custom-tab-role",
     "fix-popover-a11y",
+    "fix-prop-description-typos",
     "fix-select-aria-controls",
     "fix-select-duplicate-labels",
     "fix-treeview-stories-headings",
@@ -30,6 +31,7 @@
     "treeview-cursor",
     "treeview-expansion-announcements",
     "treeview-merge-tests",
+    "treeview-resize-measurements",
     "update-playwright-1-64-1",
     "update-react-magma-icons"
   ]
