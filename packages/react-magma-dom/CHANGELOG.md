@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.12
+
+### Patch Changes
+
+- e5cb7da: fix(Dropdown): announce expanded state in Safari VoiceOver
+
 ## 7.1.0-next.11
 
 ### Patch Changes

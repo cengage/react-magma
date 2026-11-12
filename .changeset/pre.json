@@ -11,6 +11,7 @@
   "changesets": [
     "ai-agent-guidance",
     "docs-changelog-sync",
+    "dropdown-safari-announcement",
     "dropzone-button-customization",
     "fix-dropdown-menu-a11y",
     "fix-modal-definitionlist-a11y",
