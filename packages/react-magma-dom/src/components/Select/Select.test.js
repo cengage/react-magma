@@ -1154,4 +1154,40 @@ describe('Select', () => {
       ).toBe(true);
     });
   });
+
+  it('keeps the selected item when disabled while open', async () => {
+    const onSelectedItemChange = jest.fn();
+    const props = {
+      labelText,
+      items,
+      initialSelectedItem: items[0],
+      onSelectedItemChange,
+    };
+    const { getByRole, getByTestId, rerender } = render(<Select {...props} />);
+
+    await userEvent.click(getByRole('combobox'));
+    expect(getByRole('option', { name: items[1] })).toBeVisible();
+
+    rerender(<Select {...props} disabled />);
+    await userEvent.click(getByRole('option', { name: items[1] }));
+
+    expect(getByTestId('selectedItemText')).toHaveTextContent(items[0]);
+    expect(onSelectedItemChange).not.toHaveBeenCalled();
+  });
+
+  it('preserves the clear indicator behavior when disabled', async () => {
+    const { getByTestId } = render(
+      <Select
+        labelText={labelText}
+        items={items}
+        initialSelectedItem={items[0]}
+        disabled
+        isClearable
+      />
+    );
+
+    await userEvent.click(getByTestId('clearIndicator'));
+
+    expect(getByTestId('selectedItemText')).not.toHaveTextContent(items[0]);
+  });
 });
