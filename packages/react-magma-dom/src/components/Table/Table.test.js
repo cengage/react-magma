@@ -9,6 +9,8 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableContext,
+  TableDensity,
   TableHead,
   TableHeaderCell,
   TableRow,
@@ -684,6 +686,51 @@ describe('Table', () => {
       );
       const th = getByText('Col Header').closest('th');
       expect(th).toHaveAttribute('colspan', '3');
+    });
+  });
+
+  describe('TableContext', () => {
+    const renderWithContextConsumer = () => {
+      let renderCount = 0;
+      const ContextConsumer = React.memo(() => {
+        React.useContext(TableContext);
+        renderCount++;
+
+        return null;
+      });
+      const consumer = <ContextConsumer />;
+
+      const TestTable = ({ density, tick }) => (
+        <Table density={density} data-tick={tick}>
+          <TableBody>
+            <TableRow>
+              <TableCell>{consumer}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      );
+
+      const utils = render(<TestTable tick={0} />);
+
+      return { ...utils, TestTable, getRenderCount: () => renderCount };
+    };
+
+    it('should not re-render memoized consumers when table props are unchanged', () => {
+      const { rerender, TestTable, getRenderCount } =
+        renderWithContextConsumer();
+
+      rerender(<TestTable tick={1} />);
+
+      expect(getRenderCount()).toBe(1);
+    });
+
+    it('should re-render memoized consumers when context values change', () => {
+      const { rerender, TestTable, getRenderCount } =
+        renderWithContextConsumer();
+
+      rerender(<TestTable tick={0} density={TableDensity.compact} />);
+
+      expect(getRenderCount()).toBe(2);
     });
   });
 });
