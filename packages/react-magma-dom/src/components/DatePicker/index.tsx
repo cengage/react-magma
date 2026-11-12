@@ -207,10 +207,14 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     const minDate = getDateFromString(props.minDate);
     const maxDate = getDateFromString(props.maxDate);
     const dateFormat = i18n.dateFormat;
+    const disabledRef = React.useRef(props.disabled);
+    disabledRef.current = props.disabled;
 
     const [helperInformationShown, setHelperInformationShown] =
       React.useState<boolean>(false);
-    const [calendarOpened, setCalendarOpened] = React.useState<boolean>(false);
+    const [calendarRequestedOpen, setCalendarOpened] = React.useState(false);
+    const calendarOpened = calendarRequestedOpen && !props.disabled;
+
     const [dateFocused, setDateFocused] = React.useState<boolean>(false);
 
     const [focusedDate, setFocusedDate] = React.useState<Date>(
@@ -250,6 +254,12 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         setFocusedDate(chosenDate);
       }
     }, [chosenDate]);
+
+    React.useEffect(() => {
+      if (props.disabled) {
+        setCalendarOpened(false);
+      }
+    }, [props.disabled]);
 
     React.useEffect(() => {
       if (!calendarOpened) {
@@ -582,6 +592,10 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     }
 
     function toggleCalendarOpened() {
+      if (disabledRef.current) {
+        return;
+      }
+
       setCalendarOpened(opened => {
         // Focus on today when opening calendar without a chosen date
         if (!opened && !chosenDate) {
