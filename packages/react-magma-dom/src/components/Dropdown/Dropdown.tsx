@@ -179,57 +179,66 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       }
     }, [activeIndex]);
 
-    function openDropdown() {
-      const [filteredItems] = getFilteredItem();
-
+    const openDropdown = React.useCallback(() => {
       setIsOpen(true);
 
-      // Keep the first menu item in the Tab order when focus moves to it.
-      setFocusedItem(filteredItems[0]?.current ?? null);
+      // Set the roving tabindex target together with opening, so the deferred
+      // focus below doesn't trigger a separate state update
+      setFocusedItem(
+        itemRefArray.current.find(itemRef => itemRef.current)?.current ?? null
+      );
 
-      if (filteredItems.length > 0) {
-        setTimeout(() => {
-          filteredItems[0]?.current?.focus();
-        }, 0);
-      } else {
-        setTimeout(() => {
+      const focusFirstDropdownItem = () => {
+        const filteredItems = itemRefArray.current.filter(
+          itemRef => itemRef.current
+        );
+
+        if (filteredItems.length > 0) {
+          (filteredItems[0]?.current as HTMLElement | undefined)?.focus();
+        } else {
           menuRef.current?.focus();
-        }, 0);
-      }
+        }
+      };
+
+      requestAnimationFrame(focusFirstDropdownItem);
 
       onOpen && typeof onOpen === 'function' && onOpen();
-    }
+    }, [itemRefArray, menuRef, onOpen]);
 
-    function focusTriggerButton() {
+    const focusTriggerButton = React.useCallback(() => {
       (leftButtonRef.current ?? toggleRef.current)?.focus();
-    }
+    }, [leftButtonRef, toggleRef]);
 
-    function closeDropdown(event) {
-      setIsOpen(false);
+    const closeDropdown = React.useCallback(
+      event => {
+        setIsOpen(false);
 
-      if (event && event.type === 'blur') {
-        const relatedTarget = event.relatedTarget;
+        if (event && event.type === 'blur') {
+          const relatedTarget = event.relatedTarget;
 
-        if (!isElementInteractive(relatedTarget)) {
-          focusTriggerButton();
+          if (!isElementInteractive(relatedTarget)) {
+            focusTriggerButton();
+          }
+        } else if (event) {
+          // Closing from an interaction inside the dropdown (e.g. selecting a
+          // menu item) would otherwise leave focus on a hidden element.
+          const isTriggeredFromInside = ownRef.current?.contains(
+            event.target as Node
+          );
+          const activeElement = document.activeElement;
+          const hasFocusInside = ownRef.current?.contains(activeElement);
+          const hasLostFocus =
+            !activeElement || activeElement === document.body;
+
+          if (isTriggeredFromInside && (hasFocusInside || hasLostFocus)) {
+            focusTriggerButton();
+          }
         }
-      } else if (event) {
-        // Closing from an interaction inside the dropdown (e.g. selecting a
-        // menu item) would otherwise leave focus on a hidden element.
-        const isTriggeredFromInside = ownRef.current?.contains(
-          event.target as Node
-        );
-        const activeElement = document.activeElement;
-        const hasFocusInside = ownRef.current?.contains(activeElement);
-        const hasLostFocus = !activeElement || activeElement === document.body;
 
-        if (isTriggeredFromInside && (hasFocusInside || hasLostFocus)) {
-          focusTriggerButton();
-        }
-      }
-
-      onClose && typeof onClose === 'function' && onClose(event);
-    }
+        onClose && typeof onClose === 'function' && onClose(event);
+      },
+      [focusTriggerButton, onClose, ownRef]
+    );
 
     React.useEffect(() => {
       if (apiRef) {
@@ -321,16 +330,19 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       }
     }
 
-    function handleDropdownBlur(event: React.FocusEvent) {
-      const { currentTarget, relatedTarget } = event;
+    const handleDropdownBlur = React.useCallback(
+      (event: React.FocusEvent) => {
+        const { currentTarget, relatedTarget } = event;
 
-      const isInMenu =
-        relatedTarget && currentTarget.contains(relatedTarget as Node);
+        const isInMenu =
+          relatedTarget && currentTarget.contains(relatedTarget as Node);
 
-      if (!isInMenu && isOpen) {
-        closeDropdown(event);
-      }
-    }
+        if (!isInMenu && isOpen) {
+          closeDropdown(event);
+        }
+      },
+      [closeDropdown, isOpen]
+    );
 
     const maxHeightString =
       typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
