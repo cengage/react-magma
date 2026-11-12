@@ -1,5 +1,13 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.12
+
+### Patch Changes
+
+- 3d2dab396: fix(Dropdown): announce expanded state in Safari VoiceOver
+- 969d93f78: fix(Table): memoize `TableContext` value so memoized rows and cells skip unnecessary re-renders
+- 9396a9111: fix(Tooltip): keep tooltip open when moving cursor between trigger and content
+
 ## 6.1.0-v6-next.11
 
 ### Minor Changes

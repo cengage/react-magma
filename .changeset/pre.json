@@ -11,6 +11,7 @@
   },
   "changesets": [
     "ai-agent-guidance",
+    "dropdown-safari-announcement",
     "dropzone-button-customization",
     "fix-charts-fullscreen-height",
     "fix-dropdown-menu-a11y",
@@ -25,6 +26,8 @@
     "lovely-taglines",
     "sixty-falcons-admire",
     "sync-v6-main-to-v6-dev-6-0-0",
+    "table-context-memo",
+    "tooltip-hover-handoff",
     "tooltip-skip-duplicate-description",
     "treeview-cursor",
     "treeview-expansion-announcements",
