@@ -1,7 +1,11 @@
 import React, { ChangeEvent } from 'react';
 
 import { Meta, StoryFn } from '@storybook/react-webpack5';
-import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
+import {
+  HelpOutlinedIcon,
+  NotificationsOutlinedIcon,
+  WorkOutlinedIcon,
+} from 'react-magma-icons';
 
 import {
   Button,
@@ -134,7 +138,7 @@ export const IconPositions = {
         <Input
           {...args}
           labelText="Icon Left"
-          icon={<NotificationsIcon />}
+          icon={<NotificationsOutlinedIcon />}
           iconPosition={InputIconPosition.left}
         />
         <br />
@@ -142,7 +146,7 @@ export const IconPositions = {
         <Input
           {...args}
           labelText="Icon Right"
-          icon={<WorkIcon />}
+          icon={<WorkOutlinedIcon />}
           iconPosition={InputIconPosition.right}
         />
         <br />
@@ -150,7 +154,7 @@ export const IconPositions = {
         <Input
           {...args}
           labelText="Icon Top"
-          icon={<HelpIcon />}
+          icon={<HelpOutlinedIcon />}
           iconPosition={InputIconPosition.top}
         />
       </>
@@ -182,7 +186,7 @@ export const ClickableIcon = {
 
   args: {
     ...Default.args,
-    icon: <NotificationsIcon />,
+    icon: <NotificationsOutlinedIcon />,
     iconAriaLabel: 'Notifications',
     onIconClick: () => {},
   },
@@ -225,7 +229,7 @@ export const HelpLink = {
           <Tooltip content={helpLinkLabel}>
             <IconButton
               aria-label={helpLinkLabel}
-              icon={<HelpIcon />}
+              icon={<HelpOutlinedIcon />}
               onClick={onHelpLinkClick}
               type={ButtonType.button}
               size={ButtonSize.small}
@@ -242,7 +246,7 @@ export const HelpLink = {
           <Tooltip content={helpLinkLabel}>
             <IconButton
               aria-label={helpLinkLabel}
-              icon={<HelpIcon />}
+              icon={<HelpOutlinedIcon />}
               onClick={onHelpLinkClick}
               type={ButtonType.button}
               size={ButtonSize.small}
@@ -255,7 +259,7 @@ export const HelpLink = {
           <Tooltip content={helpLinkLabel}>
             <IconButton
               aria-label={helpLinkLabel}
-              icon={<HelpIcon />}
+              icon={<HelpOutlinedIcon />}
               onClick={onHelpLinkClick}
               type={ButtonType.button}
               size={ButtonSize.small}
@@ -298,13 +302,13 @@ export const WithTwoIcons = {
       <>
         <Input
           labelText="With two icons"
-          icon={<NotificationsIcon />}
+          icon={<NotificationsOutlinedIcon />}
           iconPosition={InputIconPosition.left}
         >
           <Tooltip content={helpLinkLabel}>
             <IconButton
               aria-label={helpLinkLabel}
-              icon={<HelpIcon />}
+              icon={<HelpOutlinedIcon />}
               onClick={onHelpLinkClick}
               type={ButtonType.button}
               size={ButtonSize.small}
@@ -652,13 +656,13 @@ export const AllInputs = () => {
         <div style={{ flex: '0 0 auto' }}>
           <Input
             labelText="With two icons"
-            icon={<NotificationsIcon />}
+            icon={<NotificationsOutlinedIcon />}
             iconPosition={InputIconPosition.left}
           >
             <Tooltip content={helpLinkLabel}>
               <IconButton
                 aria-label={helpLinkLabel}
-                icon={<HelpIcon />}
+                icon={<HelpOutlinedIcon />}
                 onClick={onHelpLinkClick}
                 type={ButtonType.button}
                 size={ButtonSize.small}

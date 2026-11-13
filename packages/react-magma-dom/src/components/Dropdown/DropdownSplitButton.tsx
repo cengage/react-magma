@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import { transparentize } from 'polished';
 import {
-  ArrowDropDownIcon,
-  ArrowDropUpIcon,
+  ArrowDropDownOutlinedIcon,
+  ArrowDropUpOutlinedIcon,
   IconProps,
 } from 'react-magma-icons';
 
@@ -86,13 +86,13 @@ export const DropdownSplitButton = React.forwardRef<
 
   const buttonIcon =
     resolvedContext.dropDirection === DropdownDropDirection.up ? (
-      <ArrowDropUpIcon
+      <ArrowDropUpOutlinedIcon
         size={getIconSize(other.size, theme)}
         testId="caretUp"
         aria-hidden="true"
       />
     ) : (
-      <ArrowDropDownIcon
+      <ArrowDropDownOutlinedIcon
         size={getIconSize(other.size, theme)}
         testId="caretDown"
         aria-hidden="true"

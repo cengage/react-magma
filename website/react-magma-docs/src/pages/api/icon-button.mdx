@@ -34,27 +34,30 @@ import {
   ButtonGroup,
 } from 'react-magma-dom';
 import {
-  PriorityHighIcon,
-  CheckIcon,
-  NotificationsIcon,
-  SettingsIcon,
-  AddIcon,
+  PriorityHighOutlinedIcon,
+  CheckOutlinedIcon,
+  NotificationsOutlinedIcon,
+  SettingsOutlinedIcon,
+  AddOutlinedIcon,
 } from 'react-magma-icons';
 
 export function Example() {
   return (
     <>
       <ButtonGroup>
-        <IconButton aria-label="Notifications" icon={<NotificationsIcon />} />
+        <IconButton
+          aria-label="Notifications"
+          icon={<NotificationsOutlinedIcon />}
+        />
         <IconButton
           aria-label="Notifications"
           variant={ButtonVariant.solid}
-          icon={<NotificationsIcon />}
+          icon={<NotificationsOutlinedIcon />}
         />
         <IconButton
           aria-label="Notifications"
           variant={ButtonVariant.link}
-          icon={<NotificationsIcon />}
+          icon={<NotificationsOutlinedIcon />}
         />
       </ButtonGroup>
       <br />
@@ -62,39 +65,39 @@ export function Example() {
         <IconButton
           aria-label="Settings"
           color={ButtonColor.secondary}
-          icon={<SettingsIcon />}
+          icon={<SettingsOutlinedIcon />}
         />
         <IconButton
           aria-label="Settings"
           color={ButtonColor.secondary}
           variant={ButtonVariant.solid}
-          icon={<SettingsIcon />}
+          icon={<SettingsOutlinedIcon />}
         />
         <IconButton
           aria-label="Settings"
           color={ButtonColor.secondary}
           variant={ButtonVariant.link}
-          icon={<SettingsIcon />}
+          icon={<SettingsOutlinedIcon />}
         />
       </ButtonGroup>
       <br />
       <ButtonGroup>
         <IconButton
           aria-label="Correct"
-          icon={<CheckIcon />}
+          icon={<CheckOutlinedIcon />}
           color={ButtonColor.subtle}
         />
         <IconButton
           aria-label="Correct"
           color={ButtonColor.subtle}
           variant={ButtonVariant.solid}
-          icon={<CheckIcon />}
+          icon={<CheckOutlinedIcon />}
         />
         <IconButton
           aria-label="Correct"
           color={ButtonColor.subtle}
           variant={ButtonVariant.link}
-          icon={<CheckIcon />}
+          icon={<CheckOutlinedIcon />}
         />
       </ButtonGroup>
       <br />
@@ -102,19 +105,19 @@ export function Example() {
         <IconButton
           aria-label="Error"
           color={ButtonColor.danger}
-          icon={<PriorityHighIcon />}
+          icon={<PriorityHighOutlinedIcon />}
         />
         <IconButton
           aria-label="Error"
           color={ButtonColor.danger}
           variant={ButtonVariant.solid}
-          icon={<PriorityHighIcon />}
+          icon={<PriorityHighOutlinedIcon />}
         />
         <IconButton
           aria-label="Error"
           color={ButtonColor.danger}
           variant={ButtonVariant.link}
-          icon={<PriorityHighIcon />}
+          icon={<PriorityHighOutlinedIcon />}
         />
       </ButtonGroup>
       <br />
@@ -122,19 +125,19 @@ export function Example() {
         <IconButton
           aria-label="Add"
           color={ButtonColor.success}
-          icon={<AddIcon />}
+          icon={<AddOutlinedIcon />}
         />
         <IconButton
           aria-label="Add"
           color={ButtonColor.success}
           variant={ButtonVariant.solid}
-          icon={<AddIcon />}
+          icon={<AddOutlinedIcon />}
         />
         <IconButton
           aria-label="Add"
           color={ButtonColor.success}
           variant={ButtonVariant.link}
-          icon={<AddIcon />}
+          icon={<AddOutlinedIcon />}
         />
       </ButtonGroup>
       <br />
@@ -142,20 +145,22 @@ export function Example() {
         <IconButton
           aria-label="Notifications"
           disabled
-          icon={<NotificationsIcon />}
+          icon={<NotificationsOutlinedIcon />}
         />
-        <IconButton icon={<NotificationsIcon />}>Notifications</IconButton>
+        <IconButton icon={<NotificationsOutlinedIcon />}>
+          Notifications
+        </IconButton>
       </ButtonGroup>
       <br />
       <ButtonGroup>
         <IconButton
-          icon={<SettingsIcon />}
+          icon={<SettingsOutlinedIcon />}
           color={ButtonColor.secondary}
           variant={ButtonVariant.solid}
         >
           Settings
         </IconButton>
-        <IconButton icon={<CheckIcon />} variant={ButtonVariant.link}>
+        <IconButton icon={<CheckOutlinedIcon />} variant={ButtonVariant.link}>
           Submit
         </IconButton>
       </ButtonGroup>
@@ -172,10 +177,10 @@ If you find JSX being passed in as a prop directly ugly, you can assign an icon 
 import React from 'react';
 
 import { IconButton } from 'react-magma-dom';
-import { NotificationsIcon } from 'react-magma-icons';
+import { NotificationsOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
-  const icon = <NotificationsIcon />;
+  const icon = <NotificationsOutlinedIcon />;
 
   return <IconButton aria-label="Notifications" icon={icon} />;
 }
@@ -189,10 +194,10 @@ Icon buttons have default sizes for small, medium and large icon buttons respect
 import React from 'react';
 
 import { IconButton } from 'react-magma-dom';
-import { NotificationsIcon } from 'react-magma-icons';
+import { NotificationsOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
-  const icon = <NotificationsIcon size={10} />;
+  const icon = <NotificationsOutlinedIcon size={10} />;
 
   return <IconButton icon={icon}>With Custom Icon Size</IconButton>;
 }
@@ -212,15 +217,15 @@ import {
   IconButton,
   ButtonGroup,
 } from 'react-magma-dom';
-import { NotificationsIcon, InfoIcon } from 'react-magma-icons';
+import { NotificationsOutlinedIcon, InfoOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <ButtonGroup>
-      <IconButton icon={<NotificationsIcon />}>Icon Left</IconButton>
+      <IconButton icon={<NotificationsOutlinedIcon />}>Icon Left</IconButton>
       <IconButton
         color={ButtonColor.secondary}
-        icon={<InfoIcon />}
+        icon={<InfoOutlinedIcon />}
         iconPosition={ButtonIconPosition.right}
       >
         Icon Right
@@ -242,14 +247,17 @@ of the button.
 import React from 'react';
 
 import { ButtonIconPosition, IconButton } from 'react-magma-dom';
-import { NotificationsIcon, SettingsIcon } from 'react-magma-icons';
+import {
+  NotificationsOutlinedIcon,
+  SettingsOutlinedIcon,
+} from 'react-magma-icons';
 
 export function Example() {
   return (
     <IconButton
       iconPosition={ButtonIconPosition.right}
-      icon={<SettingsIcon />}
-      leadingIcon={<NotificationsIcon />}
+      icon={<SettingsOutlinedIcon />}
+      leadingIcon={<NotificationsOutlinedIcon />}
     >
       Leading Icon
     </IconButton>
@@ -270,20 +278,23 @@ import {
   IconButton,
   ButtonGroup,
 } from 'react-magma-dom';
-import { NotificationsIcon } from 'react-magma-icons';
+import { NotificationsOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <>
       <ButtonGroup>
         <IconButton
-          icon={<NotificationsIcon />}
+          icon={<NotificationsOutlinedIcon />}
           size={ButtonSize.small}
           aria-label="Notifications"
         />
-        <IconButton icon={<NotificationsIcon />} aria-label="Notifications" />
         <IconButton
-          icon={<NotificationsIcon />}
+          icon={<NotificationsOutlinedIcon />}
+          aria-label="Notifications"
+        />
+        <IconButton
+          icon={<NotificationsOutlinedIcon />}
           aria-label="Notifications"
           size={ButtonSize.large}
         />
@@ -291,20 +302,20 @@ export function Example() {
       <br />
       <ButtonGroup>
         <IconButton
-          icon={<NotificationsIcon />}
+          icon={<NotificationsOutlinedIcon />}
           size={ButtonSize.small}
           iconPosition={ButtonIconPosition.left}
         >
           Small Notifications
         </IconButton>
         <IconButton
-          icon={<NotificationsIcon />}
+          icon={<NotificationsOutlinedIcon />}
           iconPosition={ButtonIconPosition.left}
         >
           Medium Notifications
         </IconButton>
         <IconButton
-          icon={<NotificationsIcon />}
+          icon={<NotificationsOutlinedIcon />}
           size={ButtonSize.large}
           iconPosition={ButtonIconPosition.left}
         >
@@ -324,24 +335,27 @@ Icon only buttons have `shape = round`, by default.
 import React from 'react';
 
 import { ButtonShape, IconButton, ButtonGroup } from 'react-magma-dom';
-import { NotificationsIcon } from 'react-magma-icons';
+import { NotificationsOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <ButtonGroup>
-      <IconButton icon={<NotificationsIcon />} aria-label="Notifications" />
       <IconButton
-        icon={<NotificationsIcon />}
+        icon={<NotificationsOutlinedIcon />}
+        aria-label="Notifications"
+      />
+      <IconButton
+        icon={<NotificationsOutlinedIcon />}
         aria-label="Notifications"
         shape={ButtonShape.fill}
       />
       <IconButton
-        icon={<NotificationsIcon />}
+        icon={<NotificationsOutlinedIcon />}
         aria-label="Notifications"
         shape={ButtonShape.rightCap}
       />
       <IconButton
-        icon={<NotificationsIcon />}
+        icon={<NotificationsOutlinedIcon />}
         aria-label="Notifications"
         shape={ButtonShape.leftCap}
       />
@@ -358,17 +372,17 @@ The `isFullWidth` property will set the button to display full-width. This prope
 import React from 'react';
 
 import { ButtonIconPosition, IconButton } from 'react-magma-dom';
-import { NotificationsIcon } from 'react-magma-icons';
+import { NotificationsOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <>
-      <IconButton icon={<NotificationsIcon />} isFullWidth>
+      <IconButton icon={<NotificationsOutlinedIcon />} isFullWidth>
         Full-Width Notifications Btn
       </IconButton>
       <br />
       <IconButton
-        icon={<NotificationsIcon />}
+        icon={<NotificationsOutlinedIcon />}
         isFullWidth
         iconPosition={ButtonIconPosition.right}
       >
@@ -376,7 +390,7 @@ export function Example() {
       </IconButton>
       <br />
       <IconButton
-        icon={<NotificationsIcon />}
+        icon={<NotificationsOutlinedIcon />}
         aria-label="Notifications"
         isFullWidth
       />
@@ -398,7 +412,10 @@ import {
   CardBody,
   magma,
 } from 'react-magma-dom';
-import { PriorityHighIcon, NotificationsIcon } from 'react-magma-icons';
+import {
+  PriorityHighOutlinedIcon,
+  NotificationsOutlinedIcon,
+} from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -408,13 +425,13 @@ export function Example() {
           <IconButton
             aria-label="Alert"
             variant={ButtonVariant.solid}
-            icon={<PriorityHighIcon />}
+            icon={<PriorityHighOutlinedIcon />}
             isInverse
           />
           <IconButton
             aria-label="Notifications"
             variant={ButtonVariant.solid}
-            icon={<NotificationsIcon />}
+            icon={<NotificationsOutlinedIcon />}
             isInverse
           />
         </ButtonGroup>
@@ -433,7 +450,7 @@ Events do not fire on disabled buttons.
 import React from 'react';
 
 import { IconButton, ButtonGroup } from 'react-magma-dom';
-import { NotificationsIcon } from 'react-magma-icons';
+import { NotificationsOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   const [iconButtonCounter, setIconButtonCounter] = React.useState(0);
@@ -447,7 +464,7 @@ export function Example() {
       </p>
       <ButtonGroup>
         <IconButton
-          icon={<NotificationsIcon />}
+          icon={<NotificationsOutlinedIcon />}
           onClick={() => {
             setIconButtonCounter(count => count + 1);
           }}
@@ -455,7 +472,7 @@ export function Example() {
           Click me
         </IconButton>
         <IconButton
-          icon={<NotificationsIcon />}
+          icon={<NotificationsOutlinedIcon />}
           onClick={() => {
             setTextIconButtonCounter(count => count + 1);
           }}
@@ -464,7 +481,7 @@ export function Example() {
         </IconButton>
         <IconButton
           disabled
-          icon={<NotificationsIcon />}
+          icon={<NotificationsOutlinedIcon />}
           onClick={() => {
             setIconButtonCounter(count => count + 1);
           }}

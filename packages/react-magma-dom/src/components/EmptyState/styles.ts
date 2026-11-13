@@ -35,6 +35,20 @@ export function getIllustrationIconColor(props: {
     : props.theme.colors.brand.navy;
 }
 
+export function getLoadingSpinnerColor(props: {
+  isDanger?: boolean;
+  isInverse?: boolean;
+  theme: ThemeInterface;
+}): string {
+  if (props.isInverse) {
+    return props.isDanger
+      ? props.theme.colors.red500
+      : props.theme.colors.neutral0;
+  }
+
+  return getIllustrationIconColor(props);
+}
+
 export const StyledEmptyState = styled('div', {
   shouldForwardProp: isPropValid,
 })<{

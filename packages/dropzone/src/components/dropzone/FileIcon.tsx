@@ -2,10 +2,10 @@ import React from 'react';
 
 import { magma } from 'react-magma-dom';
 import {
-  InsertDriveFileIcon,
-  ImageIcon,
-  AudiotrackIcon,
-  VideocamIcon,
+  DraftOutlinedIcon,
+  ImageOutlinedIcon,
+  MusicNoteOutlinedIcon,
+  VideocamOutlinedIcon,
   FileExcelIcon,
   FilePdfIcon,
   FilePowerpointIcon,
@@ -23,7 +23,7 @@ export interface FileIconProps extends IconProps {
 
 const icons = {
   default: {
-    Icon: InsertDriveFileIcon,
+    Icon: DraftOutlinedIcon,
     style: {
       color: magma.colors.neutral700,
     },
@@ -68,7 +68,7 @@ const icons = {
     },
   },
   image: {
-    Icon: ImageIcon,
+    Icon: ImageOutlinedIcon,
     style: {
       color: magma.colors.neutral700,
     },
@@ -77,7 +77,7 @@ const icons = {
     },
   },
   video: {
-    Icon: VideocamIcon,
+    Icon: VideocamOutlinedIcon,
     style: {
       color: magma.colors.neutral700,
     },
@@ -86,7 +86,7 @@ const icons = {
     },
   },
   audio: {
-    Icon: AudiotrackIcon,
+    Icon: MusicNoteOutlinedIcon,
     style: {
       color: magma.colors.neutral700,
     },
