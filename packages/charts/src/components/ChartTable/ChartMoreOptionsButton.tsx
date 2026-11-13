@@ -6,6 +6,7 @@ import {
   Dropdown,
   DropdownButton,
   DropdownContent,
+  Tooltip,
 } from 'react-magma-dom';
 
 import { useChartToolbarI18n } from './chartToolbarI18n';
@@ -37,13 +38,15 @@ export function ChartMoreOptionsButton({
   const resolvedAriaLabel = ariaLabel ?? t.moreOptionsAriaLabel;
   return (
     <Dropdown isInverse={isInverse}>
-      <DropdownButton
-        aria-label={resolvedAriaLabel}
-        color={ButtonColor.subtle}
-        icon={icon}
-        variant={ButtonVariant.link}
-        testId="chart-more-options-button"
-      />
+      <Tooltip content={resolvedAriaLabel} isInverse={isInverse}>
+        <DropdownButton
+          aria-label={resolvedAriaLabel}
+          color={ButtonColor.subtle}
+          icon={icon}
+          variant={ButtonVariant.link}
+          testId="chart-more-options-button"
+        />
+      </Tooltip>
       <DropdownContent>{children}</DropdownContent>
     </Dropdown>
   );
