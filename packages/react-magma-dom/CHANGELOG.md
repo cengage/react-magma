@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.19
+
+### Patch Changes
+
+- 4e4a938: fix(Tabs): remove the maximum width and support wrapped vertical labels
+
 ## 7.1.0-next.18
 
 ### Patch Changes
