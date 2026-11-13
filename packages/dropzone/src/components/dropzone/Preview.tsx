@@ -22,10 +22,10 @@ import {
   styled,
 } from 'react-magma-dom';
 import {
-  CheckCircleIcon,
-  CloseIcon,
-  DeleteIcon,
-  ErrorIcon,
+  CheckCircleOutlinedIcon,
+  CloseOutlinedIcon,
+  DeleteOutlinedIcon,
+  ErrorOutlinedIcon,
 } from 'react-magma-icons';
 
 import { FileIcon } from './FileIcon';
@@ -84,7 +84,7 @@ const PreviewIcon = ({
 }) => {
   if (file.errors) {
     return (
-      <ErrorIcon
+      <ErrorOutlinedIcon
         color={isInverse ? theme.colors.red500 : theme.colors.danger}
         size={24}
       />
@@ -232,7 +232,7 @@ export const Preview = forwardRef<
   const theme: ThemeInterface = useContext(ThemeContext);
   const i18n: I18nInterface = React.useContext(I18nContext);
   const isInverse = useIsInverse(isInverseProp);
-  const [actions, setActions] = useState(<CloseIcon />);
+  const [actions, setActions] = useState(<CloseOutlinedIcon />);
 
   const handleRemoveFile = () => {
     onRemoveFile && typeof onRemoveFile === 'function' && onRemoveFile(file);
@@ -267,7 +267,7 @@ export const Preview = forwardRef<
             variant={ButtonVariant.link}
             color={ButtonColor.subtle}
             aria-label={`${i18n.dropzone.removeFile} ${file.name}`}
-            icon={<CloseIcon />}
+            icon={<CloseOutlinedIcon />}
           />
         </StatusIcons>
       );
@@ -288,7 +288,7 @@ export const Preview = forwardRef<
     return (
       <StatusIcons>
         <Transition isOpen={!done} unmountOnExit fade>
-          <CheckCircleIcon
+          <CheckCircleOutlinedIcon
             color={isInverse ? theme.colors.green500 : theme.colors.success}
             style={{ marginTop: '4px' }}
           />
@@ -299,7 +299,7 @@ export const Preview = forwardRef<
             variant={ButtonVariant.link}
             color={ButtonColor.subtle}
             aria-label={`${i18n.dropzone.deleteFile} ${file.name}`}
-            icon={<DeleteIcon />}
+            icon={<DeleteOutlinedIcon />}
           />
         </Transition>
       </StatusIcons>

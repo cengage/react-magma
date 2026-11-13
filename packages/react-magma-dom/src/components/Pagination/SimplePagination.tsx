@@ -2,7 +2,10 @@ import * as React from 'react';
 
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
-import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
+import {
+  ArrowBackOutlinedIcon,
+  ArrowForwardOutlinedIcon,
+} from 'react-magma-icons';
 
 import { NativeSelect } from '../..';
 import { I18nContext } from '../../i18n';
@@ -140,7 +143,7 @@ export const SimplePagination = React.forwardRef<
       variant={ButtonVariant.link}
       color={ButtonColor.subtle}
       disabled={disabledPrevTooltip}
-      icon={<ArrowBackIcon />}
+      icon={<ArrowBackOutlinedIcon />}
       isInverse={isInverse}
       testId={testId ? `${testId}-previous-button` : null}
       theme={theme}
@@ -155,7 +158,7 @@ export const SimplePagination = React.forwardRef<
       variant={ButtonVariant.link}
       color={ButtonColor.subtle}
       disabled={disabledNextTooltip}
-      icon={<ArrowForwardIcon />}
+      icon={<ArrowForwardOutlinedIcon />}
       isInverse={isInverse}
       onClick={handleNext}
       testId={testId ? `${testId}-next-button` : null}

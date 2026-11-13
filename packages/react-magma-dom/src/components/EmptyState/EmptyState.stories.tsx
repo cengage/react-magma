@@ -2,11 +2,11 @@ import React from 'react';
 
 import { StoryFn, Meta } from '@storybook/react';
 import {
-  SearchIcon,
-  FolderOpenIcon,
-  ErrorIcon,
-  AddIcon,
-  NotificationsIcon,
+  SearchOutlinedIcon,
+  FolderOpenOutlinedIcon,
+  ErrorOutlinedIcon,
+  AddOutlinedIcon,
+  NotificationsOutlinedIcon,
 } from 'react-magma-icons';
 
 import { magma } from '../../theme/magma';
@@ -40,19 +40,19 @@ export default {
     icon: {
       control: { type: 'select' },
       options: [
-        'SearchIcon',
-        'FolderOpenIcon',
-        'ErrorIcon',
-        'AddIcon',
-        'NotificationsIcon',
+        'SearchOutlinedIcon',
+        'FolderOpenOutlinedIcon',
+        'ErrorOutlinedIcon',
+        'AddOutlinedIcon',
+        'NotificationsOutlinedIcon',
         'None',
       ],
       mapping: {
-        SearchIcon: <SearchIcon />,
-        FolderOpenIcon: <FolderOpenIcon />,
-        ErrorIcon: <ErrorIcon />,
-        AddIcon: <AddIcon />,
-        NotificationsIcon: <NotificationsIcon />,
+        SearchOutlinedIcon: <SearchOutlinedIcon />,
+        FolderOpenOutlinedIcon: <FolderOpenOutlinedIcon />,
+        ErrorOutlinedIcon: <ErrorOutlinedIcon />,
+        AddOutlinedIcon: <AddOutlinedIcon />,
+        NotificationsOutlinedIcon: <NotificationsOutlinedIcon />,
         None: undefined,
       },
     },
@@ -72,7 +72,7 @@ export const Default = {
   render: Template,
 
   args: {
-    icon: <SearchIcon />,
+    icon: <SearchOutlinedIcon />,
     title: 'No results found',
     description:
       'Try adjusting your search or filter criteria to find what you are looking for.',
@@ -92,7 +92,7 @@ export const DangerMode = {
   render: Template,
 
   args: {
-    icon: <ErrorIcon />,
+    icon: <ErrorOutlinedIcon />,
     title: 'Something went wrong',
     description:
       'We encountered an error while processing your request. Please try again.',
@@ -120,7 +120,7 @@ export const WithoutActions = {
   render: Template,
 
   args: {
-    icon: <FolderOpenIcon />,
+    icon: <FolderOpenOutlinedIcon />,
     title: 'This folder is empty',
     description: 'Upload files or create subfolders to get started.',
   },
@@ -130,7 +130,7 @@ export const TitleOnly = {
   render: Template,
 
   args: {
-    icon: <NotificationsIcon />,
+    icon: <NotificationsOutlinedIcon />,
     title: 'No notifications',
   },
 };
@@ -139,7 +139,7 @@ export const PrimaryActionOnly = {
   render: Template,
 
   args: {
-    icon: <AddIcon />,
+    icon: <AddOutlinedIcon />,
     title: 'Get started',
     description: 'Create your first project to begin.',
     actions: <Button color={ButtonColor.primary}>Create Project</Button>,
@@ -150,7 +150,7 @@ export const SecondaryActionOnly = {
   render: Template,
 
   args: {
-    icon: <SearchIcon />,
+    icon: <SearchOutlinedIcon />,
     title: 'No matches',
     description: 'We could not find any matching results.',
     actions: <Button color={ButtonColor.secondary}>View All Items</Button>,
@@ -161,7 +161,7 @@ export const TertiaryActionOnly = {
   render: Template,
 
   args: {
-    icon: <SearchIcon />,
+    icon: <SearchOutlinedIcon />,
     title: 'No courses found',
     description: 'Your search did not match any available courses.',
     actions: (
@@ -176,7 +176,7 @@ export const AllThreeButtons = {
   render: Template,
 
   args: {
-    icon: <SearchIcon />,
+    icon: <SearchOutlinedIcon />,
     title: 'No results found',
     description:
       'We could not find anything matching your search. Try different keywords or browse our catalog.',
@@ -195,7 +195,7 @@ export const AllThreeButtons = {
 export const WithAdditionalContent = {
   render: () => (
     <EmptyState
-      icon={<SearchIcon />}
+      icon={<SearchOutlinedIcon />}
       title="No results found"
       description="Try a different search term or browse by category."
       additionalContent={<Search isClearable placeholder="Search courses..." />}
@@ -232,7 +232,7 @@ export const Minimal = {
 export const CustomChildren = {
   render: () => (
     <EmptyState
-      icon={<SearchIcon />}
+      icon={<SearchOutlinedIcon />}
       title="No courses found"
       description="Try browsing by category instead."
       actions={
