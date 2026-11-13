@@ -1,5 +1,5 @@
 # See https://help.github.com/articles/about-codeowners/ for valid syntax for entries.
 
 *                                           @cengage/react-magma @silvalaura 
-packages/**                                 @cengage/react-magma @silvalaura @moathabuhamad-cengage @nikitaorliak-cengage @olehnoskov-cengage
+packages/**                                 @cengage/react-magma @silvalaura @nikitaorliak-cengage @artemtrusov-cengage @serhiiyanhol-cengage
 packages/react-magma-docs/src/pages/design  @orion-cengage
