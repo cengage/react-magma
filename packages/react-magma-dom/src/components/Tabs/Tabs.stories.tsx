@@ -156,16 +156,16 @@ const longTabLabels = [
 ];
 
 const longTabIcons = [
-  <Book2OutlinedIcon />,
-  <PeopleOutlineIcon />,
-  <AssignmentOutlinedIcon />,
-  <GradeOutlinedIcon />,
-  <Book2OutlinedIcon />,
-  <PeopleOutlineIcon />,
-  <AssignmentOutlinedIcon />,
-  <GradeOutlinedIcon />,
-  <Book2OutlinedIcon />,
-  <PeopleOutlineIcon />,
+  <Book2OutlinedIcon key="course-overview" />,
+  <PeopleOutlineIcon key="enrollment" />,
+  <AssignmentOutlinedIcon key="assignment-settings" />,
+  <GradeOutlinedIcon key="gradebook" />,
+  <Book2OutlinedIcon key="learning-objectives" />,
+  <PeopleOutlineIcon key="attendance" />,
+  <AssignmentOutlinedIcon key="discussions" />,
+  <GradeOutlinedIcon key="assessment" />,
+  <Book2OutlinedIcon key="accessibility" />,
+  <PeopleOutlineIcon key="resources" />,
 ];
 
 const LongLabelsTemplate: StoryFn<TabsProps> = args => (
