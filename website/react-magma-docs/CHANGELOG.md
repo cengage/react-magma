@@ -1,5 +1,12 @@
 # Change Log
 
+## 6.0.1-v6-next.13
+
+### Patch Changes
+
+- Updated dependencies [32a13ca99]
+  - @react-magma/charts@16.0.0-v6-next.5
+
 ## 6.0.1-v6-next.12
 
 ### Patch Changes

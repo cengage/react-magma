@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 16.0.0-v6-next.5
+
+### Patch Changes
+
+- 32a13ca99: fix(charts): add a tooltip to the More options button
+
 ## 16.0.0-v6-next.4
 
 ### Patch Changes
