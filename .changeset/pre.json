@@ -13,6 +13,7 @@
     "docs-changelog-sync",
     "dropdown-safari-announcement",
     "dropzone-button-customization",
+    "fix-Select-trigger-accessible-name",
     "fix-dropdown-menu-a11y",
     "fix-modal-definitionlist-a11y",
     "fix-navtabs-custom-tab-role",

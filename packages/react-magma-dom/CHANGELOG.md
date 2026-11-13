@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.18
+
+### Patch Changes
+
+- b6403a1: fix(Select, MultiSelect): Label the trigger by its label only so screen readers don't announce the selected value twice.
+
 ## 7.1.0-next.17
 
 ### Patch Changes
