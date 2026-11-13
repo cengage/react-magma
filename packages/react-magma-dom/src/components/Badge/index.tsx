@@ -40,6 +40,11 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
    */
   variant?: BadgeVariant;
   /**
+   * Indicates the size of a counter badge. This prop has no effect on label badges.
+   * @default BadgeSize.medium
+   */
+  size?: BadgeSize;
+  /**
    * Indicates the visual weight of the component
    * @default BadgeWeight.default
    */
@@ -59,6 +64,12 @@ export enum BadgeColor {
 export enum BadgeVariant {
   counter = 'counter',
   label = 'label', // default
+}
+
+export enum BadgeSize {
+  large = 'large',
+  medium = 'medium', // default
+  small = 'small',
 }
 
 export enum BadgeWeight {
@@ -305,6 +316,77 @@ export function buildBadgeBorderColor(props) {
   return 'transparent';
 }
 
+function getBadgeTypeScale(props) {
+  if (props.variant === BadgeVariant.counter) {
+    switch (props.size) {
+      case BadgeSize.large:
+        return props.theme.typeScale.size03;
+      case BadgeSize.small:
+        return props.theme.typeScale.size01;
+      case BadgeSize.medium:
+      default:
+        return props.theme.typeScale.size02;
+    }
+  }
+
+  return props.theme.typeScale.size01;
+}
+
+function getBadgeMaxHeight(props) {
+  if (props.variant !== BadgeVariant.counter) {
+    return 'auto';
+  }
+
+  switch (props.size) {
+    case BadgeSize.large:
+      return props.theme.spaceScale.spacing07;
+    case BadgeSize.small:
+      return props.theme.spaceScale.spacing05;
+    case BadgeSize.medium:
+    default:
+      return props.theme.spaceScale.spacing06;
+  }
+}
+
+function getBadgeMinWidth(props) {
+  if (props.variant === BadgeVariant.counter) {
+    switch (props.size) {
+      case BadgeSize.large:
+        return props.theme.spaceScale.spacing07;
+      case BadgeSize.small:
+        return props.theme.spaceScale.spacing05;
+      case BadgeSize.medium:
+      default:
+        return props.theme.spaceScale.spacing06;
+    }
+  }
+
+  return props.theme.spaceScale.spacing06;
+}
+
+function getBadgePadding(props) {
+  if (props.variant !== BadgeVariant.counter) {
+    return `3px  ${props.theme.spaceScale.spacing02}`;
+  }
+
+  return props.size === BadgeSize.small
+    ? `0 ${props.theme.spaceScale.spacing01}`
+    : `1px ${props.theme.spaceScale.spacing02}`;
+}
+
+function getBadgeMargin(props) {
+  if (props.variant === BadgeVariant.counter) {
+    const leftMargin =
+      props.size === BadgeSize.large
+        ? props.theme.spaceScale.spacing05
+        : props.theme.spaceScale.spacing03;
+
+    return `0 0 0 ${leftMargin}`;
+  }
+
+  return `0 ${props.theme.spaceScale.spacing03} 0 0`;
+}
+
 export const baseBadgeStyles = props => css`
   ${props.hasIcon && `align-items: center;`}
   background: ${buildBadgeBackground(props)};
@@ -316,26 +398,18 @@ export const baseBadgeStyles = props => css`
   color: ${buildBadgeTextColor(props)};
   display: ${props.hasIcon ? 'inline-flex' : 'inline-block'};
   font-weight: 500;
-  font-size: ${props.variant === BadgeVariant.counter
-    ? props.theme.typeScale.size02.fontSize
-    : props.theme.typeScale.size01.fontSize};
+  font-size: ${getBadgeTypeScale(props).fontSize};
   font-family: ${props.theme.bodyFont};
-  letter-spacing: ${props.variant === BadgeVariant.counter
-    ? props.theme.typeScale.size02.letterSpacing
-    : props.theme.typeScale.size01.letterSpacing};
-  line-height: ${props.variant === BadgeVariant.counter
-    ? props.theme.typeScale.size02.lineHeight
-    : props.theme.typeScale.size01.lineHeight};
-  margin: ${props.variant === BadgeVariant.counter
-    ? `0 0 0 ${props.theme.spaceScale.spacing03}`
-    : `0 ${props.theme.spaceScale.spacing03} 0 0`};
-  max-height: ${props.variant === BadgeVariant.counter
-    ? props.theme.spaceScale.spacing06
-    : 'auto'};
-  min-width: ${props.theme.spaceScale.spacing06};
-  padding: ${props.variant === BadgeVariant.counter
-    ? `1px ${props.theme.spaceScale.spacing02}`
-    : `3px  ${props.theme.spaceScale.spacing02}`};
+  letter-spacing: ${getBadgeTypeScale(props).letterSpacing};
+  line-height: ${getBadgeTypeScale(props).lineHeight};
+  margin: ${getBadgeMargin(props)};
+  max-height: ${getBadgeMaxHeight(props)};
+  min-width: ${getBadgeMinWidth(props)};
+  padding: ${getBadgePadding(props)};
+  ${props.variant === BadgeVariant.counter &&
+  (props.size === BadgeSize.small || props.size === BadgeSize.large) &&
+  `box-sizing: border-box;
+   height: ${getBadgeMaxHeight(props)};`}
   text-align: ${props.variant === BadgeVariant.counter ? 'center' : 'inherit'};
   ${props.hasIcon && `vertical-align: middle;`}
 `;
@@ -388,6 +462,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       leftIcon,
       onClick,
       rightIcon,
+      size,
       testId,
       variant,
       weight,
@@ -426,6 +501,11 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
         data-testid={testId}
         hasIcon={hasIcon}
         isInverse={isInverse}
+        size={
+          variant === BadgeVariant.counter
+            ? size || BadgeSize.medium
+            : undefined
+        }
         variant={variant ? variant : BadgeVariant.label}
         weight={weight ? weight : BadgeWeight.default}
         onClick={onClick}

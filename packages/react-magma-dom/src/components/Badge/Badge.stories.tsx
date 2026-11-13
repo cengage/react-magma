@@ -4,9 +4,10 @@ import { Meta } from '@storybook/react-webpack5';
 import { CheckCircleIcon, InfoIcon } from 'react-magma-icons';
 
 import { magma } from '../../theme/magma';
+import { Button, ButtonSize } from '../Button';
 import { Card, CardBody } from '../Card';
 
-import { Badge, BadgeColor, BadgeVariant, BadgeWeight } from '.';
+import { Badge, BadgeColor, BadgeSize, BadgeVariant, BadgeWeight } from '.';
 
 export default {
   component: Badge,
@@ -70,6 +71,76 @@ export const Default = () => {
         Clickable Warning
       </Badge>
     </>
+  );
+};
+
+export const CounterSizes = () => {
+  return (
+    <>
+      <p>Large</p>
+      <Badge variant={BadgeVariant.counter} size={BadgeSize.large}>
+        1
+      </Badge>
+      <Badge variant={BadgeVariant.counter} size={BadgeSize.large}>
+        28
+      </Badge>
+      <Badge variant={BadgeVariant.counter} size={BadgeSize.large}>
+        999+
+      </Badge>
+      <p>Default</p>
+      <Badge variant={BadgeVariant.counter}>1</Badge>
+      <Badge variant={BadgeVariant.counter}>28</Badge>
+      <Badge variant={BadgeVariant.counter}>999+</Badge>
+      <p>Small</p>
+      <Badge variant={BadgeVariant.counter} size={BadgeSize.small}>
+        1
+      </Badge>
+      <Badge variant={BadgeVariant.counter} size={BadgeSize.small}>
+        28
+      </Badge>
+      <Badge variant={BadgeVariant.counter} size={BadgeSize.small}>
+        999+
+      </Badge>
+    </>
+  );
+};
+
+export const InButtons = () => {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+      <Button size={ButtonSize.large}>
+        Notifications
+        <Badge
+          variant={BadgeVariant.counter}
+          size={BadgeSize.large}
+          color={BadgeColor.secondary}
+          isInverse
+        >
+          12
+        </Badge>
+      </Button>
+      <Button size={ButtonSize.medium}>
+        Notifications
+        <Badge
+          variant={BadgeVariant.counter}
+          color={BadgeColor.secondary}
+          isInverse
+        >
+          12
+        </Badge>
+      </Button>
+      <Button size={ButtonSize.small}>
+        Notifications
+        <Badge
+          variant={BadgeVariant.counter}
+          size={BadgeSize.small}
+          color={BadgeColor.secondary}
+          isInverse
+        >
+          12
+        </Badge>
+      </Button>
+    </div>
   );
 };
 
