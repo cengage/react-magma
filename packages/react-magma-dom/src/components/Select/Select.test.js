@@ -53,6 +53,19 @@ describe('Select', () => {
     expect(combobox).toHaveAttribute('aria-controls', getByRole('listbox').id);
   });
 
+  it('should label the combobox by the label only, without the selected value', () => {
+    const { container, getByTestId } = render(
+      <Select labelText={labelText} items={items} selectedItem={items[2]} />
+    );
+
+    const combobox = getByTestId('selectTriggerButton');
+    const label = container.querySelector('label');
+
+    expect(label.id).toBeTruthy();
+    expect(combobox).toHaveAttribute('aria-labelledby', label.id);
+    expect(combobox.getAttribute('aria-labelledby')).not.toContain(combobox.id);
+  });
+
   it('should reference a custom menuId from the combobox with aria-controls', () => {
     const { getByRole, getByTestId } = render(
       <Select labelText={labelText} items={items} menuId="custom-menu" />
