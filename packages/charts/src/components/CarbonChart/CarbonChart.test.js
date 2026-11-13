@@ -1161,7 +1161,9 @@ describe('CarbonChart', () => {
 
         expect(wrapper).not.toHaveClass('has-magma-toolbar');
 
-        jest.runOnlyPendingTimers();
+        act(() => {
+          jest.runOnlyPendingTimers();
+        });
         expect(wrapper).toHaveClass('has-magma-toolbar');
       } finally {
         jest.useRealTimers();
@@ -1188,7 +1190,9 @@ describe('CarbonChart', () => {
         expect(exportToJPG).toHaveBeenCalledTimes(1);
         expect(wrapper).not.toHaveClass('has-magma-toolbar');
 
-        jest.runOnlyPendingTimers();
+        act(() => {
+          jest.runOnlyPendingTimers();
+        });
         expect(wrapper).toHaveClass('has-magma-toolbar');
       } finally {
         jest.useRealTimers();
