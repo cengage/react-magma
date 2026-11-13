@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 16.0.0-v6-next.4
+
+### Patch Changes
+
+- 61c8021a1: fix: update components to use outlined icons
+
 ## 16.0.0-v6-next.3
 
 ### Patch Changes

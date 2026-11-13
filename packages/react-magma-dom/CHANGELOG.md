@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.16
+
+### Patch Changes
+
+- 61c8021a1: fix: update components to use outlined icons
+
 ## 6.1.0-v6-next.15
 
 ### Patch Changes
