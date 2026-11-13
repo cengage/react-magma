@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.18
+
+### Patch Changes
+
+- 7a354bf43: fix(Tabs): remove the maximum width and support wrapped vertical labels
+
 ## 6.1.0-v6-next.17
 
 ### Patch Changes
