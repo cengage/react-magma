@@ -24,6 +24,7 @@ import { instanceOfToBeCreatedItemObject } from '.';
 
 interface ItemsListProps<T> {
   customComponents?: SelectComponents<T>;
+  disabled?: boolean;
   floatingElementStyles?: React.CSSProperties;
   getItemProps: (options?: UseSelectGetItemPropsOptions<T>) => any;
   getMenuProps: (options?: UseSelectGetMenuPropsOptions) => any;
@@ -62,6 +63,7 @@ const LoadingWrapper = styled.span<{}>`
 export function ItemsList<T>(props: ItemsListProps<T>) {
   const {
     customComponents,
+    disabled,
     floatingElementStyles,
     getItemProps,
     getMenuProps,
@@ -177,7 +179,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
               const itemString = instanceOfToBeCreatedItemObject(item)
                 ? item.label
                 : itemToString(item);
-              const isDisabled = isItemDisabled(item);
+              const isDisabled = disabled || isItemDisabled(item);
 
               const { ref, ...otherDownshiftItemProps } = getItemProps({
                 item,
