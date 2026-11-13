@@ -163,6 +163,9 @@ export interface SelectProps<T extends SelectOptions>
   onKeyUp?: (event: React.KeyboardEvent) => void;
 }
 
+/**
+ * @internal
+ */
 export interface MultiSelectProps<T extends SelectOptions>
   extends UseMultipleSelectionProps<T>,
     Omit<SelectProps<T>, 'onStateChange' | 'stateReducer' | 'isMulti'>,
