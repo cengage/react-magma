@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.15
+
+### Patch Changes
+
+- 1840459f6: fix(TreeView): preserve virtualized row measurements when expanding, collapsing, and resizing the tree
+
 ## 6.1.0-v6-next.14
 
 ### Patch Changes
