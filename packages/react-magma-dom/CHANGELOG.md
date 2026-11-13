@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.17
+
+### Patch Changes
+
+- 285e08b5b: fix(Select, MultiSelect): Label the trigger by its label only so screen readers don't announce the selected value twice.
+
 ## 6.1.0-v6-next.16
 
 ### Patch Changes
