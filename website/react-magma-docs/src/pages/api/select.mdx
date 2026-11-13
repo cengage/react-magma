@@ -453,8 +453,9 @@ import {
   ButtonSize,
   ButtonType,
   ButtonVariant,
+  magma,
 } from 'react-magma-dom';
-import { HelpIcon } from 'react-magma-icons';
+import { HelpOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   const helpLinkLabel = 'Learn more';
@@ -469,7 +470,7 @@ export function Example() {
           <Tooltip content={helpLinkLabel}>
             <IconButton
               aria-label={helpLinkLabel}
-              icon={<HelpIcon />}
+              icon={<HelpOutlinedIcon size={magma.iconSizes.small} />}
               onClick={onHelpLinkClick}
               type={ButtonType.button}
               size={ButtonSize.small}
@@ -490,7 +491,7 @@ export function Example() {
           <Tooltip content={helpLinkLabel}>
             <IconButton
               aria-label={helpLinkLabel}
-              icon={<HelpIcon />}
+              icon={<HelpOutlinedIcon size={magma.iconSizes.small} />}
               onClick={onHelpLinkClick}
               type={ButtonType.button}
               size={ButtonSize.small}

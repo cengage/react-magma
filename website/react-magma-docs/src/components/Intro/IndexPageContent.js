@@ -16,10 +16,10 @@ import {
   Hyperlink,
 } from 'react-magma-dom';
 import {
-  AccessibilityIcon,
-  PaletteIcon,
-  DevicesIcon,
-  ExtensionIcon,
+  AccessibilityOutlinedIcon,
+  PaletteOutlinedIcon,
+  DevicesOutlinedIcon,
+  ExtensionOutlinedIcon,
   GithubIcon,
 } from 'react-magma-icons';
 
@@ -236,7 +236,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="1">
           <CardGrid>
             <CardIcon>
-              <AccessibilityIcon color={magma.colors.brand.navy} />
+              <AccessibilityOutlinedIcon color={magma.colors.brand.navy} />
             </CardIcon>
             <FeatureCardBody>
               <CardHeading>Accessible</CardHeading>
@@ -247,7 +247,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="2">
           <CardGrid>
             <CardIcon>
-              <PaletteIcon color={magma.colors.brand.navy} />
+              <PaletteOutlinedIcon color={magma.colors.brand.navy} />
             </CardIcon>
             <FeatureCardBody>
               <CardHeading>Themeable</CardHeading>
@@ -258,7 +258,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="1">
           <CardGrid>
             <CardIcon>
-              <DevicesIcon color={magma.colors.brand.navy} />
+              <DevicesOutlinedIcon color={magma.colors.brand.navy} />
             </CardIcon>
             <FeatureCardBody>
               <CardHeading>Platform Agnostic</CardHeading>
@@ -269,7 +269,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="2">
           <CardGrid>
             <CardIcon>
-              <ExtensionIcon color={magma.colors.brand.navy} />
+              <ExtensionOutlinedIcon color={magma.colors.brand.navy} />
             </CardIcon>
             <FeatureCardBody>
               <CardHeading>Scalable</CardHeading>
