@@ -2006,11 +2006,59 @@ For large trees with many items, you can enable virtualization to improve perfor
 
 ### Basic Virtualization
 
-Set `enableVirtualization={true}`. The `Treeview` height will be calculated based on the number of items and their heights.
+Set `enableVirtualization={true}` and give the tree a bounded, scrollable height
+using `height={400}` or a CSS height with `overflow: 'auto'`. Row heights are
+measured automatically, including labels that wrap when the tree is resized.
+
+### Resizing
+
+The tree can resize with its container without being remounted. When using a
+percentage height, the parent must have an explicit height. Drag the bottom-right
+corner of this container to change its width and height:
+
+```tsx
+import React from 'react';
+
+import { TreeView, TreeItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div
+      style={{
+        width: 360,
+        height: 400,
+        minWidth: 200,
+        minHeight: 160,
+        resize: 'both',
+        overflow: 'auto',
+      }}
+    >
+      <TreeView
+        ariaLabel="Course outline"
+        enableVirtualization
+        style={{ height: '100%', overflow: 'auto' }}
+      >
+        <TreeItem
+          itemId="chapter-1"
+          label="Chapter 1: Introduction to the course"
+        >
+          <TreeItem
+            itemId="lesson-1-1"
+            label="Lesson 1.1: Learning objectives and expected outcomes"
+          />
+        </TreeItem>
+        <TreeItem itemId="chapter-2" label="Chapter 2: Practice and review" />
+      </TreeView>
+    </div>
+  );
+}
+```
 
 ### Virtualization Props
 
 - `enableVirtualization`: Enable virtualization for better performance (default: `false`)
+- `height`: Height of the scrollable tree in pixels. A bounded CSS height with
+  `overflow: 'auto'` can be used instead.
 
 ## Internationalization
 

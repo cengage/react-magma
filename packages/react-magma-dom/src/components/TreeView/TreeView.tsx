@@ -30,9 +30,9 @@ export interface TreeViewProps
    */
   enableVirtualization?: boolean;
   /**
-   * Height of the TreeView container in pixels.
-   * REQUIRED when enableVirtualization is true.
-   * Without a fixed height, virtualization cannot calculate the viewport properly.
+   * Height of the scrollable TreeView container in pixels.
+   * When enableVirtualization is true, provide this prop or a bounded CSS
+   * height with overflow: auto so virtualization can calculate the viewport.
    * @example height={400}
    */
   height?: number;
@@ -43,7 +43,6 @@ interface VirtualContainerProps {
 }
 
 interface VirtualItemProps {
-  height: number;
   transform: number;
 }
 
@@ -75,7 +74,6 @@ const VirtualItem = styled.div<VirtualItemProps>`
   top: 0;
   left: 0;
   width: 100%;
-  min-height: ${props => props.height}px;
   transform: ${props => `translateY(${props.transform}px)`};
 
   /* Ensure dropdowns and other floating elements appear above items */
@@ -266,8 +264,17 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       }, 0);
 
       if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
+        let frameId: number | undefined;
+
+        // Measure on the next frame to avoid ResizeObserver loop errors.
         const resizeObserver = new (window as any).ResizeObserver(() => {
-          measureHeights();
+          if (frameId !== undefined) {
+            cancelAnimationFrame(frameId);
+          }
+          frameId = requestAnimationFrame(() => {
+            frameId = undefined;
+            measureHeights();
+          });
         });
 
         measurementRefs.current.forEach(element => {
@@ -278,6 +285,9 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
 
         return () => {
           clearTimeout(timeoutId);
+          if (frameId !== undefined) {
+            cancelAnimationFrame(frameId);
+          }
           resizeObserver.disconnect();
         };
       }
@@ -391,8 +401,8 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
 
                         return (
                           <VirtualItem
+                            data-index={virtualItem.index}
                             key={item.key}
-                            height={virtualItem.size}
                             transform={virtualItem.start}
                             ref={(el: HTMLDivElement) => {
                               if (el) {
