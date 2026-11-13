@@ -1331,7 +1331,7 @@ exports[`EmptyState Loading state should render loading spinner with inverse col
 .emotion-2 {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
-  border: 2px solid #0B1F3A;
+  border: 2px solid #FFFFFF;
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -1362,7 +1362,7 @@ exports[`EmptyState Loading state should render loading spinner with inverse col
 .emotion-2 {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
-  border: 2px solid #0B1F3A;
+  border: 2px solid #FFFFFF;
   border-right-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -1377,7 +1377,7 @@ exports[`EmptyState Loading state should render loading spinner with inverse col
     <span
       aria-label="Loading"
       class="emotion-2 emotion-3"
-      color="#0B1F3A"
+      color="#FFFFFF"
       role="img"
     />
   </div>
