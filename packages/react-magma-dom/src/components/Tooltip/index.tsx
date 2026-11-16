@@ -36,6 +36,8 @@ export enum TooltipPosition {
 export const EnumTooltipPosition = TooltipPosition;
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** @internal Used to preserve the trigger's list-item structure. */
+  as?: React.ElementType;
   /**
    * Style properties for the arrow element
    */

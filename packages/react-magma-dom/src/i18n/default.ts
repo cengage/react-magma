@@ -255,7 +255,10 @@ export const defaultI18n: I18nInterface = {
   },
   pagination: {
     nextButtonLabel: 'Next Page',
+    nextTooltipLabel: 'Next',
+    pageJumpLabel: 'Select a page between {startPage} and {endPage}',
     previousButtonLabel: 'Previous Page',
+    previousTooltipLabel: 'Previous',
     pageButtonLabel: 'Go to Page',
   },
   password: {
