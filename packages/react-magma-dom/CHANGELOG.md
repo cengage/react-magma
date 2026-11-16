@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.20
+
+### Minor Changes
+
+- 00a1804: feat(Pagination): improve classic pagination navigation
+
 ## 7.1.0-next.19
 
 ### Patch Changes
