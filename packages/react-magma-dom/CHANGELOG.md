@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.19
+
+### Minor Changes
+
+- a0936d6f0: feat(Pagination): improve classic pagination navigation
+
 ## 6.1.0-v6-next.18
 
 ### Patch Changes
