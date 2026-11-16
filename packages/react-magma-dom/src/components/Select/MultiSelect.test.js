@@ -52,6 +52,24 @@ describe('MultiSelect', () => {
     expect(combobox).toHaveAttribute('aria-controls', getByRole('listbox').id);
   });
 
+  it('should label the combobox by the label only, without the placeholder or selected items', () => {
+    const { container, getByTestId } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={[items[0]]}
+      />
+    );
+
+    const combobox = getByTestId('selectTriggerButton');
+    const label = container.querySelector('label');
+
+    expect(label.id).toBeTruthy();
+    expect(combobox).toHaveAttribute('aria-labelledby', label.id);
+    expect(combobox.getAttribute('aria-labelledby')).not.toContain(combobox.id);
+  });
+
   it('Does not violate accessibility standards when open', async () => {
     const { container, getByTestId } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />

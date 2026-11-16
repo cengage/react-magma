@@ -2,7 +2,10 @@ import * as React from 'react';
 
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
-import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
+import {
+  ArrowBackOutlinedIcon,
+  ArrowForwardOutlinedIcon,
+} from 'react-magma-icons';
 
 import { I18nContext } from '../../i18n';
 import { ThemeInterface } from '../../theme/magma';
@@ -483,9 +486,9 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                         aria-label={i18n.pagination[`${type}ButtonLabel`]}
                         icon={
                           type === 'previous' ? (
-                            <ArrowBackIcon />
+                            <ArrowBackOutlinedIcon />
                           ) : (
-                            <ArrowForwardIcon />
+                            <ArrowForwardOutlinedIcon />
                           )
                         }
                         isInverse={isInverse}

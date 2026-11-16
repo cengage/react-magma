@@ -178,6 +178,7 @@ const IconWrapper = styled.span<{
     getTreeItemIconColor(props.isInverse, props.isDisabled, props.theme)};
   margin-right: ${props => props.theme.spaceScale.spacing03};
   margin-left: 0;
+  transform: translateY(-1px);
 
   svg {
     height: ${props => props.theme.iconSizes.medium}px;
