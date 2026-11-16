@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.21
+
+### Patch Changes
+
+- bdbf554: chore(AI): update the React Magma skill template for component props
+
 ## 7.1.0-next.20
 
 ### Minor Changes
