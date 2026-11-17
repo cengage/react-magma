@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.1-v6-next.14
+
+### Patch Changes
+
+- f755570d1: chore(Input): use an outlined help icon in the Help Link example
+
 ## 6.0.1-v6-next.13
 
 ### Patch Changes
