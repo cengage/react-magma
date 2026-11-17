@@ -27,7 +27,7 @@ export const TreeViewAnnouncer = React.forwardRef<
   TreeViewAnnouncerProps
 >(({ testId }, ref) => {
   const [message, setMessage] = React.useState('');
-  const { isMacOS } = useDeviceDetect();
+  const { isMacOS, isWindows } = useDeviceDetect();
   const timeoutRef = React.useRef<ReturnType<typeof setTimeout>>();
 
   React.useEffect(() => () => clearTimeout(timeoutRef.current), []);
@@ -39,13 +39,16 @@ export const TreeViewAnnouncer = React.forwardRef<
         // A newer message replaces one not yet published, so a burst of
         // actions never queues announcements the user has moved past.
         clearTimeout(timeoutRef.current);
+        if (isWindows && nextMessage === message) {
+          setMessage('');
+        }
         timeoutRef.current = setTimeout(
           () => setMessage(nextMessage),
           ANNOUNCE_DELAY_MS
         );
       },
     }),
-    []
+    [isWindows, message]
   );
 
   return (

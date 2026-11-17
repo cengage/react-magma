@@ -818,6 +818,58 @@ describe('TreeItem', () => {
       );
     });
 
+    it('publishes identical Windows cascade messages for branches at different depths', async () => {
+      mockDevice({ isChrome: true, isWindows: true });
+
+      const { getByTestId } = render(
+        <TreeView testId={treeTestId} selectable={TreeViewSelectable.multi}>
+          <TreeItem label="A" itemId="a" testId="a">
+            <TreeItem label="A child" itemId="a-child" />
+          </TreeItem>
+          <TreeItem label="B" itemId="b" testId="b">
+            <TreeItem label="B child" itemId="b-child" />
+          </TreeItem>
+          <TreeItem label="Container" itemId="container" testId="container">
+            <TreeItem label="C" itemId="c" testId="c">
+              <TreeItem label="C child" itemId="c-child" />
+            </TreeItem>
+          </TreeItem>
+        </TreeView>
+      );
+      const announce = getByTestId(`${treeTestId}-announce`);
+      const publications = [];
+      const observer = new MutationObserver(() => {
+        publications.push(announce.textContent);
+      });
+
+      observer.observe(announce, {
+        childList: true,
+        characterData: true,
+        subtree: true,
+      });
+
+      await userEvent.click(getByTestId('container-expand'));
+
+      for (const itemId of ['a', 'b', 'c']) {
+        await userEvent.click(getByTestId(`${itemId}-checkbox`));
+        await act(
+          () =>
+            new Promise(resolve => {
+              setTimeout(resolve, ANNOUNCE_DELAY_MS * 2);
+            })
+        );
+      }
+
+      expect(publications).toEqual([
+        'All subitems are selected',
+        '',
+        'All subitems are selected',
+        '',
+        'All subitems are selected',
+      ]);
+      observer.disconnect();
+    });
+
     it('reports a partial cascade off macOS, which Firefox reads as unchecked', async () => {
       mockDevice({ isFirefox: true, isWindows: true });
 
