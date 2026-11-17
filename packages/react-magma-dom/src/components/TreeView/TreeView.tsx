@@ -119,14 +119,33 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     const parentRef = React.useRef<HTMLUListElement>(null);
     const [isMounted, setIsMounted] = React.useState(false);
 
-    // One live region per tree, rendered as a sibling of it: a `ul[role="tree"]`
-    // may only own tree items, and anything inside one becomes part of that
-    // item's accessible name.
+    // Live regions sit outside the tree so they do not affect item names.
     const announcerRef = React.useRef<TreeViewAnnouncerHandle>(null);
+    const branchIds = React.useMemo(() => {
+      if (
+        configContextValue.selectable !== TreeViewSelectable.multi ||
+        !configContextValue.checkChildren
+      ) {
+        return [];
+      }
+
+      return Array.from(
+        new Set(
+          selectionContextValue.items
+            .map(item => item.parentId)
+            .filter((parentId): parentId is string => Boolean(parentId))
+        )
+      );
+    }, [
+      configContextValue.checkChildren,
+      configContextValue.selectable,
+      selectionContextValue.items,
+    ]);
 
     const announceContextValue = React.useMemo(
       () => ({
-        announce: (message: string) => announcerRef.current?.announce(message),
+        announce: (message: string, itemId?: string) =>
+          announcerRef.current?.announce(message, itemId),
       }),
       []
     );
@@ -361,6 +380,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
 
                 <TreeViewAnnouncer
                   ref={announcerRef}
+                  branchIds={branchIds}
                   testId={testId ? `${testId}-announce` : undefined}
                 />
               </TreeViewAnnounceContext.Provider>

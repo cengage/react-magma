@@ -236,7 +236,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         };
 
         announce(
-          formatAnnouncement(subitemTemplates[status], stringifiedLabel)
+          formatAnnouncement(subitemTemplates[status], stringifiedLabel),
+          itemId
         );
 
         return;
@@ -269,6 +270,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       checkChildren,
       selectable,
       i18n,
+      itemId,
     ]
   );
 

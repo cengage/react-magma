@@ -846,7 +846,10 @@ describe('TreeItem', () => {
       mockDevice({ isChrome: true, isWindows: true });
 
       const { getByTestId } = renderTree(TreeViewSelectable.multi);
-      const announce = getByTestId(`${treeTestId}-announce`);
+      const announce = getByTestId(`${treeTestId}-announce-branch`);
+
+      expect(announce).toHaveTextContent('');
+      expect(getByTestId(treeTestId)).not.toContainElement(announce);
 
       await userEvent.click(getByTestId('branch-checkbox'));
       await expectAnnouncement(announce, 'All subitems are selected');
@@ -855,7 +858,7 @@ describe('TreeItem', () => {
       await expectAnnouncement(announce, 'No subitems are selected');
     });
 
-    it('announces a multi-child cascade through a single live region', async () => {
+    it('announces a multi-child cascade through the branch live region', async () => {
       mockDevice({ isChrome: true, isWindows: true });
 
       const { container, getByTestId } = render(
@@ -870,11 +873,29 @@ describe('TreeItem', () => {
 
       await userEvent.click(getByTestId('branch-checkbox'));
 
-      expect(container.querySelectorAll('[aria-live]')).toHaveLength(1);
+      expect(container.querySelectorAll('[aria-live]')).toHaveLength(2);
       await expectAnnouncement(
-        getByTestId(`${treeTestId}-announce`),
+        getByTestId(`${treeTestId}-announce-branch`),
         'All subitems are selected'
       );
+    });
+
+    it('keeps a Windows cascade region when other content precedes child items', async () => {
+      mockDevice({ isChrome: true, isWindows: true });
+
+      const { getByTestId } = render(
+        <TreeView testId={treeTestId} selectable={TreeViewSelectable.multi}>
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            Note
+            <TreeItem label="Child" itemId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const region = getByTestId(`${treeTestId}-announce-branch`);
+
+      await userEvent.click(getByTestId('branch-checkbox'));
+      await expectAnnouncement(region, 'All subitems are selected');
     });
 
     it.each([
@@ -930,7 +951,9 @@ describe('TreeItem', () => {
         rerender(renderTree(true));
 
         const checkbox = await waitFor(() => getByTestId('branch-checkbox'));
-        const announce = getByTestId(`${treeTestId}-announce`);
+        const announce = getByTestId(
+          `${treeTestId}-announce${device.isWindows ? '-branch' : ''}`
+        );
 
         await userEvent.click(checkbox);
         await expectAnnouncement(announce, selectedMessage);
@@ -958,38 +981,26 @@ describe('TreeItem', () => {
           </TreeItem>
         </TreeView>
       );
-      const announce = getByTestId(`${treeTestId}-announce`);
-      const publications = [];
-      const observer = new MutationObserver(() => {
-        publications.push(announce.textContent);
-      });
+      const regions = ['a', 'b', 'c'].map(itemId =>
+        getByTestId(`${treeTestId}-announce-${itemId}`)
+      );
 
-      observer.observe(announce, {
-        childList: true,
-        characterData: true,
-        subtree: true,
+      regions.forEach(region => {
+        expect(region).toHaveTextContent('');
+        expect(getByTestId(treeTestId)).not.toContainElement(region);
+        expect(getByTestId(`${treeTestId}-announce`)).not.toContainElement(
+          region
+        );
       });
 
       await userEvent.click(getByTestId('container-expand'));
 
-      for (const itemId of ['a', 'b', 'c']) {
+      for (const [index, itemId] of ['a', 'b', 'c'].entries()) {
         await userEvent.click(getByTestId(`${itemId}-checkbox`));
-        await act(
-          () =>
-            new Promise(resolve => {
-              setTimeout(resolve, ANNOUNCE_DELAY_MS * 2);
-            })
-        );
+        await expectAnnouncement(regions[index], 'All subitems are selected');
       }
 
-      expect(publications).toEqual([
-        'All subitems are selected',
-        '',
-        'All subitems are selected',
-        '',
-        'All subitems are selected',
-      ]);
-      observer.disconnect();
+      expect(getByTestId(`${treeTestId}-announce`)).toHaveTextContent('');
     });
 
     it('reports a partial cascade off macOS, which Firefox reads as unchecked', async () => {
@@ -1007,7 +1018,7 @@ describe('TreeItem', () => {
       await userEvent.click(getByTestId('branch-checkbox'));
 
       await expectAnnouncement(
-        getByTestId(`${treeTestId}-announce`),
+        getByTestId(`${treeTestId}-announce-branch`),
         'Some subitems are selected'
       );
     });
@@ -1015,7 +1026,7 @@ describe('TreeItem', () => {
     it('stays silent off macOS when nothing can cascade', async () => {
       mockDevice({ isChrome: true, isWindows: true });
 
-      const { getByTestId } = render(
+      const { getByTestId, queryByTestId } = render(
         <TreeView
           testId={treeTestId}
           selectable={TreeViewSelectable.multi}
@@ -1029,6 +1040,7 @@ describe('TreeItem', () => {
 
       await userEvent.click(getByTestId('branch-checkbox'));
 
+      expect(queryByTestId(`${treeTestId}-announce-branch`)).toBeNull();
       await expectNoAnnouncement(getByTestId(`${treeTestId}-announce`));
     });
 
