@@ -754,6 +754,65 @@ describe('TreeItem', () => {
       );
     }
 
+    it('uses the explicit item name for selection and expansion announcements', async () => {
+      const { getByTestId } = render(
+        <TreeView testId={treeTestId} selectable={TreeViewSelectable.multi}>
+          <TreeItem
+            label={
+              <>
+                <span>Spanish Edition</span>
+                <button type="button">Rename</button>
+              </>
+            }
+            aria-label="Spanish Edition"
+            itemId="branch"
+            testId="branch"
+          >
+            <TreeItem label="Child" itemId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+      const announce = getByTestId(`${treeTestId}-announce`);
+
+      await userEvent.click(getByTestId('branch-checkbox'));
+      await expectAnnouncement(
+        announce,
+        'Spanish Edition, selected, all subitems selected'
+      );
+
+      await userEvent.click(getByTestId('branch-expand'));
+      await expectAnnouncement(announce, 'Spanish Edition, expanded');
+      expect(getByTestId('branch')).toHaveAttribute(
+        'aria-label',
+        'Spanish Edition'
+      );
+      expect(getByTestId('branch')).toHaveTextContent('Rename');
+    });
+
+    it('updates the explicit item name when its prop changes', async () => {
+      const label = <span>Visible name</span>;
+      const renderTree = name => (
+        <TreeView testId={treeTestId} selectable={TreeViewSelectable.multi}>
+          <TreeItem
+            label={label}
+            aria-label={name}
+            itemId="leaf"
+            testId="leaf"
+          />
+        </TreeView>
+      );
+      const { getByTestId, rerender } = render(renderTree('First name'));
+
+      rerender(renderTree('New name'));
+      await userEvent.click(getByTestId('leaf-checkbox'));
+
+      expect(getByTestId('leaf')).toHaveAttribute('aria-label', 'New name');
+      await expectAnnouncement(
+        getByTestId(`${treeTestId}-announce`),
+        'New name, selected'
+      );
+    });
+
     it('announces keyboard selection', async () => {
       const { getByTestId } = renderTree(TreeViewSelectable.multi);
 
@@ -817,6 +876,69 @@ describe('TreeItem', () => {
         'All subitems are selected'
       );
     });
+
+    it.each([
+      [
+        'Windows',
+        { isChrome: true, isWindows: true },
+        'All subitems are selected',
+        'No subitems are selected',
+      ],
+      [
+        'macOS',
+        { isSafari: true, isMacOS: true },
+        'Branch, selected, all subitems selected',
+        'Branch, not selected, no subitems selected',
+      ],
+    ])(
+      'announces a cascade after virtualization is enabled on %s',
+      async (_platform, device, selectedMessage, deselectedMessage) => {
+        mockDevice(device);
+
+        const children = (
+          <TreeItem
+            label={
+              <>
+                <span>Branch</span>
+                <button type="button">Rename</button>
+              </>
+            }
+            aria-label="Branch"
+            itemId="branch"
+            testId="branch"
+          >
+            <TreeItem label="Child" itemId="child" testId="child" />
+          </TreeItem>
+        );
+        const renderTree = enableVirtualization => (
+          <TreeView
+            testId={treeTestId}
+            selectable={TreeViewSelectable.multi}
+            checkChildren
+            enableVirtualization={enableVirtualization}
+            height={300}
+          >
+            {children}
+          </TreeView>
+        );
+        const { getByTestId, rerender } = render(renderTree(false));
+
+        Object.defineProperty(getByTestId(treeTestId), 'offsetHeight', {
+          configurable: true,
+          value: 300,
+        });
+        rerender(renderTree(true));
+
+        const checkbox = await waitFor(() => getByTestId('branch-checkbox'));
+        const announce = getByTestId(`${treeTestId}-announce`);
+
+        await userEvent.click(checkbox);
+        await expectAnnouncement(announce, selectedMessage);
+
+        await userEvent.click(checkbox);
+        await expectAnnouncement(announce, deselectedMessage);
+      }
+    );
 
     it('publishes identical Windows cascade messages for branches at different depths', async () => {
       mockDevice({ isChrome: true, isWindows: true });

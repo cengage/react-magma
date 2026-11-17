@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(TreeView): repeat identical cascade announcements on Windows
+fix(TreeView): repeat cascade announcements, announce virtualized subitems, and omit menu actions from item names

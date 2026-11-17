@@ -297,6 +297,7 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const {
       additionalContent,
       children,
+      directChildItemIds: _directChildItemIds,
       hoverColor,
       icon,
       index: indexProp,
@@ -364,10 +365,11 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     } = contextValue;
 
     const nodeType = hasOwnTreeItems ? TreeNodeType.branch : TreeNodeType.leaf;
+    const ariaLabel = rest['aria-label'];
 
     const stringifiedLabel = React.useMemo(
-      () => getStringifiedLabelText(label),
-      [label]
+      () => ariaLabel?.trim() || getStringifiedLabelText(label),
+      [ariaLabel, label]
     );
 
     // Fills a VoiceOver gap, hence macOS only: NVDA reads `aria-expanded`
@@ -1000,6 +1002,14 @@ function arePropsEqual(
 
   // Check if label changed
   if (prevProps.label !== nextProps.label) {
+    return false;
+  }
+
+  if (prevProps['aria-label'] !== nextProps['aria-label']) {
+    return false;
+  }
+
+  if (prevProps.directChildItemIds !== nextProps.directChildItemIds) {
     return false;
   }
 
