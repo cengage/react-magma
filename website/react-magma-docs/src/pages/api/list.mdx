@@ -192,27 +192,31 @@ An Icon `List` allows the user to use Magma Icons in place of bulleted or numeri
 import React from 'react';
 
 import { List, ListItem, IconSizes } from 'react-magma-dom';
-import { InboxIcon, DraftsIcon, DeleteIcon } from 'react-magma-icons';
+import {
+  InboxOutlinedIcon,
+  DraftsOutlinedIcon,
+  DeleteOutlinedIcon,
+} from 'react-magma-icons';
 
 export function Example() {
   return (
     <>
       <List iconSize={IconSizes.small} spacingStyle="spacing02">
-        <ListItem icon={<InboxIcon />}>Inbox</ListItem>
-        <ListItem icon={<DraftsIcon />}>Drafts</ListItem>
-        <ListItem icon={<DeleteIcon />}>Trash</ListItem>
+        <ListItem icon={<InboxOutlinedIcon />}>Inbox</ListItem>
+        <ListItem icon={<DraftsOutlinedIcon />}>Drafts</ListItem>
+        <ListItem icon={<DeleteOutlinedIcon />}>Trash</ListItem>
       </List>
       <br />
       <List spacingStyle="spacing02">
-        <ListItem icon={<InboxIcon />}>Inbox</ListItem>
-        <ListItem icon={<DraftsIcon />}>Drafts</ListItem>
-        <ListItem icon={<DeleteIcon />}>Trash</ListItem>
+        <ListItem icon={<InboxOutlinedIcon />}>Inbox</ListItem>
+        <ListItem icon={<DraftsOutlinedIcon />}>Drafts</ListItem>
+        <ListItem icon={<DeleteOutlinedIcon />}>Trash</ListItem>
       </List>
       <br />
       <List iconSize={IconSizes.large} spacingStyle="spacing02">
-        <ListItem icon={<InboxIcon />}>Inbox</ListItem>
-        <ListItem icon={<DraftsIcon />}>Drafts</ListItem>
-        <ListItem icon={<DeleteIcon />}>Trash</ListItem>
+        <ListItem icon={<InboxOutlinedIcon />}>Inbox</ListItem>
+        <ListItem icon={<DraftsOutlinedIcon />}>Drafts</ListItem>
+        <ListItem icon={<DeleteOutlinedIcon />}>Trash</ListItem>
       </List>
     </>
   );
@@ -225,21 +229,21 @@ export function Example() {
 import React from 'react';
 
 import { List, ListItem, IconAlignment } from 'react-magma-dom';
-import { EmailIcon } from 'react-magma-icons';
+import { MailOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <>
       <List iconAlign={IconAlignment.top} spacingStyle="spacing02">
-        <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-        <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-        <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+        <ListItem icon={<MailOutlinedIcon />}>Icon List content</ListItem>
+        <ListItem icon={<MailOutlinedIcon />}>Icon List content</ListItem>
+        <ListItem icon={<MailOutlinedIcon />}>Icon List content</ListItem>
       </List>
       <br />
       <List iconAlign={IconAlignment.center} spacingStyle="spacing02">
-        <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-        <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-        <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+        <ListItem icon={<MailOutlinedIcon />}>Icon List content</ListItem>
+        <ListItem icon={<MailOutlinedIcon />}>Icon List content</ListItem>
+        <ListItem icon={<MailOutlinedIcon />}>Icon List content</ListItem>
       </List>
     </>
   );
@@ -252,27 +256,27 @@ export function Example() {
 import React from 'react';
 
 import { List, ListItem } from 'react-magma-dom';
-import { EmailIcon } from 'react-magma-icons';
+import { MailOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <List spacingStyle="spacing02">
       <ListItem
-        icon={<EmailIcon />}
+        icon={<MailOutlinedIcon />}
         iconColor="danger"
         iconBackground="neutral300"
       >
         Icon List content
       </ListItem>
       <ListItem
-        icon={<EmailIcon />}
+        icon={<MailOutlinedIcon />}
         iconColor="primary"
         iconBackground="neutral200"
       >
         Icon List content
       </ListItem>
       <ListItem
-        icon={<EmailIcon />}
+        icon={<MailOutlinedIcon />}
         iconColor="success"
         iconBackground="neutral0"
       >

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { autoUpdate } from '@floating-ui/react-dom';
 import { useCombobox } from 'downshift';
-import { CloseIcon } from 'react-magma-icons';
+import { CloseOutlinedIcon } from 'react-magma-icons';
 
 import { instanceOfDefaultItemObject } from '../Select';
 import { ComboboxInput } from './ComboboxInput';
@@ -17,7 +17,7 @@ import { defaultComponents } from '../Select/components';
 import { ItemListAnnouncer } from '../Select/ItemListAnnouncer';
 import { ItemsList } from '../Select/ItemsList';
 import { SelectContainer } from '../Select/SelectContainer';
-import { setFocusedItem } from '../Select/utils';
+import { findItemIndex, setFocusedItem } from '../Select/utils';
 
 import { ComboboxProps } from '.';
 
@@ -185,9 +185,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
       return allItems;
     }
 
-    return allItems.current.findIndex(
-      i => itemToString(i) === itemToString(itemToCheck)
-    ) !== -1
+    return findItemIndex(allItems.current, itemToCheck, itemToString) !== -1
       ? { [key]: itemToCheck }
       : { [key]: null };
   }
@@ -202,9 +200,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
 
     if (changedIsOpen && changedSelectedItem) {
       setHighlightedIndex(
-        displayItems.findIndex(
-          i => itemToString(i) === itemToString(changedSelectedItem)
-        )
+        findItemIndex(displayItems, changedSelectedItem, itemToString)
       );
     }
 
@@ -381,7 +377,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         {isClearable && selectedItem && (
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
-            icon={<CloseIcon />}
+            icon={<CloseOutlinedIcon />}
             isInverse={isInverse}
             onClick={defaultHandleClearIndicatorClick}
             shape={ButtonShape.fill}
@@ -404,7 +400,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
         setFloating={refs.setFloating}
-        selectedItem={selectedItem ? itemToString(selectedItem) : ''}
+        selectedItem={selectedItem}
       />
       <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
       {isClearable && <ClearAnnouncer clearAnnouncement={clearAnnouncement} />}

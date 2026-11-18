@@ -4,6 +4,7 @@ import { Meta, StoryFn } from '@storybook/react-webpack5';
 
 import { magma } from '../../theme/magma';
 import { Announce } from '../Announce';
+import { Button } from '../Button';
 import { Card, CardBody } from '../Card';
 import { Combobox } from '../Combobox';
 import {
@@ -1179,6 +1180,119 @@ export const ScrollableTable = {
     docs: {
       description: {
         story: `When a table has horizontal overflow, it automatically becomes keyboard-focusable with \`tabindex="0"\` and receives \`role="region"\` with an accessible label indicating it is scrollable. This follows the USWDS pattern for accessible scrollable tables. Screen reader users will hear "Product Inventory (scrollable), region" when focusing the table, and can use arrow keys to scroll horizontally.`,
+      },
+    },
+  },
+};
+
+interface LargeTableRowProps {
+  cells: string[];
+  isSelected: boolean;
+}
+
+const LargeTableRow = ({ cells, isSelected }: LargeTableRowProps) => (
+  <TableRow color={isSelected ? TableRowColor.info : undefined}>
+    {cells.map((cell, index) => (
+      <TableCell key={index}>{cell}</TableCell>
+    ))}
+  </TableRow>
+);
+
+const MemoizedLargeTableRow = React.memo(LargeTableRow);
+
+const LargeTableExample = ({
+  rowCount,
+  memoizeRows,
+  ...args
+}: TableProps & { rowCount: number; memoizeRows: boolean }) => {
+  const [, setTick] = React.useState(0);
+  const [selectedRow, setSelectedRow] = React.useState(-1);
+  const startTime = React.useRef(performance.now());
+  const resultRef = React.useRef<HTMLSpanElement>(null);
+
+  const largeRows = React.useMemo(
+    () =>
+      Array.from({ length: rowCount }, (_, rowIndex) =>
+        Array.from(
+          { length: 8 },
+          (__, columnIndex) => `Row ${rowIndex + 1}, cell ${columnIndex + 1}`
+        )
+      ),
+    [rowCount]
+  );
+
+  // Runs after the table's own effects; result is written to the DOM to avoid another render.
+  React.useEffect(() => {
+    if (resultRef.current) {
+      resultRef.current.textContent = `${Math.round(
+        performance.now() - startTime.current
+      )} ms`;
+    }
+  });
+
+  const Row = memoizeRows ? MemoizedLargeTableRow : LargeTableRow;
+
+  return (
+    <>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+        <Button
+          onClick={() => {
+            startTime.current = performance.now();
+            setTick(tick => tick + 1);
+          }}
+        >
+          Re-render parent
+        </Button>
+        <Button
+          onClick={() => {
+            startTime.current = performance.now();
+            setSelectedRow(row => (row + 1) % rowCount);
+          }}
+        >
+          Select next row
+        </Button>
+      </div>
+      <p>
+        Last render: <span ref={resultRef} />
+      </p>
+      <Table {...args}>
+        <TableHead>
+          <TableRow>
+            {largeRows[0]?.map((_, index) => (
+              <TableHeaderCell key={index}>Column {index + 1}</TableHeaderCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {largeRows.map((cells, index) => (
+            <Row key={index} cells={cells} isSelected={index === selectedRow} />
+          ))}
+        </TableBody>
+      </Table>
+    </>
+  );
+};
+
+export const LargeTable = {
+  render: args => <LargeTableExample {...args} />,
+
+  args: {
+    rowCount: 1000,
+    memoizeRows: true,
+    tableTitle: 'Large table',
+  },
+
+  argTypes: {
+    rowCount: { control: { type: 'number' } },
+    memoizeRows: { control: { type: 'boolean' } },
+  },
+
+  parameters: {
+    // Automatic axe run on thousands of cells blocks the main thread and skews timings.
+    a11y: { disable: true },
+    docs: {
+      description: {
+        story: `Measures render time of a large table. Wrap rows in \`React.memo\` so only rows whose props change re-render when the parent updates. Use a production Storybook build for representative numbers.`,
       },
     },
   },

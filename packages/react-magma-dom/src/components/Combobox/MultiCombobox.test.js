@@ -69,6 +69,86 @@ describe('MultiCombobox', () => {
     expect(getByText(items[0].label)).toBeInTheDocument();
   });
 
+  describe('items with duplicate labels', () => {
+    const duplicateLabelItems = [
+      { label: 'Red', value: 'red' },
+      { label: 'Red', value: 'green' },
+      { label: 'Blue', value: 'blue' },
+    ];
+
+    it('should only hide the selected item from the list, not every item with the same label', async () => {
+      const { getByLabelText, getAllByRole } = render(
+        <MultiCombobox
+          isMulti
+          labelText={labelText}
+          items={duplicateLabelItems}
+          initialSelectedItems={[{ label: 'Red', value: 'red' }]}
+        />
+      );
+
+      await userEvent.click(getByLabelText(labelText, { selector: 'input' }));
+
+      expect(getAllByRole('option').map(option => option.textContent)).toEqual([
+        'Red',
+        'Blue',
+      ]);
+    });
+
+    it('should allow selecting every item that shares the same label', async () => {
+      const onSelectedItemsChange = jest.fn();
+      const { getByLabelText, getAllByRole, getAllByText } = render(
+        <MultiCombobox
+          isMulti
+          labelText={labelText}
+          items={duplicateLabelItems}
+          onSelectedItemsChange={onSelectedItemsChange}
+        />
+      );
+
+      const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+      await userEvent.click(renderedCombobox);
+      await userEvent.click(getAllByRole('option')[0]);
+      await userEvent.click(renderedCombobox);
+      await userEvent.click(getAllByRole('option')[0]);
+
+      expect(getAllByText('Red', { selector: 'button' })).toHaveLength(2);
+      expect(onSelectedItemsChange).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          selectedItems: [duplicateLabelItems[0], duplicateLabelItems[1]],
+        })
+      );
+
+      await userEvent.click(renderedCombobox);
+
+      expect(getAllByRole('option').map(option => option.textContent)).toEqual([
+        'Blue',
+      ]);
+    });
+
+    it('should keep a selected item whose value is not strictly equal to the matching item value', async () => {
+      const { getByLabelText, getAllByRole, getByText } = render(
+        <MultiCombobox
+          isMulti
+          labelText={labelText}
+          items={[
+            { label: 'Red', value: 1 },
+            { label: 'Blue', value: 2 },
+          ]}
+          initialSelectedItems={[{ label: 'Red', value: '1' }]}
+        />
+      );
+
+      expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+
+      await userEvent.click(getByLabelText(labelText, { selector: 'input' }));
+
+      expect(getAllByRole('option').map(option => option.textContent)).toEqual([
+        'Blue',
+      ]);
+    });
+  });
+
   it('should accept items in a custom item format', async () => {
     function itemToString(item) {
       return item ? item.representation : '';

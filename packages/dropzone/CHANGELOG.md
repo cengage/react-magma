@@ -1,5 +1,41 @@
 # Change Log
 
+## 17.0.0-next.4
+
+### Patch Changes
+
+- 571c6c3: fix: update components to use outlined icons
+
+## 17.0.0-next.3
+
+### Patch Changes
+
+- f041d00: chore: require `react-magma-icons` `^3.3.1`
+
+  fix(docs): resolve the icons ESM entry to support Gatsby server rendering
+
+## 17.0.0-next.2
+
+### Minor Changes
+
+- ee55600: feat(Dropzone): allow consumers to customize the browse button color and text
+
+## 17.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [9fcd834]
+- Updated dependencies [9fcd834]
+  - react-magma-dom@7.1.0-next.2
+
+## 16.0.1-next.0
+
+### Patch Changes
+
+- b188410: chore: update `react-magma-icons` to `^3.3.0`
+- Updated dependencies [b188410]
+  - react-magma-dom@7.0.1-next.0
+
 ## 16.0.0
 
 ### Major Changes

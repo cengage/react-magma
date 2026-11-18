@@ -13,7 +13,7 @@ import {
   setHours,
   startOfDay,
 } from 'date-fns';
-import { EventIcon } from 'react-magma-icons';
+import { EventOutlinedIcon } from 'react-magma-icons';
 
 import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
@@ -677,7 +677,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           ) : (
             <Input
               {...other}
-              icon={<EventIcon />}
+              icon={<EventOutlinedIcon />}
               iconAriaLabel={i18n.datePicker.calendarIconAriaLabel}
               iconRef={iconRef}
               onIconClick={toggleCalendarOpened}

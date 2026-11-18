@@ -25,12 +25,12 @@ import {
   ButtonVariant,
   ButtonGroup,
 } from 'react-magma-dom';
-import { SearchIcon } from 'react-magma-icons';
+import { SearchOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <EmptyState
-      icon={<SearchIcon />}
+      icon={<SearchOutlinedIcon />}
       title="No results found"
       description="Try adjusting your search or filter criteria to find the courses you are looking for."
       actions={
@@ -55,12 +55,12 @@ Use the `isDanger` prop to display an error state with danger colors on the icon
 import React from 'react';
 
 import { EmptyState, Button, ButtonColor, ButtonGroup } from 'react-magma-dom';
-import { ErrorIcon } from 'react-magma-icons';
+import { ErrorOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <EmptyState
-      icon={<ErrorIcon />}
+      icon={<ErrorOutlinedIcon />}
       isDanger
       title="Unable to load assignments"
       description="We encountered an error while loading your course content. Please try again or contact support."
@@ -105,12 +105,12 @@ Action buttons are also optional. You can display an informational empty state w
 import React from 'react';
 
 import { EmptyState } from 'react-magma-dom';
-import { NotificationsIcon } from 'react-magma-icons';
+import { NotificationsOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <EmptyState
-      icon={<NotificationsIcon />}
+      icon={<NotificationsOutlinedIcon />}
       title="No upcoming deadlines"
       description="You're all caught up! There are no assignments or quizzes due this week."
     />
@@ -140,8 +140,6 @@ Use the `graphic` prop to replace the entire circular icon area with your own co
 import React from 'react';
 
 import { EmptyState, Button, ButtonColor } from 'react-magma-dom';
-import { SearchIcon } from 'react-magma-icons';
-
 export function Example() {
   return (
     <EmptyState
@@ -187,12 +185,12 @@ import {
   ButtonVariant,
   ButtonGroup,
 } from 'react-magma-dom';
-import { SearchIcon } from 'react-magma-icons';
+import { SearchOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <EmptyState
-      icon={<SearchIcon />}
+      icon={<SearchOutlinedIcon />}
       title="No results found"
       headingLevel={2}
       description="Try adjusting your search or filter criteria to find the courses you are looking for."
@@ -234,12 +232,12 @@ Use the `additionalContent` prop to render custom content between the text and a
 import React from 'react';
 
 import { EmptyState, Search } from 'react-magma-dom';
-import { SearchIcon } from 'react-magma-icons';
+import { SearchOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <EmptyState
-      icon={<SearchIcon />}
+      icon={<SearchOutlinedIcon />}
       title="No results found"
       description="Try a different search term or browse by category."
       additionalContent={<Search isClearable placeholder="Search courses..." />}
@@ -262,12 +260,12 @@ import {
   ButtonVariant,
   Tag,
 } from 'react-magma-dom';
-import { SearchIcon } from 'react-magma-icons';
+import { SearchOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <EmptyState
-      icon={<SearchIcon />}
+      icon={<SearchOutlinedIcon />}
       title="No courses found"
       description="Try browsing by category instead."
       actions={
@@ -304,12 +302,12 @@ Additional content can also include form inputs. Here, an `Input` field lets stu
 import React from 'react';
 
 import { EmptyState, Button, ButtonColor, Input } from 'react-magma-dom';
-import { SchoolIcon } from 'react-magma-icons';
+import { SchoolOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <EmptyState
-      icon={<SchoolIcon />}
+      icon={<SchoolOutlinedIcon />}
       title="No courses yet"
       description="Enter a course access code from your instructor to get started."
       actions={<Button color={ButtonColor.primary}>Join Course</Button>}
@@ -327,14 +325,14 @@ A `Toggle` can let users opt in to notifications from within an empty state.
 import React from 'react';
 
 import { EmptyState, Toggle } from 'react-magma-dom';
-import { NotificationsIcon } from 'react-magma-icons';
+import { NotificationsOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   const [enabled, setEnabled] = React.useState(false);
 
   return (
     <EmptyState
-      icon={<NotificationsIcon />}
+      icon={<NotificationsOutlinedIcon />}
       title="No new announcements"
       description="There are no announcements for your courses right now."
       additionalContent={
@@ -366,14 +364,14 @@ import {
   CardBody,
   magma,
 } from 'react-magma-dom';
-import { SearchIcon } from 'react-magma-icons';
+import { SearchOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <EmptyState
-          icon={<SearchIcon />}
+          icon={<SearchOutlinedIcon />}
           isInverse
           title="No results found"
           description="Try adjusting your search or filter criteria to find the courses you are looking for."

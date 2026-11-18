@@ -12,7 +12,7 @@ import { LabelPosition } from '../Label';
 import { SelectOptions } from '../Select';
 import { Spacer } from '../Spacer';
 
-import { Combobox, MultiComboboxProps } from '.';
+import { Combobox, ComboboxProps, MultiComboboxProps } from '.';
 
 export default {
   title: 'Combobox',
@@ -1346,5 +1346,71 @@ export const ControlledItems = {
         onItemCreated={onItemCreated}
       />
     );
+  },
+};
+
+const duplicateLabelItems = [
+  { label: 'Red', value: 'red-1' },
+  { label: 'Red', value: 'red-2' },
+  { label: 'Blue', value: 'blue' },
+  { label: 'Green', value: 'green' },
+];
+
+export const DuplicateLabels = {
+  render: (props: ComboboxProps<SelectOptions>) => {
+    const [selectedItem, setSelectedItem] = React.useState<SelectOptions>(
+      duplicateLabelItems[1]
+    );
+
+    return (
+      <>
+        <Combobox
+          {...props}
+          defaultItems={duplicateLabelItems}
+          initialSelectedItem={duplicateLabelItems[1]}
+          onSelectedItemChange={changes =>
+            setSelectedItem(changes.selectedItem)
+          }
+        />
+        <p>Selected value: {selectedItem?.value ?? 'none'}</p>
+      </>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    labelText: 'Items with duplicate labels',
+  },
+};
+
+export const MultiDuplicateLabels = {
+  render: (props: MultiComboboxProps<SelectOptions>) => {
+    const [selectedItems, setSelectedItems] = React.useState<SelectOptions[]>([
+      duplicateLabelItems[0],
+    ]);
+
+    return (
+      <>
+        <Combobox
+          {...props}
+          isMulti
+          defaultItems={duplicateLabelItems}
+          initialSelectedItems={[duplicateLabelItems[0]]}
+          onSelectedItemsChange={changes =>
+            setSelectedItems(changes.selectedItems)
+          }
+        />
+        <p>
+          Selected values:{' '}
+          {selectedItems.map(item => item.value).join(', ') || 'none'}
+        </p>
+      </>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    labelText: 'Multi with duplicate labels',
+    isClearable: true,
   },
 };

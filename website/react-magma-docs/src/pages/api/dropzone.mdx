@@ -37,6 +37,28 @@ export function Example() {
 }
 ```
 
+## Custom Browse Button
+
+Use `buttonColor` and `buttonText` to adjust the emphasis and label of the
+button used to open the file browser.
+
+```tsx
+import React from 'react';
+
+import { Dropzone } from '@react-magma/dropzone';
+import { ButtonColor } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Dropzone
+      buttonColor={ButtonColor.secondary}
+      buttonText="Choose Files"
+      labelText="Upload files"
+    />
+  );
+}
+```
+
 ## No Dragging
 
 ```tsx
@@ -342,6 +364,23 @@ export function Example() {
       required: false,
       description:
         'Set accepted file types. See https://github.com/okonet/attr-accept for more information. Keep in mind that mime type determination is not reliable across platforms. CSV files, for example, are reported as text/plain under macOS but as application/vnd.ms-excel under Windows. In some cases there might not be a mime type set at all. See: https://github.com/react-dropzone/react-dropzone/issues/276',
+      defaultValue: '',
+    },
+    buttonColor: {
+      type: {
+        name: 'ButtonColor',
+      },
+      required: false,
+      description: 'The color of the button used to browse for files.',
+      defaultValue: 'ButtonColor.primary',
+    },
+    buttonText: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'The text displayed in the button used to browse for files. Defaults to the localized browse files text.',
       defaultValue: '',
     },
     disabled: {

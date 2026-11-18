@@ -98,7 +98,7 @@ export interface CheckboxProps
    */
   testId?: string;
   /**
-   * Whether the label appears to the left of the right of the checkbox
+   * Whether the label appears to the left or the right of the checkbox
    * @default CheckboxTextPosition.right
    */
   textPosition?: CheckboxTextPosition;

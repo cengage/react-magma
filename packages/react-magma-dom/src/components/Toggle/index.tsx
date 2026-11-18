@@ -3,7 +3,7 @@ import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
-import { CheckIcon, CloseIcon } from 'react-magma-icons';
+import { CheckOutlinedIcon, CloseOutlinedIcon } from 'react-magma-icons';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
@@ -65,7 +65,7 @@ export interface ToggleProps
    */
   testId?: string;
   /**
-   * Whether the label appears to the left of the right of the toggle switch
+   * Whether the label appears to the left or the right of the toggle switch
    * @default ToggleTextPosition.left
    */
   textPosition?: ToggleTextPosition;
@@ -418,9 +418,15 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
                   isChecked={isChecked}
                 >
                   {isChecked ? (
-                    <CheckIcon aria-hidden size={theme.iconSizes.xSmall} />
+                    <CheckOutlinedIcon
+                      aria-hidden
+                      size={theme.iconSizes.xSmall}
+                    />
                   ) : (
-                    <CloseIcon aria-hidden size={theme.iconSizes.xSmall} />
+                    <CloseOutlinedIcon
+                      aria-hidden
+                      size={theme.iconSizes.xSmall}
+                    />
                   )}
                 </IconContainer>
               </Thumb>
