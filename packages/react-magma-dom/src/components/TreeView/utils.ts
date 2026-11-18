@@ -19,6 +19,39 @@ export enum TreeNodeType {
   leaf = 'leaf',
 }
 
+export function flattenTreeViewChildren(
+  children: React.ReactNode
+): React.ReactNode[] {
+  const result: React.ReactNode[] = [];
+
+  React.Children.forEach(children, child => {
+    if (React.isValidElement(child) && child.type === React.Fragment) {
+      result.push(...flattenTreeViewChildren(child.props.children));
+    } else if (
+      child !== null &&
+      child !== undefined &&
+      typeof child !== 'boolean'
+    ) {
+      result.push(child);
+    }
+  });
+
+  return result;
+}
+
+export function containsTreeItem(
+  children: React.ReactNode,
+  itemId: string
+): boolean {
+  return flattenTreeViewChildren(children).some(
+    child =>
+      React.isValidElement(child) &&
+      child.type === TreeItem &&
+      (child.props.itemId === itemId ||
+        containsTreeItem(child.props.children, itemId))
+  );
+}
+
 let hasWarnedAboutExpansionState = false;
 
 type TreeViewI18n = Required<NonNullable<I18nInterface['treeView']>>;
@@ -334,7 +367,7 @@ const getTreeViewData = ({
     UseTreeViewProps,
     'children' | 'checkChildren' | 'selectable' | 'preselectedItems'
   >) => {
-  const treeItemChildren = React.Children.toArray(children).filter(
+  const treeItemChildren = flattenTreeViewChildren(children).filter(
     (child: React.ReactElement<any>) => child.type === TreeItem
   ) as React.ReactElement[];
 
@@ -354,7 +387,11 @@ const getTreeViewData = ({
           itemId: props.itemId,
           parentId,
           icon: props.icon,
-          hasOwnTreeItems: areChildrenValid(props.children),
+          hasOwnTreeItems:
+            areChildrenValid(props.children) ||
+            flattenTreeViewChildren(props.children).some(
+              child => React.isValidElement(child) && child.type === TreeItem
+            ),
           isDisabled,
         },
         ...(props.children

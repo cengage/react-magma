@@ -1253,6 +1253,185 @@ describe('TreeItem', () => {
         groups[0].querySelectorAll(':scope > * > [role="treeitem"]')
       ).toHaveLength(3);
     });
+
+    it('preserves mixed child order and positions across groups', () => {
+      const { getByTestId, getAllByRole } = render(
+        <TreeView initialExpandedItems={['branch']}>
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            <TreeItem label="First" itemId="first" testId="first" />
+            <span data-testid="footer">Footer</span>
+            <TreeItem label="Second" itemId="second" testId="second" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const orderedChildren = getByTestId('branch').querySelectorAll(
+        '[data-testid="first"], [data-testid="footer"], [data-testid="second"]'
+      );
+
+      expect(
+        Array.from(orderedChildren, el => el.getAttribute('data-testid'))
+      ).toEqual(['first', 'footer', 'second']);
+      expect(getAllByRole('group')).toHaveLength(2);
+      expect(getByTestId('first')).toHaveAttribute('aria-posinset', '1');
+      expect(getByTestId('second')).toHaveAttribute('aria-posinset', '2');
+      expect(getByTestId('first')).toHaveAttribute('aria-setsize', '2');
+      expect(getByTestId('second')).toHaveAttribute('aria-setsize', '2');
+    });
+
+    it('keeps fragment and array children in order and in the tree', () => {
+      const extraChildren = [
+        <span key="middle" data-testid="middle">
+          Middle
+        </span>,
+        <TreeItem
+          key="second"
+          label="Second"
+          itemId="second"
+          testId="second"
+        />,
+      ];
+      const { getByTestId, getAllByRole } = render(
+        <TreeView initialExpandedItems={['branch']}>
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            <TreeItem label="First" itemId="first" testId="first" />
+            <>
+              {extraChildren}
+              <TreeItem label="Third" itemId="third" testId="third" />
+            </>
+          </TreeItem>
+        </TreeView>
+      );
+
+      const orderedChildren = getByTestId('branch').querySelectorAll(
+        '[data-testid="first"], [data-testid="middle"], [data-testid="second"], [data-testid="third"]'
+      );
+
+      expect(
+        Array.from(orderedChildren, el => el.getAttribute('data-testid'))
+      ).toEqual(['first', 'middle', 'second', 'third']);
+      expect(getAllByRole('group')).toHaveLength(2);
+      expect(getByTestId('second').closest('[role="group"]')).not.toBeNull();
+      expect(getByTestId('third')).toHaveAttribute('aria-posinset', '3');
+      expect(getByTestId('third')).toHaveAttribute('aria-setsize', '3');
+    });
+
+    it('includes TreeItems inside a fragment in cascading selection', async () => {
+      const { getByTestId } = render(
+        <TreeView
+          selectable={TreeViewSelectable.multi}
+          checkChildren
+          initialExpandedItems={['branch']}
+        >
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            <>
+              <TreeItem label="First" itemId="first" testId="first" />
+              <span>Footer</span>
+              <TreeItem label="Second" itemId="second" testId="second" />
+            </>
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('branch')).toHaveAttribute('aria-expanded', 'true');
+      await userEvent.click(getByTestId('branch-checkbox'));
+      expect(getByTestId('first')).toHaveAttribute('aria-checked', 'true');
+      expect(getByTestId('second')).toHaveAttribute('aria-checked', 'true');
+    });
+
+    it('preserves mixed child order with virtualization', async () => {
+      const renderTree = enableVirtualization => (
+        <TreeView
+          enableVirtualization={enableVirtualization}
+          height={400}
+          initialExpandedItems={['branch']}
+        >
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            <TreeItem label="First" itemId="first" testId="first" />
+            <span data-testid="footer">Footer</span>
+            <TreeItem label="Second" itemId="second" testId="second" />
+          </TreeItem>
+        </TreeView>
+      );
+      const { getAllByRole, getByRole, getByTestId, rerender } = render(
+        renderTree(false)
+      );
+
+      Object.defineProperty(getByRole('tree'), 'offsetHeight', {
+        configurable: true,
+        value: 400,
+      });
+      rerender(renderTree(true));
+
+      await waitFor(() => expect(getByTestId('second')).toBeInTheDocument());
+      const orderedChildren = document.querySelectorAll(
+        '[data-testid="first"], [data-testid="footer"], [data-testid="second"]'
+      );
+
+      expect(
+        Array.from(orderedChildren, el => el.getAttribute('data-testid'))
+      ).toEqual(['first', 'footer', 'second']);
+      expect(getByTestId('branch')).toContainElement(getByTestId('footer'));
+      expect(getAllByRole('group')).toHaveLength(1);
+      expect(getByTestId('first')).toHaveAttribute('aria-posinset', '1');
+      expect(getByTestId('second')).toHaveAttribute('aria-posinset', '2');
+
+      getByTestId('branch').focus();
+      fireEvent.keyDown(getByTestId('branch'), { key: 'ArrowDown' });
+      expect(getByTestId('first')).toHaveFocus();
+    });
+
+    it('preserves a changed child order after rerender', () => {
+      const renderTree = reverse => (
+        <TreeView initialExpandedItems={['branch']}>
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            {reverse ? <span data-testid="footer">Footer</span> : null}
+            <TreeItem label="First" itemId="first" testId="first" />
+            {!reverse ? <span data-testid="footer">Footer</span> : null}
+            <TreeItem label="Second" itemId="second" testId="second" />
+          </TreeItem>
+        </TreeView>
+      );
+      const { getByTestId, rerender } = render(renderTree(false));
+      const order = () =>
+        Array.from(
+          getByTestId('branch').querySelectorAll(
+            '[data-testid="first"], [data-testid="footer"], [data-testid="second"]'
+          ),
+          el => el.getAttribute('data-testid')
+        );
+
+      expect(order()).toEqual(['first', 'footer', 'second']);
+      rerender(renderTree(true));
+      expect(order()).toEqual(['footer', 'first', 'second']);
+    });
+
+    it('keeps one group when an empty child separates items', () => {
+      const { getAllByRole } = render(
+        <TreeView initialExpandedItems={['branch']}>
+          <TreeItem label="Branch" itemId="branch">
+            <TreeItem label="First" itemId="first" />
+            {false}
+            <TreeItem label="Second" itemId="second" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getAllByRole('group')).toHaveLength(1);
+    });
+
+    it('renders root tree items inside a fragment', () => {
+      const { getAllByRole } = render(
+        <TreeView>
+          <>
+            <TreeItem label="First" itemId="first" />
+            <TreeItem label="Second" itemId="second" />
+          </>
+        </TreeView>
+      );
+
+      expect(getAllByRole('treeitem')).toHaveLength(2);
+    });
   });
 
   describe('accessible name (issue #2444)', () => {

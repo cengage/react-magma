@@ -13,10 +13,15 @@ import {
 import { TreeViewConfigContext } from './TreeViewConfigContext';
 import { TreeViewExpansionContext } from './TreeViewExpansionContext';
 import { TreeViewSelectionContext } from './TreeViewSelectionContext';
+import { TreeViewVirtualizationContext } from './TreeViewVirtualizationContext';
 import { TreeViewSelectable } from './types';
 import { useTreeItem } from './useTreeItem';
 import { UseTreeViewProps, useTreeView } from './useTreeView';
-import { resolveTreeViewString } from './utils';
+import {
+  containsTreeItem,
+  flattenTreeViewChildren,
+  resolveTreeViewString,
+} from './utils';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -117,6 +122,41 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     );
 
     const parentRef = React.useRef<HTMLUListElement>(null);
+    const setTreeRef = React.useCallback(
+      (element: HTMLUListElement | null) => {
+        if (typeof ref === 'function') {
+          ref(element);
+        } else if (ref) {
+          (ref as React.MutableRefObject<HTMLUListElement | null>).current =
+            element;
+        }
+        parentRef.current = element;
+      },
+      [ref]
+    );
+    const [requestedItemId, setRequestedItemId] = React.useState<string | null>(
+      null
+    );
+    const resolveRequestedFocus = React.useCallback(() => {
+      if (!requestedItemId) return;
+
+      const target = parentRef.current?.querySelector<HTMLElement>(
+        `#${CSS.escape(requestedItemId)}`
+      );
+
+      if (target) {
+        target.focus();
+        setRequestedItemId(null);
+      }
+    }, [requestedItemId]);
+    const virtualizationContextValue = React.useMemo(
+      () => ({
+        scrollRef: parentRef,
+        requestedItemId,
+        resolveRequestedFocus,
+      }),
+      [requestedItemId, resolveRequestedFocus]
+    );
     const [isMounted, setIsMounted] = React.useState(false);
 
     // Live regions sit outside the tree so they do not affect item names.
@@ -186,59 +226,73 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
         index: number;
         key: string;
         itemId: string;
+        isMixed: boolean;
+        posInSet?: number;
+        setSize?: number;
       }> = [];
 
       const flatten = (childrenToFlatten: React.ReactNode, depth = 0) => {
-        React.Children.forEach(childrenToFlatten, (child, index) => {
+        const childNodes = flattenTreeViewChildren(childrenToFlatten);
+        const setSize = childNodes.filter(
+          child => React.isValidElement(child) && child.type === TreeItem
+        ).length;
+        let treeItemIndex = 0;
+
+        childNodes.forEach(child => {
           if (!React.isValidElement(child) || child.type !== TreeItem) {
             return;
           }
 
+          const currentIndex = treeItemIndex++;
+
           const itemId = child.props.itemId;
           const itemKey = `${itemId}-${depth}`;
 
-          // Filter children to separate TreeItem elements from other content
-          // Keep non-TreeItem children (like Tag, text, etc.) but remove nested TreeItems
-          const nonTreeItemChildren: React.ReactNode[] = [];
-          let hasTreeItemChildren = false;
-          let directChildItemIds: string[] | undefined;
+          const directChildren = flattenTreeViewChildren(child.props.children);
+          const directChildItemIds = directChildren
+            .filter(
+              (
+                childNode
+              ): childNode is React.ReactElement<{ itemId: string }> =>
+                React.isValidElement(childNode) && childNode.type === TreeItem
+            )
+            .map(childNode => childNode.props.itemId);
+          const isMixed =
+            directChildItemIds.length > 0 &&
+            directChildren.some(
+              childNode =>
+                !React.isValidElement(childNode) || childNode.type !== TreeItem
+            );
 
-          React.Children.forEach(child.props.children, childNode => {
-            if (
-              !React.isValidElement<{ itemId: string }>(childNode) ||
-              childNode.type !== TreeItem
-            ) {
-              nonTreeItemChildren.push(childNode);
-            } else {
-              hasTreeItemChildren = true;
-              if (!directChildItemIds) {
-                directChildItemIds = [];
-              }
-              directChildItemIds.push(childNode.props.itemId);
-            }
-          });
-
-          // Clone the child with only non-TreeItem children to prevent double rendering
-          const childWithoutNested = React.cloneElement(child, {
-            ...child.props,
-            hasTreeItemChildren,
-            directChildItemIds,
-            children:
-              nonTreeItemChildren.length > 0 ? nonTreeItemChildren : null,
-          });
+          // Keep mixed children inside their parent. Their ordered child flow
+          // virtualizes visible rows without moving content out of the branch.
+          const rowChild = isMixed
+            ? child
+            : React.cloneElement(child, {
+                ...child.props,
+                hasTreeItemChildren: directChildItemIds.length > 0,
+                directChildItemIds:
+                  directChildItemIds.length > 0
+                    ? directChildItemIds
+                    : undefined,
+                children:
+                  directChildItemIds.length > 0 ? null : child.props.children,
+              });
 
           items.push({
-            child: childWithoutNested,
+            child: rowChild,
             depth,
-            index,
+            index: currentIndex,
             key: itemKey,
             itemId,
+            isMixed,
+            posInSet: currentIndex + 1,
+            setSize,
           });
 
-          // Check if item has children and is expanded
           const isExpanded = expansionContextValue.expandedSet?.has(itemId);
 
-          if (isExpanded && child.props.children) {
+          if (isExpanded && directChildItemIds.length > 0 && !isMixed) {
             flatten(child.props.children, depth + 1);
           }
         });
@@ -272,6 +326,111 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       enabled: shouldUseVirtualization,
       useAnimationFrameWithResizeObserver: true,
     });
+    const virtualItems = rowVirtualizer.getVirtualItems();
+
+    const visibleItemIds = React.useMemo(() => {
+      const disabledIds = new Set(
+        selectionContextValue.items
+          .filter(item => item.isDisabled)
+          .map(item => item.itemId)
+      );
+      const itemIds: string[] = [];
+      const visit = (nodes: React.ReactNode) => {
+        flattenTreeViewChildren(nodes).forEach(node => {
+          if (!React.isValidElement(node) || node.type !== TreeItem) return;
+
+          const itemId = node.props.itemId;
+
+          if (!disabledIds.has(itemId)) itemIds.push(itemId);
+          if (expansionContextValue.expandedSet?.has(itemId)) {
+            visit(node.props.children);
+          }
+        });
+      };
+
+      visit(children);
+
+      return itemIds;
+    }, [
+      children,
+      expansionContextValue.expandedSet,
+      selectionContextValue.items,
+    ]);
+
+    const handleKeyDownCapture = (
+      event: React.KeyboardEvent<HTMLUListElement>
+    ) => {
+      rest.onKeyDownCapture?.(event);
+
+      if (
+        event.defaultPrevented ||
+        event.isPropagationStopped() ||
+        !shouldUseVirtualization ||
+        !['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)
+      ) {
+        return;
+      }
+
+      const target = event.target as HTMLElement;
+      const treeItem = target.closest<HTMLElement>('[role="treeitem"]');
+
+      if (target !== treeItem) return;
+
+      const index = visibleItemIds.indexOf(treeItem.id);
+
+      if (index < 0) return;
+
+      let nextIndex = index;
+
+      switch (event.key) {
+        case 'ArrowDown':
+          nextIndex = (index + 1) % visibleItemIds.length;
+          break;
+        case 'ArrowUp':
+          nextIndex =
+            (index - 1 + visibleItemIds.length) % visibleItemIds.length;
+          break;
+        case 'Home':
+          nextIndex = 0;
+          break;
+        case 'End':
+          nextIndex = visibleItemIds.length - 1;
+          break;
+        default:
+          return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+      setRequestedItemId(visibleItemIds[nextIndex]);
+    };
+
+    React.useLayoutEffect(() => {
+      if (!requestedItemId || !shouldUseVirtualization) return;
+
+      const index = flattenedItems.findIndex(item =>
+        containsTreeItem(item.child, requestedItemId)
+      );
+
+      if (index >= 0) {
+        resolveRequestedFocus();
+
+        if (
+          !parentRef.current?.querySelector(
+            `#${CSS.escape(flattenedItems[index].itemId)}`
+          )
+        ) {
+          rowVirtualizer.scrollToIndex(index, { align: 'auto' });
+        }
+      }
+    }, [
+      flattenedItems,
+      requestedItemId,
+      resolveRequestedFocus,
+      rowVirtualizer,
+      shouldUseVirtualization,
+      virtualItems,
+    ]);
 
     // Process children without cloneElement - use context instead
     const processedChildren = React.useMemo(() => {
@@ -281,7 +440,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
 
       let treeItemIndex = 0;
 
-      return React.Children.map(children, child => {
+      return flattenTreeViewChildren(children).map(child => {
         if (!React.isValidElement(child)) {
           return null;
         }
@@ -318,22 +477,14 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
               <TreeViewAnnounceContext.Provider value={announceContextValue}>
                 <StyledTreeView
                   {...rest}
+                  onKeyDownCapture={handleKeyDownCapture}
                   aria-label={ariaLabel}
                   aria-labelledby={ariaLabelledBy}
                   aria-multiselectable={selectable === TreeViewSelectable.multi}
                   data-testid={testId}
                   isInverse={isInverse}
                   isVirtualized={shouldUseVirtualization}
-                  ref={mergedRefs => {
-                    if (typeof ref === 'function') {
-                      ref(mergedRefs);
-                    } else if (ref) {
-                      (
-                        ref as React.MutableRefObject<HTMLUListElement>
-                      ).current = mergedRefs;
-                    }
-                    parentRef.current = mergedRefs;
-                  }}
+                  ref={setTreeRef}
                   role="tree"
                   theme={theme}
                   style={{
@@ -345,14 +496,16 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                 >
                   {shouldUseVirtualization ? (
                     <VirtualContainer height={rowVirtualizer.getTotalSize()}>
-                      {rowVirtualizer.getVirtualItems().map(virtualItem => {
+                      {virtualItems.map(virtualItem => {
                         const item = flattenedItems[virtualItem.index];
                         const hierarchyValue = {
                           depth: item.depth,
                           parentDepth: Math.max(0, item.depth - 1),
                           isTopLevel: item.depth === 0,
                           index: item.index,
-                          isVirtualized: true,
+                          isVirtualized: !item.isMixed,
+                          posInSet: item.posInSet,
+                          setSize: item.setSize,
                         };
 
                         return (
@@ -367,7 +520,15 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                             <TreeItemHierarchyContext.Provider
                               value={hierarchyValue}
                             >
-                              {item.child}
+                              {item.isMixed ? (
+                                <TreeViewVirtualizationContext.Provider
+                                  value={virtualizationContextValue}
+                                >
+                                  {item.child}
+                                </TreeViewVirtualizationContext.Provider>
+                              ) : (
+                                item.child
+                              )}
                             </TreeItemHierarchyContext.Provider>
                           </VirtualItem>
                         );

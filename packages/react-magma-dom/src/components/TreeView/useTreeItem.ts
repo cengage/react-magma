@@ -9,7 +9,11 @@ import { TreeViewConfigContext } from './TreeViewConfigContext';
 import { TreeViewExpansionContext } from './TreeViewExpansionContext';
 import { TreeViewSelectionContext } from './TreeViewSelectionContext';
 import { TreeViewSelectable } from './types';
-import { filterNullEntries, resolveTreeViewString } from './utils';
+import {
+  filterNullEntries,
+  flattenTreeViewChildren,
+  resolveTreeViewString,
+} from './utils';
 import { useDeviceDetect } from '../../hooks/useDeviceDetect';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { I18nContext } from '../../i18n';
@@ -154,7 +158,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   const treeItemChildren = React.useMemo(
     () =>
-      React.Children.toArray(children).filter(
+      flattenTreeViewChildren(children).filter(
         (child: React.ReactElement<any>) => child.type === TreeItem
       ),
     [children]

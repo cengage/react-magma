@@ -16,6 +16,7 @@ import { TreeViewAnnounceContext } from './TreeViewAnnounceContext';
 import { TreeViewConfigContext } from './TreeViewConfigContext';
 import { TreeViewExpansionContext } from './TreeViewExpansionContext';
 import { TreeViewSelectionContext } from './TreeViewSelectionContext';
+import { TreeViewVirtualizationContext } from './TreeViewVirtualizationContext';
 import { TreeViewSelectable } from './types';
 import {
   checkedStatusToBoolean,
@@ -24,12 +25,14 @@ import {
 } from './useTreeItem';
 import {
   calculateOffset,
+  flattenTreeViewChildren,
   getTreeItemIconColor,
   getTreeItemLabelColor,
   getTreeItemWrapperCursor,
   resolveExpansionAnnounceTemplate,
   TreeNodeType,
 } from './utils';
+import { VirtualizedTreeItemFlow } from './VirtualizedTreeItemFlow';
 import { I18nContext } from '../..';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { useFocusLock } from '../../hooks/useFocusLock';
@@ -583,12 +586,28 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       [additionalContent, theme, itemId, testId]
     );
 
+    const childNodes = React.useMemo(
+      () => flattenTreeViewChildren(children),
+      [children]
+    );
+    const nestedVirtualization = React.useContext(
+      TreeViewVirtualizationContext
+    );
+    const hasDirectTreeItems = childNodes.some(
+      child => React.isValidElement(child) && child.type === TreeItem
+    );
+    const hasMixedDirectChildren =
+      hasDirectTreeItems &&
+      childNodes.some(
+        child => !React.isValidElement(child) || child.type !== TreeItem
+      );
+
     // Stable per-child hierarchy values. The reference must not change on
     // re-renders triggered by TreeViewSelectionContext, otherwise every
     // nested TreeItem re-renders through the context and React.memo is
     // defeated.
     const childHierarchies = React.useMemo(() => {
-      const count = React.Children.count(children);
+      const count = childNodes.length;
       const arr = new Array(count);
 
       for (let i = 0; i < count; i++) {
@@ -601,42 +620,79 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       }
 
       return arr;
-    }, [children, itemDepth]);
+    }, [childNodes, itemDepth]);
 
-    // Siblings share one `ul[role="group"]`: splitting them breaks
-    // set-position reporting, and a group may only own tree items.
-    const { treeItemChildNodes, otherChildNodes } = React.useMemo(() => {
-      const treeItems: React.ReactNode[] = [];
-      const others: React.ReactNode[] = [];
+    // Keep content in its original position while grouping consecutive items.
+    const childSegments = React.useMemo(() => {
+      const segments: Array<{
+        key: string;
+        treeItems?: React.ReactNode[];
+        content?: React.ReactNode;
+      }> = [];
+      const treeItemCount = childNodes.filter(
+        child => React.isValidElement(child) && child.type === TreeItem
+      ).length;
+      let groupCount = 0;
+      let previousWasTreeItem = false;
 
-      React.Children.forEach(
-        children,
-        (child: React.ReactElement<any>, childIndex) => {
-          if (child?.type !== TreeItem) {
-            if (child !== null && child !== undefined) {
-              others.push(
-                <React.Fragment key={`other-child-${childIndex}`}>
-                  {child}
-                </React.Fragment>
-              );
-            }
+      childNodes.forEach(child => {
+        const isTreeItem =
+          React.isValidElement(child) && child.type === TreeItem;
 
-            return;
+        if (isTreeItem && !previousWasTreeItem) {
+          groupCount += 1;
+        }
+        previousWasTreeItem = isTreeItem;
+      });
+
+      let treeItems: React.ReactNode[] = [];
+      let groupKey = '';
+      let position = 0;
+
+      const finishGroup = () => {
+        if (treeItems.length > 0) {
+          segments.push({ key: groupKey, treeItems });
+          treeItems = [];
+        }
+      };
+
+      childNodes.forEach((child, childIndex) => {
+        if (
+          !React.isValidElement<UseTreeItemProps>(child) ||
+          child.type !== TreeItem
+        ) {
+          finishGroup();
+          if (child !== null && child !== undefined) {
+            segments.push({ key: `other-${childIndex}`, content: child });
           }
 
-          treeItems.push(
-            <TreeItemHierarchyContext.Provider
-              key={child.props.itemId}
-              value={childHierarchies[childIndex]}
-            >
-              {child}
-            </TreeItemHierarchyContext.Provider>
-          );
+          return;
         }
-      );
 
-      return { treeItemChildNodes: treeItems, otherChildNodes: others };
-    }, [children, childHierarchies]);
+        if (treeItems.length === 0) {
+          groupKey = `group-${child.props.itemId}`;
+        }
+        // These items have one parent and one logical sibling set, even when
+        // content splits their DOM groups.
+        position += 1;
+        treeItems.push(
+          <TreeItemHierarchyContext.Provider
+            key={child.props.itemId}
+            value={{
+              ...childHierarchies[childIndex],
+              posInSet: groupCount > 1 ? position : undefined,
+              setSize: groupCount > 1 ? treeItemCount : undefined,
+            }}
+          >
+            {child}
+          </TreeItemHierarchyContext.Provider>
+        );
+      });
+
+      finishGroup();
+
+      return segments;
+    }, [childNodes, childHierarchies]);
 
     // Memoize inline style objects to prevent unnecessary re-renders
     const checkboxInputStyle = React.useMemo(
@@ -853,9 +909,19 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
         <div role="none" style={treeItemStyles}>
           <StyledTreeItem
             {...rest}
+            aria-labelledby={
+              rest['aria-labelledby'] ??
+              (nestedVirtualization &&
+              hasMixedDirectChildren &&
+              !rest['aria-label']
+                ? `${itemId}-label`
+                : undefined)
+            }
             aria-disabled={isDisabled || null}
             aria-expanded={hasOwnTreeItems ? expanded : null}
+            aria-posinset={rest['aria-posinset'] ?? hierarchyContext.posInSet}
             aria-selected={selectedItem}
+            aria-setsize={rest['aria-setsize'] ?? hierarchyContext.setSize}
             aria-checked={shouldShowCheckbox ? ariaCheckedValue : null}
             data-testid={testId}
             depth={itemDepth}
@@ -971,14 +1037,31 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
                     />
                   ))}
 
-            {otherChildNodes}
-
-            {treeItemChildNodes.length > 0 && (
-              // `role="none"` keeps this animation wrapper out of the
-              // accessibility tree, so the item owns its group directly.
-              <Transition isOpen={expanded} unmountOnExit role="none">
-                <ul role="group">{treeItemChildNodes}</ul>
-              </Transition>
+            {nestedVirtualization && hasDirectTreeItems ? (
+              <VirtualizedTreeItemFlow
+                expanded={expanded}
+                hierarchies={childHierarchies}
+              >
+                {childNodes}
+              </VirtualizedTreeItemFlow>
+            ) : (
+              childSegments.map(segment =>
+                segment.treeItems ? (
+                  // The animation wrapper does not interrupt ARIA ownership.
+                  <Transition
+                    isOpen={expanded}
+                    key={segment.key}
+                    unmountOnExit
+                    role="none"
+                  >
+                    <ul role="group">{segment.treeItems}</ul>
+                  </Transition>
+                ) : (
+                  <React.Fragment key={segment.key}>
+                    {segment.content}
+                  </React.Fragment>
+                )
+              )
             )}
           </StyledTreeItem>
         </div>
