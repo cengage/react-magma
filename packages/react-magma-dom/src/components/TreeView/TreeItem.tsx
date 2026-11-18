@@ -596,6 +596,9 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const hasDirectTreeItems = childNodes.some(
       child => React.isValidElement(child) && child.type === TreeItem
     );
+    const usesVirtualChildFlow = Boolean(
+      nestedVirtualization && hasDirectTreeItems
+    );
     const hasMixedDirectChildren =
       hasDirectTreeItems &&
       childNodes.some(
@@ -607,6 +610,8 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     // nested TreeItem re-renders through the context and React.memo is
     // defeated.
     const childHierarchies = React.useMemo(() => {
+      if (usesVirtualChildFlow) return [];
+
       const count = childNodes.length;
       const arr = new Array(count);
 
@@ -620,10 +625,12 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       }
 
       return arr;
-    }, [childNodes, itemDepth]);
+    }, [childNodes, itemDepth, usesVirtualChildFlow]);
 
     // Keep content in its original position while grouping consecutive items.
     const childSegments = React.useMemo(() => {
+      if (usesVirtualChildFlow) return [];
+
       const segments: Array<{
         key: string;
         treeItems?: React.ReactNode[];
@@ -692,7 +699,7 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       finishGroup();
 
       return segments;
-    }, [childNodes, childHierarchies]);
+    }, [childNodes, childHierarchies, usesVirtualChildFlow]);
 
     // Memoize inline style objects to prevent unnecessary re-renders
     const checkboxInputStyle = React.useMemo(
@@ -1037,10 +1044,10 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
                     />
                   ))}
 
-            {nestedVirtualization && hasDirectTreeItems ? (
+            {usesVirtualChildFlow ? (
               <VirtualizedTreeItemFlow
+                childDepth={itemDepth + 1}
                 expanded={expanded}
-                hierarchies={childHierarchies}
               >
                 {childNodes}
               </VirtualizedTreeItemFlow>

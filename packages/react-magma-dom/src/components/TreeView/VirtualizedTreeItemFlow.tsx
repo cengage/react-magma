@@ -8,15 +8,15 @@ import { TreeViewVirtualizationContext } from './TreeViewVirtualizationContext';
 import { containsTreeItem } from './utils';
 
 interface VirtualizedTreeItemFlowProps {
+  childDepth: number;
   children: React.ReactNode[];
   expanded: boolean;
-  hierarchies: React.ContextType<typeof TreeItemHierarchyContext>[];
 }
 
 export const VirtualizedTreeItemFlow = ({
+  childDepth,
   children,
   expanded,
-  hierarchies,
 }: VirtualizedTreeItemFlowProps) => {
   const context = React.useContext(TreeViewVirtualizationContext);
   const groupRef = React.useRef<HTMLUListElement>(null);
@@ -127,7 +127,10 @@ export const VirtualizedTreeItemFlow = ({
             {row.isTreeItem ? (
               <TreeItemHierarchyContext.Provider
                 value={{
-                  ...hierarchies[row.index],
+                  depth: childDepth,
+                  parentDepth: childDepth - 1,
+                  isTopLevel: false,
+                  index: row.index,
                   posInSet: row.position,
                   setSize: row.setSize,
                 }}
