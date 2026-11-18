@@ -33,9 +33,11 @@ export const VirtualizedTreeItemFlow = ({
       if (isTreeItem && !expanded) return [];
       if (isTreeItem) position += 1;
 
-      const key = isTreeItem
-        ? child.props.itemId
-        : (React.isValidElement(child) && child.key) || `content-${index}`;
+      let key = `content-${index}`;
+
+      if (React.isValidElement(child)) {
+        key = isTreeItem ? child.props.itemId : child.key || key;
+      }
 
       return [
         {
