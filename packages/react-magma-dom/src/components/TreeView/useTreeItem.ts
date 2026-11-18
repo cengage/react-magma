@@ -9,7 +9,11 @@ import { TreeViewConfigContext } from './TreeViewConfigContext';
 import { TreeViewExpansionContext } from './TreeViewExpansionContext';
 import { TreeViewSelectionContext } from './TreeViewSelectionContext';
 import { TreeViewSelectable } from './types';
-import { filterNullEntries, resolveTreeViewString } from './utils';
+import {
+  filterNullEntries,
+  flattenTreeViewChildren,
+  resolveTreeViewString,
+} from './utils';
 import { useDeviceDetect } from '../../hooks/useDeviceDetect';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { I18nContext } from '../../i18n';
@@ -86,6 +90,8 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
    * Used in virtualization to indicate this item has TreeItem children.
    */
   hasTreeItemChildren?: boolean;
+  /** @internal Direct child IDs retained when virtualization removes nested JSX. */
+  directChildItemIds?: string[];
 }
 
 export const checkedStatusToBoolean = (
@@ -102,6 +108,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     parentDepth,
     topLevel,
     hasTreeItemChildren,
+    directChildItemIds,
   } = props;
 
   // Consume split contexts for reduced re-render scope
@@ -151,7 +158,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   const treeItemChildren = React.useMemo(
     () =>
-      React.Children.toArray(children).filter(
+      flattenTreeViewChildren(children).filter(
         (child: React.ReactElement<any>) => child.type === TreeItem
       ),
     [children]
@@ -176,10 +183,11 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const i18n = React.useContext(I18nContext);
   const { announce } = React.useContext(TreeViewAnnounceContext);
   const { isMacOS } = useDeviceDetect();
+  const ariaLabel = props['aria-label'];
 
   const stringifiedLabel = React.useMemo(
-    () => getStringifiedLabelText(label),
-    [label]
+    () => ariaLabel?.trim() || getStringifiedLabelText(label),
+    [ariaLabel, label]
   );
 
   const generatedId = useGenerateId();
@@ -196,11 +204,13 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   // subitem proves a selection would cascade somewhere.
   const hasEnabledSubitem = React.useMemo(
     () =>
-      treeItemChildren.some(
-        (child: React.ReactElement<{ itemId?: string }>) =>
-          !itemsById.get(child.props?.itemId)?.isDisabled
-      ),
-    [treeItemChildren, itemsById]
+      directChildItemIds
+        ? directChildItemIds.some(id => !itemsById.get(id)?.isDisabled)
+        : treeItemChildren.some(
+            (child: React.ReactElement<{ itemId?: string }>) =>
+              !itemsById.get(child.props?.itemId)?.isDisabled
+          ),
+    [directChildItemIds, treeItemChildren, itemsById]
   );
 
   // Announced here rather than from the checkbox, which only sees pointer
@@ -230,7 +240,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         };
 
         announce(
-          formatAnnouncement(subitemTemplates[status], stringifiedLabel)
+          formatAnnouncement(subitemTemplates[status], stringifiedLabel),
+          itemId
         );
 
         return;
@@ -263,6 +274,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       checkChildren,
       selectable,
       i18n,
+      itemId,
     ]
   );
 
