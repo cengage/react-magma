@@ -3598,6 +3598,7 @@ export const VirtualizedLargeTree = {
         >
           <TreeItem
             itemId="parent"
+            aria-label="Spanish Edition"
             label={folderLabel(
               <Paragraph
                 visualStyle={TypographyVisualStyle.headingXSmall}
@@ -3611,6 +3612,7 @@ export const VirtualizedLargeTree = {
             {Array.from({ length: 25 }, (_, i) => i + 1).map(i => (
               <TreeItem
                 key={i}
+                aria-label={`Unit ${i}`}
                 label={folderLabel(
                   <Paragraph
                     visualStyle={TypographyVisualStyle.headingXSmall}
@@ -3630,6 +3632,7 @@ export const VirtualizedLargeTree = {
                   return (
                     <TreeItem
                       key={`${i}-${j}`}
+                      aria-label={`Chapter ${i}.${j} (pp. ${startPage + 1}-${endPage})`}
                       label={folderLabel(
                         <span style={{ fontWeight: '600' }}>
                           Chapter {i}.{j} (pp. {startPage + 1}-{endPage})
@@ -3644,6 +3647,7 @@ export const VirtualizedLargeTree = {
                         return (
                           <TreeItem
                             key={`${i}-${j}-${k}`}
+                            aria-label={`Most common activity length is 39 chars but what if longer ${activityNumber}`}
                             additionalContent={additionalContent()}
                             label={treeLabel(activityNumber)}
                             itemId={`activity${i}-${j}-${k}`}

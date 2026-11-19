@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1-next.12
+
+### Patch Changes
+
+- 25b2c11: fix(deps): bump follow-redirects and fast-uri for security fixes
+
 ## 7.0.1-next.11
 
 ### Patch Changes

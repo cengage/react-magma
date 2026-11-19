@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0-next.22
+
+### Patch Changes
+
+- 927e089: fix(TreeView): publish repeated Windows cascade messages from per-branch live regions (`<testId>-announce-<itemId>`), announce virtualized subitems, omit menu actions from item names, and preserve mixed child order with nested virtualization
+
 ## 7.1.0-next.21
 
 ### Patch Changes

@@ -754,6 +754,65 @@ describe('TreeItem', () => {
       );
     }
 
+    it('uses the explicit item name for selection and expansion announcements', async () => {
+      const { getByTestId } = render(
+        <TreeView testId={treeTestId} selectable={TreeViewSelectable.multi}>
+          <TreeItem
+            label={
+              <>
+                <span>Spanish Edition</span>
+                <button type="button">Rename</button>
+              </>
+            }
+            aria-label="Spanish Edition"
+            itemId="branch"
+            testId="branch"
+          >
+            <TreeItem label="Child" itemId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+      const announce = getByTestId(`${treeTestId}-announce`);
+
+      await userEvent.click(getByTestId('branch-checkbox'));
+      await expectAnnouncement(
+        announce,
+        'Spanish Edition, selected, all subitems selected'
+      );
+
+      await userEvent.click(getByTestId('branch-expand'));
+      await expectAnnouncement(announce, 'Spanish Edition, expanded');
+      expect(getByTestId('branch')).toHaveAttribute(
+        'aria-label',
+        'Spanish Edition'
+      );
+      expect(getByTestId('branch')).toHaveTextContent('Rename');
+    });
+
+    it('updates the explicit item name when its prop changes', async () => {
+      const label = <span>Visible name</span>;
+      const renderTree = name => (
+        <TreeView testId={treeTestId} selectable={TreeViewSelectable.multi}>
+          <TreeItem
+            label={label}
+            aria-label={name}
+            itemId="leaf"
+            testId="leaf"
+          />
+        </TreeView>
+      );
+      const { getByTestId, rerender } = render(renderTree('First name'));
+
+      rerender(renderTree('New name'));
+      await userEvent.click(getByTestId('leaf-checkbox'));
+
+      expect(getByTestId('leaf')).toHaveAttribute('aria-label', 'New name');
+      await expectAnnouncement(
+        getByTestId(`${treeTestId}-announce`),
+        'New name, selected'
+      );
+    });
+
     it('announces keyboard selection', async () => {
       const { getByTestId } = renderTree(TreeViewSelectable.multi);
 
@@ -787,7 +846,10 @@ describe('TreeItem', () => {
       mockDevice({ isChrome: true, isWindows: true });
 
       const { getByTestId } = renderTree(TreeViewSelectable.multi);
-      const announce = getByTestId(`${treeTestId}-announce`);
+      const announce = getByTestId(`${treeTestId}-announce-branch`);
+
+      expect(announce).toHaveTextContent('');
+      expect(getByTestId(treeTestId)).not.toContainElement(announce);
 
       await userEvent.click(getByTestId('branch-checkbox'));
       await expectAnnouncement(announce, 'All subitems are selected');
@@ -796,7 +858,7 @@ describe('TreeItem', () => {
       await expectAnnouncement(announce, 'No subitems are selected');
     });
 
-    it('announces a multi-child cascade through a single live region', async () => {
+    it('announces a multi-child cascade through the branch live region', async () => {
       mockDevice({ isChrome: true, isWindows: true });
 
       const { container, getByTestId } = render(
@@ -811,11 +873,134 @@ describe('TreeItem', () => {
 
       await userEvent.click(getByTestId('branch-checkbox'));
 
-      expect(container.querySelectorAll('[aria-live]')).toHaveLength(1);
+      expect(container.querySelectorAll('[aria-live]')).toHaveLength(2);
       await expectAnnouncement(
-        getByTestId(`${treeTestId}-announce`),
+        getByTestId(`${treeTestId}-announce-branch`),
         'All subitems are selected'
       );
+    });
+
+    it('keeps a Windows cascade region when other content precedes child items', async () => {
+      mockDevice({ isChrome: true, isWindows: true });
+
+      const { getByTestId } = render(
+        <TreeView testId={treeTestId} selectable={TreeViewSelectable.multi}>
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            Note
+            <TreeItem label="Child" itemId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const region = getByTestId(`${treeTestId}-announce-branch`);
+
+      await userEvent.click(getByTestId('branch-checkbox'));
+      await expectAnnouncement(region, 'All subitems are selected');
+    });
+
+    it.each([
+      [
+        'Windows',
+        { isChrome: true, isWindows: true },
+        'All subitems are selected',
+        'No subitems are selected',
+      ],
+      [
+        'macOS',
+        { isSafari: true, isMacOS: true },
+        'Branch, selected, all subitems selected',
+        'Branch, not selected, no subitems selected',
+      ],
+    ])(
+      'announces a cascade after virtualization is enabled on %s',
+      async (_platform, device, selectedMessage, deselectedMessage) => {
+        mockDevice(device);
+
+        const children = (
+          <TreeItem
+            label={
+              <>
+                <span>Branch</span>
+                <button type="button">Rename</button>
+              </>
+            }
+            aria-label="Branch"
+            itemId="branch"
+            testId="branch"
+          >
+            <TreeItem label="Child" itemId="child" testId="child" />
+          </TreeItem>
+        );
+        const renderTree = enableVirtualization => (
+          <TreeView
+            testId={treeTestId}
+            selectable={TreeViewSelectable.multi}
+            checkChildren
+            enableVirtualization={enableVirtualization}
+            height={300}
+          >
+            {children}
+          </TreeView>
+        );
+        const { getByTestId, rerender } = render(renderTree(false));
+
+        Object.defineProperty(getByTestId(treeTestId), 'offsetHeight', {
+          configurable: true,
+          value: 300,
+        });
+        rerender(renderTree(true));
+
+        const checkbox = await waitFor(() => getByTestId('branch-checkbox'));
+        const announce = getByTestId(
+          `${treeTestId}-announce${device.isWindows ? '-branch' : ''}`
+        );
+
+        await userEvent.click(checkbox);
+        await expectAnnouncement(announce, selectedMessage);
+
+        await userEvent.click(checkbox);
+        await expectAnnouncement(announce, deselectedMessage);
+      }
+    );
+
+    it('publishes identical Windows cascade messages for branches at different depths', async () => {
+      mockDevice({ isChrome: true, isWindows: true });
+
+      const { getByTestId } = render(
+        <TreeView testId={treeTestId} selectable={TreeViewSelectable.multi}>
+          <TreeItem label="A" itemId="a" testId="a">
+            <TreeItem label="A child" itemId="a-child" />
+          </TreeItem>
+          <TreeItem label="B" itemId="b" testId="b">
+            <TreeItem label="B child" itemId="b-child" />
+          </TreeItem>
+          <TreeItem label="Container" itemId="container" testId="container">
+            <TreeItem label="C" itemId="c" testId="c">
+              <TreeItem label="C child" itemId="c-child" />
+            </TreeItem>
+          </TreeItem>
+        </TreeView>
+      );
+      const regions = ['a', 'b', 'c'].map(itemId =>
+        getByTestId(`${treeTestId}-announce-${itemId}`)
+      );
+
+      regions.forEach(region => {
+        expect(region).toHaveTextContent('');
+        expect(getByTestId(treeTestId)).not.toContainElement(region);
+        expect(getByTestId(`${treeTestId}-announce`)).not.toContainElement(
+          region
+        );
+      });
+
+      await userEvent.click(getByTestId('container-expand'));
+
+      for (const [index, itemId] of ['a', 'b', 'c'].entries()) {
+        await userEvent.click(getByTestId(`${itemId}-checkbox`));
+        await expectAnnouncement(regions[index], 'All subitems are selected');
+      }
+
+      expect(getByTestId(`${treeTestId}-announce`)).toHaveTextContent('');
     });
 
     it('reports a partial cascade off macOS, which Firefox reads as unchecked', async () => {
@@ -833,7 +1018,7 @@ describe('TreeItem', () => {
       await userEvent.click(getByTestId('branch-checkbox'));
 
       await expectAnnouncement(
-        getByTestId(`${treeTestId}-announce`),
+        getByTestId(`${treeTestId}-announce-branch`),
         'Some subitems are selected'
       );
     });
@@ -841,7 +1026,7 @@ describe('TreeItem', () => {
     it('stays silent off macOS when nothing can cascade', async () => {
       mockDevice({ isChrome: true, isWindows: true });
 
-      const { getByTestId } = render(
+      const { getByTestId, queryByTestId } = render(
         <TreeView
           testId={treeTestId}
           selectable={TreeViewSelectable.multi}
@@ -855,6 +1040,7 @@ describe('TreeItem', () => {
 
       await userEvent.click(getByTestId('branch-checkbox'));
 
+      expect(queryByTestId(`${treeTestId}-announce-branch`)).toBeNull();
       await expectNoAnnouncement(getByTestId(`${treeTestId}-announce`));
     });
 
@@ -1066,6 +1252,185 @@ describe('TreeItem', () => {
       expect(
         groups[0].querySelectorAll(':scope > * > [role="treeitem"]')
       ).toHaveLength(3);
+    });
+
+    it('preserves mixed child order and positions across groups', () => {
+      const { getByTestId, getAllByRole } = render(
+        <TreeView initialExpandedItems={['branch']}>
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            <TreeItem label="First" itemId="first" testId="first" />
+            <span data-testid="footer">Footer</span>
+            <TreeItem label="Second" itemId="second" testId="second" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const orderedChildren = getByTestId('branch').querySelectorAll(
+        '[data-testid="first"], [data-testid="footer"], [data-testid="second"]'
+      );
+
+      expect(
+        Array.from(orderedChildren, el => el.getAttribute('data-testid'))
+      ).toEqual(['first', 'footer', 'second']);
+      expect(getAllByRole('group')).toHaveLength(2);
+      expect(getByTestId('first')).toHaveAttribute('aria-posinset', '1');
+      expect(getByTestId('second')).toHaveAttribute('aria-posinset', '2');
+      expect(getByTestId('first')).toHaveAttribute('aria-setsize', '2');
+      expect(getByTestId('second')).toHaveAttribute('aria-setsize', '2');
+    });
+
+    it('keeps fragment and array children in order and in the tree', () => {
+      const extraChildren = [
+        <span key="middle" data-testid="middle">
+          Middle
+        </span>,
+        <TreeItem
+          key="second"
+          label="Second"
+          itemId="second"
+          testId="second"
+        />,
+      ];
+      const { getByTestId, getAllByRole } = render(
+        <TreeView initialExpandedItems={['branch']}>
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            <TreeItem label="First" itemId="first" testId="first" />
+            <>
+              {extraChildren}
+              <TreeItem label="Third" itemId="third" testId="third" />
+            </>
+          </TreeItem>
+        </TreeView>
+      );
+
+      const orderedChildren = getByTestId('branch').querySelectorAll(
+        '[data-testid="first"], [data-testid="middle"], [data-testid="second"], [data-testid="third"]'
+      );
+
+      expect(
+        Array.from(orderedChildren, el => el.getAttribute('data-testid'))
+      ).toEqual(['first', 'middle', 'second', 'third']);
+      expect(getAllByRole('group')).toHaveLength(2);
+      expect(getByTestId('second').closest('[role="group"]')).not.toBeNull();
+      expect(getByTestId('third')).toHaveAttribute('aria-posinset', '3');
+      expect(getByTestId('third')).toHaveAttribute('aria-setsize', '3');
+    });
+
+    it('includes TreeItems inside a fragment in cascading selection', async () => {
+      const { getByTestId } = render(
+        <TreeView
+          selectable={TreeViewSelectable.multi}
+          checkChildren
+          initialExpandedItems={['branch']}
+        >
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            <>
+              <TreeItem label="First" itemId="first" testId="first" />
+              <span>Footer</span>
+              <TreeItem label="Second" itemId="second" testId="second" />
+            </>
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('branch')).toHaveAttribute('aria-expanded', 'true');
+      await userEvent.click(getByTestId('branch-checkbox'));
+      expect(getByTestId('first')).toHaveAttribute('aria-checked', 'true');
+      expect(getByTestId('second')).toHaveAttribute('aria-checked', 'true');
+    });
+
+    it('preserves mixed child order with virtualization', async () => {
+      const renderTree = enableVirtualization => (
+        <TreeView
+          enableVirtualization={enableVirtualization}
+          height={400}
+          initialExpandedItems={['branch']}
+        >
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            <TreeItem label="First" itemId="first" testId="first" />
+            <span data-testid="footer">Footer</span>
+            <TreeItem label="Second" itemId="second" testId="second" />
+          </TreeItem>
+        </TreeView>
+      );
+      const { getAllByRole, getByRole, getByTestId, rerender } = render(
+        renderTree(false)
+      );
+
+      Object.defineProperty(getByRole('tree'), 'offsetHeight', {
+        configurable: true,
+        value: 400,
+      });
+      rerender(renderTree(true));
+
+      await waitFor(() => expect(getByTestId('second')).toBeInTheDocument());
+      const orderedChildren = document.querySelectorAll(
+        '[data-testid="first"], [data-testid="footer"], [data-testid="second"]'
+      );
+
+      expect(
+        Array.from(orderedChildren, el => el.getAttribute('data-testid'))
+      ).toEqual(['first', 'footer', 'second']);
+      expect(getByTestId('branch')).toContainElement(getByTestId('footer'));
+      expect(getAllByRole('group')).toHaveLength(1);
+      expect(getByTestId('first')).toHaveAttribute('aria-posinset', '1');
+      expect(getByTestId('second')).toHaveAttribute('aria-posinset', '2');
+
+      getByTestId('branch').focus();
+      fireEvent.keyDown(getByTestId('branch'), { key: 'ArrowDown' });
+      expect(getByTestId('first')).toHaveFocus();
+    });
+
+    it('preserves a changed child order after rerender', () => {
+      const renderTree = reverse => (
+        <TreeView initialExpandedItems={['branch']}>
+          <TreeItem label="Branch" itemId="branch" testId="branch">
+            {reverse ? <span data-testid="footer">Footer</span> : null}
+            <TreeItem label="First" itemId="first" testId="first" />
+            {!reverse ? <span data-testid="footer">Footer</span> : null}
+            <TreeItem label="Second" itemId="second" testId="second" />
+          </TreeItem>
+        </TreeView>
+      );
+      const { getByTestId, rerender } = render(renderTree(false));
+      const order = () =>
+        Array.from(
+          getByTestId('branch').querySelectorAll(
+            '[data-testid="first"], [data-testid="footer"], [data-testid="second"]'
+          ),
+          el => el.getAttribute('data-testid')
+        );
+
+      expect(order()).toEqual(['first', 'footer', 'second']);
+      rerender(renderTree(true));
+      expect(order()).toEqual(['footer', 'first', 'second']);
+    });
+
+    it('keeps one group when an empty child separates items', () => {
+      const { getAllByRole } = render(
+        <TreeView initialExpandedItems={['branch']}>
+          <TreeItem label="Branch" itemId="branch">
+            <TreeItem label="First" itemId="first" />
+            {false}
+            <TreeItem label="Second" itemId="second" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getAllByRole('group')).toHaveLength(1);
+    });
+
+    it('renders root tree items inside a fragment', () => {
+      const { getAllByRole } = render(
+        <TreeView>
+          <>
+            <TreeItem label="First" itemId="first" />
+            <TreeItem label="Second" itemId="second" />
+          </>
+        </TreeView>
+      );
+
+      expect(getAllByRole('treeitem')).toHaveLength(2);
     });
   });
 
