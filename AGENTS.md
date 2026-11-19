@@ -48,6 +48,10 @@ Match existing components before introducing new patterns (`CONTRIBUTING.md`: st
 
 Jest + Testing Library + `@testing-library/jest-dom` + Emotion snapshots + `jest-axe`. Add tests beside changed components, assert behavior and accessibility (`jest-axe`) where relevant, and update `__snapshots__` intentionally (review diffs). Playwright specs under `tests/playwright/tests/storybook/**` cover Storybook flows. No enforced coverage threshold; reports land in `coverage/`.
 
+For bug fixes, verify that the new tests actually cover the change: run them without the fix and confirm they fail, then restore the fix and confirm they pass. A test that passes without the fix does not prove anything; rewrite it or mark it as a regression guard (e.g. "should not move focus when...").
+
+`@react-magma/charts` and `@react-magma/dropzone` import `react-magma-dom` from `packages/react-magma-dom/dist`, not from `src`. After changing a `react-magma-dom` component they use (e.g. `Dropdown`, `Button`, `Tooltip`), rebuild it (`cd packages/react-magma-dom && npm run build`) before running their tests; a stale local `dist` makes them pass locally and fail on CI.
+
 ## Branching, Commits & Pull Requests
 
 - **Branch off `v4/dev`** (the active v4 integration branch) and target `v4/dev` in PRs — not `v4/main` or the v5 branches.

@@ -1,5 +1,39 @@
 # Change Log
 
+## 16.0.0-v6-next.4
+
+### Patch Changes
+
+- 61c8021a1: fix: update components to use outlined icons
+
+## 16.0.0-v6-next.3
+
+### Patch Changes
+
+- 8e143601c: chore: require `react-magma-icons` `^3.3.1`
+
+## 16.0.0-v6-next.2
+
+### Minor Changes
+
+- 84eb2b561: feat(Dropzone): allow consumers to customize the browse button color and text
+
+## 16.0.0-v6-next.1
+
+### Patch Changes
+
+- Updated dependencies [1a6cccd17]
+- Updated dependencies [1a6cccd17]
+  - react-magma-dom@6.1.0-v6-next.2
+
+## 15.0.1-v6-next.0
+
+### Patch Changes
+
+- 478635752: chore: update `react-magma-icons` to `^3.3.0`
+- Updated dependencies [478635752]
+  - react-magma-dom@6.0.1-v6-next.0
+
 ## 15.0.0
 
 ### Major Changes

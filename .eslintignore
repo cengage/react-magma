@@ -10,3 +10,7 @@ website/react-magma-docs/src/components/layout.css
 website/react-magma-docs/src/pages/data-visualization/chart-types.css
 website/react-magma-docs/src/pages/design/design-guidelines-styles.css
 website/react-magma-landing/static/styles.css
+
+# AI guidance is Markdown, not TypeScript.
+packages/react-magma-dom/ai-src/*.md
+packages/react-magma-dom/ai/*.md

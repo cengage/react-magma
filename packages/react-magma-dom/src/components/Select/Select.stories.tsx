@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { Meta, StoryFn } from '@storybook/react/types-6-0';
-import { HelpIcon } from 'react-magma-icons';
+import { HelpOutlinedIcon } from 'react-magma-icons';
 
+import { magma } from '../../theme/magma';
 import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
@@ -121,7 +122,7 @@ const WithContentTemplate: StoryFn<SelectOptions> = args => (
       <Tooltip content={helpLinkLabel}>
         <IconButton
           aria-label={helpLinkLabel}
-          icon={<HelpIcon />}
+          icon={<HelpOutlinedIcon size={magma.iconSizes.small} />}
           onClick={onHelpLinkClick}
           type={ButtonType.button}
           size={ButtonSize.small}
@@ -257,5 +258,71 @@ export const MultiWithDisabledItems = {
       { label: 'Orange', value: 'orange', disabled: false },
       { label: 'Yellow-Disabled', value: 'Yellow-Disabled', disabled: true },
     ],
+  },
+};
+
+const duplicateLabelItems = [
+  { label: 'Red', value: 'red-1' },
+  { label: 'Red', value: 'red-2' },
+  { label: 'Blue', value: 'blue' },
+  { label: 'Green', value: 'green' },
+];
+
+export const DuplicateLabels = {
+  render: (props: SelectProps<SelectOptions>) => {
+    const [selectedItem, setSelectedItem] = React.useState<SelectOptions>(
+      duplicateLabelItems[1]
+    );
+
+    return (
+      <>
+        <Select
+          {...props}
+          items={duplicateLabelItems}
+          initialSelectedItem={duplicateLabelItems[1]}
+          onSelectedItemChange={changes =>
+            setSelectedItem(changes.selectedItem)
+          }
+        />
+        <p>Selected value: {selectedItem?.value ?? 'none'}</p>
+      </>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    labelText: 'Items with duplicate labels',
+  },
+};
+
+export const MultiDuplicateLabels = {
+  render: (props: MultiSelectProps<SelectOptions>) => {
+    const [selectedItems, setSelectedItems] = React.useState<SelectOptions[]>([
+      duplicateLabelItems[0],
+    ]);
+
+    return (
+      <>
+        <Select
+          {...props}
+          isMulti
+          items={duplicateLabelItems}
+          initialSelectedItems={[duplicateLabelItems[0]]}
+          onSelectedItemsChange={changes =>
+            setSelectedItems(changes.selectedItems)
+          }
+        />
+        <p>
+          Selected values:{' '}
+          {selectedItems.map(item => item.value).join(', ') || 'none'}
+        </p>
+      </>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    labelText: 'Multi with duplicate labels',
+    isClearable: true,
   },
 };

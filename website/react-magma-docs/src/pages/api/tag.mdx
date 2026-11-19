@@ -30,24 +30,22 @@ export function Example() {
 
 ## Colors
 
+Tags are available in a range of colors to help you organize and categorize information.
+
 ```tsx
 import React from 'react';
 
-import {
-  Tag,
-  TagColor,
-  Flex,
-  FlexBehavior,
-  FlexJustify,
-  magma,
-} from 'react-magma-dom';
+import { Tag, TagColor, Flex, FlexBehavior, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
     <Flex
       behavior={FlexBehavior.container}
-      justify={FlexJustify.spaceBetween}
-      style={{ gap: magma.spaceScale.spacing02, maxWidth: '450px' }}
+      style={{
+        flexWrap: 'wrap',
+        gap: magma.spaceScale.spacing02,
+        maxWidth: '450px',
+      }}
     >
       <Flex behavior={FlexBehavior.item}>
         <Tag> Default</Tag>
@@ -61,38 +59,6 @@ export function Example() {
       <Flex behavior={FlexBehavior.item}>
         <Tag color={TagColor.highContrast}>High Contrast</Tag>
       </Flex>
-    </Flex>
-  );
-}
-```
-
-## Data Visualization Colors
-
-The `blue`, `teal`, `pink` and `purple` options use the data visualization color
-tokens. They are meant for categorical distinction, such as labeling items that
-belong to different groups. Because they carry no semantic meaning, they should
-not be used to communicate states like success, warning or danger, and they
-should never be the only way information is conveyed.
-
-```tsx
-import React from 'react';
-
-import {
-  Tag,
-  TagColor,
-  Flex,
-  FlexBehavior,
-  FlexJustify,
-  magma,
-} from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <Flex
-      behavior={FlexBehavior.container}
-      justify={FlexJustify.spaceBetween}
-      style={{ gap: magma.spaceScale.spacing02, maxWidth: '450px' }}
-    >
       <Flex behavior={FlexBehavior.item}>
         <Tag color={TagColor.blue}>Blue</Tag>
       </Flex>
@@ -104,6 +70,15 @@ export function Example() {
       </Flex>
       <Flex behavior={FlexBehavior.item}>
         <Tag color={TagColor.purple}>Purple</Tag>
+      </Flex>
+      <Flex behavior={FlexBehavior.item}>
+        <Tag color={TagColor.tangerine}>Tangerine</Tag>
+      </Flex>
+      <Flex behavior={FlexBehavior.item}>
+        <Tag color={TagColor.indigo}>Indigo</Tag>
+      </Flex>
+      <Flex behavior={FlexBehavior.item}>
+        <Tag color={TagColor.violet}>Violet</Tag>
       </Flex>
     </Flex>
   );
@@ -351,7 +326,8 @@ import {
   CardBody,
   Flex,
   FlexBehavior,
-  FlexJustify,
+  Spacer,
+  SpacerAxis,
   Tag,
   TagColor,
   magma,
@@ -363,45 +339,59 @@ export function Example() {
       <CardBody>
         <Flex
           behavior={FlexBehavior.container}
-          justify={FlexJustify.spaceBetween}
-          style={{ gap: magma.spaceScale.spacing03 }}
+          style={{ flexWrap: 'wrap', gap: magma.spaceScale.spacing03 }}
         >
-          <Flex behavior={FlexBehavior.item} sx={3}>
+          <Flex behavior={FlexBehavior.item}>
             <Tag isInverse>Inverse Default</Tag>
           </Flex>
-          <Flex behavior={FlexBehavior.item} sx={3}>
+          <Flex behavior={FlexBehavior.item}>
             <Tag isInverse color={TagColor.primary}>
               Inverse Primary
             </Tag>
           </Flex>
-          <Flex behavior={FlexBehavior.item} sx={3}>
+          <Flex behavior={FlexBehavior.item}>
             <Tag isInverse color={TagColor.lowContrast}>
               Inverse Low Contrast
             </Tag>
           </Flex>
-          <Flex behavior={FlexBehavior.item} sx={3}>
+          <Flex behavior={FlexBehavior.item}>
             <Tag isInverse color={TagColor.highContrast}>
               Inverse High Contrast
             </Tag>
           </Flex>
-          <Flex behavior={FlexBehavior.item} sx={3}>
+          <Flex behavior={FlexBehavior.item}>
             <Tag isInverse color={TagColor.blue}>
               Inverse Blue
             </Tag>
           </Flex>
-          <Flex behavior={FlexBehavior.item} sx={3}>
+          <Flex behavior={FlexBehavior.item}>
             <Tag isInverse color={TagColor.teal}>
               Inverse Teal
             </Tag>
           </Flex>
-          <Flex behavior={FlexBehavior.item} sx={3}>
+          <Flex behavior={FlexBehavior.item}>
             <Tag isInverse color={TagColor.pink}>
               Inverse Pink
             </Tag>
           </Flex>
-          <Flex behavior={FlexBehavior.item} sx={3}>
+          <Flex behavior={FlexBehavior.item}>
             <Tag isInverse color={TagColor.purple}>
               Inverse Purple
+            </Tag>
+          </Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Tag isInverse color={TagColor.tangerine}>
+              Inverse Tangerine
+            </Tag>
+          </Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Tag isInverse color={TagColor.indigo}>
+              Inverse Indigo
+            </Tag>
+          </Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Tag isInverse color={TagColor.violet}>
+              Inverse Violet
             </Tag>
           </Flex>
         </Flex>

@@ -251,7 +251,10 @@ export interface I18nInterface {
   };
   pagination: {
     nextButtonLabel: string;
+    nextTooltipLabel?: string;
+    pageJumpLabel?: string;
     previousButtonLabel: string;
+    previousTooltipLabel?: string;
     pageButtonLabel: string;
   };
   password: {
@@ -358,8 +361,24 @@ export interface I18nInterface {
     warning: string;
     danger: string;
   };
+  /**
+   * @deprecated Superseded by `treeView.itemExpandedAnnounce` /
+   * `treeView.itemCollapsedAnnounce`. A value set here is still used, as long
+   * as its replacement has been left at its default.
+   */
   expansionState: {
     expanded: string;
     collapsed: string;
+  };
+  treeView?: {
+    itemExpandedAnnounce?: string;
+    itemCollapsedAnnounce?: string;
+    allItemsExpandedAnnounce?: string;
+    allItemsCollapsedAnnounce?: string;
+    itemSelectedAnnounce?: string;
+    itemDeselectedAnnounce?: string;
+    itemPartiallySelectedAnnounce?: string;
+    branchSelectedAnnounce?: string;
+    branchDeselectedAnnounce?: string;
   };
 }

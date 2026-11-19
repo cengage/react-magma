@@ -364,7 +364,7 @@ describe('ChartFullscreenButton', () => {
 // ChartMoreOptionsButton
 // ---------------------------------------------------------------------------
 describe('ChartMoreOptionsButton', () => {
-  it('renders with default "More options" label', () => {
+  it('renders with default "More options" label and tooltip', async () => {
     render(
       <ChartMoreOptionsButton icon={<MoreVertIcon />}>
         <DropdownMenuItem>Download</DropdownMenuItem>
@@ -374,6 +374,11 @@ describe('ChartMoreOptionsButton', () => {
     expect(
       screen.getByRole('button', { name: 'More options' })
     ).toHaveAttribute('color', 'subtle');
+
+    fireEvent.mouseEnter(screen.getByRole('button', { name: 'More options' }));
+    await waitFor(() => {
+      expect(screen.getByText('More options')).toBeInTheDocument();
+    });
   });
 
   it('renders with custom aria-label', () => {

@@ -2,9 +2,11 @@
 import React from 'react';
 
 import { act, render, fireEvent, waitFor } from '@testing-library/react';
+import { SettingsIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+import { IconButton } from '../IconButton';
 
 import { Tooltip } from '.';
 
@@ -102,18 +104,30 @@ describe('Tooltip', () => {
   });
 
   it('should show the tooltip on focus and hide it on blur', () => {
+    const onFocus = jest.fn();
+    const onBlur = jest.fn();
     const { container } = render(
-      <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
+      <Tooltip content={CONTENT_TEXT}>
+        <button onFocus={onFocus} onBlur={onBlur}>
+          Test trigger
+        </button>
+      </Tooltip>
     );
-    const tooltipTrigger = container.querySelector('button');
+    const trigger = container.querySelector('button');
 
     expect(
       container.querySelector('div[role="tooltip"]')
     ).not.toBeInTheDocument();
-    fireEvent.focus(tooltipTrigger);
+    fireEvent.focus(trigger);
 
+    expect(onFocus).toHaveBeenCalledTimes(1);
     expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
-    fireEvent.blur(tooltipTrigger);
+    fireEvent.blur(trigger);
+
+    expect(onBlur).toHaveBeenCalledTimes(1);
+    expect(
+      container.querySelector('div[role="tooltip"]')
+    ).not.toBeInTheDocument();
   });
 
   it('should allow for a persistent tooltip that does not hide on blur', () => {
@@ -122,91 +136,91 @@ describe('Tooltip', () => {
         {TRIGGER_ELEMENT}
       </Tooltip>
     );
-    const tooltipTrigger = container.querySelector('button');
+    const trigger = container.querySelector('button');
 
     expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
-
-    fireEvent.mouseEnter(tooltipTrigger);
-
+    fireEvent.mouseEnter(trigger);
+    fireEvent.mouseLeave(trigger);
     expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
 
-    fireEvent.mouseLeave(tooltipTrigger);
+    fireEvent.focus(trigger);
+    fireEvent.blur(trigger);
+    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
 
+    fireEvent.keyDown(trigger, { key: 'Escape' });
     expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
   });
 
-  it('should show the tooltip on mouseenter and hide it on mouseleave trigger button', async () => {
-    const { container } = render(
-      <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
-    );
-    const tooltipTrigger = container.querySelector('button');
+  it.each([undefined, false])(
+    'should show the tooltip on mouseenter and hide it on mouseleave trigger button (open=%s)',
+    async open => {
+      const onMouseEnter = jest.fn();
+      const tooltipRef = React.createRef();
+      const { container } = render(
+        <Tooltip open={open} content={CONTENT_TEXT} ref={tooltipRef}>
+          <button onMouseEnter={onMouseEnter}>Test trigger</button>
+        </Tooltip>
+      );
+      const trigger = container.querySelector('button');
 
-    expect(
-      container.querySelector('div[role="tooltip"]')
-    ).not.toBeInTheDocument();
-
-    fireEvent.mouseEnter(tooltipTrigger);
-
-    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
-
-    fireEvent.mouseLeave(tooltipTrigger);
-
-    await waitFor(() => {
+      expect(tooltipRef.current).toBe(trigger);
       expect(
         container.querySelector('div[role="tooltip"]')
       ).not.toBeInTheDocument();
-    });
-  });
+      fireEvent.mouseEnter(trigger);
+
+      expect(onMouseEnter).toHaveBeenCalledTimes(1);
+      expect(
+        container.querySelector('div[role="tooltip"]')
+      ).toBeInTheDocument();
+      fireEvent.mouseLeave(trigger);
+
+      await waitFor(() => {
+        expect(
+          container.querySelector('div[role="tooltip"]')
+        ).not.toBeInTheDocument();
+      });
+    }
+  );
 
   it('should show the tooltip content on mouseenter and hide it on mouseleave tooltip content', async () => {
     const { container } = render(
       <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
     );
-    const tooltipTrigger = container.querySelector('button');
 
-    expect(
-      container.querySelector('div[role="tooltip"]')
-    ).not.toBeInTheDocument();
+    fireEvent.mouseEnter(container.querySelector('button'));
 
-    fireEvent.mouseEnter(tooltipTrigger);
+    const tooltip = container.querySelector('div[role="tooltip"]');
+    const floating = tooltip.parentElement;
 
-    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
-
-    fireEvent.mouseEnter(container.querySelector('div[role="tooltip"]'));
-
-    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
-    fireEvent.mouseLeave(container.querySelector('div[role="tooltip"]'));
+    fireEvent.mouseEnter(floating);
+    expect(tooltip).toBeInTheDocument();
+    fireEvent.mouseLeave(floating);
 
     await waitFor(() => {
-      expect(
-        container.querySelector('div[role="tooltip"]')
-      ).not.toBeInTheDocument();
+      expect(tooltip).not.toBeInTheDocument();
     });
   });
 
   it('should hide the tooltip when the escape key is pressed', async () => {
+    const onKeyDown = jest.fn();
     const { container } = render(
-      <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
+      <Tooltip content={CONTENT_TEXT} onKeyDown={onKeyDown}>
+        {TRIGGER_ELEMENT}
+      </Tooltip>
     );
-    const tooltipTrigger = container.querySelector('button');
+    const trigger = container.querySelector('button');
 
-    fireEvent.focus(tooltipTrigger);
+    fireEvent.focus(trigger);
 
     const tooltip = container.querySelector('div[role="tooltip"]');
 
     expect(tooltip).toBeInTheDocument();
-
-    fireEvent.keyDown(tooltipTrigger, {
-      key: 'ArrowDown',
-      code: 40,
-    });
-
+    fireEvent.keyDown(trigger, { key: 'ArrowDown', code: 40 });
+    expect(onKeyDown).toHaveBeenCalledTimes(1);
     expect(tooltip).toBeInTheDocument();
 
-    fireEvent.keyDown(tooltipTrigger, {
-      key: 'Escape',
-      keyCode: 27,
-    });
+    fireEvent.keyDown(trigger, { key: 'Escape', keyCode: 27 });
 
     await waitFor(() => {
       expect(tooltip).not.toBeInTheDocument();
@@ -310,6 +324,80 @@ describe('Tooltip', () => {
     );
 
     console.error = originalError;
+  });
+
+  describe('aria-describedby on an icon-only trigger', () => {
+    const focusTrigger = async container => {
+      const trigger = container.querySelector('button');
+
+      await act(async () => {
+        trigger.focus();
+      });
+
+      return trigger;
+    };
+
+    it('should not describe the trigger when the tooltip content matches its aria-label', async () => {
+      const { container, getByRole } = render(
+        <Tooltip content="Settings">
+          <IconButton aria-label="Settings" icon={<SettingsIcon />} />
+        </Tooltip>
+      );
+      const trigger = await focusTrigger(container);
+
+      expect(getByRole('tooltip')).toBeInTheDocument();
+      expect(trigger).not.toHaveAttribute('aria-describedby');
+      expect(trigger).toHaveAccessibleName('Settings');
+      expect(trigger).toHaveAccessibleDescription('');
+    });
+
+    it('should ignore case and surrounding or repeated whitespace when comparing', async () => {
+      const { container } = render(
+        <Tooltip content="  Previous   page ">
+          <IconButton aria-label="previous page" icon={<SettingsIcon />} />
+        </Tooltip>
+      );
+      const trigger = await focusTrigger(container);
+
+      expect(trigger).not.toHaveAttribute('aria-describedby');
+    });
+
+    it('should describe the trigger when the tooltip content differs from its aria-label', async () => {
+      const { container } = render(
+        <Tooltip content="Opens the settings panel">
+          <IconButton aria-label="Settings" icon={<SettingsIcon />} />
+        </Tooltip>
+      );
+      const trigger = await focusTrigger(container);
+
+      expect(trigger).toHaveAccessibleName('Settings');
+      expect(trigger).toHaveAccessibleDescription('Opens the settings panel');
+    });
+
+    it('should describe the trigger when the tooltip content is not a string', async () => {
+      const { container } = render(
+        <Tooltip content={<>Settings</>}>
+          <IconButton aria-label="Settings" icon={<SettingsIcon />} />
+        </Tooltip>
+      );
+      const trigger = await focusTrigger(container);
+
+      expect(trigger).toHaveAccessibleDescription('Settings');
+    });
+
+    it('Does not violate accessibility standards when the description is skipped', async () => {
+      const { container } = render(
+        <Tooltip content="Settings">
+          <IconButton aria-label="Settings" icon={<SettingsIcon />} />
+        </Tooltip>
+      );
+
+      await focusTrigger(container);
+
+      const result = await axe(container.innerHTML);
+
+      expect(result).toHaveNoViolations();
+    });
   });
 
   it('Does not violate accessibility standards', () => {
