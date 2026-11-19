@@ -70,7 +70,7 @@
     "@babel/preset-typescript": "7.27.1",
     "@babel/runtime-corejs3": "^7.27.6",
     "@changesets/changelog-github": "0.5.1",
-    "@changesets/cli": "2.29.4",
+    "@changesets/cli": "3.0.3",
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
     "@commitlint/is-ignored": "19.8.1",
