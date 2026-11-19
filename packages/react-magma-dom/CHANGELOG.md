@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 6.1.0-v6-next.20
+
+### Patch Changes
+
+- a5df64813: fix(TreeView): publish repeated Windows cascade messages from per-branch live regions (`<testId>-announce-<itemId>`), announce virtualized subitems, omit menu actions from item names, and preserve mixed child order with nested virtualization
+
 ## 6.1.0-v6-next.19
 
 ### Minor Changes

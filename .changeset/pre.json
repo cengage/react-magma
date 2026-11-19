@@ -24,6 +24,7 @@
     "fix-select-aria-controls",
     "fix-select-duplicate-labels",
     "fix-table-header-cell-width",
+    "fix-treeview-repeated-windows-announcements",
     "fix-treeview-stories-headings",
     "fix-useFocusLock-lost-focus",
     "icons-331-floor",
