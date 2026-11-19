@@ -99,11 +99,12 @@ jobs:
           NPM_CONFIG_PROVENANCE: true
         run: |
           npm run version:pkgs
-          if ! git diff --quiet; then
+          git add -A
+          if ! git diff --cached --quiet; then
             if [[ "${GITHUB_REF_NAME}" == *dev ]]; then
-              git commit -am "chore: enter prerelease mode"
+              git commit -m "chore: enter prerelease mode"
             else
-              git commit -am "chore: exit prerelease mode"
+              git commit -m "chore: exit prerelease mode"
             fi
           fi
           if [[ "${GITHUB_REF_NAME}" == *main ]]; then
