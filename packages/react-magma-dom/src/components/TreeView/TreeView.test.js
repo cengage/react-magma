@@ -1430,6 +1430,117 @@ describe('TreeView', () => {
         'false'
       );
     });
+
+    describe('when multiselect, selection state is exposed only once', () => {
+      it('hides the underlying checkbox input from assistive technology', () => {
+        const { getByTestId } = render(
+          getTreeItemsMultiLevel({
+            selectable: TreeViewSelectable.multi,
+            initialExpandedItems: ['item1'],
+          })
+        );
+
+        expect(getByTestId('item1-checkbox')).toHaveAttribute(
+          'aria-hidden',
+          'true'
+        );
+        expect(getByTestId('item-child1-checkbox')).toHaveAttribute(
+          'aria-hidden',
+          'true'
+        );
+      });
+
+      it('exposes no checkbox role inside the tree', () => {
+        const { getByTestId, queryAllByRole } = render(
+          getTreeItemsMultiLevel({
+            selectable: TreeViewSelectable.multi,
+            initialExpandedItems: ['item1', 'item2', 'item3'],
+          })
+        );
+
+        expect(getByTestId('item1-checkbox')).toBeInTheDocument();
+        expect(queryAllByRole('checkbox')).toHaveLength(0);
+      });
+
+      it('keeps the hidden input out of the tree item interactive elements', () => {
+        const { getByTestId } = render(
+          getTreeItemsMultiLevel({ selectable: TreeViewSelectable.multi })
+        );
+
+        expect(getByTestId('item1-checkbox')).toHaveAttribute('tabindex', '-1');
+      });
+
+      it('does not let a mouse click move focus into the hidden checkbox', async () => {
+        const { getByTestId } = render(
+          getTreeItemsMultiLevel({ selectable: TreeViewSelectable.multi })
+        );
+
+        const checkbox = getByTestId('item1-checkbox');
+
+        await userEvent.click(getByTestId('item1-label'));
+
+        expect(checkbox).not.toHaveFocus();
+        expect(document.activeElement).not.toBe(checkbox);
+        expect(getByTestId('item1')).toHaveFocus();
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'true');
+      });
+
+      it('leaves focusable additional content clickable', async () => {
+        const { getByTestId } = render(
+          <TreeView selectable={TreeViewSelectable.multi} testId={testId}>
+            <TreeItem
+              label="Node 1"
+              itemId="item1"
+              testId="item1"
+              additionalContent={
+                <button data-testid="extra-button">Extra</button>
+              }
+            />
+          </TreeView>
+        );
+
+        await userEvent.click(getByTestId('extra-button'));
+
+        expect(getByTestId('extra-button')).toHaveFocus();
+      });
+
+      it('reports the state on the tree item, in sync with the checkbox', async () => {
+        const { getByTestId } = render(
+          getTreeItemsMultiLevel({
+            selectable: TreeViewSelectable.multi,
+            initialExpandedItems: ['item1'],
+          })
+        );
+
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('item1-checkbox')).not.toBeChecked();
+
+        await userEvent.click(getByTestId('item1-checkbox'));
+
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('item1-checkbox')).toBeChecked();
+
+        await userEvent.click(getByTestId('item-child1-checkbox'));
+
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('item1-checkbox')).not.toBeChecked();
+      });
+
+      it('does not violate detectable accessibility standards', async () => {
+        const { container } = render(
+          getTreeItemsMultiLevel({
+            selectable: TreeViewSelectable.multi,
+            initialExpandedItems: ['item1', 'item2', 'item3'],
+          })
+        );
+
+        // Passing markup makes jest-axe replace document.body with a static
+        // copy, which detaches the container used by later v6 tests.
+        const results = await axe(container);
+
+        expect(results).toHaveNoViolations();
+      });
+    });
   });
 
   describe('isInverse', () => {

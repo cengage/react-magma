@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 // import styled from '../../theme/styled';
-import { SearchIcon } from 'react-magma-icons';
+import { SearchOutlinedIcon } from 'react-magma-icons';
 
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
@@ -85,7 +85,11 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
 
     const [value, setValue] = React.useState<string>(props.value);
 
-    const icon = isLoading ? <Spinner isInverse={isInverse} /> : <SearchIcon />;
+    const icon = isLoading ? (
+      <Spinner isInverse={isInverse} />
+    ) : (
+      <SearchOutlinedIcon />
+    );
 
     React.useEffect(() => {
       setValue(props.value);

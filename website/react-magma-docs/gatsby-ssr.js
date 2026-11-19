@@ -9,6 +9,12 @@ import React from 'react';
 import { Layout } from './src/components/layout';
 import { MainContainer } from './src/components/MainContainer';
 
+export const onRenderBody = ({ setHeadComponents }) => {
+  setHeadComponents([
+    <link key="favicon" rel="icon" href="/favicon.ico" type="image/x-icon" />,
+  ]);
+};
+
 export const wrapRootElement = ({ element }) => {
   return <MainContainer>{element}</MainContainer>;
 };

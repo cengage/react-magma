@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import styled from '@emotion/styled';
 import {
-  RadioButtonCheckedIcon,
-  RadioButtonUncheckedIcon,
+  RadioButtonCheckedOutlinedIcon,
+  RadioButtonUncheckedOutlinedIcon,
 } from 'react-magma-icons';
 
 import { ThemeInterface } from '../../theme/magma';
@@ -65,7 +65,7 @@ export interface RadioProps
    */
   testId?: string;
   /**
-   * Whether the label appears to the left of the right of the radio button
+   * Whether the label appears to the left or the right of the radio button
    * @default RadioTextPosition.right
    */
   textPosition?: RadioTextPosition;
@@ -220,9 +220,9 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             theme={theme}
           >
             {context.selectedValue === value ? (
-              <RadioButtonCheckedIcon aria-hidden />
+              <RadioButtonCheckedOutlinedIcon aria-hidden />
             ) : (
-              <RadioButtonUncheckedIcon aria-hidden />
+              <RadioButtonUncheckedOutlinedIcon aria-hidden />
             )}
           </StyledFakeInput>
           {isTextVisuallyHidden ? (

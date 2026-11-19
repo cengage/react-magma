@@ -51,7 +51,7 @@ Toggle Buttons come in three formats. Icon only, text only, or text with an icon
 import React from 'react';
 
 import { Flex, FlexBehavior, ToggleButton } from 'react-magma-dom';
-import { SettingsIcon } from 'react-magma-icons';
+import { SettingsOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -60,7 +60,7 @@ export function Example() {
         <Flex behavior={FlexBehavior.item}>
           <ToggleButton
             value="1"
-            icon={<SettingsIcon />}
+            icon={<SettingsOutlinedIcon />}
             aria-label="Settings"
           />
         </Flex>
@@ -68,7 +68,7 @@ export function Example() {
           <ToggleButton value="2">Text only</ToggleButton>
         </Flex>
         <Flex behavior={FlexBehavior.item}>
-          <ToggleButton value="3" icon={<SettingsIcon />}>
+          <ToggleButton value="3" icon={<SettingsOutlinedIcon />}>
             Text and icon
           </ToggleButton>
         </Flex>
@@ -86,7 +86,7 @@ Three sizes are configurable with the `ButtonSize` prop between `small`, `medium
 import React from 'react';
 
 import { Flex, FlexBehavior, ToggleButton, ButtonSize } from 'react-magma-dom';
-import { SettingsIcon } from 'react-magma-icons';
+import { SettingsOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -96,7 +96,7 @@ export function Example() {
           <ToggleButton
             value="1"
             size={ButtonSize.small}
-            icon={<SettingsIcon />}
+            icon={<SettingsOutlinedIcon />}
             aria-label="Settings"
           />
         </Flex>
@@ -109,7 +109,7 @@ export function Example() {
           <ToggleButton
             value="3"
             size={ButtonSize.large}
-            icon={<SettingsIcon />}
+            icon={<SettingsOutlinedIcon />}
           >
             Text and icon
           </ToggleButton>
@@ -126,7 +126,7 @@ export function Example() {
 import React from 'react';
 
 import { Flex, FlexBehavior, ToggleButton } from 'react-magma-dom';
-import { SettingsIcon } from 'react-magma-icons';
+import { SettingsOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -136,7 +136,7 @@ export function Example() {
           <ToggleButton
             value="1"
             disabled
-            icon={<SettingsIcon />}
+            icon={<SettingsOutlinedIcon />}
             aria-label="Settings"
           />
         </Flex>
@@ -146,7 +146,7 @@ export function Example() {
           </ToggleButton>
         </Flex>
         <Flex behavior={FlexBehavior.item}>
-          <ToggleButton value="3" disabled icon={<SettingsIcon />}>
+          <ToggleButton value="3" disabled icon={<SettingsOutlinedIcon />}>
             Text and icon
           </ToggleButton>
         </Flex>
@@ -168,7 +168,7 @@ import {
   ToggleButton,
   magma,
 } from 'react-magma-dom';
-import { SettingsIcon } from 'react-magma-icons';
+import { SettingsOutlinedIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -185,7 +185,7 @@ export function Example() {
           <ToggleButton
             value="1"
             isInverse
-            icon={<SettingsIcon />}
+            icon={<SettingsOutlinedIcon />}
             aria-label="Settings"
           />
         </Flex>
@@ -195,7 +195,7 @@ export function Example() {
           </ToggleButton>
         </Flex>
         <Flex behavior={FlexBehavior.item}>
-          <ToggleButton value="3" isInverse icon={<SettingsIcon />}>
+          <ToggleButton value="3" isInverse icon={<SettingsOutlinedIcon />}>
             Text and icon
           </ToggleButton>
         </Flex>

@@ -1,5 +1,156 @@
 # Change Log
 
+## 6.0.1-v6-next.14
+
+### Patch Changes
+
+- f755570d1: chore(Input): use an outlined help icon in the Help Link example
+
+## 6.0.1-v6-next.13
+
+### Patch Changes
+
+- Updated dependencies [32a13ca99]
+  - @react-magma/charts@16.0.0-v6-next.5
+
+## 6.0.1-v6-next.12
+
+### Patch Changes
+
+- Updated dependencies [61c8021a1]
+  - @react-magma/charts@16.0.0-v6-next.4
+  - @react-magma/dropzone@16.0.0-v6-next.4
+  - react-magma-dom@6.1.0-v6-next.16
+
+## 6.0.1-v6-next.11
+
+### Patch Changes
+
+- 6ba2a94f2: feat(Tagline): add a reusable tagline typography component
+- 6b36ff93a: docs: refresh rebrand design guidelines
+- Updated dependencies [bdca9196b]
+- Updated dependencies [6ba2a94f2]
+  - react-magma-dom@6.1.0-v6-next.11
+
+## 6.0.1-v6-next.10
+
+### Patch Changes
+
+- 8e143601c: chore: require `react-magma-icons` `^3.3.1`
+- Updated dependencies [8e143601c]
+  - react-magma-dom@6.1.0-v6-next.10
+  - @react-magma/charts@16.0.0-v6-next.3
+  - @react-magma/dropzone@16.0.0-v6-next.3
+
+## 6.0.1-v6-next.9
+
+### Patch Changes
+
+- bbb1d0413: chore(AI): add AI agent guidance for Magma components and theme tokens, with setup instructions
+- Updated dependencies [bbb1d0413]
+  - react-magma-dom@6.1.0-v6-next.9
+
+## 6.0.1-v6-next.8
+
+### Patch Changes
+
+- 84eb2b561: feat(Dropzone): allow consumers to customize the browse button color and text
+- Updated dependencies [84eb2b561]
+  - @react-magma/dropzone@16.0.0-v6-next.2
+
+## 6.0.1-v6-next.7
+
+### Patch Changes
+
+- f94c273b1: docs(changelog): sync the v6 changelog page through v6.0.0
+
+## 6.0.1-v6-next.6
+
+### Patch Changes
+
+- 60dcea0a4: fix(TreeView): use heading markup in stories
+- Updated dependencies [8b76cb9e5]
+  - react-magma-dom@6.1.0-v6-next.7
+
+## 6.0.1-v6-next.5
+
+### Patch Changes
+
+- aa567d952: fix(Modal, DefinitionList): resolve axe violations in stories
+
+## 6.0.1-v6-next.4
+
+### Patch Changes
+
+- 42c8b5f48: chore(playwright): update Playwright to 1.64.1
+
+## 6.0.1-v6-next.3
+
+### Patch Changes
+
+- 1a6cccd17: fix(TreeView): correct screen reader announcements for tree items
+
+  Expansion, selection and `expandAll`/`collapseAll` are each announced once and
+  name the item they apply to, through a single live region owned by `TreeView`.
+  Keyboard selection is announced — it was previously silent — and a branch reports
+  the status it ends up in, saying its subitems followed only when they actually
+  did. `IndeterminateCheckbox` announces only a change the user made on it.
+
+  New optional i18n strings under `treeView`: `itemExpandedAnnounce`,
+  `itemCollapsedAnnounce`, `allItemsExpandedAnnounce`, `allItemsCollapsedAnnounce`,
+  `itemSelectedAnnounce`, `itemDeselectedAnnounce`, `itemPartiallySelectedAnnounce`,
+  `branchSelectedAnnounce`, `branchDeselectedAnnounce`. Each falls back to English
+  on its own, so a partially translated section is safe.
+
+  `i18n.expansionState` is deprecated in favour of `treeView.itemExpandedAnnounce`
+  / `itemCollapsedAnnounce`, which also name the item acted on. A translation
+  supplied through it still takes effect, as long as its replacement is left at
+  its default.
+
+  Notes for tests asserting on the accessibility tree:
+
+  - `li[role="treeitem"]` is now the only element carrying selection state. The
+    checkbox inside a tree item is `aria-hidden`, so `getByRole('checkbox')` no
+    longer matches inside a tree — query it with
+    `getByLabelText(label, { selector: 'input' })` or the `<itemId>-checkbox` test
+    id, and assert state on the item's `aria-checked`.
+  - Layout wrappers carry `role="none"`, siblings share one `ul[role="group"]` per
+    branch, and the per-item live regions are replaced by one region after the
+    tree (`<testId>-announce`).
+  - Announcements are published on a short delay, so assertions on announcement
+    text need `waitFor` or fake timers.
+  - Wording changed: `All subitems are selected` is now
+    `<label>, selected, all subitems selected`.
+
+- Updated dependencies [1a6cccd17]
+- Updated dependencies [1a6cccd17]
+  - react-magma-dom@6.1.0-v6-next.2
+  - @react-magma/charts@16.0.0-v6-next.2
+  - @react-magma/dropzone@16.0.0-v6-next.1
+
+## 6.0.1-v6-next.2
+
+### Patch Changes
+
+- Updated dependencies [77ed889bf]
+  - @react-magma/charts@15.0.1-v6-next.1
+
+## 6.0.1-v6-next.1
+
+### Patch Changes
+
+- 478635752: chore: update `react-magma-icons` to `^3.3.0`
+- Updated dependencies [478635752]
+  - react-magma-dom@6.0.1-v6-next.0
+  - @react-magma/charts@15.0.1-v6-next.0
+  - @react-magma/dropzone@15.0.1-v6-next.0
+
+## 6.0.1-v6-next.0
+
+### Patch Changes
+
+- cc9370eda: chore(release): sync the published 6.0.0 state from v6/main into v6/dev
+
 ## 6.0.0
 
 ### Major Changes

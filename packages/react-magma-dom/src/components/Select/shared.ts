@@ -161,6 +161,7 @@ function buildSelectedItemButtonBackground(props) {
 
     return props.theme.colors.neutral300;
   }
+
   return buildBadgeBackground({ ...props, color: BadgeColor.primary });
 }
 
@@ -174,6 +175,7 @@ function buildSelectedItemButtonColor(props) {
 
     return transparentize(0.4, props.theme.colors.neutral500);
   }
+
   return buildBadgeTextColor({ ...props, color: BadgeColor.primary });
 }
 

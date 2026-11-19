@@ -255,7 +255,10 @@ export const defaultI18n: I18nInterface = {
   },
   pagination: {
     nextButtonLabel: 'Next Page',
+    nextTooltipLabel: 'Next',
+    pageJumpLabel: 'Select a page between {startPage} and {endPage}',
     previousButtonLabel: 'Previous Page',
+    previousTooltipLabel: 'Previous',
     pageButtonLabel: 'Go to Page',
   },
   password: {
@@ -374,5 +377,16 @@ export const defaultI18n: I18nInterface = {
   expansionState: {
     expanded: 'expanded',
     collapsed: 'collapsed',
+  },
+  treeView: {
+    itemExpandedAnnounce: '{labelText}, expanded',
+    itemCollapsedAnnounce: '{labelText}, collapsed',
+    allItemsExpandedAnnounce: 'All items expanded',
+    allItemsCollapsedAnnounce: 'All items collapsed',
+    itemSelectedAnnounce: '{labelText}, selected',
+    itemDeselectedAnnounce: '{labelText}, not selected',
+    itemPartiallySelectedAnnounce: '{labelText}, partially selected',
+    branchSelectedAnnounce: '{labelText}, selected, all subitems selected',
+    branchDeselectedAnnounce: '{labelText}, not selected, no subitems selected',
   },
 };

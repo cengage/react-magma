@@ -25,7 +25,7 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
 // Multiple observers may be created per component; we collect all of them and
 // call each one so that no observer is silently skipped.
 let mutationObserverCallbacks = [];
-const mutationObserverCallback = mutations =>
+const mutationObserverCallback = (mutations = []) =>
   mutationObserverCallbacks.forEach(cb => cb(mutations));
 global.MutationObserver = jest.fn().mockImplementation(callback => {
   mutationObserverCallbacks.push(callback);
@@ -1023,6 +1023,77 @@ describe('CarbonChart', () => {
     });
   });
 
+  describe('fullscreen', () => {
+    const toolbarProps = {
+      dataSet,
+      options: chartOptions,
+      type: CarbonChartType.bar,
+      chartToolbar: {},
+    };
+
+    let setOptions;
+    let createChartSpy;
+
+    const setFullscreenElement = element => {
+      Object.defineProperty(document, 'fullscreenElement', {
+        configurable: true,
+        value: element,
+      });
+      act(() => {
+        document.dispatchEvent(new Event('fullscreenchange'));
+      });
+    };
+
+    beforeEach(() => {
+      setOptions = jest.fn();
+      createChartSpy = jest
+        .spyOn(SimpleBarChart.prototype, 'createChart')
+        .mockImplementation(holder => {
+          holder.classList.add('cds--chart-holder');
+          holder.style.height = chartOptions.height;
+
+          return { model: { setOptions, setData: jest.fn() } };
+        });
+    });
+
+    afterEach(() => {
+      createChartSpy.mockRestore();
+      delete document.fullscreenElement;
+    });
+
+    it('does not update chart options when entering and exiting fullscreen', () => {
+      const { container } = render(<CarbonChart {...toolbarProps} />);
+      const holder = container.querySelector('.cds--chart-holder');
+
+      setFullscreenElement(container.firstChild);
+
+      expect(
+        screen.getByRole('button', {
+          name: `Exit ${chartOptions.title} full screen`,
+        })
+      ).toBeInTheDocument();
+      expect(holder.style.height).toBe('100vh');
+
+      setFullscreenElement(null);
+
+      expect(
+        screen.getByRole('button', {
+          name: `View ${chartOptions.title} full screen`,
+        })
+      ).toBeInTheDocument();
+      expect(holder.style.height).toBe(chartOptions.height);
+      expect(setOptions).not.toHaveBeenCalled();
+    });
+
+    it('does not update chart options on re-render with the same props', () => {
+      const { rerender } = render(<CarbonChart {...toolbarProps} />);
+
+      rerender(<CarbonChart {...toolbarProps} chartToolbar={{}} />);
+
+      expect(setOptions).not.toHaveBeenCalled();
+    });
+  });
+
   describe('image export', () => {
     const toolbarProps = {
       dataSet,
@@ -1090,7 +1161,9 @@ describe('CarbonChart', () => {
 
         expect(wrapper).not.toHaveClass('has-magma-toolbar');
 
-        jest.runOnlyPendingTimers();
+        act(() => {
+          jest.runOnlyPendingTimers();
+        });
         expect(wrapper).toHaveClass('has-magma-toolbar');
       } finally {
         jest.useRealTimers();
@@ -1117,7 +1190,9 @@ describe('CarbonChart', () => {
         expect(exportToJPG).toHaveBeenCalledTimes(1);
         expect(wrapper).not.toHaveClass('has-magma-toolbar');
 
-        jest.runOnlyPendingTimers();
+        act(() => {
+          jest.runOnlyPendingTimers();
+        });
         expect(wrapper).toHaveClass('has-magma-toolbar');
       } finally {
         jest.useRealTimers();

@@ -56,6 +56,7 @@ import {
   FlexJustify,
   FlexWrap,
 } from '../Flex';
+import { Heading } from '../Heading';
 import { Hyperlink } from '../Hyperlink';
 import { Paragraph } from '../Paragraph';
 import { TagColor } from '../Tag';
@@ -706,9 +707,15 @@ export const Textbook = {
     return (
       <>
         <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
-          <Paragraph id="ah-textbook" isInverse={args.isInverse} noTopMargin>
+          <Heading
+            id="ah-textbook"
+            isInverse={args.isInverse}
+            level={2}
+            noTopMargin
+            visualStyle={TypographyVisualStyle.headingXSmall}
+          >
             Art History Textbook
-          </Paragraph>
+          </Heading>
           <TreeView {...args} onSelectedItemChange={onSelection}>
             <TreeItem
               label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}
@@ -1328,7 +1335,9 @@ export const AccordionSectionWithTreeView = (props: any) => {
 
   return (
     <AccordionItem {...rest} index={customIndex} isDisabled={isDisabled}>
-      <AccordionButton>{title}</AccordionButton>
+      <Heading level={2} noMargins>
+        <AccordionButton>{title}</AccordionButton>
+      </Heading>
       <AccordionPanel>
         <ButtonGroup
           size={ButtonSize.small}
@@ -3575,6 +3584,7 @@ export const VirtualizedLargeTree = {
         >
           <TreeItem
             itemId="parent"
+            aria-label="Spanish Edition"
             label={folderLabel(
               <Paragraph
                 visualStyle={TypographyVisualStyle.headingXSmall}
@@ -3588,6 +3598,7 @@ export const VirtualizedLargeTree = {
             {Array.from({ length: 25 }, (_, i) => i + 1).map(i => (
               <TreeItem
                 key={i}
+                aria-label={`Unit ${i}`}
                 label={folderLabel(
                   <Paragraph
                     visualStyle={TypographyVisualStyle.headingXSmall}
@@ -3607,6 +3618,7 @@ export const VirtualizedLargeTree = {
                   return (
                     <TreeItem
                       key={`${i}-${j}`}
+                      aria-label={`Chapter ${i}.${j} (pp. ${startPage + 1}-${endPage})`}
                       label={folderLabel(
                         <span style={{ fontWeight: '600' }}>
                           Chapter {i}.{j} (pp. {startPage + 1}-{endPage})
@@ -3620,6 +3632,7 @@ export const VirtualizedLargeTree = {
                         return (
                           <TreeItem
                             key={`${i}-${j}-${k}`}
+                            aria-label={`Most common activity length is 39 chars but what if longer ${activityNumber}`}
                             additionalContent={additionalContent()}
                             label={treeLabel(activityNumber)}
                             itemId={`activity${i}-${j}-${k}`}
@@ -3650,6 +3663,69 @@ export const VirtualizedLargeTree = {
   },
 };
 
+export const ResizableVirtualizedTree = {
+  render: ({
+    lessonsPerChapter,
+    ...args
+  }: TreeViewProps & { lessonsPerChapter: number }) => (
+    <>
+      <Paragraph>
+        Drag the bottom-right corner to resize the tree. Long labels wrap as the
+        width changes. Expand chapters and scroll before resizing to check that
+        rows stay together. Toggle enableVirtualization in the controls to
+        compare both modes. To exercise resizing after collapse, set
+        lessonsPerChapter to 2, collapse Chapter 1, then narrow and widen the
+        tree.
+      </Paragraph>
+      <div
+        data-testid="resizable-tree-container"
+        style={{
+          width: 360,
+          height: 400,
+          minWidth: 200,
+          maxWidth: 720,
+          minHeight: 160,
+          maxHeight: 640,
+          resize: 'both',
+          overflow: 'auto',
+        }}
+      >
+        <TreeView {...args} style={{ height: '100%', overflow: 'auto' }}>
+          {Array.from({ length: 20 }, (_chapter, c) => (
+            <TreeItem
+              key={c}
+              itemId={`chapter-${c + 1}`}
+              label={`Chapter ${c + 1}: ${
+                c >= 18
+                  ? 'Review'
+                  : 'Introduction to a very long section title that needs to wrap on several lines'
+              }`}
+            >
+              {Array.from({ length: lessonsPerChapter }, (_lesson, l) => (
+                <TreeItem
+                  key={l}
+                  itemId={`lesson-${c + 1}-${l + 1}`}
+                  label={`Lesson ${c + 1}.${l + 1}: A really long lesson name describing learning objectives and expected outcomes`}
+                />
+              ))}
+            </TreeItem>
+          ))}
+        </TreeView>
+      </div>
+    </>
+  ),
+  args: {
+    ariaLabel: 'Resizable course outline',
+    enableVirtualization: true,
+    initialExpandedItems: ['chapter-1'],
+    testId: 'resizable-tree',
+    lessonsPerChapter: 25,
+  },
+  argTypes: {
+    lessonsPerChapter: { control: { type: 'number', min: 1, max: 25 } },
+  },
+};
+
 export const SelectChildrenOnly = {
   render: (args: TreeViewProps) => {
     const [selectedItems, setSelectedItems] = React.useState<
@@ -3666,9 +3742,9 @@ export const SelectChildrenOnly = {
       <Card>
         <CardBody>
           <Flex behavior={FlexBehavior.container}>
-            <Paragraph visualStyle={TypographyVisualStyle.headingSmall}>
+            <Heading level={2} visualStyle={TypographyVisualStyle.headingSmall}>
               Select Children Only (selectParents = false)
-            </Paragraph>
+            </Heading>
             <Paragraph>
               In this example, folders (parent items) can only be
               expanded/collapsed. Only files (child items) can be selected.
@@ -3916,10 +3992,10 @@ export const LargeTreePerformanceIssue = {
     return (
       <Card isInverse={treeProps.isInverse}>
         <CardBody>
-          <Paragraph visualStyle={TypographyVisualStyle.headingSmall}>
+          <Heading level={2} visualStyle={TypographyVisualStyle.headingSmall}>
             Total nodes: {totalNodes.toLocaleString()} (levels={levels},
             children/level={childrenCount})
-          </Paragraph>
+          </Heading>
           <Paragraph>
             Expand a top-level node, then click its checkbox. With
             selectable=multi + checkChildren + checkParents this should freeze
