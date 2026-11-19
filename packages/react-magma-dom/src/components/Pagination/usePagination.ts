@@ -1,8 +1,8 @@
 import React from 'react';
 
+import { formatPageNumber } from './utils';
 import { useControlled } from '../../hooks/useControlled';
 import { I18nContext } from '../../i18n';
-import { formatPageNumber } from './utils';
 
 export interface UsePaginationProps {
   /**
