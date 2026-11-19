@@ -261,27 +261,6 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       }
     });
 
-    React.useEffect(() => {
-      if (apiRef) {
-        apiRef.current = {
-          closeDropdownManually(event) {
-            const hasFocusInside = ownRef.current?.contains(
-              document.activeElement
-            );
-
-            closeDropdown(event);
-
-            if (hasFocusInside) {
-              toggleRef.current?.focus();
-            }
-          },
-          openDropdownManually(event) {
-            openDropdown();
-          },
-        };
-      }
-    });
-
     function getFilteredItem(): [any, number] {
       const filteredItems = itemRefArray.current.filter(
         itemRef => itemRef.current
