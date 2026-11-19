@@ -12,6 +12,7 @@ import {
   TableCell,
   Tag,
   TagSize,
+  magma,
 } from 'react-magma-dom';
 import semver from 'semver';
 
@@ -34,7 +35,9 @@ if (tags && tags.next) {
 setRow(
 
 <TableRow>
-<TableCell>v{tags.next.version}</TableCell>
+<TableCell width="160px" style={{ whiteSpace: 'nowrap' }}>
+  v{tags.next.version}
+</TableCell>
 <TableCell>
 <a href="https://next--upbeat-sinoussi-f675aa.netlify.app/">Docs</a>
 </TableCell>
@@ -51,7 +54,7 @@ return (
   <Table minWidth={100}>
     <TableHead>
       <TableRow>
-        <TableHeaderCell style={{ width: '250px' }}>Version</TableHeaderCell>
+        <TableHeaderCell width="160px">Version</TableHeaderCell>
         <TableHeaderCell>Docs link</TableHeaderCell>
       </TableRow>
     </TableHead>
@@ -59,6 +62,53 @@ return (
   </Table>
 </>
 ); };
+
+export const ScrollableTableContainer = ({ children }) => {
+  const [showScrollHint, setShowScrollHint] = React.useState(false);
+  const tableContainerRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const scroller = tableContainerRef.current?.querySelector('table')?.parentElement;
+
+    if (!scroller) return;
+
+    const updateScrollHint = () => {
+      const hasMoreContent =
+        scroller.scrollLeft + scroller.clientWidth < scroller.scrollWidth - 1;
+
+      setShowScrollHint(hasMoreContent);
+    };
+
+    updateScrollHint();
+    scroller.addEventListener('scroll', updateScrollHint);
+    window.addEventListener('resize', updateScrollHint);
+
+    return () => {
+      scroller.removeEventListener('scroll', updateScrollHint);
+      window.removeEventListener('resize', updateScrollHint);
+    };
+  }, [children]);
+
+  return (
+    <div ref={tableContainerRef} style={{ position: 'relative' }}>
+      {children}
+      {showScrollHint ? (
+        <div
+          aria-hidden="true"
+          style={{
+            background: `linear-gradient(to right, transparent, ${magma.colors.neutral0})`,
+            bottom: 0,
+            pointerEvents: 'none',
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            width: '48px',
+          }}
+        />
+      ) : null}
+    </div>
+  );
+};
 
 export const ReleasedVersionsTable = () => {
   const [allVersions, setAllVersions] = React.useState([]);
@@ -78,7 +128,11 @@ const tableRow = allVersions.map((row, i) => {
 return (
 
 <TableRow key={`row${i}`}>
-  <TableCell key={`row${i}-version`}>
+  <TableCell
+    key={`row${i}-version`}
+    width="140px"
+    style={{ whiteSpace: 'nowrap' }}
+  >
     v{row.version}
     {row.tags.includes('latest') || i === 0 ? <span>&nbsp;✅&nbsp;</span> : ''}
     &nbsp;
@@ -110,17 +164,19 @@ return (
 return (
 
 <>
-  <Table minWidth={100}>
-    <TableHead>
-      <TableRow>
-        <TableHeaderCell style={{ width: '250px' }}>Version</TableHeaderCell>
-        <TableHeaderCell>Release date</TableHeaderCell>
-        <TableHeaderCell>Docs link</TableHeaderCell>
-        <TableHeaderCell>Supported React Version</TableHeaderCell>
-      </TableRow>
-    </TableHead>
-    <TableBody>{rows}</TableBody>
-  </Table>
+  <ScrollableTableContainer>
+    <Table minWidth={760} style={{ tableLayout: 'fixed', width: '760px' }}>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell width="140px">Version</TableHeaderCell>
+          <TableHeaderCell width="190px">Release date</TableHeaderCell>
+          <TableHeaderCell width="150px">Docs link</TableHeaderCell>
+          <TableHeaderCell width="280px">Supported React Version</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>{rows}</TableBody>
+    </Table>
+  </ScrollableTableContainer>
 </>
 ); };
 
@@ -163,16 +219,18 @@ return (
 return (
 
 <>
-  <Table minWidth={100}>
-    <TableHead>
-      <TableRow>
-        <TableHeaderCell style={{ width: '250px' }}>Version</TableHeaderCell>
-        <TableHeaderCell>Release date</TableHeaderCell>
-        <TableHeaderCell>Supported React Version</TableHeaderCell>
-      </TableRow>
-    </TableHead>
-    <TableBody>{rows}</TableBody>
-  </Table>
+  <ScrollableTableContainer>
+    <Table minWidth={620} style={{ tableLayout: 'fixed' }}>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell width="180px">Version</TableHeaderCell>
+          <TableHeaderCell width="160px">Release date</TableHeaderCell>
+          <TableHeaderCell width="280px">Supported React Version</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>{rows}</TableBody>
+    </Table>
+  </ScrollableTableContainer>
 </>
 ); };
 

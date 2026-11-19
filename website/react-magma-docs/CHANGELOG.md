@@ -1,5 +1,139 @@
 # Change Log
 
+## 7.0.1-next.12
+
+### Patch Changes
+
+- 25b2c11: fix(deps): bump follow-redirects and fast-uri for security fixes
+
+## 7.0.1-next.11
+
+### Patch Changes
+
+- 75f3446: chore(Input): use an outlined help icon in the Help Link example
+
+## 7.0.1-next.10
+
+### Patch Changes
+
+- 2aab6d5: feat(Tagline): add a reusable tagline typography component
+- Updated dependencies [2aab6d5]
+  - react-magma-dom@7.1.0-next.13
+
+## 7.0.1-next.9
+
+### Patch Changes
+
+- f041d00: chore: require `react-magma-icons` `^3.3.1`
+
+  fix(docs): resolve the icons ESM entry to support Gatsby server rendering
+
+- Updated dependencies [f041d00]
+  - react-magma-dom@7.1.0-next.11
+  - @react-magma/charts@17.0.0-next.2
+  - @react-magma/dropzone@17.0.0-next.3
+
+## 7.0.1-next.8
+
+### Patch Changes
+
+- ee55600: feat(Dropzone): allow consumers to customize the browse button color and text
+- 97a996d: docs: refresh rebrand design guidelines
+- Updated dependencies [ee55600]
+  - @react-magma/dropzone@17.0.0-next.2
+
+## 7.0.1-next.7
+
+### Patch Changes
+
+- c38fefe: docs(changelog): sync changelog page with releases up to v7.0.0
+
+## 7.0.1-next.6
+
+### Patch Changes
+
+- 9d6039f: chore(AI): add AI agent guidance for Magma components and theme tokens, with setup instructions
+- Updated dependencies [9d6039f]
+  - react-magma-dom@7.1.0-next.9
+
+## 7.0.1-next.5
+
+### Patch Changes
+
+- 96527e5: fix(TreeView): use heading markup in stories
+
+## 7.0.1-next.4
+
+### Patch Changes
+
+- 3f41d83: fix(Modal, DefinitionList): resolve axe violations in stories
+
+## 7.0.1-next.3
+
+### Patch Changes
+
+- d5423df: chore(playwright): update Playwright to 1.64.1
+
+## 7.0.1-next.2
+
+### Patch Changes
+
+- 9fcd834: fix(TreeView): correct screen reader announcements for tree items
+
+  Expansion, selection and `expandAll`/`collapseAll` are each announced once and
+  name the item they apply to, through a single live region owned by `TreeView`.
+  Keyboard selection is announced — it was previously silent — and a branch reports
+  the status it ends up in, saying its subitems followed only when they actually
+  did. `IndeterminateCheckbox` announces only a change the user made on it.
+
+  New optional i18n strings under `treeView`: `itemExpandedAnnounce`,
+  `itemCollapsedAnnounce`, `allItemsExpandedAnnounce`, `allItemsCollapsedAnnounce`,
+  `itemSelectedAnnounce`, `itemDeselectedAnnounce`, `itemPartiallySelectedAnnounce`,
+  `branchSelectedAnnounce`, `branchDeselectedAnnounce`. Each falls back to English
+  on its own, so a partially translated section is safe.
+
+  `i18n.expansionState` is deprecated in favour of `treeView.itemExpandedAnnounce`
+  / `itemCollapsedAnnounce`, which also name the item acted on. A translation
+  supplied through it still takes effect, as long as its replacement is left at
+  its default.
+
+  Notes for tests asserting on the accessibility tree:
+
+  - `li[role="treeitem"]` is now the only element carrying selection state. The
+    checkbox inside a tree item is `aria-hidden`, so `getByRole('checkbox')` no
+    longer matches inside a tree — query it with
+    `getByLabelText(label, { selector: 'input' })` or the `<itemId>-checkbox` test
+    id, and assert state on the item's `aria-checked`.
+  - Layout wrappers carry `role="none"`, siblings share one `ul[role="group"]` per
+    branch, and the per-item live regions are replaced by one region after the
+    tree (`<testId>-announce`).
+  - Announcements are published on a short delay, so assertions on announcement
+    text need `waitFor` or fake timers.
+  - Wording changed: `All subitems are selected` is now
+    `<label>, selected, all subitems selected`.
+
+- Updated dependencies [9fcd834]
+- Updated dependencies [9fcd834]
+  - react-magma-dom@7.1.0-next.2
+  - @react-magma/charts@17.0.0-next.1
+  - @react-magma/dropzone@17.0.0-next.1
+
+## 7.0.1-next.1
+
+### Patch Changes
+
+- b188410: chore: update `react-magma-icons` to `^3.3.0`
+- Updated dependencies [b188410]
+  - react-magma-dom@7.0.1-next.0
+  - @react-magma/charts@16.0.1-next.0
+  - @react-magma/dropzone@16.0.1-next.0
+
+## 7.0.1-next.0
+
+### Patch Changes
+
+- 8e8d935: chore(release): sync the published 7.0.0 state from main into dev
+
 ## 7.0.0
 
 ### Major Changes

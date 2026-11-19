@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { IconProps, CheckIcon } from 'react-magma-icons';
+import { IconProps, CheckOutlinedIcon } from 'react-magma-icons';
 
 import { DropdownContext } from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -180,6 +180,19 @@ export const DropdownMenuItem = React.forwardRef<
     }
   }
 
+  const isFocusedItem =
+    !!ownRef.current && context.focusedItem === ownRef.current;
+
+  function handleFocus(event: React.FocusEvent<HTMLDivElement>) {
+    if (!isFocusedItem) {
+      context.setFocusedItem?.(ownRef.current);
+    }
+    other.onFocus?.(event);
+  }
+
+  // Roving tabindex: only the focused item is in the Tab order
+  const rovingTabIndex = isFocusedItem ? 0 : -1;
+
   const isActive =
     context.activeItemIndex >= 0 && context.activeItemIndex === index;
 
@@ -201,11 +214,12 @@ export const DropdownMenuItem = React.forwardRef<
       isInactive={isInactive}
       isInverse={context.isInverse}
       onClick={handleClick}
+      onFocus={handleFocus}
       onKeyDown={handleKeyDown}
       ref={disabled ? null : ref}
       role="menuitem"
       theme={theme}
-      tabIndex={disabled ? null : -1}
+      tabIndex={disabled ? null : rovingTabIndex}
       value={value}
     >
       {icon && (
@@ -223,7 +237,7 @@ export const DropdownMenuItem = React.forwardRef<
           isInverse={context.isInverse}
           theme={theme}
         >
-          <CheckIcon />
+          <CheckOutlinedIcon />
         </IconWrapper>
       )}
       {children}

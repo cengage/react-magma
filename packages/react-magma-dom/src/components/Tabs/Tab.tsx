@@ -40,6 +40,40 @@ export interface TabProps
   theme?: ThemeInterface;
 }
 
+function getTabMaxWidth(isFullWidth?: boolean) {
+  return isFullWidth ? '100%' : 'none';
+}
+
+function getTabHeight(props: {
+  hasStackedIcon?: boolean;
+  orientation: TabsOrientation;
+}) {
+  return props.hasStackedIcon || props.orientation === TabsOrientation.vertical
+    ? 'auto'
+    : '40px';
+}
+
+function getTabPadding(props: {
+  hasStackedIcon?: boolean;
+  orientation: TabsOrientation;
+  theme: ThemeInterface;
+}) {
+  const horizontalPadding =
+    props.orientation === TabsOrientation.vertical
+      ? props.theme.spaceScale.spacing05
+      : props.theme.spaceScale.spacing03;
+
+  if (props.hasStackedIcon) {
+    return `${props.theme.spaceScale.spacing04} ${horizontalPadding}`;
+  }
+
+  if (props.orientation === TabsOrientation.vertical) {
+    return `${props.theme.spaceScale.spacing03} ${horizontalPadding}`;
+  }
+
+  return `0 ${horizontalPadding}`;
+}
+
 export const StyledTabsChild = styled('li', {
   shouldForwardProp: isPropValid,
 })<{
@@ -65,7 +99,7 @@ export const StyledTabsChild = styled('li', {
       flex-grow: 0;
       flex-shrink: ${props.isFullWidth ? '1' : '0'};
       height: ${props.orientation === 'vertical' ? 'auto' : '100%'};
-      max-width: ${props.isFullWidth ? '100%' : '250px'};
+      max-width: ${getTabMaxWidth(props.isFullWidth)};
       width: ${props.isFullWidth || props.orientation === 'vertical'
         ? '100%'
         : 'auto'};
@@ -173,19 +207,12 @@ export const TabStyles = props => css`
   font-family: ${props.theme.bodyFont};
   letter-spacing: ${props.theme.typeScale.size02.letterSpacing};
   line-height: ${props.theme.typeScale.size02.lineHeight};
-  height: ${props.hasStackedIcon ? 'auto' : '40px'};
+  height: ${getTabHeight(props)};
   justify-content: ${props.iconPosition === 'left' ? 'flex-start' : 'center'};
-  padding: ${props.hasStackedIcon
-    ? `${props.theme.spaceScale.spacing04} ${
-        props.orientation === TabsOrientation.vertical
-          ? props.theme.spaceScale.spacing05
-          : props.theme.spaceScale.spacing03
-      }`
-    : `0 ${
-        props.orientation === TabsOrientation.vertical
-          ? props.theme.spaceScale.spacing05
-          : props.theme.spaceScale.spacing03
-      }`};
+  min-height: ${props.orientation === TabsOrientation.vertical
+    ? '40px'
+    : 'auto'};
+  padding: ${getTabPadding(props)};
   position: relative;
   pointer-events: ${props.disabled ? 'none' : ''};
   text-align: center;
@@ -195,14 +222,12 @@ export const TabStyles = props => css`
 
   ${props.orientation === 'vertical' &&
   css`
-    align-items: flex-start;
+    align-items: ${props.hasInlineIcon ? 'flex-start' : 'center'};
     justify-content: ${props.iconPosition === 'left'
       ? 'flex-start'
       : 'flex-end'};
     text-align: left;
     width: 100%;
-
-    align-items: center;
   `}
 
   &:hover {
@@ -243,6 +268,7 @@ export const TabStyles = props => css`
 
 const StyledTab = styled('button', { shouldForwardProp: isPropValid })<{
   borderPosition?: TabsBorderPosition;
+  hasInlineIcon?: boolean;
   hasStackedIcon?: boolean;
   iconPosition?: TabsIconPosition;
   isActive?: boolean;
@@ -349,6 +375,10 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
       Boolean(icon) &&
       (tabIconPosition === TabsIconPosition.top ||
         tabIconPosition === TabsIconPosition.bottom);
+    const hasInlineIcon =
+      Boolean(icon) &&
+      (tabIconPosition === TabsIconPosition.left ||
+        tabIconPosition === TabsIconPosition.right);
 
     const tabId = `tab-${instanceId}-${index}`;
     const panelId = `tabpanel-${instanceId}-${index}`;
@@ -416,6 +446,7 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
           aria-selected={isActive}
           data-testid={testId}
           disabled={disabled}
+          hasInlineIcon={hasInlineIcon}
           hasStackedIcon={hasStackedIcon}
           iconPosition={tabIconPosition}
           id={tabId}

@@ -678,6 +678,7 @@ const InputExampleTemplate = args => {
       <Popover {...args} onOpen={() => inputRef.current?.focus()}>
         <PopoverTrigger>
           <PasswordInput
+            labelText="Password"
             onMouseDown={e => e.stopPropagation()}
             {...args}
             value={state}

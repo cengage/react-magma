@@ -4,8 +4,22 @@ title: Chart Types
 order: 2
 ---
 
+import { Button, ButtonColor, ButtonSize } from 'react-magma-dom';
+
 import { LeadParagraph } from '../../components/LeadParagraph';
 import './chart-types.css';
+
+export const ViewDemoButton = ({ to }) => (
+  <Button
+    color={ButtonColor.secondary}
+    onClick={() => {
+      window.location.href = to;
+    }}
+    size={ButtonSize.small}
+  >
+    View Demo
+  </Button>
+);
 
 <PageContent componentName="chart_types" type="data_visualization">
 
@@ -35,7 +49,7 @@ Comparison charts compare data between multiple distinct categories.
         Bar charts use vertical or horizontal markers to compare values,
         allowing for assessment of discrete data or trends over time.
       </p>
-      <a href="../chart-demos/#bar_(simple)">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#bar_(simple)" />
     </div>
   </div>
   <div className="item">
@@ -53,7 +67,7 @@ Comparison charts compare data between multiple distinct categories.
         chart, or grouped column chart, is used to compare values across
         multiple categories.
       </p>
-      <a href="../chart-demos/#bar_(grouped)">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#bar_(grouped)" />
     </div>
   </div>
   <div className="item">
@@ -71,7 +85,7 @@ Comparison charts compare data between multiple distinct categories.
         between the minimum and maximum values, and floating freely rather than
         being anchored to an axis.
       </p>
-      <a href="../chart-demos/#bar_(floating)">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#bar_(floating)" />
     </div>
   </div>
   <div className="item">
@@ -88,7 +102,7 @@ Comparison charts compare data between multiple distinct categories.
         A bubble chart, or bubble plot, uses bubbles to represent data points
         and their relationships in a two-dimensional plot.
       </p>
-      <a href="../chart-demos/#bubble">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#bubble" />
     </div>
   </div>
   <div className="item">
@@ -106,7 +120,7 @@ Comparison charts compare data between multiple distinct categories.
         two-dimensional graph displaying multiple quantitative variables in a
         single visual.
       </p>
-      <a href="../chart-demos/#radar">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#radar" />
     </div>
   </div>
   <div className="item">
@@ -124,7 +138,7 @@ Comparison charts compare data between multiple distinct categories.
         individual data points or illustrating the relationship between numeric
         and categorical variables.
       </p>
-      <a href="../chart-demos/#lollipop">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#lollipop" />
     </div>
   </div>
   <div className="item">
@@ -141,7 +155,7 @@ Comparison charts compare data between multiple distinct categories.
         A Combo Chart is a data visualization that combines two or more chart
         types (e.g., bar and line charts) into a single graph.
       </p>
-      <a href="../chart-demos/#combo">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#combo" />
     </div>
   </div>
 </div>
@@ -166,7 +180,7 @@ Trend charts show data over a period of time, to reveal trends or make compariso
         lines. They are valuable for illustrating trends over time and comparing
         multiple datasets.
       </p>
-      <a href="../chart-demos/#line">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#line" />
     </div>
   </div>
   <div className="item">
@@ -183,7 +197,7 @@ Trend charts show data over a period of time, to reveal trends or make compariso
         Area charts share similarities with line charts, distinguished by the
         filled areas below the lines.
       </p>
-      <a href="../chart-demos/#area_(simple)">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#area_(simple)" />
     </div>
   </div>
   <div className="item">
@@ -200,7 +214,7 @@ Trend charts show data over a period of time, to reveal trends or make compariso
         A boxplot, or box and whisker plot, summarizes a set of data, showing
         its distribution and any outliers.
       </p>
-      <a href="../chart-demos/#boxplot">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#boxplot" />
     </div>
   </div>
   <div className="item">
@@ -218,7 +232,7 @@ Trend charts show data over a period of time, to reveal trends or make compariso
         continuous dataset using bars, with each bar representing a specific
         category or class interval.
       </p>
-      <a href="../chart-demos/#histogram">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#histogram" />
     </div>
   </div>
   <div className="item">
@@ -235,7 +249,7 @@ Trend charts show data over a period of time, to reveal trends or make compariso
         A Sparkline Chart is a small, simple chart that provides a compact
         visual representation of trends in data.
       </p>
-      <a href="../chart-demos/#sparkline">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#sparkline" />
     </div>
   </div>
   <div className="item">
@@ -252,7 +266,7 @@ Trend charts show data over a period of time, to reveal trends or make compariso
         A Step Chart is a type of line chart that displays data as a series of
         steps rather than a smooth trend.
       </p>
-      <a href="../chart-demos/#step">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#step" />
     </div>
   </div>
 </div>
@@ -276,7 +290,7 @@ Part-to-whole charts show how partial elements add up to a total.
         A pie chart visually summarizes nominal data or illustrates the
         distribution of values, such as percentage distribution.
       </p>
-      <a href="../chart-demos/#pie">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#pie" />
     </div>
   </div>
   <div className="item">
@@ -294,7 +308,7 @@ Part-to-whole charts show how partial elements add up to a total.
         the relationship of parts to a whole and the percentage each value
         contributes to the total.
       </p>
-      <a href="../chart-demos/#donut">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#donut" />
     </div>
   </div>
   <div className="item">
@@ -311,7 +325,7 @@ Part-to-whole charts show how partial elements add up to a total.
         A stacked bar chart, also called a stacked bar graph or stacked column
         chart, compares multiple variables over time.
       </p>
-      <a href="../chart-demos/#bar_(stacked)">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#bar_(stacked)" />
     </div>
   </div>
   <div className="item">
@@ -328,7 +342,7 @@ Part-to-whole charts show how partial elements add up to a total.
         Bullet charts are commonly used in dashboards to effectively compare
         metrics against target benchmarks or predefined ranges.
       </p>
-      <a href="../chart-demos/#bullet">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#bullet" />
     </div>
   </div>
   <div className="item">
@@ -340,12 +354,12 @@ Part-to-whole charts show how partial elements add up to a total.
       />
     </figure>
     <div className="description">
-      <h2>Stacked area</h2>
+      <h2>Stacked Area</h2>
       <p className="card-content">
         A stacked area chart is a graph that shows how the values of multiple
         groups change over time.
       </p>
-      <a href="../chart-demos/#area_(stacked)">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#area_(stacked)" />
     </div>
   </div>
   <div className="item">
@@ -362,7 +376,7 @@ Part-to-whole charts show how partial elements add up to a total.
         Meter charts are used to measure the rate of change of a quantity
         against pre-defined targets.
       </p>
-      <a href="../chart-demos/#meter">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#meter" />
     </div>
   </div>
   <div className="item">
@@ -379,7 +393,7 @@ Part-to-whole charts show how partial elements add up to a total.
         A gauge chart, also known as a dial or speedometer chart, displays a
         single data value quantitatively.
       </p>
-      <a href="../chart-demos/#gauge">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#gauge" />
     </div>
   </div>
 </div>
@@ -403,7 +417,7 @@ Correlation charts show the relationship between two or more variables.
         Scatter plots use data points to plot two measures along a scale,
         allowing exploration of correlations between different variables.
       </p>
-      <a href="../chart-demos/#scatter">View Demo</a>
+      <ViewDemoButton to="../chart-demos/#scatter" />
     </div>
   </div>
 </div>

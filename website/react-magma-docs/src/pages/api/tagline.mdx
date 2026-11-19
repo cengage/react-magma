@@ -1,0 +1,64 @@
+---
+pageTitle: Tagline API
+title: Tagline
+props:
+  - TaglineProps
+---
+
+<PageContent componentName="tagline" type="api">
+
+<LeadParagraph>
+  Tagline displays a short line of text with an inverse option for dark
+  backgrounds.
+</LeadParagraph>
+
+## Basic Usage
+
+```tsx
+import React from 'react';
+
+import { Card, Tagline } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card style={{ padding: '12px' }}>
+      <Tagline>Supporting text</Tagline>
+    </Card>
+  );
+}
+```
+
+## Inverse
+
+Pair an inverse Tagline with an inverse Heading to introduce a section on a
+dark background.
+
+```tsx
+import React from 'react';
+
+import { Card, Heading, magma, Tagline } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse style={{ padding: '24px' }}>
+      <div style={{ marginBottom: '24px', textAlign: 'center' }}>
+        <Tagline isInverse style={{ display: 'inline-block' }}>
+          Learning Platforms
+        </Tagline>
+      </div>
+      <Heading isInverse level={2} noMargins style={{ textAlign: 'center' }}>
+        More time to teach and{' '}
+        <span style={{ color: magma.colors.brand.sunriseOrange }}>
+          reach your students
+        </span>
+      </Heading>
+    </Card>
+  );
+}
+```
+
+## Props
+
+<TaglineProps />
+
+</PageContent>

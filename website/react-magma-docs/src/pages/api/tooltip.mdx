@@ -16,6 +16,8 @@ props:
 
 The Tooltip component should wrap the triggerring element. This trigger should be a focusable element for accessibility, such as a button.
 
+When the tooltip is visible, its content is linked to the trigger with `aria-describedby`. If the tooltip content is a string that matches the trigger's `aria-label` (ignoring case and extra whitespace), the description is skipped so screen readers do not announce the same text twice.
+
 ```tsx
 import React from 'react';
 
