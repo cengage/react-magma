@@ -1,5 +1,73 @@
 # Change Log
 
+## 7.1.0
+
+### Minor Changes
+
+- chore(AI): add AI agent guidance for Magma components and theme tokens, with setup instructions
+- feat(Pagination): improve classic pagination navigation
+- feat(Tagline): add a reusable tagline typography component
+- fix(TreeView): correct screen reader announcements for tree items
+
+  Expansion, selection and `expandAll`/`collapseAll` are each announced once and
+  name the item they apply to, through a single live region owned by `TreeView`.
+  Keyboard selection is announced — it was previously silent — and a branch reports
+  the status it ends up in, saying its subitems followed only when they actually
+  did. `IndeterminateCheckbox` announces only a change the user made on it.
+
+  New optional i18n strings under `treeView`: `itemExpandedAnnounce`,
+  `itemCollapsedAnnounce`, `allItemsExpandedAnnounce`, `allItemsCollapsedAnnounce`,
+  `itemSelectedAnnounce`, `itemDeselectedAnnounce`, `itemPartiallySelectedAnnounce`,
+  `branchSelectedAnnounce`, `branchDeselectedAnnounce`. Each falls back to English
+  on its own, so a partially translated section is safe.
+
+  `i18n.expansionState` is deprecated in favour of `treeView.itemExpandedAnnounce`
+  / `itemCollapsedAnnounce`, which also name the item acted on. A translation
+  supplied through it still takes effect, as long as its replacement is left at
+  its default.
+
+  Notes for tests asserting on the accessibility tree:
+
+  - `li[role="treeitem"]` is now the only element carrying selection state. The
+    checkbox inside a tree item is `aria-hidden`, so `getByRole('checkbox')` no
+    longer matches inside a tree — query it with
+    `getByLabelText(label, { selector: 'input' })` or the `<itemId>-checkbox` test
+    id, and assert state on the item's `aria-checked`.
+  - Layout wrappers carry `role="none"`, siblings share one `ul[role="group"]` per
+    branch, and the per-item live regions are replaced by one region after the
+    tree (`<testId>-announce`).
+  - Announcements are published on a short delay, so assertions on announcement
+    text need `waitFor` or fake timers.
+  - Wording changed: `All subitems are selected` is now
+    `<label>, selected, all subitems selected`.
+
+### Patch Changes
+
+- fix(Dropdown): announce expanded state in Safari VoiceOver
+- fix(Select, MultiSelect): Label the trigger by its label only so screen readers don't announce the selected value twice.
+- fix(Dropdown, Accordion): add role="menu" for menu groups, roving tabindex, close menu on Shift+Tab, fix menu structure of expandable items and respect the role prop on AccordionPanel
+- fix(NavTabs): add role="tab" and remove theme attribute on custom component tabs
+- fix(Popover): fix text field trigger ARIA and keyboard scrolling
+- docs(react-magma-dom): fix typos in Checkbox, Radio, Toggle and IndeterminateCheckbox prop descriptions
+- fix(Select): add aria-controls to the Select trigger
+- fix(Select, Combobox): allow selecting items with the same label but different values
+- fix(Table): prevent `TableHeaderCell` from collapsing when `width` is not provided.
+- fix(TreeView): publish repeated Windows cascade messages from per-branch live regions (`<testId>-announce-<itemId>`), announce virtualized subitems, omit menu actions from item names, and preserve mixed child order with nested virtualization
+- fix(useFocusLock): Keep focus inside the lock when the focused element becomes disabled, hidden or removed.
+- chore: require `react-magma-icons` `^3.3.1`
+
+  fix(docs): resolve the icons ESM entry to support Gatsby server rendering
+
+- fix: update components to use outlined icons
+- chore(AI): update the React Magma skill template for component props
+- fix(Tabs): remove the maximum width and support wrapped vertical labels
+- fix(Table): memoize `TableContext` value so memoized rows and cells skip unnecessary re-renders
+- fix(Tooltip): skip `aria-describedby` when the tooltip content matches the trigger's `aria-label` to prevent duplicate screen reader announcements
+- fix(TreeView): show a pointer cursor on the checkbox label and the expand icon
+- fix(TreeView): retain announcement and cursor regression tests when merging dev
+- fix(TreeView): preserve virtualized row measurements when expanding, collapsing, and resizing the tree
+- chore: update `react-magma-icons` to `^3.3.0`
+
 ## 7.1.0-next.22
 
 ### Patch Changes
