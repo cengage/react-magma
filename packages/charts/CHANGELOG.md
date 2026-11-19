@@ -1,5 +1,15 @@
 # @react-magma/charts
 
+## 16.0.0-v6-next.6
+
+### Patch Changes
+
+- fix(CarbonChart): Chart height no longer stays stretched after exiting fullscreen.
+- fix(charts): add a tooltip to the More options button
+- chore: require `react-magma-icons` `^3.3.1`
+- fix: update components to use outlined icons
+- chore: update `react-magma-icons` to `^3.3.0`
+
 ## 16.0.0-v6-next.5
 
 ### Patch Changes

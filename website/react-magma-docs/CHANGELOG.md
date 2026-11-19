@@ -1,5 +1,87 @@
 # Change Log
 
+## 6.0.1-v6-next.15
+
+### Patch Changes
+
+- chore(AI): add AI agent guidance for Magma components and theme tokens, with setup instructions
+- feat(Dropzone): allow consumers to customize the browse button color and text
+- fix(Modal, DefinitionList): resolve axe violations in stories
+- fix(TreeView): use heading markup in stories
+- chore: require `react-magma-icons` `^3.3.1`
+- feat(Tagline): add a reusable tagline typography component
+- docs: refresh rebrand design guidelines
+- chore(release): sync the published 6.0.0 state from v6/main into v6/dev
+- chore(Input): use an outlined help icon in the Help Link example
+- fix(TreeView): correct screen reader announcements for tree items
+
+  Expansion, selection and `expandAll`/`collapseAll` are each announced once and
+  name the item they apply to, through a single live region owned by `TreeView`.
+  Keyboard selection is announced — it was previously silent — and a branch reports
+  the status it ends up in, saying its subitems followed only when they actually
+  did. `IndeterminateCheckbox` announces only a change the user made on it.
+
+  New optional i18n strings under `treeView`: `itemExpandedAnnounce`,
+  `itemCollapsedAnnounce`, `allItemsExpandedAnnounce`, `allItemsCollapsedAnnounce`,
+  `itemSelectedAnnounce`, `itemDeselectedAnnounce`, `itemPartiallySelectedAnnounce`,
+  `branchSelectedAnnounce`, `branchDeselectedAnnounce`. Each falls back to English
+  on its own, so a partially translated section is safe.
+
+  `i18n.expansionState` is deprecated in favour of `treeView.itemExpandedAnnounce`
+  / `itemCollapsedAnnounce`, which also name the item acted on. A translation
+  supplied through it still takes effect, as long as its replacement is left at
+  its default.
+
+  Notes for tests asserting on the accessibility tree:
+
+  - `li[role="treeitem"]` is now the only element carrying selection state. The
+    checkbox inside a tree item is `aria-hidden`, so `getByRole('checkbox')` no
+    longer matches inside a tree — query it with
+    `getByLabelText(label, { selector: 'input' })` or the `<itemId>-checkbox` test
+    id, and assert state on the item's `aria-checked`.
+  - Layout wrappers carry `role="none"`, siblings share one `ul[role="group"]` per
+    branch, and the per-item live regions are replaced by one region after the
+    tree (`<testId>-announce`).
+  - Announcements are published on a short delay, so assertions on announcement
+    text need `waitFor` or fake timers.
+  - Wording changed: `All subitems are selected` is now
+    `<label>, selected, all subitems selected`.
+
+- chore(playwright): update Playwright to 1.64.1
+- chore: update `react-magma-icons` to `^3.3.0`
+- docs(changelog): sync the v6 changelog page through v6.0.0
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+- Updated dependencies
+  - react-magma-dom@6.1.0-v6-next.21
+  - @react-magma/dropzone@16.0.0-v6-next.5
+  - @react-magma/charts@16.0.0-v6-next.6
+
 ## 6.0.1-v6-next.14
 
 ### Patch Changes
