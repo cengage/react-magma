@@ -1,6 +1,6 @@
 # react-magma-dom
 
-## 6.1.0-v6-next.21
+## 6.1.0
 
 ### Minor Changes
 

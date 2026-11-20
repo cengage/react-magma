@@ -9,7 +9,7 @@
     "commit": false,
     "linked": [],
     "access": "public",
-    "baseBranch": "v4/dev",
+    "baseBranch": "v6/dev",
     "updateInternalDependencies": "patch",
     "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
         "onlyUpdatePeerDependentsWhenOutOfRange": true
