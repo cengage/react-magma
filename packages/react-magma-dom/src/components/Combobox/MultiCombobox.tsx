@@ -541,6 +541,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       <ItemsList
         aria-multiselectable="true"
         customComponents={customComponents}
+        disabled={disabled}
         floatingElementStyles={floatingElementStyles}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}

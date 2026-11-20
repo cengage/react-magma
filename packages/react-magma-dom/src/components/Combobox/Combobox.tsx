@@ -388,6 +388,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
       </ComboboxInput>
       <ItemsList
         customComponents={customComponents}
+        disabled={disabled}
         floatingElementStyles={floatingElementStyles}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
