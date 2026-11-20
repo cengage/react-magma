@@ -1,6 +1,12 @@
 # Change Log
 
-## 7.0.1-next.13
+## 7.0.2
+
+### Patch Changes
+
+- c1eea16: fix(docs): refresh the version index and routes after v6 stable releases
+
+## 7.0.1
 
 ### Patch Changes
 
@@ -81,9 +87,9 @@
 - Updated dependencies
 - Updated dependencies
 - Updated dependencies
-  - react-magma-dom@7.1.0-next.23
-  - @react-magma/dropzone@17.0.0-next.5
-  - @react-magma/charts@17.0.0-next.5
+  - react-magma-dom@7.1.0
+  - @react-magma/dropzone@16.1.0
+  - @react-magma/charts@16.0.1
 
 ## 7.0.1-next.12
 
