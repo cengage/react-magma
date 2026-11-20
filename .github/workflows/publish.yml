@@ -192,10 +192,10 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       - name: Build Landing Page
-        if: github.ref_name == 'main'
+        if: github.ref_name == 'main' || github.ref_name == 'v6/main'
         run: npm run build:landing
       - name: Update landing page on Netlify
-        if: github.ref_name == 'main'
+        if: github.ref_name == 'main' || github.ref_name == 'v6/main'
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './website/react-magma-landing/dist'
