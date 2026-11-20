@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2
+
+### Patch Changes
+
+- 37ff51f: fix(docs): refresh the version index and routes after v6 stable releases
+
 ## 6.0.1
 
 ### Patch Changes
