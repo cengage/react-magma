@@ -1,6 +1,6 @@
 # Change Log
 
-## 7.1.0-next.23
+## 7.1.0
 
 ### Minor Changes
 

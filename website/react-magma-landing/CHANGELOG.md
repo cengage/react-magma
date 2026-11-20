@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.12
+
+### Patch Changes
+
+- 0a2bfcb: chore(react-magma-landing): update axios to 1.20.0
+
 ## 1.1.11
 
 ### Patch Changes
