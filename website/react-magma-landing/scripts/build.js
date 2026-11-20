@@ -43,29 +43,29 @@ const cleanVersions = ({ versions, time, tags }) => {
     });
 };
 
-const versionsByReactDependency = ({ versions, time, tags }) => {
+const latestVersionPerMajor = ({ versions, time, tags }) => {
   const allVersions = cleanVersions({ versions, time, tags });
 
-  var versionsByReactDep = new Map();
+  const latestByMajor = new Map();
 
   allVersions.forEach(versionObj => {
-    if (!versionObj?.reactDependency.includes('^15.0.0')) {
-      if (!versionsByReactDep.has(versionObj?.reactDependency)) {
-        versionsByReactDep.set(versionObj?.reactDependency, []);
-      }
-      versionsByReactDep.get(versionObj?.reactDependency).push(versionObj);
+    const major = semver.major(versionObj.version);
+
+    // v2 is reached through the dedicated v2Redirect, not this banner.
+    if (major === 2) {
+      return;
+    }
+
+    const current = latestByMajor.get(major);
+
+    if (!current || semver.gt(versionObj.version, current.version)) {
+      latestByMajor.set(major, versionObj);
     }
   });
 
-  const latestVersions = [];
-
-  for (const [, value] of versionsByReactDep) {
-    const latest = value.reverse()[0];
-
-    latestVersions.push(latest);
-  }
-
-  return latestVersions.sort((a, b) => semver.compare(b.version, a.version));
+  return [...latestByMajor.values()].sort((a, b) =>
+    semver.compare(b.version, a.version)
+  );
 };
 
 const groupVersionsByMajor = versions => {
@@ -108,7 +108,7 @@ const filterNPM = ({ versions, 'dist-tags': tags, time }) => {
     tags: enhanceTags({ tags, time }),
     versions: allVersions,
     versionGroups: groupVersionsByMajor(allVersions),
-    reactSupport: versionsByReactDependency({ versions, time, tags }),
+    reactSupport: latestVersionPerMajor({ versions, time, tags }),
   };
 };
 
