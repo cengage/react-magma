@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.3
+
+### Patch Changes
+
+- 6ee4775: fix(docs): keep the latest release of each major visible on the landing page after v6 publishes
+
 ## 6.0.2
 
 ### Patch Changes
