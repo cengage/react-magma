@@ -1,5 +1,37 @@
 # @react-magma/charts
 
+## 17.0.0-next.5
+
+### Patch Changes
+
+- fix(charts): add a tooltip to the More options button
+- chore: require `react-magma-icons` `^3.3.1`
+
+  fix(docs): resolve the icons ESM entry to support Gatsby server rendering
+
+- fix: update components to use outlined icons
+- chore: update `react-magma-icons` to `^3.3.0`
+
+## 17.0.0-next.4
+
+### Patch Changes
+
+- 5ef7f2c: fix(charts): add a tooltip to the More options button
+
+## 17.0.0-next.3
+
+### Patch Changes
+
+- 571c6c3: fix: update components to use outlined icons
+
+## 17.0.0-next.2
+
+### Patch Changes
+
+- f041d00: chore: require `react-magma-icons` `^3.3.1`
+
+  fix(docs): resolve the icons ESM entry to support Gatsby server rendering
+
 ## 17.0.0-next.1
 
 ### Patch Changes

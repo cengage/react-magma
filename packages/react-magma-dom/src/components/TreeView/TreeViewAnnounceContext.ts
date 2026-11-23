@@ -2,12 +2,11 @@ import * as React from 'react';
 
 export interface TreeViewAnnounceContextInterface {
   /**
-   * Publishes a message to the tree's single live region, which is owned by
-   * `TreeView` and rendered outside the `ul[role="tree"]`. A region rendered
-   * inside a tree item would become a permanent part of that item's accessible
-   * name.
+   * Publishes a message outside the `ul[role="tree"]`. Windows cascade
+   * messages use the source item's live region; other messages use the tree's
+   * shared region.
    */
-  announce: (message: string) => void;
+  announce: (message: string, itemId?: string) => void;
 }
 
 export const TreeViewAnnounceContext =

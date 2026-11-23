@@ -51,6 +51,19 @@ describe('Select', () => {
     expect(combobox).toHaveAttribute('aria-controls', getByRole('listbox').id);
   });
 
+  it('should label the combobox by the label only, without the selected value', () => {
+    const { container, getByTestId } = render(
+      <Select labelText={labelText} items={items} selectedItem={items[2]} />
+    );
+
+    const combobox = getByTestId('selectTriggerButton');
+    const label = container.querySelector('label');
+
+    expect(label.id).toBeTruthy();
+    expect(combobox).toHaveAttribute('aria-labelledby', label.id);
+    expect(combobox.getAttribute('aria-labelledby')).not.toContain(combobox.id);
+  });
+
   it('should reference a custom menuId from the combobox with aria-controls', () => {
     const { getByRole, getByTestId } = render(
       <Select labelText={labelText} items={items} menuId="custom-menu" />
@@ -178,6 +191,97 @@ describe('Select', () => {
     await userEvent.click(renderedSelect);
 
     expect(getByText(items[0].label)).toBeInTheDocument();
+  });
+
+  describe('items with duplicate labels', () => {
+    const duplicateLabelItems = [
+      { label: 'Red', value: 'red' },
+      { label: 'Red', value: 'green' },
+      { label: 'Blue', value: 'blue' },
+    ];
+
+    it('should only mark the selected item as selected', async () => {
+      const { getByLabelText, getAllByRole, getAllByTestId } = render(
+        <Select
+          labelText={labelText}
+          items={duplicateLabelItems}
+          initialSelectedItem={{ label: 'Red', value: 'green' }}
+        />
+      );
+
+      await userEvent.click(getByLabelText(labelText, { selector: 'div' }));
+
+      const options = getAllByRole('option');
+
+      expect(options[0]).toHaveAttribute('aria-selected', 'false');
+      expect(options[0]).toHaveAttribute('aria-label', 'Red');
+      expect(options[1]).toHaveAttribute('aria-selected', 'true');
+      expect(options[1]).toHaveAttribute('aria-label', 'Red is selected');
+      expect(getAllByTestId('selectedItemCheck')).toHaveLength(1);
+      expect(options[1]).toHaveAttribute('data-highlighted', 'true');
+    });
+
+    it('should select the clicked item when another item has the same label', async () => {
+      const onSelectedItemChange = jest.fn();
+      const { getByLabelText, getAllByRole } = render(
+        <Select
+          labelText={labelText}
+          items={duplicateLabelItems}
+          onSelectedItemChange={onSelectedItemChange}
+        />
+      );
+
+      const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+      await userEvent.click(renderedSelect);
+      await userEvent.click(getAllByRole('option')[1]);
+
+      expect(onSelectedItemChange).toHaveBeenLastCalledWith(
+        expect.objectContaining({ selectedItem: duplicateLabelItems[1] })
+      );
+
+      await userEvent.click(renderedSelect);
+
+      const options = getAllByRole('option');
+
+      expect(options[0]).toHaveAttribute('aria-selected', 'false');
+      expect(options[1]).toHaveAttribute('aria-selected', 'true');
+    });
+
+    it('should keep a selected item whose value is not strictly equal to the matching item value', async () => {
+      const { getByLabelText, getAllByRole, getByTestId, rerender } = render(
+        <Select
+          labelText={labelText}
+          items={[
+            { label: 'Red', value: 1 },
+            { label: 'Blue', value: 2 },
+          ]}
+          selectedItem={{ label: 'Red', value: '1' }}
+        />
+      );
+
+      expect(getByTestId('selectedItemText')).toHaveTextContent('Red');
+
+      rerender(
+        <Select
+          labelText={labelText}
+          items={[
+            { label: 'Red', value: { id: 1 } },
+            { label: 'Blue', value: { id: 2 } },
+          ]}
+          selectedItem={{ label: 'Blue', value: { id: 2 } }}
+        />
+      );
+
+      expect(getByTestId('selectedItemText')).toHaveTextContent('Blue');
+
+      await userEvent.click(getByLabelText(labelText, { selector: 'div' }));
+
+      expect(getAllByRole('option')[1]).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+    });
   });
 
   it('should accept items in a custom item format', async () => {

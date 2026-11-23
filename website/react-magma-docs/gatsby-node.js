@@ -14,6 +14,10 @@ exports.onCreateWebpackConfig = ({
       mainFields: ['browser', 'main', 'module'],
       alias: {
         path: require.resolve('path-browserify'),
+        // Use static exports when Gatsby bundles icons for server rendering.
+        'react-magma-icons$': require.resolve(
+          'react-magma-icons/dist/esm/index.js'
+        ),
         'react-magma-dom': require.resolve(
           'react-magma-dom/dist/react-magma-dom.cjs.development.js'
         ),

@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-import { ArrowDropDownIcon, CheckIcon, IconProps } from 'react-magma-icons';
+import {
+  ArrowDropDownOutlinedIcon,
+  CheckOutlinedIcon,
+  IconProps,
+} from 'react-magma-icons';
 
 import { ThemeInterface } from '../../theme/magma';
 import { IconButton, IconButtonProps } from '../IconButton';
@@ -32,7 +36,7 @@ export const DefaultClearIndicator = props => {
 
 export const DefaultDropdownIndicator = props => {
   return (
-    <ArrowDropDownIcon
+    <ArrowDropDownOutlinedIcon
       size={24}
       style={{ flexShrink: 0 }}
       testId="caretDown"
@@ -68,7 +72,7 @@ export function DefaultItem<T>({
       {itemString}
       {isSelected && (
         <SelectedItemIndicator theme={theme}>
-          <CheckIcon
+          <CheckOutlinedIcon
             aria-hidden="true"
             size={theme.iconSizes.small}
             testId="selectedItemCheck"

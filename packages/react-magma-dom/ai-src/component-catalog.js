@@ -361,6 +361,10 @@ module.exports = {
       purpose: 'Category chip, clickable or removable',
       keywords: ['tag', 'chip', 'filter chip', 'token'],
     },
+    Tagline: {
+      purpose: 'Short, emphasized text that introduces or labels content',
+      keywords: ['tagline', 'eyebrow', 'overline', 'section label'],
+    },
   },
 
   Utilities: {

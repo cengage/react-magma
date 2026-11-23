@@ -24,6 +24,7 @@ Accessible React component library. This guide is generated for react-magma-dom 
 
 ## Library conventions
 
+- Omit optional props when the desired value is already the component default. Verify defaults in the installed version's declarations, JSDoc or implementation before omitting them. Set props explicitly when overriding a default; keep required props and explicit values needed to override inherited context.
 - Import from the package root: `import { Button, ButtonColor } from 'react-magma-dom'`.
 - Variants are exported enums (`ButtonColor.secondary`, `ModalSize.large`).
 - Dark backgrounds: `isInverse` prop, or `<InverseContext.Provider value={{ isInverse: true }}>` for a region.
