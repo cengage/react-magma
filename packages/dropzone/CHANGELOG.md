@@ -1,6 +1,6 @@
 # Change Log
 
-## 16.0.0-v6-next.5
+## 15.1.0
 
 ### Minor Changes
 
