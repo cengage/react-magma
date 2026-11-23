@@ -474,8 +474,13 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
     const theme = React.useContext(ThemeContext);
 
     function renderBadgeIcon(badgeIcon: React.ReactElement<IconProps>) {
+      const defaultIconSize =
+        variant === BadgeVariant.counter && size === BadgeSize.large
+          ? theme.iconSizes.small
+          : theme.iconSizes.xSmall;
+
       return React.cloneElement(badgeIcon, {
-        size: badgeIcon.props.size || theme.iconSizes.xSmall,
+        size: badgeIcon.props.size || defaultIconSize,
       });
     }
 

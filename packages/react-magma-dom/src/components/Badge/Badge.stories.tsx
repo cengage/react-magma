@@ -87,10 +87,20 @@ export const CounterSizes = () => {
       <Badge variant={BadgeVariant.counter} size={BadgeSize.large}>
         999+
       </Badge>
+      <Badge
+        variant={BadgeVariant.counter}
+        size={BadgeSize.large}
+        leftIcon={<CheckCircleIcon />}
+      >
+        3
+      </Badge>
       <p>Default</p>
       <Badge variant={BadgeVariant.counter}>1</Badge>
       <Badge variant={BadgeVariant.counter}>28</Badge>
       <Badge variant={BadgeVariant.counter}>999+</Badge>
+      <Badge variant={BadgeVariant.counter} leftIcon={<CheckCircleIcon />}>
+        3
+      </Badge>
       <p>Small</p>
       <Badge variant={BadgeVariant.counter} size={BadgeSize.small}>
         1

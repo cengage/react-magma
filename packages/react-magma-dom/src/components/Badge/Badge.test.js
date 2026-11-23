@@ -153,6 +153,22 @@ describe('Badge', () => {
     );
   });
 
+  it('should render a 20px icon in a large counter badge', () => {
+    const { getByTestId } = render(
+      <Badge
+        variant="counter"
+        size={BadgeSize.large}
+        leftIcon={<CheckIcon testId="large-counter-icon" />}
+      >
+        {TEXT}
+      </Badge>
+    );
+    const icon = getByTestId('large-counter-icon');
+
+    expect(icon).toHaveAttribute('height', `${magma.iconSizes.small}`);
+    expect(icon).toHaveAttribute('width', `${magma.iconSizes.small}`);
+  });
+
   it('should ignore the size prop for a label badge', () => {
     const { getByText } = render(<Badge size={BadgeSize.small}>{TEXT}</Badge>);
 
