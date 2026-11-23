@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.4-v6-next.0
+
+### Patch Changes
+
+- 9863ccb: chore(release): sync the published 6.1.0 state from v6/main into v6/dev
+
 ## 6.0.3
 
 ### Patch Changes
