@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.3-next.0
+
+### Patch Changes
+
+- 5ded682: chore(release): sync the published 7.1.0 state from main into dev
+
 ## 7.0.2
 
 ### Patch Changes
