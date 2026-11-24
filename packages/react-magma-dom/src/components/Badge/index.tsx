@@ -6,6 +6,7 @@ import { transparentize } from 'polished';
 import { IconProps } from 'react-magma-icons';
 
 import { ThemeContext } from '../../theme/ThemeContext';
+import { buildButtonBackground, buildColor } from '../StyledButton/styles';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
   /**
@@ -17,6 +18,11 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
    * @default BadgeColor.primary
    */
   color?: BadgeColor;
+  /**
+   * If true, the badge uses disabled solid-button styling and cannot be activated.
+   * @default false
+   */
+  disabled?: boolean;
   /**
    * Icon to display on the left side of the badge
    */
@@ -307,13 +313,27 @@ export function buildBadgeBorderColor(props) {
 
 export const baseBadgeStyles = props => css`
   ${props.hasIcon && `align-items: center;`}
-  background: ${buildBadgeBackground(props)};
+  background: ${props.$disabled
+    ? buildButtonBackground({
+        ...props,
+        color: 'primary',
+        disabled: true,
+        variant: 'solid',
+      })
+    : buildBadgeBackground(props)};
   border: 1px solid;
   border-color: ${buildBadgeBorderColor(props)};
   border-radius: ${props.variant === BadgeVariant.counter
     ? props.theme.spaceScale.spacing06
     : props.theme.borderRadiusExtraSmall};
-  color: ${buildBadgeTextColor(props)};
+  color: ${props.$disabled
+    ? buildColor({
+        ...props,
+        color: 'primary',
+        disabled: true,
+        variant: 'solid',
+      })
+    : buildBadgeTextColor(props)};
   display: ${props.hasIcon ? 'inline-flex' : 'inline-block'};
   font-weight: 500;
   font-size: ${props.variant === BadgeVariant.counter
@@ -355,6 +375,7 @@ const StyledIcon = styled.span<{ iconPosition: 'left' | 'right' }>`
 `;
 
 interface StyledBadgeProps extends BadgeProps {
+  $disabled?: boolean;
   hasIcon?: boolean;
 }
 
@@ -364,9 +385,9 @@ const StyledSpan = styled.span<StyledBadgeProps>`
 
 const StyledButton = styled.button<StyledBadgeProps>`
   ${baseBadgeStyles};
-  cursor: pointer;
+  cursor: ${props => (props.$disabled ? 'not-allowed' : 'pointer')};
 
-  &:focus {
+  &:not(:disabled):focus {
     outline: 2px solid
       ${props =>
         props.isInverse
@@ -384,6 +405,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   (props, ref) => {
     const {
       children,
+      disabled = false,
       isInverse,
       leftIcon,
       onClick,
@@ -395,6 +417,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
     } = props;
 
     const BadgeComponent = getStyledBadgeComponent(Boolean(onClick));
+    const isClickable = Boolean(onClick);
 
     const theme = React.useContext(ThemeContext);
 
@@ -423,12 +446,15 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
     return (
       <BadgeComponent
         {...other}
+        $disabled={disabled}
+        aria-disabled={!isClickable && disabled ? true : undefined}
         data-testid={testId}
+        disabled={isClickable ? disabled : undefined}
         hasIcon={hasIcon}
         isInverse={isInverse}
         variant={variant ? variant : BadgeVariant.label}
         weight={weight ? weight : BadgeWeight.default}
-        onClick={onClick}
+        onClick={disabled ? undefined : onClick}
         ref={ref}
         theme={theme}
       >
