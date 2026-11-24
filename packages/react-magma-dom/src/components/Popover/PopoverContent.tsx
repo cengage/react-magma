@@ -71,9 +71,6 @@ const ScrollableContent = styled.div`
   white-space: normal;
 `;
 
-// Matches Chrome's arrow key scroll step
-const SCROLL_STEP = 40;
-
 export const PopoverContent = React.forwardRef<
   HTMLDivElement,
   PopoverContentProps
@@ -126,39 +123,6 @@ export const PopoverContent = React.forwardRef<
       }
     };
   }, [context.isOpen, children]);
-
-  // Safari doesn't scroll a focused overflow container with the keyboard,
-  // so scroll it manually (and prevent the native scroll in other browsers)
-  function handleScrollableContentKeyDown(
-    event: React.KeyboardEvent<HTMLDivElement>
-  ) {
-    const element = event.currentTarget;
-
-    if (
-      !isScrollable ||
-      event.target !== element ||
-      event.altKey ||
-      event.ctrlKey ||
-      event.metaKey ||
-      event.shiftKey
-    ) {
-      return;
-    }
-
-    const scrollTopByKey = {
-      ArrowDown: element.scrollTop + SCROLL_STEP,
-      ArrowUp: element.scrollTop - SCROLL_STEP,
-      PageDown: element.scrollTop + element.clientHeight,
-      PageUp: element.scrollTop - element.clientHeight,
-      Home: 0,
-      End: element.scrollHeight,
-    };
-
-    if (event.key in scrollTopByKey) {
-      event.preventDefault();
-      element.scrollTop = scrollTopByKey[event.key];
-    }
-  }
 
   const styledChildren = React.Children.toArray(children).map(item =>
     React.cloneElement(item as React.ReactElement, {
@@ -240,7 +204,6 @@ export const PopoverContent = React.forwardRef<
           >
             {header}
             <ScrollableContent
-              onKeyDown={handleScrollableContentKeyDown}
               ref={scrollableContentRef}
               tabIndex={isScrollable ? 0 : undefined}
               theme={theme}
