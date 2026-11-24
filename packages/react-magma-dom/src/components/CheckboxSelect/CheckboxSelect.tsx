@@ -553,40 +553,43 @@ export function CheckboxSelect<T extends SelectOptions>(
 
     return groups;
   }, []);
-  const multiSelectI18n = {
+  const checkboxSelectI18n = {
     applyButtonLabel:
-      i18n.multiSelect.applyButtonLabel ||
-      defaultI18n.multiSelect.applyButtonLabel!,
+      i18n.checkboxSelect.applyButtonLabel ||
+      defaultI18n.checkboxSelect.applyButtonLabel!,
     allItemsDeselectedAnnounce:
-      i18n.multiSelect.allItemsDeselectedAnnounce ||
-      defaultI18n.multiSelect.allItemsDeselectedAnnounce!,
+      i18n.checkboxSelect.allItemsDeselectedAnnounce ||
+      defaultI18n.checkboxSelect.allItemsDeselectedAnnounce!,
     allItemsSelectedAnnounce:
-      i18n.multiSelect.allItemsSelectedAnnounce ||
-      defaultI18n.multiSelect.allItemsSelectedAnnounce!,
+      i18n.checkboxSelect.allItemsSelectedAnnounce ||
+      defaultI18n.checkboxSelect.allItemsSelectedAnnounce!,
     allSelected:
-      i18n.multiSelect.allSelected || defaultI18n.multiSelect.allSelected!,
+      i18n.checkboxSelect.allSelected ||
+      defaultI18n.checkboxSelect.allSelected!,
     clearAllButtonAriaLabel:
-      i18n.multiSelect.clearAllButtonAriaLabel ||
-      defaultI18n.multiSelect.clearAllButtonAriaLabel!,
+      i18n.checkboxSelect.clearAllButtonAriaLabel ||
+      defaultI18n.checkboxSelect.clearAllButtonAriaLabel!,
     cancelButtonLabel:
-      i18n.multiSelect.cancelButtonLabel ||
-      defaultI18n.multiSelect.cancelButtonLabel!,
+      i18n.checkboxSelect.cancelButtonLabel ||
+      defaultI18n.checkboxSelect.cancelButtonLabel!,
     filterPlaceholder:
-      i18n.multiSelect.filterPlaceholder ||
-      defaultI18n.multiSelect.filterPlaceholder!,
+      i18n.checkboxSelect.filterPlaceholder ||
+      defaultI18n.checkboxSelect.filterPlaceholder!,
     itemDeselectedAnnounce:
-      i18n.multiSelect.itemDeselectedAnnounce ||
-      defaultI18n.multiSelect.itemDeselectedAnnounce!,
+      i18n.checkboxSelect.itemDeselectedAnnounce ||
+      defaultI18n.checkboxSelect.itemDeselectedAnnounce!,
     itemSelectedAnnounce:
-      i18n.multiSelect.itemSelectedAnnounce ||
-      defaultI18n.multiSelect.itemSelectedAnnounce!,
-    noOptions: i18n.multiSelect.noOptions || defaultI18n.multiSelect.noOptions!,
-    placeholder: i18n.multiSelect.placeholder,
+      i18n.checkboxSelect.itemSelectedAnnounce ||
+      defaultI18n.checkboxSelect.itemSelectedAnnounce!,
+    noOptions:
+      i18n.checkboxSelect.noOptions || defaultI18n.checkboxSelect.noOptions!,
+    placeholder: i18n.checkboxSelect.placeholder,
     selectAllLabel:
-      i18n.multiSelect.selectAllLabel ||
-      defaultI18n.multiSelect.selectAllLabel!,
+      i18n.checkboxSelect.selectAllLabel ||
+      defaultI18n.checkboxSelect.selectAllLabel!,
     selectedCount:
-      i18n.multiSelect.selectedCount || defaultI18n.multiSelect.selectedCount!,
+      i18n.checkboxSelect.selectedCount ||
+      defaultI18n.checkboxSelect.selectedCount!,
   };
 
   function getOptionId(index: number) {
@@ -621,8 +624,8 @@ export function CheckboxSelect<T extends SelectOptions>(
 
   function getAllDeselectedAnnouncement(selectedCount: number) {
     const message = requiredItems.length
-      ? multiSelectI18n.selectedCount
-      : multiSelectI18n.allItemsDeselectedAnnounce;
+      ? checkboxSelectI18n.selectedCount
+      : checkboxSelectI18n.allItemsDeselectedAnnounce;
 
     return message.replace(/\{count\}/g, String(selectedCount));
   }
@@ -638,8 +641,8 @@ export function CheckboxSelect<T extends SelectOptions>(
       ? menuSelectedItems.filter(selected => itemToValue(selected) !== value)
       : [...menuSelectedItems, item];
     const messageTemplate = isSelected
-      ? multiSelectI18n.itemDeselectedAnnounce
-      : multiSelectI18n.itemSelectedAnnounce;
+      ? checkboxSelectI18n.itemDeselectedAnnounce
+      : checkboxSelectI18n.itemSelectedAnnounce;
 
     updateSelectedItems(
       nextSelectedItems,
@@ -668,7 +671,7 @@ export function CheckboxSelect<T extends SelectOptions>(
       nextSelectedItems,
       allSelected
         ? getAllDeselectedAnnouncement(nextSelectedItems.length)
-        : multiSelectI18n.allItemsSelectedAnnounce.replace(
+        : checkboxSelectI18n.allItemsSelectedAnnounce.replace(
             /\{count\}/g,
             String(nextSelectedItems.length)
           )
@@ -917,13 +920,18 @@ export function CheckboxSelect<T extends SelectOptions>(
     const hasNoOptions = isFilterable && isOpen && filteredItems.length === 0;
 
     if (hasNoOptions && !hadNoOptionsRef.current) {
-      setAnnouncement(multiSelectI18n.noOptions);
+      setAnnouncement(checkboxSelectI18n.noOptions);
     } else if (!hasNoOptions && hadNoOptionsRef.current) {
       setAnnouncement('');
     }
 
     hadNoOptionsRef.current = hasNoOptions;
-  }, [filteredItems.length, isFilterable, isOpen, multiSelectI18n.noOptions]);
+  }, [
+    checkboxSelectI18n.noOptions,
+    filteredItems.length,
+    isFilterable,
+    isOpen,
+  ]);
 
   React.useEffect(() => {
     if (isOpen && highlightedIndex >= 0) {
@@ -943,11 +951,11 @@ export function CheckboxSelect<T extends SelectOptions>(
   }, [highlightedIndex, isOpen]);
 
   const defaultSummary = allItemsSelected
-    ? multiSelectI18n.allSelected.replace(
+    ? checkboxSelectI18n.allSelected.replace(
         /\{count\}/g,
         String(selectedItems.length)
       )
-    : multiSelectI18n.selectedCount.replace(
+    : checkboxSelectI18n.selectedCount.replace(
         /\{count\}/g,
         String(selectedItems.length)
       );
@@ -956,7 +964,7 @@ export function CheckboxSelect<T extends SelectOptions>(
       ? renderSelectedItems?.(selectedItems, {
           allSelected: allItemsSelected,
         }) || defaultSummary
-      : placeholder || multiSelectI18n.placeholder;
+      : placeholder || checkboxSelectI18n.placeholder;
   const maxHeight = toCssValue(
     itemListMaxHeight || theme.combobox.menu.maxHeight
   );
@@ -1056,7 +1064,7 @@ export function CheckboxSelect<T extends SelectOptions>(
 
   if (isOpen || selectedItems.length > 0) {
     filterInputPlaceholder =
-      filterPlaceholder ?? multiSelectI18n.filterPlaceholder;
+      filterPlaceholder ?? checkboxSelectI18n.filterPlaceholder;
   } else if (selectedItems.length === 0) {
     filterInputPlaceholder = selectedSummary;
   }
@@ -1164,7 +1172,7 @@ export function CheckboxSelect<T extends SelectOptions>(
                 aria-label={
                   disabled || !selectedItems.some(item => !isItemRequired(item))
                     ? undefined
-                    : `${selectedSummary}. ${multiSelectI18n.clearAllButtonAriaLabel}`
+                    : `${selectedSummary}. ${checkboxSelectI18n.clearAllButtonAriaLabel}`
                 }
                 color={BadgeColor.primary}
                 data-checkbox-select-selection-badge
@@ -1282,7 +1290,7 @@ export function CheckboxSelect<T extends SelectOptions>(
                     }
                     aria-label={
                       someSelected && !allSelected
-                        ? `${multiSelectI18n.selectAllLabel}, ${i18n.indeterminateCheckbox.isIndeterminateAnnounce}`
+                        ? `${checkboxSelectI18n.selectAllLabel}, ${i18n.indeterminateCheckbox.isIndeterminateAnnounce}`
                         : undefined
                     }
                     aria-selected={allSelected}
@@ -1303,7 +1311,7 @@ export function CheckboxSelect<T extends SelectOptions>(
                       isInverse={isInverse}
                       isVisualOnly
                       labelStyle={{ padding: 0, width: '100%' }}
-                      labelText={multiSelectI18n.selectAllLabel}
+                      labelText={checkboxSelectI18n.selectAllLabel}
                       status={selectAllStatus}
                       tabIndex={-1}
                     />
@@ -1360,7 +1368,7 @@ export function CheckboxSelect<T extends SelectOptions>(
                   role="presentation"
                   theme={theme}
                 >
-                  {multiSelectI18n.noOptions}
+                  {checkboxSelectI18n.noOptions}
                 </EmptyItem>
               )}
             </StyledList>
@@ -1392,7 +1400,7 @@ export function CheckboxSelect<T extends SelectOptions>(
                   type={ButtonType.button}
                   variant={ButtonVariant.solid}
                 >
-                  {multiSelectI18n.cancelButtonLabel}
+                  {checkboxSelectI18n.cancelButtonLabel}
                 </Button>
                 <Button
                   color={ButtonColor.primary}
@@ -1403,7 +1411,7 @@ export function CheckboxSelect<T extends SelectOptions>(
                   type={ButtonType.button}
                   variant={ButtonVariant.solid}
                 >
-                  {multiSelectI18n.applyButtonLabel}
+                  {checkboxSelectI18n.applyButtonLabel}
                 </Button>
               </ActionFooter>
             )}
