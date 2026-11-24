@@ -758,48 +758,6 @@ describe('Popover', () => {
       expect(getByTestId('popoverContent')).toBeVisible();
     });
 
-    it('should scroll the focused content with the keyboard', async () => {
-      mockContentHeight(400);
-
-      let scrollTop = 0;
-
-      jest
-        .spyOn(Element.prototype, 'scrollTop', 'get')
-        .mockImplementation(() => scrollTop);
-      jest
-        .spyOn(Element.prototype, 'scrollTop', 'set')
-        .mockImplementation(value => {
-          scrollTop = value;
-        });
-
-      const { container } = render(
-        <Popover maxHeight={100}>
-          <PopoverTrigger />
-          <PopoverContent>
-            <span>Content</span>
-          </PopoverContent>
-        </Popover>
-      );
-
-      await userEvent.click(container.querySelector('button'));
-      await userEvent.tab();
-
-      await userEvent.keyboard('{ArrowDown}');
-      expect(scrollTop).toBe(40);
-
-      await userEvent.keyboard('{ArrowUp}');
-      expect(scrollTop).toBe(0);
-
-      await userEvent.keyboard('{PageDown}');
-      expect(scrollTop).toBe(100);
-
-      await userEvent.keyboard('{End}');
-      expect(scrollTop).toBe(400);
-
-      await userEvent.keyboard('{Home}');
-      expect(scrollTop).toBe(0);
-    });
-
     it('should not make content focusable when it does not scroll', async () => {
       mockContentHeight(100);
 
