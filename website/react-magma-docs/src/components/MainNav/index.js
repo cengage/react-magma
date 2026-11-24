@@ -423,6 +423,7 @@ const componentNavGroups = [
       'Button',
       'ButtonGroup',
       'Icon Button',
+      'Segmented Control',
       'Toggle Button',
       'Toggle Button Group',
     ],
