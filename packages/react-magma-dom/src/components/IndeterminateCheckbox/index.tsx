@@ -32,7 +32,7 @@ import { VisuallyHidden } from '../VisuallyHidden';
 export interface IndeterminateCheckboxProps
   extends Omit<CheckboxProps, 'checked'> {
   /**
-   * Status of the indeterminate, three-state checkbox, which includes and indeterminate (e.g. mixed) option.
+   * Status of the indeterminate, three-state checkbox, which includes an indeterminate (e.g. mixed) option.
    * @default IndeterminateCheckboxStatus.unchecked
    */
   status: IndeterminateCheckboxStatus;

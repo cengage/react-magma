@@ -62,7 +62,7 @@ Source: `src/inverse/index.ts`.
 | `useDataPagination.ts` | Slices an items array into pages (used by `Pagination`/paginated components). |
 | `useDescendants.ts` | Maintains an ordered list of descendant DOM node refs (register/unregister) for roving-tabindex/list traversal. |
 | `useDeviceDetect.ts` | Memoized `navigator.userAgent` parsing (browser/OS booleans). |
-| `useFocusLock.ts` | Focus-trap implementation used by `Modal`/`Drawer`, including grouped tab-stop handling (e.g. radio groups). |
+| `useFocusLock.ts` | Focus-trap implementation used by `Modal`/`Drawer`, including grouped tab-stop handling (e.g. radio groups) and restoring focus when the focused element becomes disabled, hidden or removed. |
 | `useForceUpdate.ts` | Trivial re-render trigger. |
 | `useMagmaFloating.ts` | Wraps `@floating-ui/react-dom`'s `useFloating`, preconfigured with `flip()` + `autoUpdate`. |
 | `useMediaQuery.ts` | SSR-safe `window.matchMedia` subscription. |

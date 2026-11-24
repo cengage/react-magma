@@ -3,19 +3,21 @@ import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import {
-  ArrowDropDownIcon,
-  ArrowDropUpIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
+  ArrowDropDownOutlinedIcon,
+  ArrowDropUpOutlinedIcon,
+  ArrowLeftOutlinedIcon,
+  ArrowRightOutlinedIcon,
   IconProps,
 } from 'react-magma-icons';
 
 import { ButtonIconPosition, IconButton } from '../IconButton';
 import { DropdownContext, DropdownDropDirection } from './Dropdown';
+import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Omit, useForkedRef, XOR } from '../../utils';
 import { ButtonProps, ButtonSize } from '../Button';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface IconOnlyDropdownButtonProps
   extends Omit<ButtonProps, 'children'> {
@@ -92,20 +94,25 @@ export const DropdownButton = React.forwardRef<
 >((props, forwardedRef) => {
   const context = React.useContext(DropdownContext);
   const theme = React.useContext(ThemeContext);
+  const { isMacOS, isSafari } = useDeviceDetect();
 
   const ref = useForkedRef(context.toggleRef, forwardedRef);
 
   function getButtonIcon(dropDirection: DropdownDropDirection) {
     switch (dropDirection) {
       case DropdownDropDirection.left:
-        return <ArrowLeftIcon testId="caretLeft" aria-hidden="true" />;
+        return <ArrowLeftOutlinedIcon testId="caretLeft" aria-hidden="true" />;
       case DropdownDropDirection.right:
-        return <ArrowRightIcon testId="caretRight" aria-hidden="true" />;
+        return (
+          <ArrowRightOutlinedIcon testId="caretRight" aria-hidden="true" />
+        );
       case DropdownDropDirection.up:
-        return <ArrowDropUpIcon testId="caretUp" aria-hidden="true" />;
+        return <ArrowDropUpOutlinedIcon testId="caretUp" aria-hidden="true" />;
 
       default:
-        return <ArrowDropDownIcon testId="caretDown" aria-hidden="true" />;
+        return (
+          <ArrowDropDownOutlinedIcon testId="caretDown" aria-hidden="true" />
+        );
     }
   }
 
@@ -113,6 +120,13 @@ export const DropdownButton = React.forwardRef<
 
   let children;
   const { icon = buttonIcon, iconPosition, leadingIcon, id, ...other } = props;
+  const stateDescriptionId = `${id ?? context.dropdownButtonId.current}_state`;
+  const ariaDescribedBy = [
+    other['aria-describedby'],
+    isMacOS && isSafari ? stateDescriptionId : undefined,
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   if (!instanceOfIconOnlyDropdownButton(props)) {
     children = props.children;
@@ -145,7 +159,8 @@ export const DropdownButton = React.forwardRef<
           (id ?? context.dropdownButtonId.current) + '_dropdownMenuId'
         }
         aria-expanded={context.isOpen}
-        aria-haspopup="true"
+        aria-describedby={ariaDescribedBy || undefined}
+        aria-haspopup="menu"
         icon={icon}
         iconPosition={iconPositionToUse}
         id={id ?? context.dropdownButtonId.current}
@@ -157,6 +172,11 @@ export const DropdownButton = React.forwardRef<
       >
         {children}
       </StyledIconButton>
+      {isMacOS && isSafari && (
+        <VisuallyHidden id={stateDescriptionId}>
+          {context.isOpen ? 'expanded' : 'collapsed'}
+        </VisuallyHidden>
+      )}
     </div>
   );
 });

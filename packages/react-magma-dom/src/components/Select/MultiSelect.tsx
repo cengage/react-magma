@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { autoUpdate } from '@floating-ui/react-dom';
 import { useMultipleSelection, useSelect } from 'downshift';
-import { CloseIcon } from 'react-magma-icons';
+import { CloseOutlinedIcon } from 'react-magma-icons';
 
 import { ClearAnnouncer } from './ClearAnnouncer';
 import { defaultComponents } from './components';
@@ -11,7 +11,7 @@ import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { IconWrapper, SelectedItemButton, SelectText } from './shared';
-import { isItemDisabled } from './utils';
+import { findItemIndex, getSelectedItemIndexes, isItemDisabled } from './utils';
 import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -70,18 +70,14 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   }, []);
 
   function checkSelectedItemValidity(itemToCheck: T) {
-    const itemIndex = items.findIndex(
-      i => itemToString(i) === itemToString(itemToCheck)
-    );
+    const itemIndex = findItemIndex(items, itemToCheck, itemToString);
 
     // Only reject items not in the list; disabled items may be preselected values
     return itemIndex !== -1;
   }
 
   function getFilteredItemIndex(item: T, filteredItems: T[]) {
-    const index = filteredItems.findIndex(
-      filteredItem => itemToString(filteredItem) === itemToString(item)
-    );
+    const index = findItemIndex(filteredItems, item, itemToString);
 
     if (isItemDisabled(filteredItems[index])) {
       return -1;
@@ -99,9 +95,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         setHighlightedIndex(-1);
       } else {
         setHighlightedIndex(
-          items.findIndex(
-            i => itemToString(i) === itemToString(changedSelectedItem)
-          )
+          findItemIndex(items, changedSelectedItem, itemToString)
         );
       }
     } else {
@@ -143,11 +137,14 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   });
 
   function getFilteredItems(unfilteredItems) {
+    const selectedIndexes = getSelectedItemIndexes(
+      unfilteredItems,
+      selectedItems,
+      itemToString
+    );
+
     return unfilteredItems.filter(
-      item =>
-        selectedItems.findIndex(
-          selectedItem => itemToString(selectedItem) === itemToString(item)
-        ) < 0
+      (_item, index) => !selectedIndexes.has(index)
     );
   }
 
@@ -270,6 +267,10 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
       preventKeyAction: isOpen,
       ...(forkedtoggleButtonRef && { ref: forkedtoggleButtonRef }),
     }),
+    // role="combobox" requires aria-controls pointing to the listbox
+    'aria-controls': getMenuProps().id,
+    // Label the combobox by its label only; the selected value is already exposed as the combobox value
+    'aria-labelledby': getLabelProps().id,
     disabled: disabled,
   });
 
@@ -413,7 +414,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
                 >
                   {multiSelectedItemString}
                   <IconWrapper>
-                    <CloseIcon size={theme.iconSizes.xSmall} />
+                    <CloseOutlinedIcon size={theme.iconSizes.xSmall} />
                   </IconWrapper>
                 </SelectedItemButton>
               );
@@ -435,7 +436,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         {isClearable && selectedItems?.length > 0 && (
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
-            icon={<CloseIcon size={theme.iconSizes.xSmall} />}
+            icon={<CloseOutlinedIcon size={theme.iconSizes.xSmall} />}
             isInverse={isInverse}
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}

@@ -3,9 +3,7 @@ import { expect, FrameLocator, Locator, test } from '@playwright/test';
 test.describe('Alert', () => {
   let storyBookIframe: FrameLocator;
 
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/');
-
+  test.beforeEach(({ page }) => {
     storyBookIframe = page.frameLocator(
       'iframe[title="storybook-preview-iframe"]'
     );
@@ -36,7 +34,7 @@ test.describe('Alert', () => {
   }
 
   test('Default', async ({ page }) => {
-    await page.getByRole('button', { name: 'Alert' }).click();
+    await page.goto('/?path=/story/alert--default');
 
     await expect(page).toHaveTitle('Alert - Default ⋅ Storybook');
 
@@ -131,8 +129,7 @@ test.describe('Alert', () => {
       '#storybook-root > div > div'
     );
 
-    await page.getByRole('button', { name: 'Alert' }).click();
-    await page.locator('#alert--inverse').click();
+    await page.goto('/?path=/story/alert--inverse');
 
     await expect(page).toHaveTitle('Alert - Inverse ⋅ Storybook');
     await expect(inverseWrapper).toHaveCSS(

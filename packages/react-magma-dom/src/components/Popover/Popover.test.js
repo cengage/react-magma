@@ -8,7 +8,9 @@ import { magma } from '../../theme/magma';
 
 import { PopoverAlignment, PopoverPosition } from './Popover';
 import { PopoverHeader, PopoverFooter } from './PopoverSection';
+import { axe } from '../../../axe-helper';
 import { Button } from '../Button';
+import { Input } from '../Input';
 
 import { Popover, PopoverContent, PopoverTrigger } from '.';
 
@@ -656,6 +658,185 @@ describe('Popover', () => {
 
     expect(popoverContent).toBeInTheDocument();
     expect(popoverContent).toMatchSnapshot();
+  });
+
+  describe('custom trigger', () => {
+    it('should not set aria-expanded on a text field trigger', async () => {
+      const { container, getByTestId } = render(
+        <Popover>
+          <PopoverTrigger>
+            <Input labelText="Password" type="password" />
+          </PopoverTrigger>
+          <PopoverContent>
+            <span>Content</span>
+          </PopoverContent>
+        </Popover>
+      );
+      const input = container.querySelector('input');
+
+      expect(input).toHaveAttribute('aria-haspopup', 'dialog');
+      expect(input).not.toHaveAttribute('aria-expanded');
+
+      await userEvent.click(input);
+
+      expect(getByTestId('popoverContent')).toBeVisible();
+      expect(input).not.toHaveAttribute('aria-expanded');
+    });
+
+    it('should set aria-expanded on a button trigger', async () => {
+      const { getByRole } = render(
+        <Popover>
+          <PopoverTrigger>
+            <Button>Open</Button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <span>Content</span>
+          </PopoverContent>
+        </Popover>
+      );
+      const button = getByRole('button', { name: 'Open' });
+
+      expect(button).toHaveAttribute('aria-expanded', 'false');
+
+      await userEvent.click(button);
+
+      expect(button).toHaveAttribute('aria-expanded', 'true');
+    });
+
+    it('Does not violate accessibility standards with a text field trigger', () => {
+      const { container } = render(
+        <Popover>
+          <PopoverTrigger>
+            <Input labelText="Password" type="password" />
+          </PopoverTrigger>
+          <PopoverContent>
+            <span>Content</span>
+          </PopoverContent>
+        </Popover>
+      );
+
+      return axe(container).then(result => {
+        return expect(result).toHaveNoViolations();
+      });
+    });
+  });
+
+  describe('scrollable content', () => {
+    function mockContentHeight(scrollHeight) {
+      jest
+        .spyOn(Element.prototype, 'scrollHeight', 'get')
+        .mockReturnValue(scrollHeight);
+      jest.spyOn(Element.prototype, 'clientHeight', 'get').mockReturnValue(100);
+    }
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('should make scrollable content without interactive elements focusable', async () => {
+      mockContentHeight(400);
+
+      const { container, getByTestId, getByText } = render(
+        <Popover maxHeight={100}>
+          <PopoverTrigger />
+          <PopoverContent>
+            <span>Content</span>
+          </PopoverContent>
+        </Popover>
+      );
+      const scrollableContent = getByText('Content').parentElement;
+
+      expect(scrollableContent).not.toHaveAttribute('tabindex');
+
+      await userEvent.click(container.querySelector('button'));
+
+      expect(scrollableContent).toHaveAttribute('tabindex', '0');
+
+      await userEvent.tab();
+
+      expect(scrollableContent).toHaveFocus();
+      expect(getByTestId('popoverContent')).toBeVisible();
+    });
+
+    it('should scroll the focused content with the keyboard', async () => {
+      mockContentHeight(400);
+
+      let scrollTop = 0;
+
+      jest
+        .spyOn(Element.prototype, 'scrollTop', 'get')
+        .mockImplementation(() => scrollTop);
+      jest
+        .spyOn(Element.prototype, 'scrollTop', 'set')
+        .mockImplementation(value => {
+          scrollTop = value;
+        });
+
+      const { container } = render(
+        <Popover maxHeight={100}>
+          <PopoverTrigger />
+          <PopoverContent>
+            <span>Content</span>
+          </PopoverContent>
+        </Popover>
+      );
+
+      await userEvent.click(container.querySelector('button'));
+      await userEvent.tab();
+
+      await userEvent.keyboard('{ArrowDown}');
+      expect(scrollTop).toBe(40);
+
+      await userEvent.keyboard('{ArrowUp}');
+      expect(scrollTop).toBe(0);
+
+      await userEvent.keyboard('{PageDown}');
+      expect(scrollTop).toBe(100);
+
+      await userEvent.keyboard('{End}');
+      expect(scrollTop).toBe(400);
+
+      await userEvent.keyboard('{Home}');
+      expect(scrollTop).toBe(0);
+    });
+
+    it('should not make content focusable when it does not scroll', async () => {
+      mockContentHeight(100);
+
+      const { container, getByText } = render(
+        <Popover>
+          <PopoverTrigger />
+          <PopoverContent>
+            <span>Content</span>
+          </PopoverContent>
+        </Popover>
+      );
+
+      await userEvent.click(container.querySelector('button'));
+
+      expect(getByText('Content').parentElement).not.toHaveAttribute(
+        'tabindex'
+      );
+    });
+
+    it('should not make scrollable content focusable when it has interactive elements', async () => {
+      mockContentHeight(400);
+
+      const { container, getByText } = render(
+        <Popover maxHeight={100}>
+          <PopoverTrigger />
+          <PopoverContent>
+            <Button>Action</Button>
+          </PopoverContent>
+        </Popover>
+      );
+
+      await userEvent.click(container.querySelector('button'));
+
+      expect(
+        getByText('Action').closest('button').parentElement
+      ).not.toHaveAttribute('tabindex');
+    });
   });
 
   describe('PopoverAlignment', () => {

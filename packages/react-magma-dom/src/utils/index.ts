@@ -296,6 +296,10 @@ export function toCamelCase(str) {
     .replace(/\s+/g, '');
 }
 
+export function normalizeAccessibleText(text: string): string {
+  return text.trim().replace(/\s+/g, ' ').toLowerCase();
+}
+
 type ResolvedProps = {
   [key: string]: any;
 };

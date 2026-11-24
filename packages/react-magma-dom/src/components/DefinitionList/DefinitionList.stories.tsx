@@ -194,10 +194,10 @@ export const CustomStyles = {
     return (
       <Card isInverse={args.isInverse}>
         <CardBody style={{ display: 'flex', flexDirection: 'column' }}>
+          <Paragraph visualStyle={args.visualStyle} noTopMargin>
+            Right align text
+          </Paragraph>
           <DefinitionList {...args}>
-            <Paragraph visualStyle={args.visualStyle} noTopMargin>
-              Right align text
-            </Paragraph>
             <TermStyled align={'end'}>
               {data.map((item, index) => (
                 <React.Fragment key={index}>
@@ -218,10 +218,10 @@ export const CustomStyles = {
             </DescriptionStyled>
           </DefinitionList>
 
+          <Paragraph visualStyle={args.visualStyle} noTopMargin>
+            Left align text
+          </Paragraph>
           <DefinitionList {...args}>
-            <Paragraph visualStyle={args.visualStyle} noTopMargin>
-              Left align text
-            </Paragraph>
             <TermStyled align={'start'}>
               {data.map((item, index) => (
                 <React.Fragment key={index}>
