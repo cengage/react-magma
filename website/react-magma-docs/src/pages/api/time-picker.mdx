@@ -87,11 +87,11 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Card, CardBody, TimePicker } from 'react-magma-dom';
+import { Card, CardBody, TimePicker, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <TimePicker isInverse labelText="Time Due" />
       </CardBody>

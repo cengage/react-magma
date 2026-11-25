@@ -4,6 +4,8 @@ on:
     branches:
       - main
       - v4/main
+      - v5/main
+      - v6/main
   schedule:
     - cron: '0 6 * * 1'
   workflow_dispatch:
@@ -19,6 +21,10 @@ jobs:
       matrix:
         include:
           - branch: main
+            tag: v7
+          - branch: v6/main
+            tag: v6
+          - branch: v5/main
             tag: v5
           - branch: v4/main
             tag: v4

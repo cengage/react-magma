@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, waitFor } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 import {
@@ -12,6 +12,7 @@ import {
   SettingsIcon,
 } from 'react-magma-icons';
 
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { ButtonSize } from '../Button';
 import { ButtonIconPosition } from '../IconButton';
@@ -35,6 +36,46 @@ import {
 } from '.';
 
 describe('Dropdown', () => {
+  const originalUserAgent = navigator.userAgent;
+
+  afterEach(() => {
+    Object.defineProperty(navigator, 'userAgent', {
+      value: originalUserAgent,
+      writable: true,
+    });
+  });
+
+  it('should preserve the user description and add the Safari state description', () => {
+    Object.defineProperty(navigator, 'userAgent', {
+      value:
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15',
+      writable: true,
+    });
+
+    const { getByRole, getByText } = render(
+      <Dropdown>
+        <div id="user-description">User description</div>
+        <DropdownButton aria-describedby="user-description">
+          Toggle me
+        </DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    const button = getByRole('button', { name: 'Toggle me' });
+    const describedBy = button.getAttribute('aria-describedby');
+    const describedByIds = describedBy?.split(' ') ?? [];
+
+    expect(describedByIds).toHaveLength(2);
+    expect(describedByIds[0]).toBe('user-description');
+    expect(getByText('User description')).toBeInTheDocument();
+    expect(document.getElementById(describedByIds[1])).toHaveTextContent(
+      'collapsed'
+    );
+  });
+
   it('should find element by testId', async () => {
     const testId = 'test-id';
     const { getByTestId } = render(
@@ -53,11 +94,74 @@ describe('Dropdown', () => {
       expect(getByTestId(testId)).toBeInTheDocument();
       expect(getByTestId('dropdownContent')).toBeInTheDocument();
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'border-radius',
+        magma.borderRadiusSmall
+      );
       expect(getByTestId('dropdownContentWrapper')).toBeInTheDocument();
       expect(getByTestId('dropdownContentWrapper')).toHaveStyle({
         zIndex: '996',
       });
     });
+  });
+
+  it('should render the inverse dropdown with the rebrand colors', () => {
+    const { getByTestId } = render(
+      <Dropdown isInverse>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent testId="inverse-content">
+          <DropdownHeader testId="inverse-header">Header</DropdownHeader>
+          <DropdownDivider testId="inverse-divider" />
+          <DropdownMenuItem data-testid="inverse-item" icon={<AsteriskIcon />}>
+            Menu item
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            data-testid="inverse-disabled-item"
+            disabled
+            icon={<SettingsIcon />}
+          >
+            Disabled item
+          </DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    const content = getByTestId('inverse-content');
+    const item = getByTestId('inverse-item');
+    const disabledItem = getByTestId('inverse-disabled-item');
+
+    expect(content).toHaveStyleRule('background', magma.colors.neutral1100);
+    expect(content).toHaveStyleRule(
+      'border',
+      `1px solid ${magma.colors.neutral800}`
+    );
+    expect(content).toHaveStyleRule(
+      'box-shadow',
+      `0 2px 6px 0 ${transparentize(0.9, magma.colors.neutral1200)}`
+    );
+    expect(getByTestId('inverse-header')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral500
+    );
+    expect(getByTestId('inverse-divider')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral800
+    );
+    expect(item.querySelector('svg').parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.neutral600
+    );
+    expect(item).toHaveStyleRule('background', magma.colors.neutral1000, {
+      target: ':hover',
+    });
+    expect(item).toHaveStyleRule('background', 'none', {
+      target: ':focus',
+    });
+    expect(disabledItem).toHaveStyleRule('color', magma.colors.neutral600);
+    expect(disabledItem.querySelector('svg').parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.neutral600
+    );
   });
 
   it('should render a custom wrapped dropdown item', async () => {
@@ -297,7 +401,7 @@ describe('Dropdown', () => {
     expect(caretSvg).toBeInTheDocument();
   });
 
-  it('should render a split dropdown with margin left on solid variants', async () => {
+  it('should render a split dropdown with a one-pixel divider', async () => {
     const { getByLabelText } = render(
       <Dropdown>
         <DropdownSplitButton>Toggle me</DropdownSplitButton>
@@ -306,26 +410,61 @@ describe('Dropdown', () => {
     );
 
     await waitFor(() => {
-      expect(getByLabelText('Toggle menu')).toHaveAttribute(
-        'style',
-        'margin-left: 2px;'
-      );
+      expect(getByLabelText('Toggle menu')).toHaveStyle({
+        borderLeftColor: magma.colors.blue700,
+        borderLeftWidth: '1px',
+        marginLeft: '0px',
+      });
     });
   });
 
-  it('should render a split dropdown with no margin on solid variants', async () => {
+  it('should use the danger divider color for a danger split dropdown', async () => {
     const { getByLabelText } = render(
       <Dropdown>
-        <DropdownSplitButton variant="solid">Toggle me</DropdownSplitButton>
+        <DropdownSplitButton color="danger">Toggle me</DropdownSplitButton>
         <DropdownContent />
       </Dropdown>
     );
 
     await waitFor(() => {
-      expect(getByLabelText('Toggle menu')).toHaveAttribute(
-        'style',
-        'margin-left: 2px;'
-      );
+      expect(getByLabelText('Toggle menu')).toHaveStyle({
+        borderLeftColor: magma.colors.red700,
+        borderLeftWidth: '1px',
+      });
+    });
+  });
+
+  it('should use the inverse primary divider color', async () => {
+    const { getByLabelText } = render(
+      <Dropdown isInverse>
+        <DropdownSplitButton>Toggle me</DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    await waitFor(() => {
+      expect(getByLabelText('Toggle menu')).toHaveStyle({
+        borderLeftColor: magma.colors.cyan600,
+        borderLeftWidth: '1px',
+      });
+    });
+  });
+
+  it('should render a secondary split dropdown with a one-pixel divider', async () => {
+    const { getByLabelText } = render(
+      <Dropdown>
+        <DropdownSplitButton color="secondary" variant="solid">
+          Toggle me
+        </DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    await waitFor(() => {
+      expect(getByLabelText('Toggle menu')).toHaveStyle({
+        borderLeftWidth: '1px',
+        marginLeft: '0px',
+      });
     });
   });
 
@@ -609,6 +748,141 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
+  describe('focus behavior when selecting a menu item', () => {
+    it('should return focus to the toggle button when an item is clicked', async () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown testId="dropdown">
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      await userEvent.click(getByTestId('dropdownButton'));
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'display',
+        'block'
+      );
+
+      await userEvent.click(getByText('Menu item 1'));
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(getByTestId('dropdownButton')).toHaveFocus();
+    });
+
+    it('should return focus to the toggle button when an item is selected with the Enter key', () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown testId="dropdown">
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      fireEvent.click(getByTestId('dropdownButton'));
+
+      fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowDown' });
+
+      expect(getByText('Menu item 1')).toHaveFocus();
+
+      fireEvent.keyDown(getByText('Menu item 1'), { key: 'Enter' });
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(getByTestId('dropdownButton')).toHaveFocus();
+    });
+
+    it('should return focus to the toggle button when an item is selected with the Space key', () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown testId="dropdown">
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      fireEvent.click(getByTestId('dropdownButton'));
+
+      fireEvent.keyDown(getByTestId('dropdown'), { key: 'ArrowDown' });
+      fireEvent.keyDown(getByText('Menu item 1'), { key: ' ' });
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(getByTestId('dropdownButton')).toHaveFocus();
+    });
+
+    it('should not return focus or close the dropdown when a disabled item is clicked', async () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown testId="dropdown">
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem disabled onClick={() => {}}>
+              Menu item 1
+            </DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      fireEvent.click(getByTestId('dropdownButton'));
+      fireEvent.click(getByText('Menu item 1'));
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'display',
+        'block'
+      );
+    });
+
+    it('should keep the dropdown open and not move focus for an active (selectable) item', () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown activeIndex={0} testId="dropdown">
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      fireEvent.click(getByTestId('dropdownButton'));
+
+      fireEvent.click(getByText('Menu item 2'));
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'display',
+        'block'
+      );
+    });
+
+    it('should return focus to the trigger button of a split dropdown when an item is clicked', async () => {
+      const { getByLabelText, getByTestId, getByText } = render(
+        <Dropdown testId="dropdown">
+          <DropdownSplitButton aria-label="Split" testId="dropdownSplitButton">
+            Toggle me
+          </DropdownSplitButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      await userEvent.click(getByLabelText('Split'));
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'display',
+        'block'
+      );
+
+      await userEvent.click(getByText('Menu item 1'));
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(getByLabelText('Split')).toHaveFocus();
+    });
+  });
+
   it('go to the first or next item when the down arrow key is pressed', async () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
@@ -657,13 +931,27 @@ describe('Dropdown', () => {
   });
 
   it('should render a dropdown menu item with an icon', () => {
-    const { container } = render(
+    const { container, getByText } = render(
       <Dropdown>
         <DropdownMenuItem icon={<AsteriskIcon />}>Menu item</DropdownMenuItem>
       </Dropdown>
     );
 
-    expect(container.querySelector('svg')).toBeInTheDocument();
+    const icon = container.querySelector('svg');
+    const item = getByText('Menu item');
+
+    expect(icon).toBeInTheDocument();
+    expect(icon.parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.neutral600
+    );
+    expect(item).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(item).toHaveStyleRule('background', magma.colors.neutral100, {
+      target: ':hover',
+    });
+    expect(item).toHaveStyleRule('background', 'none', {
+      target: ':focus',
+    });
   });
 
   it('should render a dropdown menu item with correct styles when fixed width', async () => {
@@ -703,11 +991,11 @@ describe('Dropdown', () => {
     const onClick = jest.fn();
     const text = 'menu item';
 
-    const { getByText } = render(
+    const { container, getByText } = render(
       <Dropdown alignment="right">
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent>
-          <DropdownMenuItem disabled onClick={onClick}>
+          <DropdownMenuItem disabled icon={<AsteriskIcon />} onClick={onClick}>
             {text}
           </DropdownMenuItem>
         </DropdownContent>
@@ -718,9 +1006,11 @@ describe('Dropdown', () => {
 
     expect(onClick).not.toHaveBeenCalled();
     expect(getByText(text)).toHaveStyleRule('cursor', 'not-allowed');
-    expect(getByText(text)).toHaveStyleRule(
+    expect(getByText(text)).toHaveStyleRule('color', magma.colors.neutral500);
+    const icons = container.querySelectorAll('svg');
+    expect(icons[icons.length - 1].parentElement).toHaveStyleRule(
       'color',
-      transparentize(0.4, magma.colors.neutral500)
+      magma.colors.neutral500
     );
   });
 
@@ -740,6 +1030,7 @@ describe('Dropdown', () => {
 
     await waitFor(() => {
       expect(getByText(text)).toBeInTheDocument();
+      expect(getByText(text)).toHaveStyleRule('color', magma.colors.neutral700);
     });
   });
 
@@ -777,10 +1068,90 @@ describe('Dropdown', () => {
     });
   });
 
+  it('should render menu groups inside an element with role "menu"', () => {
+    const { getByLabelText } = render(
+      <Dropdown>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuGroup header="header">
+            <DropdownMenuItem>Menu Item 1</DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    expect(getByLabelText('header').parentElement).toHaveAttribute(
+      'role',
+      'menu'
+    );
+  });
+
+  it('should give tabIndex 0 only to the focused menu item', async () => {
+    const { getByTestId, getByText } = render(
+      <Dropdown>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu Item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu Item 2</DropdownMenuItem>
+          <DropdownMenuNavItem to="#">Nav Item</DropdownMenuNavItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    fireEvent.click(getByText('Toggle me'));
+
+    await waitFor(() => {
+      expect(getByText('Menu Item 1')).toHaveFocus();
+      expect(getByText('Menu Item 1')).toHaveAttribute('tabindex', '0');
+    });
+
+    expect(getByText('Menu Item 2')).toHaveAttribute('tabindex', '-1');
+    expect(getByText('Nav Item')).toHaveAttribute('tabindex', '-1');
+    expect(getByTestId('dropdownContent')).toHaveAttribute('tabindex', '-1');
+
+    fireEvent.keyDown(getByText('Menu Item 1'), { key: 'ArrowUp' });
+
+    await waitFor(() => {
+      expect(getByText('Nav Item')).toHaveFocus();
+      expect(getByText('Nav Item')).toHaveAttribute('tabindex', '0');
+    });
+
+    expect(getByText('Menu Item 1')).toHaveAttribute('tabindex', '-1');
+  });
+
+  it('should close the menu and move focus to the button on Shift+Tab from a menu item', async () => {
+    const onClose = jest.fn();
+    const { getByText, getByTestId } = render(
+      <Dropdown onClose={onClose}>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu Item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu Item 2</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    await userEvent.click(getByText('Toggle me'));
+
+    await waitFor(() => {
+      expect(getByText('Menu Item 1')).toHaveFocus();
+    });
+
+    await userEvent.tab({ shift: true });
+
+    expect(getByText('Toggle me').closest('button')).toHaveFocus();
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
   it('should render a dropdown menu divider', () => {
     const { container } = render(<DropdownDivider />);
 
     expect(container.querySelector('hr')).toBeInTheDocument();
+    expect(container.querySelector('hr')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral200
+    );
   });
 
   it('should fire the onclick event for an item when enter is pressed', async () => {
@@ -1024,6 +1395,804 @@ describe('Dropdown', () => {
 
       expect(onClose).toHaveBeenCalled();
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+    });
+  });
+
+  it('should not render the false child', () => {
+    const visible = false;
+    const { queryByText } = render(
+      <Dropdown>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownMenuGroup header="header">
+          {visible && <DropdownMenuItem>Menu Item 1</DropdownMenuItem>}
+          <DropdownMenuItem>Menu Item 2</DropdownMenuItem>
+        </DropdownMenuGroup>
+      </Dropdown>
+    );
+
+    expect(queryByText('Menu Item 1')).not.toBeInTheDocument();
+    expect(queryByText('Menu Item 2')).toBeInTheDocument();
+  });
+
+  describe('dropdown with expandable menu', () => {
+    beforeAll(() => {
+      window.scrollTo = jest.fn();
+    });
+
+    const expandableGroupId = 'expandable group';
+    const expandableItemId = 'expandable item';
+    const expandableButtonId = 'expandable button';
+    const expandablePanelId = 'expandable panel';
+    const expandablePanelTwoId = 'expandable panel two';
+
+    it('should render an expandable menu group', async () => {
+      const { getByTestId } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup testId={expandableGroupId}>
+              <DropdownExpandableMenuItem testId={expandableItemId}>
+                <DropdownExpandableMenuButton testId={expandableButtonId}>
+                  Pasta
+                </DropdownExpandableMenuButton>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      await waitFor(() => {
+        expect(getByTestId(expandableGroupId)).toBeInTheDocument();
+        expect(getByTestId(expandableItemId)).toBeInTheDocument();
+        expect(getByTestId(expandableButtonId)).toBeInTheDocument();
+      });
+    });
+
+    it('should render an expandable menu group with icons', async () => {
+      const { getByText } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup>
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
+                  Pasta
+                </DropdownExpandableMenuButton>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      await waitFor(() => {
+        const icon = getByText('Pasta').querySelector('svg');
+
+        expect(icon).toBeInTheDocument();
+        expect(icon.parentElement).toHaveStyleRule(
+          'color',
+          magma.colors.neutral600
+        );
+        expect(icon.parentElement).toHaveStyleRule('color', 'inherit', {
+          target: 'svg',
+        });
+      });
+    });
+
+    it('should render an expanded panel of menu items when the DropdownExpandableMenuButton is clicked', async () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup>
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Pasta
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      await userEvent.click(getByText('Pasta'));
+
+      expect(getByTestId(expandablePanelId)).toBeInTheDocument();
+    });
+
+    it('should close an expanded panel of menu items when the DropdownExpandableMenuButton is clicked', async () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup>
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Pasta
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      await userEvent.click(getByText('Pasta'));
+
+      expect(getByTestId(expandablePanelId)).toBeInTheDocument();
+
+      await userEvent.click(getByText('Pasta'));
+
+      expect(getByText('Fresh')).not.toBeVisible();
+    });
+
+    it('should have a default expanded item set by the user with defaultIndex', async () => {
+      const { getByTestId, getByText, queryByTestId } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup defaultIndex={[0]}>
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Pasta
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Bacon
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelTwoId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      await userEvent.click(getByText('Expandable Items Dropdown'));
+
+      expect(getByTestId(expandablePanelId)).toBeInTheDocument();
+      expect(queryByTestId(expandablePanelTwoId)).not.toBeInTheDocument();
+    });
+
+    it('Does not violate accessibility standards with expandable items', async () => {
+      const { container, getByText } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup defaultIndex={[0]}>
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Pasta
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      await userEvent.click(getByText('Expandable Items Dropdown'));
+
+      expect(await axe(container)).toHaveNoViolations();
+    });
+
+    it('should have multiple open menu items when isMulti is true', async () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup isMulti>
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Pasta
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed Stuff
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Bacon
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelTwoId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      await userEvent.click(getByText('Expandable Items Dropdown'));
+      await userEvent.click(getByText('Pasta'));
+
+      expect(getByTestId(expandablePanelId)).toBeInTheDocument();
+
+      await userEvent.click(getByText('Bacon'));
+
+      expect(getByTestId(expandablePanelId)).toBeInTheDocument();
+      expect(getByTestId(expandablePanelTwoId)).toBeInTheDocument();
+    });
+
+    it('should only allow one open menu item when isMulti is false', async () => {
+      const { getByTestId, getByText, queryByTestId } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup isMulti={false}>
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Pasta
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed Stuff
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Bacon
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelTwoId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      await userEvent.click(getByText('Expandable Items Dropdown'));
+      await userEvent.click(getByText('Pasta'));
+
+      expect(getByTestId(expandablePanelId)).toBeInTheDocument();
+      expect(queryByTestId(expandablePanelTwoId)).not.toBeInTheDocument();
+
+      await userEvent.click(getByText('Bacon'));
+
+      expect(getByTestId(expandablePanelTwoId)).toBeInTheDocument();
+      expect(queryByTestId(expandablePanelId)).not.toBeVisible();
+    });
+
+    describe('dropdown with expandable menu styling', () => {
+      it(`DropdownExpandableMenuPanel items should have additional padding if DropdownExpandableMenuButton has an icon`, async () => {
+        const { getByText } = render(
+          <Dropdown>
+            <DropdownButton>Expandable Items Dropdown</DropdownButton>
+            <DropdownContent>
+              <DropdownExpandableMenuGroup>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
+                    Pasta
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                    <DropdownExpandableMenuListItem>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+              </DropdownExpandableMenuGroup>
+            </DropdownContent>
+          </Dropdown>
+        );
+
+        await userEvent.click(getByText('Pasta'));
+
+        expect(getByText('Fresh')).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} 72px`
+        );
+      });
+
+      it(`DropdownExpandableMenuPanel items should have standard padding if DropdownExpandableMenuButton doesn't have an icon`, async () => {
+        const { getByText } = render(
+          <Dropdown>
+            <DropdownButton>Expandable Items Dropdown</DropdownButton>
+            <DropdownContent>
+              <DropdownExpandableMenuGroup>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton>
+                    Pasta
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                    <DropdownExpandableMenuListItem>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+              </DropdownExpandableMenuGroup>
+            </DropdownContent>
+          </Dropdown>
+        );
+
+        await userEvent.click(getByText('Pasta'));
+
+        expect(getByText('Fresh')).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing08}`
+        );
+      });
+
+      it(`DropdownExpandableMenuListItem should support disabled`, async () => {
+        const { getByText } = render(
+          <Dropdown>
+            <DropdownButton>Expandable Items Dropdown</DropdownButton>
+            <DropdownContent>
+              <DropdownExpandableMenuGroup>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton>
+                    Pasta
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel>
+                    <DropdownExpandableMenuListItem disabled>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+              </DropdownExpandableMenuGroup>
+            </DropdownContent>
+          </Dropdown>
+        );
+
+        await userEvent.click(getByText('Pasta'));
+
+        expect(getByText('Fresh')).toHaveStyleRule('cursor', 'not-allowed');
+        expect(getByText('Fresh')).toHaveStyleRule(
+          'color',
+          magma.colors.neutral500
+        );
+      });
+
+      it(`DropdownExpandableMenuPanel items should have additional padding if DropdownExpandableMenuButton has an icon and a text only menu item`, async () => {
+        const { getByTestId, getByText } = render(
+          <Dropdown>
+            <DropdownButton>Expandable Items Dropdown</DropdownButton>
+            <DropdownContent>
+              <DropdownExpandableMenuGroup>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton testId={expandableButtonId}>
+                    Pasta
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel>
+                    <DropdownExpandableMenuListItem>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton
+                    icon={<RestaurantMenuIcon />}
+                    testId={`${expandableButtonId}-2`}
+                  >
+                    Prosciutto
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel>
+                    <DropdownExpandableMenuListItem>
+                      Domestic
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Speck
+                    </DropdownExpandableMenuListItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+              </DropdownExpandableMenuGroup>
+            </DropdownContent>
+          </Dropdown>
+        );
+
+        await userEvent.click(getByText('Pasta'));
+        await userEvent.click(getByText('Prosciutto'));
+
+        expect(getByTestId(expandableButtonId)).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing11}`
+        );
+        expect(getByTestId(`${expandableButtonId}-2`)).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05}`
+        );
+        expect(getByText('Fresh')).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} 72px`
+        );
+        expect(getByText('Domestic')).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} 72px`
+        );
+      });
+
+      it('should fire the customOnKeyDown function if used', async () => {
+        const onChangeMock = jest.fn();
+        const { getByTestId } = render(
+          <Dropdown>
+            <DropdownButton>Expandable Items Dropdown</DropdownButton>
+            <DropdownContent>
+              <DropdownExpandableMenuGroup>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton
+                    testId={expandableButtonId}
+                    customOnKeyDown={onChangeMock}
+                  >
+                    Pasta
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                    <DropdownExpandableMenuListItem>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+              </DropdownExpandableMenuGroup>
+            </DropdownContent>
+          </Dropdown>
+        );
+
+        const dropdownExpandableButton = getByTestId(expandableButtonId);
+
+        dropdownExpandableButton.focus();
+
+        await userEvent.keyboard('{Enter}');
+
+        expect(onChangeMock).toHaveBeenCalledTimes(1);
+      });
+
+      it(`should support isInverse mode`, async () => {
+        const { getByTestId } = render(
+          <Dropdown isInverse>
+            <DropdownButton>Expandable Items Dropdown</DropdownButton>
+            <DropdownContent>
+              <DropdownExpandableMenuGroup testId={expandableGroupId} />
+            </DropdownContent>
+          </Dropdown>
+        );
+
+        await waitFor(() => {
+          expect(getByTestId(expandableGroupId)).toHaveStyleRule(
+            'background',
+            'transparent'
+          );
+          expect(getByTestId(expandableGroupId)).toHaveStyleRule(
+            'color',
+            magma.colors.neutral0
+          );
+        });
+      });
+    });
+  });
+
+  describe('leading icon', () => {
+    it('should be shown when icon position is right', () => {
+      const { container, getByText } = render(
+        <Dropdown>
+          <DropdownButton
+            icon={<ReorderIcon />}
+            iconPosition={ButtonIconPosition.right}
+            leadingIcon={<SettingsIcon />}
+          >
+            Toggle me
+          </DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {}}>
+              Menu item number two
+            </DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      expect(getByText('Toggle me')).toHaveStyleRule(
+        'padding-left',
+        magma.spaceScale.spacing03
+      );
+
+      expect(container.querySelectorAll('svg').length).toBe(2);
+    });
+
+    it('should not be shown when icon position is left', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownButton
+            icon={<ReorderIcon />}
+            iconPosition={ButtonIconPosition.left}
+            leadingIcon={<SettingsIcon />}
+          >
+            Toggle me
+          </DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {}}>
+              Menu item number two
+            </DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      expect(container.querySelectorAll('svg').length).toBe(1);
+    });
+  });
+
+  describe('Size', () => {
+    const icon = <CheckIcon />;
+
+    it('Large', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownButton icon={icon} size={ButtonSize.large}>
+            Large
+          </DropdownButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+
+      const svg = container.querySelector('svg');
+
+      expect(svg).toHaveAttribute('height', magma.iconSizes.medium.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.medium.toString());
+    });
+
+    it('Medium', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownButton icon={icon} size={ButtonSize.medium}>
+            Medium
+          </DropdownButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.small.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.small.toString());
+    });
+
+    it('Small', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownButton icon={icon} size={ButtonSize.small}>
+            Small
+          </DropdownButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.xSmall.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.xSmall.toString());
+    });
+  });
+
+  describe('Size for Dropdown split button', () => {
+    it('Large', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownSplitButton size={ButtonSize.large} aria-label="Split Large">
+            Large
+          </DropdownSplitButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.medium.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.medium.toString());
+    });
+
+    it('Medium', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownSplitButton
+            size={ButtonSize.medium}
+            aria-label="Split Medium"
+          >
+            Medium
+          </DropdownSplitButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.small.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.small.toString());
+    });
+
+    it('Small', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownSplitButton size={ButtonSize.small} aria-label="Split Small">
+            Small
+          </DropdownSplitButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.xSmall.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.xSmall.toString());
+    });
+  });
+
+  it('should stop Escape key propagation so parent containers do not receive it', async () => {
+    const parentKeyDownHandler = jest.fn();
+
+    const { getByTestId } = render(
+      <div onKeyDown={parentKeyDownHandler}>
+        <Dropdown testId="dropdown">
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </div>
+    );
+
+    await userEvent.click(getByTestId('dropdownButton'));
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
+
+    await userEvent.keyboard('{ArrowDown}');
+    await userEvent.keyboard('{Escape}');
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+    expect(parentKeyDownHandler).not.toHaveBeenCalledWith(
+      expect.objectContaining({ key: 'Escape' })
+    );
+  });
+
+  describe('apiRef', () => {
+    const ApiRefDropdown = ({ onClose, onOpen }) => {
+      const apiRef = React.useRef();
+
+      function handleContentKeyDown(event) {
+        if (event.key === 'x') {
+          event.stopPropagation();
+          apiRef.current.closeDropdownManually(event);
+        }
+      }
+
+      return (
+        <>
+          <button
+            data-testid="outsideButton"
+            onClick={() => apiRef.current.openDropdownManually()}
+          >
+            Open from outside
+          </button>
+          <Dropdown apiRef={apiRef} onClose={onClose} onOpen={onOpen}>
+            <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
+            <DropdownContent onKeyDown={handleContentKeyDown}>
+              <DropdownMenuItem>Menu item</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </>
+      );
+    };
+
+    it('should close the dropdown from a custom keydown handler', async () => {
+      const onClose = jest.fn();
+
+      const { getByTestId } = render(<ApiRefDropdown onClose={onClose} />);
+
+      await userEvent.click(getByTestId('dropdownButton'));
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'display',
+        'block'
+      );
+
+      await userEvent.keyboard('{ArrowDown}');
+      await userEvent.keyboard('x');
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(onClose).toHaveBeenCalled();
+    });
+
+    it('should return focus to the toggle button when closed from inside the dropdown', async () => {
+      const { getByTestId } = render(<ApiRefDropdown />);
+
+      await userEvent.click(getByTestId('dropdownButton'));
+      await userEvent.keyboard('{ArrowDown}');
+      await userEvent.keyboard('x');
+
+      expect(getByTestId('dropdownButton')).toHaveFocus();
+    });
+
+    it('should open the dropdown', async () => {
+      const onOpen = jest.fn();
+
+      const { getByTestId } = render(<ApiRefDropdown onOpen={onOpen} />);
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+
+      await userEvent.click(getByTestId('outsideButton'));
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'display',
+        'block'
+      );
+      expect(onOpen).toHaveBeenCalled();
+    });
+
+    it('should call the current onClose handler and not a stale one', async () => {
+      const firstOnClose = jest.fn();
+      const secondOnClose = jest.fn();
+
+      const { getByTestId, rerender } = render(
+        <ApiRefDropdown onClose={firstOnClose} />
+      );
+
+      rerender(<ApiRefDropdown onClose={secondOnClose} />);
+
+      await userEvent.click(getByTestId('dropdownButton'));
+      await userEvent.keyboard('{ArrowDown}');
+      await userEvent.keyboard('x');
+
+      expect(secondOnClose).toHaveBeenCalled();
+      expect(firstOnClose).not.toHaveBeenCalled();
     });
   });
 
@@ -1397,7 +2566,7 @@ describe('Dropdown', () => {
         expect(getByText('Fresh')).toHaveStyleRule('cursor', 'not-allowed');
         expect(getByText('Fresh')).toHaveStyleRule(
           'color',
-          transparentize(0.4, magma.colors.neutral500)
+          magma.colors.neutral500
         );
       });
 
@@ -1516,7 +2685,7 @@ describe('Dropdown', () => {
           );
           expect(getByTestId(expandableGroupId)).toHaveStyleRule(
             'color',
-            magma.colors.neutral100
+            magma.colors.neutral0
           );
         });
       });
@@ -1696,97 +2865,5 @@ describe('Dropdown', () => {
     expect(parentKeyDownHandler).not.toHaveBeenCalledWith(
       expect.objectContaining({ key: 'Escape' })
     );
-  });
-
-  describe('apiRef', () => {
-    const ApiRefDropdown = ({ onClose, onOpen }) => {
-      const apiRef = React.useRef();
-
-      function handleContentKeyDown(event) {
-        if (event.key === 'x') {
-          event.stopPropagation();
-          apiRef.current.closeDropdownManually(event);
-        }
-      }
-
-      return (
-        <>
-          <button
-            data-testid="outsideButton"
-            onClick={() => apiRef.current.openDropdownManually()}
-          >
-            Open from outside
-          </button>
-          <Dropdown apiRef={apiRef} onClose={onClose} onOpen={onOpen}>
-            <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
-            <DropdownContent onKeyDown={handleContentKeyDown}>
-              <DropdownMenuItem>Menu item</DropdownMenuItem>
-            </DropdownContent>
-          </Dropdown>
-        </>
-      );
-    };
-
-    it('should close the dropdown from a custom keydown handler', async () => {
-      const onClose = jest.fn();
-
-      const { getByTestId } = render(<ApiRefDropdown onClose={onClose} />);
-
-      await userEvent.click(getByTestId('dropdownButton'));
-      expect(getByTestId('dropdownContent')).toHaveStyleRule(
-        'display',
-        'block'
-      );
-
-      await userEvent.keyboard('{ArrowDown}');
-      await userEvent.keyboard('x');
-
-      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
-      expect(onClose).toHaveBeenCalled();
-    });
-
-    it('should return focus to the toggle button when closed from inside the dropdown', async () => {
-      const { getByTestId } = render(<ApiRefDropdown />);
-
-      await userEvent.click(getByTestId('dropdownButton'));
-      await userEvent.keyboard('{ArrowDown}');
-      await userEvent.keyboard('x');
-
-      expect(getByTestId('dropdownButton')).toHaveFocus();
-    });
-
-    it('should open the dropdown', async () => {
-      const onOpen = jest.fn();
-
-      const { getByTestId } = render(<ApiRefDropdown onOpen={onOpen} />);
-
-      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
-
-      await userEvent.click(getByTestId('outsideButton'));
-
-      expect(getByTestId('dropdownContent')).toHaveStyleRule(
-        'display',
-        'block'
-      );
-      expect(onOpen).toHaveBeenCalled();
-    });
-
-    it('should call the current onClose handler and not a stale one', async () => {
-      const firstOnClose = jest.fn();
-      const secondOnClose = jest.fn();
-
-      const { getByTestId, rerender } = render(
-        <ApiRefDropdown onClose={firstOnClose} />
-      );
-
-      rerender(<ApiRefDropdown onClose={secondOnClose} />);
-
-      await userEvent.click(getByTestId('dropdownButton'));
-      await userEvent.keyboard('{ArrowDown}');
-      await userEvent.keyboard('x');
-
-      expect(secondOnClose).toHaveBeenCalled();
-      expect(firstOnClose).not.toHaveBeenCalled();
-    });
   });
 });

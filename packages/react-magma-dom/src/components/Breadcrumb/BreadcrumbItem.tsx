@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { ChevronRightIcon } from 'react-magma-icons';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -35,16 +34,16 @@ const StyledSpan = styled.span<{ isInverse?: boolean }>`
   display: flex;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
+`;
 
-  svg {
-    margin: 0 ${props => props.theme.spaceScale.spacing02};
-    color: ${props =>
-      props.isInverse
-        ? props.theme.colors.tertiary500
-        : props.theme.colors.neutral500};
-  }
+const StyledSeparator = styled.span<{ isInverse?: boolean }>`
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral500
+      : props.theme.colors.neutral700};
+  margin: 0 ${props => props.theme.spaceScale.spacing03};
 `;
 
 export const BreadcrumbItem = React.forwardRef<
@@ -62,9 +61,13 @@ export const BreadcrumbItem = React.forwardRef<
           <Hyperlink to={to} isInverse={isInverse}>
             {children}
           </Hyperlink>
-          <StyledSpan isInverse={isInverse} theme={theme} aria-hidden="true">
-            <ChevronRightIcon size={theme.iconSizes.small} />
-          </StyledSpan>
+          <StyledSeparator
+            isInverse={isInverse}
+            theme={theme}
+            aria-hidden="true"
+          >
+            /
+          </StyledSeparator>
         </>
       ) : (
         <>

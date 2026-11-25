@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { transparentize } from 'polished';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -191,8 +190,8 @@ export const StyledTable = styled.table<{
     props.hasOutsideBorder
       ? `1px solid ${
           props.isInverse
-            ? transparentize(0.6, props.theme.colors.neutral100)
-            : props.theme.colors.neutral300
+            ? props.theme.colors.neutral800
+            : props.theme.colors.neutral200
         }`
       : 'none'};
   border-radius: ${props => {
@@ -208,8 +207,8 @@ export const StyledTable = styled.table<{
   }};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   display: table;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
   font-family: ${props => props.theme.bodyFont};
@@ -294,21 +293,36 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       return 'Scrollable table';
     };
 
+    // Stable value lets memoized rows and cells skip re-rendering when the table re-renders.
+    const tableContextValue = React.useMemo(
+      () => ({
+        density,
+        hasHoverStyles,
+        hasSquareCorners,
+        hasTablePagination,
+        hasZebraStripes,
+        hasVerticalBorders,
+        isInverse,
+        isSelectable,
+        isSortableBySelected,
+        rowCount,
+      }),
+      [
+        density,
+        hasHoverStyles,
+        hasSquareCorners,
+        hasTablePagination,
+        hasZebraStripes,
+        hasVerticalBorders,
+        isInverse,
+        isSelectable,
+        isSortableBySelected,
+        rowCount,
+      ]
+    );
+
     return (
-      <TableContext.Provider
-        value={{
-          density,
-          hasHoverStyles,
-          hasSquareCorners,
-          hasTablePagination: hasTablePagination,
-          hasZebraStripes,
-          hasVerticalBorders,
-          isInverse: isInverse,
-          isSelectable,
-          isSortableBySelected,
-          rowCount,
-        }}
-      >
+      <TableContext.Provider value={tableContextValue}>
         <TableContainer
           data-testid={tableWrapper}
           isInverse={isInverse}

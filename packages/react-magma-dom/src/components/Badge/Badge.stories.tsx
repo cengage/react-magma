@@ -228,7 +228,7 @@ export const LightWeight = () => {
 
 export const Inverse = () => {
   return (
-    <Card background={magma.colors.primary700} isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <Badge color={BadgeColor.primary} isInverse>
           Primary

@@ -78,7 +78,7 @@ it('should render with inverse styles', () => {
   );
 
   expect(getByTestId(testId)).toHaveStyleRule('background', 'none');
-  expect(getByTestId(testId)).toHaveStyleRule('color', magma.colors.neutral100);
+  expect(getByTestId(testId)).toHaveStyleRule('color', magma.colors.neutral0);
 });
 
 describe('Test for accessibility', () => {

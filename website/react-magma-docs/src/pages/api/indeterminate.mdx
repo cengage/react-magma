@@ -10,9 +10,9 @@ props:
 <LeadParagraph>
   The IndeterminateCheckbox component is similar to the{' '}
   <Link to="/api/checkboxes">Checkbox component</Link>, except that instead of
-  accepting a boolean <code>checked</code> value, it takes the
-  `status` prop, with three possible statuses: `indeterminate`, `checked` and
-  `unchecked`. The default status is `unchecked`.
+  accepting a boolean <code>checked</code> value, it takes the `status` prop,
+  with three possible statuses: `indeterminate`, `checked` and `unchecked`. The
+  default status is `unchecked`.
 </LeadParagraph>
 
 ## Basic Usage
@@ -96,11 +96,12 @@ import {
   IndeterminateCheckboxStatus,
   Card,
   CardBody,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <IndeterminateCheckbox
           status={IndeterminateCheckboxStatus.indeterminate}

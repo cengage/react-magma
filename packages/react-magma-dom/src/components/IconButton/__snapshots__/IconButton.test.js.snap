@@ -6,9 +6,9 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 100%;
   color: #FFFFFF;
   cursor: pointer;
@@ -19,7 +19,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 18px;
   font-weight: 500;
   height: 56px;
@@ -37,10 +37,10 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: 56px;
@@ -58,19 +58,23 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -107,9 +111,9 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 100%;
   color: #FFFFFF;
   cursor: pointer;
@@ -120,7 +124,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 18px;
   font-weight: 500;
   height: 56px;
@@ -138,10 +142,10 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: 56px;
@@ -159,19 +163,23 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -221,13 +229,12 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
         fill="currentColor"
         height="24"
         role="none"
-        viewBox="0 0 24 24"
+        viewBox="0 -960 960 960"
         width="24"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-          fill-rule="evenodd"
+          d="M382-354l339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143z"
         />
       </svg>
     </span>
@@ -241,9 +248,9 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 100%;
   color: #FFFFFF;
   cursor: pointer;
@@ -254,7 +261,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 12px;
   font-weight: 500;
   height: 28px;
@@ -272,10 +279,10 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: 28px;
@@ -293,19 +300,23 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -342,9 +353,9 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 100%;
   color: #FFFFFF;
   cursor: pointer;
@@ -355,7 +366,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 12px;
   font-weight: 500;
   height: 28px;
@@ -373,10 +384,10 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: 28px;
@@ -394,19 +405,23 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -456,13 +471,12 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
         fill="currentColor"
         height="16"
         role="none"
-        viewBox="0 0 24 24"
+        viewBox="0 -960 960 960"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-          fill-rule="evenodd"
+          d="M382-354l339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143z"
         />
       </svg>
     </span>
@@ -478,9 +492,9 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   align-items: center;
   background: #FFFFFF;
   border: 1px solid;
-  border-color: #8B91DA;
+  border-color: #C5CEDB;
   border-radius: 100%;
-  color: #3942B0;
+  color: #0B1F3A;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -489,7 +503,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -507,10 +521,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: 40px;
@@ -528,20 +542,24 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: rgba(222,229,238,0.5);
+  color: #0B1F3A;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: rgba(222,229,238,0.5);
+  color: #0B1F3A;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: rgba(222,229,238,0.75);
+  color: #0B1F3A;
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -579,9 +597,9 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   align-items: center;
   background: #FFFFFF;
   border: 1px solid;
-  border-color: #8B91DA;
+  border-color: #C5CEDB;
   border-radius: 100%;
-  color: #3942B0;
+  color: #0B1F3A;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -590,7 +608,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -608,10 +626,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: 40px;
@@ -629,20 +647,24 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: rgba(222,229,238,0.5);
+  color: #0B1F3A;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: rgba(222,229,238,0.5);
+  color: #0B1F3A;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: rgba(222,229,238,0.75);
+  color: #0B1F3A;
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -691,13 +713,12 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
         fill="currentColor"
         height="20"
         role="none"
-        viewBox="0 0 24 24"
+        viewBox="0 -960 960 960"
         width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-          fill-rule="evenodd"
+          d="M382-354l339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143z"
         />
       </svg>
     </span>
@@ -711,9 +732,9 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -724,7 +745,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -742,10 +763,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: 40px;
@@ -763,19 +784,23 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -812,9 +837,9 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -825,7 +850,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -843,10 +868,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: 40px;
@@ -864,19 +889,23 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -926,13 +955,12 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
         fill="currentColor"
         height="20"
         role="none"
-        viewBox="0 0 24 24"
+        viewBox="0 -960 960 960"
         width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-          fill-rule="evenodd"
+          d="M382-354l339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143z"
         />
       </svg>
     </span>
@@ -946,9 +974,9 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 100%;
   color: #FFFFFF;
   cursor: pointer;
@@ -959,7 +987,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -977,10 +1005,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: 40px;
@@ -998,19 +1026,23 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -1047,9 +1079,9 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 100%;
   color: #FFFFFF;
   cursor: pointer;
@@ -1060,7 +1092,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -1078,10 +1110,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: 40px;
@@ -1099,19 +1131,23 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -1161,13 +1197,12 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
         fill="currentColor"
         height="20"
         role="none"
-        viewBox="0 0 24 24"
+        viewBox="0 -960 960 960"
         width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-          fill-rule="evenodd"
+          d="M382-354l339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143z"
         />
       </svg>
     </span>
@@ -1181,9 +1216,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -1194,7 +1229,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 18px;
   font-weight: 500;
   height: 56px;
@@ -1212,29 +1247,33 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -1276,9 +1315,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -1289,7 +1328,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 18px;
   font-weight: 500;
   height: 56px;
@@ -1307,29 +1346,33 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -1389,13 +1432,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
         fill="currentColor"
         height="24"
         role="none"
-        viewBox="0 0 24 24"
+        viewBox="0 -960 960 960"
         width="24"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-          fill-rule="evenodd"
+          d="M382-354l339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143z"
         />
       </svg>
     </span>
@@ -1409,9 +1451,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -1422,7 +1464,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -1440,29 +1482,33 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -1504,9 +1550,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -1517,7 +1563,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -1535,29 +1581,33 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -1617,13 +1667,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
         fill="currentColor"
         height="20"
         role="none"
-        viewBox="0 0 24 24"
+        viewBox="0 -960 960 960"
         width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-          fill-rule="evenodd"
+          d="M382-354l339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143z"
         />
       </svg>
     </span>
@@ -1637,9 +1686,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -1650,7 +1699,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 12px;
   font-weight: 500;
   height: 28px;
@@ -1668,29 +1717,33 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -1732,9 +1785,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -1745,7 +1798,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 12px;
   font-weight: 500;
   height: 28px;
@@ -1763,29 +1816,33 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -1845,13 +1902,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
         fill="currentColor"
         height="16"
         role="none"
-        viewBox="0 0 24 24"
+        viewBox="0 -960 960 960"
         width="16"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-          fill-rule="evenodd"
+          d="M382-354l339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143z"
         />
       </svg>
     </span>
@@ -1867,9 +1923,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   align-items: center;
   background: #FFFFFF;
   border: 1px solid;
-  border-color: #8B91DA;
+  border-color: #C5CEDB;
   border-radius: 8px;
-  color: #3942B0;
+  color: #0B1F3A;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1878,7 +1934,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -1896,30 +1952,34 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: rgba(222,229,238,0.5);
+  color: #0B1F3A;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: rgba(222,229,238,0.5);
+  color: #0B1F3A;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: rgba(222,229,238,0.75);
+  color: #0B1F3A;
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -1962,9 +2022,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   align-items: center;
   background: #FFFFFF;
   border: 1px solid;
-  border-color: #8B91DA;
+  border-color: #C5CEDB;
   border-radius: 8px;
-  color: #3942B0;
+  color: #0B1F3A;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1973,7 +2033,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -1991,30 +2051,34 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: rgba(222,229,238,0.5);
+  color: #0B1F3A;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: rgba(222,229,238,0.5);
+  color: #0B1F3A;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: rgba(222,229,238,0.75);
+  color: #0B1F3A;
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -2073,13 +2137,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
         fill="currentColor"
         height="20"
         role="none"
-        viewBox="0 0 24 24"
+        viewBox="0 -960 960 960"
         width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-          fill-rule="evenodd"
+          d="M382-354l339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143z"
         />
       </svg>
     </span>
@@ -2093,9 +2156,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -2106,7 +2169,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -2124,29 +2187,33 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -2188,9 +2255,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -2201,7 +2268,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -2219,29 +2286,33 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -2301,13 +2372,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
         fill="currentColor"
         height="20"
         role="none"
-        viewBox="0 0 24 24"
+        viewBox="0 -960 960 960"
         width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-          fill-rule="evenodd"
+          d="M382-354l339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143z"
         />
       </svg>
     </span>
@@ -2321,9 +2391,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -2334,7 +2404,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -2354,27 +2424,31 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   text-decoration: none;
   text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -2416,9 +2490,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -2429,7 +2503,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -2449,27 +2523,31 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   text-decoration: none;
   text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -2529,13 +2607,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
         fill="currentColor"
         height="20"
         role="none"
-        viewBox="0 0 24 24"
+        viewBox="0 -960 960 960"
         width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-          fill-rule="evenodd"
+          d="M382-354l339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143z"
         />
       </svg>
     </span>
@@ -2549,9 +2626,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -2562,7 +2639,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -2580,29 +2657,33 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -2644,9 +2725,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: #0B1F3A;
   border: 0;
-  border-color: #3942B0;
+  border-color: #0B1F3A;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -2657,7 +2738,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 500;
   height: 40px;
@@ -2675,29 +2756,33 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   text-align: center;
   -webkit-text-decoration: none;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: none;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  -webkit-transition: none;
+  transition: none;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid #3082CA;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):hover {
+  background: #063565;
+  color: #FFFFFF;
+}
+
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
+  background: #063565;
   color: #FFFFFF;
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
+  background: #0B1F3A;
   color: #FFFFFF;
 }
 
@@ -2757,13 +2842,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
         fill="currentColor"
         height="20"
         role="none"
-        viewBox="0 0 24 24"
+        viewBox="0 -960 960 960"
         width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-          fill-rule="evenodd"
+          d="M382-354l339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143z"
         />
       </svg>
     </span>

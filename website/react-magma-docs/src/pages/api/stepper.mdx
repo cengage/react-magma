@@ -254,7 +254,14 @@ For proper accessibility usage, the `ariaLabel` prop takes a string to idenitify
 ```tsx
 import React from 'react';
 
-import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
+import {
+  Container,
+  Stepper,
+  Step,
+  Button,
+  ButtonGroup,
+  magma,
+} from 'react-magma-dom';
 
 export function Example() {
   const [currentStep, setCurrentStep] = React.useState(4);
@@ -1065,7 +1072,14 @@ When a `Step` is in the error state, use `hasError` on the `Step` to change the 
 ```tsx
 import React from 'react';
 
-import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
+import {
+  Container,
+  Stepper,
+  Step,
+  Button,
+  ButtonGroup,
+  magma,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -1126,7 +1140,14 @@ export function Example() {
   };
 
   return (
-    <Container isInverse style={{ padding: '20px' }}>
+    <Container
+      isInverse
+      style={{
+        background: magma.colors.neutral1100,
+        borderRadius: '8px',
+        padding: '20px',
+      }}
+    >
       <Stepper ariaLabel="progress" currentStep={currentStep} isInverse>
         <Step label="First Step" secondaryLabel="Description One" />
         <Step label="Second Step" secondaryLabel="Description Two" />

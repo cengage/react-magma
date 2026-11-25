@@ -22,6 +22,38 @@ describe('NavTabs', () => {
     const { getByTestId } = render(<NavTabs testId={testId} />);
 
     expect(getByTestId(testId)).toBeInTheDocument();
+    expect(getByTestId(testId)).toHaveStyleRule('border-bottom', '0');
+  });
+
+  it('should move or hide the divider border', () => {
+    const testId = 'test-id';
+    const { getByTestId, rerender } = render(
+      <NavTabs testId={testId} borderPosition="top" hasBorder />
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border-top',
+      `1px solid ${magma.colors.neutral200}`
+    );
+
+    rerender(
+      <NavTabs
+        testId={testId}
+        borderPosition="right"
+        hasBorder
+        orientation="vertical"
+        isInverse
+      />
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border-right',
+      `1px solid ${magma.colors.neutral800}`
+    );
+
+    rerender(<NavTabs testId={testId} hasBorder={false} />);
+
+    expect(getByTestId(testId)).toHaveStyleRule('border-bottom', '0');
   });
 
   it('should render tab as passed in component', () => {
@@ -53,6 +85,28 @@ describe('NavTabs', () => {
 
     expect(getByTestId('component')).toBeInTheDocument();
     expect(getByTestId('icon')).toBeInTheDocument();
+  });
+
+  it('should render a tab passed in component with role "tab"', () => {
+    const { getByRole } = render(
+      <NavTabs>
+        <NavTab component={<a href="google.com">Test Component</a>} />
+      </NavTabs>
+    );
+
+    expect(getByRole('tab', { name: 'Test Component' })).toBeInTheDocument();
+  });
+
+  it('should not pass the theme prop to a tab passed in component as a DOM attribute', () => {
+    const { getByRole } = render(
+      <NavTabs>
+        <NavTab component={<a href="google.com">Test Component</a>} />
+      </NavTabs>
+    );
+
+    expect(getByRole('tab', { name: 'Test Component' })).not.toHaveAttribute(
+      'theme'
+    );
   });
 
   it('should render centered tabs', () => {
@@ -90,18 +144,18 @@ describe('NavTabs', () => {
 
     expect(container.querySelector('a')).toHaveStyleRule(
       'text-transform',
-      'uppercase'
+      'none'
     );
 
     rerender(
-      <NavTabs textTransform="none">
+      <NavTabs textTransform="uppercase">
         <NavTab>Tab 1</NavTab>
       </NavTabs>
     );
 
     expect(container.querySelector('a')).toHaveStyleRule(
       'text-transform',
-      'none'
+      'uppercase'
     );
   });
 
@@ -208,6 +262,22 @@ describe('NavTabs', () => {
           <NavTab>This is tab 1</NavTab>
           <NavTab>This is tab 2</NavTab>
           <NavTab>This is tab 3</NavTab>
+        </NavTabs>
+      );
+
+      return axe(container.innerHTML, {
+        rules: { listitem: { enabled: false } },
+      }).then(result => {
+        return expect(result).toHaveNoViolations();
+      });
+    });
+
+    it('Does not violate accessibility standards with custom component tabs', () => {
+      const { container } = render(
+        <NavTabs aria-label="Custom tabs">
+          <NavTab component={<a href="./">Main page</a>} />
+          <NavTab isActive component={<a href="./">FAQ</a>} />
+          <NavTab component={<a href="./">About us</a>} />
         </NavTabs>
       );
 

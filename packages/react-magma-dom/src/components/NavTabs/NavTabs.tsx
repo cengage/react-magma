@@ -22,8 +22,14 @@ import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
 import { useTabsMeta, useScrollTabFocus } from '../Tabs/utils';
 import { VisuallyHidden } from '../VisuallyHidden';
 
-export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {
+export interface NavTabsProps
+  extends Omit<TabsProps, 'hasBorder' | 'onChange'> {
   'aria-label'?: string;
+  /**
+   * If true, a divider border is displayed
+   * @default false
+   */
+  hasBorder?: boolean;
 }
 
 interface NavTabsContextInterface {
@@ -41,7 +47,7 @@ export const NavTabsContext = React.createContext<NavTabsContextInterface>({
   isInverse: false,
   isFullWidth: false,
   orientation: TabsOrientation.horizontal,
-  textTransform: TabsTextTransform.uppercase,
+  textTransform: TabsTextTransform.none,
 });
 
 export const NavTabs = React.forwardRef<
@@ -53,6 +59,7 @@ export const NavTabs = React.forwardRef<
     backgroundColor,
     borderPosition,
     children,
+    hasBorder = false,
     iconPosition,
     isFullWidth,
     orientation,
@@ -216,7 +223,9 @@ export const NavTabs = React.forwardRef<
       aria-label={rest['aria-label']}
       as="nav"
       backgroundColor={backgroundColor}
+      borderPosition={borderPosition}
       data-testid={testId}
+      hasBorder={hasBorder}
       isInverse={isInverse}
       orientation={orientation || TabsOrientation.horizontal}
       ref={ref}
@@ -234,13 +243,17 @@ export const NavTabs = React.forwardRef<
       />
 
       <StyledTabsWrapper
+        borderPosition={borderPosition}
         data-testid="navTabsWrapper"
+        hasBorder={hasBorder}
         onScroll={handleTabsScroll}
         orientation={orientation || TabsOrientation.horizontal}
         ref={tabsWrapperRef}
       >
         <StyledTabs
           alignment={alignment ? alignment : TabsAlignment.left}
+          borderPosition={borderPosition}
+          hasBorder={hasBorder}
           orientation={orientation}
           ref={childrenWrapperRef}
           role="tablist"
@@ -252,7 +265,7 @@ export const NavTabs = React.forwardRef<
               isInverse: isInverse,
               isFullWidth,
               orientation,
-              textTransform: textTransform || TabsTextTransform.uppercase,
+              textTransform: textTransform || TabsTextTransform.none,
             }}
           >
             {navTabsChildren}

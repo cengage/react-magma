@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import isPropValid from '@emotion/is-prop-valid';
 import styled from '@emotion/styled';
-import { CloseIcon } from 'react-magma-icons';
+import { CloseOutlinedIcon } from 'react-magma-icons';
 
 import { I18nInterface } from '../..';
 import { I18nContext } from '../../i18n';
@@ -120,19 +120,11 @@ const shouldForwardProp = prop => {
 };
 
 function buildDismissButtonColor(props) {
-  if (props.isInverse) {
-    return props.theme.colors.neutral100;
-  }
-  switch (props.alertVariant) {
-    case 'success':
-      return props.theme.colors.success500;
-    case 'warning':
-      return props.theme.colors.warning500;
-    case 'danger':
-      return props.theme.colors.danger500;
-    default:
-      return props.theme.colors.info500;
-  }
+  return buildAlertColor({
+    isInverse: props.isInverse,
+    theme: props.theme,
+    variant: props.alertVariant,
+  });
 }
 
 const DismissButton = styled(IconButton, { shouldForwardProp })<{
@@ -275,7 +267,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
               aria-label={
                 closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
               }
-              icon={<CloseIcon size={theme.iconSizes.small} />}
+              icon={<CloseOutlinedIcon size={theme.iconSizes.small} />}
               isInverse={isInverse}
               onClick={onDismiss}
               theme={theme}

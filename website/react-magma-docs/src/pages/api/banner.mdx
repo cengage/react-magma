@@ -170,7 +170,7 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Banner, AlertVariant, Container } from 'react-magma-dom';
+import { Banner, AlertVariant, Container, magma } from 'react-magma-dom';
 
 export function Example() {
   function handleActionButtonClick() {
@@ -178,7 +178,14 @@ export function Example() {
   }
 
   return (
-    <Container isInverse style={{ padding: '12px' }}>
+    <Container
+      isInverse
+      style={{
+        background: magma.colors.neutral1100,
+        borderRadius: '8px',
+        padding: '12px',
+      }}
+    >
       <Banner
         actionButtonText="Action"
         actionButtonOnClick={handleActionButtonClick}

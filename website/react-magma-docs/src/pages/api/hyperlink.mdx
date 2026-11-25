@@ -321,10 +321,10 @@ import { OpenInNewIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <>
-      <Hyperlink 
-        opensInNewTab 
-        to="https://www.google.com" 
-        hasUnderline={false} 
+      <Hyperlink
+        opensInNewTab
+        to="https://www.google.com"
+        hasUnderline={false}
         icon={<OpenInNewIcon size={magma.iconSizes.small} aria-hidden />}
         iconPosition={HyperlinkIconPosition.right}
       >
@@ -375,11 +375,11 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Card, CardBody, Hyperlink, Paragraph } from 'react-magma-dom';
+import { Card, CardBody, Hyperlink, magma, Paragraph } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <Paragraph>
           <Hyperlink isInverse opensInNewTab to="https://www.google.com">

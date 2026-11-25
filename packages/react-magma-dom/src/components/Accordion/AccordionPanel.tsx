@@ -26,8 +26,8 @@ const StyledPanel = styled.div<AccordionPanelProps>`
   background: transparent;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   font-family: ${props => props.theme.bodyFont};
   padding: ${props =>
     `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing04}`};
@@ -37,7 +37,13 @@ export const AccordionPanel = React.forwardRef<
   HTMLDivElement,
   AccordionPanelProps
 >((props, ref) => {
-  const { children, testId, isInverse: isInverseProp, ...rest } = props;
+  const {
+    children,
+    testId,
+    isInverse: isInverseProp,
+    role = 'region',
+    ...rest
+  } = props;
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
 
@@ -55,7 +61,7 @@ export const AccordionPanel = React.forwardRef<
         isInverse={isInverse}
         ref={ref}
         theme={theme}
-        role="region"
+        role={role}
       >
         {children}
       </StyledPanel>

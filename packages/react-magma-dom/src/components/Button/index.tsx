@@ -34,8 +34,8 @@ export enum ButtonSize {
 }
 
 export enum ButtonTextTransform {
-  uppercase = 'uppercase', //default
-  none = 'none',
+  uppercase = 'uppercase',
+  none = 'none', //default
 }
 
 export enum ButtonType {
@@ -73,7 +73,7 @@ export interface ButtonStyles {
   size?: ButtonSize;
   /**
    * Determines whether the button appears in all-caps
-   * @default ButtonTextTransform.uppercase
+   * @default ButtonTextTransform.none
    */
   textTransform?: ButtonTextTransform;
   /**
@@ -123,7 +123,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         shape={shape || ButtonShape.fill}
         size={size || ButtonSize.medium}
         testId={testId}
-        textTransform={textTransform || ButtonTextTransform.uppercase}
+        textTransform={textTransform || ButtonTextTransform.none}
         variant={variant || ButtonVariant.solid}
       >
         {resolvedProps.children}

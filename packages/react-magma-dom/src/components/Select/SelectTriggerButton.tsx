@@ -88,7 +88,17 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
         theme={theme}
       >
         <ChildrenContainer theme={theme}>{children}</ChildrenContainer>
-        <DropdownIndicator />
+        <DropdownIndicator
+          color={
+            disabled
+              ? isInverse
+                ? theme.colors.neutral700
+                : theme.colors.neutral500
+              : isInverse
+                ? theme.colors.neutral0
+                : theme.colors.brand.navy
+          }
+        />
       </StyledButton>
     </div>
   );

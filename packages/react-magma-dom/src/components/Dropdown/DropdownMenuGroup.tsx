@@ -29,3 +29,5 @@ export const DropdownMenuGroup: React.FunctionComponent<
     </div>
   );
 };
+
+DropdownMenuGroup.displayName = 'DropdownMenuGroup';

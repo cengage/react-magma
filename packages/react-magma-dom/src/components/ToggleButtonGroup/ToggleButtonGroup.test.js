@@ -38,10 +38,79 @@ describe('ToggleButtonGroup', () => {
     );
     const wrapper = getByTestId(testId);
 
-    expect(wrapper).toHaveStyleRule('row-gap', magma.spaceScale.spacing03);
+    expect(wrapper).toHaveStyleRule('gap', magma.spaceScale.spacing03);
     expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
       'padding',
       `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing05}`
+    );
+  });
+
+  it('Has no space and consistent separators when noSpace is true', () => {
+    const { getByTestId, rerender } = render(
+      <ToggleButtonGroup noSpace testId={testId}>
+        <ToggleButton value="1">{TEXT}</ToggleButton>
+        <ToggleButton value="2">{TEXT}</ToggleButton>
+      </ToggleButtonGroup>
+    );
+
+    const wrapper = getByTestId(testId);
+
+    expect(wrapper).toHaveStyleRule('gap', '0');
+    expect(wrapper).toHaveStyleRule(
+      'border-left',
+      `1px solid ${magma.colors.neutral300}`,
+      { target: '>button:not(:first-child)' }
+    );
+    expect(wrapper).toHaveStyleRule(
+      'box-shadow',
+      `0 0 0 2px ${magma.colors.neutral0},0 0 0 4px ${magma.colors.focus}`,
+      { target: '>button:focus' }
+    );
+    expect(wrapper).toHaveStyleRule(
+      'box-shadow',
+      `0 0 0 2px ${magma.colors.neutral0},0 0 0 4px ${magma.colors.focus}`,
+      { target: ">button[aria-checked='true']:focus" }
+    );
+    expect(wrapper).toHaveStyleRule('outline', 'none', {
+      target: '>button:focus',
+    });
+
+    rerender(
+      <ToggleButtonGroup noSpace isInverse testId={testId}>
+        <ToggleButton value="1">{TEXT}</ToggleButton>
+        <ToggleButton value="2">{TEXT}</ToggleButton>
+      </ToggleButtonGroup>
+    );
+
+    expect(wrapper).toHaveStyleRule(
+      'border-left',
+      `1px solid ${magma.colors.neutral800}`,
+      { target: '>button:not(:first-child)' }
+    );
+    expect(wrapper).toHaveStyleRule(
+      'box-shadow',
+      `0 0 0 2px ${magma.colors.neutral1100},0 0 0 4px ${magma.colors.focusInverse}`,
+      { target: '>button:focus' }
+    );
+    expect(wrapper).toHaveStyleRule(
+      'box-shadow',
+      `0 0 0 2px ${magma.colors.neutral1100},0 0 0 4px ${magma.colors.focusInverse}`,
+      { target: ">button[aria-checked='true']:focus" }
+    );
+  });
+
+  it('Removes the outer right border when the last button is selected', () => {
+    const { getByTestId } = render(
+      <ToggleButtonGroup noSpace value="2" testId={testId}>
+        <ToggleButton value="1">{TEXT}</ToggleButton>
+        <ToggleButton value="2">{TEXT}</ToggleButton>
+      </ToggleButtonGroup>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border-right-color',
+      'transparent',
+      { target: ">button:last-child[aria-checked='true']" }
     );
   });
 
@@ -165,7 +234,7 @@ describe('ToggleButtonGroup', () => {
         const buttonOne = getByTestId(testId);
         expect(buttonOne).toHaveStyleRule(
           'background',
-          transparentize(0.5, magma.colors.neutral300)
+          magma.colors.neutral700
         );
         expect(buttonOne).toHaveAttribute('aria-checked', 'true');
       });

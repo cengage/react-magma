@@ -75,27 +75,33 @@ describe('Tab', () => {
     const testId = 'test-id';
 
     const { getByTestId, rerender } = render(
-      <Tabs>
-        <Tab testId={testId} disabled>
-          Tab Text
-        </Tab>
-      </Tabs>
+      <TabsContainer activeIndex={1}>
+        <Tabs>
+          <Tab testId={testId} disabled>
+            Tab Text
+          </Tab>
+        </Tabs>
+      </TabsContainer>
     );
     const component = getByTestId(testId);
 
     expect(component).toHaveProperty('disabled', true);
     expect(component).toBeDisabled();
+    expect(component).toHaveStyleRule('color', magma.colors.neutral500);
+    expect(component).toHaveStyleRule('font-weight', '400');
     expect(getByTestId('tabContainer')).toHaveStyleRule(
       'cursor',
       'not-allowed'
     );
 
     rerender(
-      <Tabs>
-        <Tab testId={testId} disabled={false}>
-          Tab Text
-        </Tab>
-      </Tabs>
+      <TabsContainer activeIndex={1}>
+        <Tabs>
+          <Tab testId={testId} disabled={false}>
+            Tab Text
+          </Tab>
+        </Tabs>
+      </TabsContainer>
     );
 
     expect(component).toHaveProperty('disabled', false);
@@ -126,18 +132,37 @@ describe('Tab', () => {
     expect(getByTestId('icon')).toBeInTheDocument();
   });
 
-  it('should change color when isInverse prop is true', () => {
-    const testId = 'test-id';
-
+  it('should render inverse tab states with the correct styles', () => {
     const { getByTestId } = render(
-      <Tabs isInverse>
-        <Tab testId={testId}>Inverse Tab</Tab>
-      </Tabs>
+      <TabsContainer activeIndex={0}>
+        <Tabs isInverse>
+          <Tab testId="active-tab">Active inverse tab</Tab>
+          <Tab testId="inactive-tab">Inactive inverse tab</Tab>
+          <Tab testId="disabled-tab" disabled>
+            Disabled inverse tab
+          </Tab>
+        </Tabs>
+      </TabsContainer>
     );
 
-    expect(getByTestId(testId)).toHaveStyleRule(
+    expect(getByTestId('active-tab')).toHaveStyleRule(
       'color',
-      magma.colors.neutral100
+      magma.colors.neutral0
+    );
+    expect(getByTestId('active-tab')).toHaveStyleRule('font-weight', '600');
+    expect(getByTestId('inactive-tab')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral500
+    );
+    expect(getByTestId('inactive-tab')).toHaveStyleRule(
+      'background-color',
+      magma.colors.neutral900,
+      { target: ':hover' }
+    );
+    expect(getByTestId('inactive-tab')).toHaveStyleRule('font-weight', '400');
+    expect(getByTestId('disabled-tab')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral600
     );
   });
 
@@ -151,8 +176,28 @@ describe('Tab', () => {
     );
 
     expect(getByTestId(testId)).toHaveStyleRule('align-items', 'center');
+    expect(getByTestId(testId)).toHaveStyleRule('height', 'auto');
+    expect(getByTestId(testId)).toHaveStyleRule('min-height', '40px');
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'padding',
+      `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05}`
+    );
     expect(getByTestId(testId)).toHaveStyleRule('text-align', 'left');
     expect(getByTestId(testId)).toHaveStyleRule('width', '100%');
+  });
+
+  it('should align a vertical tab icon with the first line of text', () => {
+    const testId = 'test-id';
+
+    const { getByTestId } = render(
+      <Tabs iconPosition="left" orientation="vertical">
+        <Tab testId={testId} icon={<CheckIcon size={18} />}>
+          A long vertical tab label that wraps onto another line
+        </Tab>
+      </Tabs>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule('align-items', 'flex-start');
   });
 
   it('should render a fullWidth tab with the correct styles', () => {
@@ -185,6 +230,7 @@ describe('Tab', () => {
     );
     expect(getByTestId(testId)).toHaveStyleRule('flex-direction', 'column');
     expect(getByTestId(testId)).toHaveStyleRule('align-items', 'center');
+    expect(getByTestId(testId)).toHaveStyleRule('height', 'auto');
 
     rerender(
       <Tabs iconPosition="left">
@@ -199,6 +245,11 @@ describe('Tab', () => {
       `0 ${magma.spaceScale.spacing03} 0 0`
     );
     expect(getByTestId(testId)).not.toHaveStyleRule('flex-direction', 'column');
+    expect(getByTestId(testId)).toHaveStyleRule('height', '40px');
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'padding',
+      `0 ${magma.spaceScale.spacing03}`
+    );
   });
 
   it('should show icon in left position', () => {
@@ -218,6 +269,7 @@ describe('Tab', () => {
       `0 ${magma.spaceScale.spacing03} 0 0`
     );
     expect(getByTestId(testId)).not.toHaveStyleRule('flex-direction', 'column');
+    expect(getByTestId(testId)).toHaveStyleRule('height', '40px');
   });
 });
 

@@ -30,6 +30,8 @@ export function Example() {
 
 ## Colors
 
+Tags are available in a range of colors to help you organize and categorize information.
+
 ```tsx
 import React from 'react';
 
@@ -38,7 +40,6 @@ import {
   TagColor,
   Flex,
   FlexBehavior,
-  FlexJustify,
   magma,
 } from 'react-magma-dom';
 
@@ -46,8 +47,11 @@ export function Example() {
   return (
     <Flex
       behavior={FlexBehavior.container}
-      justify={FlexJustify.spaceBetween}
-      style={{ gap: magma.spaceScale.spacing02, maxWidth: '450px' }}
+      style={{
+        flexWrap: 'wrap',
+        gap: magma.spaceScale.spacing02,
+        maxWidth: '450px',
+      }}
     >
       <Flex behavior={FlexBehavior.item}>
         <Tag> Default</Tag>
@@ -60,6 +64,27 @@ export function Example() {
       </Flex>
       <Flex behavior={FlexBehavior.item}>
         <Tag color={TagColor.highContrast}>High Contrast</Tag>
+      </Flex>
+      <Flex behavior={FlexBehavior.item}>
+        <Tag color={TagColor.blue}>Blue</Tag>
+      </Flex>
+      <Flex behavior={FlexBehavior.item}>
+        <Tag color={TagColor.teal}>Teal</Tag>
+      </Flex>
+      <Flex behavior={FlexBehavior.item}>
+        <Tag color={TagColor.pink}>Pink</Tag>
+      </Flex>
+      <Flex behavior={FlexBehavior.item}>
+        <Tag color={TagColor.purple}>Purple</Tag>
+      </Flex>
+      <Flex behavior={FlexBehavior.item}>
+        <Tag color={TagColor.tangerine}>Tangerine</Tag>
+      </Flex>
+      <Flex behavior={FlexBehavior.item}>
+        <Tag color={TagColor.indigo}>Indigo</Tag>
+      </Flex>
+      <Flex behavior={FlexBehavior.item}>
+        <Tag color={TagColor.violet}>Violet</Tag>
       </Flex>
     </Flex>
   );
@@ -309,7 +334,6 @@ import {
   CardBody,
   Flex,
   FlexBehavior,
-  FlexJustify,
   Spacer,
   SpacerAxis,
   Tag,
@@ -319,29 +343,63 @@ import {
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <Flex
           behavior={FlexBehavior.container}
-          justify={FlexJustify.spaceBetween}
-          style={{ gap: magma.spaceScale.spacing03 }}
+          style={{ flexWrap: 'wrap', gap: magma.spaceScale.spacing03 }}
         >
-          <Flex behavior={FlexBehavior.item} sx={3}>
+          <Flex behavior={FlexBehavior.item}>
             <Tag isInverse>Inverse Default</Tag>
           </Flex>
-          <Flex behavior={FlexBehavior.item} sx={3}>
+          <Flex behavior={FlexBehavior.item}>
             <Tag isInverse color={TagColor.primary}>
               Inverse Primary
             </Tag>
           </Flex>
-          <Flex behavior={FlexBehavior.item} sx={3}>
+          <Flex behavior={FlexBehavior.item}>
             <Tag isInverse color={TagColor.lowContrast}>
               Inverse Low Contrast
             </Tag>
           </Flex>
-          <Flex behavior={FlexBehavior.item} sx={3}>
+          <Flex behavior={FlexBehavior.item}>
             <Tag isInverse color={TagColor.highContrast}>
               Inverse High Contrast
+            </Tag>
+          </Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Tag isInverse color={TagColor.blue}>
+              Inverse Blue
+            </Tag>
+          </Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Tag isInverse color={TagColor.teal}>
+              Inverse Teal
+            </Tag>
+          </Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Tag isInverse color={TagColor.pink}>
+              Inverse Pink
+            </Tag>
+          </Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Tag isInverse color={TagColor.purple}>
+              Inverse Purple
+            </Tag>
+          </Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Tag isInverse color={TagColor.tangerine}>
+              Inverse Tangerine
+            </Tag>
+          </Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Tag isInverse color={TagColor.indigo}>
+              Inverse Indigo
+            </Tag>
+          </Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Tag isInverse color={TagColor.violet}>
+              Inverse Violet
             </Tag>
           </Flex>
         </Flex>
@@ -368,7 +426,7 @@ import {
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <Tag isInverse disabled>
           Inverse Disabled

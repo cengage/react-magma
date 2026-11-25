@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { ArrowBackIcon, CloseIcon } from 'react-magma-icons';
+import { ArrowBackOutlinedIcon, CloseOutlinedIcon } from 'react-magma-icons';
 
 import { useFocusLock } from '../../hooks/useFocusLock';
 import { I18nContext } from '../../i18n';
@@ -53,8 +53,8 @@ const KeyboardShortcutButtonWrapper = styled.span<{
 }>`
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.primary400
-      : props.theme.colors.neutral200};
+      ? props.theme.colors.neutral900
+      : props.theme.colors.neutral150};
   font-family: monospace;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
@@ -79,12 +79,12 @@ const StyledNavContainer = styled.div<{
   border-bottom: 1px solid
     ${props =>
       props.isInverse
-        ? props.theme.colors.primary400
-        : props.theme.colors.neutral300};
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.primary600
-      : props.theme.colors.neutral200};
+      ? props.theme.colors.neutral1100
+      : props.theme.colors.neutral100};
   height: 44px;
 `;
 const StyledContent = styled.div<{
@@ -94,8 +94,8 @@ const StyledContent = styled.div<{
   position: relative;
   color: ${props =>
     props.isInverse
-      ? props?.theme?.colors?.neutral100
-      : props?.theme?.colors?.neutral700};
+      ? props?.theme?.colors?.neutral0
+      : props?.theme?.colors?.brand?.navy};
 
   h2 {
     margin: ${props => props.theme?.spaceScale.spacing05} 0
@@ -127,14 +127,14 @@ const BackToCalendarWrapper = styled.span<{
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.tertiary500
-      : props.theme.colors.primary500};
+      ? props.theme.colors.brand.skyBlue
+      : props.theme.colors.cyan700};
 
   &:hover {
     color: ${props =>
       props.isInverse
-        ? props.theme.colors.neutral100
-        : props.theme.colors.primary600};
+        ? props.theme.colors.cyan400
+        : props.theme.colors.cyan800};
   }
   svg {
     height: 20px;
@@ -163,7 +163,7 @@ export const HelperInformation: React.FunctionComponent<
             aria-label={i18n.datePicker.backToCalendarAriaLabel}
             target="_self"
             to="#"
-            icon={<ArrowBackIcon />}
+            icon={<ArrowBackOutlinedIcon />}
             iconPosition={HyperlinkIconPosition.left}
             hasUnderline={false}
             isInverse={isInverse}
@@ -180,7 +180,7 @@ export const HelperInformation: React.FunctionComponent<
           <IconButton
             aria-label={i18n.datePicker.calendarCloseAriaLabel}
             color={ButtonColor.subtle}
-            icon={<CloseIcon />}
+            icon={<CloseOutlinedIcon />}
             isInverse={isInverse}
             size={ButtonSize.medium}
             type={ButtonType.button}
@@ -188,7 +188,7 @@ export const HelperInformation: React.FunctionComponent<
             variant={ButtonVariant.link}
             style={{
               color: isInverse
-                ? theme.colors.neutral100
+                ? theme.colors.neutral0
                 : theme.colors.neutral900,
             }}
           />

@@ -3,17 +3,17 @@
 exports[`Heading Snapshot should render expressive heading2XLarge correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #292F7C;
+  color: #0B1F3A;
   font-size: 48px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 64px;
   margin: 0 0 24px;
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -21,24 +21,24 @@ exports[`Heading Snapshot should render expressive heading2XLarge correctly 1`] 
 
 @media (min-width: 600px) {
   .emotion-0 {
-    font-size: 64px;
-    line-height: 84px;
+    font-size: 56px;
+    line-height: 64px;
   }
 }
 
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #292F7C;
+  color: #0B1F3A;
   font-size: 48px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 64px;
   margin: 0 0 24px;
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -46,8 +46,8 @@ exports[`Heading Snapshot should render expressive heading2XLarge correctly 1`] 
 
 @media (min-width: 600px) {
   .emotion-0 {
-    font-size: 64px;
-    line-height: 84px;
+    font-size: 56px;
+    line-height: 64px;
   }
 }
 
@@ -64,9 +64,9 @@ exports[`Heading Snapshot should render expressive heading2XLarge correctly 1`] 
 exports[`Heading Snapshot should render expressive headingXLarge correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #292F7C;
+  color: #0B1F3A;
   font-size: 28px;
   font-weight: 600;
   line-height: 40px;
@@ -77,7 +77,7 @@ exports[`Heading Snapshot should render expressive headingXLarge correctly 1`] =
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -93,15 +93,15 @@ exports[`Heading Snapshot should render expressive headingXLarge correctly 1`] =
 @media (min-width: 600px) {
   .emotion-0 {
     font-size: 48px;
-    line-height: 64px;
+    line-height: 56px;
   }
 }
 
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #292F7C;
+  color: #0B1F3A;
   font-size: 28px;
   font-weight: 600;
   line-height: 40px;
@@ -112,7 +112,7 @@ exports[`Heading Snapshot should render expressive headingXLarge correctly 1`] =
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -128,7 +128,7 @@ exports[`Heading Snapshot should render expressive headingXLarge correctly 1`] =
 @media (min-width: 600px) {
   .emotion-0 {
     font-size: 48px;
-    line-height: 64px;
+    line-height: 56px;
   }
 }
 
@@ -145,9 +145,9 @@ exports[`Heading Snapshot should render expressive headingXLarge correctly 1`] =
 exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 28px;
   font-weight: 600;
   line-height: 40px;
@@ -155,7 +155,7 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -170,9 +170,9 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 28px;
   font-weight: 600;
   line-height: 40px;
@@ -180,7 +180,7 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -206,9 +206,9 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 24px;
   font-weight: 600;
   line-height: 32px;
@@ -216,7 +216,7 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -231,9 +231,9 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 24px;
   font-weight: 600;
   line-height: 32px;
@@ -241,7 +241,7 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -266,9 +266,9 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 20px;
   font-weight: 600;
   line-height: 32px;
@@ -276,7 +276,7 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -291,9 +291,9 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 20px;
   font-weight: 600;
   line-height: 32px;
@@ -301,7 +301,7 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -326,9 +326,9 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -336,7 +336,7 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -351,9 +351,9 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -361,7 +361,7 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -386,9 +386,9 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -396,7 +396,7 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -411,9 +411,9 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
@@ -421,7 +421,7 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -446,9 +446,9 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 exports[`Heading Snapshot should render heading 6 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: .32px;
@@ -458,7 +458,7 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -474,9 +474,9 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
 
 .emotion-0 {
   border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
+  font-family: Inter,Arial,Helvetica,sans-serif;
   padding: 0;
-  color: #454545;
+  color: #0B1F3A;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: .32px;
@@ -486,7 +486,7 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px solid #0074B7;
+  border-bottom: 2px solid #3082CA;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;

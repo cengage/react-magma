@@ -199,7 +199,7 @@ export const StyledAIButtonTemplate = React.forwardRef<
   const i18n = React.useContext(I18nContext);
 
   const spinnerColor = isInverse
-    ? theme.colors.neutral100
+    ? theme.colors.neutral0
     : theme.colors.neutral500;
 
   const spinnerSize =

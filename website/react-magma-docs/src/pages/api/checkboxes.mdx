@@ -180,11 +180,12 @@ import {
   IndeterminateCheckboxStatus,
   List,
   ListItem,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <FormGroup isInverse labelText="Choose inverse options">
           <List>

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
-import { CancelIcon, IconProps } from 'react-magma-icons';
+import { CloseOutlinedIcon, IconProps } from 'react-magma-icons';
 
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
@@ -16,6 +16,13 @@ export enum TagColor {
   primary = 'primary',
   lowContrast = 'lowContrast',
   highContrast = 'highContrast',
+  blue = 'blue',
+  teal = 'teal',
+  pink = 'pink',
+  purple = 'purple',
+  tangerine = 'tangerine',
+  indigo = 'indigo',
+  violet = 'violet',
 }
 
 export enum TagSize {
@@ -84,147 +91,202 @@ export interface ClickableTagProps extends BaseTagProps {
 
 export type TagProps = XOR<DeletableTagProps, ClickableTagProps>;
 
-function buildBoxShadow(props) {
-  if (props.color === 'lowContrast') {
-    if (props.isInverse) {
-      if (props.disabled) {
-        return `0 0 0 1px ${transparentize(
-          0.8,
-          props.theme.colors.neutral100
-        )}`;
-      }
-
-      return `0 0 0 1px ${transparentize(0.5, props.theme.colors.neutral100)}`;
-    }
-    if (props.disabled) {
-      return `0 0 0 1px ${props.theme.colors.neutral300}`;
-    }
-
-    return `inset 0 0 0  1px ${props.theme.colors.neutral400}`;
+function getDataVizTagColor(props) {
+  switch (props.color) {
+    case TagColor.blue:
+      return {
+        background: props.theme.colors.blue100,
+        text: props.theme.colors.blue600,
+        inverseBackground: props.theme.colors.blue900,
+        inverseBackgroundTransparency: 0,
+        inverseText: props.theme.colors.blue400,
+      };
+    case TagColor.teal:
+      return {
+        background: props.theme.colors.teal100,
+        text: props.theme.colors.teal600,
+        inverseBackground: props.theme.colors.teal900,
+        inverseBackgroundTransparency: 0,
+        inverseText: props.theme.colors.teal400,
+      };
+    case TagColor.pink:
+      return {
+        background: props.theme.colors.red100,
+        text: props.theme.colors.red600,
+        inverseBackground: props.theme.colors.red900,
+        inverseBackgroundTransparency: 0,
+        inverseText: props.theme.colors.red400,
+      };
+    case TagColor.purple:
+      return {
+        background: props.theme.colors.purple100,
+        text: props.theme.colors.purple600,
+        inverseBackground: props.theme.colors.purple900,
+        inverseBackgroundTransparency: 0,
+        inverseText: props.theme.colors.purple400,
+      };
+    case TagColor.tangerine:
+      return {
+        background: props.theme.colors.tangerine100,
+        text: props.theme.colors.tangerine700,
+        inverseBackground: props.theme.colors.tangerine900,
+        inverseBackgroundTransparency: 0,
+        inverseText: props.theme.colors.tangerine400,
+      };
+    case TagColor.indigo:
+      return {
+        background: props.theme.colors.indigo100,
+        text: props.theme.colors.indigo600,
+        inverseBackground: props.theme.colors.indigo900,
+        inverseBackgroundTransparency: 0,
+        inverseText: props.theme.colors.indigo400,
+      };
+    case TagColor.violet:
+      return {
+        background: props.theme.colors.violet100,
+        text: props.theme.colors.violet600,
+        inverseBackground: props.theme.colors.violet900,
+        inverseBackgroundTransparency: 0,
+        inverseText: props.theme.colors.violet400,
+      };
+    default:
+      return null;
   }
 }
 
-function buildButtonBackground(props) {
-  if (props.isInverse) {
-    if (props.disabled) {
-      // Disabled inverse state background colors
-      switch (props.color) {
-        case 'primary':
-        case 'highContrast':
-          return transparentize(0.7, props.theme.colors.neutral100);
-        case 'lowContrast':
-          return `none`;
-        default:
-          return transparentize(0.7, props.theme.colors.neutral100);
-      }
+function buildBorder(props) {
+  const dataVizColor = getDataVizTagColor(props);
+  const isDefaultColor = !props.color || props.color === TagColor.default;
+
+  if (props.disabled) {
+    if (props.color === TagColor.lowContrast) {
+      return `1px solid ${
+        props.isInverse
+          ? props.theme.colors.neutral800
+          : props.theme.colors.neutral300
+      }`;
     }
+
+    return 'none';
+  }
+
+  if (dataVizColor) {
+    return 'none';
+  }
+
+  if (props.color === TagColor.primary) {
+    return `1px solid transparent`;
+  }
+
+  if (isDefaultColor) {
+    return 'none';
+  }
+
+  if (props.color === TagColor.lowContrast) {
+    if (props.isInverse) {
+      return `1px solid ${props.theme.colors.neutral800}`;
+    }
+
+    return `1px solid ${props.theme.colors.neutral300}`;
+  }
+
+  return `1px solid transparent`;
+}
+
+function buildButtonBackground(props) {
+  const dataVizColor = getDataVizTagColor(props);
+
+  if (props.disabled) {
+    if (props.isInverse) {
+      return props.color === TagColor.lowContrast
+        ? 'none'
+        : transparentize(0.5, props.theme.colors.neutral900);
+    }
+
+    return props.color === TagColor.lowContrast
+      ? props.theme.colors.neutral0
+      : props.theme.colors.neutral200;
+  }
+
+  if (props.isInverse) {
     // Inverse background colors
+    if (dataVizColor) {
+      const transparency = dataVizColor.inverseBackgroundTransparency;
+
+      return transparency === 0
+        ? dataVizColor.inverseBackground
+        : transparentize(transparency, dataVizColor.inverseBackground);
+    }
+
     switch (props.color) {
       case 'primary':
-        return props.theme.colors.tertiary500;
+        return props.theme.colors.brand.sunriseOrange;
       case 'lowContrast':
         return `none;`;
       case 'highContrast':
-        return props.theme.colors.neutral100;
+        return props.theme.colors.brand.skyBlue;
       default:
-        return props.theme.colors.neutral500;
-    }
-  } else if (props.disabled && !props.isInverse) {
-    // Disabled state background colors
-    switch (props.color) {
-      case 'primary':
-      case 'highContrast':
-        return transparentize(0.4, props.theme.colors.neutral300);
-      case 'lowContrast':
-        return props.theme.colors.neutral100;
-      default:
-        return transparentize(0.4, props.theme.colors.neutral300);
+        return props.theme.colors.neutral800;
     }
   }
   // Default state background colors
+  if (dataVizColor) {
+    return dataVizColor.background;
+  }
+
   switch (props.color) {
     case 'primary':
-      return props.theme.colors.primary;
+      return props.theme.colors.brand.sunriseOrange;
     case 'lowContrast':
-      return props.theme.colors.neutral100;
+      return props.theme.colors.neutral0;
     case 'highContrast':
-      return props.theme.colors.neutral700;
+      return props.theme.colors.brand.navy;
     default:
-      return props.theme.colors.neutral300;
+      return props.theme.colors.neutral200;
   }
 }
 
 function buildButtonTextColor(props) {
+  const dataVizColor = getDataVizTagColor(props);
+
+  if (props.disabled) {
+    return props.isInverse
+      ? props.theme.colors.neutral600
+      : props.theme.colors.neutral500;
+  }
+
   if (props.isInverse) {
-    if (props.disabled) {
-      // Disabled inverse state text colors
-      switch (props.color) {
-        case 'primary':
-        case 'highContrast':
-          return transparentize(0.6, props.theme.colors.neutral100);
-
-        case 'lowContrast':
-          return transparentize(0.7, props.theme.colors.neutral100);
-
-        default:
-          return transparentize(0.6, props.theme.colors.neutral100);
-      }
-    }
     // Inverse text colors
+    if (dataVizColor) {
+      return dataVizColor.inverseText;
+    }
+
     switch (props.color) {
       case 'primary':
-        return props.theme.colors.primary600;
+        return props.theme.colors.brand.navy;
       case 'lowContrast':
-        return props.theme.colors.tertiary500;
+        return props.theme.colors.neutral0;
       case 'highContrast':
-        return props.theme.colors.neutral700;
+        return props.theme.colors.brand.navy;
       default:
-        return props.theme.colors.neutral100;
+        return props.theme.colors.neutral0;
     }
-  } else if (props.disabled && !props.isInverse) {
-    // Disabled state text colors
-    return transparentize(0.4, props.theme.colors.neutral500);
   }
   // Default state text colors
+  if (dataVizColor) {
+    return dataVizColor.text;
+  }
+
   switch (props.color) {
     case 'primary':
-      return props.theme.colors.neutral100;
+      return props.theme.colors.brand.navy;
     case 'highContrast':
-      return props.theme.colors.neutral100;
+      return props.theme.colors.neutral0;
     case 'lowContrast':
-      return props.theme.colors.neutral700;
+      return props.theme.colors.brand.navy;
     default:
-      return props.theme.colors.neutral700;
+      return props.theme.colors.brand.navy;
   }
-}
-
-function buildSvgOpacity(props) {
-  if (props.isInverse) {
-    if (props.color === 'lowContrast' && props.disabled) {
-      return '30%';
-    }
-    if (props.onClick || props.onDelete) {
-      if (props.disabled) {
-        return '40%';
-      }
-
-      return '75%';
-    }
-  }
-  if (props.onClick || props.onDelete) {
-    if (props.disabled) {
-      return '60%';
-    }
-
-    return '75%';
-  }
-  if (props.color === 'lowContrast' && props.disabled) {
-    return '30%';
-  } else if (props.disabled) {
-    return '40%';
-  }
-
-  return '1';
 }
 
 function buildTagPadding(props) {
@@ -246,11 +308,11 @@ function buildLabelPadding(props) {
 }
 
 const TagStyling = props => css`
-  border: ${props.theme.tag.border};
+  border: ${buildBorder(props)};
   border-radius: ${props.theme.spaceScale.spacing05};
+  box-sizing: border-box;
   background: ${buildButtonBackground(props)};
   color: ${buildButtonTextColor(props)};
-  box-shadow: ${buildBoxShadow(props)};
   font-family: ${props.theme.bodyFont};
   display: ${props.theme.tag.display};
   align-items: ${props.theme.tag.alignItems};
@@ -258,16 +320,19 @@ const TagStyling = props => css`
   font-size: ${props.size === 'small'
     ? `${props.theme.typeScale.size01.fontSize}`
     : `${props.theme.typeScale.size02.fontSize}`};
-  font-weight: ${props.size === 'small' ? `500` : `inherit`};
+  font-weight: 500;
   letter-spacing: ${props.size === 'small'
     ? `${props.theme.typeScale.size01.letterSpacing}`
     : `${props.theme.typeScale.size02.letterSpacing}`};
+  height: ${props.size === 'small'
+    ? props.theme.spaceScale.spacing06
+    : props.theme.spaceScale.spacing08};
   min-width: ${props.size === 'small'
     ? props.theme.spaceScale.spacing10
     : props.theme.spaceScale.spacing12};
   padding: ${buildTagPadding(props)};
   svg:first-of-type {
-    opacity: ${props.disabled ? buildSvgOpacity(props) : 'inherit'};
+    opacity: inherit;
     height: ${props.size === 'small'
       ? `${props.theme.iconSizes.xSmall}px`
       : `${props.theme.iconSizes.small}px`};
@@ -276,7 +341,8 @@ const TagStyling = props => css`
       : `${props.theme.iconSizes.small}px`};
   }
   svg:last-child {
-    opacity: ${buildSvgOpacity(props)};
+    color: currentColor;
+    opacity: inherit;
     width: ${props.size === 'small'
       ? `${props.theme.iconSizes.xSmall}px`
       : `${props.theme.iconSizes.small}px`};
@@ -349,7 +415,8 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
 
     const { icon } = props;
 
-    const StyledTag = getStyledTag(Boolean(onClick || onDelete));
+    const isInteractive = Boolean(onClick || onDelete);
+    const StyledTag = getStyledTag(isInteractive);
 
     function handleClick() {
       if (onClick && typeof onClick === 'function') {
@@ -361,7 +428,9 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
 
     return (
       <StyledTag
-        aria-label={onDelete ? deleteAriaLabel : nodeLabel}
+        {...(isInteractive && {
+          'aria-label': onDelete ? deleteAriaLabel : nodeLabel,
+        })}
         color={color}
         icon={icon}
         onClick={handleClick}
@@ -376,7 +445,7 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
         <LabelWrap size={size} theme={theme}>
           {children}
         </LabelWrap>
-        {onDelete && <CancelIcon size={theme.iconSizes.small} />}
+        {onDelete && <CloseOutlinedIcon size={theme.iconSizes.small} />}
       </StyledTag>
     );
   }

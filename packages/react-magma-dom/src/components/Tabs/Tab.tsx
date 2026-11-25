@@ -27,7 +27,7 @@ export interface TabProps
   unstyled?: boolean;
   /**
    * Determines whether the tab appears in all-caps
-   * @default TabsTextTransform.uppercase
+   * @default TabsTextTransform.none
    */
   textTransform?: TabsTextTransform;
   /**
@@ -38,6 +38,40 @@ export interface TabProps
    * @internal
    */
   theme?: ThemeInterface;
+}
+
+function getTabMaxWidth(isFullWidth?: boolean) {
+  return isFullWidth ? '100%' : 'none';
+}
+
+function getTabHeight(props: {
+  hasStackedIcon?: boolean;
+  orientation: TabsOrientation;
+}) {
+  return props.hasStackedIcon || props.orientation === TabsOrientation.vertical
+    ? 'auto'
+    : '40px';
+}
+
+function getTabPadding(props: {
+  hasStackedIcon?: boolean;
+  orientation: TabsOrientation;
+  theme: ThemeInterface;
+}) {
+  const horizontalPadding =
+    props.orientation === TabsOrientation.vertical
+      ? props.theme.spaceScale.spacing05
+      : props.theme.spaceScale.spacing03;
+
+  if (props.hasStackedIcon) {
+    return `${props.theme.spaceScale.spacing04} ${horizontalPadding}`;
+  }
+
+  if (props.orientation === TabsOrientation.vertical) {
+    return `${props.theme.spaceScale.spacing03} ${horizontalPadding}`;
+  }
+
+  return `0 ${horizontalPadding}`;
 }
 
 export const StyledTabsChild = styled('li', {
@@ -65,26 +99,31 @@ export const StyledTabsChild = styled('li', {
       flex-grow: 0;
       flex-shrink: ${props.isFullWidth ? '1' : '0'};
       height: ${props.orientation === 'vertical' ? 'auto' : '100%'};
-      max-width: ${props.isFullWidth ? '100%' : '250px'};
+      max-width: ${getTabMaxWidth(props.isFullWidth)};
       width: ${props.isFullWidth || props.orientation === 'vertical'
         ? '100%'
         : 'auto'};
       &:after {
-        background: ${props.isInverse
-          ? props.theme.colors.tertiary
-          : props.theme.colors.primary};
-        border-radius: 2px;
+        background: ${props.isActive
+          ? props.isInverse
+            ? props.theme.colors.brand.skyBlue
+            : props.theme.colors.brand.oceanBlue
+          : props.isInverse
+            ? props.theme.colors.neutral600
+            : props.theme.colors.neutral500};
+        border-radius: 0;
         content: '';
         display: block;
-        height: 4px;
+        height: ${props.isInverse ? '2px' : '3px'};
         opacity: ${props.isActive ? '1' : '0'};
         position: absolute;
-        transition: 0.4s all;
+        transition: none;
         width: auto;
         bottom: ${props.borderPosition === 'top' ? 'auto' : '0'};
         left: ${props.isActive ? '0' : '50%'};
         right: ${props.isActive ? '0' : '50%'};
         top: ${props.borderPosition === 'top' ? '0' : 'auto'};
+        z-index: 1;
         ${props.orientation === 'vertical' &&
         css`
           height: auto;
@@ -92,9 +131,26 @@ export const StyledTabsChild = styled('li', {
           left: ${props.borderPosition === 'right' ? 'auto' : '0'};
           right: ${props.borderPosition === 'right' ? '0' : 'auto'};
           top: ${props.isActive ? '0' : '50%'};
-          width: 4px;
+          width: ${props.isInverse ? '2px' : '3px'};
         `}
       }
+
+      ${!props.disabled &&
+      !props.isActive &&
+      css`
+        &:hover:after {
+          opacity: 1;
+          ${props.orientation === 'vertical'
+            ? css`
+                bottom: 0;
+                top: 0;
+              `
+            : css`
+                left: 0;
+                right: 0;
+              `}
+        }
+      `}
     `}
 `;
 
@@ -116,44 +172,47 @@ function getFlexDirection(position: TabsIconPosition) {
 function buildTabStylesColor(props) {
   if (props.isInverse) {
     if (props.disabled) {
-      return transparentize(0.6, props.theme.colors.neutral100);
+      return props.theme.colors.neutral600;
     }
     if (props.isActive) {
-      return props.theme.colors.neutral100;
+      return props.theme.colors.neutral0;
     }
 
-    return transparentize(0.3, props.theme.colors.neutral100);
+    return props.theme.colors.neutral500;
   }
 
   if (props.disabled) {
-    return transparentize(0.6, props.theme.colors.neutral500);
+    return props.theme.colors.neutral500;
   }
   if (props.isActive) {
-    return props.theme.colors.primary;
+    return props.theme.colors.brand.navy;
   }
 
-  return props.theme.colors.neutral500;
+  return props.theme.colors.neutral700;
 }
 
 export const TabStyles = props => css`
   align-items: center;
   background: transparent;
   border: 0;
+  box-sizing: border-box;
   color: ${buildTabStylesColor(props)};
   cursor: ${props.disabled ? 'auto' : 'pointer'};
   display: flex;
   flex-direction: ${getFlexDirection(props.iconPosition)};
   flex-grow: 0;
   flex-shrink: ${props.isFullWidth ? '1' : '0'};
-  font-weight: 500;
+  font-weight: ${props.isActive ? (props.isInverse ? 600 : 700) : 400};
   font-size: ${props.theme.typeScale.size02.fontSize};
   font-family: ${props.theme.bodyFont};
   letter-spacing: ${props.theme.typeScale.size02.letterSpacing};
   line-height: ${props.theme.typeScale.size02.lineHeight};
-  height: 100%;
+  height: ${getTabHeight(props)};
   justify-content: ${props.iconPosition === 'left' ? 'flex-start' : 'center'};
-  padding: ${props.theme.spaceScale.spacing04}
-    ${props.theme.spaceScale.spacing05};
+  min-height: ${props.orientation === TabsOrientation.vertical
+    ? '40px'
+    : 'auto'};
+  padding: ${getTabPadding(props)};
   position: relative;
   pointer-events: ${props.disabled ? 'none' : ''};
   text-align: center;
@@ -163,17 +222,29 @@ export const TabStyles = props => css`
 
   ${props.orientation === 'vertical' &&
   css`
-    align-items: flex-start;
+    align-items: ${props.hasInlineIcon ? 'flex-start' : 'center'};
     justify-content: ${props.iconPosition === 'left'
       ? 'flex-start'
       : 'flex-end'};
     text-align: left;
     width: 100%;
-
-    align-items: center;
   `}
 
-  &:hover,
+  &:hover {
+    background-color: ${props.isActive
+      ? ''
+      : props.isInverse
+        ? props.theme.colors.neutral900
+        : props.theme.colors.neutral150};
+    color: ${props.isActive
+      ? props.isInverse
+        ? props.theme.colors.neutral0
+        : props.theme.colors.brand.navy
+      : props.isInverse
+        ? props.theme.colors.neutral0
+        : props.theme.colors.brand.navy};
+  }
+
   &:focus {
     background-color: ${props.isActive
       ? ''
@@ -182,14 +253,11 @@ export const TabStyles = props => css`
         : transparentize(0.95, props.theme.colors.neutral900)};
     color: ${props.isActive
       ? props.isInverse
-        ? props.theme.colors.neutral100
-        : props.theme.colors.primary
+        ? props.theme.colors.neutral0
+        : props.theme.colors.brand.navy
       : props.isInverse
-        ? props.theme.colors.neutral100
+        ? props.theme.colors.neutral0
         : props.theme.colors.neutral700};
-  }
-
-  &:focus {
     outline-offset: -2px;
     outline: 2px solid
       ${props.isInverse
@@ -200,6 +268,8 @@ export const TabStyles = props => css`
 
 const StyledTab = styled('button', { shouldForwardProp: isPropValid })<{
   borderPosition?: TabsBorderPosition;
+  hasInlineIcon?: boolean;
+  hasStackedIcon?: boolean;
   iconPosition?: TabsIconPosition;
   isActive?: boolean;
   isFullWidth?: boolean;
@@ -301,6 +371,15 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
           : TabsIconPosition.top;
     }
 
+    const hasStackedIcon =
+      Boolean(icon) &&
+      (tabIconPosition === TabsIconPosition.top ||
+        tabIconPosition === TabsIconPosition.bottom);
+    const hasInlineIcon =
+      Boolean(icon) &&
+      (tabIconPosition === TabsIconPosition.left ||
+        tabIconPosition === TabsIconPosition.right);
+
     const tabId = `tab-${instanceId}-${index}`;
     const panelId = `tabpanel-${instanceId}-${index}`;
 
@@ -367,6 +446,8 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
           aria-selected={isActive}
           data-testid={testId}
           disabled={disabled}
+          hasInlineIcon={hasInlineIcon}
+          hasStackedIcon={hasStackedIcon}
           iconPosition={tabIconPosition}
           id={tabId}
           isActive={isActive}

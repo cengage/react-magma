@@ -17,6 +17,20 @@ describe('Paragraph', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
+  it('should render with the default text color', () => {
+    const text = 'Default text';
+    const { getByText } = render(<Paragraph>{text}</Paragraph>);
+
+    expect(getByText(text)).toHaveStyleRule('color', magma.colors.primary);
+  });
+
+  it('should render with the subdued text color', () => {
+    const text = 'Subdued text';
+    const { getByText } = render(<Paragraph color="subdued">{text}</Paragraph>);
+
+    expect(getByText(text)).toHaveStyleRule('color', magma.colors.neutral700);
+  });
+
   it('should render a large paragraph with the correct styles', () => {
     const text = 'Test Paragraph';
     const { getByText } = render(

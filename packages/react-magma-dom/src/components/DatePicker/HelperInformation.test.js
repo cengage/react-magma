@@ -71,16 +71,22 @@ describe('Calendar Month', () => {
     );
     expect(navigationContainer).toHaveStyleRule(
       'border-bottom',
-      `1px solid ${magma.colors.neutral300}`
+      `1px solid ${magma.colors.neutral200}`
     );
     expect(navigationContainer).toHaveStyleRule(
       'background',
-      magma.colors.neutral200
+      magma.colors.neutral100
+    );
+    expect(navigationContainer.nextElementSibling).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
     );
   });
 
   it('should have inverse styles', () => {
-    const { getByTestId } = render(<HelperInformation isOpen isInverse />);
+    const { getByLabelText, getByTestId } = render(
+      <HelperInformation isOpen isInverse />
+    );
     const navigationContainer = getByTestId('helper-navigation-container');
 
     expect(navigationContainer).toHaveStyleRule('align-items', 'center');
@@ -90,11 +96,24 @@ describe('Calendar Month', () => {
     );
     expect(navigationContainer).toHaveStyleRule(
       'border-bottom',
-      `1px solid ${magma.colors.primary400}`
+      `1px solid ${magma.colors.neutral800}`
     );
     expect(navigationContainer).toHaveStyleRule(
       'background',
-      magma.colors.primary600
+      magma.colors.neutral1100
+    );
+    expect(getByLabelText('Enter key')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral900
+    );
+    expect(getByLabelText('Back to Calendar').parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.brand.skyBlue
+    );
+    expect(getByLabelText('Back to Calendar').parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.cyan400,
+      { target: ':hover' }
     );
   });
 

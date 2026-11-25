@@ -37,11 +37,11 @@ const StyledContainer = styled.div<{
 }>`
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.primary600
-      : props.theme.colors.neutral100};
+      ? props.theme.colors.neutral1100
+      : props.theme.colors.neutral0};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
+      ? props.theme.colors.neutral0
       : props.theme.colors.neutral700};
   display: flow-root;
   margin: 0 auto;

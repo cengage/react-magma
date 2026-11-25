@@ -5,13 +5,9 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
 import { Spinner } from '../Spinner';
+import { TypographyContextVariant, TypographyVisualStyle } from '../Typography';
 import {
-  TypographyColor,
-  TypographyContextVariant,
-  TypographyVisualStyle,
-} from '../Typography';
-import {
-  getIllustrationIconColor,
+  getLoadingSpinnerColor,
   StyledActions,
   StyledEmptyState,
   StyledHeader,
@@ -66,9 +62,6 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
 
     const isInverse = useIsInverse(props.isInverse);
     const theme = React.useContext(ThemeContext);
-    const descriptionColor = isInverse
-      ? TypographyColor.default
-      : TypographyColor.subdued;
 
     return (
       <InverseContext.Provider value={{ isInverse }}>
@@ -80,7 +73,7 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
         >
           {isLoading ? (
             <Spinner
-              color={getIllustrationIconColor({ isInverse, isDanger, theme })}
+              color={getLoadingSpinnerColor({ isInverse, isDanger, theme })}
               isInverse={isInverse}
               size={48}
             />
@@ -110,8 +103,8 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
                       isInverse={isInverse}
                       style={{
                         color: isInverse
-                          ? theme.colors.neutral100
-                          : theme.colors.neutral700,
+                          ? theme.colors.neutral0
+                          : theme.colors.brand.navy,
                       }}
                     >
                       {title}
@@ -121,7 +114,11 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
                     <Paragraph
                       isInverse={isInverse}
                       noMargins
-                      color={descriptionColor}
+                      style={{
+                        color: isInverse
+                          ? theme.colors.neutral500
+                          : theme.colors.neutral800,
+                      }}
                     >
                       {description}
                     </Paragraph>

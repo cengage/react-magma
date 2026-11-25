@@ -12,9 +12,11 @@ import {
 
 import { TreeItemContext } from './TreeItemContext';
 import { TreeItemHierarchyContext } from './TreeItemHierarchyContext';
+import { TreeViewAnnounceContext } from './TreeViewAnnounceContext';
 import { TreeViewConfigContext } from './TreeViewConfigContext';
 import { TreeViewExpansionContext } from './TreeViewExpansionContext';
 import { TreeViewSelectionContext } from './TreeViewSelectionContext';
+import { TreeViewVirtualizationContext } from './TreeViewVirtualizationContext';
 import { TreeViewSelectable } from './types';
 import {
   checkedStatusToBoolean,
@@ -23,25 +25,31 @@ import {
 } from './useTreeItem';
 import {
   calculateOffset,
+  flattenTreeViewChildren,
+  getTreeItemIconColor,
   getTreeItemLabelColor,
   getTreeItemWrapperCursor,
+  resolveExpansionAnnounceTemplate,
   TreeNodeType,
 } from './utils';
+import { VirtualizedTreeItemFlow } from './VirtualizedTreeItemFlow';
 import { I18nContext } from '../..';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { useFocusLock } from '../../hooks/useFocusLock';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { mergeRefs } from '../../utils';
-import { Announce } from '../Announce';
+import {
+  formatAnnouncement,
+  getStringifiedLabelText,
+  mergeRefs,
+} from '../../utils';
 import { Checkbox } from '../Checkbox';
 import {
   IndeterminateCheckbox,
   IndeterminateCheckboxStatus,
 } from '../IndeterminateCheckbox';
 import { Transition } from '../Transition';
-import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface TreeItemProps extends UseTreeItemProps {}
 
@@ -59,8 +67,8 @@ const StyledTreeItem = styled.li<{
 }>`
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   list-style-type: none;
   cursor: ${props =>
     getTreeItemWrapperCursor(
@@ -103,9 +111,9 @@ const StyledTreeItem = styled.li<{
   > div:first-of-type {
     background: ${props =>
       props.selected && props.isInverse
-        ? transparentize(0.7, props.theme.colors.neutral900)
+        ? props.theme.colors.neutral900
         : props.selected &&
-          transparentize(0.92, props.theme.colors.neutral900)};
+          transparentize(0.25, props.theme.colors.neutral200)};
     position: relative;
 
     padding-inline-start: ${props =>
@@ -134,8 +142,8 @@ const StyledTreeItem = styled.li<{
         &:before {
           position: absolute;
           background-color: ${props.isInverse
-            ? props.theme.colors.tertiary500
-            : props.theme.colors.primary500};
+            ? props.theme.colors.brand.skyBlue
+            : props.theme.colors.brand.oceanBlue};
           block-size: 100%;
           content: '';
           inline-size: ${props.theme.spaceScale.spacing02};
@@ -159,9 +167,9 @@ function getHoverBackground({ isDisabled, hoverColor, isInverse, theme }) {
   if (isDisabled) return undefined;
   if (hoverColor) return hoverColor;
 
-  const transparency = isInverse ? 0.8 : 0.95;
-
-  return transparentize(transparency, theme.colors.neutral900);
+  return isInverse
+    ? transparentize(0.5, theme.colors.neutral900)
+    : transparentize(0.5, theme.colors.neutral200);
 }
 
 const IconWrapper = styled.span<{
@@ -170,9 +178,10 @@ const IconWrapper = styled.span<{
   isInverse?: boolean;
 }>`
   color: ${props =>
-    getTreeItemLabelColor(props.isInverse, props.isDisabled, props.theme)};
+    getTreeItemIconColor(props.isInverse, props.isDisabled, props.theme)};
   margin-right: ${props => props.theme.spaceScale.spacing03};
   margin-left: 0;
+  transform: translateY(-1px);
 
   svg {
     height: ${props => props.theme.iconSizes.medium}px;
@@ -205,12 +214,13 @@ const StyledExpandWrapper = styled.div<{
   margin-right: ${props => props.theme.spaceScale.spacing03};
   color: ${props =>
     props.color ||
-    getTreeItemLabelColor(props.isInverse, props.isDisabled, props.theme)};
+    getTreeItemIconColor(props.isInverse, props.isDisabled, props.theme)};
   border-radius: 0;
   width: ${({ size, theme }) =>
     size !== undefined ? `${size}px` : theme.spaceScale.spacing06};
   height: ${({ size, theme }) =>
     size !== undefined ? `${size}px` : theme.spaceScale.spacing06};
+  cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
 `;
 
 const GuideLine = styled.div<{
@@ -226,8 +236,8 @@ const GuideLine = styled.div<{
   border-inline-start: 1px solid
     ${props =>
       props.isInverse
-        ? transparentize(0.7, props.theme.colors.neutral100)
-        : props.theme.colors.neutral300};
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
   pointer-events: none;
   z-index: 1;
 `;
@@ -243,8 +253,8 @@ const VirtualizedGuideLine = styled.div<{
   border-inline-start: 1px solid
     ${props =>
       props.isInverse
-        ? transparentize(0.7, props.theme.colors.neutral100)
-        : props.theme.colors.neutral300};
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
   pointer-events: none;
   z-index: 1;
 `;
@@ -290,6 +300,7 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const {
       additionalContent,
       children,
+      directChildItemIds: _directChildItemIds,
       hoverColor,
       icon,
       index: indexProp,
@@ -314,7 +325,9 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
     // Consume split contexts for reduced re-render scope
     const { itemToFocus } = React.useContext(TreeViewSelectionContext);
-    const { handleExpandedChange } = React.useContext(TreeViewExpansionContext);
+    const { handleExpandedChange, bulkExpansionRef } = React.useContext(
+      TreeViewExpansionContext
+    );
     const {
       expandIconStyles,
       hasGuideLines,
@@ -339,8 +352,9 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     );
 
     const { isDisabled } = contextValue;
-    const { isMacOS } = useDeviceDetect();
+    const { isChrome, isMacOS, isSafari } = useDeviceDetect();
     const i18n = React.useContext(I18nContext);
+    const { announce } = React.useContext(TreeViewAnnounceContext);
 
     const {
       checkboxChangeHandler,
@@ -354,6 +368,54 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     } = contextValue;
 
     const nodeType = hasOwnTreeItems ? TreeNodeType.branch : TreeNodeType.leaf;
+    const ariaLabel = rest['aria-label'];
+
+    const stringifiedLabel = React.useMemo(
+      () => ariaLabel?.trim() || getStringifiedLabelText(label),
+      [ariaLabel, label]
+    );
+
+    // Fills a VoiceOver gap, hence macOS only: NVDA reads `aria-expanded`
+    // itself, and so does VoiceOver on Firefox and on top-level Chrome rows.
+    const shouldAnnounceExpansion =
+      hasOwnTreeItems && isMacOS && (isSafari || (isChrome && itemDepth > 0));
+
+    const prevExpandedRef = React.useRef<boolean | undefined>(undefined);
+
+    React.useEffect(() => {
+      const prevExpanded = prevExpandedRef.current;
+
+      prevExpandedRef.current = expanded;
+
+      if (!shouldAnnounceExpansion) {
+        return;
+      }
+
+      // Expanding a branch mounts its children; announcing their initial
+      // state would turn one action into N announcements.
+      if (prevExpanded === undefined || prevExpanded === expanded) {
+        return;
+      }
+
+      // TreeView announces bulk expansion once instead.
+      if (bulkExpansionRef?.current) {
+        return;
+      }
+
+      announce(
+        formatAnnouncement(
+          resolveExpansionAnnounceTemplate(i18n, expanded),
+          stringifiedLabel
+        )
+      );
+    }, [
+      announce,
+      bulkExpansionRef,
+      expanded,
+      shouldAnnounceExpansion,
+      stringifiedLabel,
+      i18n,
+    ]);
     const selectedItem =
       selectable === TreeViewSelectable.single
         ? selectedItems?.[0]?.itemId === itemId
@@ -524,12 +586,33 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       [additionalContent, theme, itemId, testId]
     );
 
+    const childNodes = React.useMemo(
+      () => flattenTreeViewChildren(children),
+      [children]
+    );
+    const nestedVirtualization = React.useContext(
+      TreeViewVirtualizationContext
+    );
+    const hasDirectTreeItems = childNodes.some(
+      child => React.isValidElement(child) && child.type === TreeItem
+    );
+    const usesVirtualChildFlow = Boolean(
+      nestedVirtualization && hasDirectTreeItems
+    );
+    const hasMixedDirectChildren =
+      hasDirectTreeItems &&
+      childNodes.some(
+        child => !React.isValidElement(child) || child.type !== TreeItem
+      );
+
     // Stable per-child hierarchy values. The reference must not change on
     // re-renders triggered by TreeViewSelectionContext, otherwise every
     // nested TreeItem re-renders through the context and React.memo is
     // defeated.
     const childHierarchies = React.useMemo(() => {
-      const count = React.Children.count(children);
+      if (usesVirtualChildFlow) return [];
+
+      const count = childNodes.length;
       const arr = new Array(count);
 
       for (let i = 0; i < count; i++) {
@@ -542,7 +625,81 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       }
 
       return arr;
-    }, [children, itemDepth]);
+    }, [childNodes, itemDepth, usesVirtualChildFlow]);
+
+    // Keep content in its original position while grouping consecutive items.
+    const childSegments = React.useMemo(() => {
+      if (usesVirtualChildFlow) return [];
+
+      const segments: Array<{
+        key: string;
+        treeItems?: React.ReactNode[];
+        content?: React.ReactNode;
+      }> = [];
+      const treeItemCount = childNodes.filter(
+        child => React.isValidElement(child) && child.type === TreeItem
+      ).length;
+      let groupCount = 0;
+      let previousWasTreeItem = false;
+
+      childNodes.forEach(child => {
+        const isTreeItem =
+          React.isValidElement(child) && child.type === TreeItem;
+
+        if (isTreeItem && !previousWasTreeItem) {
+          groupCount += 1;
+        }
+        previousWasTreeItem = isTreeItem;
+      });
+
+      let treeItems: React.ReactNode[] = [];
+      let groupKey = '';
+      let position = 0;
+
+      const finishGroup = () => {
+        if (treeItems.length > 0) {
+          segments.push({ key: groupKey, treeItems });
+          treeItems = [];
+        }
+      };
+
+      childNodes.forEach((child, childIndex) => {
+        if (
+          !React.isValidElement<UseTreeItemProps>(child) ||
+          child.type !== TreeItem
+        ) {
+          finishGroup();
+          if (child !== null && child !== undefined) {
+            segments.push({ key: `other-${childIndex}`, content: child });
+          }
+
+          return;
+        }
+
+        if (treeItems.length === 0) {
+          groupKey = `group-${child.props.itemId}`;
+        }
+        // These items have one parent and one logical sibling set, even when
+        // content splits their DOM groups.
+        position += 1;
+        treeItems.push(
+          <TreeItemHierarchyContext.Provider
+            key={child.props.itemId}
+            value={{
+              ...childHierarchies[childIndex],
+              posInSet: groupCount > 1 ? position : undefined,
+              setSize: groupCount > 1 ? treeItemCount : undefined,
+            }}
+          >
+            {child}
+          </TreeItemHierarchyContext.Provider>
+        );
+      });
+
+      finishGroup();
+
+      return segments;
+    }, [childNodes, childHierarchies, usesVirtualChildFlow]);
 
     // Memoize inline style objects to prevent unnecessary re-renders
     const checkboxInputStyle = React.useMemo(
@@ -552,15 +709,28 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
     const checkboxLabelStyle = React.useMemo(
       () => ({
+        cursor: isDisabled ? 'not-allowed' : 'pointer',
         padding: 0,
         width: '100%',
       }),
+      [isDisabled]
+    );
+
+    // Focus inside an `aria-hidden` subtree stays exposed to assistive
+    // technology, and clicking a label focuses its control regardless.
+    const redirectCheckboxFocus = React.useCallback(
+      (event: React.FocusEvent<HTMLInputElement>) => {
+        event.target.closest<HTMLElement>('[role="treeitem"]')?.focus();
+      },
       []
     );
 
     // Props shared by Checkbox and IndeterminateCheckbox
     const checkboxProps = React.useMemo(
       () => ({
+        // Selection state belongs to the tree item's `aria-checked`; the input
+        // stays in the DOM only as the control pointer input operates.
+        'aria-hidden': true,
         disabled: isDisabled,
         hideFocus: true,
         id: `${itemId}-checkbox`,
@@ -568,6 +738,10 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
         labelStyle: checkboxLabelStyle,
         labelText: labelText,
         onChange: checkboxChangeHandler,
+        onFocus: redirectCheckboxFocus,
+        // The tree announces selection from its own live region; the
+        // checkbox's would double up on pointer input and miss the keyboard.
+        suppressStatusAnnounce: true,
         tabIndex: -1,
         testId: `${itemId}-checkbox`,
       }),
@@ -578,6 +752,7 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
         checkboxLabelStyle,
         labelText,
         checkboxChangeHandler,
+        redirectCheckboxFocus,
       ]
     );
 
@@ -738,12 +913,22 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
     return (
       <TreeItemContext.Provider value={contextValue}>
-        <div style={treeItemStyles}>
+        <div role="none" style={treeItemStyles}>
           <StyledTreeItem
             {...rest}
+            aria-labelledby={
+              rest['aria-labelledby'] ??
+              (nestedVirtualization &&
+              hasMixedDirectChildren &&
+              !rest['aria-label']
+                ? `${itemId}-label`
+                : undefined)
+            }
             aria-disabled={isDisabled || null}
             aria-expanded={hasOwnTreeItems ? expanded : null}
+            aria-posinset={rest['aria-posinset'] ?? hierarchyContext.posInSet}
             aria-selected={selectedItem}
+            aria-setsize={rest['aria-setsize'] ?? hierarchyContext.setSize}
             aria-checked={shouldShowCheckbox ? ariaCheckedValue : null}
             data-testid={testId}
             depth={itemDepth}
@@ -859,38 +1044,31 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
                     />
                   ))}
 
-            {React.Children.map(
-              children,
-              (child: React.ReactElement<any>, childIndex) => {
-                if (child?.type !== TreeItem) {
-                  return child;
-                }
-
-                // Use the stable, pre-memoised value (see childHierarchies above).
-                const nestedHierarchyValue = childHierarchies[childIndex];
-
-                return (
-                  <Transition isOpen={expanded} unmountOnExit>
-                    <ul role="group">
-                      <TreeItemHierarchyContext.Provider
-                        key={child.props.itemId}
-                        value={nestedHierarchyValue}
-                      >
-                        {child}
-                      </TreeItemHierarchyContext.Provider>
-                    </ul>
+            {usesVirtualChildFlow ? (
+              <VirtualizedTreeItemFlow
+                childDepth={itemDepth + 1}
+                expanded={expanded}
+              >
+                {childNodes}
+              </VirtualizedTreeItemFlow>
+            ) : (
+              childSegments.map(segment =>
+                segment.treeItems ? (
+                  // The animation wrapper does not interrupt ARIA ownership.
+                  <Transition
+                    isOpen={expanded}
+                    key={segment.key}
+                    unmountOnExit
+                    role="none"
+                  >
+                    <ul role="group">{segment.treeItems}</ul>
                   </Transition>
-                );
-              }
-            )}
-            {isMacOS && (
-              <VisuallyHidden>
-                <Announce>
-                  {expanded
-                    ? i18n.expansionState.expanded
-                    : i18n.expansionState.collapsed}
-                </Announce>
-              </VisuallyHidden>
+                ) : (
+                  <React.Fragment key={segment.key}>
+                    {segment.content}
+                  </React.Fragment>
+                )
+              )
             )}
           </StyledTreeItem>
         </div>
@@ -914,6 +1092,14 @@ function arePropsEqual(
 
   // Check if label changed
   if (prevProps.label !== nextProps.label) {
+    return false;
+  }
+
+  if (prevProps['aria-label'] !== nextProps['aria-label']) {
+    return false;
+  }
+
+  if (prevProps.directChildItemIds !== nextProps.directChildItemIds) {
     return false;
   }
 

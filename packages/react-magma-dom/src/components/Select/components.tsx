@@ -1,11 +1,15 @@
 import * as React from 'react';
 
-import { ArrowDropDownIcon, IconProps } from 'react-magma-icons';
+import {
+  ArrowDropDownOutlinedIcon,
+  CheckOutlinedIcon,
+  IconProps,
+} from 'react-magma-icons';
 
 import { ThemeInterface } from '../../theme/magma';
 import { IconButton, IconButtonProps } from '../IconButton';
 import { Spinner, SpinnerProps } from '../Spinner';
-import { StyledItem } from './shared';
+import { SelectedItemIndicator, StyledItem } from './shared';
 
 export type ItemRenderOptions<T> = {
   key: string;
@@ -32,7 +36,7 @@ export const DefaultClearIndicator = props => {
 
 export const DefaultDropdownIndicator = props => {
   return (
-    <ArrowDropDownIcon
+    <ArrowDropDownOutlinedIcon
       size={24}
       style={{ flexShrink: 0 }}
       testId="caretDown"
@@ -51,6 +55,7 @@ export function DefaultItem<T>({
   isInverse,
   isDisabled,
   isSelected,
+  theme,
   ...props
 }: ItemRenderOptions<T>) {
   return (
@@ -59,11 +64,21 @@ export function DefaultItem<T>({
       isInverse={isInverse}
       ref={itemRef}
       isDisabled={isDisabled}
+      theme={theme}
       aria-disabled={isDisabled}
       aria-selected={isSelected}
       data-highlighted={props.isFocused}
     >
       {itemString}
+      {isSelected && (
+        <SelectedItemIndicator theme={theme}>
+          <CheckOutlinedIcon
+            aria-hidden="true"
+            size={theme.iconSizes.small}
+            testId="selectedItemCheck"
+          />
+        </SelectedItemIndicator>
+      )}
     </StyledItem>
   );
 }

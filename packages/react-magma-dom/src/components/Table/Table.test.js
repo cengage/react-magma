@@ -9,6 +9,8 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableContext,
+  TableDensity,
   TableHead,
   TableHeaderCell,
   TableRow,
@@ -124,6 +126,107 @@ describe('Table', () => {
     expect(getByText('heading 1')).toHaveStyleRule('border-right', '1px solid');
   });
 
+  it('should render the regular table color tokens', () => {
+    const { getByTestId } = render(
+      <Table hasOutsideBorder hasVerticalBorders testId="table">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell
+              isSortable
+              sortDirection="ascending"
+              testId="active-header"
+            >
+              Active heading
+            </TableHeaderCell>
+            <TableHeaderCell isSortable testId="inactive-header">
+              Inactive heading
+            </TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell testId="cell">cell</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('table')).toHaveStyleRule(
+      'color',
+      magma.colors.brand.navy
+    );
+    expect(getByTestId('active-header')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral150
+    );
+    expect(getByTestId('active-header')).toHaveStyleRule(
+      'border-color',
+      magma.colors.neutral200
+    );
+    expect(getByTestId('active-header')).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size02.fontSize
+    );
+    expect(
+      getByTestId('active-header').querySelector('button')
+    ).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(
+      getByTestId('active-header').querySelector('button')
+    ).toHaveStyleRule('font-size', magma.typeScale.size02.fontSize);
+    expect(getByTestId('sort-ascending')).toHaveAttribute(
+      'fill',
+      magma.colors.brand.navy
+    );
+    expect(getByTestId('sort-ascending')).toHaveAttribute('width', '16');
+    expect(getByTestId('sort-ascending')).toHaveAttribute('height', '16');
+    expect(getByTestId('sort-none')).toHaveAttribute(
+      'fill',
+      magma.colors.neutral700
+    );
+    expect(getByTestId('sort-none')).toHaveAttribute('width', '16');
+    expect(getByTestId('sort-none')).toHaveAttribute('height', '16');
+    expect(getByTestId('cell')).toHaveStyleRule(
+      'border-color',
+      magma.colors.neutral200
+    );
+  });
+
+  it('should render the inverse table color tokens', () => {
+    const { getByTestId } = render(
+      <Table hasOutsideBorder hasVerticalBorders isInverse testId="table">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell isSortable testId="header">
+              Heading
+            </TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell testId="cell">cell</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('header')).toHaveStyleRule(
+      'background',
+      magma.colors.neutral1000
+    );
+    expect(getByTestId('header')).toHaveStyleRule(
+      'border-color',
+      magma.colors.neutral800
+    );
+    expect(getByTestId('sort-none')).toHaveAttribute(
+      'fill',
+      magma.colors.neutral500
+    );
+    expect(getByTestId('cell')).toHaveStyleRule(
+      'border-color',
+      magma.colors.neutral800
+    );
+  });
+
   it('should render table with zebra striping', () => {
     const { getByTestId } = render(
       <Table hasZebraStripes>
@@ -142,7 +245,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      magma.colors.neutral200,
+      magma.colors.neutral150,
       {
         target: ':nth-of-type(even)',
       }
@@ -167,7 +270,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      transparentize(0.93, magma.colors.neutral900),
+      magma.colors.neutral100,
       {
         target: ':hover',
       }
@@ -254,12 +357,12 @@ describe('Table', () => {
 
     expect(getByText('heading 1')).toHaveStyleRule(
       'background',
-      transparentize(0.93, magma.colors.neutral100)
+      magma.colors.neutral1000
     );
 
     expect(getByTestId('row1')).toHaveStyleRule(
       'background',
-      transparentize(0.85, magma.colors.neutral100),
+      magma.colors.neutral1000,
       {
         target: ':hover',
       }
@@ -267,7 +370,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      transparentize(0.93, magma.colors.neutral100),
+      magma.colors.neutral1000,
       {
         target: ':nth-of-type(even)',
       }
@@ -326,6 +429,134 @@ describe('Table', () => {
     expect(getByText('cell 1')).toHaveStyleRule('width', '100px');
     expect(getByText('heading 2')).toHaveStyleRule('width', '50%');
     expect(getByText('cell 2')).toHaveStyleRule('width', '50%');
+  });
+
+  describe('header cell width', () => {
+    const expectNoTruncation = element => {
+      expect(element).not.toHaveStyleRule('max-width', expect.anything());
+      expect(element).not.toHaveStyleRule('overflow', expect.anything());
+      expect(element).not.toHaveStyleRule('text-overflow', expect.anything());
+      expect(element).not.toHaveStyleRule('white-space', expect.anything());
+    };
+
+    it('should not constrain or truncate header cells when width is not provided', () => {
+      const { getByTestId, getByText } = render(
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell testId="header">Heading</TableHeaderCell>
+              <TableHeaderCell isSortable testId="sortable-header">
+                Sortable heading
+              </TableHeaderCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      );
+
+      ['header', 'sortable-header'].forEach(testId => {
+        const header = getByTestId(testId);
+
+        expect(header).not.toHaveStyleRule('width', expect.anything());
+        expectNoTruncation(header);
+      });
+
+      expectNoTruncation(getByText('Sortable heading'));
+    });
+
+    it('should wrap header text instead of truncating it when width is provided', () => {
+      const { getByTestId, getByText } = render(
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell testId="header" width={120}>
+                Heading
+              </TableHeaderCell>
+              <TableHeaderCell isSortable testId="sortable-header" width="25%">
+                Sortable heading
+              </TableHeaderCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      );
+
+      const header = getByTestId('header');
+
+      expect(header).toHaveStyleRule('width', '120px');
+      expectNoTruncation(header);
+
+      const sortableHeader = getByTestId('sortable-header');
+
+      expect(sortableHeader).toHaveStyleRule('width', '25%');
+      expectNoTruncation(sortableHeader);
+      expectNoTruncation(getByText('Sortable heading'));
+    });
+
+    it('should not truncate row header cells when width is provided', () => {
+      const { getByText } = render(
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableHeaderCell isRowHeader width={120}>
+                Row heading
+              </TableHeaderCell>
+              <TableCell>cell</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      );
+
+      const rowHeader = getByText('Row heading');
+
+      expect(rowHeader).toHaveStyleRule('width', '120px');
+      expectNoTruncation(rowHeader);
+    });
+  });
+
+  describe('header cell line-height', () => {
+    it('should use the header type scale line-height for column header cells', () => {
+      const { getByTestId } = render(
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell testId="header">Heading</TableHeaderCell>
+              <TableHeaderCell isSortable testId="sortable-header">
+                Sortable heading
+              </TableHeaderCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      );
+
+      expect(getByTestId('header')).toHaveStyleRule(
+        'line-height',
+        magma.typeScale.size02.lineHeight
+      );
+      expect(getByTestId('sortable-header')).toHaveStyleRule(
+        'line-height',
+        magma.typeScale.size02.lineHeight
+      );
+      expect(
+        getByTestId('sortable-header').querySelector('button')
+      ).toHaveStyleRule('line-height', magma.typeScale.size02.lineHeight);
+    });
+
+    it('should inherit the table line-height for row header cells', () => {
+      const { getByText } = render(
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableHeaderCell isRowHeader>Row heading</TableHeaderCell>
+              <TableCell>cell</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      );
+
+      expect(getByText('Row heading')).toHaveStyleRule(
+        'line-height',
+        'inherit'
+      );
+    });
   });
 
   it('should render table header cells with specified scope', () => {
@@ -446,7 +677,7 @@ describe('Table', () => {
 
     expect(button).toHaveStyleRule(
       'background',
-      transparentize(0.85, magma.colors.neutral100),
+      transparentize(0.85, magma.colors.neutral0),
       {
         target: ':hover',
       }
@@ -476,7 +707,7 @@ describe('Table', () => {
 
       expect(getByTestId(testId)).toHaveStyle('border-collapse: separate');
       expect(getByTestId(testId)).toHaveStyle(
-        `border: 1px solid ${magma.colors.neutral300}`
+        `border: 1px solid ${magma.colors.neutral200}`
       );
       expect(getByTestId(testId)).toHaveStyle(
         `border-radius: ${magma.borderRadius}`
@@ -509,7 +740,7 @@ describe('Table', () => {
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'border',
-        `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+        `1px solid ${magma.colors.neutral800}`
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'border-radius',
@@ -570,6 +801,51 @@ describe('Table', () => {
       );
       const th = getByText('Col Header').closest('th');
       expect(th).toHaveAttribute('colspan', '3');
+    });
+  });
+
+  describe('TableContext', () => {
+    const renderWithContextConsumer = () => {
+      let renderCount = 0;
+      const ContextConsumer = React.memo(() => {
+        React.useContext(TableContext);
+        renderCount++;
+
+        return null;
+      });
+      const consumer = <ContextConsumer />;
+
+      const TestTable = ({ density, tick }) => (
+        <Table density={density} data-tick={tick}>
+          <TableBody>
+            <TableRow>
+              <TableCell>{consumer}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      );
+
+      const utils = render(<TestTable tick={0} />);
+
+      return { ...utils, TestTable, getRenderCount: () => renderCount };
+    };
+
+    it('should not re-render memoized consumers when table props are unchanged', () => {
+      const { rerender, TestTable, getRenderCount } =
+        renderWithContextConsumer();
+
+      rerender(<TestTable tick={1} />);
+
+      expect(getRenderCount()).toBe(1);
+    });
+
+    it('should re-render memoized consumers when context values change', () => {
+      const { rerender, TestTable, getRenderCount } =
+        renderWithContextConsumer();
+
+      rerender(<TestTable tick={0} density={TableDensity.compact} />);
+
+      expect(getRenderCount()).toBe(2);
     });
   });
 });

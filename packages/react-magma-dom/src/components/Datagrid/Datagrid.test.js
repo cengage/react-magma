@@ -261,6 +261,32 @@ describe('Datagrid', () => {
       expect(selectableRowCheckbox).toBeInTheDocument();
     });
 
+    it('should use the same checkbox color in the header and rows', () => {
+      const { container } = render(
+        <Datagrid columns={columns} rows={rows} isSelectable />
+      );
+
+      const headerCheckbox = container
+        .querySelector('thead')
+        .firstChild.querySelector('input');
+      const rowCheckbox = container
+        .querySelector('tbody')
+        .firstChild.querySelector('input');
+      const headerCheckboxDisplay =
+        headerCheckbox.nextElementSibling.querySelector('span');
+      const rowCheckboxDisplay =
+        rowCheckbox.nextElementSibling.querySelector('span');
+
+      expect(headerCheckboxDisplay).toHaveStyleRule(
+        'color',
+        magma.colors.brand.navy
+      );
+      expect(rowCheckboxDisplay).toHaveStyleRule(
+        'color',
+        magma.colors.brand.navy
+      );
+    });
+
     it('should allow the disabling of selecting a row', () => {
       const { container } = render(
         <Datagrid
@@ -718,9 +744,10 @@ describe('Datagrid', () => {
       expect(
         getByText(pagination.rowsPerPage.toString(), { selector: 'option' })
       ).toBeInTheDocument();
+      expect(getByText(`Page ${pagination.page}:`)).toBeInTheDocument();
       expect(
         getByText(
-          `Page ${pagination.page}: 1-${pagination.rowsPerPage.toString()} of ${pagination.itemCount}`
+          `1-${pagination.rowsPerPage.toString()} of ${pagination.itemCount}`
         )
       ).toBeInTheDocument();
       expect(getByTestId('previousBtn')).toBeInTheDocument();
@@ -908,7 +935,7 @@ describe('Datagrid', () => {
     );
 
     expect(getByTestId(testId)).toHaveStyle(
-      `border: 1px solid ${magma.colors.neutral300}`
+      `border: 1px solid ${magma.colors.neutral200}`
     );
     expect(getByTestId(testId)).toHaveStyle(
       `border-radius: ${magma.borderRadius} ${magma.borderRadius} 0 0`

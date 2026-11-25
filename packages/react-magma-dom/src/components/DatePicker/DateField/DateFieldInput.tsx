@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { ReferenceType } from '@floating-ui/react-dom';
 import { isEmpty } from 'lodash';
-import { ClearIcon, EventIcon } from 'react-magma-icons';
+import { CloseOutlinedIcon, EventOutlinedIcon } from 'react-magma-icons';
 
 import {
   DateFieldInputContainer,
@@ -28,6 +28,7 @@ import {
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
+  getInputFormFieldColors,
 } from '../../FormFieldContainer';
 import { IconButton } from '../../IconButton';
 import { IconButtonContainer } from '../../InputBase';
@@ -37,6 +38,7 @@ import { MAX_YEAR, MIN_YEAR, isYearOutOfRange } from '../utils';
 
 export interface DateFieldInputProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize' | 'fieldId'> {
+  disabled?: boolean;
   id?: string;
   dateFormat?: string;
   inputStyle?: React.CSSProperties;
@@ -72,6 +74,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     inputValue,
     setReference,
     dateFormat,
+    disabled,
     onIconClick,
     onClearDate,
     onIconKeyDown,
@@ -141,6 +144,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             aria-describedby={ariaDescribedBy}
             aria-label={datePicker.day}
             data-testid="day-input"
+            disabled={disabled}
             id={dayId}
             isInverse={isInverse}
             isFocused={isFocused || isNotEmptyDate}
@@ -164,6 +168,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             aria-describedby={ariaDescribedBy}
             aria-label={datePicker.month}
             data-testid="month-input"
+            disabled={disabled}
             id={monthId}
             isInverse={isInverse}
             isFocused={isFocused || isNotEmptyDate}
@@ -193,6 +198,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             aria-describedby={ariaDescribedBy}
             aria-label={datePicker.year}
             data-testid="year-input"
+            disabled={disabled}
             id={yearId}
             isInverse={isInverse}
             isFocused={isFocused || isNotEmptyDate}
@@ -329,6 +335,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
         {renderInput(key)}
         {idx < fieldOrderLength - 1 && (
           <Divider
+            disabled={disabled}
             isFocused={isFocused || isNotEmptyDate}
             isInverse={isInverse}
             theme={theme}
@@ -362,6 +369,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
 
   return (
     <FormFieldContainer
+      {...getInputFormFieldColors(theme, isInverse)}
       containerStyle={containerStyle}
       errorMessage={isInvalidYear ? invalidYearErrorMessage : errorMessage}
       fieldId={id}
@@ -373,13 +381,15 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     >
       <DateFieldInputContainer>
         <InputsContainer
+          aria-disabled={disabled}
           data-testid="date-field-input"
+          disabled={disabled}
           ref={inputRef}
           isInverse={isInverse}
           hasError={!!errorMessage}
           theme={theme}
           style={inputStyle}
-          onClick={focusInputContainer}
+          onClick={disabled ? undefined : focusInputContainer}
           onFocus={handleOnFocus}
           onBlur={handleOnBlur}
           role="group"
@@ -391,7 +401,8 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
           <IsClearableContainer theme={theme}>
             <IconButton
               aria-label={i18n.input.isClearableAriaLabel}
-              icon={<ClearIcon />}
+              disabled={disabled}
+              icon={<CloseOutlinedIcon />}
               size={ButtonSize.small}
               isInverse={props.isInverse}
               shape={ButtonShape.fill}
@@ -407,7 +418,8 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             <IconButton
               aria-label={i18n.datePicker.calendarIconAriaLabel}
               data-testid="toggle-calendar-button"
-              icon={<EventIcon />}
+              disabled={disabled}
+              icon={<EventOutlinedIcon />}
               size={ButtonSize.small}
               isInverse={props.isInverse}
               ref={props.iconRef}
@@ -420,7 +432,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
           </IconButtonContainer>
         </IconWrapper>
         <VisuallyHidden>
-          <input id={id} aria-hidden="true" tabIndex={-1} />
+          <input aria-hidden="true" disabled={disabled} id={id} tabIndex={-1} />
         </VisuallyHidden>
       </DateFieldInputContainer>
     </FormFieldContainer>

@@ -3,6 +3,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
 
 import { DefinitionList, DefinitionListItem, DefinitionListType } from '.';
 
@@ -72,12 +73,8 @@ describe('DefinitionList', () => {
     );
 
     expect(container.querySelector('dl')).toHaveStyleRule(
-      'margin',
-      '0',
-      'padding',
-      '0',
       'color',
-      'black'
+      magma.colors.brand.navy
     );
   });
 
@@ -93,7 +90,10 @@ describe('DefinitionList', () => {
       </DefinitionList>
     );
 
-    expect(container.querySelector('dl')).toHaveStyleRule('color', '#FFFFFF');
+    expect(container.querySelector('dl')).toHaveStyleRule(
+      'color',
+      magma.colors.neutral0
+    );
   });
 
   describe('DefinitionListItem', () => {

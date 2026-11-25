@@ -7,6 +7,7 @@ import {
   KeyboardArrowDownIcon,
   KeyboardArrowUpIcon,
   HelpOutlineIcon,
+  SettingsIcon,
 } from 'react-magma-icons';
 
 import { magma } from '../../theme/magma';
@@ -39,8 +40,8 @@ const Template: StoryFn<TooltipProps> = args => (
       display: 'flex',
       justifyContent: 'center',
       background: args.isInverse
-        ? magma.colors.neutral
-        : magma.colors.neutral100,
+        ? magma.colors.neutral1100
+        : magma.colors.neutral0,
     }}
   >
     <Tooltip {...args}>
@@ -254,13 +255,6 @@ export const Complex = () => {
 };
 
 const CustomStylesTemplate: StoryFn<TooltipProps> = args => {
-  const customArrowStyles = {
-    background: 'yellow',
-    height: '15px',
-    width: '15px',
-    fill: 'red',
-  };
-
   const customContainerStyles = {
     background: 'blue',
     padding: '10px',
@@ -279,13 +273,12 @@ const CustomStylesTemplate: StoryFn<TooltipProps> = args => {
         display: 'flex',
         justifyContent: 'center',
         background: args.isInverse
-          ? magma.colors.neutral
-          : magma.colors.neutral100,
+          ? magma.colors.neutral1100
+          : magma.colors.neutral0,
       }}
     >
       <Tooltip
         {...args}
-        arrowStyle={customArrowStyles}
         containerStyle={customContainerStyles}
         tooltipStyle={customTooltipStyles}
       >
@@ -304,6 +297,50 @@ export const CustomStyles = {
     content: 'Lorem ipsum dolar sit amet. Vel molestie no, ut vim.',
   },
 };
+
+export const IconButtonWithMatchingLabel = () => (
+  <Flex
+    behavior={FlexBehavior.container}
+    alignItems={FlexAlignItems.center}
+    spacing={4}
+    style={{ padding: '80px' }}
+  >
+    <Flex
+      behavior={FlexBehavior.item}
+      alignItems={FlexAlignItems.center}
+      spacing={1}
+    >
+      <Tooltip content="Settings">
+        <IconButton
+          aria-label="Settings"
+          icon={<SettingsIcon />}
+          variant={ButtonVariant.link}
+        />
+      </Tooltip>
+      <span>
+        Tooltip matches <code>aria-label</code>: announced once, no{' '}
+        <code>aria-describedby</code>
+      </span>
+    </Flex>
+    <Flex
+      behavior={FlexBehavior.item}
+      alignItems={FlexAlignItems.center}
+      spacing={1}
+    >
+      <Tooltip content="Opens the settings panel">
+        <IconButton
+          aria-label="Settings"
+          icon={<SettingsIcon />}
+          variant={ButtonVariant.link}
+        />
+      </Tooltip>
+      <span>
+        Tooltip differs from <code>aria-label</code>: announced as the
+        description
+      </span>
+    </Flex>
+  </Flex>
+);
 
 export function Example() {
   const tooltipContentShort = (

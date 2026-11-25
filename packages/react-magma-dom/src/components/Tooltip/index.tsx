@@ -19,7 +19,12 @@ import {
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useForkedRef, useGenerateId, removePxStyleStrings } from '../../utils';
+import {
+  normalizeAccessibleText,
+  removePxStyleStrings,
+  useForkedRef,
+  useGenerateId,
+} from '../../utils';
 
 export enum TooltipPosition {
   bottom = 'bottom',
@@ -127,6 +132,15 @@ export const StyledTooltip = styled.div<{
   z-index: ${props => props.theme.tooltip.zIndex};
 `;
 
+function isSameAccessibleText(content: unknown, ariaLabel: unknown): boolean {
+  return (
+    typeof content === 'string' &&
+    typeof ariaLabel === 'string' &&
+    normalizeAccessibleText(content) !== '' &&
+    normalizeAccessibleText(content) === normalizeAccessibleText(ariaLabel)
+  );
+}
+
 // Using any for the ref because it is put on the passed in children which does not have a specific type
 export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   const isOpen = props.open !== undefined;
@@ -217,10 +231,15 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     throw new Error('Tooltip children can only be one element.');
   }
 
+  const isDescriptionRedundant = isSameAccessibleText(
+    content,
+    children.props?.['aria-label']
+  );
+
   const tooltipTrigger = React.cloneElement(
     children,
     getReferenceProps({
-      'aria-describedby': isVisible ? id : null,
+      'aria-describedby': isVisible && !isDescriptionRedundant ? id : null,
       ref: combinedRef,
       onFocus: event => {
         children.props.onFocus?.(event);

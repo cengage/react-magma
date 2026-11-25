@@ -1,0 +1,68 @@
+---
+title: 2026 Theme Migration
+order: 5
+---
+
+<PageContent componentName="2026_theme_migration" type="api_intro">
+
+<LeadParagraph>
+  {
+    'The 2026 Magma theme is a major release that replaces the legacy color ramps, updates the neutral scale and expands the border radius scale. Applications that reference theme tokens directly should review those references when upgrading.'
+  }
+</LeadParagraph>
+
+## Color Tokens
+
+The base semantic tokens `primary`, `secondary`, `tertiary`, `info`, `danger`,
+`warning` and `success` remain available. Their numbered legacy ramps were
+removed in favor of the new brand and primitive palettes.
+
+- **`primary100`–`primary700`:** Choose the appropriate `brand`, `blue`,
+  `cyan` or `indigo` token for the color's role. Use `primary` when the
+  semantic primary color is intended.
+- **`secondary500`–`secondary700`:** Choose the appropriate `brand`,
+  `tangerine` or `yellow` token. Use `secondary` when the semantic secondary
+  color is intended.
+- **`tertiary500`–`tertiary700`:** Choose the appropriate `brand`, `blue` or
+  `cyan` token. Use `tertiary` when the semantic tertiary color is intended.
+- **`info100`–`info700`:** Use the corresponding `blue100`–`blue1000`
+  primitive, or `info` for the base semantic color.
+- **`danger100`–`danger700`:** Use the corresponding `red100`–`red1000`
+  primitive, or `danger` for the base semantic color.
+- **`warning100`–`warning700`:** Use the appropriate `yellow100`–`yellow1000`
+  or `tangerine100`–`tangerine1000` primitive, or `warning` for the base
+  semantic color.
+- **`success100`–`success700`:** Use the corresponding `green100`–`green1000`
+  primitive, or `success` for the base semantic color.
+
+The neutral scale has also been redefined. In the previous theme,
+`neutral100` represented white. Use `neutral0` when white is intended. Because
+the values assigned to the remaining neutral stops have changed, review each
+neutral token according to its visual purpose instead of retaining the same
+stop number automatically.
+
+For example, replace `magma.colors.neutral100` with
+`magma.colors.neutral0` when white is intended, and replace a reference such
+as `magma.colors.danger600` with the new `magma.colors.red600` primitive.
+
+## Border Radius Tokens
+
+`borderRadiusSmall` changed from `4px` to `8px`. To preserve the previous
+4px appearance, replace it with `borderRadiusExtraSmall`.
+
+- `borderRadiusNone`: `0px`
+- `borderRadiusExtraSmall`: `4px`
+- `borderRadius`: `8px`
+- `borderRadiusSmall`: `8px`
+- `borderRadiusMedium`: `16px`
+- `borderRadiusLarge`: `24px`
+- `borderRadiusExtraLarge`: `40px`
+
+## Typography Tokens
+
+The default body and heading font changed from Work Sans to Inter. Some larger
+type-scale line heights changed, `size15` now represents a 64px font and
+`size16` was added for the 72px font size. Review layouts that reference these
+larger type-scale tokens directly.
+
+</PageContent>

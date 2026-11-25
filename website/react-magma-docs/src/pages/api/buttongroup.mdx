@@ -219,11 +219,19 @@ import {
   ButtonVariant,
   ButtonSize,
   Container,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Container isInverse style={{ padding: '12px' }}>
+    <Container
+      isInverse
+      style={{
+        background: magma.colors.neutral1100,
+        borderRadius: '8px',
+        padding: '12px',
+      }}
+    >
       <ButtonGroup
         color={ButtonColor.primary}
         variant={ButtonVariant.solid}

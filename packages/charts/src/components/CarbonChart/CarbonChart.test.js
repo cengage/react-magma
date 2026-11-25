@@ -24,7 +24,7 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
 // Multiple observers may be created per component; we collect all of them and
 // call each one so that no observer is silently skipped.
 let mutationObserverCallbacks = [];
-const mutationObserverCallback = mutations =>
+const mutationObserverCallback = (mutations = []) =>
   mutationObserverCallbacks.forEach(cb => cb(mutations));
 global.MutationObserver = jest.fn().mockImplementation(callback => {
   mutationObserverCallbacks.push(callback);
@@ -99,7 +99,7 @@ describe('CarbonChart', () => {
   });
 
   describe('Magma Theme Values Applied to Styles', () => {
-    it('should apply theme.colors.neutral700 to data table cells', () => {
+    it('should apply theme.colors.brand.navy to data table cells', () => {
       const testId = 'table-color-test';
       const { getByTestId } = render(
         <ThemeContext.Provider value={magma}>
@@ -114,10 +114,54 @@ describe('CarbonChart', () => {
 
       const wrapper = getByTestId(testId);
 
-      // CarbonChartWrapper applies theme.colors.neutral700 to .cds--data-table td
-      expect(wrapper).toHaveStyleRule('color', magma.colors.neutral700, {
+      expect(wrapper).toHaveStyleRule('color', magma.colors.brand.navy, {
         target: '.cds--data-table td',
       });
+    });
+
+    it('should apply theme.colors.brand.navy to chart text', () => {
+      const testId = 'chart-text-color-test';
+      const { getByTestId } = render(
+        <ThemeContext.Provider value={magma}>
+          <CarbonChart
+            testId={testId}
+            dataSet={dataSet}
+            options={chartOptions}
+            type={CarbonChartType.bar}
+          />
+        </ThemeContext.Provider>
+      );
+
+      const wrapper = getByTestId(testId);
+
+      expect(wrapper).toHaveStyleRule('color', magma.colors.brand.navy, {
+        target: 'p',
+      });
+      expect(wrapper).toHaveStyleRule(
+        'fill',
+        `${magma.colors.brand.navy}!important`,
+        { target: '.chart-holder text' }
+      );
+    });
+
+    it('should apply theme.colors.brand.navy to the chart title', () => {
+      const testId = 'title-color-test';
+      const { getByTestId } = render(
+        <ThemeContext.Provider value={magma}>
+          <CarbonChart
+            testId={testId}
+            dataSet={dataSet}
+            options={chartOptions}
+            type={CarbonChartType.bar}
+          />
+        </ThemeContext.Provider>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'color',
+        `${magma.colors.brand.navy}!important`,
+        { target: '.cds--cc--title p.title' }
+      );
     });
 
     it('should apply theme.colors.primary for button background in non-inverse mode', () => {
@@ -142,7 +186,7 @@ describe('CarbonChart', () => {
       });
     });
 
-    it('should apply theme.colors.tertiary500 for button background when isInverse is true', () => {
+    it('should apply theme.colors.cyan500 for button background when isInverse is true', () => {
       const testId = 'button-inverse-test';
       const { getByTestId } = render(
         <ThemeContext.Provider value={magma}>
@@ -158,13 +202,13 @@ describe('CarbonChart', () => {
 
       const wrapper = getByTestId(testId);
 
-      // CarbonChartWrapper applies theme.colors.tertiary500 to .cds--btn--primary when inverse
-      expect(wrapper).toHaveStyleRule('background', magma.colors.tertiary500, {
+      // CarbonChartWrapper applies theme.colors.cyan500 to .cds--btn--primary when inverse
+      expect(wrapper).toHaveStyleRule('background', magma.colors.cyan500, {
         target: '.chart-holder .cds--btn--primary',
       });
     });
 
-    it('should apply theme.colors.primary700 for inverse table header background', () => {
+    it('should apply theme.colors.indigo700 for inverse table header background', () => {
       const testId = 'table-inverse-test';
       const { getByTestId } = render(
         <ThemeContext.Provider value={magma}>
@@ -180,10 +224,10 @@ describe('CarbonChart', () => {
 
       const wrapper = getByTestId(testId);
 
-      // CarbonChartWrapper applies theme.colors.primary700 to table header when inverse
+      // CarbonChartWrapper applies theme.colors.indigo700 to table header when inverse
       expect(wrapper).toHaveStyleRule(
         'background',
-        `${magma.colors.primary700}!important`,
+        `${magma.colors.indigo700}!important`,
         {
           target: '.cds--data-table thead tr th',
         }
@@ -206,7 +250,7 @@ describe('CarbonChart', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background-color',
-        magma.colors.primary600,
+        magma.colors.indigo600,
         { target: '.cds--chart-holder.filled' }
       );
     });
@@ -476,7 +520,7 @@ describe('CarbonChart', () => {
       });
     });
 
-    it('should apply theme.colors.primary600 to modal header background when isInverse', () => {
+    it('should apply theme.colors.indigo600 to modal header background when isInverse', () => {
       const testId = 'modal-header-inverse-test';
       const { getByTestId } = render(
         <ThemeContext.Provider value={magma}>
@@ -492,8 +536,8 @@ describe('CarbonChart', () => {
 
       const wrapper = getByTestId(testId);
 
-      // CarbonChartWrapper applies theme.colors.primary600 to modal header when inverse
-      expect(wrapper).toHaveStyleRule('background', magma.colors.primary600, {
+      // CarbonChartWrapper applies theme.colors.indigo600 to modal header when inverse
+      expect(wrapper).toHaveStyleRule('background', magma.colors.indigo600, {
         target: '.chart-holder .cds--modal-header',
       });
     });
@@ -545,7 +589,7 @@ describe('CarbonChart', () => {
       );
     });
 
-    it('should apply theme.colors.primary600 to modal footer background when isInverse', () => {
+    it('should apply theme.colors.indigo600 to modal footer background when isInverse', () => {
       const testId = 'modal-footer-inverse-test';
       const { getByTestId } = render(
         <ThemeContext.Provider value={magma}>
@@ -561,10 +605,10 @@ describe('CarbonChart', () => {
 
       const wrapper = getByTestId(testId);
 
-      // CarbonChartWrapper applies theme.colors.primary600 to modal footer when inverse
+      // CarbonChartWrapper applies theme.colors.indigo600 to modal footer when inverse
       expect(wrapper).toHaveStyleRule(
         'background',
-        `${magma.colors.primary600}!important`,
+        `${magma.colors.indigo600}!important`,
         {
           target: '.cds--modal-footer.cds--modal-footer',
         }
@@ -1019,7 +1063,9 @@ describe('CarbonChart', () => {
 
         expect(wrapper).not.toHaveClass('has-magma-toolbar');
 
-        jest.runOnlyPendingTimers();
+        act(() => {
+          jest.runOnlyPendingTimers();
+        });
         expect(wrapper).toHaveClass('has-magma-toolbar');
       } finally {
         jest.useRealTimers();
@@ -1046,7 +1092,9 @@ describe('CarbonChart', () => {
         expect(exportToJPG).toHaveBeenCalledTimes(1);
         expect(wrapper).not.toHaveClass('has-magma-toolbar');
 
-        jest.runOnlyPendingTimers();
+        act(() => {
+          jest.runOnlyPendingTimers();
+        });
         expect(wrapper).toHaveClass('has-magma-toolbar');
       } finally {
         jest.useRealTimers();
@@ -1472,15 +1520,6 @@ describe('CarbonChart', () => {
     });
 
     describe('focus on dot content', () => {
-      it('should set opacity to 1 when a dot receives focus', () => {
-        const wrapper = renderChart();
-        const dot = addDot(wrapper);
-
-        fireEvent.focusIn(dot);
-
-        expect(dot.style.opacity).toBe('1');
-      });
-
       it('should dispatch mouseover on dot focusin to reveal tooltip data', () => {
         const wrapper = renderChart();
         const dot = addDot(wrapper);
@@ -1520,17 +1559,6 @@ describe('CarbonChart', () => {
     });
 
     describe('data visibility', () => {
-      it('should reset dot opacity when dot loses focus', () => {
-        const wrapper = renderChart();
-        const dot = addDot(wrapper);
-
-        fireEvent.focusIn(dot);
-        expect(dot.style.opacity).toBe('1');
-
-        fireEvent.focusOut(dot);
-        expect(dot.style.opacity).toBe('');
-      });
-
       it('should dispatch mouseout on dot focusout to hide tooltip', () => {
         const wrapper = renderChart();
         const dot = addDot(wrapper);
@@ -1542,6 +1570,34 @@ describe('CarbonChart', () => {
         fireEvent.focusOut(dot);
 
         expect(mouseoutSpy).toHaveBeenCalledTimes(1);
+      });
+
+      it('should not dispatch mouseout when focus moves from one dot to another', () => {
+        const wrapper = renderChart();
+        const firstDot = addDot(wrapper);
+        const secondDot = addDot(wrapper);
+
+        const mouseoutSpy = jest.fn();
+        firstDot.addEventListener('mouseout', mouseoutSpy);
+
+        fireEvent.focusOut(firstDot, { relatedTarget: secondDot });
+
+        expect(mouseoutSpy).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('dynamic dot rendering', () => {
+      it('should stamp tabindex="0" on dots added after initial raf pass', () => {
+        const wrapper = renderChart();
+
+        // Run initial pass before adding a dot so the observer must handle it.
+        act(() => rafCallbacks[rafCallbacks.length - 1](0));
+
+        const lateDot = addDot(wrapper);
+
+        act(() => mutationObserverCallback([]));
+
+        expect(lateDot).toHaveAttribute('tabindex', '0');
       });
     });
   });

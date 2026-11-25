@@ -222,6 +222,7 @@ describe('ChartTableButton', () => {
     const button = screen.getByRole('button', { name: 'Overall Performance' });
 
     expect(button).toHaveAttribute('aria-haspopup', 'dialog');
+    expect(button).toHaveAttribute('color', 'subtle');
   });
 
   it('sets aria-expanded to false when modal is closed', () => {
@@ -312,6 +313,7 @@ describe('ChartFullscreenButton', () => {
     });
 
     expect(button).not.toHaveAttribute('aria-haspopup');
+    expect(button).toHaveAttribute('color', 'subtle');
   });
 
   it('calls onClick when activated', () => {
@@ -370,7 +372,7 @@ describe('ChartFullscreenButton', () => {
 // ChartMoreOptionsButton
 // ---------------------------------------------------------------------------
 describe('ChartMoreOptionsButton', () => {
-  it('renders with default "More options" label', () => {
+  it('renders with default "More options" label and tooltip', async () => {
     render(
       <ChartMoreOptionsButton icon={<MoreVertIcon />}>
         <DropdownMenuItem>Download</DropdownMenuItem>
@@ -379,7 +381,12 @@ describe('ChartMoreOptionsButton', () => {
 
     expect(
       screen.getByRole('button', { name: 'More options' })
-    ).toBeInTheDocument();
+    ).toHaveAttribute('color', 'subtle');
+
+    fireEvent.mouseEnter(screen.getByRole('button', { name: 'More options' }));
+    await waitFor(() => {
+      expect(screen.getByText('More options')).toBeInTheDocument();
+    });
   });
 
   it('renders with custom aria-label', () => {

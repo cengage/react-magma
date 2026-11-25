@@ -34,7 +34,7 @@ import {
   Announce,
   VisuallyHidden,
 } from 'react-magma-dom';
-import { CloudUploadIcon } from 'react-magma-icons';
+import { CloudUploadOutlinedIcon } from 'react-magma-icons';
 
 import { FilePreview, FileError } from './FilePreview';
 import { Preview } from './Preview';
@@ -46,12 +46,13 @@ export interface OnSendFileProps {
   onProgress?: ({}: { percent: number; file: FilePreview }) => void;
 }
 
-type DragState =
-  | 'error'
-  | 'dragAccept'
-  | 'dragReject'
-  | 'dragActive'
-  | 'default';
+enum DragState {
+  error = 'error',
+  dragAccept = 'dragAccept',
+  dragReject = 'dragReject',
+  dragActive = 'dragActive',
+  default = 'default',
+}
 
 // NOTE: These props are manually copied to dropzone.mdx
 export interface DropzoneProps
@@ -60,6 +61,15 @@ export interface DropzoneProps
    * Set accepted file types. See https://github.com/okonet/attr-accept for more information. Keep in mind that mime type determination is not reliable across platforms. CSV files, for example, are reported as text/plain under macOS but as application/vnd.ms-excel under Windows. In some cases there might not be a mime type set at all. See: https://github.com/react-dropzone/react-dropzone/issues/276
    */
   accept?: string | string[];
+  /**
+   * The color of the button used to browse for files.
+   * @default ButtonColor.primary
+   */
+  buttonColor?: ButtonColor;
+  /**
+   * The text displayed in the button used to browse for files. Defaults to the localized browse files text.
+   */
+  buttonText?: string;
   /**
    * Enable/Disable the input
    */
@@ -146,35 +156,44 @@ const Container = styled(Flex)<
   justify-content: ${({ noDrag }) => (noDrag ? 'left' : 'center')};
   text-align: ${({ noDrag }) => (noDrag ? 'left' : 'center')};
   padding: ${({ noDrag }) => (noDrag ? '0px' : '24px')};
-  border-radius: ${({ noDrag }) => (noDrag ? '0px' : '4px')};
-  border: ${({ dragState = 'default', noDrag, theme, isInverse }) =>
+  border-radius: ${({ noDrag, theme }) =>
+    noDrag ? theme.borderRadiusNone : theme.borderRadiusSmall};
+  border: ${({ dragState = DragState.default, noDrag, theme, isInverse }) =>
     noDrag
       ? `0px`
-      : dragState === 'dragReject' || dragState === 'error'
+      : dragState === DragState.dragReject || dragState === DragState.error
         ? isInverse
-          ? `1px dashed ${theme.colors.danger300}`
-          : `1px dashed ${theme.colors.danger}`
-        : dragState === 'dragActive'
-          ? `1px dashed ${theme.colors.primary}`
-          : dragState === 'dragAccept'
-            ? `1px dashed ${theme.colors.success}`
-            : `1px dashed ${theme.colors.neutral400}`};
+          ? `${dragState === DragState.error ? '1px' : '2px'} dashed ${
+              dragState === DragState.error
+                ? theme.colors.red500
+                : theme.colors.red400
+            }`
+          : `${dragState === DragState.error ? '1px' : '2px'} dashed ${
+              theme.colors.danger
+            }`
+        : dragState === DragState.dragActive
+          ? `2px dashed ${theme.colors.blue500}`
+          : dragState === DragState.dragAccept
+            ? `2px dashed ${theme.colors.green500}`
+            : `2px dashed ${
+                isInverse ? theme.colors.neutral800 : theme.colors.neutral300
+              }`};
 
-  border-style: ${({ dragState = 'default' }) =>
-    dragState === 'error' ? 'solid' : 'dashed'};
+  border-style: ${({ dragState = DragState.default }) =>
+    dragState === DragState.error ? 'solid' : 'dashed'};
   background-color: ${({ theme, noDrag, isInverse }) =>
     noDrag
       ? 'transparent'
       : isInverse
-        ? transparentize(0.75, theme.colors.neutral900)
-        : theme.colors.neutral200};
+        ? transparentize(0.6, theme.colors.neutral1200)
+        : theme.colors.neutral100};
   outline: none;
   transition: ${({ noDrag }) => `border ${noDrag ? 0 : '.24s'} ease-in-out`};
 `;
 
 const HelperMessage = styled.span<{ isInverse?: boolean }>`
   color: ${({ theme, isInverse }) =>
-    isInverse ? theme.colors.neutral100 : theme.colors.neutral700};
+    isInverse ? theme.colors.neutral500 : theme.colors.neutral700};
   display: block;
   font-size: 14px;
   margin: -8px 0 16px 0;
@@ -182,7 +201,7 @@ const HelperMessage = styled.span<{ isInverse?: boolean }>`
 
 const Wrapper = styled.div<{ isInverse?: boolean }>`
   color: ${({ theme, isInverse }) =>
-    isInverse ? theme.colors.neutral100 : theme.colors.neutral700};
+    isInverse ? theme.colors.neutral0 : theme.colors.brand.navy};
   margin: 0 0 24px 0;
   font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
   line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
@@ -201,6 +220,8 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
   (props, ref) => {
     const {
       accept,
+      buttonColor = ButtonColor.primary,
+      buttonText,
       containerStyle,
       disabled,
 
@@ -303,16 +324,16 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
 
     const inputProps = getInputProps({ id });
 
-    let dragState: DragState = 'default';
+    let dragState = DragState.default;
 
     if (errorMessage) {
-      dragState = 'error';
+      dragState = DragState.error;
     } else if (isDragAccept) {
-      dragState = 'dragAccept';
+      dragState = DragState.dragAccept;
     } else if (isDragReject) {
-      dragState = 'dragReject';
+      dragState = DragState.dragReject;
     } else if (isDragActive) {
-      dragState = 'dragActive';
+      dragState = DragState.dragActive;
     }
 
     const handleRemoveFile = (removedFile: FilePreview) => {
@@ -493,7 +514,10 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
           inputSize={inputSize}
           isInverse={isInverse}
           isLabelVisuallyHidden={isLabelVisuallyHidden}
-          labelStyle={labelStyle}
+          labelStyle={{
+            color: isInverse ? theme.colors.neutral0 : theme.colors.brand.navy,
+            ...labelStyle,
+          }}
           labelText={labelText}
           messageStyle={{ minHeight: 0 }}
           data-testid={testId}
@@ -532,7 +556,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
             {noDrag ? (
               <Flex xs behavior={FlexBehavior.item}>
                 <Button
-                  color={ButtonColor.primary}
+                  color={buttonColor}
                   disabled={disabled}
                   isInverse={isInverse}
                   onClick={open}
@@ -540,17 +564,15 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                   ref={browseFileButtonRef}
                   aria-describedby={helperMessage ? helperMessageId : undefined}
                 >
-                  {i18n.dropzone.browseFiles}
+                  {buttonText ?? i18n.dropzone.browseFiles}
                 </Button>
               </Flex>
             ) : (
               <Flex behavior={FlexBehavior.item}>
-                <CloudUploadIcon
+                <CloudUploadOutlinedIcon
                   aria-hidden="true"
                   color={
-                    isInverse
-                      ? theme.colors.neutral100
-                      : theme.colors.neutral500
+                    isInverse ? theme.colors.neutral0 : theme.colors.neutral700
                   }
                   size={48}
                 />
@@ -558,7 +580,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                   {i18n.dropzone.dragMessage}
                 </Wrapper>
                 <Button
-                  color={ButtonColor.primary}
+                  color={buttonColor}
                   disabled={disabled}
                   isInverse={isInverse}
                   onClick={open}
@@ -567,7 +589,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                   ref={browseFileButtonRef}
                   aria-describedby={helperMessage ? helperMessageId : undefined}
                 >
-                  {i18n.dropzone.browseFiles}
+                  {buttonText ?? i18n.dropzone.browseFiles}
                 </Button>
               </Flex>
             )}

@@ -6,6 +6,10 @@ on:
       - main
       - v4/dev
       - v4/main
+      - v5/dev
+      - v5/main
+      - v6/dev
+      - v6/main
     types: [opened, synchronize]
 
 jobs:
@@ -54,11 +58,13 @@ jobs:
       - name: Set version prefix
         id: version
         run: |
-          if [[ "${{ github.base_ref }}" == v4/* ]]; then
-            echo "prefix=v4" >> $GITHUB_OUTPUT
-          else
-            echo "prefix=v5" >> $GITHUB_OUTPUT
-          fi
+          case "${{ github.base_ref }}" in
+            v4/*) prefix=v4 ;;
+            v5/*) prefix=v5 ;;
+            v6/*) prefix=v6 ;;
+            *) prefix=v7 ;;
+          esac
+          echo "prefix=$prefix" >> "$GITHUB_OUTPUT"
       - name: Deploy Doc Preview to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:

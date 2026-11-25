@@ -5,8 +5,8 @@ import styled from '@emotion/styled';
 import { addMonths, subMonths, startOfMonth } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import {
-  KeyboardArrowLeftIcon,
-  KeyboardArrowRightIcon,
+  KeyboardArrowLeftOutlinedIcon,
+  KeyboardArrowRightOutlinedIcon,
 } from 'react-magma-icons';
 
 import { CalendarContext } from './CalendarContext';
@@ -42,8 +42,8 @@ const CalendarHeaderText = styled.div<{ isInverse?: boolean }>`
   caption-side: initial;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   font-size: ${props => props.theme.typeScale.size03.fontSize};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   text-align: center;
@@ -171,7 +171,7 @@ export const CalendarHeader: React.FunctionComponent<
           )}`}
           color={ButtonColor.subtle}
           disabled={isDisabledPrevMonth}
-          icon={<KeyboardArrowLeftIcon />}
+          icon={<KeyboardArrowLeftOutlinedIcon />}
           type={ButtonType.button}
           variant={ButtonVariant.link}
           onClick={onClickPrevMonth}
@@ -184,7 +184,7 @@ export const CalendarHeader: React.FunctionComponent<
             'MMMM yyyy',
             locale
           )}`}
-          icon={<KeyboardArrowRightIcon />}
+          icon={<KeyboardArrowRightOutlinedIcon />}
           color={ButtonColor.subtle}
           disabled={isDisabledNextMonth}
           type={ButtonType.button}

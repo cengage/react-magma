@@ -57,7 +57,13 @@ export const blockQuoteStyles = props => css`
   //Inverse
   ${props.isInverse &&
   css`
-    color: ${props.theme.colors.neutral100};
+    color: ${props.hasAttribution
+      ? props.theme.colors.neutral500
+      : props.theme.colors.neutral0};
+    ${props.hasAttribution &&
+    css`
+      opacity: 1;
+    `}
   `}
 `;
 

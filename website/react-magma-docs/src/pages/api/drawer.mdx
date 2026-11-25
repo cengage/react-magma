@@ -9,7 +9,10 @@ props:
 
 <LeadParagraph>A container with a transition</LeadParagraph>
 
-<Alert variant="warning">The drawer trigger button must have the <code>aria-haspopup="dialog"</code> attribute for accessibility purposes.</Alert>
+<Alert variant="warning">
+  The drawer trigger button must have the <code>aria-haspopup="dialog"</code>{' '}
+  attribute for accessibility purposes.
+</Alert>
 
 ## Basic Usage
 
@@ -176,6 +179,7 @@ import {
   VisuallyHidden,
   Card,
   CardBody,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -183,7 +187,7 @@ export function Example() {
   const buttonRef = React.useRef<HTMLButtonElement>();
 
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <Drawer
           closeAriaLabel="Close drawer"

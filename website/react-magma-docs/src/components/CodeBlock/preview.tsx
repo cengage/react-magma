@@ -33,7 +33,7 @@ const PreviewContainer = styled.div<{
   noBorder?: boolean;
   isInverse?: boolean;
 }>`
-  border: ${props =>
+  border-bottom: ${props =>
     props.noBorder
       ? 0
       : `1px solid ${
@@ -41,7 +41,6 @@ const PreviewContainer = styled.div<{
             ? MAGMA.magma.colors.borderInverse
             : MAGMA.magma.colors.border
         }`};
-  border-bottom: 0;
   padding: ${props => (props.noBorder ? 0 : MAGMA.magma.spaceScale.spacing04)};
 `;
 

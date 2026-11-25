@@ -16,13 +16,9 @@ interface EditorProps {
 
 const Pre = styled.pre<{ expanded?: boolean; isInverse?: boolean }>`
   background: ${props =>
-    props.isInverse ? magma.colors.primary700 : magma.colors.neutral200};
-  border: 1px solid
-    ${props =>
-      props.isInverse ? magma.colors.borderInverse : magma.colors.border};
-  border-top: 0;
+    props.isInverse ? magma.colors.indigo700 : magma.colors.neutral100};
   border-radius: 0;
-  margin: 0 0 ${magma.spaceScale.spacing04};
+  margin: 0;
   max-height: ${props => (props.expanded ? 'auto' : '7.5em')};
   overflow: hidden;
   position: relative;
@@ -32,7 +28,7 @@ const Pre = styled.pre<{ expanded?: boolean; isInverse?: boolean }>`
       180deg,
       transparent 20%,
       ${props =>
-        props.isInverse ? magma.colors.primary700 : magma.colors.neutral200}
+        props.isInverse ? magma.colors.indigo700 : magma.colors.neutral100}
     );
 
     bottom: 0;

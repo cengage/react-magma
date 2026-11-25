@@ -120,7 +120,7 @@ export function Example() {
         </CardBody>
       </Card>
       <br />
-      <Card isInverse>
+      <Card background={magma.colors.neutral1100} isInverse>
         <CardBody>
           <ProgressBar
             isInverse
@@ -166,11 +166,11 @@ the default background color of the progress bar is `#CDDEFF` or `magma.colors.t
 ```tsx
 import React from 'react';
 
-import { ProgressBar, Card, CardBody } from 'react-magma-dom';
+import { ProgressBar, Card, CardBody, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <ProgressBar isInverse percentage={25} />
       </CardBody>

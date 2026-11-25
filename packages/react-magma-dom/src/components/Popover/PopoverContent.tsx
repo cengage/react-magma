@@ -10,7 +10,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { hasActiveElementsInside, useForkedRef } from '../../utils';
 import { Announce } from '../Announce';
-import { Card } from '../Card';
+import { Card, CardBorderRadius, CardCornerTreatment } from '../Card';
 
 export interface PopoverContentProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -35,8 +35,8 @@ const StyledCard = styled(Card)<{
   position: relative;
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.primary600
-      : props.theme.colors.neutral100};
+      ? props.theme.colors.neutral1100
+      : props.theme.colors.neutral0};
   display: ${props => (props.isOpen ? 'block' : 'none')};
   max-height: ${props => (props.maxHeight ? props.maxHeight : '100%')};
   opacity: ${props => (props.isOpen ? '1' : '0')};
@@ -46,8 +46,12 @@ const StyledCard = styled(Card)<{
   border: 1px solid
     ${props =>
       props.isInverse
-        ? props.theme.colors.primary400
-        : props.theme.colors.neutral300};
+        ? props.theme.colors.neutral800
+        : props.theme.colors.neutral200};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral0
+      : props.theme.colors.brand.navy};
   width: ${props => (props.width ? props.width : '100%')};
   max-width: ${props => (props.width ? props.width : '300px')};
 `;
@@ -67,6 +71,9 @@ const ScrollableContent = styled.div`
   white-space: normal;
 `;
 
+// Matches Chrome's arrow key scroll step
+const SCROLL_STEP = 40;
+
 export const PopoverContent = React.forwardRef<
   HTMLDivElement,
   PopoverContentProps
@@ -81,6 +88,77 @@ export const PopoverContent = React.forwardRef<
       context.isOpen &&
       hasActiveElementsInside(context.contentRef)
   );
+
+  const scrollableContentRef = React.useRef<HTMLDivElement>(null);
+  const [isScrollable, setIsScrollable] = React.useState(false);
+
+  // Scrollable content without interactive elements gets tabindex="0" so keyboard users can scroll with arrow keys.
+  // Non-scrollable content doesn't need tabindex - it would only add an extra Tab stop.
+  React.useEffect(() => {
+    const element = scrollableContentRef.current;
+
+    if (
+      !context.isOpen ||
+      !element ||
+      hasActiveElementsInside(scrollableContentRef)
+    ) {
+      setIsScrollable(false);
+
+      return;
+    }
+
+    const checkScrollability = () => {
+      setIsScrollable(element.scrollHeight > element.clientHeight);
+    };
+
+    checkScrollability();
+
+    let resizeObserver: any = null;
+
+    if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
+      resizeObserver = new (window as any).ResizeObserver(checkScrollability);
+      resizeObserver.observe(element);
+    }
+
+    return () => {
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+    };
+  }, [context.isOpen, children]);
+
+  // Safari doesn't scroll a focused overflow container with the keyboard,
+  // so scroll it manually (and prevent the native scroll in other browsers)
+  function handleScrollableContentKeyDown(
+    event: React.KeyboardEvent<HTMLDivElement>
+  ) {
+    const element = event.currentTarget;
+
+    if (
+      !isScrollable ||
+      event.target !== element ||
+      event.altKey ||
+      event.ctrlKey ||
+      event.metaKey ||
+      event.shiftKey
+    ) {
+      return;
+    }
+
+    const scrollTopByKey = {
+      ArrowDown: element.scrollTop + SCROLL_STEP,
+      ArrowUp: element.scrollTop - SCROLL_STEP,
+      PageDown: element.scrollTop + element.clientHeight,
+      PageUp: element.scrollTop - element.clientHeight,
+      Home: 0,
+      End: element.scrollHeight,
+    };
+
+    if (event.key in scrollTopByKey) {
+      event.preventDefault();
+      element.scrollTop = scrollTopByKey[event.key];
+    }
+  }
 
   const styledChildren = React.Children.toArray(children).map(item =>
     React.cloneElement(item as React.ReactElement, {
@@ -122,14 +200,12 @@ export const PopoverContent = React.forwardRef<
           width={10}
           height={6}
           fill={
-            context.isInverse
-              ? theme.colors.primary600
-              : theme.colors.neutral100
+            context.isInverse ? theme.colors.neutral1100 : theme.colors.neutral0
           }
           stroke={
             context.isInverse
-              ? theme.colors.primary400
-              : theme.colors.neutral300
+              ? theme.colors.neutral800
+              : theme.colors.neutral200
           }
           strokeWidth={1}
           style={{ zIndex: 996, transform: 'translateY(-15%)' }}
@@ -138,6 +214,8 @@ export const PopoverContent = React.forwardRef<
 
       <StyledCard
         {...other}
+        borderRadius={CardBorderRadius.small}
+        cornerTreatment={CardCornerTreatment.all}
         hasDropShadow
         isInverse={context.isInverse}
         isOpen={context.isOpen}
@@ -161,7 +239,14 @@ export const PopoverContent = React.forwardRef<
             id={context.popoverContentId.current}
           >
             {header}
-            <ScrollableContent theme={theme}>{content}</ScrollableContent>
+            <ScrollableContent
+              onKeyDown={handleScrollableContentKeyDown}
+              ref={scrollableContentRef}
+              tabIndex={isScrollable ? 0 : undefined}
+              theme={theme}
+            >
+              {content}
+            </ScrollableContent>
             {footer}
           </StyledAnnounce>
         </div>

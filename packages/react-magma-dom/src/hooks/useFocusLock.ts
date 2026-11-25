@@ -108,6 +108,23 @@ function isElementVisible(element: HTMLElement): boolean {
 }
 
 /**
+ * Checks that the element can still hold focus (not disabled, inert, hidden or removed).
+ */
+function canElementHoldFocus(element: HTMLElement): boolean {
+  return (
+    element.isConnected &&
+    !element.matches(':disabled') &&
+    !element.closest('[inert]') &&
+    isElementVisible(element)
+  );
+}
+
+// Browsers move focus to `<body>` asynchronously, so check after a short delay
+const LOST_FOCUS_CHECK_DELAY = 50;
+
+const LOST_FOCUS_ATTRIBUTES = ['disabled', 'hidden', 'style', 'class', 'inert'];
+
+/**
  * Module-level registry of currently active focus-lock root elements.
  * Used in Safari to prevent an outer lock from handling Tab for elements
  * that belong to an inner (descendant) lock.
@@ -122,6 +139,7 @@ export function useFocusLock(
 ): React.MutableRefObject<any> {
   const rootNode = React.useRef<HTMLElement>(null);
   const focusableItems = React.useRef<Array<HTMLElement>>([]);
+  const lastFocusedInside = React.useRef<HTMLElement | null>(null);
 
   const { isSafari } = useDeviceDetect();
 
@@ -143,6 +161,52 @@ export function useFocusLock(
     focusableItems.current = deduplicateTabStops(allFocusable);
   };
 
+  const isInsideNestedLock = (element: Element | null): boolean =>
+    !!element &&
+    !!rootNode.current &&
+    Array.from(activeFocusLockRoots).some(
+      lockRoot =>
+        lockRoot !== rootNode.current &&
+        rootNode.current!.contains(lockRoot) &&
+        lockRoot.contains(element)
+    );
+
+  // Checks that focus fell to `<body>` because the last focused element became unfocusable
+  const isFocusLostFromLock = (): boolean => {
+    const lastFocused = lastFocusedInside.current;
+
+    return (
+      !!rootNode.current &&
+      !!lastFocused &&
+      document.activeElement === document.body &&
+      document.hasFocus() &&
+      !canElementHoldFocus(lastFocused) &&
+      !isInsideNestedLock(lastFocused)
+    );
+  };
+
+  // Moves focus to the header, the first focusable item or the root.
+  const restoreFocusInsideLock = () => {
+    const root = rootNode.current;
+
+    if (!root) {
+      return;
+    }
+
+    updateFocusableItems();
+
+    if (header?.current && root.contains(header.current)) {
+      header.current.focus();
+    } else if (focusableItems.current.length > 0) {
+      focusableItems.current[0].focus();
+    } else {
+      if (!root.hasAttribute('tabindex')) {
+        root.setAttribute('tabindex', '-1');
+      }
+      root.focus();
+    }
+  };
+
   React.useEffect(() => {
     if (active) {
       const root = rootNode.current;
@@ -153,12 +217,57 @@ export function useFocusLock(
 
       updateFocusableItems();
 
-      const observer: MutationObserver = new MutationObserver(() => {
-        updateFocusableItems();
+      // Focus loss fires no events, so check for it after DOM mutations inside the lock
+      let lostFocusTimeout: ReturnType<typeof setTimeout> | undefined;
+
+      const scheduleLostFocusCheck = () => {
+        if (lostFocusTimeout !== undefined || !lastFocusedInside.current) {
+          return;
+        }
+
+        lostFocusTimeout = setTimeout(() => {
+          lostFocusTimeout = undefined;
+
+          if (isFocusLostFromLock()) {
+            restoreFocusInsideLock();
+          }
+        }, LOST_FOCUS_CHECK_DELAY);
+      };
+
+      const observer = new MutationObserver(mutations => {
+        if (mutations.some(mutation => mutation.type === 'childList')) {
+          updateFocusableItems();
+        }
+
+        scheduleLostFocusCheck();
       });
 
       if (root) {
-        observer.observe(root, { childList: true, subtree: true });
+        observer.observe(root, {
+          attributeFilter: LOST_FOCUS_ATTRIBUTES,
+          attributes: true,
+          childList: true,
+          subtree: true,
+        });
+      }
+
+      const handleFocusIn = (event: FocusEvent) => {
+        if (event.target instanceof HTMLElement) {
+          lastFocusedInside.current = event.target;
+        }
+      };
+
+      const handleFocusOut = (event: FocusEvent) => {
+        if (!event.relatedTarget) {
+          scheduleLostFocusCheck();
+        }
+      };
+
+      root?.addEventListener('focusin', handleFocusIn);
+      root?.addEventListener('focusout', handleFocusOut);
+
+      if (root?.contains(document.activeElement)) {
+        lastFocusedInside.current = document.activeElement as HTMLElement;
       }
 
       // Defer the initial focus to the next frame so the browser can update
@@ -203,6 +312,10 @@ export function useFocusLock(
         }
 
         cancelAnimationFrame(focusFrame);
+        clearTimeout(lostFocusTimeout);
+        root?.removeEventListener('focusin', handleFocusIn);
+        root?.removeEventListener('focusout', handleFocusOut);
+        lastFocusedInside.current = null;
         observer.disconnect();
       };
     }
@@ -223,7 +336,21 @@ export function useFocusLock(
         const firstItem = focusableItems.current[0];
         const lastItem = focusableItems.current[length - 1];
 
+        // Keep Tab inside the lock when focus was lost to `<body>`
+        if (length > 0 && isFocusLostFromLock()) {
+          event.preventDefault();
+          (shiftKey ? lastItem : firstItem).focus();
+
+          return;
+        }
+
         const activeElement = document.activeElement as HTMLElement | null;
+
+        // Elements inside a nested lock are handled by that lock
+        if (isInsideNestedLock(activeElement)) {
+          return;
+        }
+
         const eventTarget = event.target as Node | null;
         const isEventInsideCurrentLock =
           !!rootNode.current &&
@@ -253,21 +380,6 @@ export function useFocusLock(
          *
          * This keeps the default logic intact and avoids breaking nested focus locks.
          */
-        // Check whether the active element sits inside a nested active lock.
-        // If so, that lock should handle Tab — not this (outer) one.
-        const isInsideNestedLock =
-          !!activeElement &&
-          Array.from(activeFocusLockRoots).some(
-            lockRoot =>
-              lockRoot !== rootNode.current &&
-              rootNode.current!.contains(lockRoot) &&
-              lockRoot.contains(activeElement)
-          );
-
-        if (isInsideNestedLock) {
-          return;
-        }
-
         if (
           length > 0 &&
           (isEventInsideCurrentLock || isSafari) &&

@@ -59,12 +59,9 @@ export default function App() {
 const ActionsDiv = styled.div<{ isInverse?: boolean }>`
   align-items: flex-end;
   background: ${props =>
-    props.isInverse ? magma.colors.primary700 : magma.colors.neutral200};
-  border: 1px solid
-    ${props =>
-      props.isInverse ? magma.colors.borderInverse : magma.colors.border};
-  border-bottom: 0;
+    props.isInverse ? magma.colors.indigo700 : magma.colors.neutral100};
   display: flex;
+  gap: ${magma.spaceScale.spacing03};
   justify-content: flex-end;
   padding: ${magma.spaceScale.spacing03};
 `;
@@ -158,10 +155,10 @@ export const CodeSandboxAction = ({ code }: CodeSandboxActionProps) => {
 
   return (
     <Button
-      color={ButtonColor.secondary}
+      color={ButtonColor.subtle}
       onClick={handleOpenSandbox}
       size={ButtonSize.small}
-      variant={ButtonVariant.link}
+      variant={ButtonVariant.solid}
     >
       Edit in CodeSandbox
     </Button>
@@ -196,10 +193,10 @@ export const CopyAction = ({ ...props }: CopyActionProps) => {
     <CopyToClipboard text={props.code} onCopy={handleCopy}>
       <Button
         aria-label={copyText}
-        color={ButtonColor.secondary}
+        color={ButtonColor.subtle}
         disabled={copied}
         size={ButtonSize.small}
-        variant={ButtonVariant.link}
+        variant={ButtonVariant.solid}
       >
         Copy
       </Button>
@@ -216,9 +213,9 @@ export const ExpandAction = ({ ...props }: ExpandActionProps) => {
   return (
     <Button
       {...rest}
-      color={ButtonColor.secondary}
+      color={ButtonColor.subtle}
       size={ButtonSize.small}
-      variant={ButtonVariant.link}
+      variant={ButtonVariant.solid}
     >
       {expanded ? 'Collapse' : 'Expand'} code
     </Button>

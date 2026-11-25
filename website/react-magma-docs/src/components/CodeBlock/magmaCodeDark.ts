@@ -10,7 +10,7 @@ export const magmaCodeDark: PrismTheme = {
     {
       types: ['comment', 'prolog', 'doctype', 'cdata', 'punctuation'],
       style: {
-        color: magma.colors.success200,
+        color: magma.colors.green200,
       },
     },
     {
@@ -28,7 +28,7 @@ export const magmaCodeDark: PrismTheme = {
     {
       types: ['property', 'function'],
       style: {
-        color: magma.colors.success200,
+        color: magma.colors.green200,
       },
     },
     {
@@ -40,7 +40,7 @@ export const magmaCodeDark: PrismTheme = {
     {
       types: ['attr-name'],
       style: {
-        color: magma.colors.success200,
+        color: magma.colors.green200,
       },
     },
     {
@@ -61,7 +61,7 @@ export const magmaCodeDark: PrismTheme = {
         'variable',
       ],
       style: {
-        color: magma.colors.danger200,
+        color: magma.colors.red200,
       },
     },
     {
@@ -91,7 +91,7 @@ export const magmaCodeDark: PrismTheme = {
     {
       types: ['important'],
       style: {
-        color: magma.colors.danger200,
+        color: magma.colors.red200,
       },
     },
   ],

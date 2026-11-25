@@ -6,6 +6,10 @@ on:
       - main
       - v4/dev
       - v4/main
+      - v5/dev
+      - v5/main
+      - v6/dev
+      - v6/main
     types: [opened, synchronize, reopened]
 
 permissions:

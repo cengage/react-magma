@@ -5,33 +5,44 @@ usage() {
   cat <<'EOF'
 Usage: audit-cross-track-fixes.sh [options]
 
-Compare fix commits between the React Magma v5 and v4 integration branches.
-Unmatched commits are review candidates, not proof that a port is required.
+Compare fix commits between two React Magma integration branches. Defaults to the
+two active tracks (v7 origin/dev and v6 origin/v6/dev). Unmatched commits are
+review candidates, not proof that a port is required.
 
 Options:
-  --v5-ref REF          v5 integration ref (default: origin/dev)
-  --v4-ref REF          v4 integration ref (default: origin/v4/dev)
+  --a-ref REF           first integration ref (default: origin/dev)
+  --b-ref REF           second integration ref (default: origin/v6/dev)
   --since YYYY-MM-DD    show source fixes committed on or after this date
   --include-matched     also list fixes matched by patch, PR number, or subject
   -h, --help            show this help
 EOF
 }
 
-v5_ref="origin/dev"
-v4_ref="origin/v4/dev"
+track_label() {
+  case "$1" in
+    origin/dev | dev) echo "v7" ;;
+    origin/v6/dev | v6/dev) echo "v6" ;;
+    origin/v5/dev | v5/dev) echo "v5" ;;
+    origin/v4/dev | v4/dev) echo "v4" ;;
+    *) echo "$1" ;;
+  esac
+}
+
+a_ref="origin/dev"
+b_ref="origin/v6/dev"
 since_date=""
 include_matched="0"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --v5-ref)
+    --a-ref)
       [[ $# -ge 2 ]] || { usage >&2; exit 2; }
-      v5_ref="$2"
+      a_ref="$2"
       shift 2
       ;;
-    --v4-ref)
+    --b-ref)
       [[ $# -ge 2 ]] || { usage >&2; exit 2; }
-      v4_ref="$2"
+      b_ref="$2"
       shift 2
       ;;
     --since)
@@ -63,14 +74,17 @@ fi
 repo_root="$(git rev-parse --show-toplevel)"
 cd "$repo_root"
 
-for ref in "$v5_ref" "$v4_ref"; do
+for ref in "$a_ref" "$b_ref"; do
   if ! git rev-parse --verify --quiet "${ref}^{commit}" >/dev/null; then
     echo "error: missing ref $ref; run git fetch origin" >&2
     exit 1
   fi
 done
 
-common_base="$(git merge-base "$v5_ref" "$v4_ref")"
+a_label="$(track_label "$a_ref")"
+b_label="$(track_label "$b_ref")"
+
+common_base="$(git merge-base "$a_ref" "$b_ref")"
 tmp_dir="$(mktemp -d "/tmp/react-magma-fix-audit.XXXXXX")"
 cleanup() {
   rm -rf "$tmp_dir"
@@ -78,8 +92,8 @@ cleanup() {
 trap cleanup EXIT
 
 echo "React Magma cross-track fix audit"
-echo "v5: $v5_ref ($(git rev-parse --short "$v5_ref"))"
-echo "v4: $v4_ref ($(git rev-parse --short "$v4_ref"))"
+echo "$a_label: $a_ref ($(git rev-parse --short "$a_ref"))"
+echo "$b_label: $b_ref ($(git rev-parse --short "$b_ref"))"
 echo "common base: $(git rev-parse --short "$common_base")"
 if [[ -n "$since_date" ]]; then
   echo "source commit date filter: $since_date or later"
@@ -137,7 +151,7 @@ function readLog(path) {
 
 function isFix(subject) {
   return (
-    /^(?:v4\/)?(?:fix|hotfix|bugfix)(?:\([^)]*\))?[!:]/i.test(subject) ||
+    /^(?:v[0-9]+\/)?(?:fix|hotfix|bugfix)(?:\([^)]*\))?[!:]/i.test(subject) ||
     /^revert\b.*\bfix(?:\b|\(|:)/i.test(subject)
   );
 }
@@ -147,7 +161,7 @@ function prNumbers(subject) {
 }
 
 function normalizeSubject(subject) {
-  let normalized = subject.trim().toLowerCase().replace(/^v4\//, '');
+  let normalized = subject.trim().toLowerCase().replace(/^v[0-9]+\//, '');
 
   while (/\s+\(#[0-9]+\)\s*$/.test(normalized)) {
     normalized = normalized.replace(/\s+\(#[0-9]+\)\s*$/, '');
@@ -243,8 +257,8 @@ if (includeMatched === '1' && matched.length > 0) {
 NODE
 }
 
-audit_direction "v5" "$v5_ref" "v4" "$v4_ref"
-audit_direction "v4" "$v4_ref" "v5" "$v5_ref"
+audit_direction "$a_label" "$a_ref" "$b_label" "$b_ref"
+audit_direction "$b_label" "$b_ref" "$a_label" "$a_ref"
 
 echo
 echo "Classify every unmatched candidate as required, already ported, superseded, or track-specific."

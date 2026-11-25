@@ -1,77 +1,302 @@
 # Change Log
 
-## 5.2.0-rc.14
-
-### Patch Changes
-
-- b7ec2cc: feat(Dropdown): add `mainButtonRef` prop to pass a ref to the split button's left action button
-
-## 5.2.0-rc.13
-
-### Patch Changes
-
-- 35fe74a: fix(Checkbox): improve render performance
-
-## 5.2.0-rc.12
-
-### Patch Changes
-
-- 0747750: fix(Tabs): prevent scroll button focus outline from being clipped
-
-## 5.2.0-rc.11
-
-### Patch Changes
-
-- 351588a: fix(Select, MultiSelect): render disabled preselected items as selected values
-
-## 5.2.0-rc.10
-
-### Patch Changes
-
-- 4993cb8: feat(Dropdown): add `apiRef` prop to open and close the dropdown programmatically
-
-## 5.2.0-rc.9
+## 7.1.0
 
 ### Minor Changes
 
-- b3669bf: feat(Skeleton): Add `Skeleton` component for skeleton loading placeholders
+- chore(AI): add AI agent guidance for Magma components and theme tokens, with setup instructions
+- feat(Pagination): improve classic pagination navigation
+- feat(Tagline): add a reusable tagline typography component
+- fix(TreeView): correct screen reader announcements for tree items
 
-## 5.1.1-rc.8
+  Expansion, selection and `expandAll`/`collapseAll` are each announced once and
+  name the item they apply to, through a single live region owned by `TreeView`.
+  Keyboard selection is announced — it was previously silent — and a branch reports
+  the status it ends up in, saying its subitems followed only when they actually
+  did. `IndeterminateCheckbox` announces only a change the user made on it.
+
+  New optional i18n strings under `treeView`: `itemExpandedAnnounce`,
+  `itemCollapsedAnnounce`, `allItemsExpandedAnnounce`, `allItemsCollapsedAnnounce`,
+  `itemSelectedAnnounce`, `itemDeselectedAnnounce`, `itemPartiallySelectedAnnounce`,
+  `branchSelectedAnnounce`, `branchDeselectedAnnounce`. Each falls back to English
+  on its own, so a partially translated section is safe.
+
+  `i18n.expansionState` is deprecated in favour of `treeView.itemExpandedAnnounce`
+  / `itemCollapsedAnnounce`, which also name the item acted on. A translation
+  supplied through it still takes effect, as long as its replacement is left at
+  its default.
+
+  Notes for tests asserting on the accessibility tree:
+
+  - `li[role="treeitem"]` is now the only element carrying selection state. The
+    checkbox inside a tree item is `aria-hidden`, so `getByRole('checkbox')` no
+    longer matches inside a tree — query it with
+    `getByLabelText(label, { selector: 'input' })` or the `<itemId>-checkbox` test
+    id, and assert state on the item's `aria-checked`.
+  - Layout wrappers carry `role="none"`, siblings share one `ul[role="group"]` per
+    branch, and the per-item live regions are replaced by one region after the
+    tree (`<testId>-announce`).
+  - Announcements are published on a short delay, so assertions on announcement
+    text need `waitFor` or fake timers.
+  - Wording changed: `All subitems are selected` is now
+    `<label>, selected, all subitems selected`.
 
 ### Patch Changes
 
-- c802c92: fix(Pagination): fix styles to prevent an unwanted vertical scroll
+- fix(Dropdown): announce expanded state in Safari VoiceOver
+- fix(Select, MultiSelect): Label the trigger by its label only so screen readers don't announce the selected value twice.
+- fix(Dropdown, Accordion): add role="menu" for menu groups, roving tabindex, close menu on Shift+Tab, fix menu structure of expandable items and respect the role prop on AccordionPanel
+- fix(NavTabs): add role="tab" and remove theme attribute on custom component tabs
+- fix(Popover): fix text field trigger ARIA and keyboard scrolling
+- docs(react-magma-dom): fix typos in Checkbox, Radio, Toggle and IndeterminateCheckbox prop descriptions
+- fix(Select): add aria-controls to the Select trigger
+- fix(Select, Combobox): allow selecting items with the same label but different values
+- fix(Table): prevent `TableHeaderCell` from collapsing when `width` is not provided.
+- fix(TreeView): publish repeated Windows cascade messages from per-branch live regions (`<testId>-announce-<itemId>`), announce virtualized subitems, omit menu actions from item names, and preserve mixed child order with nested virtualization
+- fix(useFocusLock): Keep focus inside the lock when the focused element becomes disabled, hidden or removed.
+- chore: require `react-magma-icons` `^3.3.1`
 
-## 5.1.1-rc.7
+  fix(docs): resolve the icons ESM entry to support Gatsby server rendering
 
-### Patch Changes
+- fix: update components to use outlined icons
+- chore(AI): update the React Magma skill template for component props
+- fix(Tabs): remove the maximum width and support wrapped vertical labels
+- fix(Table): memoize `TableContext` value so memoized rows and cells skip unnecessary re-renders
+- fix(Tooltip): skip `aria-describedby` when the tooltip content matches the trigger's `aria-label` to prevent duplicate screen reader announcements
+- fix(TreeView): show a pointer cursor on the checkbox label and the expand icon
+- fix(TreeView): retain announcement and cursor regression tests when merging dev
+- fix(TreeView): preserve virtualized row measurements when expanding, collapsing, and resizing the tree
+- chore: update `react-magma-icons` to `^3.3.0`
 
-- 64e2ece: fix(Tag): prevent spreading ARIA attributes onto the inner label `span` to resolve `aria-allowed-attr` violation.
-
-## 5.1.1-rc.6
-
-### Patch Changes
-
-- 5c51f29: fix(ToggleButtonGroup): add `role` prop
-
-## 5.1.1-rc.5
-
-### Patch Changes
-
-- ed4bc72: fix(DatePicker): add role="dialog" and aria-modal="true" to calendar container
-- ed4bc72: fix(useFocusLock): fix focus trap for modal and date picker, including nested DatePicker focus order.
-
-## 5.1.1-rc.4
-
-### Patch Changes
-
-- a76daa4: fix(DatePicker): return focus to the calendar toggle button, not the clear button
-
-## 5.1.1-rc.3
+## 7.1.0-next.22
 
 ### Patch Changes
 
-- 298b21b: fix(a11y): Fix accessibility violations:
+- 927e089: fix(TreeView): publish repeated Windows cascade messages from per-branch live regions (`<testId>-announce-<itemId>`), announce virtualized subitems, omit menu actions from item names, and preserve mixed child order with nested virtualization
+
+## 7.1.0-next.21
+
+### Patch Changes
+
+- bdbf554: chore(AI): update the React Magma skill template for component props
+
+## 7.1.0-next.20
+
+### Minor Changes
+
+- 00a1804: feat(Pagination): improve classic pagination navigation
+
+## 7.1.0-next.19
+
+### Patch Changes
+
+- 4e4a938: fix(Tabs): remove the maximum width and support wrapped vertical labels
+
+## 7.1.0-next.18
+
+### Patch Changes
+
+- b6403a1: fix(Select, MultiSelect): Label the trigger by its label only so screen readers don't announce the selected value twice.
+
+## 7.1.0-next.17
+
+### Patch Changes
+
+- 571c6c3: fix: update components to use outlined icons
+
+## 7.1.0-next.16
+
+### Patch Changes
+
+- ace60c1: fix(Table): prevent `TableHeaderCell` from collapsing when `width` is not provided.
+
+## 7.1.0-next.15
+
+### Patch Changes
+
+- 3cbc0d8: docs(react-magma-dom): fix typos in Checkbox, Radio, Toggle and IndeterminateCheckbox prop descriptions
+- 3bfdaef: fix(TreeView): preserve virtualized row measurements when expanding, collapsing, and resizing the tree
+
+## 7.1.0-next.14
+
+### Patch Changes
+
+- 9b0299b: fix(Table): memoize `TableContext` value so memoized rows and cells skip unnecessary re-renders
+
+## 7.1.0-next.13
+
+### Minor Changes
+
+- 2aab6d5: feat(Tagline): add a reusable tagline typography component
+
+## 7.1.0-next.12
+
+### Patch Changes
+
+- e5cb7da: fix(Dropdown): announce expanded state in Safari VoiceOver
+
+## 7.1.0-next.11
+
+### Patch Changes
+
+- f041d00: chore: require `react-magma-icons` `^3.3.1`
+
+  fix(docs): resolve the icons ESM entry to support Gatsby server rendering
+
+## 7.1.0-next.10
+
+### Patch Changes
+
+- 586f3c8: fix(Select, Combobox): allow selecting items with the same label but different values
+
+## 7.1.0-next.9
+
+### Minor Changes
+
+- 9d6039f: chore(AI): add AI agent guidance for Magma components and theme tokens, with setup instructions
+
+## 7.1.0-next.8
+
+### Patch Changes
+
+- b89eb9a: fix(Tooltip): skip `aria-describedby` when the tooltip content matches the trigger's `aria-label` to prevent duplicate screen reader announcements
+
+## 7.1.0-next.7
+
+### Patch Changes
+
+- 0ea155d: fix(useFocusLock): Keep focus inside the lock when the focused element becomes disabled, hidden or removed.
+
+## 7.1.0-next.6
+
+### Patch Changes
+
+- 8026382: fix(Popover): fix text field trigger ARIA and keyboard scrolling
+
+## 7.1.0-next.5
+
+### Patch Changes
+
+- 3b144b9: fix(Select): add aria-controls to the Select trigger
+
+## 7.1.0-next.4
+
+### Patch Changes
+
+- 9822948: fix(Dropdown, Accordion): add role="menu" for menu groups, roving tabindex, close menu on Shift+Tab, fix menu structure of expandable items and respect the role prop on AccordionPanel
+
+## 7.1.0-next.3
+
+### Patch Changes
+
+- 87df167: fix(NavTabs): add role="tab" and remove theme attribute on custom component tabs
+
+## 7.1.0-next.2
+
+### Minor Changes
+
+- 9fcd834: fix(TreeView): correct screen reader announcements for tree items
+
+  Expansion, selection and `expandAll`/`collapseAll` are each announced once and
+  name the item they apply to, through a single live region owned by `TreeView`.
+  Keyboard selection is announced — it was previously silent — and a branch reports
+  the status it ends up in, saying its subitems followed only when they actually
+  did. `IndeterminateCheckbox` announces only a change the user made on it.
+
+  New optional i18n strings under `treeView`: `itemExpandedAnnounce`,
+  `itemCollapsedAnnounce`, `allItemsExpandedAnnounce`, `allItemsCollapsedAnnounce`,
+  `itemSelectedAnnounce`, `itemDeselectedAnnounce`, `itemPartiallySelectedAnnounce`,
+  `branchSelectedAnnounce`, `branchDeselectedAnnounce`. Each falls back to English
+  on its own, so a partially translated section is safe.
+
+  `i18n.expansionState` is deprecated in favour of `treeView.itemExpandedAnnounce`
+  / `itemCollapsedAnnounce`, which also name the item acted on. A translation
+  supplied through it still takes effect, as long as its replacement is left at
+  its default.
+
+  Notes for tests asserting on the accessibility tree:
+
+  - `li[role="treeitem"]` is now the only element carrying selection state. The
+    checkbox inside a tree item is `aria-hidden`, so `getByRole('checkbox')` no
+    longer matches inside a tree — query it with
+    `getByLabelText(label, { selector: 'input' })` or the `<itemId>-checkbox` test
+    id, and assert state on the item's `aria-checked`.
+  - Layout wrappers carry `role="none"`, siblings share one `ul[role="group"]` per
+    branch, and the per-item live regions are replaced by one region after the
+    tree (`<testId>-announce`).
+  - Announcements are published on a short delay, so assertions on announcement
+    text need `waitFor` or fake timers.
+  - Wording changed: `All subitems are selected` is now
+    `<label>, selected, all subitems selected`.
+
+### Patch Changes
+
+- 9fcd834: fix(TreeView): retain announcement and cursor regression tests when merging dev
+
+## 7.0.1-next.1
+
+### Patch Changes
+
+- d20e59e: fix(TreeView): show a pointer cursor on the checkbox label and the expand icon
+
+## 7.0.1-next.0
+
+### Patch Changes
+
+- b188410: chore: update `react-magma-icons` to `^3.3.0`
+
+## 7.0.0
+
+### Major Changes
+
+- 4ca06ad: feat: apply the 2026 Magma rebrand across components and documentation
+
+  - Replace legacy semantic color ramps with the new primitive and brand palette.
+  - Update component colors, typography, interaction states, spacing, and styling.
+  - Refresh the documentation navigation, homepage, examples, branding, and accessibility guidance.
+  - Align Dropzone and Charts with the updated theme tokens.
+
+  See the [2026 theme migration guide](https://react-magma.cengage.com/api-intro/2026-theme-migration/) for guidance on replacing removed color tokens and preserving legacy border radii.
+
+## 5.3.0
+
+### Minor Changes
+
+- 8fcb8fc: feat(Tag): Add data visualization color tokens and new color options.
+
+  - Adds `dataViz*` color tokens to the theme and reuses them for `chartColors` and `chartColorsInverse`.
+  - Adds `blue`, `teal`, `pink` and `purple` options to `TagColor`.
+  - Updates existing Tag styling: `TagColor.primary` and `TagColor.default` backgrounds and text colors, inverse colors, the outline (now a `border` instead of a `box-shadow`), fixed heights, text weight, and the dismiss icon (`CancelIcon` is now `CloseIcon`).
+
+### Patch Changes
+
+- 8fcb8fc: fix(Dropdown): return focus to the trigger button when a menu item is selected
+- 8fcb8fc: fix(Combobox, ToggleButtonGroup, PopoverTrigger, Tag): Fix ARIA id references
+
+  - Combobox now passes its generated id correctly
+  - ToggleButtonGroup no longer uses aria describedby with an id that does not exist
+  - PopoverTrigger now puts aria label on the actual trigger element instead of a wrapper with no role
+  - Tag remove aria-label from non-interactive Tag to fix ARIA prohibited attribute violation on span
+
+## 5.2.0
+
+### Minor Changes
+
+- 957ec07: feat(Skeleton): Add `Skeleton` component for skeleton loading placeholders
+
+### Patch Changes
+
+- 957ec07: fix(DatePicker): add role="dialog" and aria-modal="true" to calendar container
+- 957ec07: fix(Accordion): stop overriding Heading styles inside AccordionPanel
+- 957ec07: feat(Dropdown): add `apiRef` prop to open and close the dropdown programmatically
+- 957ec07: fix(Tag): prevent spreading ARIA attributes onto the inner label `span` to resolve `aria-allowed-attr` violation.
+- 957ec07: fix(ToggleButtonGroup): add `role` prop
+- 957ec07: fix(TreeView): Add missing useCallback dependencies for folder collapse.
+- 957ec07: fix(Checkbox): improve render performance
+- 957ec07: fix(DatePicker): return focus to the calendar toggle button, not the clear button
+- 957ec07: feat(Dropdown): add `mainButtonRef` prop to pass a ref to the split button's left action button
+- 957ec07: fix(Pagination): fix styles to prevent an unwanted vertical scroll
+- 957ec07: fix(a11y): Fix accessibility violations:
 
   - Input: hide decorative icons from screen readers
   - Table: remove invalid `aria-sort` from checkbox header cell
@@ -79,23 +304,10 @@
   - ToggleButton: remove incorrect `id` assignment from button element
   - TreeView: Fix `aria-required-children` and `color-contrast` accessibility violations
 
-## 5.1.1-rc.2
-
-### Patch Changes
-
-- 661cf8d: fix(Accordion): stop overriding Heading styles inside AccordionPanel
-
-## 5.1.1-rc.1
-
-### Patch Changes
-
-- 7638a7b: fix(PasswordInput): resize toggle button to fit custom text and cap its width at half the input
-
-## 5.1.1-rc.0
-
-### Patch Changes
-
-- 48fdaf3: fix(TreeView): Add missing useCallback dependencies for folder collapse.
+- 957ec07: fix(useFocusLock): fix focus trap for modal and date picker, including nested DatePicker focus order.
+- 957ec07: fix(PasswordInput): resize toggle button to fit custom text and cap its width at half the input
+- 957ec07: fix(Select, MultiSelect): render disabled preselected items as selected values
+- 957ec07: fix(Tabs): prevent scroll button focus outline from being clipped
 
 ## 5.1.0
 

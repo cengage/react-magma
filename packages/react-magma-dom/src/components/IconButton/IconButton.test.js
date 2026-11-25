@@ -16,6 +16,36 @@ import {
 import { ButtonIconPosition, IconButton } from '.';
 
 describe('IconButton', () => {
+  it.each([
+    [ButtonColor.danger, magma.colors.red1000],
+    [ButtonColor.success, magma.colors.green1000],
+  ])(
+    'uses the updated inverse %s icon color for all interactive states',
+    (color, expectedColor) => {
+      const { getByTestId } = render(
+        <IconButton
+          aria-label={`${color} icon button`}
+          color={color}
+          icon={<CheckIcon />}
+          isInverse
+          testId="inverse-icon-button"
+        />
+      );
+      const button = getByTestId('inverse-icon-button');
+
+      expect(button).toHaveStyleRule('color', expectedColor);
+      expect(button).toHaveStyleRule('color', expectedColor, {
+        target: ':hover',
+      });
+      expect(button).toHaveStyleRule('color', expectedColor, {
+        target: ':focus',
+      });
+      expect(button).toHaveStyleRule('color', expectedColor, {
+        target: ':active',
+      });
+    }
+  );
+
   it('An icon-only button does not violate detectible accessibility standards', () => {
     const icon = <CheckIcon />;
     const { container } = render(

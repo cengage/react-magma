@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
 import { Button } from '../Button';
 import { Heading } from '../Heading';
 
@@ -46,8 +47,19 @@ describe('Accordion', () => {
     const accordion = getByTestId(testId);
 
     expect(btn).toHaveStyleRule('background', 'transparent');
+    expect(btn).toHaveStyleRule(
+      'border-top',
+      `1px solid ${magma.colors.neutral200}`
+    );
+    expect(btn).toHaveStyleRule('color', magma.colors.brand.navy);
+    expect(btn).toHaveStyleRule('font-weight', '600');
     expect(panel).toHaveStyleRule('background', 'transparent');
+    expect(panel).toHaveStyleRule('color', magma.colors.brand.navy);
     expect(accordion).toHaveStyleRule('background', 'transparent');
+    expect(accordion).toHaveStyleRule(
+      'border-bottom',
+      `1px solid ${magma.colors.neutral200}`
+    );
   });
 
   it('should render the component with the correct inverse styles', () => {
@@ -67,8 +79,16 @@ describe('Accordion', () => {
     const accordion = getByTestId(testId);
 
     expect(btn).toHaveStyleRule('background', 'transparent');
+    expect(btn).toHaveStyleRule(
+      'border-top',
+      `1px solid ${magma.colors.neutral800}`
+    );
     expect(panel).toHaveStyleRule('background', 'transparent');
     expect(accordion).toHaveStyleRule('background', 'transparent');
+    expect(accordion).toHaveStyleRule(
+      'border-bottom',
+      `1px solid ${magma.colors.neutral800}`
+    );
   });
 
   it('should not override the styles of a Heading nested inside an AccordionPanel', () => {
@@ -417,6 +437,24 @@ describe('Accordion', () => {
       expect(panel1).toHaveAttribute('aria-hidden', 'false');
       expect(panel2).toHaveAttribute('aria-hidden', 'false');
     });
+  });
+
+  it('should render the panel with role "region" unless a role is passed', () => {
+    const { getByText } = render(
+      <Accordion isMulti defaultIndex={[0, 1]}>
+        <AccordionItem>
+          <AccordionButton>Section 1</AccordionButton>
+          <AccordionPanel>Panel 1</AccordionPanel>
+        </AccordionItem>
+        <AccordionItem>
+          <AccordionButton>Section 2</AccordionButton>
+          <AccordionPanel role="group">Panel 2</AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    );
+
+    expect(getByText('Panel 1')).toHaveAttribute('role', 'region');
+    expect(getByText('Panel 2')).toHaveAttribute('role', 'group');
   });
 
   it('Does not violate accessibility standards', () => {

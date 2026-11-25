@@ -65,7 +65,7 @@ export function getBodyFontFamily(props) {
 
 export function getBaseFontColor(props, isHeading = false) {
   if (props.isInverse) {
-    return props.theme.colors.neutral100;
+    return props.theme.colors.neutral0;
   }
 
   // Expressive headings use primary color
@@ -73,10 +73,10 @@ export function getBaseFontColor(props, isHeading = false) {
     props.contextVariant === TypographyContextVariant.expressive &&
     isHeading
   ) {
-    return props.theme.colors.primary600;
+    return props.theme.colors.brand.navy;
   }
 
-  return props.theme.colors.neutral700;
+  return props.theme.colors.primary;
 }
 
 export const colorStyles = (props, isHeading: boolean) => css`
@@ -97,25 +97,25 @@ export const colorStyles = (props, isHeading: boolean) => css`
 ${props.color === TypographyColor.subdued &&
   !props.isInverse &&
   css`
-    color: ${props.theme.colors.neutral500};
+    color: ${props.theme.colors.neutral700};
   `}
 
   ${props.color === TypographyColor.danger &&
   props.isInverse &&
   css`
-    color: ${props.theme.colors.danger200};
+    color: ${props.theme.colors.red200};
   `}
 
   ${props.color === TypographyColor.success &&
   props.isInverse &&
   css`
-    color: ${props.theme.colors.success200};
+    color: ${props.theme.colors.green200};
   `}
 
 ${props.color === TypographyColor.subdued &&
   props.isInverse &&
   css`
-    color: ${props.theme.colors.neutral100};
+    color: ${props.theme.colors.neutral0};
     opacity: 0.7;
   `}
 `;

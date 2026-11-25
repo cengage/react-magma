@@ -34,6 +34,7 @@ import {
   Tab,
   TabPanelsContainer,
   TabPanel,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -713,7 +714,11 @@ export function Example() {
 
 ## ScrollSpy Tabs
 
-<Alert variant="warning"> <strong>Important</strong> ScrollSpy is a beta component. Please use at your own risk.</Alert>
+<Alert variant="warning">
+  {' '}
+  <strong>Important</strong> ScrollSpy is a beta component. Please use at your
+  own risk.
+</Alert>
 
 The `TabsScrollSpyContainer` enables a vertical nav which follows the active content in view as the user scrolls. The component requires the `TabScrollSpyPanel` to house each area and a `tabLabel` to assign it's navigation title.
 
@@ -863,12 +868,16 @@ import {
   TabPanelsContainer,
   TabPanel,
 } from 'react-magma-dom';
-import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
+import {
+  MailOutlinedIcon,
+  AndroidOutlinedIcon,
+  NotificationsOutlinedIcon,
+} from 'react-magma-icons';
 
 export function Example() {
-  const emailIcon = <EmailIcon />;
-  const androidIcon = <AndroidIcon />;
-  const bellIcon = <NotificationsIcon />;
+  const emailIcon = <MailOutlinedIcon />;
+  const androidIcon = <AndroidOutlinedIcon />;
+  const bellIcon = <NotificationsOutlinedIcon />;
 
   return (
     <TabsContainer>
@@ -908,12 +917,16 @@ import {
   TabPanelsContainer,
   TabPanel,
 } from 'react-magma-dom';
-import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
+import {
+  MailOutlinedIcon,
+  AndroidOutlinedIcon,
+  NotificationsOutlinedIcon,
+} from 'react-magma-icons';
 
 export function Example() {
-  const emailIcon = <EmailIcon />;
-  const androidIcon = <AndroidIcon />;
-  const bellIcon = <NotificationsIcon />;
+  const emailIcon = <MailOutlinedIcon />;
+  const androidIcon = <AndroidOutlinedIcon />;
+  const bellIcon = <NotificationsOutlinedIcon />;
 
   return (
     <TabsContainer>
@@ -951,12 +964,16 @@ import {
   TabPanel,
   TabsOrientation,
 } from 'react-magma-dom';
-import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
+import {
+  MailOutlinedIcon,
+  AndroidOutlinedIcon,
+  NotificationsOutlinedIcon,
+} from 'react-magma-icons';
 
 export function Example() {
-  const emailIcon = <EmailIcon />;
-  const androidIcon = <AndroidIcon />;
-  const bellIcon = <NotificationsIcon />;
+  const emailIcon = <MailOutlinedIcon />;
+  const androidIcon = <AndroidOutlinedIcon />;
+  const bellIcon = <NotificationsOutlinedIcon />;
 
   return (
     <TabsContainer>
@@ -995,12 +1012,16 @@ This prop is specified on the `Tabs` component.
 import React from 'react';
 
 import { TabsContainer, Tabs, Tab, TabsIconPosition } from 'react-magma-dom';
-import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
+import {
+  MailOutlinedIcon,
+  AndroidOutlinedIcon,
+  NotificationsOutlinedIcon,
+} from 'react-magma-icons';
 
 export function Example() {
-  const emailIcon = <EmailIcon />;
-  const androidIcon = <AndroidIcon />;
-  const bellIcon = <NotificationsIcon />;
+  const emailIcon = <MailOutlinedIcon />;
+  const androidIcon = <AndroidOutlinedIcon />;
+  const bellIcon = <NotificationsOutlinedIcon />;
 
   return (
     <>
@@ -1065,12 +1086,16 @@ import {
   TabsOrientation,
   TabsIconPosition,
 } from 'react-magma-dom';
-import { EmailIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+import {
+  MailOutlinedIcon,
+  AndroidOutlinedIcon,
+  NotificationsOutlinedIcon,
+} from 'react-magma-icons';
 
 export function Example() {
-  const emailIcon = <EmailIcon />;
-  const androidIcon = <AndroidIcon />;
-  const bellIcon = <BellIcon />;
+  const emailIcon = <MailOutlinedIcon />;
+  const androidIcon = <AndroidOutlinedIcon />;
+  const bellIcon = <NotificationsOutlinedIcon />;
 
   return (
     <TabsContainer>
@@ -1106,7 +1131,7 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
 The default value is false. It can be applied just to the `Tabs` (just the navigation), or to the `TabsContainer` (navigation plus panel content).
 It can also be applied to the `TabPanelsContainer` or the individual `TabPanel`.
 
-### With Blue Background
+### With Neutral Background
 
 ```tsx
 import React from 'react';
@@ -1119,11 +1144,12 @@ import {
   Tab,
   TabPanelsContainer,
   TabPanel,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <TabsContainer isInverse>
           <Tabs aria-label="Sample Inverse Colors Tabs" isInverse>

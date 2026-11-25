@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Textarea, Datagrid, magma } from 'react-magma-dom';
+import { ButtonColor, Textarea, Datagrid, magma } from 'react-magma-dom';
 
 import { Dropzone, DropzoneProps, OnSendFileProps } from './Dropzone';
 
@@ -54,6 +54,17 @@ export default {
   component: Dropzone,
   title: 'Dropzone',
   argTypes: {
+    buttonColor: {
+      control: {
+        type: 'select',
+      },
+      options: Object.values(ButtonColor),
+    },
+    buttonText: {
+      control: {
+        type: 'text',
+      },
+    },
     noDrag: {
       control: {
         type: 'boolean',
@@ -82,11 +93,15 @@ export default {
 };
 
 export const Default = {
+  args: {
+    buttonColor: ButtonColor.secondary,
+    buttonText: 'Choose Files',
+  },
   render: (args: DropzoneProps) => {
     return (
       <div
         style={{
-          background: args.isInverse ? magma.colors.primary600 : 'none',
+          background: args.isInverse ? magma.colors.neutral1100 : 'none',
           padding: '24px',
         }}
       >
@@ -116,7 +131,7 @@ export const NoLimits = {
     return (
       <div
         style={{
-          background: args.isInverse ? magma.colors.primary600 : 'none',
+          background: args.isInverse ? magma.colors.neutral1100 : 'none',
           padding: '24px',
         }}
       >
@@ -159,7 +174,7 @@ export const Image = {
     return (
       <div
         style={{
-          background: args.isInverse ? magma.colors.primary600 : 'none',
+          background: args.isInverse ? magma.colors.neutral1100 : 'none',
           padding: '24px',
         }}
       >
@@ -205,7 +220,7 @@ export const Text = {
     return (
       <div
         style={{
-          background: args.isInverse ? magma.colors.primary600 : 'none',
+          background: args.isInverse ? magma.colors.neutral1100 : 'none',
           padding: '24px',
         }}
       >
@@ -253,7 +268,7 @@ export const Csv = {
     return (
       <div
         style={{
-          background: args.isInverse ? magma.colors.primary600 : 'none',
+          background: args.isInverse ? magma.colors.neutral1100 : 'none',
           padding: '24px',
         }}
       >

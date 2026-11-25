@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { transparentize } from 'polished';
 
 import { TableCellAlign, TableContext, TableDensity } from './Table';
 import { ThemeInterface } from '../../theme/magma';
@@ -29,8 +28,8 @@ export interface TableCellProps
 export const baseTableCellStyle = props => css`
   border-right: ${props.hasVerticalBorders ? '1px solid' : 0};
   border-color: ${props.isInverse
-    ? transparentize(0.6, props.theme.colors.neutral100)
-    : props.theme.colors.neutral300};
+    ? props.theme.colors.neutral800
+    : props.theme.colors.neutral200};
   display: table-cell;
   font-size: inherit;
   line-height: inherit;

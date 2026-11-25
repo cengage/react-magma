@@ -4,6 +4,7 @@ import { ThemeInterface } from '../../../theme/magma';
 import { inputWrapperStyles } from '../../InputBase';
 
 export const InputsContainer = styled.div<{
+  disabled?: boolean;
   hasError?: boolean;
   isInverse?: boolean;
 }>`

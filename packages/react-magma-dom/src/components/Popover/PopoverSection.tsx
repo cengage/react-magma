@@ -47,8 +47,8 @@ const SectionLine = styled.div<{ isInverse?: boolean; section: SectionEnum }>`
   height: 1px;
   background-color: ${props =>
     props.isInverse
-      ? props.theme.colors.primary400
-      : props.theme.colors.neutral300};
+      ? props.theme.colors.neutral800
+      : props.theme.colors.neutral200};
   left: 0;
 
   ${props =>

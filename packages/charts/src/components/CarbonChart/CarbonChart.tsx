@@ -35,10 +35,10 @@ import {
   VisuallyHidden,
 } from 'react-magma-dom';
 import {
-  FullscreenExitIcon,
-  FullscreenIcon,
-  MoreVertIcon,
-  TableIcon,
+  FullscreenExitOutlinedIcon,
+  FullscreenOutlinedIcon,
+  MoreVertOutlinedIcon,
+  TableOutlinedIcon,
 } from 'react-magma-icons';
 
 import { useCarbonModalFocusManagement } from '../../hooks/useCarbonModalFocusManagement';
@@ -185,7 +185,7 @@ const FullscreenRoot = styled.div<{
   &:-webkit-full-screen {
     background: ${props =>
       props.isInverse
-        ? props.theme.colors.primary700
+        ? props.theme.colors.indigo700
         : props.theme.colors.neutral100};
 
     ${props =>
@@ -244,7 +244,7 @@ const CarbonChartWrapper = styled.div<{
   &:-webkit-full-screen {
     background: ${props =>
       props.isInverse
-        ? props.theme.colors.primary700
+        ? props.theme.colors.indigo700
         : props.theme.colors.neutral100};
 
     .cds--chart-holder {
@@ -256,17 +256,20 @@ const CarbonChartWrapper = styled.div<{
   .cds--chart-holder.filled .cds--cc--chart-wrapper {
     background-color: ${props =>
       props.isInverse
-        ? props.theme.colors.primary600
+        ? props.theme.colors.indigo600
         : props.theme.colors.neutral100};
   }
 
   .cds--data-table thead tr th {
     background: ${props =>
-      props.isInverse ? props.theme.colors.primary700 : ''} !important;
+      props.isInverse ? props.theme.colors.indigo700 : ''} !important;
   }
   .cds--data-table td,
-  .cds--data-table tbody th {
-    color: ${props => props.theme.colors.neutral700};
+  .cds--data-table th {
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.brand.navy};
   }
   .cds--data-table tbody tr,
   .cds--data-table tbody tr td,
@@ -283,7 +286,7 @@ const CarbonChartWrapper = styled.div<{
     color: ${props =>
       props.isInverse
         ? props.theme.colors.neutral100
-        : props.theme.colors.neutral700};
+        : props.theme.colors.brand.navy};
     max-width: 142px;
     white-space: normal;
   }
@@ -291,10 +294,10 @@ const CarbonChartWrapper = styled.div<{
   .cds--modal-container {
     clip-path: inset(0% 0% 0% 0% round ${props => props.theme.borderRadius});
     background: ${props =>
-      props.isInverse ? props.theme.colors.primary700 : ''};
+      props.isInverse ? props.theme.colors.indigo700 : ''};
     .cds--data-table th {
       background: ${props =>
-        props.isInverse ? props.theme.colors.primary600 : ''};
+        props.isInverse ? props.theme.colors.indigo600 : ''};
     }
     .cds--data-table td {
       border-top: 1px solid
@@ -311,7 +314,7 @@ const CarbonChartWrapper = styled.div<{
     }
     .cds--data-table tr:hover td {
       background: ${props =>
-        props.isInverse ? props.theme.colors.primary600 : ''};
+        props.isInverse ? props.theme.colors.indigo600 : ''};
     }
   }
 
@@ -319,13 +322,28 @@ const CarbonChartWrapper = styled.div<{
   .chart-holder div,
   .chart-holder text,
   .cds--cc--axes g.axis .axis-title,
-  .cds--cc--title p.title,
   .cds--cc--axes g.axis g.tick text {
     font-family: ${props => props.theme.bodyFont} !important;
     color: ${props =>
       props.isInverse
         ? props.theme.colors.neutral100
-        : props.theme.colors.neutral700};
+        : props.theme.colors.brand.navy};
+  }
+
+  .chart-holder text,
+  .cds--cc--axes g.axis .axis-title,
+  .cds--cc--axes g.axis g.tick text {
+    fill: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.brand.navy} !important;
+  }
+
+  .cds--cc--title p.title {
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.brand.navy} !important;
   }
 
   .cds--cc--axes {
@@ -412,28 +430,28 @@ const CarbonChartWrapper = styled.div<{
           1px 0px 0px
             ${props =>
               props.isInverse
-                ? props.theme.colors.primary600
+                ? props.theme.colors.indigo600
                 : props.theme.colors.neutral100}
         )
         drop-shadow(
           -1px 0px 0px
             ${props =>
               props.isInverse
-                ? props.theme.colors.primary600
+                ? props.theme.colors.indigo600
                 : props.theme.colors.neutral100}
         )
         drop-shadow(
           0px 1px 0px
             ${props =>
               props.isInverse
-                ? props.theme.colors.primary600
+                ? props.theme.colors.indigo600
                 : props.theme.colors.neutral100}
         )
         drop-shadow(
           0px -1px 0px
             ${props =>
               props.isInverse
-                ? props.theme.colors.primary600
+                ? props.theme.colors.indigo600
                 : props.theme.colors.neutral100}
         );
     }
@@ -444,28 +462,28 @@ const CarbonChartWrapper = styled.div<{
           1px 0px 0px
             ${props =>
               props.isInverse
-                ? props.theme.colors.primary600
+                ? props.theme.colors.indigo600
                 : props.theme.colors.neutral100}
         )
         drop-shadow(
           -1px 0px 0px
             ${props =>
               props.isInverse
-                ? props.theme.colors.primary600
+                ? props.theme.colors.indigo600
                 : props.theme.colors.neutral100}
         )
         drop-shadow(
           0px 1px 0px
             ${props =>
               props.isInverse
-                ? props.theme.colors.primary600
+                ? props.theme.colors.indigo600
                 : props.theme.colors.neutral100}
         )
         drop-shadow(
           0px -1px 0px
             ${props =>
               props.isInverse
-                ? props.theme.colors.primary600
+                ? props.theme.colors.indigo600
                 : props.theme.colors.neutral100}
         );
     }
@@ -486,28 +504,28 @@ const CarbonChartWrapper = styled.div<{
           1px 0px 0px
             ${props =>
               props.isInverse
-                ? props.theme.colors.primary600
+                ? props.theme.colors.indigo600
                 : props.theme.colors.neutral100}
         )
         drop-shadow(
           -1px 0px 0px
             ${props =>
               props.isInverse
-                ? props.theme.colors.primary600
+                ? props.theme.colors.indigo600
                 : props.theme.colors.neutral100}
         )
         drop-shadow(
           0px 1px 0px
             ${props =>
               props.isInverse
-                ? props.theme.colors.primary600
+                ? props.theme.colors.indigo600
                 : props.theme.colors.neutral100}
         )
         drop-shadow(
           0px -1px 0px
             ${props =>
               props.isInverse
-                ? props.theme.colors.primary600
+                ? props.theme.colors.indigo600
                 : props.theme.colors.neutral100}
         );
     }
@@ -564,7 +582,7 @@ const CarbonChartWrapper = styled.div<{
     .cds--btn--primary {
       background: ${props =>
         props.isInverse
-          ? props.theme.colors.tertiary500
+          ? props.theme.colors.cyan500
           : props.theme.colors.primary};
       color: ${props => (props.isInverse ? props.theme.colors.neutral900 : '')};
     }
@@ -624,7 +642,7 @@ const CarbonChartWrapper = styled.div<{
     .cds--modal-header {
       background: ${props =>
         props.isInverse
-          ? props.theme.colors.primary600
+          ? props.theme.colors.indigo600
           : props.theme.colors.neutral100};
       margin-bottom: 0;
       border-bottom: 1px solid
@@ -664,7 +682,7 @@ const CarbonChartWrapper = styled.div<{
           : props.theme.colors.neutral300};
     background: ${props =>
       props.isInverse
-        ? props.theme.colors.primary600
+        ? props.theme.colors.indigo600
         : props.theme.colors.neutral100} !important;
   }
   .layout-child.header {
@@ -701,7 +719,10 @@ const CarbonChartWrapper = styled.div<{
 
   g.center text,
   .pie-label {
-    fill: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')};
+    fill: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.brand.navy};
   }
 
   // Zoom responsive tweaks
@@ -765,22 +786,6 @@ const ToolbarWrapper = styled.div<{
   right: ${props.isFullscreen ? '2em' : '0'};
   top: ${props.isFullscreen ? '2em' : '0'};
   `}
-
-  button {
-    color: ${props =>
-      props.isInverse
-        ? props.theme.colors.neutral100
-        : props.theme.colors.primary500};
-
-    &:focus {
-      outline: 2px solid
-        ${props =>
-          props.isInverse
-            ? props.theme.colors.focusInverse
-            : props.theme.colors.focus};
-      outline-offset: 0;
-    }
-  }
 `;
 
 const ChartTitle = styled.h2<{
@@ -796,7 +801,7 @@ const ChartTitle = styled.h2<{
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700} !important;
+      : props.theme.colors.brand.navy} !important;
 `;
 
 const TitleGroup = styled.div<{ theme: ThemeInterface }>`
@@ -1059,7 +1064,7 @@ function CarbonChartToolbar({
         {showTable && (
           <ChartTableButton
             ariaLabel={resolvedTitle}
-            icon={<TableIcon size={20} />}
+            icon={<TableOutlinedIcon size={20} />}
             isInverse={isInverse}
             isTableOpen={isTableOpen}
             onClick={onOpenTable}
@@ -1068,15 +1073,15 @@ function CarbonChartToolbar({
         {showFullscreen && (
           <ChartFullscreenButton
             ariaLabel={`${isFullscreen ? 'Exit' : 'View'} ${resolvedTitle} full screen`}
-            icon={<FullscreenIcon size={20} />}
-            exitIcon={<FullscreenExitIcon size={20} />}
+            icon={<FullscreenOutlinedIcon size={20} />}
+            exitIcon={<FullscreenExitOutlinedIcon size={20} />}
             isInverse={isInverse}
             isFullscreen={isFullscreen}
             onClick={onToggleFullscreen}
           />
         )}
         <ChartMoreOptionsButton
-          icon={<MoreVertIcon size={20} />}
+          icon={<MoreVertOutlinedIcon size={20} />}
           isInverse={isInverse}
         >
           {moreOptionsContent}
@@ -1411,7 +1416,13 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       const timer = setTimeout(() => {
         if (internalRef.current) {
           internalRef.current
-            .querySelectorAll<SVGGElement>('g[aria-label]')
+            .querySelectorAll<SVGGElement>('g.ruler[aria-label]')
+            .forEach(g => {
+              g.setAttribute('aria-hidden', 'true');
+            });
+
+          internalRef.current
+            .querySelectorAll<SVGGElement>('g[aria-label]:not(.ruler)')
             .forEach(g => {
               const role = g.getAttribute('role');
 
@@ -1425,6 +1436,30 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       }, 0);
 
       return () => clearTimeout(timer);
+    }, [type, dataSet]);
+
+    React.useEffect(() => {
+      const container = internalRef.current;
+
+      if (!container) return;
+
+      const hideRulerFromAT = () => {
+        container
+          .querySelectorAll<SVGGElement>('g.ruler[aria-label]')
+          .forEach(g => {
+            if (!g.hasAttribute('aria-hidden')) {
+              g.setAttribute('aria-hidden', 'true');
+            }
+          });
+      };
+
+      hideRulerFromAT();
+
+      const observer = new MutationObserver(hideRulerFromAT);
+
+      observer.observe(container, { childList: true, subtree: true });
+
+      return () => observer.disconnect();
     }, [type, dataSet]);
 
     React.useEffect(() => {
@@ -1494,6 +1529,16 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
       if (!wrapper) return;
 
+      const stampDotTabIndex = () => {
+        wrapper
+          .querySelectorAll<SVGCircleElement>('circle.dot')
+          .forEach(dot => {
+            if (!dot.hasAttribute('tabindex')) {
+              dot.setAttribute('tabindex', '0');
+            }
+          });
+      };
+
       const isDot = (el: EventTarget | null): el is SVGCircleElement =>
         el instanceof Element &&
         el.nodeName.toLowerCase() === 'circle' &&
@@ -1503,7 +1548,6 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         if (!isDot(e.target)) return;
         const dot = e.target as SVGCircleElement;
 
-        dot.style.opacity = '1';
         const { left, top, width, height } = dot.getBoundingClientRect();
         const cx = left + width / 2;
         const cy = top + height / 2;
@@ -1532,7 +1576,11 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         if (!isDot(e.target)) return;
         const dot = e.target;
 
-        dot.style.opacity = '';
+        // Keep tooltip context while Tab focus moves between chart points.
+        if (isDot(e.relatedTarget)) {
+          return;
+        }
+
         dot.dispatchEvent(new MouseEvent('mouseout', { bubbles: true }));
       };
 
@@ -1555,13 +1603,18 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       };
 
       const rafId = requestAnimationFrame(() => {
-        wrapper
-          .querySelectorAll<SVGCircleElement>('circle.dot')
-          .forEach(dot => {
-            if (!dot.hasAttribute('tabindex')) {
-              dot.setAttribute('tabindex', '0');
-            }
-          });
+        stampDotTabIndex();
+      });
+
+      const dotObserver = new MutationObserver(() => {
+        stampDotTabIndex();
+      });
+
+      dotObserver.observe(wrapper, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class', 'style', 'tabindex'],
       });
 
       wrapper.addEventListener('focusin', onFocusIn);
@@ -1570,11 +1623,12 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
       return () => {
         cancelAnimationFrame(rafId);
+        dotObserver.disconnect();
         wrapper.removeEventListener('focusin', onFocusIn);
         wrapper.removeEventListener('focusout', onFocusOut);
         wrapper.removeEventListener('keydown', onKeyDown);
       };
-    }, [type]);
+    }, [type, dataSet]);
 
     const groupsLength = Object.keys(colorScale).length;
 

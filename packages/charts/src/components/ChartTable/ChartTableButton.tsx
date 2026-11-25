@@ -1,6 +1,11 @@
 import * as React from 'react';
 
-import { ButtonVariant, IconButton, Tooltip } from 'react-magma-dom';
+import {
+  ButtonColor,
+  ButtonVariant,
+  IconButton,
+  Tooltip,
+} from 'react-magma-dom';
 
 import { useChartToolbarI18n } from './chartToolbarI18n';
 
@@ -45,6 +50,7 @@ export function ChartTableButton({
         aria-expanded={isTableOpen}
         aria-haspopup="dialog"
         aria-label={ariaLabel}
+        color={ButtonColor.subtle}
         icon={icon}
         isInverse={isInverse}
         onClick={onClick}

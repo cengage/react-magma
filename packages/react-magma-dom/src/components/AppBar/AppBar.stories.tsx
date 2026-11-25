@@ -53,7 +53,15 @@ const TabsTemplate: StoryFn<AppBarProps> = args => (
     >
       <ImageIcon size={args.isCompact ? 24 : 40} />
       <Spacer size={magma.spaceScale.spacing03} />
-      <strong>LOGO</strong>
+      <strong
+        style={{
+          color: args.isInverse
+            ? magma.colors.neutral0
+            : magma.colors.brand.navy,
+        }}
+      >
+        LOGO
+      </strong>
     </div>
     <div style={{ flex: '0 0 auto' }}>
       <Search onSearch={() => {}} placeholder="Search for content..." />
@@ -100,7 +108,7 @@ export const WithSkipLink = () => {
         tribal knowledge increase the pipelines, but run it up the flag pole.
       </Paragraph>
       <SkipLinkContent>
-        <div style={{ backgroundColor: magma.colors.neutral100 }}>
+        <div style={{ backgroundColor: magma.colors.neutral0 }}>
           <Paragraph id="last-one" style={{ color: magma.colors.neutral700 }}>
             Turn the crank regroup can we align on lunch orders, so regroup, yet
             the last person we talked to said this would be ready, for this

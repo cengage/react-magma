@@ -1,8 +1,9 @@
 import * as React from 'react';
 
+import { transparentize } from 'polished';
 import {
-  ArrowDropDownIcon,
-  ArrowDropUpIcon,
+  ArrowDropDownOutlinedIcon,
+  ArrowDropUpOutlinedIcon,
   IconProps,
 } from 'react-magma-icons';
 
@@ -85,13 +86,13 @@ export const DropdownSplitButton = React.forwardRef<
 
   const buttonIcon =
     resolvedContext.dropDirection === DropdownDropDirection.up ? (
-      <ArrowDropUpIcon
+      <ArrowDropUpOutlinedIcon
         size={getIconSize(other.size, theme)}
         testId="caretUp"
         aria-hidden="true"
       />
     ) : (
-      <ArrowDropDownIcon
+      <ArrowDropDownOutlinedIcon
         size={getIconSize(other.size, theme)}
         testId="caretDown"
         aria-hidden="true"
@@ -117,15 +118,37 @@ export const DropdownSplitButton = React.forwardRef<
 
   const i18n = React.useContext(I18nContext);
 
-  function buildIconButtonStyles(props) {
-    if (
-      props.color === ButtonColor.secondary ||
-      props.color === ButtonColor.subtle
-    ) {
-      return '0';
+  function buildDividerColor(color: ButtonColor, isInverse: boolean) {
+    const resolvedColor = color ?? ButtonColor.primary;
+
+    if (isInverse) {
+      if (resolvedColor === ButtonColor.primary) {
+        return theme.colors.cyan600;
+      }
+      if (resolvedColor === ButtonColor.secondary) {
+        return theme.colors.neutral800;
+      }
+      if (resolvedColor === ButtonColor.subtle) {
+        return transparentize(0.8, theme.colors.neutral0);
+      }
+
+      return theme.colors.neutral0;
     }
 
-    return theme.spaceScale.spacing01;
+    if (resolvedColor === ButtonColor.primary) {
+      return theme.colors.blue700;
+    }
+    if (resolvedColor === ButtonColor.danger) {
+      return theme.colors.red700;
+    }
+    if (
+      resolvedColor === ButtonColor.secondary ||
+      resolvedColor === ButtonColor.subtle
+    ) {
+      return theme.colors.neutral300;
+    }
+
+    return theme.colors.neutral0;
   }
 
   const sharedButtonProps = {
@@ -162,7 +185,11 @@ export const DropdownSplitButton = React.forwardRef<
         onClick={handleClick}
         shape={ButtonShape.rightCap}
         style={{
-          marginLeft: buildIconButtonStyles(resolvedProps),
+          borderLeft: `1px solid ${buildDividerColor(
+            resolvedProps.color,
+            resolvedContext.isInverse
+          )}`,
+          marginLeft: 0,
         }}
         ref={ref}
         variant={variant}

@@ -1,18 +1,70 @@
 # Change Log
 
-## 15.0.0-rc.1
+## 16.1.0
+
+### Minor Changes
+
+- feat(Dropzone): allow consumers to customize the browse button color and text
 
 ### Patch Changes
 
-- Updated dependencies [b3669bf]
-  - react-magma-dom@5.2.0-rc.9
+- chore: require `react-magma-icons` `^3.3.1`
 
-## 14.0.1-rc.0
+  fix(docs): resolve the icons ESM entry to support Gatsby server rendering
+
+- fix: update components to use outlined icons
+- chore: update `react-magma-icons` to `^3.3.0`
+
+## 17.0.0-next.4
 
 ### Patch Changes
 
-- Updated dependencies [48fdaf3]
-  - react-magma-dom@5.1.1-rc.0
+- 571c6c3: fix: update components to use outlined icons
+
+## 17.0.0-next.3
+
+### Patch Changes
+
+- f041d00: chore: require `react-magma-icons` `^3.3.1`
+
+  fix(docs): resolve the icons ESM entry to support Gatsby server rendering
+
+## 17.0.0-next.2
+
+### Minor Changes
+
+- ee55600: feat(Dropzone): allow consumers to customize the browse button color and text
+
+## 17.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [9fcd834]
+- Updated dependencies [9fcd834]
+  - react-magma-dom@7.1.0-next.2
+
+## 16.0.1-next.0
+
+### Patch Changes
+
+- b188410: chore: update `react-magma-icons` to `^3.3.0`
+- Updated dependencies [b188410]
+  - react-magma-dom@7.0.1-next.0
+
+## 16.0.0
+
+### Major Changes
+
+- 4ca06ad: feat: apply the 2026 Magma rebrand across components and documentation
+
+  - Replace legacy semantic color ramps with the new primitive and brand palette.
+  - Update component colors, typography, interaction states, spacing, and styling.
+  - Refresh the documentation navigation, homepage, examples, branding, and accessibility guidance.
+  - Align Dropzone and Charts with the updated theme tokens.
+
+  See the [2026 theme migration guide](https://react-magma.cengage.com/api-intro/2026-theme-migration/) for guidance on replacing removed color tokens and preserving legacy border radii.
+
+## 14.0.1
 
 ## 14.0.0
 

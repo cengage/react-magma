@@ -9,14 +9,17 @@ export interface StyledLabelProps {
   htmlFor: string;
   isInverse?: boolean;
   style?: React.CSSProperties;
+  textColor?: string;
 }
 
 const StyledLabelComponent = styled.label<StyledLabelProps>`
   align-items: flex-start;
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+    props.textColor
+      ? props.textColor
+      : props.isInverse
+        ? props.theme.colors.neutral0
+        : props.theme.colors.neutral700};
   display: flex;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
   font-family: ${props => props.theme.bodyFont};
@@ -30,6 +33,7 @@ export const StyledLabel: React.FunctionComponent<StyledLabelProps> = ({
   htmlFor,
   isInverse,
   style,
+  textColor,
 }: StyledLabelProps) => (
   <ThemeContext.Consumer>
     {theme => (
@@ -37,6 +41,7 @@ export const StyledLabel: React.FunctionComponent<StyledLabelProps> = ({
         htmlFor={htmlFor}
         isInverse={isInverse}
         style={style}
+        textColor={textColor}
         theme={theme}
       >
         {children}

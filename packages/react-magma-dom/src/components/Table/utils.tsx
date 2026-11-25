@@ -1,7 +1,10 @@
 import * as React from 'react';
 
-import { transparentize } from 'polished';
-import { NorthIcon, SortDoubleArrowIcon, SouthIcon } from 'react-magma-icons';
+import {
+  NorthOutlinedIcon,
+  SortDoubleArrowIcon,
+  SouthOutlinedIcon,
+} from 'react-magma-icons';
 
 import { ThemeInterface } from '../../theme/magma';
 import { TableSortDirection } from '../Table/Table';
@@ -18,15 +21,15 @@ export const getTableSortIcon = ({
   theme,
 }: TableSortIconParams) => {
   const sortIconColor = isInverse
-    ? theme.colors.neutral100
-    : theme.colors.neutral700;
+    ? theme.colors.neutral0
+    : theme.colors.brand.navy;
 
-  const iconSize = theme.iconSizes.small;
+  const iconSize = theme.iconSizes.xSmall;
 
   switch (sortDirection) {
     case TableSortDirection.ascending:
       return (
-        <NorthIcon
+        <NorthOutlinedIcon
           color={sortIconColor}
           size={iconSize}
           testId="sort-ascending"
@@ -35,7 +38,7 @@ export const getTableSortIcon = ({
 
     case TableSortDirection.descending:
       return (
-        <SouthIcon
+        <SouthOutlinedIcon
           color={sortIconColor}
           size={iconSize}
           testId="sort-descending"
@@ -45,11 +48,7 @@ export const getTableSortIcon = ({
     default:
       return (
         <SortDoubleArrowIcon
-          color={
-            isInverse
-              ? transparentize(0.3, theme.colors.neutral100)
-              : theme.colors.neutral500
-          }
+          color={isInverse ? theme.colors.neutral500 : theme.colors.neutral700}
           size={iconSize}
           testId="sort-none"
         />

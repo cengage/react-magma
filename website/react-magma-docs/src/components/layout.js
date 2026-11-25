@@ -4,7 +4,13 @@ import styled from '@emotion/styled';
 import { MDXProvider } from '@mdx-js/react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
-import { Alert, Heading, magma, SkipLinkContent } from 'react-magma-dom';
+import {
+  Alert,
+  Heading,
+  magma,
+  SkipLinkContent,
+  useIsInverse,
+} from 'react-magma-dom';
 
 import { PageContent } from './PageContent';
 import { convertTextToId } from '../utils';
@@ -28,7 +34,53 @@ const ContentArticle = styled.article`
   }
 `;
 
+const DocsAlert = styled(Alert)`
+  code {
+    background: none;
+    border: 0;
+    border-radius: 0;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+  }
+
+  p {
+    color: inherit;
+    margin-bottom: 0;
+  }
+
+  li {
+    color: inherit;
+  }
+
+  > div > div > span {
+    white-space: normal;
+  }
+`;
+
 const Table = props => <table {...props} />;
+
+const StyledDocsParagraph = styled.p`
+  color: ${props =>
+    props.isInverse ? magma.colors.neutral0 : magma.colors.neutral800};
+`;
+
+const StyledDocsListItem = styled.li`
+  color: ${props =>
+    props.isInverse ? magma.colors.neutral0 : magma.colors.neutral800};
+`;
+
+const DocsParagraph = props => {
+  const isInverse = useIsInverse();
+
+  return <StyledDocsParagraph {...props} isInverse={isInverse} />;
+};
+
+const DocsListItem = props => {
+  const isInverse = useIsInverse();
+
+  return <StyledDocsListItem {...props} isInverse={isInverse} />;
+};
 
 const PageHeading = props => <Heading level={1}>{props.children}</Heading>;
 
@@ -51,6 +103,61 @@ const LinkHeading = props => (
 const H4 = props => <Heading level={4}>{props.children}</Heading>;
 const H5 = props => <Heading level={5}>{props.children}</Heading>;
 const H6 = props => <Heading level={6}>{props.children}</Heading>;
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
+function scrollWithoutAnimation(top) {
+  const html = document.querySelector('html');
+  const previousScrollBehavior = html?.style.scrollBehavior;
+
+  if (html) {
+    html.style.scrollBehavior = 'auto';
+  }
+
+  window.scrollTo(0, Math.max(0, top));
+
+  window.requestAnimationFrame(() => {
+    if (html) {
+      html.style.scrollBehavior = previousScrollBehavior;
+    }
+  });
+}
+
+function scrollToHash(hash) {
+  if (!hash) {
+    return false;
+  }
+
+  const targetId = decodeURIComponent(hash.slice(1));
+  const element =
+    document.getElementById(targetId) ||
+    document.getElementsByName(targetId)[0];
+
+  if (!element) {
+    return false;
+  }
+
+  const offset = -40;
+  const elementPosition =
+    element.getBoundingClientRect().top + window.pageYOffset;
+
+  scrollWithoutAnimation(elementPosition + offset);
+
+  return true;
+}
+
+function scrollToRoute(location) {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  if (location?.hash && scrollToHash(location.hash)) {
+    return;
+  }
+
+  scrollWithoutAnimation(0);
+}
+
 const SmartDocsHeading = props => {
   return props && props.children && props.children.props ? (
     <h1>{props.children.props.children}</h1>
@@ -59,7 +166,7 @@ const SmartDocsHeading = props => {
   );
 };
 
-export const Layout = ({ children, pageContext }) => {
+export const Layout = ({ children, location, pageContext }) => {
   const title =
     pageContext && pageContext.frontmatter
       ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
@@ -67,6 +174,16 @@ export const Layout = ({ children, pageContext }) => {
   const heading =
     pageContext && pageContext.frontmatter ? pageContext.frontmatter.title : '';
   const properties = (pageContext && pageContext.properties) || [];
+
+  useIsomorphicLayoutEffect(() => {
+    scrollToRoute(location);
+
+    const frame = window.requestAnimationFrame(() => {
+      scrollToRoute(location);
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [location?.hash, location?.pathname, location?.search]);
 
   return (
     <LayoutComponent title={title} heading={heading}>
@@ -78,6 +195,8 @@ export const Layout = ({ children, pageContext }) => {
             return <CodeBlock children={preChildren} {...preChildren.props} />;
           },
           table: Table,
+          p: DocsParagraph,
+          li: DocsListItem,
           h1: SmartDocsHeading,
           h2: SectionHeading,
           h3: LinkHeading,
@@ -85,7 +204,7 @@ export const Layout = ({ children, pageContext }) => {
           h5: H5,
           h6: H6,
           hr: Divider,
-          Alert,
+          Alert: DocsAlert,
           Link,
           LeadParagraph,
           PageContent: props => (
@@ -94,11 +213,11 @@ export const Layout = ({ children, pageContext }) => {
           ButtonProps,
           IconButtonProps,
           SimplePropsTable,
-          ...properties.reduce((acc, { name, properties }) => {
+          ...properties.reduce((acc, { name, properties: propertyValues }) => {
             return {
               ...acc,
               [name]: args => (
-                <SimplePropsTable propertyValues={properties} {...args} />
+                <SimplePropsTable propertyValues={propertyValues} {...args} />
               ),
             };
           }, {}),
@@ -115,4 +234,5 @@ export const Layout = ({ children, pageContext }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  location: PropTypes.object,
 };

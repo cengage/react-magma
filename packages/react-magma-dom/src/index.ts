@@ -52,7 +52,13 @@ export {
   ButtonType,
 } from './components/Button';
 export type { ButtonProps } from './components/Button';
-export { Card, CardAlignment, CardCalloutType } from './components/Card';
+export {
+  Card,
+  CardAlignment,
+  CardBorderRadius,
+  CardCalloutType,
+  CardCornerTreatment,
+} from './components/Card';
 export type { CardProps } from './components/Card';
 export { CardBody } from './components/Card/CardBody';
 export { CardHeading } from './components/Card/CardHeading';
@@ -242,6 +248,8 @@ export { TabsScrollSpyContainer } from './components/Tabs/TabsScrollSpyContainer
 export { TabScrollSpyPanel } from './components/Tabs/TabScrollSpyPanel';
 
 export { Tag } from './components/Tag';
+export { Tagline } from './components/Tagline';
+export type { TaglineProps } from './components/Tagline';
 export type { TagProps } from './components/Tag';
 
 export { ToastsContainer } from './components/Toast/ToastsContainer';

@@ -1,8 +1,6 @@
 import React from 'react';
 
 import { render, fireEvent } from '@testing-library/react';
-import { transparentize } from 'polished';
-
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 
@@ -140,7 +138,7 @@ describe('Drawer', () => {
       expect(modalContent).toBeInTheDocument();
       expect(queryByTestId(modalBackDropTestId)).not.toBeInTheDocument();
       expect(modalContent).toHaveStyle(
-        `border: 1px solid ${transparentize(0.5, magma.colors.tertiary)}`
+        `border: 1px solid ${magma.colors.neutral800}`
       );
     });
   });

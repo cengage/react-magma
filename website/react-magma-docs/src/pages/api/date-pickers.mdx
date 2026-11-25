@@ -203,11 +203,11 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { DatePicker, Card, CardBody } from 'react-magma-dom';
+import { DatePicker, Card, CardBody, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse>
+    <Card background={magma.colors.neutral1100} isInverse>
       <CardBody>
         <DatePicker labelText="Date" isInverse />
       </CardBody>

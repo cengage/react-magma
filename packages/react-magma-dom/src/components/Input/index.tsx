@@ -11,6 +11,7 @@ import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
   FormFieldContainerProps,
+  getInputFormFieldColors,
 } from '../FormFieldContainer';
 import {
   getHelpIconButtonSize,
@@ -28,12 +29,6 @@ const getLabelStyles = (
       InputSize?: InputSize;
     } & { theme: ThemeInterface }
 ) => {
-  const marginBlock = isLeftOrHidden(props)
-    ? '0'
-    : `0 ${props.theme.spaceScale.spacing03}`;
-  const marginInline = isLeftOrHidden(props)
-    ? `0 ${props.theme.spaceScale.spacing03}`
-    : '0';
   const maxWidth = isLeftOrHidden(props)
     ? 'auto'
     : `calc(100% - ${getHelpIconButtonSize(props)} - ${
@@ -51,7 +46,7 @@ const getLabelStyles = (
   }
   const justifyContent = isLeftOrHidden(props) ? 'end' : 'start';
 
-  return { marginBlock, marginInline, maxWidth, minHeight, justifyContent };
+  return { maxWidth, minHeight, justifyContent };
 };
 
 const StyledFormFieldContainer = styled(FormFieldContainer)<{
@@ -63,12 +58,9 @@ const StyledFormFieldContainer = styled(FormFieldContainer)<{
 
   label {
     ${props => {
-      const { marginBlock, marginInline, maxWidth, minHeight, justifyContent } =
-        getLabelStyles(props);
+      const { maxWidth, minHeight, justifyContent } = getLabelStyles(props);
 
       return `
-        margin-block: ${marginBlock};
-        margin-inline: ${marginInline};
         max-width: ${maxWidth};
         min-height: ${minHeight};
         justify-content: ${justifyContent};
@@ -161,6 +153,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <StyledFormFieldContainer
+        {...getInputFormFieldColors(theme, isInverse)}
         containerStyle={containerStyle}
         errorMessage={errorMessage}
         fieldId={id}
@@ -184,6 +177,24 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       >
         <InputBase
           {...validInputBaseProps}
+          backgroundColor={isInverse ? theme.colors.neutral1150 : undefined}
+          borderColor={
+            isInverse ? theme.colors.neutral700 : theme.colors.neutral500
+          }
+          errorBorderColor={isInverse ? theme.colors.red500 : undefined}
+          disabledBackgroundColor={
+            isInverse ? theme.colors.neutral1100 : undefined
+          }
+          disabledBorderColor={isInverse ? theme.colors.neutral900 : undefined}
+          disabledIconColor={
+            isInverse ? theme.colors.neutral700 : theme.colors.neutral500
+          }
+          disabledPlaceholderColor={
+            isInverse ? theme.colors.neutral700 : theme.colors.neutral500
+          }
+          disabledTextColor={
+            isInverse ? theme.colors.neutral700 : theme.colors.neutral500
+          }
           aria-describedby={
             descriptionId ? descriptionId : props['aria-describedby']
           }
@@ -193,11 +204,15 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             (hasCharacterCounter && characterLength > maxCharacters)
           }
           iconPosition={iconPosition}
+          iconColor={theme.colors.neutral600}
           id={id}
           inputSize={inputSize}
           inputLength={characterLength}
           isInverse={isInverse}
           maxLength={maxLengthNum}
+          placeholderColor={
+            isInverse ? theme.colors.neutral500 : theme.colors.neutral700
+          }
           onChange={handleChange}
           onClear={handleClear}
           onDateChange={props.onDateChange}
@@ -205,6 +220,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           setReference={setReference}
           testId={testId}
           value={value}
+          textColor={isInverse ? undefined : theme.colors.brand.navy}
           isLabelVisuallyHidden={isLabelVisuallyHidden}
           labelPosition={labelPosition}
         >

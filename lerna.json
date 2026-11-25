@@ -2,7 +2,7 @@
   "packages": ["website/*", "packages/*", "tests/*"],
   "command": {
     "publish": {
-      "allowBranch": ["dev", "v4/dev", "hotfix/*", "main", "v4/main"],
+      "allowBranch": ["dev", "main", "v6/dev", "v6/main", "v5/dev", "v5/main", "v4/dev", "v4/main", "hotfix/*"],
       "preDistTag": "next",
       "message": "chore(release): publish",
       "ignoreChanges": ["**/*.stories.tsx", "**/*.tests.js"]

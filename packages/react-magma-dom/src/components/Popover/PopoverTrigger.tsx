@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { IconProps, InfoIcon } from 'react-magma-icons';
+import { IconProps, InfoOutlinedIcon } from 'react-magma-icons';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Omit, useForkedRef, XOR } from '../../utils';
@@ -75,6 +75,33 @@ const TriggerButtonContainer = styled.div<{
   }
 `;
 
+// Native inputs that support aria-expanded (button and checkbox roles)
+const ARIA_EXPANDED_INPUT_TYPES = [
+  'button',
+  'checkbox',
+  'image',
+  'reset',
+  'submit',
+];
+
+// aria-expanded is not allowed on text fields (textbox, searchbox, spinbutton)
+// and other native inputs without an explicit role
+function supportsAriaExpanded(element: Element | null | undefined): boolean {
+  if (!element || element.hasAttribute('role')) {
+    return true;
+  }
+
+  if (element instanceof HTMLTextAreaElement) {
+    return false;
+  }
+
+  if (element instanceof HTMLInputElement) {
+    return ARIA_EXPANDED_INPUT_TYPES.includes(element.type);
+  }
+
+  return true;
+}
+
 export const PopoverTrigger = React.forwardRef<
   HTMLButtonElement,
   PopoverTriggerProps
@@ -85,7 +112,7 @@ export const PopoverTrigger = React.forwardRef<
   const ref = useForkedRef(context.toggleRef, forwardedRef);
 
   const {
-    icon = <InfoIcon />,
+    icon = <InfoOutlinedIcon />,
     children,
     tabIndex,
     'aria-label': ariaLabel,
@@ -107,12 +134,25 @@ export const PopoverTrigger = React.forwardRef<
 
   const { isMacOS, isSafari } = useDeviceDetect();
 
+  // The custom trigger element is known only after mount
+  const [isAriaExpandedSupported, setIsAriaExpandedSupported] =
+    React.useState(true);
+
+  React.useEffect(() => {
+    setIsAriaExpandedSupported(
+      supportsAriaExpanded(context.toggleRef?.current)
+    );
+  }, [children, context.toggleRef]);
+
   const styledChildren =
     children && typeof children !== 'string'
       ? React.cloneElement(children as React.ReactElement, {
           theme,
           onClick: handleClick,
           ref: ref,
+          'aria-label':
+            (children as React.ReactElement)?.props?.['aria-label'] ??
+            ariaLabel,
           'aria-haspopup': 'dialog',
           'aria-controls': context.popoverContentId.current,
           'aria-describedby':
@@ -121,7 +161,7 @@ export const PopoverTrigger = React.forwardRef<
             !context.isDisabled
               ? context.popoverContentId.current
               : null,
-          'aria-expanded': context.isOpen,
+          'aria-expanded': isAriaExpandedSupported ? context.isOpen : undefined,
         })
       : children;
 
@@ -204,7 +244,6 @@ export const PopoverTrigger = React.forwardRef<
         </Button>
       ) : (
         <TriggerButtonContainer
-          aria-label={ariaLabel}
           id={context.popoverTriggerId.current}
           tabIndex={
             tabIndex

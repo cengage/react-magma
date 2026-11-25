@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { render, act, waitFor } from '@testing-library/react';
+import { transparentize } from 'polished';
 
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
@@ -26,6 +27,28 @@ describe('Combobox', () => {
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
+  it('should render the dropdown indicator in brand navy', () => {
+    const { getByTestId } = render(
+      <Combobox labelText={labelText} items={items} />
+    );
+
+    expect(getByTestId('caretDown')).toHaveAttribute(
+      'fill',
+      magma.colors.brand.navy
+    );
+  });
+
+  it('should render the inverse dropdown indicator in neutral0', () => {
+    const { getByTestId } = render(
+      <Combobox isInverse labelText={labelText} items={items} />
+    );
+
+    expect(getByTestId('caretDown')).toHaveAttribute(
+      'fill',
+      magma.colors.neutral0
+    );
+  });
+
   it('should accept items in the default object format', async () => {
     const items = [
       { label: 'Red', value: 'red' },
@@ -44,6 +67,54 @@ describe('Combobox', () => {
     await userEvent.click(renderedCombobox);
 
     expect(getByText(items[0].label)).toBeInTheDocument();
+  });
+
+  describe('items with duplicate labels', () => {
+    const duplicateLabelItems = [
+      { label: 'Red', value: 'red' },
+      { label: 'Red', value: 'green' },
+      { label: 'Blue', value: 'blue' },
+    ];
+
+    it('should only mark the selected item as selected', async () => {
+      const { getByLabelText, getAllByRole, getAllByTestId } = render(
+        <Combobox
+          labelText={labelText}
+          items={duplicateLabelItems}
+          initialSelectedItem={{ label: 'Red', value: 'green' }}
+        />
+      );
+
+      await userEvent.click(getByLabelText(labelText, { selector: 'input' }));
+
+      const options = getAllByRole('option');
+
+      expect(options[0]).toHaveAttribute('aria-selected', 'false');
+      expect(options[0]).toHaveAttribute('aria-label', 'Red');
+      expect(options[1]).toHaveAttribute('aria-selected', 'true');
+      expect(options[1]).toHaveAttribute('aria-label', 'Red is selected');
+      expect(getAllByTestId('selectedItemCheck')).toHaveLength(1);
+    });
+
+    it('should select the clicked item when another item has the same label', async () => {
+      const onSelectedItemChange = jest.fn();
+      const { getByLabelText, getAllByRole } = render(
+        <Combobox
+          labelText={labelText}
+          items={duplicateLabelItems}
+          onSelectedItemChange={onSelectedItemChange}
+        />
+      );
+
+      const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+      await userEvent.click(renderedCombobox);
+      await userEvent.click(getAllByRole('option')[1]);
+
+      expect(onSelectedItemChange).toHaveBeenLastCalledWith(
+        expect.objectContaining({ selectedItem: duplicateLabelItems[1] })
+      );
+    });
   });
 
   it('should accept items in a custom item format', async () => {
@@ -637,8 +708,12 @@ describe('Combobox', () => {
     );
 
     await waitFor(() => {
-      expect(getByLabelText(labelText, { selector: 'input' })).toHaveAttribute(
-        'disabled'
+      const input = getByLabelText(labelText, { selector: 'input' });
+
+      expect(input).toHaveAttribute('disabled');
+      expect(input.parentElement.parentElement).toHaveStyleRule(
+        'background',
+        transparentize(0.4, magma.colors.neutral200)
       );
     });
   });
