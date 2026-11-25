@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { transparentize } from 'polished';
 import { CheckIcon, InfoIcon } from 'react-magma-icons';
 
@@ -141,6 +141,41 @@ describe('Badge', () => {
       `2px solid ${magma.colors.focusInverse}`,
       { target: ':focus' }
     );
+  });
+
+  it('should use disabled solid-button styles and prevent activation', () => {
+    const onClick = jest.fn();
+    const { getByRole } = render(
+      <Badge disabled onClick={onClick}>
+        {TEXT}
+      </Badge>
+    );
+    const badge = getByRole('button');
+
+    expect(badge).toBeDisabled();
+    expect(badge).toHaveStyleRule('background', magma.colors.neutral200);
+    expect(badge).toHaveStyleRule('color', magma.colors.neutral500);
+    expect(badge).toHaveStyleRule('cursor', 'not-allowed');
+
+    fireEvent.click(badge);
+
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  it('should use inverse disabled solid-button styles', () => {
+    const { getByText } = render(
+      <Badge disabled isInverse>
+        {TEXT}
+      </Badge>
+    );
+    const badge = getByText(TEXT);
+
+    expect(badge).toHaveAttribute('aria-disabled', 'true');
+    expect(badge).toHaveStyleRule(
+      'background',
+      transparentize(0.5, magma.colors.neutral900)
+    );
+    expect(badge).toHaveStyleRule('color', magma.colors.neutral600);
   });
 
   describe('color variants', () => {
