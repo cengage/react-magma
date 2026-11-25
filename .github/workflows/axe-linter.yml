@@ -1,0 +1,41 @@
+name: Accessibility Linter (axe)
+
+# Lints files changed in a pull request for accessibility issues using Deque's
+# axe Linter. Standards and per-rule overrides live in axe-linter.yml (repo root).
+on:
+  pull_request:
+    branches:
+      - dev
+      - main
+      - v6/dev
+      - v6/main
+    types: [opened, synchronize, reopened]
+
+# Cancel superseded runs for the same PR to conserve CI resources.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read # check out the repository
+  pull-requests: read # read the pull request's changed files
+
+jobs:
+  axe-linter:
+    runs-on: ubuntu-latest
+    # Forked PRs never receive repository secrets, so skip them entirely.
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    env:
+      AXE_LINTER_API_KEY: ${{ secrets.AXE_LINTER_API_KEY }}
+    steps:
+      # Skip (not fail) when the secret is unavailable, e.g. on Dependabot PRs.
+      - name: Checkout
+        if: env.AXE_LINTER_API_KEY != ''
+        uses: actions/checkout@v4
+      - name: Run axe Linter
+        if: env.AXE_LINTER_API_KEY != ''
+        # Dependabot bumps this pin on `dev`; cherry-pick bumps into `v6/dev`.
+        uses: dequelabs/axe-linter-action@67f0f5c49a4171cb9171213a2e2ae877386b9a80 # v2.0.0
+        with:
+          api_key: ${{ secrets.AXE_LINTER_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,22 @@
+# axe Linter configuration — consumed by dequelabs/axe-linter-action
+# (see .github/workflows/axe-linter.yml).
+#
+# The action forwards this file verbatim to the axe-linter API as the `config`
+# for every linted file; the API interprets `tags` and `rules`. A missing or
+# invalid file falls back to the linter's default rule set.
+# Reference: https://docs.deque.com/linter/
+
+# Restrict findings to the WCAG 2.2 Level AA success criteria plus Deque's
+# best-practice rules. axe rules are tagged by the specific WCAG version/level
+# they map to, so covering "2.2 AA" requires the whole ladder from 2.0 A up.
+tags:
+  - wcag2a # WCAG 2.0 Level A
+  - wcag2aa # WCAG 2.0 Level AA
+  - wcag21a # WCAG 2.1 Level A
+  - wcag21aa # WCAG 2.1 Level AA
+  - wcag22aa # WCAG 2.2 Level AA
+  - best-practice # Deque-recommended best practices
+# Per-rule overrides. Uncomment to disable or downgrade a rule that produces
+# false positives in this codebase, e.g.:
+# rules:
+#   color-contrast: false
