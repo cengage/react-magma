@@ -7,8 +7,8 @@ on:
     branches:
       - dev
       - main
-      - v4/dev
-      - v4/main
+      - v6/dev
+      - v6/main
     types: [opened, synchronize, reopened]
 
 # Cancel superseded runs for the same PR to conserve CI resources.
@@ -28,15 +28,13 @@ jobs:
     env:
       AXE_LINTER_API_KEY: ${{ secrets.AXE_LINTER_API_KEY }}
     steps:
-      # Guarded on the secret so this check is a green skip until the API key is
-      # provisioned, instead of failing every PR while the key is still pending.
+      # Skip (not fail) when the secret is unavailable, e.g. on Dependabot PRs.
       - name: Checkout
         if: env.AXE_LINTER_API_KEY != ''
         uses: actions/checkout@v4
       - name: Run axe Linter
         if: env.AXE_LINTER_API_KEY != ''
-        # Pinned to a commit SHA (v2.0.0) for supply-chain safety; Dependabot
-        # keeps the pin current (see .github/dependabot.yml).
+        # Dependabot bumps this pin on `dev`; cherry-pick bumps into `v6/dev`.
         uses: dequelabs/axe-linter-action@67f0f5c49a4171cb9171213a2e2ae877386b9a80 # v2.0.0
         with:
           api_key: ${{ secrets.AXE_LINTER_API_KEY }}
