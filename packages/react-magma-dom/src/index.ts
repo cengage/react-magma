@@ -177,6 +177,11 @@ export {
   MultipleSelectionStateChangeTypes,
 } from './components/Select';
 export { Combobox, ComboboxStateChangeTypes } from './components/Combobox';
+export {
+  CheckboxSelect,
+  CheckboxSelectSelectionBehavior,
+} from './components/CheckboxSelect';
+export type { CheckboxSelectProps } from './components/CheckboxSelect';
 
 export {
   Skeleton,

@@ -99,6 +99,16 @@ module.exports = {
         'action menu': 'Dropdown',
       },
     },
+    CheckboxSelect: {
+      purpose: 'Choose multiple values from a dropdown list of checkboxes',
+      keywords: [
+        'checkbox select',
+        'checkbox dropdown',
+        'multi select',
+        'multiple selection',
+        'filterable checkbox list',
+      ],
+    },
     Combobox: {
       purpose: 'Select with typing, filtering and creating items',
       keywords: [

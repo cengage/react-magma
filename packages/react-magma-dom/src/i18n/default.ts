@@ -80,6 +80,21 @@ export const defaultI18n: I18nInterface = {
     characterOver: 'character over limit',
     charactersOver: 'characters over limit',
   },
+  checkboxSelect: {
+    allItemsDeselectedAnnounce: 'All items deselected. {count} selected.',
+    allItemsSelectedAnnounce: 'All items selected. {count} selected.',
+    allSelected: 'All selected ({count})',
+    applyButtonLabel: 'Apply',
+    cancelButtonLabel: 'Cancel',
+    clearAllButtonAriaLabel: 'Clear all selections',
+    filterPlaceholder: 'Filter options',
+    itemDeselectedAnnounce: '{item} deselected. {count} selected.',
+    itemSelectedAnnounce: '{item} selected. {count} selected.',
+    noOptions: 'No options available',
+    placeholder: 'Select...',
+    selectAllLabel: 'Select all',
+    selectedCount: '{count} selected',
+  },
   charts: {
     line: {
       chartTabLabel: 'Chart',

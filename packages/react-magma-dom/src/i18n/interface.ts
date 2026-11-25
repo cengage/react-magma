@@ -84,6 +84,21 @@ export interface I18nInterface {
     characterOver: string;
     charactersOver: string;
   };
+  checkboxSelect: {
+    allItemsDeselectedAnnounce?: string;
+    allItemsSelectedAnnounce?: string;
+    allSelected?: string;
+    applyButtonLabel?: string;
+    cancelButtonLabel?: string;
+    clearAllButtonAriaLabel?: string;
+    filterPlaceholder?: string;
+    itemDeselectedAnnounce?: string;
+    itemSelectedAnnounce?: string;
+    noOptions?: string;
+    placeholder: string;
+    selectAllLabel?: string;
+    selectedCount?: string;
+  };
   charts: {
     line: {
       chartTabLabel: string;
