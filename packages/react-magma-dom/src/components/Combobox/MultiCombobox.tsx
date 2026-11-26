@@ -1,9 +1,19 @@
 import * as React from 'react';
 
 import { autoUpdate } from '@floating-ui/react-dom';
-import { useCombobox, useMultipleSelection } from 'downshift';
+import type {
+  GetPropsCommonOptions,
+  UseComboboxGetInputPropsOptions,
+} from 'downshift';
 import { CloseOutlinedIcon } from 'react-magma-icons';
 
+import {
+  useCombobox,
+  useMultipleSelection,
+  UseComboboxState,
+  UseComboboxStateChange,
+  UseComboboxStateChangeOptions,
+} from '../../utils/downshift';
 import { instanceOfDefaultItemObject } from '../Select';
 import { ComboboxInput } from './ComboboxInput';
 import { defaultOnInputValueChange, useComboboxItems } from './shared';
@@ -21,7 +31,8 @@ import { IconWrapper, SelectedItemButton } from '../Select/shared';
 import {
   findItemIndex,
   getSelectedItemIndexes,
-  setFocusedItem,
+  getItemKey,
+  isItemDisabled,
 } from '../Select/utils';
 
 import { MultiComboboxProps } from '.';
@@ -92,7 +103,15 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       return allItems;
     }
 
-    return findItemIndex(allItems.current, itemToCheck, itemToString) !== -1;
+    return (
+      findItemIndex(
+        allItems.current,
+        itemToCheck,
+        itemToString,
+        undefined,
+        props.itemToKey
+      ) !== -1
+    );
   }
 
   const {
@@ -105,8 +124,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     reset,
   } = useMultipleSelection({
     ...props,
-    // Disable downshift's built-in a11y removal message to use custom clearAnnounce
-    getA11yRemovalMessage: () => '',
     ...(props.initialSelectedItems && {
       initialSelectedItems: props.initialSelectedItems.filter(
         checkSelectedItemValidity
@@ -129,7 +146,8 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     const selectedIndexes = getSelectedItemIndexes(
       unfilteredItems,
       selectedItems,
-      itemToString
+      itemToString,
+      props.itemToKey
     );
 
     return unfilteredItems.filter((item, index) => {
@@ -190,7 +208,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     ...comboboxProps
   } = props;
 
-  function handleOnIsOpenChange(changes) {
+  function handleOnIsOpenChange(changes: UseComboboxStateChange<T>) {
     const { isOpen: changedIsOpen } = changes;
 
     if (!changedIsOpen) {
@@ -204,7 +222,10 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   const filteredItems = getFilteredItems(displayItems);
 
-  function stateReducer(state, actionAndChanges) {
+  function stateReducer(
+    state: UseComboboxState<T>,
+    actionAndChanges: UseComboboxStateChangeOptions<T>
+  ) {
     const { type, changes } = actionAndChanges;
 
     switch (type) {
@@ -229,21 +250,13 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         return {
           ...changes,
           inputValue: '',
-          selectedItem: state.selectedItem ? state.selectedItem : '',
+          selectedItem: state.selectedItem,
         };
       case useCombobox.stateChangeTypes.InputKeyDownEscape:
       case useCombobox.stateChangeTypes.ToggleButtonClick:
         return {
           ...changes,
           isOpen: changes.isOpen,
-        };
-      case useCombobox.stateChangeTypes.InputKeyDownArrowDown:
-      case useCombobox.stateChangeTypes.InputKeyDownArrowUp:
-        // Keep controlled navigation manually via handleOnKeyDown handler
-        return {
-          ...state,
-          highlightedIndex: state.highlightedIndex,
-          isOpen: true,
         };
       default:
         return {
@@ -267,14 +280,15 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     getLabelProps,
     getMenuProps,
     getInputProps,
-    getComboboxProps,
     highlightedIndex,
     getItemProps,
     selectItem,
     setHighlightedIndex,
-  } = useCombobox({
+  } = useCombobox<T>({
     ...comboboxProps,
     itemToString,
+    itemToKey: props.itemToKey || getItemKey,
+    isItemDisabled: props.isItemDisabled || isItemDisabled,
     items: filteredItems,
     onInputValueChange:
       onInputValueChange && typeof onInputValueChange === 'function'
@@ -288,7 +302,8 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
               setDisplayItems,
               setHighlightedIndex,
               handleInputChange,
-              i18n.combobox.createLabel
+              i18n.combobox.createLabel,
+              props.isItemDisabled || isItemDisabled
             ),
     onIsOpenChange: handleOnIsOpenChange,
     onSelectedItemChange: defaultOnSelectedItemChange,
@@ -320,7 +335,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       : removeSelectedItem(selectedItem);
   }
 
-  function handleInputFocus(event: React.FocusEvent) {
+  function handleInputFocus(event: React.FocusEvent<HTMLInputElement>) {
     setActiveIndex(-1);
 
     onInputFocus && typeof onInputFocus === 'function' && onInputFocus(event);
@@ -330,7 +345,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     ...customComponents,
   });
 
-  function itemsArrayToString(itemsArray: any[]) {
+  function itemsArrayToString(itemsArray: T[]) {
     const allItems = [];
 
     itemsArray.map(item => {
@@ -373,11 +388,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     event.stopPropagation();
 
     if (inputRef.current) {
-      const inputElement = inputRef.current.querySelector('input');
-
-      if (inputElement) {
-        inputElement.focus();
-      }
+      inputRef.current.focus();
     }
 
     reset();
@@ -435,26 +446,13 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       </>
     ) : null;
 
-  function handleOnKeyDown(event: React.KeyboardEvent) {
-    const count = document.querySelectorAll('[aria-modal="true"]').length;
-
+  function handleOnKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     switch (event.key) {
       case 'Escape':
-        if (count >= 1 && inputRef.current) {
-          inputRef.current.focus();
+        if (isOpen) {
+          event.stopPropagation();
+          event.nativeEvent.stopImmediatePropagation();
         }
-        event.nativeEvent.stopImmediatePropagation();
-        break;
-      case 'ArrowDown':
-        setFocusedItem(1, highlightedIndex, filteredItems, setHighlightedIndex);
-        break;
-      case 'ArrowUp':
-        setFocusedItem(
-          -1,
-          highlightedIndex,
-          filteredItems,
-          setHighlightedIndex
-        );
         break;
       default:
         break;
@@ -497,15 +495,19 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       <ComboboxInput
         ariaDescribedBy={ariaDescribedBy}
         customComponents={customComponents}
-        getComboboxProps={getComboboxProps}
-        getInputProps={options => ({
-          ...getInputProps({
-            ...options,
-            ...getDropdownProps({
-              onKeyDown: handleOnKeyDown,
-              ...(innerRef && { ref: innerRef }),
-            }),
-          }),
+        getInputProps={<Options,>(
+          options?: UseComboboxGetInputPropsOptions & Options,
+          getterOptions?: GetPropsCommonOptions
+        ) => ({
+          ...getInputProps<Options>(
+            {
+              ...options,
+              ...getDropdownProps({
+                ...options,
+              }),
+            },
+            getterOptions
+          ),
         })}
         getToggleButtonProps={getToggleButtonProps}
         inputStyle={inputStyle}
@@ -549,6 +551,8 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         isOpen={isOpen}
         items={getFilteredItems(displayItems)}
         itemToString={itemToString}
+        itemToKey={props.itemToKey}
+        isItemDisabled={props.isItemDisabled || isItemDisabled}
         isLoading={isLoading && isTypeahead}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}

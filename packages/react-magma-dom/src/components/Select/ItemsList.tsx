@@ -2,10 +2,7 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import { ReferenceType } from '@floating-ui/react-dom';
-import {
-  UseSelectGetItemPropsOptions,
-  UseSelectGetMenuPropsOptions,
-} from 'downshift';
+import { UseSelectPropGetters } from 'downshift';
 
 import {
   defaultComponents,
@@ -13,7 +10,7 @@ import {
   SelectComponents,
 } from './components';
 import { StyledCard, StyledItem, StyledList } from './shared';
-import { findItemIndex, isItemDisabled, setFocusedItem } from './utils';
+import { findItemIndex, isItemDisabled } from './utils';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { convertStyleValueToString } from '../../utils';
@@ -25,18 +22,19 @@ import { instanceOfToBeCreatedItemObject } from '.';
 interface ItemsListProps<T> {
   customComponents?: SelectComponents<T>;
   floatingElementStyles?: React.CSSProperties;
-  getItemProps: (options?: UseSelectGetItemPropsOptions<T>) => any;
-  getMenuProps: (options?: UseSelectGetMenuPropsOptions) => any;
+  getItemProps: UseSelectPropGetters<T>['getItemProps'];
+  getMenuProps: UseSelectPropGetters<T>['getMenuProps'];
   highlightedIndex?: number;
   isInverse?: boolean;
+  isItemDisabled?: (item: T, index: number) => boolean;
   isLoading?: boolean;
   isOpen?: boolean;
   items: T[];
   itemToString: (item: T) => string;
+  itemToKey?: (item: T | null) => unknown;
   maxHeight?: number | string;
   menuStyle?: React.CSSProperties;
   setFloating?: (node: ReferenceType) => void;
-  setHighlightedIndex?: (index: number) => void;
   selectedItem?: T;
 }
 
@@ -67,14 +65,15 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     getMenuProps,
     highlightedIndex,
     isInverse,
+    isItemDisabled: itemDisabled = isItemDisabled,
     isLoading,
     isOpen,
     items,
     itemToString,
+    itemToKey,
     maxHeight,
     menuStyle,
     setFloating,
-    setHighlightedIndex,
     selectedItem,
     ...rest
   } = props;
@@ -91,32 +90,9 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     [isOpen, setFloating]
   );
 
-  // Scroll highlighted item into view for accessibility
-  React.useEffect(() => {
-    if (isOpen && highlightedIndex !== undefined && highlightedIndex >= 0) {
-      const animationFrame = requestAnimationFrame(() => {
-        const highlightedElement = document.querySelector(
-          '[data-highlighted="true"]'
-        );
-
-        if (
-          highlightedElement &&
-          typeof highlightedElement.scrollIntoView === 'function'
-        ) {
-          highlightedElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-          });
-        }
-      });
-
-      return () => cancelAnimationFrame(animationFrame);
-    }
-  }, [highlightedIndex, isOpen]);
-
   const hasItems = items && items.length > 0;
   const selectedIndex = selectedItem
-    ? findItemIndex(items, selectedItem, itemToString)
+    ? findItemIndex(items, selectedItem, itemToString, undefined, itemToKey)
     : -1;
 
   const heightString = convertStyleValueToString(maxHeight);
@@ -136,22 +112,6 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     );
   };
 
-  function handleKeyDown(event: React.KeyboardEvent) {
-    switch (event.key) {
-      case 'Escape':
-        event.nativeEvent.stopImmediatePropagation();
-        break;
-      case 'ArrowDown':
-        setFocusedItem(1, highlightedIndex, items, setHighlightedIndex);
-        break;
-      case 'ArrowUp':
-        setFocusedItem(-1, highlightedIndex, items, setHighlightedIndex);
-        break;
-      default:
-        break;
-    }
-  }
-
   return (
     <div ref={setFloatingRef} style={{ ...floatingElementStyles, zIndex: '2' }}>
       <StyledCard
@@ -160,7 +120,6 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
         hasDropShadow
         isInverse={isInverse}
         isOpen={isOpen}
-        onKeyDown={handleKeyDown}
         style={menuStyle}
         theme={theme}
       >
@@ -177,12 +136,11 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
               const itemString = instanceOfToBeCreatedItemObject(item)
                 ? item.label
                 : itemToString(item);
-              const isDisabled = isItemDisabled(item);
+              const isDisabled = itemDisabled(item, index);
 
               const { ref, ...otherDownshiftItemProps } = getItemProps({
                 item,
                 index,
-                disabled: isDisabled,
               });
 
               const key = `${itemString}${index}`;
@@ -201,6 +159,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
                 ...otherDownshiftItemProps,
                 onMouseMove: () => {},
                 role: 'option',
+                'aria-selected': isSelected,
                 'aria-label': isSelected
                   ? `${itemString} is selected`
                   : itemString,

@@ -1,17 +1,16 @@
 import * as React from 'react';
 
-import {
-  useMultipleSelection,
-  UseMultipleSelectionProps,
-  useSelect,
-  UseSelectProps,
-} from 'downshift';
-
 import { SelectComponents } from './components';
 import { MultiSelect } from './MultiSelect';
 import { Select as InternalSelect } from './Select';
 import { useIsInverse } from '../../inverse';
 import { descriptionSuffix, Omit, useGenerateId, XOR } from '../../utils';
+import {
+  useMultipleSelection,
+  UseMultipleSelectionProps,
+  useSelect,
+  UseSelectProps,
+} from '../../utils/downshift';
 import { LabelPosition } from '../Label';
 
 export type SelectOptions =
@@ -130,7 +129,10 @@ export interface SelectProps<T extends SelectOptions>
    */
   hasError?: boolean;
   /**
-   * Reference to the trigger button element in the select
+   * Reference to the trigger element in the select.
+   * @remarks The trigger currently renders a div with role="combobox". The
+   * historical button-ref declaration is retained for compatibility;
+   * button-only DOM members are not guaranteed at runtime.
    */
   innerRef?: React.Ref<HTMLButtonElement>;
   /**

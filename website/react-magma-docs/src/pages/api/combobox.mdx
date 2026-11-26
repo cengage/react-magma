@@ -14,6 +14,32 @@ props:
   typeahead suggestions.
 </LeadParagraph>
 
+## Downshift 9 compatibility
+
+Combobox now uses Downshift 9. Existing single-selection callbacks, state reducers, and reducer constants remain supported. These adapters let existing consumers migrate incrementally; deprecated single-selection props and aliases will be removed in a future major release, with no date set.
+
+| Existing API                                      | Recommended API                              | Notes                                                                                                                                                                                                                                    |
+| ------------------------------------------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onSelectedItemChange(changes)`                   | `onSelectionChange(selectedItem)`            | The recommended callback receives the selected item directly, including `null` when the selection is cleared.                                                                                                                            |
+| `onStateChange(changes)` (single selection)       | `onSelectionStateChange(changes)`            | The new callback provides nullable selection state. `onStateChange` remains appropriate for multiple selection.                                                                                                                          |
+| `stateReducer(state, changes)` (single selection) | `selectionStateReducer(state, action)`       | Use the new reducer when you need the nullable selection state and a string `action.type`. The old reducer remains supported for compatibility.                                                                                          |
+| `circularNavigation`                              | `navigationMode="circular"` or `"bounded"`   | Use `navigationMode` to choose whether arrow-key navigation wraps.                                                                                                                                                                       |
+| `getA11yStatusMessage`                            | `a11yStatusMessage`                          | The recommended callback receives state only, with nullable `selectedItem`; derive result counts and highlighted items from your `items`.                                                                                                |
+| `getA11ySelectionMessage`                         | `a11yStatusMessage` or a live region         | Use the status callback for Downshift announcements, or provide a separate live region for selection-specific text.                                                                                                                      |
+| `getA11yRemovalMessage`                           | `multipleA11yStatusMessage` or a live region | Use the multiple-selection status callback or provide a separate live region for removal-specific text.                                                                                                                                  |
+| `state.keySoFar`                                  | `state.inputValue`                           | `keySoFar` remains as a deprecated alias.                                                                                                                                                                                                |
+| Legacy callback `changes.type` comparisons        | `changes.modernType`                         | `modernType` is a string. In `selectionStateReducer`, `action.type` is already a string. The legacy MenuKeyDown\*/MenuBlur constants remain exported with their original literal values, and callbacks translate them for compatibility. |
+
+`onIsOpenChange` and `onHighlightedIndexChange` remain compatible deprecated callbacks; use `onSelectionStateChange` and inspect its `type` when migrating. Legacy callback/reducer declarations preserve Downshift 5's nonnullable item annotation even though it could emit `null` at runtime. Use the new nullable callbacks and reducer for new code. The multiple-selection `onStateChange` and `stateReducer` still describe multiple-selection state and are not deprecated.
+
+`itemToKey` supports nullable items, and `isItemDisabled` receives the item and its index. The legacy single-selection callback and reducer state declarations remain available for typed consumer compatibility; the recommended callbacks and reducer use the accurate nullable state types. MultiCombobox keeps its multiple-selection reducer API.
+
+The menu uses the ARIA 1.2 focus pattern: focus stays on the trigger or input, and `aria-activedescendant` identifies the highlighted option. Tab and Shift+Tab move focus naturally; blur preserves the existing selection. Custom renderers should retain the getter attributes and item refs.
+
+Legacy keyboard behavior is retained: Escape clears the single-selection value and query even when the menu is open; in MultiCombobox it clears the query while retaining selected chips. Backspace from an empty input removes the last chip with the menu open or closed. Enter without a highlighted option retains the surrounding form's normal submit behavior.
+
+`innerRef` references the actual input. Existing public focus and keyboard callback signatures are retained for compatibility with consumers that forward props through wrappers. The historical `toggleButtonRef` button declaration is also retained, although its wrapper renders a div; rely on shared element operations such as `focus()`, not button-only members. Custom item renderers receive typed emitted DOM properties while retaining consumer-specific extension properties.
+
 ## Basic Usage
 
 For simple Select functionality, please see the <Link to="/api/select">Select component</Link>.
@@ -1425,14 +1451,14 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
 `multi-combobox` are listed below.
 
 <Alert variant="info" style={{ maxWidth: '100%', overflow: 'auto' }}>
-  In the development environment these types equate to strings
-  <br /> (eg:{' '}
-  <code className="inverse">ComboboxStateChangeTypes.InputKeyDownArrowDown = '__input_keydown_arrow_down__'</code>
-  ). However, in the production environment the types equate to numbers
-  <br />
-  (eg:{' '}
-  <code className="inverse">ComboboxStateChangeTypes.InputKeyDownArrowDown = 0</code>
-  ).
+  React Magma exposes stable string constants in both development and
+  production. Import the constants from{' '}
+  <code className="inverse">react-magma-dom</code> and compare callback types
+  with them, for example:{' '}
+  <code className="inverse">
+    changes.type === ComboboxStateChangeTypes.InputKeyDownArrowDown
+  </code>
+  .
 </Alert>
 
 ### Combobox
@@ -1510,16 +1536,24 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
       <code>MultipleSelectionStateChangeTypes.SelectedItemKeyDownDelete</code>
     </li>
     <li>
-      <code>MultipleSelectionStateChangeTypes.SelectedItemKeyDownBackspace</code>
+      <code>
+        MultipleSelectionStateChangeTypes.SelectedItemKeyDownBackspace
+      </code>
     </li>
     <li>
-      <code>MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationNext</code>
+      <code>
+        MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationNext
+      </code>
     </li>
     <li>
-      <code>MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationPrevious</code>
+      <code>
+        MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationPrevious
+      </code>
     </li>
     <li>
-      <code>MultipleSelectionStateChangeTypes.DropdownKeyDownNavigationPrevious</code>
+      <code>
+        MultipleSelectionStateChangeTypes.DropdownKeyDownNavigationPrevious
+      </code>
     </li>
     <li>
       <code>MultipleSelectionStateChangeTypes.DropdownKeyDownBackspace</code>
@@ -1550,3 +1584,26 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
 <ComboboxProps />
 
 </PageContent>
+
+### Controlled null selection
+
+Pass `selectedItem={null}` to clear a controlled string or object selection.
+Update the value with `onSelectionChange`; choosing another option works after clearing.
+
+```tsx
+function ControlledSelection() {
+  const [selectedItem, setSelectedItem] = React.useState<string | null>(null);
+
+  return (
+    <>
+      <Combobox
+        labelText="Color"
+        items={['Red', 'Blue']}
+        selectedItem={selectedItem}
+        onSelectionChange={setSelectedItem}
+      />
+      <button onClick={() => setSelectedItem(null)}>Clear selection</button>
+    </>
+  );
+}
+```

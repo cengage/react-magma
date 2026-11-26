@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { autoUpdate } from '@floating-ui/react-dom';
-import { useMultipleSelection, useSelect } from 'downshift';
 import { CloseOutlinedIcon } from 'react-magma-icons';
 
 import { ClearAnnouncer } from './ClearAnnouncer';
@@ -11,11 +10,23 @@ import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { IconWrapper, SelectedItemButton, SelectText } from './shared';
-import { findItemIndex, getSelectedItemIndexes, isItemDisabled } from './utils';
+import {
+  findItemIndex,
+  getItemKey,
+  getSelectedItemIndexes,
+  isItemDisabled,
+} from './utils';
 import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
+import {
+  useMultipleSelection,
+  useSelect,
+  UseSelectState,
+  UseSelectStateChange,
+  UseSelectStateChangeOptions,
+} from '../../utils/downshift';
 import { ButtonSize, ButtonVariant } from '../Button';
 
 import { instanceOfDefaultItemObject, MultiSelectProps } from '.';
@@ -70,43 +81,52 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   }, []);
 
   function checkSelectedItemValidity(itemToCheck: T) {
-    const itemIndex = findItemIndex(items, itemToCheck, itemToString);
+    const itemIndex = findItemIndex(
+      items,
+      itemToCheck,
+      itemToString,
+      undefined,
+      props.itemToKey
+    );
 
     // Only reject items not in the list; disabled items may be preselected values
     return itemIndex !== -1;
   }
 
-  function getFilteredItemIndex(item: T, filteredItems: T[]) {
-    const index = findItemIndex(filteredItems, item, itemToString);
+  function itemDisabled(item: T, index?: number) {
+    if (item == null) {
+      return false;
+    }
 
-    if (isItemDisabled(filteredItems[index])) {
+    return props.isItemDisabled
+      ? props.isItemDisabled(
+          item,
+          index ??
+            findItemIndex(
+              filteredItems,
+              item,
+              itemToString,
+              undefined,
+              props.itemToKey
+            )
+        )
+      : isItemDisabled(item);
+  }
+
+  function getFilteredItemIndex(item: T, filteredItems: T[]) {
+    const index = findItemIndex(
+      filteredItems,
+      item,
+      itemToString,
+      undefined,
+      props.itemToKey
+    );
+
+    if (itemDisabled(filteredItems[index], index)) {
       return -1;
     }
 
     return index;
-  }
-
-  function handleOnIsOpenChange(changes) {
-    const { isOpen: changedIsOpen, selectedItem: changedSelectedItem } =
-      changes;
-
-    if (changedIsOpen && changedSelectedItem) {
-      if (isItemDisabled(changedSelectedItem)) {
-        setHighlightedIndex(-1);
-      } else {
-        setHighlightedIndex(
-          findItemIndex(items, changedSelectedItem, itemToString)
-        );
-      }
-    } else {
-      const index = filteredItems.findIndex(item => !isItemDisabled(item));
-
-      setHighlightedIndex(index);
-    }
-
-    onIsOpenChange &&
-      typeof onIsOpenChange === 'function' &&
-      onIsOpenChange(changes);
   }
 
   const {
@@ -119,8 +139,6 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     reset,
   } = useMultipleSelection<T>({
     ...props,
-    // Disable downshift's built-in a11y removal message to use custom clearAnnounce
-    getA11yRemovalMessage: () => '',
     ...(props.initialSelectedItems && {
       initialSelectedItems: props.initialSelectedItems.filter(
         checkSelectedItemValidity
@@ -140,7 +158,8 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     const selectedIndexes = getSelectedItemIndexes(
       unfilteredItems,
       selectedItems,
-      itemToString
+      itemToString,
+      props.itemToKey
     );
 
     return unfilteredItems.filter(
@@ -155,18 +174,49 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     ...selectProps
   } = props;
 
-  function stateReducer(state, actionAndChanges) {
-    const { type, changes } = actionAndChanges;
+  function stateReducer(
+    state: UseSelectState<T>,
+    actionAndChanges: UseSelectStateChangeOptions<T>
+  ) {
+    const { type } = actionAndChanges;
+    let { changes } = actionAndChanges;
+
+    if (!state.isOpen && changes.isOpen) {
+      changes = {
+        ...changes,
+        highlightedIndex: state.selectedItem
+          ? itemDisabled(state.selectedItem)
+            ? -1
+            : findItemIndex(
+                filteredItems,
+                state.selectedItem,
+                itemToString,
+                undefined,
+                props.itemToKey
+              )
+          : changes.highlightedIndex >= 0
+            ? changes.highlightedIndex
+            : filteredItems.findIndex(
+                (item, index) => !itemDisabled(item, index)
+              ),
+      };
+    }
 
     switch (type) {
-      case useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter:
+      case useSelect.stateChangeTypes.MenuBlur:
         return {
           ...changes,
           selectedItem: state.selectedItem,
         };
+      case useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter:
+        return {
+          ...changes,
+          selectedItem: state.selectedItem,
+          isOpen: state.isOpen,
+        };
       case useSelect.stateChangeTypes.ItemClick:
       case useSelect.stateChangeTypes.MenuKeyDownEnter:
-        if (isItemDisabled(changes.selectedItem)) {
+        if (itemDisabled(changes.selectedItem)) {
           return {
             ...changes,
             selectedItem: state.selectedItem,
@@ -193,18 +243,21 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     highlightedIndex,
     getItemProps,
     selectItem,
-    openMenu,
-    setHighlightedIndex,
   } = useSelect({
     ...selectProps,
     items: filteredItems,
+    isItemDisabled: itemDisabled,
+    itemToKey: props.itemToKey || getItemKey,
+    navigationMode:
+      props.navigationMode ??
+      (props.circularNavigation === false ? 'bounded' : 'circular'),
     onSelectedItemChange: defaultOnSelectedItemChange,
     stateReducer,
     initialHighlightedIndex: initialIndex,
-    onIsOpenChange: handleOnIsOpenChange,
+    onIsOpenChange,
   });
 
-  function defaultOnSelectedItemChange(changes) {
+  function defaultOnSelectedItemChange(changes: UseSelectStateChange<T>) {
     const { selectedItem: newSelectedItem } = changes;
 
     if (newSelectedItem) {
@@ -241,34 +294,34 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
   const forkedtoggleButtonRef = useForkedRef(innerRef || null, toggleButtonRef);
 
+  const dropdownProps = getDropdownProps({
+    onBlur,
+    onKeyPress: (event: React.KeyboardEvent) => onKeyPress?.(event),
+    onKeyUp: (event: React.KeyboardEvent) => onKeyUp?.(event),
+    onFocus,
+    preventKeyAction: isOpen,
+    ...(forkedtoggleButtonRef && { ref: forkedtoggleButtonRef }),
+  });
+
   const toggleButtonProps = getToggleButtonProps({
-    ...getDropdownProps({
-      onBlur,
-      onKeyDown: event => {
-        if (
-          document.activeElement.tagName.toLowerCase() === 'button' &&
-          (event.key === 'Backspace' ||
-            event.key === 'Delete' ||
-            event.key === 'ArrowLeft')
-        ) {
-          event.nativeEvent.preventDownshiftDefault = true;
-        }
+    ...dropdownProps,
+    onKeyDown: (event: React.KeyboardEvent) => {
+      if (
+        document.activeElement.tagName.toLowerCase() === 'button' &&
+        (event.key === 'Backspace' ||
+          event.key === 'Delete' ||
+          event.key === 'ArrowLeft')
+      ) {
+        Object.assign(event.nativeEvent, { preventDownshiftDefault: true });
+      }
 
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          openMenu();
-        }
+      if (event.key === 'Escape' && isOpen) {
+        event.nativeEvent.stopImmediatePropagation();
+      }
 
-        onKeyDown && typeof onKeyDown === 'function' && onKeyDown?.(event);
-      },
-      onKeyPress: (event: any) => onKeyPress?.(event),
-      onKeyUp: (event: any) => onKeyUp?.(event),
-      onFocus,
-      preventKeyAction: isOpen,
-      ...(forkedtoggleButtonRef && { ref: forkedtoggleButtonRef }),
-    }),
-    // role="combobox" requires aria-controls pointing to the listbox
-    'aria-controls': getMenuProps().id,
+      onKeyDown?.(event);
+      dropdownProps.onKeyDown?.(event);
+    },
     // Label the combobox by its label only; the selected value is already exposed as the combobox value
     'aria-labelledby': getLabelProps().id,
     disabled: disabled,
@@ -278,7 +331,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     ...customComponents,
   });
 
-  function itemsArrayToString(itemsArray: any[]) {
+  function itemsArrayToString(itemsArray: T[]) {
     const allItems = [];
 
     itemsArray.map(item => {
@@ -460,12 +513,13 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
           highlightedIndex={highlightedIndex}
           isOpen={isOpen}
           isInverse={isInverse}
+          isItemDisabled={itemDisabled}
           items={filteredItems}
           itemToString={itemToString}
+          itemToKey={props.itemToKey}
           maxHeight={itemListMaxHeight ?? theme.select.menu.maxHeight}
           menuStyle={menuStyle}
           setFloating={refs.setFloating}
-          setHighlightedIndex={setHighlightedIndex}
         />
       </SelectContainer>
 

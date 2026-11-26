@@ -6,3 +6,4 @@ ai
 coverage
 *.log
 *.d.ts
+!test-types/downshift-v5.d.ts

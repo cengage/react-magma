@@ -19,6 +19,74 @@ describe('Select', () => {
   const labelText = 'Label';
   const items = ['Red', 'Blue', 'Green'];
 
+  it('should scroll the highlighted option inside its own menu', async () => {
+    const scrolledItems = [];
+    const previousScrollIntoView = Element.prototype.scrollIntoView;
+
+    Element.prototype.scrollIntoView = function () {
+      scrolledItems.push(this.textContent);
+    };
+
+    try {
+      render(
+        <>
+          <Select
+            labelText="First menu"
+            items={['First option']}
+            isOpen
+            highlightedIndex={0}
+          />
+          <Select
+            labelText="Second menu"
+            items={['Second option']}
+            isOpen
+            highlightedIndex={0}
+          />
+        </>
+      );
+
+      await waitFor(() => {
+        expect(scrolledItems).toContain('Second option');
+      });
+    } finally {
+      Element.prototype.scrollIntoView = previousScrollIntoView;
+    }
+  });
+
+  it('should keep focus on the trigger while selecting with the keyboard', async () => {
+    const { getByRole, getByTestId } = render(
+      <Select labelText={labelText} items={items} />
+    );
+    const trigger = getByRole('combobox');
+
+    act(() => trigger.focus());
+    await userEvent.keyboard('{Enter}{ArrowDown}{Enter}');
+
+    expect(getByTestId('selectedItemText')).toHaveTextContent('Blue');
+    expect(trigger).toHaveFocus();
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+  });
+
+  it('should close only the open menu on Escape and then close its modal', async () => {
+    const { getByRole, queryByRole } = render(
+      <Modal isOpen>
+        <Select labelText={labelText} items={items} />
+      </Modal>
+    );
+    const trigger = getByRole('combobox');
+
+    await userEvent.click(trigger);
+    expect(getByRole('listbox')).toBeVisible();
+
+    await userEvent.keyboard('{Escape}');
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    expect(getByRole('dialog')).toBeInTheDocument();
+    expect(trigger).toHaveFocus();
+
+    await userEvent.keyboard('{Escape}');
+    await waitFor(() => expect(queryByRole('dialog')).not.toBeInTheDocument());
+  });
+
   it('should render a select with items', async () => {
     const { getByLabelText, getByText } = render(
       <Select labelText={labelText} items={items} />

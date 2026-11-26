@@ -46,7 +46,8 @@ export function defaultOnInputValueChange(
   setDisplayItems,
   setHighlightedIndex,
   onInputChange,
-  createLabel
+  createLabel,
+  itemDisabled: (item: unknown, index: number) => boolean = isItemDisabled
 ) {
   const { inputValue: inputBaseValue, isOpen } = changes;
 
@@ -78,7 +79,7 @@ export function defaultOnInputValueChange(
       : items.current;
 
     const firstEnabledIndex = filteredItems.findIndex(
-      item => !isItemDisabled(item)
+      (item, index) => !itemDisabled(item, index)
     );
 
     setHighlightedIndex(firstEnabledIndex);

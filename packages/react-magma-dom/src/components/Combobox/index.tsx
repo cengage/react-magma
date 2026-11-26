@@ -5,8 +5,7 @@ import {
   UseComboboxProps,
   UseComboboxState,
   UseMultipleSelectionProps,
-} from 'downshift';
-
+} from '../../utils/downshift';
 import {
   instanceOfDefaultItemObject,
   InternalMultiProps,
@@ -113,6 +112,9 @@ export interface ComboboxProps<T extends SelectOptions>
   onItemCreated?: (newItem: T) => void;
   /**
    * Reference to the toggle button element wrapping the input in the combobox
+   * @remarks The wrapper currently renders a div. The historical button-ref
+   * declaration is retained for compatibility; button-only DOM members are not
+   * guaranteed at runtime.
    */
   toggleButtonRef?: React.Ref<HTMLButtonElement>;
   /**

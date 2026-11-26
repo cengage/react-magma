@@ -11,10 +11,21 @@ import { IconButton, IconButtonProps } from '../IconButton';
 import { Spinner, SpinnerProps } from '../Spinner';
 import { SelectedItemIndicator, StyledItem } from './shared';
 
-export type ItemRenderOptions<T> = {
+export type ItemRenderOptions<T> = Pick<
+  React.LiHTMLAttributes<HTMLLIElement>,
+  | 'id'
+  | 'role'
+  | 'aria-selected'
+  | 'aria-disabled'
+  | 'aria-label'
+  | 'onClick'
+  | 'onMouseDown'
+  | 'onMouseMove'
+> & {
   key: string;
   isFocused?: boolean;
   isInverse?: boolean;
+  isDisabled?: boolean;
   item: T;
   itemRef: React.Ref<HTMLLIElement>;
   itemString: string;

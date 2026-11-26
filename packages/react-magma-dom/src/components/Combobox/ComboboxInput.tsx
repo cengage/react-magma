@@ -3,11 +3,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ReferenceType } from '@floating-ui/react-dom';
-import {
-  UseComboboxGetComboboxPropsOptions,
-  UseComboboxGetInputPropsOptions,
-  UseComboboxGetToggleButtonPropsOptions,
-} from 'downshift';
+import { UseComboboxPropGetters } from 'downshift';
 import { transparentize } from 'polished';
 
 import useDeviceDetect from '../../hooks/useDeviceDetect';
@@ -108,11 +104,8 @@ interface ComboboxInputProps<T> {
   ariaDescribedBy?: string;
   children?: React.ReactNode | React.ReactNode[];
   customComponents?: SelectComponents<T>;
-  getComboboxProps: (options?: UseComboboxGetComboboxPropsOptions) => any;
-  getInputProps: (options?: UseComboboxGetInputPropsOptions) => any;
-  getToggleButtonProps: (
-    options?: UseComboboxGetToggleButtonPropsOptions
-  ) => any;
+  getInputProps: UseComboboxPropGetters<T>['getInputProps'];
+  getToggleButtonProps: UseComboboxPropGetters<T>['getToggleButtonProps'];
   hasError?: boolean;
   innerRef?: React.Ref<HTMLInputElement>;
   inputStyle?: React.CSSProperties;
@@ -120,11 +113,11 @@ interface ComboboxInputProps<T> {
   isInverse?: boolean;
   isLoading?: boolean;
   isTypeahead?: boolean;
-  onInputBlur?: (event: React.FocusEvent) => void;
-  onInputFocus?: (event: React.FocusEvent) => void;
-  onInputKeyDown?: (event: any) => void;
-  onInputKeyPress?: (event: any) => void;
-  onInputKeyUp?: (event: any) => void;
+  onInputBlur?: React.FocusEventHandler<HTMLInputElement>;
+  onInputFocus?: React.FocusEventHandler<HTMLInputElement>;
+  onInputKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
+  onInputKeyPress?: React.KeyboardEventHandler<HTMLInputElement>;
+  onInputKeyUp?: React.KeyboardEventHandler<HTMLInputElement>;
   placeholder?: string;
   selectedItems?: React.ReactNode;
   selectedItem?: React.ReactNode;
@@ -137,7 +130,6 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     ariaDescribedBy,
     children,
     customComponents,
-    getComboboxProps,
     getInputProps,
     getToggleButtonProps,
     hasError,
@@ -167,18 +159,17 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     ...customComponents,
   });
 
-  function handleBlur(e: React.FocusEvent) {
+  function handleBlur(e: React.FocusEvent<HTMLInputElement>) {
     setIsFocused(false);
     onInputBlur?.(e);
   }
 
-  function handleFocus(e: React.FocusEvent) {
+  function handleFocus(e: React.FocusEvent<HTMLInputElement>) {
     setIsFocused(true);
     onInputFocus?.(e);
   }
 
   const inputProps = getInputProps({
-    ...getComboboxProps(),
     disabled: disabled,
     onBlur: handleBlur,
     onFocus: handleFocus,
@@ -209,16 +200,22 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
   return (
     <div ref={setReference}>
       <ComboBoxContainer
-        {...(getComboboxProps && getComboboxProps().ref
-          ? { ref: getComboboxProps().ref }
-          : {})}
         hasError={hasError}
         isInverse={isInverse}
         theme={theme}
       >
         <InputContainer
-          {...getToggleButtonProps({
+          {...getToggleButtonProps<object>({
             disabled,
+            onClick: event => {
+              // The input has its own Downshift click handler. Only the
+              // surrounding control should toggle the menu.
+              if (event.target instanceof HTMLInputElement) {
+                Object.assign(event.nativeEvent, {
+                  preventDownshiftDefault: true,
+                });
+              }
+            },
             ...(toggleButtonRef && { ref: toggleButtonRef }),
           })}
           hasError={hasError}
@@ -227,7 +224,6 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
           isInverse={isInverse}
           style={inputStyle}
           theme={theme}
-          ref={innerRef}
         >
           <SelectedItemsWrapper aria-label={selectedItemAriaLabel}>
             {selectedItems}

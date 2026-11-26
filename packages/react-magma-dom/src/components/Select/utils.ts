@@ -11,8 +11,13 @@ function hasItemValue(object: unknown): object is { value: unknown } {
 export function isSameItem<T>(
   item: T,
   itemToCompare: T,
-  itemToString: (item: T) => string
+  itemToString: (item: T) => string,
+  itemToKey?: (item: T | null) => unknown
 ): boolean {
+  if (itemToKey) {
+    return itemToKey(item) === itemToKey(itemToCompare);
+  }
+
   if (item === itemToCompare) {
     return true;
   }
@@ -35,7 +40,8 @@ export function findItemIndex<T>(
   items: T[],
   itemToFind: T,
   itemToString: (item: T) => string,
-  excludedIndexes?: Set<number>
+  excludedIndexes?: Set<number>,
+  itemToKey?: (item: T | null) => unknown
 ): number {
   if (!items || itemToFind === null || itemToFind === undefined) {
     return -1;
@@ -46,10 +52,11 @@ export function findItemIndex<T>(
 
   const exactIndex = items.findIndex(
     (item, index) =>
-      isAvailable(index) && isSameItem(item, itemToFind, itemToString)
+      isAvailable(index) &&
+      isSameItem(item, itemToFind, itemToString, itemToKey)
   );
 
-  if (exactIndex !== -1) {
+  if (exactIndex !== -1 || itemToKey) {
     return exactIndex;
   }
 
@@ -63,7 +70,8 @@ export function findItemIndex<T>(
 export function getSelectedItemIndexes<T>(
   items: T[],
   selectedItems: T[],
-  itemToString: (item: T) => string
+  itemToString: (item: T) => string,
+  itemToKey?: (item: T | null) => unknown
 ): Set<number> {
   const selectedIndexes = new Set<number>();
 
@@ -73,7 +81,7 @@ export function getSelectedItemIndexes<T>(
 
   const unmatchedItems = selectedItems.filter(selectedItem => {
     const index = items.findIndex(item =>
-      isSameItem(item, selectedItem, itemToString)
+      isSameItem(item, selectedItem, itemToString, itemToKey)
     );
 
     if (index === -1) {
@@ -90,7 +98,8 @@ export function getSelectedItemIndexes<T>(
       items,
       selectedItem,
       itemToString,
-      selectedIndexes
+      selectedIndexes,
+      itemToKey
     );
 
     if (index !== -1) {
@@ -101,31 +110,8 @@ export function getSelectedItemIndexes<T>(
   return selectedIndexes;
 }
 
-export const setFocusedItem = (
-  step: number,
-  highlightedIndex: number,
-  items: any[],
-  setHighlightedIndex: (index: number) => void
-) => {
-  if (!items || items.length === 0) return;
-
-  let nextIndex = highlightedIndex ?? 0;
-
-  if (nextIndex === -1 && step < 0) {
-    nextIndex = 0;
-  }
-
-  let iterations = 0;
-
-  while (iterations < items.length) {
-    nextIndex = (nextIndex + step + items.length) % items.length;
-
-    if (!isItemDisabled(items[nextIndex])) {
-      setHighlightedIndex?.(nextIndex);
-
-      return;
-    }
-
-    iterations++;
-  }
-};
+// Match recreated value objects by value; custom shapes retain reference identity
+// unless their consumer supplies itemToKey. Labels remain presentation only.
+export function getItemKey<T>(item: T | null): unknown {
+  return hasItemValue(item) ? item.value : item;
+}

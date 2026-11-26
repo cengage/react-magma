@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { UseSelectGetLabelPropsOptions } from 'downshift';
+import { UseComboboxGetLabelPropsReturnValue } from 'downshift';
 
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -43,7 +43,7 @@ interface SelectContainerInterface<T> {
   containerStyle?: React.CSSProperties;
   descriptionId?: string;
   errorMessage?: React.ReactNode;
-  getLabelProps: (options?: UseSelectGetLabelPropsOptions) => any;
+  getLabelProps: () => UseComboboxGetLabelPropsReturnValue;
   hasError?: boolean;
   helperMessage?: React.ReactNode;
   isInverse?: boolean;

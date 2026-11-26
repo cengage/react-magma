@@ -20,6 +20,30 @@ describe('MultiSelect', () => {
     });
   });
 
+  it('should keep trigger focus through keyboard selection and Escape in a modal', async () => {
+    const { getByRole, queryByRole, getByText } = render(
+      <Modal isOpen>
+        <MultiSelect isMulti labelText={labelText} items={items} />
+      </Modal>
+    );
+    const trigger = getByRole('combobox');
+
+    await userEvent.click(trigger);
+    await userEvent.keyboard('{ArrowDown}{Enter}');
+
+    expect(getByText('Blue', { selector: 'button' })).toBeInTheDocument();
+    expect(trigger).toHaveFocus();
+
+    await userEvent.click(trigger);
+    await userEvent.keyboard('{Escape}');
+
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    expect(getByRole('dialog')).toBeInTheDocument();
+
+    await userEvent.keyboard('{Escape}');
+    await waitFor(() => expect(queryByRole('dialog')).not.toBeInTheDocument());
+  });
+
   it('should render a multi-select with items', async () => {
     const { getByLabelText, getByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />

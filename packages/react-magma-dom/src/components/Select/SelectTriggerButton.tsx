@@ -2,6 +2,7 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import { ReferenceType } from '@floating-ui/react-dom';
+import { UseSelectGetToggleButtonPropsReturnValue } from 'downshift';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
@@ -48,7 +49,7 @@ interface SelectTriggerButtonInterface<T> {
   isInverse?: boolean;
   setReference?: (node: ReferenceType) => void;
   style?: React.CSSProperties;
-  toggleButtonProps: any;
+  toggleButtonProps: UseSelectGetToggleButtonPropsReturnValue;
   tabindex?: number;
 }
 

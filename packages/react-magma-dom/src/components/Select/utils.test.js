@@ -132,3 +132,44 @@ describe('getSelectedItemIndexes', () => {
     ]).toEqual([0, 1]);
   });
 });
+
+describe('consumer itemToKey', () => {
+  const items = [
+    { id: 1, text: 'Same' },
+    { id: 2, text: 'Same' },
+  ];
+  const itemToString = item => item.text;
+  const itemToKey = item => item?.id;
+
+  it('resolves recreated custom shapes by key instead of duplicate labels', () => {
+    expect(
+      findItemIndex(
+        items,
+        { id: 2, text: 'Updated' },
+        itemToString,
+        undefined,
+        itemToKey
+      )
+    ).toBe(1);
+    expect([
+      ...getSelectedItemIndexes(
+        items,
+        [{ id: 2, text: 'Updated' }],
+        itemToString,
+        itemToKey
+      ),
+    ]).toEqual([1]);
+  });
+
+  it('does not replace a missing key with a matching label', () => {
+    expect(
+      findItemIndex(
+        items,
+        { id: 3, text: 'Same' },
+        itemToString,
+        undefined,
+        itemToKey
+      )
+    ).toBe(-1);
+  });
+});

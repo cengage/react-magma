@@ -1,9 +1,14 @@
 import * as React from 'react';
 
 import { autoUpdate } from '@floating-ui/react-dom';
-import { useCombobox } from 'downshift';
 import { CloseOutlinedIcon } from 'react-magma-icons';
 
+import {
+  useCombobox,
+  UseComboboxState,
+  UseComboboxStateChange,
+  UseComboboxStateChangeOptions,
+} from '../../utils/downshift';
 import { instanceOfDefaultItemObject } from '../Select';
 import { ComboboxInput } from './ComboboxInput';
 import { defaultOnInputValueChange, useComboboxItems } from './shared';
@@ -17,7 +22,7 @@ import { defaultComponents } from '../Select/components';
 import { ItemListAnnouncer } from '../Select/ItemListAnnouncer';
 import { ItemsList } from '../Select/ItemsList';
 import { SelectContainer } from '../Select/SelectContainer';
-import { findItemIndex, setFocusedItem } from '../Select/utils';
+import { findItemIndex, getItemKey, isItemDisabled } from '../Select/utils';
 
 import { ComboboxProps } from '.';
 
@@ -114,7 +119,10 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     }
   }
 
-  function stateReducer(state, actionAndChanges) {
+  function stateReducer(
+    state: UseComboboxState<T>,
+    actionAndChanges: UseComboboxStateChangeOptions<T>
+  ) {
     const { type, changes } = actionAndChanges;
 
     switch (type) {
@@ -145,7 +153,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
             state.inputValue && !state.selectedItem
               ? ''
               : itemToString(state.selectedItem),
-          selectedItem: state.selectedItem ? state.selectedItem : '',
+          selectedItem: state.selectedItem,
         };
       case useCombobox.stateChangeTypes.FunctionReset:
         return {
@@ -153,14 +161,6 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
           inputValue: changes.selectedItem
             ? itemToString(changes.selectedItem)
             : '',
-        };
-      case useCombobox.stateChangeTypes.InputKeyDownArrowDown:
-      case useCombobox.stateChangeTypes.InputKeyDownArrowUp:
-        // Keep controlled navigation manually via handleOnKeyDown handler
-        return {
-          ...state,
-          highlightedIndex: state.highlightedIndex,
-          isOpen: true,
         };
       default:
         return changes;
@@ -185,12 +185,18 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
       return allItems;
     }
 
-    return findItemIndex(allItems.current, itemToCheck, itemToString) !== -1
+    return findItemIndex(
+      allItems.current,
+      itemToCheck,
+      itemToString,
+      undefined,
+      props.itemToKey
+    ) !== -1
       ? { [key]: itemToCheck }
       : { [key]: null };
   }
 
-  function handleOnIsOpenChange(changes) {
+  function handleOnIsOpenChange(changes: UseComboboxStateChange<T>) {
     const { isOpen: changedIsOpen, selectedItem: changedSelectedItem } =
       changes;
 
@@ -199,8 +205,19 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     }
 
     if (changedIsOpen && changedSelectedItem) {
+      const index = findItemIndex(
+        displayItems,
+        changedSelectedItem,
+        itemToString,
+        undefined,
+        props.itemToKey
+      );
+
       setHighlightedIndex(
-        findItemIndex(displayItems, changedSelectedItem, itemToString)
+        index >= 0 &&
+          (props.isItemDisabled || isItemDisabled)(displayItems[index], index)
+          ? -1
+          : index
       );
     }
 
@@ -215,7 +232,6 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     getLabelProps,
     getMenuProps,
     getInputProps,
-    getComboboxProps,
     highlightedIndex,
     getItemProps,
     reset,
@@ -226,6 +242,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
   } = useCombobox({
     ...props,
     itemToString,
+    itemToKey: props.itemToKey || getItemKey,
+    isItemDisabled: props.isItemDisabled || isItemDisabled,
     items: displayItems,
     onInputValueChange:
       onInputValueChange && typeof onInputValueChange === 'function'
@@ -239,11 +257,18 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
               setDisplayItems,
               setHighlightedIndex,
               onInputChange,
-              i18n.combobox.createLabel
+              i18n.combobox.createLabel,
+              props.isItemDisabled || isItemDisabled
             ),
     onIsOpenChange: handleOnIsOpenChange,
     onSelectedItemChange: defaultOnSelectedItemChange,
+    onSelectionChange: item => {
+      if (!isCreatedItem(item)) {
+        props.onSelectionChange?.(item);
+      }
+    },
     stateReducer,
+    userStateReducer: props.stateReducer,
     ...(defaultSelectedItem &&
       getValidItem(defaultSelectedItem, 'defaultSelectedItem')),
     ...(initialSelectedItem &&
@@ -263,11 +288,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     event.stopPropagation();
 
     if (inputRef.current) {
-      const inputElement = inputRef.current.querySelector('input');
-
-      if (inputElement) {
-        inputElement.focus();
-      }
+      inputRef.current.focus();
     }
 
     reset();
@@ -289,23 +310,13 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     ?.replace(/\{labelText\}/g, labelText)
     ?.replace(/\{selectedItem\}/g, itemToString(selectedItem));
 
-  function handleOnKeyDown(event: React.KeyboardEvent) {
-    const count = document.querySelectorAll('[aria-modal="true"]').length;
-
+  function handleOnKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     switch (event.key) {
       case 'Escape':
-        if (count >= 1 && inputRef.current) {
-          inputRef.current.focus();
+        if (isOpen) {
+          event.stopPropagation();
+          event.nativeEvent.stopImmediatePropagation();
         }
-        event.nativeEvent.stopImmediatePropagation();
-        break;
-      case 'ArrowDown':
-        event.preventDefault();
-        setFocusedItem(1, highlightedIndex, displayItems, setHighlightedIndex);
-        break;
-      case 'ArrowUp':
-        event.preventDefault();
-        setFocusedItem(-1, highlightedIndex, displayItems, setHighlightedIndex);
         break;
       default:
         break;
@@ -348,16 +359,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         ariaDescribedBy={ariaDescribedBy}
         customComponents={customComponents}
         disabled={disabled}
-        getComboboxProps={getComboboxProps}
-        getInputProps={options => ({
-          ...getInputProps({
-            ...options,
-            ...getComboboxProps({
-              onKeyDown: handleOnKeyDown,
-              ...innerRef,
-            }),
-          }),
-        })}
+        getInputProps={getInputProps}
         getToggleButtonProps={getToggleButtonProps}
         hasError={hasError}
         innerRef={ref}
@@ -396,6 +398,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         isInverse={isInverse}
         items={displayItems}
         itemToString={itemToString}
+        itemToKey={props.itemToKey}
+        isItemDisabled={props.isItemDisabled || isItemDisabled}
         isLoading={isLoading && isTypeahead}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}

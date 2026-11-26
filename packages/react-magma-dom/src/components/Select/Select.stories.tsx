@@ -4,7 +4,7 @@ import { Meta, StoryFn } from '@storybook/react-webpack5';
 import { HelpOutlinedIcon } from 'react-magma-icons';
 
 import { magma } from '../../theme/magma';
-import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { Button, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
 import { IconButton } from '../IconButton';
@@ -266,6 +266,41 @@ const duplicateLabelItems = [
   { label: 'Green', value: 'green' },
 ];
 
+export const ControlledSelectedItem = {
+  render: () => {
+    const items = [
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+    ];
+    const [selectedItem, setSelectedItem] =
+      React.useState<SelectOptions | null>(items[0]);
+
+    return (
+      <>
+        <Select
+          labelText="Controlled selected item"
+          items={items}
+          selectedItem={selectedItem}
+          onSelectionChange={setSelectedItem}
+        />
+        <p>Selected value: {selectedItem?.value ?? 'none'}</p>
+        <Button type={ButtonType.button} onClick={() => setSelectedItem(null)}>
+          Clear selection
+        </Button>
+      </>
+    );
+  },
+};
+
+export const DeprecatedCircularNavigation = {
+  args: {
+    ...Default.args,
+    labelText: 'Deprecated circular navigation',
+    circularNavigation: false,
+  },
+};
+
 export const DuplicateLabels = {
   render: (props: SelectProps<SelectOptions>) => {
     const [selectedItem, setSelectedItem] = React.useState<SelectOptions>(
@@ -322,5 +357,14 @@ export const MultiDuplicateLabels = {
     ...Default.args,
     labelText: 'Multi with duplicate labels',
     isClearable: true,
+  },
+};
+
+export const InitialHighlightedItem = {
+  args: {
+    labelText: 'Long list',
+    items: Array.from({ length: 30 }, (_, index) => `Item ${index}`),
+    initialHighlightedIndex: 20,
+    itemListMaxHeight: 120,
   },
 };

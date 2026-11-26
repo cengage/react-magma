@@ -1301,19 +1301,34 @@ export const ControlledSelectedItem = {
       { label: 'Blue', value: 'blue' },
       { label: 'Green', value: 'green' },
     ];
-    const [selectedItem, setSelectedItem] = React.useState<
-      { label: string; value: string } | undefined
-    >(undefined);
+    const [selectedItem, setSelectedItem] = React.useState<{
+      label: string;
+      value: string;
+    } | null>(items[0]);
 
     return (
-      <Combobox
-        id="controlledSelectedItemId"
-        labelText="Controlled selectedItem"
-        items={items}
-        selectedItem={selectedItem}
-        onSelectedItemChange={changes => setSelectedItem(changes.selectedItem)}
-      />
+      <>
+        <Combobox
+          id="controlledSelectedItemId"
+          labelText="Controlled selectedItem"
+          items={items}
+          selectedItem={selectedItem}
+          onSelectionChange={setSelectedItem}
+        />
+        <p>Selected value: {selectedItem?.value ?? 'none'}</p>
+        <Button type={ButtonType.button} onClick={() => setSelectedItem(null)}>
+          Clear selection
+        </Button>
+      </>
     );
+  },
+};
+
+export const DeprecatedCircularNavigation = {
+  args: {
+    ...Default.args,
+    labelText: 'Deprecated circular navigation',
+    circularNavigation: false,
   },
 };
 
@@ -1412,5 +1427,15 @@ export const MultiDuplicateLabels = {
     ...Default.args,
     labelText: 'Multi with duplicate labels',
     isClearable: true,
+  },
+};
+
+export const InitialHighlightedItem = {
+  args: {
+    labelText: 'Long list',
+    items: Array.from({ length: 30 }, (_, index) => `Item ${index}`),
+    initialHighlightedIndex: 20,
+    itemListMaxHeight: 120,
+    disableCreateItem: true,
   },
 };

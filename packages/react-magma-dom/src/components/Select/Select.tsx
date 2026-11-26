@@ -1,10 +1,14 @@
 import * as React from 'react';
 
 import { autoUpdate } from '@floating-ui/react-dom';
-import { useSelect } from 'downshift';
 import { CloseOutlinedIcon } from 'react-magma-icons';
 
 import { useForkedRef } from '../../utils';
+import {
+  useSelect,
+  UseSelectState,
+  UseSelectStateChangeOptions,
+} from '../../utils/downshift';
 import { ButtonSize, ButtonVariant } from '../Button';
 import { ClearAnnouncer } from './ClearAnnouncer';
 import { defaultComponents } from './components';
@@ -13,7 +17,7 @@ import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { SelectText } from './shared';
-import { findItemIndex, isItemDisabled } from './utils';
+import { findItemIndex, getItemKey, isItemDisabled } from './utils';
 import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -64,12 +68,28 @@ export function Select<T>(props: SelectProps<T>) {
 
   const ref = useForkedRef(innerRef || null, toggleButtonRef);
 
-  function isDisabledItemIndex(index) {
-    return isItemDisabled(items[index]);
+  function itemDisabled(item: T, index?: number) {
+    if (item == null) {
+      return false;
+    }
+
+    return props.isItemDisabled
+      ? props.isItemDisabled(
+          item,
+          index ??
+            findItemIndex(items, item, itemToString, undefined, props.itemToKey)
+        )
+      : isItemDisabled(item);
   }
 
   function getValidItem(itemToCheck: T, key: string): object {
-    const itemIndex = findItemIndex(items, itemToCheck, itemToString);
+    const itemIndex = findItemIndex(
+      items,
+      itemToCheck,
+      itemToString,
+      undefined,
+      props.itemToKey
+    );
 
     // Only reject items not in the list; a disabled item is still a valid selected value
     if (itemIndex === -1) {
@@ -80,54 +100,56 @@ export function Select<T>(props: SelectProps<T>) {
   }
 
   function getValidItemIndex(indexToCheck: number) {
-    if (isDisabledItemIndex(indexToCheck)) {
+    if (itemDisabled(items[indexToCheck], indexToCheck)) {
       return -1;
     } else {
       return indexToCheck;
     }
   }
 
-  function handleOnIsOpenChange(changes) {
-    const { isOpen: changedIsOpen, selectedItem: changedSelectedItem } =
-      changes;
+  function stateReducer(
+    state: UseSelectState<T>,
+    actionAndChanges: UseSelectStateChangeOptions<T>
+  ) {
+    const { type } = actionAndChanges;
+    let { changes } = actionAndChanges;
 
-    if (changedIsOpen && changedSelectedItem) {
-      if (isItemDisabled(changedSelectedItem)) {
-        setHighlightedIndex(-1);
-      } else {
-        setHighlightedIndex(
-          findItemIndex(items, changedSelectedItem, itemToString)
-        );
-      }
-    } else if (changedIsOpen && !changedSelectedItem) {
-      setTimeout(() => {
-        const firstEnabledIndex = items.findIndex(
-          item => !isItemDisabled(item)
-        );
-
-        if (firstEnabledIndex >= 0) {
-          setHighlightedIndex(firstEnabledIndex);
-        }
-      }, 0);
+    if (!state.isOpen && changes.isOpen) {
+      changes = {
+        ...changes,
+        highlightedIndex: state.selectedItem
+          ? itemDisabled(state.selectedItem)
+            ? -1
+            : findItemIndex(
+                items,
+                state.selectedItem,
+                itemToString,
+                undefined,
+                props.itemToKey
+              )
+          : (initialHighlightedIndex >= 0 ||
+                props.defaultHighlightedIndex >= 0) &&
+              changes.highlightedIndex >= 0
+            ? changes.highlightedIndex
+            : items.findIndex((item, index) => !itemDisabled(item, index)),
+      };
     }
 
-    onIsOpenChange &&
-      typeof onIsOpenChange === 'function' &&
-      onIsOpenChange(changes);
-  }
-
-  function stateReducer(state, actionAndChanges) {
-    const { type, changes } = actionAndChanges;
-
     switch (type) {
-      case useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter:
+      case useSelect.stateChangeTypes.MenuBlur:
         return {
           ...changes,
           selectedItem: state.selectedItem,
         };
+      case useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter:
+        return {
+          ...changes,
+          selectedItem: state.selectedItem,
+          isOpen: state.isOpen,
+        };
       case useSelect.stateChangeTypes.ItemClick:
       case useSelect.stateChangeTypes.MenuKeyDownEnter:
-        if (isItemDisabled(changes.selectedItem)) {
+        if (itemDisabled(changes.selectedItem)) {
           return {
             ...changes,
             selectedItem: state.selectedItem,
@@ -149,13 +171,17 @@ export function Select<T>(props: SelectProps<T>) {
     highlightedIndex,
     getItemProps,
     reset,
-    openMenu,
-    setHighlightedIndex,
   } = useSelect<T>({
     ...props,
     initialHighlightedIndex: getValidItemIndex(initialHighlightedIndex),
-    onIsOpenChange: handleOnIsOpenChange,
+    isItemDisabled: itemDisabled,
+    itemToKey: props.itemToKey || getItemKey,
+    navigationMode:
+      props.navigationMode ??
+      (props.circularNavigation === false ? 'bounded' : 'circular'),
+    onIsOpenChange,
     stateReducer,
+    userStateReducer: props.stateReducer,
     ...(defaultSelectedItem &&
       getValidItem(defaultSelectedItem, 'defaultSelectedItem')),
     ...(initialSelectedItem &&
@@ -169,25 +195,20 @@ export function Select<T>(props: SelectProps<T>) {
   });
 
   const toggleButtonProps = getToggleButtonProps({
-    // role="combobox" requires aria-controls pointing to the listbox
-    'aria-controls': getMenuProps().id,
     // Label the combobox by its label only; the selected value is already exposed as the combobox value
     'aria-labelledby': getLabelProps().id,
     disabled: disabled,
     onBlur,
-    onKeyDown: (event: any) => {
-      if (
-        getToggleButtonProps().id === document.activeElement.id &&
-        (event.key === 'Enter' || event.key === ' ')
-      ) {
-        event.preventDefault();
-        openMenu();
+    onKeyDown: (event: React.KeyboardEvent) => {
+      if (event.key === 'Escape' && isOpen) {
+        event.nativeEvent.stopImmediatePropagation();
       }
 
-      onKeyDown && typeof onKeyDown === 'function' && onKeyDown?.(event);
+      onKeyDown?.(event);
     },
-    onKeyPress: (event: any) => onKeyPress?.(event),
-    onKeyUp: (event: any) => onKeyUp?.(event),
+    onKeyPress: (event: React.KeyboardEvent<HTMLElement>) =>
+      onKeyPress?.(event),
+    onKeyUp: (event: React.KeyboardEvent<HTMLElement>) => onKeyUp?.(event),
     onFocus,
     ref,
   });
@@ -298,13 +319,14 @@ export function Select<T>(props: SelectProps<T>) {
           getMenuProps={getMenuProps}
           highlightedIndex={highlightedIndex}
           isInverse={isInverse}
+          isItemDisabled={itemDisabled}
           isOpen={isOpen}
           items={items}
           itemToString={itemToString}
+          itemToKey={props.itemToKey}
           maxHeight={itemListMaxHeight ?? theme.select.menu.maxHeight}
           menuStyle={menuStyle}
           setFloating={refs.setFloating}
-          setHighlightedIndex={setHighlightedIndex}
           selectedItem={selectedItem}
         />
       </SelectContainer>

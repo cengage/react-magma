@@ -337,3 +337,18 @@ export * from './components/CharacterCounter';
 export * from './components/ToggleButton';
 export * from './components/ToggleButtonGroup';
 export * from './components/Fieldset';
+
+export type {
+  A11yRemovalMessage,
+  A11yStatusMessageOptions,
+  SelectionAction,
+  SelectionState,
+  UseComboboxState,
+  UseComboboxStateChangeOptions,
+  UseMultipleSelectionState,
+  UseMultipleSelectionStateChangeOptions,
+  UseSelectState,
+  UseSelectStateChangeOptions,
+} from './utils/downshift';
+export type { ComboboxProps, MultiComboboxProps } from './components/Combobox';
+export type { MultiSelectProps, SelectProps } from './components/Select';
