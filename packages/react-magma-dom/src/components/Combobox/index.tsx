@@ -20,7 +20,7 @@ import { descriptionSuffix, Omit, useGenerateId, XOR } from '../../utils';
 import { LabelPosition } from '../Label';
 
 export interface ComboboxProps<T extends SelectOptions>
-  extends Omit<UseComboboxProps<T>, 'items'>,
+  extends Omit<UseComboboxProps<T>, 'items' | 'selectedItem'>,
     InternalSelectProps<T> {
   /**
    * Id of the element that describes the combobox input
@@ -111,6 +111,10 @@ export interface ComboboxProps<T extends SelectOptions>
    * Event that fires when a new item is created with the create item option is clicked in the item list menu
    */
   onItemCreated?: (newItem: T) => void;
+  /**
+   * The controlled selected item. Pass null to clear the selection.
+   */
+  selectedItem?: T | null;
   /**
    * Reference to the toggle button element wrapping the input in the combobox
    */
