@@ -335,6 +335,46 @@ describe('Combobox', () => {
     expect(renderedCombobox.value).toEqual(items[1]);
   });
 
+  it.each([
+    ['string', ['Red', 'Blue']],
+    [
+      'object',
+      [
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+      ],
+    ],
+  ])(
+    'should keep supporting null controlled selections with %s items',
+    (_type, options) => {
+      const { getByRole, rerender } = render(
+        <Combobox
+          labelText={labelText}
+          items={options}
+          selectedItem={options[0]}
+        />
+      );
+
+      expect(getByRole('combobox')).toHaveValue('Red');
+
+      rerender(
+        <Combobox labelText={labelText} items={options} selectedItem={null} />
+      );
+
+      expect(getByRole('combobox')).toHaveValue('');
+
+      rerender(
+        <Combobox
+          labelText={labelText}
+          items={options}
+          selectedItem={options[1]}
+        />
+      );
+
+      expect(getByRole('combobox')).toHaveValue('Blue');
+    }
+  );
+
   it('should allow for the creation of an item', async () => {
     const { getByLabelText, getByText } = render(
       <Combobox labelText={labelText} items={items} initialSelectedItem="Red" />

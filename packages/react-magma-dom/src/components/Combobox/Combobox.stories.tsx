@@ -1301,9 +1301,10 @@ export const ControlledSelectedItem = {
       { label: 'Blue', value: 'blue' },
       { label: 'Green', value: 'green' },
     ];
-    const [selectedItem, setSelectedItem] = React.useState<
-      { label: string; value: string } | undefined
-    >(undefined);
+    const [selectedItem, setSelectedItem] = React.useState<{
+      label: string;
+      value: string;
+    } | null>(null);
 
     return (
       <Combobox
