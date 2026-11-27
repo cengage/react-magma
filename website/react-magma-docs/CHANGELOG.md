@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.3-next.1
+
+### Patch Changes
+
+- dde08ec: chore: Update codeowners
+
 ## 7.0.3-next.0
 
 ### Patch Changes
