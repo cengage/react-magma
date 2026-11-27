@@ -1,5 +1,13 @@
 import { expect, test } from '@playwright/test';
 
+test.beforeEach(async ({ page }) => {
+  // Keep interaction/layout checks independent of external font delivery.
+  // WebKit can defer the story's styles while this imported CSS is pending.
+  await page.route('https://fonts.googleapis.com/**', route =>
+    route.fulfill({ contentType: 'text/css', body: '' })
+  );
+});
+
 test('select: ArrowUp opens on the first enabled item', async ({ page }) => {
   await page.goto('/iframe.html?id=select--default&viewMode=story');
   const control = page.getByRole('combobox');

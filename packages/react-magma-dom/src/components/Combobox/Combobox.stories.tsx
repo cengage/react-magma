@@ -1324,14 +1324,6 @@ export const ControlledSelectedItem = {
   },
 };
 
-export const DeprecatedCircularNavigation = {
-  args: {
-    ...Default.args,
-    labelText: 'Deprecated circular navigation',
-    circularNavigation: false,
-  },
-};
-
 export const ControlledItems = {
   render: () => {
     const defaultItems = [
