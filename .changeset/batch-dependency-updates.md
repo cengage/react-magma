@@ -17,3 +17,5 @@ Updated dependencies in the lockfile:
 - `side-channel`: 1.1.0 → 1.1.1
 - `side-channel-list`: 1.0.0 → 1.0.1
 - `ws`: 8.18.3 → 8.23.0
+- `storybook`: 10.2.10 → 10.6.3
+
