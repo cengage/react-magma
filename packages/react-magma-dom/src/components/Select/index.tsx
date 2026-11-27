@@ -9,6 +9,9 @@ import {
   useMultipleSelection,
   UseMultipleSelectionProps,
   useSelect,
+  resolveNativeOptions,
+  SelectDownshiftOptions,
+  MultiSelectDownshiftOptions,
   UseSelectProps,
 } from '../../utils/downshift';
 import { LabelPosition } from '../Label';
@@ -116,6 +119,8 @@ export interface SelectProps<T extends SelectOptions>
    * Content above the select. For use with Icon Buttons to relay information.
    */
   additionalContent?: React.ReactNode;
+  /** Native Downshift v9 contracts. Explicit native callbacks take precedence over their legacy counterparts. */
+  downshift?: SelectDownshiftOptions<T>;
   /**
    * Id of the element that describes the select trigger button
    */
@@ -167,7 +172,10 @@ export interface SelectProps<T extends SelectOptions>
 
 export interface MultiSelectProps<T extends SelectOptions>
   extends UseMultipleSelectionProps<T>,
-    Omit<SelectProps<T>, 'onStateChange' | 'stateReducer' | 'isMulti'>,
+    Omit<
+      SelectProps<T>,
+      'onStateChange' | 'stateReducer' | 'isMulti' | 'downshift'
+    >,
     InternalMultiProps<T> {
   /**
    * @internal
@@ -181,6 +189,8 @@ export interface MultiSelectProps<T extends SelectOptions>
    * @internal
    */
   isMulti: true;
+  /** Native menu and chip hook contracts, independently configurable. */
+  downshift?: MultiSelectDownshiftOptions<T>;
 }
 
 export function instanceOfMultiSelect<T>(
@@ -219,7 +229,17 @@ export const SelectStateChangeTypes = useSelect.stateChangeTypes;
 export const MultipleSelectionStateChangeTypes =
   useMultipleSelection.stateChangeTypes;
 
-export function Select<T>(props: XORSelectProps<T>) {
+export function Select<T>(passedProps: XORSelectProps<T>) {
+  const props = {
+    ...passedProps,
+    ...resolveNativeOptions(
+      passedProps.downshift?.select,
+      passedProps.downshift && 'multipleSelection' in passedProps.downshift
+        ? passedProps.downshift.multipleSelection
+        : undefined
+    ),
+  };
+
   const {
     containerStyle,
     id: defaultId,

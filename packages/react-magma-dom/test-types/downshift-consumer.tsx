@@ -3,6 +3,8 @@ import * as React from 'react';
 import {
   Combobox,
   ComboboxProps,
+  DownshiftSelectStateChangeTypes,
+  DownshiftMultipleSelectionStateChangeTypes,
   MultiComboboxProps,
   MultiSelectProps,
   Select,
@@ -15,6 +17,8 @@ import type {
   UseMultipleSelectionProps,
   UseSelectProps,
 } from './downshift-v5';
+
+function expectType<T>(_value: T): void {}
 
 declare const oldSelect: UseSelectProps<string>;
 declare const oldCombobox: UseComboboxProps<string>;
@@ -68,6 +72,7 @@ export const legacy = (
 );
 
 const objects = [{ id: 1, text: 'Red' }];
+
 export const modern = (
   <Combobox
     labelText="Colors"
@@ -78,7 +83,8 @@ export const modern = (
     navigationMode="bounded"
     onSelectionChange={item => {
       const value: number | undefined = item?.id;
-      void value;
+
+      expectType<unknown>(value);
     }}
     selectionStateReducer={(state, action) => ({
       ...action.changes,
@@ -86,7 +92,8 @@ export const modern = (
     })}
     onSelectionStateChange={changes => {
       const state: SelectionState<{ id: number; text: string }> = changes;
-      void state;
+
+      expectType<unknown>(state);
     }}
   />
 );
@@ -111,7 +118,7 @@ export const contextualMultiSelectReducer = (
 
       // @ts-expect-error Reducer props retain the inferred item shape.
       selectedItems[0]?.missingProperty;
-      void id;
+      expectType<unknown>(id);
 
       return { ...action.changes, selectedItems };
     }}
@@ -128,7 +135,7 @@ export const contextualMultiComboboxReducer = (
 
       // @ts-expect-error Reducer props retain the inferred item shape.
       selectedItems[0]?.missingProperty;
-      void text;
+      expectType<unknown>(text);
 
       return { ...action.changes, selectedItems };
     }}
@@ -138,7 +145,7 @@ export const contextualMultiComboboxReducer = (
 // prettier-ignore
 export const wrongCallback = (
   // @ts-expect-error onSelectionChange must receive the inferred item shape.
-  <Select labelText="Colors" items={objects} onSelectionChange={(item: string | null) => { void item; }} />
+  <Select labelText="Colors" items={objects} onSelectionChange={(item: string | null) => { expectType<unknown>(item); }} />
 );
 // prettier-ignore
 export const wrongItem = (
@@ -153,7 +160,6 @@ export const wrongNavigation = (
 
 // Public inference matrix: two components x two selection modes x two item shapes.
 // Keep callbacks contextually typed; explicit generic arguments would mask holes.
-function expectType<T>(_value: T): void {}
 
 type Color = { id: number; text: string };
 const strings = ['Red'];
@@ -267,7 +273,8 @@ export const singleStringCombobox = (
         type: action.type,
         changes: action.changes,
       };
-      void invalid;
+
+      expectType<unknown>(invalid);
 
       return action.changes;
     }}
@@ -310,7 +317,8 @@ export const singleObjectCombobox = (
         type: action.type,
         changes: action.changes,
       };
-      void invalid;
+
+      expectType<unknown>(invalid);
 
       return action.changes;
     }}
@@ -348,7 +356,8 @@ export const multiStringSelect = (
         type: action.type,
         changes: action.changes,
       };
-      void invalid;
+
+      expectType<unknown>(invalid);
 
       return action.changes;
     }}
@@ -422,7 +431,8 @@ export const multiObjectCombobox = (
         type: action.type,
         changes: action.changes,
       };
-      void invalid;
+
+      expectType<unknown>(invalid);
       // @ts-expect-error Multiple-selection action items retain their fields.
       action.props.selectedItems?.[0].missingProperty;
 
@@ -575,4 +585,127 @@ export const legacyInputHandlers: Pick<
 > = {
   onInputKeyDown: legacyInputKeyDown,
   onInputFocus: legacyInputFocus,
+};
+
+// Native callbacks infer v9 fields, while the old fixtures above stay unchanged.
+export const nativeSelect = (
+  <Select
+    labelText="Native objects"
+    items={objects}
+    downshift={{
+      select: {
+        itemToString: item => item?.text ?? '',
+        stateReducer: (state, action) => {
+          const input: string = state.inputValue;
+          const nullable: (typeof objects)[number] | null = state.selectedItem;
+          const alt: boolean | undefined = action.altKey;
+
+          expectType<unknown>([input, nullable, alt]);
+
+          return action.changes;
+        },
+        onSelectedItemChange: changes => {
+          const nullable: (typeof objects)[number] | null =
+            changes.selectedItem;
+
+          expectType<unknown>(nullable);
+        },
+        getA11yStatusMessage: state => state.selectedItem?.text ?? '',
+      },
+    }}
+  />
+);
+
+export const nativeMultiCombo = (
+  <Combobox
+    labelText="Native chips"
+    items={objects}
+    isMulti
+    selectedItems={[]}
+    downshift={{
+      combobox: {
+        itemToString: item => item?.text ?? '',
+        onInputValueChange: changes => {
+          const input: string = changes.inputValue;
+
+          expectType<unknown>(input);
+        },
+      },
+      multipleSelection: {
+        onSelectedItemsChange: changes => {
+          const items: typeof objects = changes.selectedItems;
+
+          expectType<unknown>(items);
+        },
+        stateReducer: (_state, action) => action.changes,
+      },
+    }}
+  />
+);
+
+export const wrongSelectGroup = (
+  <Select
+    labelText="Wrong"
+    items={objects}
+    // @ts-expect-error A Select cannot accept a Combobox hook group.
+    downshift={{ combobox: { onStateChange: () => undefined } }}
+  />
+);
+export const wrongSingleChipGroup = (
+  // @ts-expect-error A single Select cannot accept chip hook options.
+  <Select
+    labelText="Wrong"
+    items={objects}
+    downshift={{ multipleSelection: { onStateChange: () => undefined } }}
+  />
+);
+
+export const nativeComboProps: ComboboxProps<(typeof objects)[number]> = {
+  labelText: 'Native combobox',
+  items: objects,
+  downshift: {
+    combobox: {
+      onStateChange: changes => {
+        const changedInput: string | undefined = changes.inputValue;
+
+        expectType<unknown>(changedInput);
+      },
+      onSelectedItemChange: changes => {
+        const nullable: (typeof objects)[number] | null = changes.selectedItem;
+
+        expectType<unknown>(nullable);
+      },
+    },
+  },
+};
+
+export const nativeMultiSelectProps: MultiSelectProps<
+  (typeof objects)[number]
+> = {
+  labelText: 'Native multi select',
+  items: objects,
+  isMulti: true,
+  downshift: {
+    select: {
+      stateReducer: (state, action) => {
+        // @ts-expect-error keySoFar belongs to the legacy state only.
+        expectType<unknown>(state.keySoFar);
+
+        return action.type === DownshiftSelectStateChangeTypes.FunctionOpenMenu
+          ? action.changes
+          : {};
+      },
+    },
+    multipleSelection: {
+      stateReducer: (_state, action) => {
+        // @ts-expect-error Native multiple-selection actions do not have legacy props.
+        expectType<unknown>(action.props);
+
+        return action.type ===
+          DownshiftMultipleSelectionStateChangeTypes.FunctionAddSelectedItem
+          ? action.changes
+          : {};
+      },
+    },
+  },
 };

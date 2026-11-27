@@ -6,15 +6,19 @@ import {
   useSelect as useDownshiftSelect,
 } from 'downshift';
 import type {
-  UseComboboxState as UpstreamState,
   UseSelectReturnValue,
   UseSelectStateChangeOptions as UpstreamSelectAction,
   UseComboboxStateChangeOptions as UpstreamComboboxAction,
+  UseSelectStateChange as NativeSelectChange,
+  UseComboboxStateChange as NativeComboboxChange,
 } from 'downshift';
 
 import { useGenerateId } from '..';
 import {
   A11yStatusMessageOptions,
+  NativeSelectOptions,
+  NativeComboboxOptions,
+  NativeMultipleSelectionOptions,
   LegacyUseSelectProps,
   LegacyUseComboboxProps,
   Environment,
@@ -30,6 +34,40 @@ import {
 } from './types';
 
 export * from './types';
+
+export const DownshiftSelectStateChangeTypes =
+  useDownshiftSelect.stateChangeTypes;
+export const DownshiftComboboxStateChangeTypes =
+  useDownshiftCombobox.stateChangeTypes;
+export const DownshiftMultipleSelectionStateChangeTypes =
+  useDownshiftMultipleSelection.stateChangeTypes;
+
+/** Resolve shared resources once, so rendered options and hooks use the same values. */
+export function resolveNativeOptions<Item>(
+  selection?: Pick<NativeSelectOptions<Item>, 'itemToString' | 'environment'>,
+  multiple?: Pick<NativeMultipleSelectionOptions<Item>, 'environment'>
+) {
+  const primary = selection?.environment;
+  const secondary = multiple?.environment;
+
+  if (
+    primary &&
+    secondary &&
+    (
+      ['document', 'Node', 'addEventListener', 'removeEventListener'] as const
+    ).some(key => primary[key] !== secondary[key])
+  ) {
+    throw new Error('Downshift groups must use the same environment.');
+  }
+  const nativeEnvironment = primary ?? secondary;
+
+  return {
+    ...(selection?.itemToString !== undefined && {
+      itemToString: selection.itemToString,
+    }),
+    ...(nativeEnvironment !== undefined && { environment: nativeEnvironment }),
+  };
+}
 
 const selectTypes = {
   ...UseSelectStateChangeTypes,
@@ -115,12 +153,26 @@ function legacySelectState<Item>(
   return { ...legacyComboboxState(state), keySoFar: state.inputValue };
 }
 
+function selectionState<Item>(
+  state: SelectionState<Item>
+): SelectionState<Item> {
+  return {
+    highlightedIndex: state.highlightedIndex,
+    isOpen: state.isOpen,
+    selectedItem: state.selectedItem,
+    inputValue: state.inputValue,
+  };
+}
+
 function legacyChangedState<Item>(changes: Partial<SelectionState<Item>>) {
   return changes as Partial<UseComboboxState<Item>>;
 }
 
-function environment(value: Environment) {
-  return { ...value, Node: value.document.defaultView?.Node ?? window.Node };
+function environment(value: Environment & { Node?: typeof window.Node }) {
+  return {
+    ...value,
+    Node: value.Node ?? value.document.defaultView?.Node ?? window.Node,
+  };
 }
 
 function stringify<Item>(
@@ -193,7 +245,8 @@ function useScrollOnOpen<Item>(
 function useA11yMessage<Item>(
   props: UseComboboxProps<Item> | UseSelectProps<Item>,
   state: SelectionState<Item>,
-  isSelect = false
+  isSelect = false,
+  disabled = false
 ) {
   const id = useGenerateId();
   const previous = React.useRef({ state, items: props.items });
@@ -204,6 +257,14 @@ function useA11yMessage<Item>(
     (typeof document === 'undefined' ? undefined : document);
 
   React.useEffect(() => {
+    if (disabled) {
+      mounted.current = true;
+      region.current?.remove();
+      region.current = undefined;
+      previous.current = { state, items: props.items };
+
+      return;
+    }
     const before = previous.current;
     const statusChanged =
       before.items !== props.items ||
@@ -296,6 +357,7 @@ function useA11yMessage<Item>(
     };
     // Match the v5 announcement dependencies, including async items changes.
   }, [
+    disabled,
     state.isOpen,
     state.highlightedIndex,
     state.inputValue,
@@ -312,22 +374,28 @@ function navigate<Item>(
   state: SelectionState<Item>,
   changes: SelectionState<Item>,
   type: string,
-  props: UseSelectProps<Item> | UseComboboxProps<Item>,
+  props: (UseSelectProps<Item> | UseComboboxProps<Item>) & {
+    isCreateOption?: (item: Item) => boolean;
+  },
   defaultCircular: boolean,
   altKey = false
 ) {
   let direction = 0;
 
-  if (/arrow_down/.test(type)) {
+  if (type.endsWith('ArrowDown')) {
     direction = 1;
-  } else if (/arrow_up/.test(type)) {
+  } else if (type.endsWith('ArrowUp')) {
     direction = -1;
   }
   const circular = props.navigationMode
     ? props.navigationMode === 'circular'
     : (props.circularNavigation ?? defaultCircular);
 
-  if (!direction || !state.isOpen) {
+  const hasCreateAction =
+    props.items.length > 0 &&
+    props.isCreateOption?.(props.items[props.items.length - 1]);
+
+  if (!state.isOpen || (!direction && !hasCreateAction)) {
     return changes;
   }
 
@@ -344,7 +412,11 @@ function navigate<Item>(
       : changes;
   const enabled = props.items
     .map((_item, index) => index)
-    .filter(index => !props.isItemDisabled?.(props.items[index], index));
+    .filter(
+      index =>
+        props.isCreateOption?.(props.items[index]) ||
+        !props.isItemDisabled?.(props.items[index], index)
+    );
 
   if (!enabled.length) {
     return { ...navigationChanges, highlightedIndex: -1 };
@@ -352,6 +424,45 @@ function navigate<Item>(
 
   const first = enabled[0];
   const last = enabled[enabled.length - 1];
+
+  // Create is a UI action outside the hook's Item domain. Keep it reachable
+  // using the same menu indices; all ordinary item navigation stays upstream.
+  if (hasCreateAction) {
+    if (type.endsWith('PageUp') || type.endsWith('PageDown')) {
+      // v9 pages by ten and wraps, counting the visible Create action too.
+      const offset = type.endsWith('PageDown') ? 10 : -10;
+      let current = state.highlightedIndex;
+
+      if (current < 0 || current > last) {
+        current = offset > 0 ? -1 : last + 1;
+      }
+      let target = current + offset;
+
+      if (target < 0) {
+        target = last;
+      } else if (target > last) {
+        target = 0;
+      }
+      const highlightedIndex =
+        offset > 0
+          ? (enabled.find(index => index >= target) ?? first)
+          : (enabled.filter(index => index <= target).pop() ?? last);
+
+      return { ...navigationChanges, highlightedIndex };
+    }
+    if (type.endsWith('Home')) {
+      return { ...navigationChanges, highlightedIndex: first };
+    }
+    if (
+      type.endsWith('End') ||
+      (direction === 1 &&
+        (state.highlightedIndex === enabled[enabled.length - 2] ||
+          (enabled.length === 1 && state.highlightedIndex < 0))) ||
+      (direction === -1 && state.highlightedIndex < 0)
+    ) {
+      return { ...navigationChanges, highlightedIndex: last };
+    }
+  }
 
   if (direction === -1 && altKey) {
     const previousIndex = enabled
@@ -377,30 +488,49 @@ function navigate<Item>(
 }
 
 type SelectHookProps<Item> = UseSelectProps<Item> & {
+  native?: NativeSelectOptions<Item>;
+  internalStateReducer?: NativeSelectOptions<Item>['stateReducer'];
+  internalOnSelectedItemChange?: (changes: NativeSelectChange<Item>) => void;
   userStateReducer?: UseSelectProps<Item>['stateReducer'];
 };
 type ComboboxHookProps<Item> = UseComboboxProps<Item> & {
+  native?: NativeComboboxOptions<Item>;
+  resolveCreatedItem?: (index: number) => { item: Item } | undefined;
+  isCreateOption?: (item: Item) => boolean;
+  internalStateReducer?: NativeComboboxOptions<Item>['stateReducer'];
+  internalOnSelectedItemChange?: (changes: NativeComboboxChange<Item>) => void;
+  internalOnInputValueChange?: (changes: NativeComboboxChange<Item>) => void;
+  internalOnIsOpenChange?: (changes: NativeComboboxChange<Item>) => void;
   userStateReducer?: UseComboboxProps<Item>['stateReducer'];
 };
 
 export function useSelect<Item>(props: SelectHookProps<Item>) {
-  const { environment: suppliedEnvironment, ...hookProps } = props;
+  const { native, environment: legacyEnvironment, ...hookProps } = props;
+  // Public components have already resolved one environment for all their hooks.
+  const suppliedEnvironment = legacyEnvironment ?? native?.environment;
   const last = React.useRef<{
     state: SelectionState<Item>;
     type: UseSelectStateChangeTypes;
     modernType: string;
   }>();
 
-  function callback(callbackFn: UseSelectProps<Item>['onStateChange']) {
-    return (_changes: { type: string } & Partial<UpstreamState<Item>>) => {
-      if (last.current) {
-        const legacyChanges = {
+  function callback(
+    key: 'onSelectedItemChange' | 'onIsOpenChange' | 'onHighlightedIndexChange'
+  ) {
+    return (changes: NativeSelectChange<Item>) => {
+      if (!last.current) {
+        return;
+      }
+      if (key === 'onSelectedItemChange')
+        props.internalOnSelectedItemChange?.(changes);
+      if (native?.[key]) {
+        (native[key] as (changes: NativeSelectChange<Item>) => void)(changes);
+      } else if (props[key]) {
+        props[key]({
           ...legacySelectState(last.current.state),
           type: last.current.type,
           modernType: last.current.modernType,
-        };
-
-        callbackFn?.(legacyChanges);
+        });
       }
     };
   }
@@ -410,7 +540,8 @@ export function useSelect<Item>(props: SelectHookProps<Item>) {
     ...(suppliedEnvironment && {
       environment: environment(suppliedEnvironment),
     }),
-    itemToString: item => stringify(item, props.itemToString),
+    itemToString:
+      native?.itemToString ?? (item => stringify(item, props.itemToString)),
     // Downshift 9.5 also calls this for setHighlightedIndex(-1).
     // A consumer predicate only receives actual items, as its type promises.
     isItemDisabled: (item, index) =>
@@ -418,7 +549,7 @@ export function useSelect<Item>(props: SelectHookProps<Item>) {
         ? (props.isItemDisabled?.(item, index) ?? false)
         : false,
     // The adapter owns announcements so items-only updates share one live region.
-    getA11yStatusMessage: undefined,
+    getA11yStatusMessage: native?.getA11yStatusMessage,
     scrollIntoView: props.scrollIntoView ?? scrollHighlightedItem,
     stateReducer(state, action: UpstreamSelectAction<Item>) {
       const modernType = modernSelectType(action.type);
@@ -429,41 +560,68 @@ export function useSelect<Item>(props: SelectHookProps<Item>) {
       const next = navigate(
         state,
         { ...state, ...action.changes },
-        String(type),
+        actionName(useDownshiftSelect.stateChangeTypes, action.type),
         props,
         false,
         action.altKey
       );
-      const legacyState = legacySelectState(state);
-      const legacyAction = {
-        ...action,
-        type,
-        modernType,
-        changes: legacySelectState(next),
-        props: props as LegacyUseSelectProps<Item>,
-      };
-      const internal =
-        props.stateReducer?.(legacyState, legacyAction) ?? legacyAction.changes;
-      const userChanges = { ...legacyAction.changes, ...internal };
-      const user =
-        props.userStateReducer?.(legacyState, {
-          ...legacyAction,
-          changes: userChanges,
-        }) ?? userChanges;
-      const reduced = {
+      const proposal = {
         ...next,
-        ...user,
-        inputValue: user.inputValue ?? next.inputValue,
+        ...props.internalStateReducer?.(state, { ...action, changes: next }),
       };
 
-      // A legacy reducer can update keySoFar without knowing inputValue exists.
-      if (
-        user.keySoFar !== undefined &&
-        user.keySoFar !== legacyAction.changes.keySoFar &&
-        (user.inputValue === undefined ||
-          user.inputValue === legacyAction.changes.inputValue)
-      ) {
-        reduced.inputValue = user.keySoFar;
+      if (native?.stateReducer) {
+        const nativeChanges = native.stateReducer(state, {
+          ...action,
+          changes: proposal,
+        });
+
+        last.current = {
+          state: { ...state, ...nativeChanges },
+          type,
+          modernType,
+        };
+
+        return nativeChanges;
+      }
+      let reduced: SelectionState<Item> = proposal;
+
+      if (props.userStateReducer || props.stateReducer) {
+        // Only consumer legacy contracts cross this conversion boundary.
+        const legacyState = legacySelectState(state);
+        const legacyAction = {
+          ...action,
+          type,
+          modernType,
+          changes: legacySelectState(proposal),
+          props: props as LegacyUseSelectProps<Item>,
+        };
+        const legacyInternal =
+          !props.internalStateReducer && props.userStateReducer
+            ? props.stateReducer?.(legacyState, legacyAction)
+            : undefined;
+        const userChanges = { ...legacyAction.changes, ...legacyInternal };
+        const user =
+          (props.userStateReducer ?? props.stateReducer)?.(legacyState, {
+            ...legacyAction,
+            changes: userChanges,
+          }) ?? userChanges;
+
+        reduced = {
+          ...next,
+          ...user,
+          inputValue: user.inputValue ?? next.inputValue,
+        };
+
+        // A legacy reducer can update keySoFar without knowing inputValue exists.
+        if (
+          user.keySoFar !== undefined &&
+          user.keySoFar !== legacyAction.changes.keySoFar &&
+          (user.inputValue === undefined ||
+            user.inputValue === legacyAction.changes.inputValue)
+        ) {
+          reduced.inputValue = user.keySoFar;
+        }
       }
       const modernChanges = props.selectionStateReducer?.(state, {
         ...action,
@@ -471,14 +629,19 @@ export function useSelect<Item>(props: SelectHookProps<Item>) {
         changes: reduced,
         props,
       });
-      const finalState = { ...reduced, ...modernChanges };
+      const finalState = selectionState({ ...reduced, ...modernChanges });
 
       last.current = { state: finalState, type, modernType };
 
       return finalState;
     },
     onStateChange(changes) {
-      if (last.current) {
+      if (native?.onStateChange) {
+        native.onStateChange(changes);
+
+        return;
+      }
+      if (last.current && props.onStateChange) {
         const { inputValue, ...changedState } = legacyChangedState(changes);
         const legacyChanges = {
           ...changedState,
@@ -496,15 +659,16 @@ export function useSelect<Item>(props: SelectHookProps<Item>) {
         });
       }
     },
-    onIsOpenChange: callback(props.onIsOpenChange),
-    onHighlightedIndexChange: callback(props.onHighlightedIndexChange),
+    onIsOpenChange: callback('onIsOpenChange'),
+    onHighlightedIndexChange: callback('onHighlightedIndexChange'),
     onSelectedItemChange(changes) {
-      callback(props.onSelectedItemChange)(changes);
-      props.onSelectionChange?.(changes.selectedItem);
+      callback('onSelectedItemChange')(changes);
+      if (!native?.onSelectedItemChange)
+        props.onSelectionChange?.(changes.selectedItem);
     },
   });
 
-  useA11yMessage(props, result, true);
+  useA11yMessage(props, result, true, !!native?.getA11yStatusMessage);
   useScrollOnOpen(props, result);
 
   return result;
@@ -512,41 +676,66 @@ export function useSelect<Item>(props: SelectHookProps<Item>) {
 useSelect.stateChangeTypes = selectTypes;
 
 export function useCombobox<Item>(props: ComboboxHookProps<Item>) {
-  const { environment: suppliedEnvironment, ...hookProps } = props;
+  const { native, environment: legacyEnvironment, ...hookProps } = props;
+  // Public components have already resolved one environment for all their hooks.
+  const suppliedEnvironment = legacyEnvironment ?? native?.environment;
+  const hookItems = props.isCreateOption
+    ? props.items.filter(item => !props.isCreateOption(item))
+    : props.items;
   const last = React.useRef<{
     state: SelectionState<Item>;
     type: UseComboboxStateChangeTypes;
     modernType: string;
   }>();
 
-  function callback(callbackFn: UseComboboxProps<Item>['onStateChange']) {
-    return (_changes: { type: string } & Partial<UpstreamState<Item>>) => {
-      if (last.current) {
-        const legacyChanges = {
+  function callback(
+    key:
+      | 'onSelectedItemChange'
+      | 'onIsOpenChange'
+      | 'onHighlightedIndexChange'
+      | 'onInputValueChange'
+  ) {
+    return (changes: NativeComboboxChange<Item>) => {
+      if (!last.current) {
+        return;
+      }
+      if (key === 'onIsOpenChange') props.internalOnIsOpenChange?.(changes);
+      if (key === 'onInputValueChange')
+        props.internalOnInputValueChange?.(changes);
+      if (key === 'onSelectedItemChange')
+        props.internalOnSelectedItemChange?.(changes);
+      if (native?.[key]) {
+        (native[key] as (changes: NativeComboboxChange<Item>) => void)(changes);
+      } else if (props[key]) {
+        props[key]({
           ...legacyComboboxState(last.current.state),
           type: last.current.type,
           modernType: last.current.modernType,
-        };
-
-        callbackFn?.(legacyChanges);
+        });
       }
     };
   }
 
   const result = useDownshiftCombobox<Item>({
     ...hookProps,
+    items: hookItems,
     ...(suppliedEnvironment && {
       environment: environment(suppliedEnvironment),
     }),
-    itemToString: item => stringify(item, props.itemToString),
+    // A Magma Create action has a UI index outside native data items. Upstream
+    // computes selection text before our reducer handles Alt+ArrowUp.
+    itemToString: item =>
+      native?.itemToString
+        ? native.itemToString(item ?? null)
+        : stringify(item, props.itemToString),
     // Downshift 9.5 also calls this for setHighlightedIndex(-1).
     // A consumer predicate only receives actual items, as its type promises.
     isItemDisabled: (item, index) =>
-      index >= 0 && index < props.items.length
+      index >= 0 && index < hookItems.length
         ? (props.isItemDisabled?.(item, index) ?? false)
         : false,
     // The adapter owns announcements so items-only updates share one live region.
-    getA11yStatusMessage: undefined,
+    getA11yStatusMessage: native?.getA11yStatusMessage,
     scrollIntoView: props.scrollIntoView ?? scrollHighlightedItem,
     stateReducer(state, action: UpstreamComboboxAction<Item>) {
       const modernType = modernComboboxType(action.type);
@@ -556,52 +745,84 @@ export function useCombobox<Item>(props: ComboboxHookProps<Item>) {
         {
           ...state,
           ...action.changes,
-          ...(type === UseComboboxStateChangeTypes.InputKeyDownEscape && {
+          ...(action.type ===
+            useDownshiftCombobox.stateChangeTypes.InputKeyDownEscape && {
             selectedItem: null,
             inputValue: '',
           }),
         },
-        String(type),
+        actionName(useDownshiftCombobox.stateChangeTypes, action.type),
         props,
         true,
         action.altKey
       );
-      const legacyState = legacyComboboxState(state);
-      const legacyAction = {
-        ...action,
-        type,
-        modernType,
-        changes: legacyComboboxState(next),
-        props: props as LegacyUseComboboxProps<Item>,
-      };
-      const internal =
-        props.stateReducer?.(legacyState, legacyAction) ?? legacyAction.changes;
-      const userChanges = { ...legacyAction.changes, ...internal };
-      const user =
-        props.userStateReducer?.(legacyState, {
-          ...legacyAction,
-          changes: userChanges,
-        }) ?? userChanges;
-      const reduced = {
+      const proposal = {
         ...next,
-        ...user,
-        inputValue: user.inputValue ?? next.inputValue,
+        ...props.internalStateReducer?.(state, { ...action, changes: next }),
       };
 
+      if (native?.stateReducer) {
+        const nativeChanges = native.stateReducer(state, {
+          ...action,
+          changes: proposal,
+        });
+
+        last.current = {
+          state: { ...state, ...nativeChanges },
+          type,
+          modernType,
+        };
+
+        return nativeChanges;
+      }
+      let reduced: SelectionState<Item> = proposal;
+
+      if (props.userStateReducer || props.stateReducer) {
+        // Only consumer legacy contracts cross this conversion boundary.
+        const legacyState = legacyComboboxState(state);
+        const legacyAction = {
+          ...action,
+          type,
+          modernType,
+          changes: legacyComboboxState(proposal),
+          props: props as LegacyUseComboboxProps<Item>,
+        };
+        const legacyInternal =
+          !props.internalStateReducer && props.userStateReducer
+            ? props.stateReducer?.(legacyState, legacyAction)
+            : undefined;
+        const userChanges = { ...legacyAction.changes, ...legacyInternal };
+        const user =
+          (props.userStateReducer ?? props.stateReducer)?.(legacyState, {
+            ...legacyAction,
+            changes: userChanges,
+          }) ?? userChanges;
+
+        reduced = {
+          ...next,
+          ...user,
+          inputValue: user.inputValue ?? next.inputValue,
+        };
+      }
       const modernChanges = props.selectionStateReducer?.(state, {
         ...action,
         type: modernType,
         changes: reduced,
         props,
       });
-      const finalState = { ...reduced, ...modernChanges };
+      const finalState = selectionState({ ...reduced, ...modernChanges });
 
       last.current = { state: finalState, type, modernType };
 
       return finalState;
     },
     onStateChange(changes) {
-      if (last.current) {
+      if (native?.onStateChange) {
+        native.onStateChange(changes);
+
+        return;
+      }
+      if (last.current && props.onStateChange) {
         const legacyChanges = {
           ...legacyChangedState(changes),
           type: last.current.type,
@@ -617,20 +838,88 @@ export function useCombobox<Item>(props: ComboboxHookProps<Item>) {
         });
       }
     },
-    onIsOpenChange: callback(props.onIsOpenChange),
-    onHighlightedIndexChange: callback(props.onHighlightedIndexChange),
-    onInputValueChange: callback(props.onInputValueChange),
+    onIsOpenChange: callback('onIsOpenChange'),
+    onHighlightedIndexChange: callback('onHighlightedIndexChange'),
+    onInputValueChange: callback('onInputValueChange'),
     onSelectedItemChange(changes) {
-      callback(props.onSelectedItemChange)(changes);
-      props.onSelectionChange?.(changes.selectedItem);
+      callback('onSelectedItemChange')(changes);
+      if (!native?.onSelectedItemChange)
+        props.onSelectionChange?.(changes.selectedItem);
     },
   });
 
-  useA11yMessage(props, result);
+  useA11yMessage(props, result, false, !!native?.getA11yStatusMessage);
   useScrollOnOpen(props, result);
 
+  function commitCreatedItem(index: number, event: React.SyntheticEvent) {
+    if (
+      !props.resolveCreatedItem ||
+      index < 0 ||
+      props.isItemDisabled?.(props.items[index], index)
+    ) {
+      return;
+    }
+    const creation = props.resolveCreatedItem(index);
+
+    if (!creation) {
+      return;
+    }
+    // Create is a Magma action, not a selectable Item. Dispatch the resolved
+    // value through real v9 actions before any consumer sees selectedItem.
+    Object.assign(event.nativeEvent, { preventDownshiftDefault: true });
+    event.preventDefault();
+    result.setHighlightedIndex(-1);
+    result.closeMenu();
+    result.selectItem(creation.item);
+  }
+
+  function itemActionPrevented(event: React.SyntheticEvent) {
+    const marked = event as React.SyntheticEvent & {
+      preventDownshiftDefault?: boolean;
+      nativeEvent: Event & { preventDownshiftDefault?: boolean };
+    };
+
+    return Boolean(
+      marked.preventDownshiftDefault ||
+        marked.nativeEvent.preventDownshiftDefault
+    );
+  }
+
+  const getItemProps: typeof result.getItemProps = itemProps =>
+    result.getItemProps({
+      ...itemProps,
+      ...(props.resolveCreatedItem && {
+        onClick(event) {
+          itemProps?.onClick?.(event);
+          if (!itemActionPrevented(event)) {
+            commitCreatedItem(
+              itemProps?.index ?? props.items.indexOf(itemProps?.item),
+              event
+            );
+          }
+        },
+      }),
+    });
+
   const getInputProps: typeof result.getInputProps = (inputProps, options) => {
-    const input = result.getInputProps(inputProps, options);
+    const input = result.getInputProps(
+      {
+        ...inputProps,
+        ...(props.resolveCreatedItem && {
+          onKeyDown(event) {
+            inputProps?.onKeyDown?.(event);
+            if (
+              event.key === 'Enter' &&
+              result.isOpen &&
+              !itemActionPrevented(event)
+            ) {
+              commitCreatedItem(result.highlightedIndex, event);
+            }
+          },
+        }),
+      },
+      options
+    );
     // Generic Overwrite retains arbitrary consumer attributes. Narrow only the
     // composed DOM keyboard handler, without changing the getter's return type.
     const { onKeyDown } = input as Pick<
@@ -658,7 +947,7 @@ export function useCombobox<Item>(props: ComboboxHookProps<Item>) {
     };
   };
 
-  return { ...result, getInputProps };
+  return { ...result, getInputProps, getItemProps };
 }
 useCombobox.stateChangeTypes = {
   ...UseComboboxStateChangeTypes,
@@ -668,9 +957,13 @@ useCombobox.stateChangeTypes = {
 };
 
 export function useMultipleSelection<Item>(
-  props: UseMultipleSelectionProps<Item>
+  props: UseMultipleSelectionProps<Item> & {
+    native?: NativeMultipleSelectionOptions<Item>;
+  }
 ) {
-  const { environment: suppliedEnvironment, ...hookProps } = props;
+  const { native, environment: legacyEnvironment, ...hookProps } = props;
+  // Public components have already resolved one environment for all their hooks.
+  const suppliedEnvironment = legacyEnvironment ?? native?.environment;
   const previous = React.useRef(
     props.selectedItems ??
       props.initialSelectedItems ??
@@ -695,6 +988,10 @@ export function useMultipleSelection<Item>(
       environment: environment(suppliedEnvironment),
     }),
     stateReducer(state, action) {
+      if (native?.stateReducer) {
+        return native.stateReducer(state, action);
+      }
+
       return (
         props.stateReducer?.(state, {
           ...action,
@@ -704,12 +1001,29 @@ export function useMultipleSelection<Item>(
       );
     },
     onStateChange: changes =>
-      props.onStateChange?.({ ...changes, type: typeOf(changes.type) }),
+      native?.onStateChange
+        ? native.onStateChange(changes)
+        : props.onStateChange?.({ ...changes, type: typeOf(changes.type) }),
     onSelectedItemsChange: changes =>
-      props.onSelectedItemsChange?.({ ...changes, type: typeOf(changes.type) }),
+      native?.onSelectedItemsChange
+        ? native.onSelectedItemsChange(changes)
+        : props.onSelectedItemsChange?.({
+            ...changes,
+            type: typeOf(changes.type),
+          }),
     onActiveIndexChange: changes =>
-      props.onActiveIndexChange?.({ ...changes, type: typeOf(changes.type) }),
+      native?.onActiveIndexChange
+        ? native.onActiveIndexChange(changes)
+        : props.onActiveIndexChange?.({
+            ...changes,
+            type: typeOf(changes.type),
+          }),
     getA11yStatusMessage(state) {
+      if (native?.getA11yStatusMessage) {
+        previous.current = state.selectedItems;
+
+        return native.getA11yStatusMessage(state);
+      }
       const removed = previous.current.find(
         item => !state.selectedItems.includes(item)
       );

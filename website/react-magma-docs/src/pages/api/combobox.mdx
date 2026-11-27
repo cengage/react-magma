@@ -16,29 +16,84 @@ props:
 
 ## Downshift 9 compatibility
 
-Combobox now uses Downshift 9. Existing single-selection callbacks, state reducers, and reducer constants remain supported. These adapters let existing consumers migrate incrementally; deprecated single-selection props and aliases will be removed in a future major release, with no date set.
+Combobox uses Downshift 9.5.0. Existing flat props and legacy event constants continue to work. To migrate one callback or reducer at a time, use `downshift.combobox`. Multi components additionally accept `downshift.multipleSelection` for chip state. These groups use the original v9 option names and upstream-derived types; no API-version switch is required.
 
-| Existing API                                      | Recommended API                              | Notes                                                                                                                                                                                                                                    |
-| ------------------------------------------------- | -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `onSelectedItemChange(changes)`                   | `onSelectionChange(selectedItem)`            | The recommended callback receives the selected item directly, including `null` when the selection is cleared.                                                                                                                            |
-| `onStateChange(changes)` (single selection)       | `onSelectionStateChange(changes)`            | The new callback provides nullable selection state. `onStateChange` remains appropriate for multiple selection.                                                                                                                          |
-| `stateReducer(state, changes)` (single selection) | `selectionStateReducer(state, action)`       | Use the new reducer when you need the nullable selection state and a string `action.type`. The old reducer remains supported for compatibility.                                                                                          |
-| `circularNavigation`                              | `navigationMode="circular"` or `"bounded"`   | Use `navigationMode` to choose whether arrow-key navigation wraps.                                                                                                                                                                       |
-| `getA11yStatusMessage`                            | `a11yStatusMessage`                          | The recommended callback receives state only, with nullable `selectedItem`; derive result counts and highlighted items from your `items`.                                                                                                |
-| `getA11ySelectionMessage`                         | `a11yStatusMessage` or a live region         | Use the status callback for Downshift announcements, or provide a separate live region for selection-specific text.                                                                                                                      |
-| `getA11yRemovalMessage`                           | `multipleA11yStatusMessage` or a live region | Use the multiple-selection status callback or provide a separate live region for removal-specific text.                                                                                                                                  |
-| `state.keySoFar`                                  | `state.inputValue`                           | `keySoFar` remains as a deprecated alias.                                                                                                                                                                                                |
-| Legacy callback `changes.type` comparisons        | `changes.modernType`                         | `modernType` is a string. In `selectionStateReducer`, `action.type` is already a string. The legacy MenuKeyDown\*/MenuBlur constants remain exported with their original literal values, and callbacks translate them for compatibility. |
+```tsx
+import { Combobox, DownshiftComboboxStateChangeTypes } from 'react-magma-dom';
 
-`onIsOpenChange` and `onHighlightedIndexChange` remain compatible deprecated callbacks; use `onSelectionStateChange` and inspect its `type` when migrating. Legacy callback/reducer declarations preserve Downshift 5's nonnullable item annotation even though it could emit `null` at runtime. Use the new nullable callbacks and reducer for new code. The multiple-selection `onStateChange` and `stateReducer` still describe multiple-selection state and are not deprecated.
+<Combobox
+  labelText="Color"
+  items={['Red', 'Green', 'Blue']}
+  onIsOpenChange={legacyOpenObserver}
+  downshift={{
+    combobox: {
+      onSelectedItemChange(changes) {
+        // selectedItem can be null. The old onIsOpenChange still works.
+        updateSelection(changes.selectedItem);
+      },
+      stateReducer(state, action) {
+        if (
+          action.type === DownshiftComboboxStateChangeTypes.FunctionOpenMenu
+        ) {
+          return action.changes;
+        }
 
-`itemToKey` supports nullable items, and `isItemDisabled` receives the item and its index. The legacy single-selection callback and reducer state declarations remain available for typed consumer compatibility; the recommended callbacks and reducer use the accurate nullable state types. MultiCombobox keeps its multiple-selection reducer API.
+        return action.changes;
+      },
+    },
+  }}
+/>;
+```
 
-The menu uses the ARIA 1.2 focus pattern: focus stays on the trigger or input, and `aria-activedescendant` identifies the highlighted option. Tab and Shift+Tab move focus naturally; blur preserves the existing selection. Custom renderers should retain the getter attributes and item refs.
+A defined native callback replaces only the corresponding consumer legacy callback for that hook. It does not disable Magma's internal selection, filtering, creation, or chip coordination. Native menu `onStateChange` does not replace the independent multiple-selection `onStateChange`. `undefined` falls back to the existing API; a callback returning `''` requests silence and does not trigger a legacy fallback.
 
-Legacy keyboard behavior is retained: Escape clears the single-selection value and query even when the menu is open; in MultiCombobox it clears the query while retaining selected chips. Backspace from an empty input removes the last chip with the menu open or closed. Enter without a highlighted option retains the surrounding form's normal submit behavior.
+| Existing contract                                                                                                                          | Recommended v9 contract                                                                                             | Migration detail                                                                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Flat `onSelectedItemChange`, `onIsOpenChange`, `onHighlightedIndexChange`                                                                  | The same name in `downshift.combobox`                                                                               | Specific callbacks receive the upstream notification, including nullable selection.                                                                                                |
+| Flat `onStateChange`                                                                                                                       | `downshift.combobox.onStateChange`                                                                                  | Receives `type` and changed fields, rather than a reconstructed full state. In multi mode the flat callback belongs to `multipleSelection`, so use that group for its replacement. |
+| Flat `stateReducer`                                                                                                                        | `downshift.combobox.stateReducer`                                                                                   | Receives native state/action. In multi mode the flat reducer belongs to `multipleSelection`.                                                                                       |
+| Flat multi `onActiveIndexChange`, `onSelectedItemsChange`                                                                                  | Same name in `downshift.multipleSelection`                                                                          | Receives the native multiple-selection payload and event type.                                                                                                                     |
+| `getA11yStatusMessage`                                                                                                                     | `downshift.combobox.getA11yStatusMessage`                                                                           | Receives only hook state; derive result counts and previous state in your code when needed.                                                                                        |
+| `getA11ySelectionMessage`                                                                                                                  | Native `getA11yStatusMessage`, or native `onStateChange` plus your own live region                                  | The specialized callback was removed upstream. Selection-specific messages require detecting the selection change yourself. These are alternatives, not two required props.        |
+| `getA11yRemovalMessage`                                                                                                                    | `downshift.multipleSelection.getA11yStatusMessage`, or multiple-selection `onStateChange` plus your own live region | Compare previous/current selectedItems to identify a removed item.                                                                                                                 |
+| `state.keySoFar` in Select                                                                                                                 | `state.inputValue`                                                                                                  | Only the legacy Select state retains keySoFar.                                                                                                                                     |
+| `circularNavigation`                                                                                                                       | The relevant native `stateReducer` for custom navigation                                                            | Downshift v9 has no replacement boolean. The existing Magma prop/default behavior remains supported.                                                                               |
+| Migration aliases `onSelectionChange`, `onSelectionStateChange`, `selectionStateReducer`, `a11yStatusMessage`, `multipleA11yStatusMessage` | Corresponding native callbacks/reducer/status generator                                                             | Aliases remain compatible but are not the native v9 API. Native callbacks take priority for the same concern.                                                                      |
 
-`innerRef` references the actual input. Existing public focus and keyboard callback signatures are retained for compatibility with consumers that forward props through wrappers. The historical `toggleButtonRef` button declaration is also retained, although its wrapper renders a div; rely on shared element operations such as `focus()`, not button-only members. Custom item renderers receive typed emitted DOM properties while retaining consumer-specific extension properties.
+Keep shared options such as `items`, selected state, open state, ids, `itemToKey`, `isItemDisabled`, and `scrollIntoView` at the existing component level. They do not need to move or become deprecated merely because they existed before v9. A multi component uses `selectedItems` for chips and the menu hook's transient selection internally. Controlled state remains controlled until the parent updates it; the native callbacks do not introduce an optimistic copy.
+
+The groups accept `stateReducer`, the relevant change callbacks, `getA11yStatusMessage`, and `environment`; the menu group also accepts `itemToString` (and Combobox accepts `onInputValueChange`). They deliberately exclude duplicate `items`, ids, and controlled/default/initial state. A native `itemToString` accepts `Item | null` and is used for both the displayed labels and the hook. The existing flat stringifier remains supported. A native environment includes `Node`; all groups must share the same document, Node constructor, and listener implementations. Reuse one environment object across menu/chip groups; conflicting resources are rejected.
+
+Native reducers run after the agreed Magma behavior produces its proposed changes. Their `action.changes` contains that proposal; they retain native partial-result semantics: `return {}` keeps the previous state, `return state` keeps it, `return action.changes` accepts the proposal, and a partial result updates only those previous-state fields. The adapter does not reapply the proposal afterward. The legacy reducer keeps its existing semantics. Migration aliases that merged results into the proposal are therefore not interchangeable with the native reducer.
+
+Use `DownshiftSelectStateChangeTypes`, `DownshiftComboboxStateChangeTypes`, and `DownshiftMultipleSelectionStateChangeTypes` from `react-magma-dom` for native event comparisons. They reference the installed hook's actual constants, including production values; do not compare native events with hard-coded strings or legacy constants. Existing `SelectStateChangeTypes`, `ComboboxStateChangeTypes`, `MultipleSelectionStateChangeTypes`, and `modernType` retain their compatibility behavior.
+
+```tsx
+<Combobox
+  isMulti
+  labelText="Colors"
+  items={['Red', 'Green', 'Blue']}
+  selectedItems={selectedColors}
+  downshift={{
+    combobox: { onIsOpenChange: observeMenu },
+    multipleSelection: {
+      onSelectedItemsChange: changes =>
+        setSelectedColors(changes.selectedItems),
+      stateReducer: (_state, action) => action.changes,
+    },
+  }}
+/>
+```
+
+An explicitly supplied native status callback owns that hook's announcements and replaces its legacy fallback. For chip removals, the multiple-selection status callback also replaces Magma's legacy removal/clear announcement. Without a native status callback the existing announcements remain. Return `''` on the state transition you want to silence.
+
+Single components and multi components with only one native status callback use Downshift's publisher. Changing or removing that callback does not cancel a message already queued upstream. When a multi component supplies both native status callbacks, Magma coordinates their text in one local live region with a 200 ms debounce: Downshift's shared timer would otherwise let silent menu cleanup cancel the chip message. The latest meaningful message wins; an empty message cancels pending text from its own hook, without discarding the other hook's pending text. A later silent batch clears published text, and published text also clears after 500 ms. Callbacks still receive their original v9 states. Changing the document, removing either callback, or unmounting cancels the local queue and removes its region. Exact screen-reader speech depends on the browser and screen reader and should be verified manually; DOM accessibility checks alone do not establish the spoken output.
+
+Replaced legacy forms are deprecated with their specific migration target; unchanged props remain current. Existing exported legacy types remain available for annotated consumers. Native option-container types are exported as `SelectDownshiftOptions`, `MultiSelectDownshiftOptions`, `ComboboxDownshiftOptions`, and `MultiComboboxDownshiftOptions`; callbacks are contextually inferred from v9. Legacy removal will require a separate major release; no removal date is set.
+
+When adopting the native combobox group, selecting a Create option by mouse or Enter resolves it through `newItemTransform` before dispatching the real v9 selection action. Native selection callbacks, status callbacks, and reducer selection state receive your actual `Item | null`, not Magma's private Create placeholder. Creation dispatches real v9 function actions for menu/highlight cleanup and selection; multi-selection may then clear its transient selection/input. These transitions use their actual exported action types; compare their exported constants rather than assuming a synthetic Create action or an ItemClick notification. `newItemTransform` and `onItemCreated` run once per activation, not on each typed character. Existing legacy-only creation remains supported. The native reducer’s `props.items` contains data items only. The appended Create action has its own visible menu index, so bounds-check `highlightedIndex` before using it to retrieve a data item. Arrow navigation skips disabled data items when reaching Create, and paging retains Downshift’s wrapping behavior.
+
+The old Magma `onInputValueChange(changes, updateInputItems)` can replace default filtering and keeps that behavior. The native `downshift.combobox.onInputValueChange(changes)` is an observer without the setter: Magma continues its default filtering/create handling. If both are passed, the native observer path wins and the old custom filtering callback is not invoked. Move any custom filtering to your controlled items/input strategy when adopting this callback. `onInputChange`, `onItemCreated`, and the other Magma-specific events remain independent.
 
 ## Basic Usage
 

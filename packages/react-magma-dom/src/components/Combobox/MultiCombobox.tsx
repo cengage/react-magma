@@ -2,6 +2,9 @@ import * as React from 'react';
 
 import { autoUpdate } from '@floating-ui/react-dom';
 import type {
+  UseComboboxState,
+  UseComboboxStateChange,
+  UseComboboxStateChangeOptions,
   GetPropsCommonOptions,
   UseComboboxGetInputPropsOptions,
 } from 'downshift';
@@ -9,11 +12,10 @@ import { CloseOutlinedIcon } from 'react-magma-icons';
 
 import {
   useCombobox,
+  DownshiftComboboxStateChangeTypes,
   useMultipleSelection,
-  UseComboboxState,
-  UseComboboxStateChange,
-  UseComboboxStateChangeOptions,
 } from '../../utils/downshift';
+import { useMultiStatusMessages } from '../../utils/downshift/useMultiStatusMessages';
 import { instanceOfDefaultItemObject } from '../Select';
 import { ComboboxInput } from './ComboboxInput';
 import { defaultOnInputValueChange, useComboboxItems } from './shared';
@@ -38,6 +40,11 @@ import {
 import { MultiComboboxProps } from '.';
 
 export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
+  const { menuStatus, multipleStatus } = useMultiStatusMessages(
+    props.downshift?.combobox?.getA11yStatusMessage,
+    props.downshift?.multipleSelection?.getA11yStatusMessage,
+    props.environment
+  );
   const [inputValue, setInputValue] = React.useState('');
   const {
     ariaDescribedBy,
@@ -58,7 +65,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     isTypeahead = false,
     itemListMaxHeight,
     items,
-    itemToString,
+    itemToString: passedItemToString,
     labelPosition,
     labelStyle,
     labelText,
@@ -97,6 +104,34 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     };
   }, []);
 
+  function isCreatedItem(item: unknown): item is {
+    label: string;
+    value: string;
+    react_magma__created_item: boolean;
+  } {
+    return (
+      !(typeof item === 'string') &&
+      instanceOfDefaultItemObject(item) &&
+      item.react_magma__created_item
+    );
+  }
+
+  function itemToString(item: T | null) {
+    if (props.downshift?.combobox && isCreatedItem(item)) {
+      return item.label;
+    }
+
+    return passedItemToString(item);
+  }
+
+  function itemKey(item: T | null) {
+    if (props.downshift?.combobox && isCreatedItem(item)) {
+      return item;
+    }
+
+    return (props.itemToKey || getItemKey)(item);
+  }
+
   function checkSelectedItemValidity(itemToCheck) {
     // When using Typeahead, don't validate the items
     if (isTypeahead) {
@@ -109,7 +144,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         itemToCheck,
         itemToString,
         undefined,
-        props.itemToKey
+        props.itemToKey ? itemKey : undefined
       ) !== -1
     );
   }
@@ -124,6 +159,10 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     reset,
   } = useMultipleSelection({
     ...props,
+    native: props.downshift?.multipleSelection && {
+      ...props.downshift.multipleSelection,
+      getA11yStatusMessage: multipleStatus,
+    },
     ...(props.initialSelectedItems && {
       initialSelectedItems: props.initialSelectedItems.filter(
         checkSelectedItemValidity
@@ -134,20 +173,12 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     }),
   });
 
-  function isCreatedItem(item) {
-    return (
-      !(typeof item === 'string') &&
-      instanceOfDefaultItemObject(item) &&
-      item.react_magma__created_item
-    );
-  }
-
   function getFilteredItems(unfilteredItems) {
     const selectedIndexes = getSelectedItemIndexes(
       unfilteredItems,
       selectedItems,
       itemToString,
-      props.itemToKey
+      props.itemToKey ? itemKey : undefined
     );
 
     return unfilteredItems.filter((item, index) => {
@@ -164,39 +195,55 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     });
   }
 
+  function itemDisabled(item: T, index?: number) {
+    if (props.downshift?.combobox && isCreatedItem(item)) {
+      return false;
+    }
+
+    return (props.isItemDisabled || isItemDisabled)(item, index);
+  }
+
   function defaultNewItemTransform(newItem) {
     return newItem.value;
   }
 
+  function createItem(item) {
+    const { react_magma__created_item, ...createdItem } = item;
+
+    const newItem =
+      react_magma__created_item &&
+      newItemTransform &&
+      typeof newItemTransform === 'function'
+        ? newItemTransform(createdItem)
+        : defaultNewItemTransform(createdItem);
+
+    items && onItemCreated && typeof onItemCreated === 'function'
+      ? onItemCreated(newItem)
+      : updateItemsRef(newItem);
+    if (process.env.NODE_ENV === 'development') {
+      if (!items && !disableCreateItem) {
+        console.warn(
+          'React Magma Warning: Switching from uncontrolled to controlled items. If allowing new items to be created you should handle the onItemCreated event and control the items list in your code.'
+        );
+      }
+    }
+
+    return newItem;
+  }
+
   function defaultOnSelectedItemChange(changes) {
     if (isCreatedItem(changes.selectedItem)) {
-      const { react_magma__created_item, ...createdItem } =
-        changes.selectedItem;
+      const newItem = createItem(changes.selectedItem);
 
-      const newItem =
-        react_magma__created_item &&
-        newItemTransform &&
-        typeof newItemTransform === 'function'
-          ? newItemTransform(createdItem)
-          : defaultNewItemTransform(createdItem);
-
-      items && onItemCreated && typeof onItemCreated === 'function'
-        ? onItemCreated(newItem)
-        : updateItemsRef(newItem);
       addSelectedItem(newItem);
-
-      if (process.env.NODE_ENV === 'development') {
-        if (!items && !disableCreateItem) {
-          console.warn(
-            'React Magma Warning: Switching from uncontrolled to controlled items. If allowing new items to be created you should handle the onItemCreated event and control the items list in your code.'
-          );
-        }
-      }
-    } else if (changes.selectedItem) {
+    } else if (
+      changes.selectedItem !== null &&
+      changes.selectedItem !== undefined
+    ) {
       addSelectedItem(changes.selectedItem);
     }
 
-    if (changes.selectedItem) {
+    if (changes.selectedItem !== null && changes.selectedItem !== undefined) {
       selectItem(null);
       setInputValue('');
     }
@@ -214,10 +261,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     if (!changedIsOpen) {
       setDisplayItems(allItems.current);
     }
-
-    onIsOpenChange &&
-      typeof onIsOpenChange === 'function' &&
-      onIsOpenChange(changes);
   }
 
   const filteredItems = getFilteredItems(displayItems);
@@ -229,7 +272,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     const { type, changes } = actionAndChanges;
 
     switch (type) {
-      case useCombobox.stateChangeTypes.InputKeyDownEnter: {
+      case DownshiftComboboxStateChangeTypes.InputKeyDownEnter: {
         const newSelectedItem = filteredItems[state.highlightedIndex];
 
         return {
@@ -241,19 +284,19 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
           isOpen: changes.isOpen,
         };
       }
-      case useCombobox.stateChangeTypes.ItemClick:
+      case DownshiftComboboxStateChangeTypes.ItemClick:
         return {
           ...changes,
           inputValue: '',
         };
-      case useCombobox.stateChangeTypes.InputBlur:
+      case DownshiftComboboxStateChangeTypes.InputBlur:
         return {
           ...changes,
           inputValue: '',
           selectedItem: state.selectedItem,
         };
-      case useCombobox.stateChangeTypes.InputKeyDownEscape:
-      case useCombobox.stateChangeTypes.ToggleButtonClick:
+      case DownshiftComboboxStateChangeTypes.InputKeyDownEscape:
+      case DownshiftComboboxStateChangeTypes.ToggleButtonClick:
         return {
           ...changes,
           isOpen: changes.isOpen,
@@ -287,27 +330,47 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   } = useCombobox<T>({
     ...comboboxProps,
     itemToString,
-    itemToKey: props.itemToKey || getItemKey,
-    isItemDisabled: props.isItemDisabled || isItemDisabled,
+    itemToKey: itemKey,
+    isItemDisabled: itemDisabled,
     items: filteredItems,
-    onInputValueChange:
-      onInputValueChange && typeof onInputValueChange === 'function'
-        ? changes => onInputValueChange(changes, setDisplayItems)
-        : changes =>
-            defaultOnInputValueChange(
-              changes,
-              allItems,
-              itemToString,
-              disableCreateItem,
-              setDisplayItems,
-              setHighlightedIndex,
-              handleInputChange,
-              i18n.combobox.createLabel,
-              props.isItemDisabled || isItemDisabled
-            ),
-    onIsOpenChange: handleOnIsOpenChange,
-    onSelectedItemChange: defaultOnSelectedItemChange,
-    stateReducer,
+    onInputValueChange: onInputValueChange
+      ? changes => onInputValueChange(changes, setDisplayItems)
+      : undefined,
+    internalOnInputValueChange: changes => {
+      if (
+        !onInputValueChange ||
+        props.downshift?.combobox?.onInputValueChange
+      ) {
+        defaultOnInputValueChange(
+          changes,
+          allItems,
+          itemToString,
+          disableCreateItem,
+          setDisplayItems,
+          setHighlightedIndex,
+          handleInputChange,
+          i18n.combobox.createLabel,
+          itemDisabled
+        );
+      }
+    },
+    internalOnIsOpenChange: handleOnIsOpenChange,
+    onIsOpenChange,
+    internalOnSelectedItemChange: defaultOnSelectedItemChange,
+    onSelectedItemChange: undefined,
+    native: props.downshift?.combobox && {
+      ...props.downshift.combobox,
+      getA11yStatusMessage: menuStatus,
+    },
+    isCreateOption: props.downshift?.combobox ? isCreatedItem : undefined,
+    resolveCreatedItem: props.downshift?.combobox
+      ? index => {
+          const item = filteredItems[index];
+
+          return isCreatedItem(item) ? { item: createItem(item) } : undefined;
+        }
+      : undefined,
+    internalStateReducer: stateReducer,
   });
 
   function handleRemoveSelectedItem(event: React.SyntheticEvent, selectedItem) {
@@ -551,15 +614,20 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         isOpen={isOpen}
         items={getFilteredItems(displayItems)}
         itemToString={itemToString}
-        itemToKey={props.itemToKey}
-        isItemDisabled={props.isItemDisabled || isItemDisabled}
+        itemToKey={props.itemToKey ? itemKey : undefined}
+        isItemDisabled={itemDisabled}
         isLoading={isLoading && isTypeahead}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
         setFloating={refs.setFloating}
       />
-      <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
-      {isClearable && <ClearAnnouncer clearAnnouncement={clearAnnouncement} />}
+      {!props.downshift?.combobox?.getA11yStatusMessage && (
+        <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
+      )}
+      {isClearable &&
+        !props.downshift?.multipleSelection?.getA11yStatusMessage && (
+          <ClearAnnouncer clearAnnouncement={clearAnnouncement} />
+        )}
     </SelectContainer>
   );
 }

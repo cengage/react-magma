@@ -1,4 +1,57 @@
-// Public compatibility contracts are owned by React Magma, not inferred from Downshift.
+import type {
+  UseSelectProps as DownshiftSelectProps,
+  UseComboboxProps as DownshiftComboboxProps,
+  UseMultipleSelectionProps as DownshiftMultipleSelectionProps,
+} from 'downshift';
+
+type SelectionOption =
+  | 'stateReducer'
+  | 'onSelectedItemChange'
+  | 'onIsOpenChange'
+  | 'onHighlightedIndexChange'
+  | 'onStateChange'
+  | 'getA11yStatusMessage'
+  | 'itemToString'
+  | 'environment';
+
+export type NativeSelectOptions<Item> = Pick<
+  DownshiftSelectProps<Item>,
+  SelectionOption
+>;
+export type NativeComboboxOptions<Item> = Pick<
+  DownshiftComboboxProps<Item>,
+  SelectionOption | 'onInputValueChange'
+>;
+export type NativeMultipleSelectionOptions<Item> = Pick<
+  DownshiftMultipleSelectionProps<Item>,
+  | 'stateReducer'
+  | 'onActiveIndexChange'
+  | 'onSelectedItemsChange'
+  | 'onStateChange'
+  | 'getA11yStatusMessage'
+  | 'environment'
+>;
+
+export interface SelectDownshiftOptions<Item> {
+  select?: NativeSelectOptions<Item>;
+  combobox?: never;
+  multipleSelection?: never;
+}
+export interface MultiSelectDownshiftOptions<Item>
+  extends Omit<SelectDownshiftOptions<Item>, 'multipleSelection'> {
+  multipleSelection?: NativeMultipleSelectionOptions<Item>;
+}
+export interface ComboboxDownshiftOptions<Item> {
+  combobox?: NativeComboboxOptions<Item>;
+  select?: never;
+  multipleSelection?: never;
+}
+export interface MultiComboboxDownshiftOptions<Item>
+  extends Omit<ComboboxDownshiftOptions<Item>, 'multipleSelection'> {
+  multipleSelection?: NativeMultipleSelectionOptions<Item>;
+}
+
+// Legacy declarations stay independent of upstream so annotated consumers keep compiling.
 export interface Environment {
   addEventListener: typeof window.addEventListener;
   removeEventListener: typeof window.removeEventListener;
@@ -6,23 +59,23 @@ export interface Environment {
 }
 
 export enum UseSelectStateChangeTypes {
-  /** @deprecated Use the corresponding ToggleButton event through modernType. Removed in a future major. */
+  /** @deprecated Use DownshiftSelectStateChangeTypes.ToggleButtonKeyDownArrowDown in native callbacks. Removed in a future major. */
   MenuKeyDownArrowDown = '__menu_keydown_arrow_down__',
-  /** @deprecated Use the corresponding ToggleButton event through modernType. Removed in a future major. */
+  /** @deprecated Use DownshiftSelectStateChangeTypes.ToggleButtonKeyDownArrowUp in native callbacks. Removed in a future major. */
   MenuKeyDownArrowUp = '__menu_keydown_arrow_up__',
-  /** @deprecated Use the corresponding ToggleButton event through modernType. Removed in a future major. */
+  /** @deprecated Use DownshiftSelectStateChangeTypes.ToggleButtonKeyDownEscape in native callbacks. Removed in a future major. */
   MenuKeyDownEscape = '__menu_keydown_escape__',
-  /** @deprecated Use the corresponding ToggleButton event through modernType. Removed in a future major. */
+  /** @deprecated Use DownshiftSelectStateChangeTypes.ToggleButtonKeyDownHome in native callbacks. Removed in a future major. */
   MenuKeyDownHome = '__menu_keydown_home__',
-  /** @deprecated Use the corresponding ToggleButton event through modernType. Removed in a future major. */
+  /** @deprecated Use DownshiftSelectStateChangeTypes.ToggleButtonKeyDownEnd in native callbacks. Removed in a future major. */
   MenuKeyDownEnd = '__menu_keydown_end__',
-  /** @deprecated Use the corresponding ToggleButton event through modernType. Removed in a future major. */
+  /** @deprecated Use DownshiftSelectStateChangeTypes.ToggleButtonKeyDownEnter in native callbacks. Removed in a future major. */
   MenuKeyDownEnter = '__menu_keydown_enter__',
-  /** @deprecated Use the corresponding ToggleButton event through modernType. Removed in a future major. */
+  /** @deprecated Use DownshiftSelectStateChangeTypes.ToggleButtonKeyDownSpaceButton in native callbacks. Removed in a future major. */
   MenuKeyDownSpaceButton = '__menu_keydown_space_button__',
-  /** @deprecated Use the corresponding ToggleButton event through modernType. Removed in a future major. */
+  /** @deprecated Use DownshiftSelectStateChangeTypes.ToggleButtonKeyDownCharacter in native callbacks. Removed in a future major. */
   MenuKeyDownCharacter = '__menu_keydown_character__',
-  /** @deprecated Use ToggleButtonBlur through modernType. Removed in a future major. */
+  /** @deprecated Use DownshiftSelectStateChangeTypes.ToggleButtonBlur in native callbacks. Removed in a future major. */
   MenuBlur = '__menu_blur__',
   MenuMouseLeave = '__menu_mouse_leave__',
   ItemMouseMove = '__item_mouse_move__',
@@ -124,22 +177,25 @@ export interface SelectionAction<Item> {
 }
 interface CommonProps<Item> {
   items: Item[];
+  /** @deprecated Use downshift.select.stateReducer or downshift.combobox.stateReducer. Native partial results patch the previous state, not the proposed changes. */
   selectionStateReducer?: (
     state: SelectionState<Item>,
     action: SelectionAction<Item>
   ) => Partial<SelectionState<Item>>;
+  /** @deprecated Use the corresponding native onStateChange for changed fields, or a specific native callback for full state. */
   onSelectionStateChange?: (
     state: SelectionState<Item> & { type: string }
   ) => void;
   itemToString?: (item: Item) => string;
   itemToKey?: (item: Item | null) => unknown;
   isItemDisabled?: (item: Item, index: number) => boolean;
-  /** @deprecated Use a11yStatusMessage. Removed in a future major. */
+  /** @deprecated Use the corresponding downshift.select.getA11yStatusMessage or downshift.combobox.getA11yStatusMessage, receiving only the v9 hook state. Removed in a future major. */
   getA11yStatusMessage?: (options: A11yStatusMessageOptions<Item>) => string;
-  /** @deprecated Use a11yStatusMessage or an aria-live region. Removed in a future major. */
+  /** @deprecated Use the corresponding native getA11yStatusMessage, or onStateChange with your own aria-live region for selection-specific messages. Removed in a future major. */
   getA11ySelectionMessage?: (options: A11yStatusMessageOptions<Item>) => string;
+  /** @deprecated Use the corresponding native getA11yStatusMessage. */
   a11yStatusMessage?: (state: SelectionState<Item>) => string;
-  /** @deprecated Use navigationMode. Removed in a future major. */
+  /** @deprecated Use the corresponding native stateReducer to customize navigation; there is no replacement boolean in Downshift v9. Removed in a future major. */
   circularNavigation?: boolean;
   navigationMode?: 'circular' | 'bounded';
   highlightedIndex?: number;
@@ -158,7 +214,7 @@ interface CommonProps<Item> {
   getItemId?: (index: number) => string;
   scrollIntoView?: (node: HTMLElement, menuNode: HTMLElement) => void;
   environment?: Environment;
-  /** Receives the nullable selected item. Prefer this to the legacy callback. */
+  /** @deprecated Use the corresponding native onSelectedItemChange, whose changes.selectedItem is nullable. */
   onSelectionChange?: (selectedItem: Item | null) => void;
 }
 export interface UseSelectStateChange<Item>
@@ -186,18 +242,18 @@ export interface UseComboboxStateChangeOptions<Item> {
   source?: 'outside';
 }
 export interface UseSelectProps<Item> extends CommonProps<Item> {
-  /** @deprecated Use selectionStateReducer. Removed in a future major. */
+  /** @deprecated Use downshift.select.stateReducer or downshift.combobox.stateReducer with the corresponding v9 state and action types. Removed in a future major. */
   stateReducer?: (
     state: UseSelectState<Item>,
     action: UseSelectStateChangeOptions<Item>
   ) => Partial<UseSelectState<Item>>;
-  /** @deprecated Use onSelectionChange. Removed in a future major. */
+  /** @deprecated Use the corresponding downshift.select.onSelectedItemChange or downshift.combobox.onSelectedItemChange; its selectedItem is nullable. Removed in a future major. */
   onSelectedItemChange?: (changes: UseSelectStateChange<Item>) => void;
-  /** @deprecated Use onSelectionStateChange. Removed in a future major. */
+  /** @deprecated Use the same callback name in downshift.select or downshift.combobox for the v9 payload and event type. Removed in a future major. */
   onIsOpenChange?: (changes: UseSelectStateChange<Item>) => void;
-  /** @deprecated Use onSelectionStateChange. Removed in a future major. */
+  /** @deprecated Use the same callback name in downshift.select or downshift.combobox for the v9 payload and event type. Removed in a future major. */
   onHighlightedIndexChange?: (changes: UseSelectStateChange<Item>) => void;
-  /** @deprecated Use onSelectionStateChange. Removed in a future major. */
+  /** @deprecated Use the same callback name in downshift.select or downshift.combobox for the v9 payload and event type. Removed in a future major. */
   onStateChange?: (changes: UseSelectStateChange<Item>) => void;
 }
 export interface UseComboboxProps<Item> extends CommonProps<Item> {
@@ -205,20 +261,20 @@ export interface UseComboboxProps<Item> extends CommonProps<Item> {
   initialInputValue?: string;
   defaultInputValue?: string;
   inputId?: string;
-  /** @deprecated Use selectionStateReducer. Removed in a future major. */
+  /** @deprecated Use downshift.select.stateReducer or downshift.combobox.stateReducer with the corresponding v9 state and action types. Removed in a future major. */
   stateReducer?: (
     state: UseComboboxState<Item>,
     action: UseComboboxStateChangeOptions<Item>
   ) => Partial<UseComboboxState<Item>>;
-  /** @deprecated Use onSelectionChange. Removed in a future major. */
+  /** @deprecated Use the corresponding downshift.select.onSelectedItemChange or downshift.combobox.onSelectedItemChange; its selectedItem is nullable. Removed in a future major. */
   onSelectedItemChange?: (changes: UseComboboxStateChange<Item>) => void;
-  /** @deprecated Use onSelectionStateChange. Removed in a future major. */
+  /** @deprecated Use the same callback name in downshift.select or downshift.combobox for the v9 payload and event type. Removed in a future major. */
   onIsOpenChange?: (changes: UseComboboxStateChange<Item>) => void;
-  /** @deprecated Use onSelectionStateChange. Removed in a future major. */
+  /** @deprecated Use the same callback name in downshift.select or downshift.combobox for the v9 payload and event type. Removed in a future major. */
   onHighlightedIndexChange?: (changes: UseComboboxStateChange<Item>) => void;
-  /** @deprecated Use onSelectionStateChange. Removed in a future major. */
+  /** @deprecated Use the same callback name in downshift.select or downshift.combobox for the v9 payload and event type. Removed in a future major. */
   onStateChange?: (changes: UseComboboxStateChange<Item>) => void;
-  /** @deprecated Use onSelectionStateChange. Removed in a future major. */
+  /** @deprecated Use the same callback name in downshift.select or downshift.combobox for the v9 payload and event type. Removed in a future major. */
   onInputValueChange?: (changes: UseComboboxStateChange<Item>) => void;
 }
 export interface UseMultipleSelectionState<Item> {
@@ -244,11 +300,13 @@ export interface UseMultipleSelectionProps<Item> {
   defaultSelectedItems?: Item[];
   itemToString?: (item: Item) => string;
   itemToKey?: (item: Item | null) => unknown;
-  /** @deprecated Use multipleA11yStatusMessage or an aria-live region. Removed in a future major. */
+  /** @deprecated Use downshift.multipleSelection.getA11yStatusMessage, or onStateChange with your own aria-live region. Compute the removed item from previous/current selectedItems. Removed in a future major. */
   getA11yRemovalMessage?: (options: A11yRemovalMessage<Item>) => string;
+  /** @deprecated Use downshift.multipleSelection.getA11yStatusMessage. */
   multipleA11yStatusMessage?: (
     state: UseMultipleSelectionState<Item>
   ) => string;
+  /** @deprecated Use downshift.multipleSelection.stateReducer for the v9 action and event type. Removed in a future major. */
   stateReducer?: (
     state: UseMultipleSelectionState<Item>,
     action: UseMultipleSelectionStateChangeOptions<Item>
@@ -256,12 +314,15 @@ export interface UseMultipleSelectionProps<Item> {
   activeIndex?: number;
   initialActiveIndex?: number;
   defaultActiveIndex?: number;
+  /** @deprecated Use downshift.multipleSelection.onActiveIndexChange for the v9 action and event type. Removed in a future major. */
   onActiveIndexChange?: (
     changes: UseMultipleSelectionStateChange<Item>
   ) => void;
+  /** @deprecated Use downshift.multipleSelection.onSelectedItemsChange for the v9 action and event type. Removed in a future major. */
   onSelectedItemsChange?: (
     changes: UseMultipleSelectionStateChange<Item>
   ) => void;
+  /** @deprecated Use downshift.multipleSelection.onStateChange for the v9 action and event type. Removed in a future major. */
   onStateChange?: (changes: UseMultipleSelectionStateChange<Item>) => void;
   keyNavigationNext?: string;
   keyNavigationPrevious?: string;

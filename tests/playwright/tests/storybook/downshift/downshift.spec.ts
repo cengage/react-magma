@@ -294,3 +294,78 @@ for (const component of ['select', 'combobox']) {
     });
   }
 }
+
+for (const component of ['select', 'combobox']) {
+  test(`${component}: native callbacks preserve single and chip selection`, async ({
+    page,
+  }) => {
+    await page.goto(`/iframe.html?id=${component}--native-api&viewMode=story`);
+    const single = page.getByRole('combobox', {
+      name: 'Native single color',
+      exact: true,
+    });
+    await single.click();
+    await page.getByRole('option', { name: 'Green', exact: true }).click();
+    await expect(page.getByTestId('native-single-selection')).toHaveText(
+      'Green'
+    );
+    await expect(page.getByTestId('native-legacy-calls')).toHaveText('0');
+
+    const multiple = page.getByRole('combobox', {
+      name: /Native multiple colors/,
+    });
+    await multiple.click();
+    await page.getByRole('option', { name: 'Red', exact: true }).click();
+    await expect(page.getByTestId('native-multiple-selection')).toHaveText(
+      'Red'
+    );
+    await expect(multiple).toContainText(component === 'select' ? 'Red' : '');
+    await expect(page.locator('[role="status"]')).toHaveText(
+      'Native chips: Red'
+    );
+    await page.locator('button[aria-label="clear item Red"]').click();
+    await expect(page.getByTestId('native-multiple-selection')).toHaveText(
+      'None'
+    );
+    await expect(page.locator('[role="status"]')).toHaveText(
+      'Native chips: None'
+    );
+  });
+}
+
+for (const multi of [false, true]) {
+  for (const activation of ['click', 'Enter']) {
+    test(`combobox: native create multi=${multi} via ${activation}`, async ({
+      page,
+    }) => {
+      await page.goto('/iframe.html?id=combobox--native-api&viewMode=story');
+      const input = page.getByRole('combobox', {
+        name: multi ? /Native multiple colors/ : 'Native single color',
+      });
+      await input.fill('Azure');
+      if (activation === 'Enter') {
+        await input.press('Enter');
+      } else {
+        await page
+          .getByRole('option', { name: 'Create "Azure"', exact: true })
+          .click();
+      }
+      await expect(
+        page.getByTestId(
+          multi ? 'native-multiple-selection' : 'native-single-selection'
+        )
+      ).toHaveText('Azure');
+      if (multi) {
+        await expect(
+          page.getByRole('button', { name: 'clear item Azure' })
+        ).toBeVisible();
+        await expect(input).toHaveValue('');
+      } else {
+        await expect(input).toHaveValue('Azure');
+        await expect(page.getByTestId('native-legacy-calls')).toHaveText('0');
+      }
+      await expect(input).toHaveAttribute('aria-expanded', 'false');
+      await expect(input).toBeFocused();
+    });
+  }
+}

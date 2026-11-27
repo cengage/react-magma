@@ -2,6 +2,9 @@ import React from 'react';
 
 import {
   useCombobox,
+  resolveNativeOptions,
+  ComboboxDownshiftOptions,
+  MultiComboboxDownshiftOptions,
   UseComboboxProps,
   UseComboboxState,
   UseMultipleSelectionProps,
@@ -25,6 +28,8 @@ export interface ComboboxProps<T extends SelectOptions>
    * Id of the element that describes the combobox input
    */
   ariaDescribedBy?: string;
+  /** Native Downshift v9 contracts. Explicit native callbacks take precedence over their legacy counterparts. */
+  downshift?: ComboboxDownshiftOptions<T>;
   /**
    * Style properties for the component container element
    */
@@ -125,7 +130,10 @@ export interface ComboboxProps<T extends SelectOptions>
 
 export interface MultiComboboxProps<T extends SelectOptions>
   extends UseMultipleSelectionProps<T>,
-    Omit<ComboboxProps<T>, 'onStateChange' | 'stateReducer' | 'isMulti'>,
+    Omit<
+      ComboboxProps<T>,
+      'onStateChange' | 'stateReducer' | 'isMulti' | 'downshift'
+    >,
     InternalMultiProps<T> {
   /**
    * @internal
@@ -136,6 +144,8 @@ export interface MultiComboboxProps<T extends SelectOptions>
    * @default false
    */
   hasPersistentMenu?: boolean;
+  /** Native menu and chip hook contracts, independently configurable. */
+  downshift?: MultiComboboxDownshiftOptions<T>;
 }
 
 export function instanceOfMultiCombobox<T>(
@@ -148,7 +158,17 @@ export type XORComboboxProps<T> = XOR<ComboboxProps<T>, MultiComboboxProps<T>>;
 
 export const ComboboxStateChangeTypes = useCombobox.stateChangeTypes;
 
-export function Combobox<T>(props: XORComboboxProps<T>) {
+export function Combobox<T>(passedProps: XORComboboxProps<T>) {
+  const props = {
+    ...passedProps,
+    ...resolveNativeOptions(
+      passedProps.downshift?.combobox,
+      passedProps.downshift && 'multipleSelection' in passedProps.downshift
+        ? passedProps.downshift.multipleSelection
+        : undefined
+    ),
+  };
+
   const {
     containerStyle,
     errorMessage,

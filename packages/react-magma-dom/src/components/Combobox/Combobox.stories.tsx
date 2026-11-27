@@ -1431,3 +1431,49 @@ export const InitialHighlightedItem = {
     disableCreateItem: true,
   },
 };
+
+/** Consumer fixture for incremental adoption of native Downshift contracts. */
+export const NativeApi = {
+  render: () => {
+    const [single, setSingle] = React.useState<string | null>(null);
+    const [multiple, setMultiple] = React.useState<string[]>([]);
+    const [legacyCalls, setLegacyCalls] = React.useState(0);
+
+    return (
+      <>
+        <Combobox
+          labelText="Native single color"
+          defaultItems={['Red', 'Green', 'Blue']}
+          onSelectedItemChange={() => setLegacyCalls(count => count + 1)}
+          downshift={{
+            combobox: {
+              onSelectedItemChange: changes => setSingle(changes.selectedItem),
+              getA11yStatusMessage: () => '',
+            },
+          }}
+        />
+        <output data-testid="native-single-selection">
+          {single ?? 'None'}
+        </output>
+        <output data-testid="native-legacy-calls">{legacyCalls}</output>
+        <Combobox
+          isMulti
+          labelText="Native multiple colors"
+          defaultItems={['Red', 'Green', 'Blue']}
+          downshift={{
+            combobox: { getA11yStatusMessage: () => '' },
+            multipleSelection: {
+              onSelectedItemsChange: changes =>
+                setMultiple(changes.selectedItems),
+              getA11yStatusMessage: state =>
+                `Native chips: ${state.selectedItems.join(', ') || 'None'}`,
+            },
+          }}
+        />
+        <output data-testid="native-multiple-selection">
+          {multiple.join(', ') || 'None'}
+        </output>
+      </>
+    );
+  },
+};

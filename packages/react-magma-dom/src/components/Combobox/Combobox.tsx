@@ -1,13 +1,16 @@
 import * as React from 'react';
 
 import { autoUpdate } from '@floating-ui/react-dom';
+import type {
+  UseComboboxState,
+  UseComboboxStateChange,
+  UseComboboxStateChangeOptions,
+} from 'downshift';
 import { CloseOutlinedIcon } from 'react-magma-icons';
 
 import {
   useCombobox,
-  UseComboboxState,
-  UseComboboxStateChange,
-  UseComboboxStateChangeOptions,
+  DownshiftComboboxStateChangeTypes,
 } from '../../utils/downshift';
 import { instanceOfDefaultItemObject } from '../Select';
 import { ComboboxInput } from './ComboboxInput';
@@ -47,7 +50,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     isTypeahead = false,
     itemListMaxHeight,
     items,
-    itemToString,
+    itemToString: passedItemToString,
     labelPosition,
     labelStyle,
     labelText,
@@ -74,7 +77,11 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
   const [clearAnnouncement, setClearAnnouncement] = React.useState('');
   const clearAnnouncementTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
-  function isCreatedItem(item) {
+  function isCreatedItem(item: unknown): item is {
+    label: string;
+    value: string;
+    react_magma__created_item: boolean;
+  } {
     return (
       !(typeof item === 'string') &&
       instanceOfDefaultItemObject(item) &&
@@ -82,40 +89,65 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     );
   }
 
+  function itemToString(item: T | null) {
+    if (props.downshift?.combobox && isCreatedItem(item)) {
+      return item.label;
+    }
+
+    return passedItemToString(item);
+  }
+
+  function itemKey(item: T | null) {
+    if (props.downshift?.combobox && isCreatedItem(item)) {
+      return item;
+    }
+
+    return (props.itemToKey || getItemKey)(item);
+  }
+
+  function itemDisabled(item: T, index?: number) {
+    if (props.downshift?.combobox && isCreatedItem(item)) {
+      return false;
+    }
+
+    return (props.isItemDisabled || isItemDisabled)(item, index);
+  }
+
   function defaultNewItemTransform(newItem) {
     return newItem.value;
   }
 
+  function createItem(item) {
+    const { react_magma__created_item, ...createdItem } = item;
+
+    const newItem =
+      react_magma__created_item &&
+      newItemTransform &&
+      typeof newItemTransform === 'function'
+        ? newItemTransform(createdItem)
+        : defaultNewItemTransform(createdItem);
+
+    items && onItemCreated && typeof onItemCreated === 'function'
+      ? onItemCreated(newItem)
+      : updateItemsRef(newItem);
+
+    if (process.env.NODE_ENV === 'development') {
+      if (!items && !disableCreateItem) {
+        console.warn(
+          'React Magma Warning: Switching from uncontrolled to controlled items. If allowing new items to be created you should handle the onItemCreated event and control the items list in your code.'
+        );
+      }
+    }
+
+    return newItem;
+  }
+
   function defaultOnSelectedItemChange(changes) {
     if (isCreatedItem(changes.selectedItem)) {
-      const { react_magma__created_item, ...createdItem } =
-        changes.selectedItem;
-
-      const newItem =
-        react_magma__created_item &&
-        newItemTransform &&
-        typeof newItemTransform === 'function'
-          ? newItemTransform(createdItem)
-          : defaultNewItemTransform(createdItem);
-
-      items && onItemCreated && typeof onItemCreated === 'function'
-        ? onItemCreated(newItem)
-        : updateItemsRef(newItem);
+      const newItem = createItem(changes.selectedItem);
 
       selectItem(newItem);
       setInputValue(itemToString(newItem));
-
-      if (process.env.NODE_ENV === 'development') {
-        if (!items && !disableCreateItem) {
-          console.warn(
-            'React Magma Warning: Switching from uncontrolled to controlled items. If allowing new items to be created you should handle the onItemCreated event and control the items list in your code.'
-          );
-        }
-      }
-    } else {
-      props.onSelectedItemChange &&
-        typeof props.onSelectedItemChange === 'function' &&
-        props.onSelectedItemChange(changes);
     }
   }
 
@@ -126,7 +158,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     const { type, changes } = actionAndChanges;
 
     switch (type) {
-      case useCombobox.stateChangeTypes.InputKeyDownEnter: {
+      case DownshiftComboboxStateChangeTypes.InputKeyDownEnter: {
         const inputValue = isCreatedItem(displayItems[0])
           ? ''
           : changes.inputValue;
@@ -136,7 +168,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
           inputValue,
         };
       }
-      case useCombobox.stateChangeTypes.ItemClick: {
+      case DownshiftComboboxStateChangeTypes.ItemClick: {
         const inputValue = isCreatedItem(displayItems[0])
           ? ''
           : changes.inputValue;
@@ -146,7 +178,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
           inputValue,
         };
       }
-      case useCombobox.stateChangeTypes.InputBlur:
+      case DownshiftComboboxStateChangeTypes.InputBlur:
         return {
           ...changes,
           inputValue:
@@ -155,7 +187,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
               : itemToString(state.selectedItem),
           selectedItem: state.selectedItem,
         };
-      case useCombobox.stateChangeTypes.FunctionReset:
+      case DownshiftComboboxStateChangeTypes.FunctionReset:
         return {
           ...changes,
           inputValue: changes.selectedItem
@@ -190,7 +222,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
       itemToCheck,
       itemToString,
       undefined,
-      props.itemToKey
+      props.itemToKey ? itemKey : undefined
     ) !== -1
       ? { [key]: itemToCheck }
       : { [key]: null };
@@ -210,20 +242,13 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         changedSelectedItem,
         itemToString,
         undefined,
-        props.itemToKey
+        props.itemToKey ? itemKey : undefined
       );
 
       setHighlightedIndex(
-        index >= 0 &&
-          (props.isItemDisabled || isItemDisabled)(displayItems[index], index)
-          ? -1
-          : index
+        index >= 0 && itemDisabled(displayItems[index], index) ? -1 : index
       );
     }
-
-    onIsOpenChange &&
-      typeof onIsOpenChange === 'function' &&
-      onIsOpenChange(changes);
   }
 
   const {
@@ -239,35 +264,55 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     selectedItem,
     setInputValue,
     setHighlightedIndex,
-  } = useCombobox({
+  } = useCombobox<T>({
     ...props,
     itemToString,
-    itemToKey: props.itemToKey || getItemKey,
-    isItemDisabled: props.isItemDisabled || isItemDisabled,
+    itemToKey: itemKey,
+    isItemDisabled: itemDisabled,
     items: displayItems,
-    onInputValueChange:
-      onInputValueChange && typeof onInputValueChange === 'function'
-        ? changes => onInputValueChange(changes, setDisplayItems)
-        : changes =>
-            defaultOnInputValueChange(
-              changes,
-              allItems,
-              itemToString,
-              disableCreateItem,
-              setDisplayItems,
-              setHighlightedIndex,
-              onInputChange,
-              i18n.combobox.createLabel,
-              props.isItemDisabled || isItemDisabled
-            ),
-    onIsOpenChange: handleOnIsOpenChange,
-    onSelectedItemChange: defaultOnSelectedItemChange,
+    onInputValueChange: onInputValueChange
+      ? changes => onInputValueChange(changes, setDisplayItems)
+      : undefined,
+    internalOnInputValueChange: changes => {
+      if (
+        !onInputValueChange ||
+        props.downshift?.combobox?.onInputValueChange
+      ) {
+        defaultOnInputValueChange(
+          changes,
+          allItems,
+          itemToString,
+          disableCreateItem,
+          setDisplayItems,
+          setHighlightedIndex,
+          onInputChange,
+          i18n.combobox.createLabel,
+          itemDisabled
+        );
+      }
+    },
+    internalOnIsOpenChange: handleOnIsOpenChange,
+    onIsOpenChange,
+    internalOnSelectedItemChange: defaultOnSelectedItemChange,
+    onSelectedItemChange: changes => {
+      if (!isCreatedItem(changes.selectedItem))
+        props.onSelectedItemChange?.(changes);
+    },
+    native: props.downshift?.combobox,
+    isCreateOption: props.downshift?.combobox ? isCreatedItem : undefined,
+    resolveCreatedItem: props.downshift?.combobox
+      ? index => {
+          const item = displayItems[index];
+
+          return isCreatedItem(item) ? { item: createItem(item) } : undefined;
+        }
+      : undefined,
     onSelectionChange: item => {
       if (!isCreatedItem(item)) {
         props.onSelectionChange?.(item);
       }
     },
-    stateReducer,
+    internalStateReducer: stateReducer,
     userStateReducer: props.stateReducer,
     ...(defaultSelectedItem &&
       getValidItem(defaultSelectedItem, 'defaultSelectedItem')),
@@ -398,16 +443,20 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         isInverse={isInverse}
         items={displayItems}
         itemToString={itemToString}
-        itemToKey={props.itemToKey}
-        isItemDisabled={props.isItemDisabled || isItemDisabled}
+        itemToKey={props.itemToKey ? itemKey : undefined}
+        isItemDisabled={itemDisabled}
         isLoading={isLoading && isTypeahead}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
         setFloating={refs.setFloating}
         selectedItem={selectedItem}
       />
-      <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
-      {isClearable && <ClearAnnouncer clearAnnouncement={clearAnnouncement} />}
+      {!props.downshift?.combobox?.getA11yStatusMessage && (
+        <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
+      )}
+      {isClearable && !props.downshift?.combobox?.getA11yStatusMessage && (
+        <ClearAnnouncer clearAnnouncement={clearAnnouncement} />
+      )}
     </SelectContainer>
   );
 }

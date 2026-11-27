@@ -352,3 +352,15 @@ export type {
 } from './utils/downshift';
 export type { ComboboxProps, MultiComboboxProps } from './components/Combobox';
 export type { MultiSelectProps, SelectProps } from './components/Select';
+
+export {
+  DownshiftSelectStateChangeTypes,
+  DownshiftComboboxStateChangeTypes,
+  DownshiftMultipleSelectionStateChangeTypes,
+} from './utils/downshift';
+export type {
+  SelectDownshiftOptions,
+  MultiSelectDownshiftOptions,
+  ComboboxDownshiftOptions,
+  MultiComboboxDownshiftOptions,
+} from './utils/downshift';

@@ -1,13 +1,13 @@
 import * as React from 'react';
 
 import { autoUpdate } from '@floating-ui/react-dom';
+import type { UseSelectState, UseSelectStateChangeOptions } from 'downshift';
 import { CloseOutlinedIcon } from 'react-magma-icons';
 
 import { useForkedRef } from '../../utils';
 import {
   useSelect,
-  UseSelectState,
-  UseSelectStateChangeOptions,
+  DownshiftSelectStateChangeTypes,
 } from '../../utils/downshift';
 import { ButtonSize, ButtonVariant } from '../Button';
 import { ClearAnnouncer } from './ClearAnnouncer';
@@ -136,19 +136,19 @@ export function Select<T>(props: SelectProps<T>) {
     }
 
     switch (type) {
-      case useSelect.stateChangeTypes.MenuBlur:
+      case DownshiftSelectStateChangeTypes.ToggleButtonBlur:
         return {
           ...changes,
           selectedItem: state.selectedItem,
         };
-      case useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter:
+      case DownshiftSelectStateChangeTypes.ToggleButtonKeyDownCharacter:
         return {
           ...changes,
           selectedItem: state.selectedItem,
           isOpen: state.isOpen,
         };
-      case useSelect.stateChangeTypes.ItemClick:
-      case useSelect.stateChangeTypes.MenuKeyDownEnter:
+      case DownshiftSelectStateChangeTypes.ItemClick:
+      case DownshiftSelectStateChangeTypes.ToggleButtonKeyDownEnter:
         if (itemDisabled(changes.selectedItem)) {
           return {
             ...changes,
@@ -180,7 +180,8 @@ export function Select<T>(props: SelectProps<T>) {
       props.navigationMode ??
       (props.circularNavigation === false ? 'bounded' : 'circular'),
     onIsOpenChange,
-    stateReducer,
+    internalStateReducer: stateReducer,
+    native: props.downshift?.select,
     userStateReducer: props.stateReducer,
     ...(defaultSelectedItem &&
       getValidItem(defaultSelectedItem, 'defaultSelectedItem')),
@@ -331,8 +332,12 @@ export function Select<T>(props: SelectProps<T>) {
         />
       </SelectContainer>
 
-      <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
-      {isClearable && <ClearAnnouncer clearAnnouncement={clearAnnouncement} />}
+      {!props.downshift?.select?.getA11yStatusMessage && (
+        <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
+      )}
+      {isClearable && !props.downshift?.select?.getA11yStatusMessage && (
+        <ClearAnnouncer clearAnnouncement={clearAnnouncement} />
+      )}
     </>
   );
 }

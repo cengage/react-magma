@@ -1,6 +1,11 @@
 import * as React from 'react';
 
 import { autoUpdate } from '@floating-ui/react-dom';
+import type {
+  UseSelectState,
+  UseSelectStateChange,
+  UseSelectStateChangeOptions,
+} from 'downshift';
 import { CloseOutlinedIcon } from 'react-magma-icons';
 
 import { ClearAnnouncer } from './ClearAnnouncer';
@@ -23,15 +28,19 @@ import { useForkedRef } from '../../utils';
 import {
   useMultipleSelection,
   useSelect,
-  UseSelectState,
-  UseSelectStateChange,
-  UseSelectStateChangeOptions,
+  DownshiftSelectStateChangeTypes,
 } from '../../utils/downshift';
+import { useMultiStatusMessages } from '../../utils/downshift/useMultiStatusMessages';
 import { ButtonSize, ButtonVariant } from '../Button';
 
 import { instanceOfDefaultItemObject, MultiSelectProps } from '.';
 
 export function MultiSelect<T>(props: MultiSelectProps<T>) {
+  const { menuStatus, multipleStatus } = useMultiStatusMessages(
+    props.downshift?.select?.getA11yStatusMessage,
+    props.downshift?.multipleSelection?.getA11yStatusMessage,
+    props.environment
+  );
   const {
     additionalContent,
     ariaDescribedBy,
@@ -139,6 +148,10 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     reset,
   } = useMultipleSelection<T>({
     ...props,
+    native: props.downshift?.multipleSelection && {
+      ...props.downshift.multipleSelection,
+      getA11yStatusMessage: multipleStatus,
+    },
     ...(props.initialSelectedItems && {
       initialSelectedItems: props.initialSelectedItems.filter(
         checkSelectedItemValidity
@@ -203,19 +216,19 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     }
 
     switch (type) {
-      case useSelect.stateChangeTypes.MenuBlur:
+      case DownshiftSelectStateChangeTypes.ToggleButtonBlur:
         return {
           ...changes,
           selectedItem: state.selectedItem,
         };
-      case useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter:
+      case DownshiftSelectStateChangeTypes.ToggleButtonKeyDownCharacter:
         return {
           ...changes,
           selectedItem: state.selectedItem,
           isOpen: state.isOpen,
         };
-      case useSelect.stateChangeTypes.ItemClick:
-      case useSelect.stateChangeTypes.MenuKeyDownEnter:
+      case DownshiftSelectStateChangeTypes.ItemClick:
+      case DownshiftSelectStateChangeTypes.ToggleButtonKeyDownEnter:
         if (itemDisabled(changes.selectedItem)) {
           return {
             ...changes,
@@ -251,8 +264,13 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     navigationMode:
       props.navigationMode ??
       (props.circularNavigation === false ? 'bounded' : 'circular'),
-    onSelectedItemChange: defaultOnSelectedItemChange,
-    stateReducer,
+    onSelectedItemChange: undefined,
+    internalOnSelectedItemChange: defaultOnSelectedItemChange,
+    internalStateReducer: stateReducer,
+    native: props.downshift?.select && {
+      ...props.downshift.select,
+      getA11yStatusMessage: menuStatus,
+    },
     initialHighlightedIndex: initialIndex,
     onIsOpenChange,
   });
@@ -260,7 +278,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   function defaultOnSelectedItemChange(changes: UseSelectStateChange<T>) {
     const { selectedItem: newSelectedItem } = changes;
 
-    if (newSelectedItem) {
+    if (newSelectedItem !== null && newSelectedItem !== undefined) {
       addSelectedItem(newSelectedItem);
       selectItem(null);
     }
@@ -307,7 +325,9 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     ...dropdownProps,
     onKeyDown: (event: React.KeyboardEvent) => {
       if (
-        document.activeElement.tagName.toLowerCase() === 'button' &&
+        (
+          props.environment?.document ?? event.currentTarget.ownerDocument
+        ).activeElement?.tagName.toLowerCase() === 'button' &&
         (event.key === 'Backspace' ||
           event.key === 'Delete' ||
           event.key === 'ArrowLeft')
@@ -523,8 +543,13 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         />
       </SelectContainer>
 
-      <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
-      {isClearable && <ClearAnnouncer clearAnnouncement={clearAnnouncement} />}
+      {!props.downshift?.select?.getA11yStatusMessage && (
+        <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
+      )}
+      {isClearable &&
+        !props.downshift?.multipleSelection?.getA11yStatusMessage && (
+          <ClearAnnouncer clearAnnouncement={clearAnnouncement} />
+        )}
     </>
   );
 }

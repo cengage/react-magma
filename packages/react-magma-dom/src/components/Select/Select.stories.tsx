@@ -368,3 +368,49 @@ export const InitialHighlightedItem = {
     itemListMaxHeight: 120,
   },
 };
+
+/** Consumer fixture for incremental adoption of native Downshift contracts. */
+export const NativeApi = {
+  render: () => {
+    const [single, setSingle] = React.useState<string | null>(null);
+    const [multiple, setMultiple] = React.useState<string[]>([]);
+    const [legacyCalls, setLegacyCalls] = React.useState(0);
+
+    return (
+      <>
+        <Select
+          labelText="Native single color"
+          items={['Red', 'Green', 'Blue']}
+          onSelectedItemChange={() => setLegacyCalls(count => count + 1)}
+          downshift={{
+            select: {
+              onSelectedItemChange: changes => setSingle(changes.selectedItem),
+              getA11yStatusMessage: () => '',
+            },
+          }}
+        />
+        <output data-testid="native-single-selection">
+          {single ?? 'None'}
+        </output>
+        <output data-testid="native-legacy-calls">{legacyCalls}</output>
+        <Select
+          isMulti
+          labelText="Native multiple colors"
+          items={['Red', 'Green', 'Blue']}
+          downshift={{
+            select: { getA11yStatusMessage: () => '' },
+            multipleSelection: {
+              onSelectedItemsChange: changes =>
+                setMultiple(changes.selectedItems),
+              getA11yStatusMessage: state =>
+                `Native chips: ${state.selectedItems.join(', ') || 'None'}`,
+            },
+          }}
+        />
+        <output data-testid="native-multiple-selection">
+          {multiple.join(', ') || 'None'}
+        </output>
+      </>
+    );
+  },
+};
